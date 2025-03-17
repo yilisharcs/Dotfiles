@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+echo "Searching..."
+
+# `xdg-open` for Linux; `cmd.exe /c start` for WSL
+
+if [[ $@ == *"http"* ]]; then
+    cmd.exe /c start "$@" &> /dev/null
+elif [[ $@ == *".com"* ]] ||\
+    [[ $@ == *".org"* ]] ||\
+    [[ $@ == *".net"* ]] ||\
+    [[ $@ == *".edu"* ]] ||\
+    [[ $@ == *".gov"* ]] ||\
+    [[ $@ == *".tv"* ]] ||\
+    [[ $@ == *".local"* ]]; then
+    cmd.exe /c start "http://$@" &> /dev/null
+else
+    for term in $@ ; do
+        search="$search%20$term"
+    done
+    cmd.exe /c start "http://www.google.com/search?q=$search" &> /dev/null
+fi

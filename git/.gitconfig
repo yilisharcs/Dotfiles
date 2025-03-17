@@ -1,0 +1,17 @@
+[user]
+	name = yilisharcs
+	email = 200692511+yilisharcs@users.noreply.github.com
+[init]
+	defaultBranch = master
+[core]
+	excludesfile = /home/yilisharcs/.gitignore_global
+	editor = nvim
+[alias]
+	unstage = reset HEAD --
+	last = log -1 HEAD
+[credential]
+	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+[merge]
+	tool = nvimdiff
+[diff]
+	tool = nvimdiff
