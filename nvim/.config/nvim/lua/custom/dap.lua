@@ -68,12 +68,36 @@ dap.adapters.codelldb = {
   command = codelldb_bin,
 }
 
+local function target_triple()
+  ---@diagnostic disable: param-type-mismatch
+  local bin = string.match(vim.uv.cwd(), '([^/]+)$')
+
+  local shell = assert(io.popen(
+    "rustup target list | grep installed | sed -E '/unknown/d' | awk '{print $1}'"
+  ))
+  local target = shell:read('*all'):gsub('\n[^\n]*$', '')
+  shell:close()
+
+  if target == '' then
+    return vim.uv.cwd() .. '/target/debug/' .. bin
+  end
+
+  -- TODO: add logic for multiple targets
+  local dir = table.concat(vim.fs.find(target, { type = 'directory' }))
+  if dir == '' then
+    print(' Forgot to compile! Run `cargo build --target=' .. target .. '` !')
+    return
+  end
+
+  return dir .. '/debug/' .. bin .. '.exe'
+end
+
 dap.configurations.rust = {
   {
     name = 'Launch file',
     type = 'codelldb',
     request = 'launch',
-    program = vim.uv.cwd() .. '/target/debug/' .. string.match(vim.fn.getcwd(), '([^/]+)$'),
+    program = target_triple(),
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
   },
