@@ -108,7 +108,7 @@ source $ZSH/oh-my-zsh.sh
 
 HISTSIZE=10000000
 SAVEHIST=10000000
-HISTORY_IGNORE="(v|vi|im|vim|exit|[bf]g|ls|pwd|clear)"
+HISTORY_IGNORE="(v|vi|im|vim|mvim|exit|[bf]g|ls|pwd|clear)"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -117,6 +117,7 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
     export EDITOR='nvim'
     alias {vi,vim}='nvim'
+    alias mvim='NVIM_APPNAME=nvim-minimal nvim'
 fi
 
 alias visudo='sudo visudo'
