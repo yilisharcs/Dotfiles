@@ -3,7 +3,7 @@ return {
     'saghen/blink.cmp',
     lazy = false,
     dependencies = { 'rafamadriz/friendly-snippets' }, -- snippet sources, optional
-    version = '0.12.4',
+    version = '0.13.1',
     -- build = 'cargo build --release',
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -85,6 +85,14 @@ return {
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
         default = { 'lsp', 'snippets', 'path', 'buffer' },
+        providers = {
+          cmdline = {
+            enabled = function()
+              -- Ignores cmdline completions when executing shell commands
+              return vim.fn.getcmdtype() ~= ':' or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
+            end
+          }
+        }
       },
       signature = { -- experimental feature
         enabled = true,
