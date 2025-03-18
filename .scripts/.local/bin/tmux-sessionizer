@@ -6,7 +6,7 @@ if [[ $# -eq 1 ]]; then
     selected=$1
 else
     selected=$(
-    find -L ~/projects/ ~/src ~/ ~/notes/ \
+    find -L ~/projects/ ~/src ~/ \
         -mindepth 1 -maxdepth 1 -type d | fzf --preview ''
     )
 fi
