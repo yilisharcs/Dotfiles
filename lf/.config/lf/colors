@@ -180,7 +180,8 @@ fi      00      # FILE
 *.gitignore  00;33
 *README.md   00;33
 
-*Makefile    00;32
+*Makefile         00;32
+*Makefile.toml    00;32
 
 *init.lua    00;38;5;177
 *init.vim    00;38;5;177
