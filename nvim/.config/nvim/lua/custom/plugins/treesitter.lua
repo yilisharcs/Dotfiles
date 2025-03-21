@@ -31,6 +31,7 @@ return {
           'query',
           'regex',
           'rust',
+          'scheme',
           'sql',
           'ssh_config',
           'toml',
@@ -43,9 +44,6 @@ return {
         },
         sync_install = false,
         auto_install = true,
-        ignore_install = {
-          'tmux',
-        },
         highlight = {
           enable = true,
           disable = function()
@@ -70,7 +68,7 @@ return {
         augroup END
 
         " Required: treesitter resets filetype syntax opts
-        augroup md_Text_In_Quotes
+        augroup syn_opts
           au!
           au BufEnter *.md set syntax=ON
         augroup END

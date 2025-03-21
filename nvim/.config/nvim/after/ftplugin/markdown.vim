@@ -7,7 +7,6 @@ setlocal suffixesadd+=.md,.lemon
 setlocal iskeyword+=-,'
 setlocal isfname+='
 let &l:commentstring='<!-- %s -->'
-" set syntax=ON
 
 augroup Dialogue_Local_Tag
     au!
