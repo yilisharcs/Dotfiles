@@ -9,7 +9,7 @@ return {
         function() require('harpoon').ui:toggle_quick_menu(require('harpoon'):list(), { border = 'rounded' }) end,
         desc = '[HARPOON] Open Menu'
       },
-      { '<leader>a', function() require('harpoon'):list():add() end,     desc = '[HARPOON] Toggle Mark' },
+      { '<leader>e', function() require('harpoon'):list():add() end,     desc = '[HARPOON] Toggle Mark' },
       { '<leader>h', function() require('harpoon'):list():select(1) end, desc = '[HARPOON] Local mark `h' },
       { '<leader>j', function() require('harpoon'):list():select(2) end, desc = '[HARPOON] Local mark `j' },
       { '<leader>k', function() require('harpoon'):list():select(3) end, desc = '[HARPOON] Local mark `k' },
