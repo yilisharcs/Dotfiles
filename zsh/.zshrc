@@ -108,7 +108,7 @@ source $ZSH/oh-my-zsh.sh
 
 HISTSIZE=10000000
 SAVEHIST=10000000
-HISTORY_IGNORE="(v|vi|im|vim|mvim|exit|[bf]g|ls|pwd|clear)"
+HISTORY_IGNORE="(v|vi|im|vim|mvim|exit|[bf]g|l[fs]|pwd|clear|tmuxa)"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -137,7 +137,7 @@ alias cargo="cargo auditable"
 bindkey -s ^g " tmux-sessionizer\n"
 bindkey -s ^z " fg\n"
 
-make() {
+smake() {
   local project_name=$(basename "$(pwd)")
   local install_prefix="$HOME/stow/$project_name/.local"
 
