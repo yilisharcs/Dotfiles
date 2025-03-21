@@ -158,6 +158,7 @@ make() {
 
 source <(fzf --zsh)
 source <(zoxide init zsh)
+source <(dircolors ~/.dircolors)
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
