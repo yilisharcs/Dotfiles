@@ -2,7 +2,7 @@ return {
   {
     'yilisharcs/lf.nvim',
     dependencies = { { 'akinsho/toggleterm.nvim', version = '*', config = true } },
-    commit = 'a06468f3f65cf4a27863a52d83cf7473039705e7',
+    branch = "emacs-keybindings",
     priority = 999,
     cmd = { 'Lf' },
     keys = {
