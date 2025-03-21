@@ -1,0 +1,11 @@
+# Always enable extended mode
+--extended
+
+# Disable file deletion
+--disable-delete
+
+# Exclude .git directories
+--exclude .git
+
+# Set color scheme
+--color off
