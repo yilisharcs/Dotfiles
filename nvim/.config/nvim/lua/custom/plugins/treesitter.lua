@@ -35,7 +35,6 @@ return {
           'sql',
           'ssh_config',
           'toml',
-          'tmux',
           'typescript',
           'vim',
           'vimdoc',
@@ -44,6 +43,9 @@ return {
         },
         sync_install = false,
         auto_install = true,
+        ignore_install = {
+          'tmux',
+        },
         highlight = {
           enable = true,
           disable = function()
