@@ -3,12 +3,11 @@ return {
     'akinsho/toggleterm.nvim',
     version = '*',
     keys = {
-      { '<C-q>',         '<CMD>ToggleTerm<CR>',                    mode = { 'n', 't' },          desc = '[TERM] Horizontal $CWD' },
-      { '<leader><C-q>', '<CMD>ToggleTerm direction=vertical<CR>', desc = '[TERM] Vertical $CWD' },
+      { '<C-q>',         '<CMD>ToggleTerm<CR>',                      mode = { 'n', 't' },            desc = '[TERM] Vertical $CWD' },
+      { '<leader><C-q>', '<CMD>ToggleTerm direction=horizontal<CR>', desc = '[TERM] Horizontal $CWD' },
     },
     opts = {
-      -- open_mapping = '<C-q>',
-      direction = 'horizontal',
+      direction = 'vertical',
       size = function(term)
         if term.direction == 'horizontal' then
           return vim.o.lines * 0.3
