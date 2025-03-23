@@ -21,7 +21,6 @@ return {
           'html',
           'javascript',
           'lua',
-          'make',
           'markdown',
           'markdown_inline',
           'ninja',
@@ -44,6 +43,7 @@ return {
         sync_install = false,
         auto_install = true,
         ignore_install = {
+          'make',
           'tmux',
         },
         highlight = {
