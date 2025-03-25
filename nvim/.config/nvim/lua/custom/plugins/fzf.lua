@@ -54,11 +54,11 @@ return {
       },
       files = {
         fd_opts = '--color=never --hidden --follow --no-ignore --ignore-case --type file ' ..
-            '--exclude={.cache,.git,Trash-Linux,Trash-Windows,.local/share,.local/state,$HOME/.config,.oh-my-zsh}',
+            '--exclude={target/debug,.cache,.git,Trash-Linux,Trash-Windows,.local/share,.local/state,$HOME/.config,.oh-my-zsh}',
       },
       grep = {
         rg_opts = '--color=never --hidden --follow --vimgrep --sort path --smart-case ' ..
-            "-g '!{.cache,.git,Trash-Linux,Trash-Windows,.local/share,.local/state,$HOME/.config,.oh-my-zsh}/'",
+            "-g '!{target/debug,.cache,.git,Trash-Linux,Trash-Windows,.local/share,.local/state,$HOME/.config,.oh-my-zsh}/'",
         filter = "rg --invert-match '\\.gitignore'",
         silent = true,
       },
