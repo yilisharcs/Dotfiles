@@ -49,7 +49,7 @@ vim.keymap.set({ 'i', 'c' }, '<C-x><C-a>', '<C-a>')
 vim.keymap.set('c', '<C-k>', [[<c-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>]],
   { desc = 'Delete text after cursor' })
 
-vim.keymap.set({ 'i', 'c', 't' }, '<C-l>', '<DEL>')
+vim.keymap.set({ 'i', 'c' }, '<C-d>', '<DEL>')
 vim.keymap.set('c', '<C-y>', "(pumvisible() ? '<C-y>' : '<C-f>')", { expr = true, desc = 'Cmd history or confirm cmp' })
 
 vim.keymap.set('n', 'dy', '<CMD>diffthis<CR>', { desc = 'Enable diff mode' })
