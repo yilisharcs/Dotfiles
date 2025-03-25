@@ -5,6 +5,10 @@ export DOTFILES=$HOME/.dotfiles
 
 export PATH="$HOME/.local/bin:$PATH"
 
+# It's Wasmtime
+export WASMTIME_HOME="$HOME/.wasmtime"
+export PATH="$WASMTIME_HOME/bin:$PATH"
+
 # ## CMAKE Flags
 export CMAKE_BUILD_TYPE=Release
 
