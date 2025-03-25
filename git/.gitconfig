@@ -2,7 +2,7 @@
 	name = yilisharcs
 	email = 200692511+yilisharcs@users.noreply.github.com
 [init]
-	defaultBranch = master
+	defaultBranch = main
 [core]
 	excludesfile = /home/yilisharcs/.gitignore_global
 	editor = nvim
