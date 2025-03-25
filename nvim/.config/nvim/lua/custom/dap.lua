@@ -84,11 +84,6 @@ local function target_triple()
 
   -- TODO: add logic for multiple targets
   local dir = table.concat(vim.fs.find(target, { type = 'directory' }))
-  if dir == '' then
-    print(' Forgot to compile! Run `cargo build --target=' .. target .. '` !')
-    return
-  end
-
   return dir .. '/debug/' .. bin .. '.exe'
 end
 
