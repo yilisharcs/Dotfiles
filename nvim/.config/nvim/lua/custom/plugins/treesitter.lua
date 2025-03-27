@@ -24,6 +24,7 @@ return {
           'markdown',
           'markdown_inline',
           'ninja',
+          'nu',
           'objdump',
           'powershell',
           'python',
