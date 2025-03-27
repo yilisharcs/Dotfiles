@@ -64,9 +64,9 @@ let &fillchars='eob: '
 " Cursor animation
 set guicursor=a:block,c-ci-i-r:blinkwait700-blinkoff700-blinkon700
 
-" Nushell integration
+" Nushell breaks otherwise
+set noshelltemp
 let &shellpipe='| tee { save %s }'
-let &shellredir='o> %s'
 
 " Miscellaneous
 set updatetime=1000
