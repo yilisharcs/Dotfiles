@@ -20,6 +20,7 @@ return {
     },
     config = function()
       vim.diagnostic.config({
+        virtual_lines = true,
         severity_sort = true,
         float = { border = 'rounded' },
         jump = { float = true },
@@ -121,24 +122,13 @@ return {
           map('ca', 'wq', 'execute "Format sync" | wq')
 
           map('n', 'K', function() vim.lsp.buf.hover() end, 'Help') -- required if keywordprg is set
-          -- map('i', '<C-k>', function() vim.lsp.buf.signature_help() end, 'Signature Help') -- provided by blink.cmp
           map('n', '<leader>-', function() vim.diagnostic.setqflist({ namespace = namespace }) end, 'Set Quickfix')
 
           map('n', 'gd', function() vim.lsp.buf.definition() end, 'Definition')
           map('n', 'grd', function() vim.lsp.buf.declaration() end, 'Declaration')
           map('n', 'grt', function() vim.lsp.buf.type_definition() end, 'Type Definition')
           map('n', 'grw', function() vim.lsp.buf.workspace_symbol() end, 'Workspace Symbol')
-          -- Unnecessary in nvim v0.11.0
           map('n', 'grf', function() vim.diagnostic.open_float() end, 'Open Error Float')
-          -- -- Defaults
-          map('n', '[d', function() vim.diagnostic.goto_prev() end, 'Diagnostic Prev')
-          map('n', ']d', function() vim.diagnostic.goto_next() end, 'Diagnostic Next')
-          -- map('n', '[d', function() vim.diagnostic.jump({ count = -1, float = true }) end, 'Diagnostic Prev')
-          -- map('n', ']d', function() vim.diagnostic.jump({ count = 1, float = true }) end, 'Diagnostic Next')
-          map('n', 'grn', function() vim.lsp.buf.rename() end, 'Rename')
-          map('n', 'gra', function() vim.lsp.buf.code_action() end, 'Code_action')
-          map('n', 'grr', function() vim.lsp.buf.references() end, 'References')
-          map('n', 'gri', function() vim.lsp.buf.implementation() end, 'Implementation')
         end
       })
     end

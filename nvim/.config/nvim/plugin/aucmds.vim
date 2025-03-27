@@ -7,7 +7,7 @@ augroup au_cmds
     " Reads external file changes
     au CursorHold * if &buftype!='nofile' | checktime | endif
     " Terminal options
-    au TermOpen,TermEnter * setlocal signcolumn=no nonu nornu | startinsert
+    au TermOpen,TermEnter * startinsert
     " Newline doesn't insert comment from comment
     au FileType * set formatoptions-=o
     " Prevent conflicts from autoread

@@ -3,7 +3,7 @@ return {
     'echasnovski/mini.operators', -- see `:h MiniOperators.config`.
     version = false,
     keys = {
-      { 'g=' },
+      { 'g-' },
       { 'cx' },
       { 'gm' },
       { 'cs' },
@@ -11,19 +11,19 @@ return {
     },
     opts = {
       evaluate = {
-        prefix = 'g=', -- Evaluate text and replace with output
+        prefix = 'g-',
         func = nil,
       },
       exchange = {
-        prefix = 'cx', -- Exchange text regions
+        prefix = 'cx',
         reindent_linewise = true,
       },
       multiply = {
-        prefix = 'gm', -- Duplicate text
+        prefix = 'gm',
         func = nil,
       },
       replace = {
-        prefix = 'cs', -- Substitute text with content from register
+        prefix = 'cs',
         reindent_linewise = true,
       },
       sort = {
