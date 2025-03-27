@@ -56,11 +56,6 @@ vim.keymap.set('n', 'dy', '<CMD>diffthis<CR>', { desc = 'Enable diff mode' })
 vim.keymap.set('x', '<C-o>', ":'<,'>diffget<CR>", { silent = true, desc = 'Diff copy from alt buffer' })
 vim.keymap.set('x', '<C-p>', ":'<,'>diffput<CR>", { silent = true, desc = 'Diff paste to alt buffer' })
 
-vim.keymap.set('n', '<leader>o', "<CMD>call append(line('.'), repeat([''], v:count1))<CR>",
-  { silent = true, desc = 'Newline below' })
-vim.keymap.set('n', '<leader>O', "<CMD>call append(line('.')-1, repeat('', v:count1))<CR>",
-  { silent = true, desc = 'Newline above' })
-
 vim.cmd([[
   function! List_Gmarks()
     marks ABCDEFGIMNOPQRSTUVWXYZ
