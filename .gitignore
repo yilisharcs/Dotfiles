@@ -6,3 +6,6 @@ nvim/.config/nvim/plugin/registers.lua
 nvim/.config/nvim/plugin/transc.lua
 nvim/.config/nvim/spell/*.add.spl
 massren/.config/massren/profile.sqlite
+
+nushell/.config/nushell/env.nu
+nushell/.config/nushell/history.txt
