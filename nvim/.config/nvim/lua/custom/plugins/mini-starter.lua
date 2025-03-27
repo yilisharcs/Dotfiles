@@ -1,6 +1,7 @@
 return {
   {
     'echasnovski/mini.starter', -- see `:h MiniStarter.config`.
+    enabled = false,
     version = false,
     lazy = false,
     opts = {
