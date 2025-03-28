@@ -36,27 +36,20 @@ function _G.qfx(info)
       local lnum = e.lnum > 99999 and -1 or e.lnum
       local col = e.col > 999 and -1 or e.col
       local qtype = e.type == '' and '' or e.type:sub(1, 1):upper() .. '|'
-      if vim.g.is_tty then
-        -- validFmt = '%s | %d:%d |%s %s'
-        validFmt = '%s | %5d:%-3d |%s %s'
-        if qtype == 'N|' then qtype = 'H|' end
+      if qtype == 'N|' then qtype = 'H|' end
+      if e.type == '' and '' then
+        validFmt = ' %s | %5d:%-3d | %s%s'
       else
-        if e.type == '' and '' then
-          -- validFmt = ' %s | %d:%d | %s%s'
-          validFmt = ' %s | %5d:%-3d | %s%s'
-        else
-          -- validFmt = ' %s | %d:%d | %s  %s'
-          validFmt = ' %s | %5d:%-3d | %s  %s'
-        end
-        if qtype == 'E|' then
-          qtype = ''
-        elseif qtype == 'W|' then
-          qtype = ''
-        elseif qtype == 'I|' then
-          qtype = ''
-        elseif qtype == 'N|' then
-          qtype = '󰞏'
-        end
+        validFmt = ' %s | %5d:%-3d | %s  %s'
+      end
+      if qtype == 'E|' then
+        qtype = ''
+      elseif qtype == 'W|' then
+        qtype = ''
+      elseif qtype == 'I|' then
+        qtype = ''
+      elseif qtype == 'N|' then
+        qtype = '󰞏'
       end
       str = validFmt:format(fname, lnum, col, qtype, e.text)
     else

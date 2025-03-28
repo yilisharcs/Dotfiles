@@ -10,7 +10,7 @@ return {
     },
     notification = {
       window = {
-        winblend = vim.g.neovide and 100 or 0,
+        winblend = 0,
       },
     }
   }

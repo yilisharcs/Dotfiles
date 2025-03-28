@@ -19,11 +19,6 @@ vim.keymap.set({ 'n', 't' }, '<M-l>', '<CMD>wincmd l<CR>')
 
 vim.keymap.set('n', '<leader>ql', '<CMD>Lazy<CR>')
 
--- Check if vim is running on the tty
-if not vim.env.DISPLAY then
-  vim.g.is_tty = true
-end
-
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'

@@ -2,7 +2,6 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    cond = not vim.g.is_tty,
     event = { 'VeryLazy' },
     init = function()
       vim.go.showmode = false
@@ -10,8 +9,8 @@ return {
     opts = {
       options = {
         icons_enabled        = true,
-        section_separators   = vim.g.neovide and {} or { left = '', right = '' },
-        component_separators = vim.g.neovide and {} or { left = '', right = '' },
+        section_separators   = { left = '', right = '' },
+        component_separators = { left = '', right = '' },
         theme                = {
           normal = {
             a = { bg = '#89b4fa', fg = '#181825', gui = 'bold' },
