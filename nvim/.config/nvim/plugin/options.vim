@@ -72,6 +72,7 @@ let &shellpipe='| tee { save %s }'
 set updatetime=1000
 set termguicolors
 set lazyredraw
+set winborder=rounded
 
 " Defaults
 set nobackup
