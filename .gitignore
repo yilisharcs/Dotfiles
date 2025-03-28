@@ -3,8 +3,6 @@ TODO.md
 nvim/.config/nvim-minimal/
 
 nvim/.config/nvim/lsp/_lsp.lua
-nvim/.config/nvim/plugin/registers.lua
-nvim/.config/nvim/plugin/transc.lua
 nvim/.config/nvim/spell/*.add.spl
 massren/.config/massren/profile.sqlite
 
