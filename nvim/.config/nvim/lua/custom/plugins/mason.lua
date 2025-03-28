@@ -46,10 +46,10 @@ return {
         jump = { float = true },
         signs = {
           text = {
-            [vim.diagnostic.severity.ERROR] = vim.g.is_tty and 'E' or '',
-            [vim.diagnostic.severity.WARN] = vim.g.is_tty and 'W' or '',
-            [vim.diagnostic.severity.INFO] = vim.g.is_tty and 'I' or '',
-            [vim.diagnostic.severity.HINT] = vim.g.is_tty and 'H' or '󰌶',
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.INFO] = '',
+            [vim.diagnostic.severity.HINT] = '󰌶',
           },
         },
       })
