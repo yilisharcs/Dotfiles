@@ -31,4 +31,7 @@ augroup config_curwin_border
 
     " Lf integration. Pattern/event doesn't work unless made as a standalone autocmd for some reason.
     autocmd TermLeave *lf*toggleterm* exe 'setlocal winhighlight+=CursorLine:CursorLineNC winhighlight-='..s:winborder_hl
+
+    " Compatibility layer for winning.vim and vim.ui.select()
+    au CmdlineLeave * set eventignore=
 augroup END
