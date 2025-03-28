@@ -67,7 +67,8 @@ return {
 
           local client = vim.lsp.get_clients()[1]
           local namespace = vim.lsp.diagnostic.get_namespace(client.id)
-          map('n', '<leader>-', function() vim.diagnostic.setqflist({ namespace = namespace, open = true }) end, 'Set Quickfix')
+          map('n', '<leader>-', function() vim.diagnostic.setqflist({ namespace = namespace, open = true }) end,
+            'Set Quickfix')
 
           local LSP_Opts = vim.api.nvim_create_augroup('LSPOpts', { clear = false })
 
@@ -88,12 +89,12 @@ return {
             })
 
             if not client:supports_method('textDocument/willSaveWaitUntil')
-              and client:supports_method('textDocument/formatting') then
+                and client:supports_method('textDocument/formatting') then
               vim.api.nvim_create_autocmd('BufWritePre', {
                 group = LSP_Opts,
                 buffer = args.buf,
                 callback = function()
-                  vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+                  vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 3000 })
                 end,
               })
             end
