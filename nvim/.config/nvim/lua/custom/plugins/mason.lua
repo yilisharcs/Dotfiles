@@ -104,7 +104,6 @@ return {
           map('n', 'grd', function() vim.lsp.buf.declaration() end, 'Declaration')
           map('n', 'grt', function() vim.lsp.buf.type_definition() end, 'Type Definition')
           map('n', 'grw', function() vim.lsp.buf.workspace_symbol() end, 'Workspace Symbol')
-          map('n', 'grf', function() vim.diagnostic.open_float() end, 'Open Error Float')
         end
       })
     end

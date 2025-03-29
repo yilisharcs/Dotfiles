@@ -16,7 +16,7 @@ return {
         function()
           require('fzf-lua').complete_path({
             cmd = 'fd --color=never --hidden --follow --ignore-case --type \
-            file --exclude={.cache,.git,.npm,.oh-my-zsh,src}',
+            file --exclude={.cache,.git,.npm,.oh-my-zsh,$HOME/src}',
           })
         end,
         mode = 'i',

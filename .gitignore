@@ -8,3 +8,4 @@ massren/.config/massren/profile.sqlite
 
 nushell/.config/nushell/env.nu
 nushell/.config/nushell/history.*
+nushell/.config/nushell/plugin.msgpackz

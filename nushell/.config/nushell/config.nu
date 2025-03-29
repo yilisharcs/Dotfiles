@@ -1,35 +1,3 @@
-$env.config.show_banner = false
-
-$env.config.history = {
-    file_format: sqlite
-    max_size: 1_000_000
-    sync_on_enter: true
-    isolation: false
-}
-
-$env.config.keybindings = [
-    {
-        name: tmux_sessionizer
-        modifier: control
-        keycode: char_g
-        mode: [emacs, vi_insert, vi_normal]
-        event: {
-            send: executehostcommand,
-            cmd: "tmux-sessionizer"
-        }
-    }
-    {
-        name: job_to_foreground
-        modifier: control
-        keycode: char_z
-        mode: [emacs, vi_insert, vi_normal]
-        event: {
-            send: executehostcommand,
-            cmd: "job unfreeze"
-        }
-    }
-]
-
 $env.XDG_CONFIG_HOME = $"($env.HOME)/.config"
 $env.DOTFILES = $"($env.HOME)/.dotfiles"
 
@@ -81,8 +49,55 @@ $env.WASI_SDK_PATH = $"($env.HOME)/src/wasi-sdk-25.0"
 # }
 
 $env.RIPGREP_CONFIG_PATH = $"($env.XDG_CONFIG_HOME)/ripgrep/ripgreprc"
-$env.FZF_DEFAULT_COMMAND = "fd --hidden --follow --ignore-case --type file --strip-cwd-prefix --exclude={.cache,.git,.npm,.oh-my-zsh,src}"
+$env.FZF_DEFAULT_COMMAND = "fd --hidden --follow --ignore-case --type file --strip-cwd-prefix --exclude={.cache,.git,.npm,.oh-my-zsh,$HOME/src}"
 $env.FZF_DEFAULT_OPTS = "--preview 'bat --color=always --wrap=never --style=plain --line-range=:500 {}' --layout=reverse --multi --preview-window border-left --bind backward-eof:abort --bind 'F4:change-preview-window(hidden|right)' --bind 'ctrl-j:preview-page-down,ctrl-k:preview-page-up'"
+
+$env.config.show_banner = false
+
+$env.config.history = {
+    file_format: sqlite
+    max_size: 1_000_000
+    sync_on_enter: true
+    isolation: false
+}
+
+$env.config.keybindings = [
+    {
+        name: tmux_sessionizer
+        modifier: control
+        keycode: char_g
+        mode: [emacs, vi_insert, vi_normal]
+        event: {
+            send: executehostcommand,
+            cmd: "tmux-sessionizer"
+        }
+    }
+    {
+        name: job_to_foreground
+        modifier: control
+        keycode: char_z
+        mode: [emacs, vi_insert, vi_normal]
+        event: {
+            send: executehostcommand,
+            cmd: "job unfreeze"
+        }
+    }
+]
+
+$env.config.plugin_gc = {
+    default: {
+        enabled: true
+        stop_after: 10sec
+    }
+    plugins: {
+        gstat: {
+            stop_after: 1min
+        }
+        inc: {
+            stop_after: 0sec
+        }
+    }
+}
 
 $env.EDITOR = 'nvim'
 alias vi = nvim
