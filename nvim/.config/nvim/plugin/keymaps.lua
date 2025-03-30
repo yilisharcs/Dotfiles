@@ -113,4 +113,4 @@ function P(...)
   return ...
 end
 
-vim.keymap.set('n', '<leader>p', ':lua P()<Left>', { desc = 'Print data structures' })
+vim.keymap.set('n', '<leader>P', ':lua P()<Left>', { desc = 'Print data structures' })
