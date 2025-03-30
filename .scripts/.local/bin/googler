@@ -5,7 +5,7 @@ echo "Searching..."
 # `xdg-open` for Linux; `cmd.exe /c start` for WSL
 
 if [[ $@ == *"http"* ]]; then
-    cmd.exe /c start "$@" &> /dev/null
+    cmd.exe /c start "$@" > /dev/null 2>&1
 elif [[ $@ == *".com"* ]] ||\
     [[ $@ == *".org"* ]] ||\
     [[ $@ == *".net"* ]] ||\
@@ -13,10 +13,10 @@ elif [[ $@ == *".com"* ]] ||\
     [[ $@ == *".gov"* ]] ||\
     [[ $@ == *".tv"* ]] ||\
     [[ $@ == *".local"* ]]; then
-    cmd.exe /c start "http://$@" &> /dev/null
+    cmd.exe /c start "http://$@" > /dev/null 2>&1
 else
     for term in $@ ; do
         search="$search%20$term"
     done
-    cmd.exe /c start "http://www.google.com/search?q=$search" &> /dev/null
+    cmd.exe /c start "http://www.google.com/search?q=$search" > /dev/null 2>&1
 fi
