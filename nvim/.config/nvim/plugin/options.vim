@@ -3,7 +3,11 @@ set path+=.dotfiles/**1/.config/**;,.dotfiles/**1;
 set path+=.scripts/.local/**;
 
 " Sync clipboard between OS and Neovim.
-set clipboard+=unnamedplus
+" set clipboard+=unnamedplus
+
+" TODO: remove hack once slowdown is fixed
+nnoremap <leader>p "+p
+vnoremap <leader>y "+y
 
 " Case-insensitive searching unless \C or capital in search
 set ignorecase
