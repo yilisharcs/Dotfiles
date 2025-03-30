@@ -14,7 +14,7 @@ augroup config_curwin_border
     execute 'hi! Winborder guibg=#89b4fa guifg=#1e1e2e'
     autocmd ModeChanged *:n,*:no,*:nov,*:noV,*:no,*:niI,*:nt execute 'hi! Winborder guibg=#89b4fa'
     autocmd ModeChanged *:i,*:ic,*:ix,*:t execute 'hi! Winborder guibg=#a6e3a1'
-    autocmd ModeChanged *:c,*:cr,*:cv,*:cvr execute 'hi! Winborder guibg=#fab387' | redraw
+    " autocmd ModeChanged *:c,*:cr,*:cv,*:cvr execute 'hi! Winborder guibg=#fab387' | redraw
     autocmd ModeChanged *:v,*:vs,*:V,*:Vs,*:,*:s execute 'hi! Winborder guibg=#cba6f7'
     autocmd ModeChanged *:R,*:Rc,*:Rx,*:Rv,*:Rvc,*:Rvx execute 'hi! Winborder guibg=#f38ba8'
 
@@ -32,6 +32,6 @@ augroup config_curwin_border
     " Lf integration. Pattern/event doesn't work unless made as a standalone autocmd for some reason.
     autocmd TermLeave *lf*toggleterm* exe 'setlocal winhighlight+=CursorLine:CursorLineNC winhighlight-='..s:winborder_hl
 
-    " Compatibility layer for winning.vim and vim.ui.select()
-    au CmdlineLeave * set eventignore=
+    " " Compatibility layer for winning.vim and vim.ui.select()
+    " au CmdlineLeave * set eventignore=
 augroup END
