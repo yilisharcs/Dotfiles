@@ -70,11 +70,11 @@ cmd mkbak ${{
 }}
 
 cmd copyfilepath &{{
-    echo $f | xsel -ib
+    echo $f | xclip -sel clip
 }}
 
 cmd copyfilename &{{
-    echo $f | awk -F '/' '{print $NF}' | xsel -ib
+    echo $f | awk -F '/' '{print $NF}' | xclip -sel clip
 }}
 
 cmd followsymlink %{{
