@@ -72,6 +72,9 @@ set guicursor=a:block,c-ci-i-r:blinkwait700-blinkoff700-blinkon700
 set noshelltemp
 let &shellpipe='| tee { save %s }'
 
+" Better diff
+set diffopt^=algorithm:patience
+
 " Miscellaneous
 set updatetime=1000
 set termguicolors
@@ -85,4 +88,4 @@ set incsearch
 set ruler
 set timeout
 set autoread
-set noequalalways
+set equalalways
