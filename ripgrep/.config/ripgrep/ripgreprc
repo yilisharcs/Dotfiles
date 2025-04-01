@@ -7,10 +7,7 @@
 # Using glob patterns to include/exclude files or folders
 --glob=!.cache/*
 --glob=!.git/*
---glob=!.local/share/*
---glob=!.local/state/*
 --glob=!.npm/*
---glob=!.oh-my-zsh/*
 --glob=!Trash-Linux/*
 --glob=!Trash-Windows/*
 

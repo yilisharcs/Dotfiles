@@ -4,23 +4,13 @@ set ignorecase true
 set icons true
 set drawbox true
 set mouse true
-# set preview false
-# set ratios '1'
 set ratios '8:9'
 set shell sh
 set shellopts '-eu'
-set scrolloff 1
+set scrolloff 2
 set statfmt "\033[36m%p\033[0m| %c| %u| %S| %t| -> %l"
 set errorfmt "\033[7;31;48;1m"
-
-# Set internal field separator (IFS) to "\n" for shell commands
-# This is useful to automatically split file names in $fs and $fx properly
-# since default file separator used in these variables (i.e. 'filesep' option)
-# is newline. You need to consider the values of these options and create your
-# commands accordingly.
 set ifs "\n"
-
-# Use the `dim` attribute instead of underline for the cursor in the preview pane
 set cursorpreviewfmt "\033[7;90m"
 
 # show the result of execution of previous commands
@@ -30,22 +20,13 @@ map ` !true
 map x $$f
 # map X !$f
 
-# This command is called when current file is not a directory. You may want to
-# use either file extensions and/or mime types here. Below uses an editor for
-# text files and a file opener for the rest.
 # wslview replaces $OPENER
 cmd open &{{
     case $(file --mime-type -Lb $f) in
         text/*) lf -remote "send $id \$$EDITOR \$fx";;
-        # edge cases
         inode/x-empty) lf -remote "send $id \$$EDITOR \$fx";;
         application/javascript) lf -remote "send $id \$$EDITOR \$fx";;
         application/json) lf -remote "send $id \$$EDITOR \$fx";;
-        # application/x-wine-extension-ini) lf -remote "send $id \$$EDITOR \$fx";;
-        # application/x-executable) for f in $fx; do $f &> /dev/null & done;;
-        # application/x-pie-executable) for f in $fx; do $f &> /dev/null & done;;
-        # application/vnd.microsoft.portable-executable) for f in $fx; do firejail wine $f &> /dev/null & done;;
-        # application/zip) for f in $fx; do ebook-viewer $f &> /dev/null & done;;
         *) for f in $fx; do wslview $f &> /dev/null & done;;
     esac
 }}
@@ -54,17 +35,14 @@ cmd mimetype %{{
     file -bi $f
 }}
 
-# create file and required parent directories
 cmd mktouch %{{
     mkdir -p $(dirname "$1") && touch "$1"
 }}
 
-# create directory and required parent directories
 cmd mkdir %{{
     mkdir -p "$1"
 }}
 
-# create backup of selected file or folder
 cmd mkbak ${{
     cp -nr $f $f.bak
 }}
@@ -108,31 +86,26 @@ cmd extract ${{
     set -f
     aunpack $f
 }}
-
 cmd tar-gz %{{
     apack $1.tar.gz $fx
 }}
-
 cmd gzip %{{
     apack $1.gz $fx
 }}
-
 cmd zip %{{
     apack $1.zip $fx
 }}
 
-# File/image/video preview
+# File previewer
 set previewer ctpv
 set cleaner ctpvclear
 &ctpv -s $id
 &ctpvquit $id
 
-# FZF
 cmd fuzzyfind ${{
     lf -remote "send $id select \"$(fzf)\""
 }}
 
-# Massren
 cmd massrename ${{
     massren
 }}
@@ -141,7 +114,6 @@ cmd massrename ${{
 cmd dotrash %{{
     trash-put $fx
 }}
-
 cmd untrash ${{
     FZF_DEFAULT_OPTS=""
     file="$(trash-list | grep "$(pwd)" | fzf | awk '{$1=$2=""; print substr($0,3)}')"
@@ -149,7 +121,6 @@ cmd untrash ${{
     yes 0 | trash-restore "$file"
 }}
 
-# Zoxide
 cmd zoxide ${{
     result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
     lf -remote "send $id cd \"$result\""
@@ -166,7 +137,6 @@ map y
 
 # Functions
 map <enter> open
-map <a-q> quit
 map <tab> $$PAGER "$f"
 map <c-r> reload
 map C :unselect; clear
@@ -200,12 +170,7 @@ map g/ cd /
 map gb cd ~/notes
 map gc cd ~/.dotfiles
 map gd cd ~/downloads
-map gi cd ~/images
-map gl cd ~/.local/share/nvim/lazy
 map gn cd ~/.dotfiles/nvim/.config/nvim
 map gp cd ~/projects/
-map gr cd ~/downloads/reads
-map gs cd ~/.dotfiles/.scripts/.local/bin
-map gv cd ~/downloads/videos
+map gr cd ~/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f
 map gw cd /mnt/c/Users
-map gz cd ~/.local/share/nvim/lazy

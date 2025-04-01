@@ -3,13 +3,8 @@ set path+=.dotfiles/**1/.config/**;,.dotfiles/**1;
 set path+=.scripts/.local/**;
 
 " Sync clipboard between OS and Neovim.
-" set clipboard+=unnamedplus
+set clipboard+=unnamedplus
 
-" TODO: remove hack once slowdown is fixed
-nnoremap <leader>p "+p
-vnoremap <leader>y "+y
-
-" Case-insensitive searching unless \C or capital in search
 set ignorecase
 set smartcase
 
@@ -20,44 +15,40 @@ set shiftwidth=4
 set expandtab
 set smartindent
 
-" Disables line wrapping
 set nowrap
 
 " Long-running undo trees
 set noswapfile
 set undofile
 
-" Scroll opts
 set scrolloff=4
 set sidescrolloff=4
 
-" Number opts
 set number
 set relativenumber
 
 " Hide search finish warning
 set shortmess+=s
 
-" Proper split configuration
+" Proper splits
 set splitright
-" set splitbelow
-
-" Grep and quickfix opts
-let &grepprg='rg --vimgrep --sort=path'
+set splitbelow
 
 " Indentation guide
 set list
 set listchars=tab:› ,nbsp:␣
 
 " Column opts
-set signcolumn=yes
-set foldenable
+set numberwidth=3
+set foldcolumn=2
+set foldmethod=indent
+set signcolumn=yes:1
+set statuscolumn=%C%l%s
 
-" Detects @ on file name
 set isfname+=@-@
 
-" Completion menu height based on screen space
 let &pumheight=float2nr(&lines * 0.25 + 0.5)
+set completeopt=menuone,popup,fuzzy
 
 " Ctrl-a/x doesn't recognize signed numbers
 set nrformats+=unsigned
@@ -65,27 +56,14 @@ set nrformats+=unsigned
 " No more ~ on empty buffer space
 let &fillchars='eob: '
 
-" Cursor animation
 set guicursor=a:block,c-ci-i-r:blinkwait700-blinkoff700-blinkon700
 
-" Nushell breaks otherwise
-set noshelltemp
-let &shellpipe='| tee { save %s }'
+" Nushell doesn't grok vi
+set shell=/bin/bash
 
-" Better diff
 set diffopt^=algorithm:patience
 
-" Miscellaneous
 set updatetime=1000
 set termguicolors
 set lazyredraw
 set winborder=rounded
-
-" Defaults
-set nobackup
-set hlsearch
-set incsearch
-set ruler
-set timeout
-set autoread
-set equalalways

@@ -36,7 +36,6 @@ function _G.qfx(info)
       local lnum = e.lnum > 99999 and -1 or e.lnum
       local col = e.col > 999 and -1 or e.col
       local qtype = e.type == '' and '' or e.type:sub(1, 1):upper() .. '|'
-      if qtype == 'N|' then qtype = 'H|' end
       if e.type == '' and '' then
         validFmt = ' %s | %5d:%-3d | %s%s'
       else
@@ -48,7 +47,7 @@ function _G.qfx(info)
         qtype = ''
       elseif qtype == 'I|' then
         qtype = ''
-      elseif qtype == 'N|' then
+      elseif qtype == 'N|' or qtype == 'H|' then
         qtype = '󰞏'
       end
       str = validFmt:format(fname, lnum, col, qtype, e.text)

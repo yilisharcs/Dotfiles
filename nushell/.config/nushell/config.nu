@@ -1,9 +1,5 @@
 $env.XDG_CONFIG_HOME = $"($env.HOME)/.config"
-
 $env.PATH = ($env.PATH | prepend $"($env.HOME)/.local/bin")
-$env.RIPGREP_CONFIG_PATH = $"($env.XDG_CONFIG_HOME)/ripgrep/ripgreprc"
-$env.FZF_DEFAULT_COMMAND = "fd --hidden --follow --ignore-case --type file --strip-cwd-prefix --exclude={.cache,.git,.npm,.oh-my-zsh,$HOME/src}"
-$env.FZF_DEFAULT_OPTS = "--preview 'bat --color=always --wrap=never --style=plain --line-range=:500 {}' --layout=reverse --multi --preview-window border-left --bind backward-eof:abort --bind 'F4:change-preview-window(hidden|right)' --bind 'ctrl-j:preview-page-down,ctrl-k:preview-page-up'"
 
 # {
 ## Go
@@ -25,6 +21,13 @@ $env.WASMTIME_HOME = $"($env.HOME)/.wasmtime" # It's Wasmtime
 $env.PATH = ($env.PATH | prepend $env.WASMTIME_HOME)
 $env.WASI_SDK_PATH = $"($env.HOME)/src/wasi-sdk-25.0"
 # }
+
+$env.SQLITE_HISTORY = $"($env.HOME)/.local/state/sqlite3/sqlite_history"
+
+$env.RIPGREP_CONFIG_PATH = $"($env.XDG_CONFIG_HOME)/ripgrep/ripgreprc"
+
+$env.FZF_DEFAULT_COMMAND = "fd --hidden --follow --ignore-case --type file --strip-cwd-prefix --exclude={.cache,.git,.npm,.oh-my-zsh,$HOME/src}"
+$env.FZF_DEFAULT_OPTS = "--preview 'bat --color=always --wrap=never --style=plain --line-range=:500 {}' --layout=reverse --multi --preview-window border-left --bind backward-eof:abort --bind 'F4:change-preview-window(hidden|right)' --bind 'ctrl-j:preview-page-down,ctrl-k:preview-page-up'"
 
 $env.config.show_banner = false
 
@@ -73,6 +76,17 @@ $env.config.keybindings = [
   }
 ]
 
+$env.config.buffer_editor = 'vim.tiny'
+$env.SUDO_EDITOR = 'vim.tiny'
+$env.EDITOR = 'nvim'
+alias vi = nvim
+alias vim = nvim
+def mvim [...args] {
+  with-env { NVIM_APPNAME: 'nvim-minimal'} {
+    nvim ...$args
+  }
+}
+
 ## Build from source and stow with incredible ease
 def just [...args] {
   let project_name = (basename (pwd))
@@ -94,16 +108,6 @@ def just [...args] {
   }
 }
 
-$env.SUDO_EDITOR = 'vim.tiny'
-$env.EDITOR = 'nvim'
-alias vi = nvim
-alias vim = nvim
-def mvim [...args] {
-  with-env { NVIM_APPNAME: 'nvim-minimal'} {
-    nvim ...$args
-  }
-}
-
 alias visudo = sudo visudo
 alias yeet = sudo apt-get purge --autoremove
 alias tmuxa = tmux attach
@@ -113,5 +117,4 @@ starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.n
 
 # This can't be in this file actually
 zoxide init nushell | save -f ~/.zoxide.nu
-
 source ~/.zoxide.nu

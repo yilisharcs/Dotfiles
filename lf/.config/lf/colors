@@ -199,8 +199,7 @@ fi      00      # FILE
 ~/images/         01;33
 ~/logs/           01;33
 ~/notes/          01;33
+~/opt/            01;33
 ~/personal/       01;33
 ~/projects/       01;33
-~/src/            01;33
-~/stow/           01;33
 ~/videos/         01;33

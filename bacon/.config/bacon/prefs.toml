@@ -5,7 +5,7 @@
 # Uncomment and change the value (true/false) to
 # specify whether bacon should start in summary mode
 #
-# summary = true
+summary = true
 
 
 # Uncomment and change the value (true/false) to

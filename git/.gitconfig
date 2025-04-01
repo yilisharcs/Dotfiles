@@ -4,11 +4,12 @@
 [init]
 	defaultBranch = main
 [core]
-	excludesfile = /home/yilisharcs/.gitignore_global
-	editor = nvim
+	editor = vim.tiny
+    excludesfile = /home/yilisharcs/.gitignore_global
 [alias]
-	unstage = reset HEAD --
-	last = log -1 HEAD
+	graph = log --decorate --oneline --graph
+    last = log -1 HEAD
+    unstage = reset HEAD --
 [credential]
 	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 [merge]
