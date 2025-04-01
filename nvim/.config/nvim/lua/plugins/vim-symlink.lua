@@ -1,0 +1,5 @@
+return {
+  {
+    'aymericbeaumet/vim-symlink',
+  }
+}

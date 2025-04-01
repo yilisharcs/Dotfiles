@@ -2,14 +2,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Fallback file explorer (lf)
-vim.keymap.set('n', '<leader>y', '<CMD>Ex<CR>')
-vim.keymap.set('n', '<leader>Y', '<CMD>Ex<CR>')
-
--- Fallback file navigator (harpoon)
-vim.keymap.set('n', '<leader>h', '`H')
-vim.keymap.set('n', '<leader>j', '`J')
-vim.keymap.set('n', '<leader>k', '`K')
-vim.keymap.set('n', '<leader>l', '`L')
+vim.keymap.set('n', '<leader>i', '<CMD>Ex<CR>')
 
 -- Fallback wincmd (navigator)
 vim.keymap.set({ 'n', 't' }, '<M-h>', '<CMD>wincmd h<CR>')
@@ -35,7 +28,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({ import = 'custom/plugins' }, {
+require('lazy').setup({ import = 'plugins' }, {
   change_detection = { notify = false },
   dev = {
     path = '~/projects/nvim',
@@ -45,19 +38,5 @@ require('lazy').setup({ import = 'custom/plugins' }, {
   ui = {
     border = 'rounded',
     backdrop = 100,
-  },
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        'gzip',
-        -- 'matchit',
-        -- 'matchparen',
-        -- 'netrwPlugin',
-        -- 'tarPlugin',
-        'tohtml',
-        'tutor',
-        -- 'zipPlugin',
-      },
-    },
   },
 })

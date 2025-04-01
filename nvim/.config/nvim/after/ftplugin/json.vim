@@ -1,5 +1,5 @@
-setlocal noexpandtab
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+setlocal expandtab
 let &l:formatprg='jq'
-
-" For lemonscript json only
-let &l:commentstring='// %s'

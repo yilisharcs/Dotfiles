@@ -1,3 +1,2 @@
-setlocal signcolumn=no
-setlocal foldcolumn=2
+let &l:statuscolumn=' %l'
 setlocal nolist
