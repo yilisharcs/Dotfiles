@@ -3,7 +3,7 @@ xnoremap <silent> <SPACE> <NOP>
 
 nnoremap <leader>K K
 xnoremap <leader>K K
-nnoremap <silent> <expr> <C-c> 'col(.) > 1' ? '<ESC><RIGHT>' : '<ESC>'
+inoremap <silent> <expr> <C-c> 'col(.) > 1' ? '<ESC><RIGHT>' : '<ESC>'
 nnoremap <C-q> @@
 onoremap <C-a> <CMD>normal! ggVG<CR>
 
@@ -31,6 +31,8 @@ nnoremap ' `
 xnoremap ' `
 nnoremap cgn *``"_cgn
 nnoremap cgN *``"_cgN
+nnoremap dgn vaW*``"_dgn
+nnoremap dgN vaW*``"_dgN
 
 nnoremap -s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
@@ -66,7 +68,7 @@ function! ToggleQuickFix()
         silent! cclose
     endif
 endfunction
-nnoremap cu :call ToggleQuickFix<CR>
+nnoremap cu <CMD>call ToggleQuickFix()<CR>
 
 nnoremap <C-j> <CMD>cpfile<CR>zz
 nnoremap <C-k> <CMD>cnfile<CR>zz
@@ -94,8 +96,8 @@ nnoremap gj i<CR><ESC>k$
 nmap gcap gcip
 nmap gcA oz<ESC>gcckJfzcl
 nmap gc$ i<CR><ESC>gcck$J
-nmap gcO Oz<ESC>gccA
-nmap gco oz<ESC>gccA
+nmap gcO Oz<ESC>gccA<BS>
+nmap gco oz<ESC>gccA<BS>
 
 lua << EOF
   function P(...)
