@@ -3,7 +3,7 @@ $env.PATH = ($env.PATH | prepend $"($env.HOME)/.local/bin")
 
 # {
 ## Go
-$env.PATH = ($env.PATH | prepend $"($env.HOME)/src/go/bin") # $env.GOROOT
+$env.PATH = ($env.PATH | prepend $"($env.HOME)/opt/go/bin") # $env.GOROOT
 $env.GOPATH = $"($env.HOME)/go"
 $env.GOBIN = $"($env.GOPATH)/bin"
 $env.PATH = ($env.PATH | prepend $env.GOBIN)
@@ -26,7 +26,7 @@ $env.SQLITE_HISTORY = $"($env.HOME)/.local/state/sqlite3/sqlite_history"
 
 $env.RIPGREP_CONFIG_PATH = $"($env.XDG_CONFIG_HOME)/ripgrep/ripgreprc"
 
-$env.FZF_DEFAULT_COMMAND = "fd --hidden --follow --ignore-case --type file --strip-cwd-prefix --exclude={.cache,.git,.npm,.oh-my-zsh,$HOME/src}"
+$env.FZF_DEFAULT_COMMAND = "fd --hidden --follow --ignore-case --type file --strip-cwd-prefix --exclude={.cache,.git,.npm}"
 $env.FZF_DEFAULT_OPTS = "--preview 'bat --color=always --wrap=never --style=plain --line-range=:500 {}' --layout=reverse --multi --preview-window border-left --bind backward-eof:abort --bind 'F4:change-preview-window(hidden|right)' --bind 'ctrl-j:preview-page-down,ctrl-k:preview-page-up'"
 
 $env.config.show_banner = false

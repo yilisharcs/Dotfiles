@@ -2,7 +2,7 @@ return {
   {
     'echasnovski/mini.pairs', -- see `:h MiniPairs.config`.
     version = false,
-    event = { 'InsertEnter' },
+    event = { 'InsertEnter', 'CmdwinEnter' },
     opts = {
       mappings = {
         ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\].', register = { bs = true, cr = true } },
