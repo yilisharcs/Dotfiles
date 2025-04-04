@@ -38,7 +38,6 @@ nnoremap -s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 "<buffer>", "<nowait>", "<silent>", "<script>", "<expr>" and
 nnoremap dy <CMD>diffthis<CR>
-
 xnoremap <C-o> :'<,'>diffget<CR>
 xnoremap <C-p> :'<,'>diffput<CR>
 
@@ -87,10 +86,11 @@ nnoremap <F9> <CMD>Inspect<CR>
 nnoremap <F10> <CMD>!chmod +x %<CR>
 nnoremap <leader><F10> <CMD>!chmod -x %<CR>
 
-lua vim.keymap.set('n', 'gz', '"zyi\':call jobstart("googler https://github.com/<C-r>z")<CR>')
-lua vim.keymap.set('x', 'gz', '"zy:call jobstart("googler https://github.com/<C-r>z")<CR>')
+nnoremap gx <CMD>lua vim.ui.open(vim.fn.expand('<cfile>'), { cmd = { 'cmd.exe', '/c', 'start' } })<CR>
+nnoremap gz <CMD>lua vim.ui.open('', { cmd = { 'cmd.exe', '/c', 'start', 'https://github.com/' .. vim.fn.expand('<cfile>') } })<CR>
+xnoremap gz "zy:lua vim.ui.open('', { cmd = { 'cmd.exe', '/c', 'start', 'https://github.com/' .. vim.fn.getreg('z') } })<CR>
 
-nnoremap Z jmzk:m .+1<CR>==`z
+nnoremap Z jmzk<CMD>m .+1<CR>==`z
 nnoremap gj i<CR><ESC>k$
 
 nmap gcap gcip
@@ -110,4 +110,4 @@ lua << EOF
   end
 EOF
 
-nnoremap <leader>P :lua P<left>
+nnoremap <leader>p :lua P()<left>

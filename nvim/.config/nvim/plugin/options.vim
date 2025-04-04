@@ -38,12 +38,15 @@ set splitbelow
 set list
 set listchars=tab:› ,nbsp:␣
 
+" Fold opts
+set foldcolumn=0
+set foldmethod=indent
+set foldlevel=5
+
 " Column opts
 set numberwidth=3
-set foldcolumn=2
-set foldmethod=indent
 set signcolumn=yes:1
-set statuscolumn=%C%l%s
+set statuscolumn=%l%s
 
 set isfname+=@-@
 

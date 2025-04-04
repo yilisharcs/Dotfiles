@@ -22,6 +22,4 @@ augroup Auto_Cmds
                 \| for i in range(104,122) | silent! call setreg(nr2char(i), [' ']) | endfor
     " Automatically open the quickfix window
     au QuickFixCmdPost [^l]* nested cwindow
-    " Turn off folds for dotfiles only
-    au BufEnter */.config/** setlocal nofoldenable
 augroup END
