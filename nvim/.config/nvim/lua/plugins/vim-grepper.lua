@@ -24,6 +24,7 @@ return {
         \ }
 
         cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'GrepperRg' : 'grep'
+        cnoreabbrev <expr> ggrep (getcmdtype() ==# ':' && getcmdline() =~# '^ggrep') ? 'GrepperGit' : 'ggrep'
       ]])
     end
   }
