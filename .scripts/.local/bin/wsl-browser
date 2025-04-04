@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+winPath="file://wsl$/Debian${1}"
+/mnt/c/Program\ Files/BraveSoftware/Brave-Browser/Application/brave.exe $winPath
