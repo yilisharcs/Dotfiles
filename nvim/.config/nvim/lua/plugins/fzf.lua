@@ -7,7 +7,6 @@ return {
       { '<leader>fh', function() require('fzf-lua').oldfiles() end },
       { '<leader>fb', function() require('fzf-lua').buffers() end },
       { '<leader>fc', function() require('fzf-lua').git_commits() end },
-      { '<leader>fa', function() require('fzf-lua').live_grep_native() end },
       { '<leader>fk', function() require('fzf-lua').helptags() end },
       {
         '<C-x><C-f>',

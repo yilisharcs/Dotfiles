@@ -31,8 +31,8 @@ nnoremap ' `
 xnoremap ' `
 nnoremap cgn *``"_cgn
 nnoremap cgN *``"_cgN
-nnoremap dgn vaW*``"_dgn
-nnoremap dgN vaW*``"_dgN
+nnoremap dgn *``"_dgn
+nnoremap dgN *``"_dgN
 
 nnoremap -s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
