@@ -13,6 +13,7 @@ return {
         ['>'] = { action = 'close', pair = '<>', neigh_pattern = '[^\\].' },
         ['|'] = { action = 'closeopen', pair = '||', neigh_pattern = '[\\{\\][}]', register = { bs = true } },     -- closures
         ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a&<\\][^>]', register = { cr = false } }, -- lifetimes
+        ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^%a\\].', register = { cr = false } },
       }
     },
     config = function(_, opts)
