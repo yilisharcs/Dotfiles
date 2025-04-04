@@ -45,15 +45,21 @@ augroup Taskmaster
     au QuickFixCmdPost lexpr lwindow
                 \| call setloclist(0, [], 'a', {'title': ':' . s:cmd})
     " This refreshes the loclist whenever a task is added or removed
-    au User TaskMaster execute 'GrepTodo '..join(g:GrepTodo, ' ')
+    " Call with silent! to suppress error if g:GrepTodo is empty
+    au User TaskMaster silent! execute 'GrepTodo '..join(g:GrepTodo, ' ')
     au QuickFixCmdPost lgetexpr doau User TaskMaster
 augroup END
 
 function! ToggleLoclist()
+    if empty(getloclist(0))
+        echohl WarningMsg | echo 'Loclist is empty.' | echohl None
+        return
+    endif
+
     if empty(filter(getwininfo(), 'v:val.loclist'))
         botright lopen
     else
-        silent! lclose
+        lclose
     endif
 endfunction
-nnoremap co <CMD>silent! call ToggleLoclist()<CR>
+nnoremap co <CMD>call ToggleLoclist()<CR>
