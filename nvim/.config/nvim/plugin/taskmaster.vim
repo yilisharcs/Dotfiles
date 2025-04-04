@@ -18,7 +18,7 @@ endfunction
 
 " Remove from task list
 function! GrepToDone(...)
-    let list = getqflist()
+    let list = getloclist(0)
     " Line numbers directly correspond to 1-based index
     let idx = join(a:000, ' ') - 1
 
@@ -32,9 +32,9 @@ function! GrepToDone(...)
     endif
 endfunction
 
-command! -nargs=* GrepTodo cexpr GrepTodo(<f-args>)
-command! -nargs=+ GrepToAdd cgetexpr GrepToAdd(<f-args>)
-command! -nargs=+ GrepToDone cgetexpr GrepToDone(<f-args>)
+command! -nargs=* GrepTodo lexpr GrepTodo(<f-args>)
+command! -nargs=+ GrepToAdd lgetexpr GrepToAdd(<f-args>)
+command! -nargs=+ GrepToDone lgetexpr GrepToDone(<f-args>)
 
 cnoreabbrev <expr> todo (getcmdtype() ==# ':' && getcmdline() =~# '^todo') ? 'GrepTodo' : 'todo'
 cnoreabbrev <expr> toad (getcmdtype() ==# ':' && getcmdline() =~# '^toad') ? 'GrepToAdd' : 'toad'
@@ -42,9 +42,18 @@ cnoreabbrev <expr> tone (getcmdtype() ==# ':' && getcmdline() =~# '^tone') ? 'Gr
 
 augroup Taskmaster
     au!
-    au QuickFixCmdPost cexpr cwindow
-                \| call setqflist([], 'a', {'title': ':' . s:cmd})
-    " This refreshes the quickfix list whenever a task is added or removed
+    au QuickFixCmdPost lexpr lwindow
+                \| call setloclist(0, [], 'a', {'title': ':' . s:cmd})
+    " This refreshes the loclist whenever a task is added or removed
     au User TaskMaster execute 'GrepTodo '..join(g:GrepTodo, ' ')
-    au QuickFixCmdPost cgetexpr silent! doau User TaskMaster
+    au QuickFixCmdPost lgetexpr doau User TaskMaster
 augroup END
+
+function! ToggleLoclist()
+    if empty(filter(getwininfo(), 'v:val.loclist'))
+        botright lopen
+    else
+        silent! lclose
+    endif
+endfunction
+nnoremap co <CMD>silent! call ToggleLoclist()<CR>
