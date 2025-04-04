@@ -16,9 +16,20 @@ function! GrepToAdd(...)
     return system('sed -i "1s/^/- @' . join(a:000, ' ') . '\n/" ~/notes/todo.md')
 endfunction
 
-" Delete task by index
+" Remove from task list
 function! GrepToDone(...)
-    return system('sed -i "' . join(a:000, ' ') . 'd" ~/notes/todo.md')
+    let list = getqflist()
+    " Line numbers directly correspond to 1-based index
+    let idx = join(a:000, ' ') - 1
+
+    if idx < 0 || idx >= len(list)
+        echohl WarningMsg | echo 'E684: List index out of range: ' . idx | echohl None
+        return
+    else
+        let text = list[idx].text
+        echohl ModeMsg | echo "Task done: " . text | echohl None
+        return system('sed -i "/' . text . '/d" ~/notes/todo.md')
+    endif
 endfunction
 
 command! -nargs=* GrepTodo cexpr GrepTodo(<f-args>)
@@ -33,7 +44,7 @@ augroup Taskmaster
     au!
     au QuickFixCmdPost cexpr cwindow
                 \| call setqflist([], 'a', {'title': ':' . s:cmd})
-    " This refreshes the qflist whenever a task is added or removed
+    " This refreshes the quickfix list whenever a task is added or removed
     au User TaskMaster execute 'GrepTodo '..join(g:GrepTodo, ' ')
     au QuickFixCmdPost cgetexpr silent! doau User TaskMaster
 augroup END
