@@ -64,7 +64,7 @@ function! ToggleQuickFix()
         botright copen
         wincmd p
     else
-        silent! cclose
+        cclose
     endif
 endfunction
 nnoremap cu <CMD>call ToggleQuickFix()<CR>
