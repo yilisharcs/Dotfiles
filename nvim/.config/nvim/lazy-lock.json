@@ -1,5 +1,6 @@
 {
   "Navigator.nvim": { "branch": "master", "commit": "91d86506ac2a039504d5205d32a1d4bc7aa57072" },
+  "auto-cmdheight.nvim": { "branch": "main", "commit": "0ab1652a1f41062c880f81a4c36854bf67a52b03" },
   "crates.nvim": { "branch": "main", "commit": "fd2bbca7aa588f24ffc3517831934b4c4a9588e9" },
   "fzf-lua": { "branch": "main", "commit": "caee13203d6143d691710c34f85ad6441fe3f535" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
@@ -12,6 +13,7 @@
   "mini.misc": { "branch": "main", "commit": "3f0cf62b7e9c545e7e92fe5614f4d6acbe5a8f29" },
   "mini.operators": { "branch": "main", "commit": "298218fb8280fd4a8234db80230dd84db6b07efd" },
   "mini.pairs": { "branch": "main", "commit": "b90e36aa5ca5e0d825e77ad67aac22214a4d9096" },
+  "mini.splitjoin": { "branch": "main", "commit": "70240d5d3881ff1b2b1d7902450f98a6fa303800" },
   "mini.surround": { "branch": "main", "commit": "97796f68a8698d9b63ac3927da0d0bf5c3a0876b" },
   "nvim-fundo": { "branch": "main", "commit": "ac9c9372c4bf677721e24f144ef29d3a05c2b589" },
   "nvim-treesitter": { "branch": "master", "commit": "9df671fda41bc4af91b9f7ea3fa1628ba988a77b" },

@@ -2,12 +2,6 @@ $env.XDG_CONFIG_HOME = $"($env.HOME)/.config"
 $env.PATH = ($env.PATH | prepend $"($env.HOME)/.local/bin")
 
 # {
-## Go
-$env.PATH = ($env.PATH | prepend $"($env.HOME)/opt/go/bin") # $env.GOROOT
-$env.GOPATH = $"($env.HOME)/go"
-$env.GOBIN = $"($env.GOPATH)/bin"
-$env.PATH = ($env.PATH | prepend $env.GOBIN)
-
 ## Rust
 $env.PATH = ($env.PATH | prepend $"($env.HOME)/.cargo/bin")
 alias cargo = cargo auditable
@@ -82,7 +76,7 @@ $env.EDITOR = 'nvim'
 alias vi = nvim
 alias vim = nvim
 def mvim [...args] {
-  with-env { NVIM_APPNAME: 'nvim-minimal'} {
+  with-env { NVIM_APPNAME: 'nvim-minimal' } {
     nvim ...$args
   }
 }

@@ -1,9 +1,5 @@
-setlocal foldcolumn=0
 setlocal signcolumn=no
-setlocal statuscolumn=
-
 setlocal nonu nornu
-
 setlocal winhighlight+=Search:Transparent,Normal:NormalNC
 
 packadd cfilter
