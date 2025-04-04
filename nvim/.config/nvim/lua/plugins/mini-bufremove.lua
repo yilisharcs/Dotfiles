@@ -17,8 +17,7 @@ return {
               lua require('mini.bufremove').delete()
             endif
           ]])
-        end,
-        desc = '[MINI] Delete buffer'
+        end
       }
     }
   },

@@ -15,7 +15,7 @@ return {
     }
   },
   keys = {
-    { '<leader>i', '<CMD>Oil<CR>', desc = 'Open file manager' }
+    { '<leader>i', '<CMD>Oil<CR>' }
   },
   opts = {
     default_file_explorer = true,

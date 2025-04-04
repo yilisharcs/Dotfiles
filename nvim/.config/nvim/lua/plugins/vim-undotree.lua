@@ -2,7 +2,7 @@ return {
   {
     'mbbill/undotree',
     keys = {
-      { '<leader>u', vim.cmd.UndotreeToggle, desc = '[UNDO] Toggle Undotree' }
+      { '<leader>u', vim.cmd.UndotreeToggle }
     },
     init = function()
       vim.cmd([[
