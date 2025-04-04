@@ -1,3 +1,4 @@
+$env.BROWSER = 'wsl-browser'
 $env.XDG_CONFIG_HOME = $"($env.HOME)/.config"
 $env.PATH = ($env.PATH | prepend $"($env.HOME)/.local/bin")
 
