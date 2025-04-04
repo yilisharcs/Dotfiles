@@ -2,13 +2,13 @@ return {
   {
     'ibhagwan/fzf-lua',
     keys = {
-      { '<leader>fd', function() require('fzf-lua').files({ cwd = '~/' }) end, desc = '[FZF] Find Files From $HOME Directory' },
-      { '<leader>fl', function() require('fzf-lua').files() end,               desc = '[FZF] Find Files From Root Directory' },
-      { '<leader>fh', function() require('fzf-lua').oldfiles() end,            desc = '[FZF] File History' },
-      { '<leader>fb', function() require('fzf-lua').buffers() end,             desc = '[FZF] List Buffers' },
-      { '<leader>fc', function() require('fzf-lua').git_commits() end,         desc = '[FZF] Git Commits' },
-      { '<leader>fa', function() require('fzf-lua').live_grep_native() end,    desc = '[FZF] Live Grep' },
-      { '<leader>fk', function() require('fzf-lua').helptags() end,            desc = '[FZF] Help Tags' },
+      { '<leader>fd', function() require('fzf-lua').files({ cwd = '~/' }) end },
+      { '<leader>fl', function() require('fzf-lua').files() end },
+      { '<leader>fh', function() require('fzf-lua').oldfiles() end },
+      { '<leader>fb', function() require('fzf-lua').buffers() end },
+      { '<leader>fc', function() require('fzf-lua').git_commits() end },
+      { '<leader>fa', function() require('fzf-lua').live_grep_native() end },
+      { '<leader>fk', function() require('fzf-lua').helptags() end },
       {
         '<C-x><C-f>',
         function()

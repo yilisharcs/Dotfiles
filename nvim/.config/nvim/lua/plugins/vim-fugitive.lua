@@ -7,12 +7,12 @@ return {
       'Gwrite',
     },
     keys = {
-      { '<leader>gq', '<CMD>Git<CR>',          desc = '[GIT] Status' },
-      { '<leader>gb', '<CMD>Git blame<CR>',    desc = '[GIT] Blame' },
-      { '<leader>gd', '<CMD>Gvdiffsplit<CR>',  desc = '[GIT] Diff' },
-      { '<leader>gD', '<CMD>Git difftool<CR>', desc = '[GIT] Difftool' },
-      { '<leader>gl', '<CMD>0Gclog<CR>',       desc = '[GIT] File Log' },
-      { '<leader>gL', '<CMD>Gclog<CR>',        desc = '[GIT] Repo Log' },
+      { '<leader>gq', '<CMD>Git<CR>' },
+      { '<leader>gb', '<CMD>Git blame<CR>' },
+      { '<leader>gd', '<CMD>Gvdiffsplit<CR>' },
+      { '<leader>gD', '<CMD>Git difftool<CR>' },
+      { '<leader>gl', '<CMD>0Gclog<CR>',      desc = '[GIT] File Log' },
+      { '<leader>gL', '<CMD>Gclog<CR>',       desc = '[GIT] Repo Log' },
     },
     init = function()
       vim.g.fugitive_summary_format = '%an | %s'

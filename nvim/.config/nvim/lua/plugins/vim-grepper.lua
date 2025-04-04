@@ -1,7 +1,10 @@
 return {
   {
     'mhinz/vim-grepper',
-    event = 'VeryLazy',
+    event = 'CmdlineEnter',
+    keys = {
+      { 'gs', '<Plug>(GrepperOperator)', mode = { 'n', 'x' } }
+    },
     init = function()
       vim.cmd([[
         let g:grepper = {}
@@ -20,8 +23,6 @@ return {
           \ 'tools': ['rg'],
         \ }
 
-        nmap gs <plug>(GrepperOperator)
-        xmap gs <plug>(GrepperOperator)
         cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'GrepperRg' : 'grep'
       ]])
     end
