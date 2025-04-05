@@ -1,11 +1,7 @@
 return {
   {
     'tpope/vim-fugitive',
-    cmd = {
-      'Git',
-      'Gread',
-      'Gwrite',
-    },
+    event = 'CmdlineEnter',
     keys = {
       { '<leader>gq', '<CMD>Git<CR>' },
       { '<leader>gb', '<CMD>Git blame<CR>' },
@@ -39,7 +35,6 @@ return {
         group    = Qfx_Format,
         callback = function()
           local qf_title = vim.fn.getqflist({ title = 1 }).title
-          -- TODO: Add support for vim-grepper
           if qf_title:match('Gclog') then
             vim.o.qftf = '{info -> v:lua._G.qfxfugitive(info)}'
           else
@@ -53,6 +48,8 @@ return {
           au!
           au Filetype fugitive nmap <buffer> <C-i> =
           au Filetype gitcommit startinsert
+          " This ensures the vim-grepper qflist will be formatted correctly
+          au User Grepper exe "lua vim.o.qftf = '{info -> v:lua._G.qfx(info)}'" | copen
         augroup END
       ]])
     end
