@@ -2,7 +2,7 @@ return {
   {
     'echasnovski/mini.hipatterns', -- see `:h MiniHipatterns.config`.
     version = false,
-    event = { 'BufReadPost [^:]*' },
+    event = 'BufReadPost [^:]*',
     config = function()
       require('mini.hipatterns').setup({
         highlighters = {

@@ -1,6 +1,6 @@
 setlocal signcolumn=no
 setlocal nonu nornu
-setlocal winhighlight+=Search:Transparent,Normal:NormalNC
+setlocal winhighlight+=Normal:NormalNC,qfLineNr:Number
 
 packadd cfilter
 

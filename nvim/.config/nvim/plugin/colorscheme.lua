@@ -1,12 +1,10 @@
 local hi = vim.api.nvim_set_hl
 
-hi(0, 'Transparent', {})
 hi(0, 'Normal', { bg = '#000000', fg = '#cdd6f4' })
 hi(0, 'NormalNC', { bg = '#0c0c0c', fg = '#cdd6f4' })
 hi(0, 'NormalFloat', { link = 'Normal' })
 hi(0, 'FloatBorder', { link = 'NormalFloat' })
 hi(0, 'TermCursorNC', { link = 'Normal' })
-hi(0, 'FoldColumn', { link = 'Transparent' })
 hi(0, 'Folded', { bg = 'NvimDarkGrey1', fg = '#a9d4ff' })
 hi(0, 'ColorColumn', { bg = '#181825', fg = '#b6b8bb' })
 hi(0, 'TreesitterContext', { link = 'ColorColumn' })

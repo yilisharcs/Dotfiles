@@ -2,7 +2,7 @@ return {
   {
     'echasnovski/mini.diff', -- see `:h MiniDiff.config`.
     version = false,
-    event = { 'BufReadPost [^:]*' },
+    event = 'BufReadPost [^:]*',
     keys = {
       { '<leader>gh', '<CMD>lua MiniDiff.toggle_overlay()<CR>' }
     },
