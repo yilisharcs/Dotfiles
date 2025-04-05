@@ -42,7 +42,10 @@ xnoremap <C-o> :'<,'>diffget<CR>
 xnoremap <C-p> :'<,'>diffput<CR>
 
 function! List_Gmarks()
-    marks ABCDEFGIMNOPQRSTUVWXYZ
+    try
+        marks ABCDEFGIMNOPQRSTUVWXYZ
+    catch /E283:/
+    endtry
     marks HJKL
     echo('`')
     try
