@@ -67,7 +67,7 @@ return {
 
           local client = vim.lsp.get_clients()[1]
           local namespace = vim.lsp.diagnostic.get_namespace(client.id)
-          map('n', '<leader>-', function() vim.diagnostic.setqflist({ namespace = namespace, open = true }) end,
+          map('n', 'grq', function() vim.diagnostic.setqflist({ namespace = namespace, open = true }) end,
             'Set Quickfix')
 
           local LSP_Opts = vim.api.nvim_create_augroup('LSP_Opts', { clear = false })
