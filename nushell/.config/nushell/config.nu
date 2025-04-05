@@ -27,7 +27,7 @@ $env.FZF_DEFAULT_OPTS = "--preview 'bat --color=always --wrap=never --style=plai
 $env.config.show_banner = false
 
 $env.config.history = {
-  file_format: sqlite
+  file_format: plaintext
   max_size: 1_000_000
   sync_on_enter: true
   isolation: false
