@@ -56,6 +56,7 @@ function! ToggleLoclist()
         return
     endif
 
+    " The location list is oddly global. TODO: report to maintainers
     if empty(filter(getwininfo(), 'v:val.loclist'))
         botright lopen
     else
