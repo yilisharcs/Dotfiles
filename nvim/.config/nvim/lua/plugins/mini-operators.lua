@@ -25,13 +25,7 @@ return {
       replace = {
         prefix = 'cs',
         reindent_linewise = true,
-      },
-    },
-    config = function(_, opts)
-      require('mini.operators').setup(opts)
-
-      vim.keymap.set('n', 'csgn', '*``csgn', { remap = true, desc = '[MINI] Substitute next <cword>' })
-      vim.keymap.set('n', 'csgN', '*``csgN', { remap = true, desc = '[MINI] Substitute prev <cword>' })
-    end
-  },
+      }
+    }
+  }
 }

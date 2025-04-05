@@ -14,7 +14,7 @@ $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
 ## WebAssembly
 $env.WASMTIME_HOME = $"($env.HOME)/.wasmtime" # It's Wasmtime
 $env.PATH = ($env.PATH | prepend $env.WASMTIME_HOME)
-$env.WASI_SDK_PATH = $"($env.HOME)/src/wasi-sdk-25.0"
+$env.WASI_SDK_PATH = $"($env.HOME)/opt/wasi-sdk-25.0"
 # }
 
 $env.SQLITE_HISTORY = $"($env.HOME)/.local/state/sqlite3/sqlite_history"
