@@ -7,11 +7,10 @@ inoremap <silent> <expr> <C-c> 'col(.) > 1' ? '<ESC><RIGHT>' : '<ESC>'
 nnoremap <C-q> @@
 onoremap <C-a> <CMD>normal! ggVG<CR>
 
-cnoremap <C-b> <LEFT>
-inoremap <C-b> <LEFT>
+noremap! <C-b> <LEFT>
 cnoremap <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
-cnoremap <C-d> <DEL>
-inoremap <C-d> <DEL>
+cnoremap <C-a> <HOME>
+noremap! <C-d> <DEL>
 cnoremap <C-x><C-d> <C-d>
 
 xnoremap < <gv
