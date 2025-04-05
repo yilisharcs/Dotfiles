@@ -27,7 +27,7 @@ function! GrepToDone(...)
         return
     else
         let text = list[idx].text
-        echohl ModeMsg | echo "Task done: " . text | echohl None
+        echohl Type | echo "Task done: " . text | echohl None
         return system('sed -i "/' . text . '/d" ~/notes/todo.md')
     endif
 endfunction
