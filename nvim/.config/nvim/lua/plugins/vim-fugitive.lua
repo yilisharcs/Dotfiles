@@ -23,7 +23,7 @@ return {
         if info.quickfix == 1 then
           items = vim.fn.getqflist({ id = info.id, items = 0 }).items
         end
-        local validFmt = ' %s || %s'
+        local validFmt = ' %s | %s'
         for i = info.start_idx, info.end_idx do
           local e = items[i]
           local mod = e.module:sub(0, 7) -- commit hash
@@ -39,6 +39,7 @@ return {
         group    = Qfx_Format,
         callback = function()
           local qf_title = vim.fn.getqflist({ title = 1 }).title
+          -- TODO: Add support for vim-grepper
           if qf_title:match('Gclog') then
             vim.o.qftf = '{info -> v:lua._G.qfxfugitive(info)}'
           else

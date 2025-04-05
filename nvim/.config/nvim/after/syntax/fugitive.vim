@@ -1,7 +1,7 @@
 " syn match sadly doesn't override fugitive defaults
-match fugitiveAdded /^A /
-2match fugitiveModified /^M /
-3match fugitiveDeleted /^D /
+call matchadd('fugitiveAdded', '^A ')
+call matchadd('fugitiveModified', '^M ')
+call matchadd('fugitiveDeleted', '^D ')
 
 hi def link fugitiveAdded Added
 hi def link fugitiveModified Changed
