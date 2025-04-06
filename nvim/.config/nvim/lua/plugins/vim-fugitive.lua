@@ -44,6 +44,9 @@ return {
       })
 
       vim.cmd([[
+        cnoreabbrev <expr> git (getcmdtype() ==# ':' && getcmdline() =~# '^git') ? 'Git' : 'git'
+        cnoreabbrev <expr> graph (getcmdtype() ==# ':' && getcmdline() =~# '^Git graph') ? 'log --graph --pretty=format:"%h - (%as)%d %s <%an>" --abbrev-commit' : 'Git log'
+
         augroup Fugit_Tab
           au!
           au Filetype fugitive nmap <buffer> <C-i> =

@@ -8,6 +8,8 @@ nnoremap <C-q> @@
 onoremap <C-a> <CMD>normal! ggVG<CR>
 
 noremap! <C-b> <LEFT>
+inoremap <C-f> <RIGHT>
+cnoremap <expr> <C-f> (getcmdtype() ==# ':' && getcmdline() =~? '^%\?s/') ? '<RIGHT>' : '<C-f>'
 cnoremap <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
 cnoremap <C-a> <HOME>
 noremap! <C-d> <DEL>
