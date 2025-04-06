@@ -1,9 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Fallback file explorer (lf)
-vim.keymap.set('n', '<leader>i', '<CMD>Ex<CR>')
-
 -- Fallback wincmd (navigator)
 vim.keymap.set({ 'n', 't' }, '<M-h>', '<CMD>wincmd h<CR>')
 vim.keymap.set({ 'n', 't' }, '<M-j>', '<CMD>wincmd j<CR>')
