@@ -8,7 +8,8 @@ return {
         augroup Sneak_Insert_HL
           au!
           au InsertEnter * hi Sneak NONE
-          au InsertLeave * hi Sneak guifg=#0c0c0c guibg=#be95ff
+          au ColorScheme,InsertLeave * hi Sneak guifg=White guibg=Magenta
+          au TermOpen * hi SneakScope guibg=Black
         augroup END
       ]])
     end,

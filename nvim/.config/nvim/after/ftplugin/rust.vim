@@ -5,6 +5,6 @@ cnoreabbrev <buffer> <expr> cargo (getcmdtype() ==# ':' && getcmdline() =~# '^ca
 
 augroup Rust_C_Plug
     au!
-    " Jump to errors; requires vim-sneak
-    au TermOpen *:cargo\ * nmap <buffer> - s->
+    " Jump to file error; requires vim-sneak
+    au TermOpen *:cargo* lua vim.keymap.set('n', '-', '6s> ', { remap = true })
 augroup END
