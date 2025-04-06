@@ -2,16 +2,16 @@ augroup Auto_Cmds
     au!
     " Highlight copied text
     au TextYankPost * lua vim.highlight.on_yank({ timeout = 500 })
-    " Clear trailing postspaces
+    " Clear trailing postspaces and windows characters
     au BufWritePre * let s:c=nvim_win_get_cursor(0) | silent! keeppatterns %s/\(\s\|\)\+$//e | call nvim_win_set_cursor(0, s:c)
     " Reads external file changes
     au CursorHold * if &buftype!='nofile' | checktime | endif
-    " Terminal options
+    " Prevent conflicts from autoread
+    au FocusLost * silent! noautocmd update
+    " Enter terminal in insert mode
     au TermOpen,TermEnter * startinsert
     " Newline doesn't insert comment from comment
     au FileType * set formatoptions-=o
-    " Prevent conflicts from autoread
-    au FocusLost * silent! noautocmd update
     " Set listchars like indent-blankline
     au FileType,BufEnter,OptionSet * let &l:listchars=&listchars..',leadmultispace:│'..repeat(' ', &shiftwidth -1)
     " Set registers b-z on launch and exit

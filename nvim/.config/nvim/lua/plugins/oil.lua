@@ -30,7 +30,7 @@ return {
     }
   },
   keys = {
-    { '<leader>i', '<CMD>Oil<CR>' }
+    { '-', '<CMD>Oil<CR>' }
   },
   opts = {
     default_file_explorer = true,
