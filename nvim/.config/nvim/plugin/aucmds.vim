@@ -8,6 +8,8 @@ augroup Auto_Cmds
     au CursorHold * if &buftype!='nofile' | checktime | endif
     " Prevent conflicts from autoread
     au FocusLost * silent! noautocmd update
+    " Open file under cursor on the terminal in a tab
+    au TermOpen * nnoremap <buffer> gf <C-w>gF
     " Newline doesn't insert comment from comment
     au FileType * set formatoptions-=o
     " Set listchars like indent-blankline
