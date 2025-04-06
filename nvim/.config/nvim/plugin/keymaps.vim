@@ -35,9 +35,8 @@ nnoremap cgN *``"_cgN
 nnoremap dgn *``"_dgn
 nnoremap dgN *``"_dgN
 
-nnoremap -s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nnoremap gw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
-"<buffer>", "<nowait>", "<silent>", "<script>", "<expr>" and
 nnoremap dy <CMD>diffthis<CR>
 xnoremap <C-o> :'<,'>diffget<CR>
 xnoremap <C-p> :'<,'>diffput<CR>

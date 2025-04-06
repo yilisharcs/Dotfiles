@@ -1,5 +1,5 @@
 [build]
-rustc-wrapper = "/home/yilisharcs/.cargo/bin/sccache"
+rustc-wrapper = "sccache"
 
 [target.x86_64-pc-windows-gnu]
 rustflags = ["-C", "target-cpu=native"]
