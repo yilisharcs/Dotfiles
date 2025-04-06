@@ -36,7 +36,7 @@ return {
       })
 
       vim.diagnostic.config({
-        virtual_lines = { current_line = true },
+        virtual_text = true,
         float = { border = 'rounded' },
         jump = { float = true },
         signs = {
