@@ -11,4 +11,7 @@ cabbrev Qa1 qa!
 cabbrev q1 q!
 cabbrev qa1 qa!
 cabbrev bd1 bd!
-cabbrev hgrep helpgrep
+
+cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'silent grep' : 'grep'
+cnoreabbrev <expr> hgrep (getcmdtype() ==# ':' && getcmdline() =~# '^hgrep') ? 'helpgrep' : 'hgrep'
+cnoreabbrev <expr> cfilter (getcmdtype() ==# ':' && getcmdline() =~# '^cfilter') ? 'Cfilter' : 'cfilter'
