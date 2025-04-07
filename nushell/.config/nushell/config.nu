@@ -77,7 +77,7 @@ $env.config.keybindings = [
     event: [
       {
         send: executehostcommand
-        cmd: "commandline edit --insert (
+        cmd: "commandline edit --replace (
         history
         | get command
         | reverse
