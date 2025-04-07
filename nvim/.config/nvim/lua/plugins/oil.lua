@@ -68,7 +68,7 @@ return {
       ['gx'] = 'actions.open_external',
       ['g.'] = { 'actions.toggle_hidden', mode = 'n' },
       ['g\\'] = { 'actions.toggle_trash', mode = 'n' },
-      ['<leader>ff'] = {
+      ['<leader>fd'] = {
         function()
           require('fzf-lua').files({
             cwd = require('oil').get_current_dir()

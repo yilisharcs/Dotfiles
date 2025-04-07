@@ -3,7 +3,6 @@ return {
     'tpope/vim-fugitive',
     event = 'CmdlineEnter',
     keys = {
-      { '<leader>gq', '<CMD>Git<CR>' },
       { '<leader>gb', '<CMD>Git blame<CR>' },
       { '<leader>gd', '<CMD>Gvdiffsplit<CR>' },
       { '<leader>gD', '<CMD>Git difftool<CR>' },
@@ -29,10 +28,9 @@ return {
         return ret
       end
 
-      local Qfx_Format = vim.api.nvim_create_augroup('Qfx_Format', { clear = true })
       vim.api.nvim_create_autocmd({ 'QuickFixCmdPre', 'QuickFixCmdPost' }, {
         desc     = 'Post Fugitive quickfix format',
-        group    = Qfx_Format,
+        group    = vim.api.nvim_create_augroup('Qfx_Format', { clear = true }),
         callback = function()
           local qf_title = vim.fn.getqflist({ title = 1 }).title
           if qf_title:match('Gclog') then
@@ -51,8 +49,6 @@ return {
           au!
           au Filetype fugitive nmap <buffer> <C-i> =
           au Filetype gitcommit startinsert
-          " This ensures the vim-grepper qflist will be formatted correctly
-          au User Grepper exe "lua vim.o.qftf = '{info -> v:lua._G.qfx(info)}'" | copen
         augroup END
       ]])
     end

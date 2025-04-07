@@ -1,13 +1,15 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'RRethy/nvim-treesitter-endwise',
+    },
     build = ':TSUpdate',
     event = { 'BufReadPost [^:]*', 'BufNewFile' },
     config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = {
           'comment',
-          'markdown_inline',
           'nu',
           'rust',
         },

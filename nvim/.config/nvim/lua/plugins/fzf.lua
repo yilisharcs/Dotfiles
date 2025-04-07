@@ -2,7 +2,6 @@ return {
   {
     'ibhagwan/fzf-lua',
     keys = {
-      { '<leader>fd', function() require('fzf-lua').files({ cwd = '~/' }) end },
       { '<leader>fl', function() require('fzf-lua').files() end },
       { '<leader>fh', function() require('fzf-lua').oldfiles() end },
       { '<leader>fb', function() require('fzf-lua').buffers() end },

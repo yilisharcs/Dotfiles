@@ -1,8 +1,6 @@
-local Smart_Marks = vim.api.nvim_create_augroup('Smart_Marks', { clear = true })
-
 -- Update global marks automatically
 vim.api.nvim_create_autocmd({ 'BufLeave', 'VimLeavePre' }, {
-  group    = Smart_Marks,
+  group    = vim.api.nvim_create_augroup('Smart_Marks', { clear = true }),
   callback = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     local current_file = vim.api.nvim_buf_get_name(0)
