@@ -1,4 +1,11 @@
 #!/usr/bin/bash
 
-winPath="file://wsl$/Debian${1}"
-/mnt/c/Program\ Files/BraveSoftware/Brave-Browser/Application/brave.exe $winPath
+# rustup converts the file path, cargo doesn't
+# this handles the string mismatch properly
+if [[ ${1} == *"file://"* ]]; then
+    file=$(echo "${1}" | sed "s#file://#file://wsl.localhost/Debian#g")
+else
+    file=`wslpath -w ${1}`
+fi
+
+/mnt/c/Program\ Files/BraveSoftware/Brave-Browser/Application/brave.exe $file
