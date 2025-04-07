@@ -147,30 +147,44 @@ def gitcon [] {
 
 # SSH-agent handler
 do --env {
-    let ssh_agent_file = (
-        # $nu.temp-path | path join $"ssh-agent-($env.USER? | default $env.USERNAME).nuon"
-        $nu.temp-path | path join $"ssh-agent-($env.USER).nuon"
-    )
+  let ssh_agent_file = (
+    $nu.temp-path | path join $"ssh-agent-($env.USER).nuon"
+  )
 
-    if ($ssh_agent_file | path exists) {
-        let ssh_agent_env = open ($ssh_agent_file)
-        if ($"/proc/($ssh_agent_env.SSH_AGENT_PID)" | path exists) {
-            load-env $ssh_agent_env
-            return
-        } else {
-            rm $ssh_agent_file
-        }
+  if ($ssh_agent_file | path exists) {
+    let ssh_agent_env = open ($ssh_agent_file)
+    if ($"/proc/($ssh_agent_env.SSH_AGENT_PID)" | path exists) {
+      load-env $ssh_agent_env
+      return
+    } else {
+      rm $ssh_agent_file
     }
+  }
 
-    let ssh_agent_env = ^ssh-agent -c
-        | lines
-        | first 2
-        | parse "setenv {name} {value};"
-        | transpose --header-row
-        | into record
-    load-env $ssh_agent_env
-    $ssh_agent_env | save --force $ssh_agent_file
+  let ssh_agent_env = ^ssh-agent -c
+  | lines
+  | first 2
+  | parse "setenv {name} {value};"
+  | transpose --header-row
+  | into record
+  load-env $ssh_agent_env
+  $ssh_agent_env | save --force $ssh_agent_file
 }
+
+# {
+## Password management
+# Must unset else `pass` will try to use non-existent wl-clipboard
+$env.WAYLAND_DISPLAY = ''
+
+do --env {
+  if not ('GITHUB_TOKEN' in $env) {
+    $env.GITHUB_TOKEN = (pass show github/yilisharcs/api/token)
+  }
+  if not ('OPENROUTER_API_KEY' in $env) {
+    $env.OPENROUTER_API_KEY = (pass show llm/openrouter/key)
+  }
+}
+# }
 
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
