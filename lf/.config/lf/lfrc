@@ -22,14 +22,13 @@ map ` !true
 map x $$f
 # map X !$f
 
-# wslview replaces $OPENER
 cmd open &{{
     case $(file --mime-type -Lb $f) in
         text/*) lf -remote "send $id \$$EDITOR \$fx";;
         inode/x-empty) lf -remote "send $id \$$EDITOR \$fx";;
         application/javascript) lf -remote "send $id \$$EDITOR \$fx";;
         application/json) lf -remote "send $id \$$EDITOR \$fx";;
-        *) for f in $fx; do wslview $f &> /dev/null & done;;
+        *) for f in $fx; do $OPENER $f &> /dev/null & done;;
     esac
 }}
 
