@@ -99,7 +99,7 @@ $env.config.keybindings = [
   }
 ]
 
-$env.config.buffer_editor = 'vim.tiny'
+$env.config.buffer_editor = 'nvim'
 $env.SUDO_EDITOR = 'vim.tiny'
 $env.EDITOR = 'nvim'
 alias vi = nvim
