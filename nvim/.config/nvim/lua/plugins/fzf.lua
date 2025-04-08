@@ -44,9 +44,6 @@ return {
         backdrop = 100,
         preview  = { border = 'border-left' },
       },
-      previewers = {
-        bat = { theme = 'ansi' },
-      },
       files = {
         fd_opts = '--color=never --hidden --follow --type f --type l --exclude .git',
       },

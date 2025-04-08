@@ -8,11 +8,8 @@ set ratios '8:9'
 set shell sh
 set shellopts '-eu'
 set scrolloff 2
-# must be tested on every update
-# set statfmt "\033[36m%p\033[0m| %c| %u| %S| %t| -> %l"
 set errorfmt "\033[7;31;48;1m"
 set ifs "\n"
-# must be tested on every update
 # set cursorpreviewfmt "\033[7;90m"
 
 # show the result of execution of previous commands
