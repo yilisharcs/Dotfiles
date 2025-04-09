@@ -1,8 +1,6 @@
-nnoremap <silent> <SPACE> <NOP>
-xnoremap <silent> <SPACE> <NOP>
+nnoremap <silent> <SPACE> <NOP> | xnoremap <silent> <SPACE> <NOP>
 
-nnoremap <leader>K K
-xnoremap <leader>K K
+nnoremap <leader>K K | xnoremap <leader>K K
 inoremap <silent> <expr> <C-c> 'col(.) > 1' ? '<ESC><RIGHT>' : '<ESC>'
 nnoremap <C-q> @@
 onoremap <C-a> <CMD>normal! ggVG<CR>
@@ -21,15 +19,13 @@ xnoremap <silent> J :m '>+1<CR>gv=gv
 xnoremap <silent> K :m '<-2<CR>gv=gv
 
 nnoremap X xp
-nnoremap x "_x
-xnoremap x "_x
+nnoremap x "_x | xnoremap x "_x
 nnoremap C "_C
 nmap U <C-r>
 
 nnoremap <C-w>t <CMD>tab split<CR>
 
-nnoremap ' `
-xnoremap ' `
+nnoremap ' ` | xnoremap ' `
 nnoremap cgn *``"_cgn
 nnoremap cgN *``"_cgN
 nnoremap dgn *``"_dgn
@@ -61,6 +57,11 @@ nnoremap <leader>h `H
 nnoremap <leader>j `J
 nnoremap <leader>k `K
 nnoremap <leader>l `L
+
+nnoremap <M-h> <CMD>wincmd h<CR> | tnoremap <M-h> <CMD>wincmd h<CR>
+nnoremap <M-j> <CMD>wincmd j<CR> | tnoremap <M-j> <CMD>wincmd j<CR>
+nnoremap <M-k> <CMD>wincmd k<CR> | tnoremap <M-k> <CMD>wincmd k<CR>
+nnoremap <M-l> <CMD>wincmd l<CR> | tnoremap <M-l> <CMD>wincmd l<CR>
 
 function! ToggleQuickFix()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
