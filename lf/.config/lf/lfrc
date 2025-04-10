@@ -10,7 +10,7 @@ set shellopts '-eu'
 set scrolloff 2
 set errorfmt "\033[7;31;48;1m"
 set ifs "\n"
-# set cursorpreviewfmt "\033[7;90m"
+set cursorpreviewfmt "\033[7;90m"
 
 # show the result of execution of previous commands
 map ` !true
@@ -51,11 +51,11 @@ cmd mkbak ${{
 }}
 
 cmd copyfilepath &{{
-    echo $f | xclip -sel clip
+    echo $f | wl-copy
 }}
 
 cmd copyfilename &{{
-    echo $f | awk -F '/' '{print $NF}' | xclip -sel clip
+    echo $f | awk -F '/' '{print $NF}' | wl-copy
 }}
 
 cmd followsymlink %{{
@@ -99,11 +99,11 @@ cmd zip %{{
     apack $1.zip $fx
 }}
 
-# File previewer
-set previewer ctpv
-set cleaner ctpvclear
-&ctpv -s $id
-&ctpvquit $id
+# # File previewer
+# set previewer ctpv
+# set cleaner ctpvclear
+# &ctpv -s $id
+# &ctpvquit $id
 
 cmd fuzzyfind ${{
     lf -remote "send $id select \"$(fzf)\""
@@ -168,10 +168,10 @@ map zz zoxide
 map g/ cd /
 map gb cd ~/notes
 map gc cd ~/.dotfiles
-map gd cd ~/downloads
+map gd cd ~/Downloads
+map gi cd ~/Pictures
 map gn cd ~/.dotfiles/nvim/.config/nvim
 map go cd ~/opt
 map gp cd ~/projects
 map gr cd ~/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f
-map gw cd /mnt/c/Users
 map gz cd ~/.local/share/nvim/lazy

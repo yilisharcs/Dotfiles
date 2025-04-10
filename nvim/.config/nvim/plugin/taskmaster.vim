@@ -32,7 +32,7 @@ function! GrepToDone(...)
     endif
 endfunction
 
-command! -nargs=* GrepTodo lexpr GrepTodo(<f-args>)
+command! -nargs=* GrepTodo lgetexpr GrepTodo(<f-args>)
 command! -nargs=+ GrepToAdd lgetexpr GrepToAdd(<f-args>)
 command! -nargs=+ GrepToDone lgetexpr GrepToDone(<f-args>)
 
@@ -42,8 +42,8 @@ cnoreabbrev <expr> tone (getcmdtype() ==# ':' && getcmdline() =~# '^tone') ? 'Gr
 
 augroup Taskmaster
     au!
-    au QuickFixCmdPost lexpr lwindow
-                \| call setloclist(0, [], 'a', {'title': ':' . s:cmd})
+    " Sets the loclist name with the grep cmd; errors if loclist is empty
+    au QuickFixCmdPost lgetexpr lwindow | silent! call setloclist(0, [], 'a', {'title': ':' . s:cmd})
     " This refreshes the loclist whenever a task is added or removed
     " Call with silent! to suppress error if g:GrepTodo is empty
     au User TaskMaster silent! execute 'GrepTodo '..join(g:GrepTodo, ' ')

@@ -41,7 +41,7 @@ set listchars=tab:› ,nbsp:␣
 " Fold opts
 set foldcolumn=0
 set foldmethod=indent
-set foldlevel=5
+set foldlevel=99
 
 " Column opts
 set numberwidth=3
@@ -61,12 +61,12 @@ let &fillchars='eob: '
 
 set guicursor=a:block,c-ci-i-r:blinkwait700-blinkoff700-blinkon700
 
-" Nushell doesn't grok vi
-set shell=/bin/bash
-
 set diffopt^=algorithm:patience
 
 set updatetime=1000
 set termguicolors
 set lazyredraw
-set winborder=rounded
+" set winborder=rounded
+
+" Nushell doesn't grok vi
+set shell=/usr/bin/bash

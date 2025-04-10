@@ -1,21 +1,20 @@
-$env.BROWSER = 'wsl-browser'
 $env.XDG_CONFIG_HOME = $"($env.HOME)/.config"
 $env.PATH = ($env.PATH | prepend $"($env.HOME)/.local/bin")
 
 # {
 ## Rust
 $env.PATH = ($env.PATH | prepend $"($env.HOME)/.cargo/bin")
-alias cargo = cargo auditable
+# alias cargo = cargo auditable
 
-## JavaScript ## > fnm is installed via cargo, therefore my alphabetical order is ruined
-fnm env --json | from json | load-env
-$env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
+# ## JavaScript ## > fnm is installed via cargo, therefore my alphabetical order is ruined
+# fnm env --json | from json | load-env
+# $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
 
-## WebAssembly
-$env.WASMTIME_HOME = $"($env.HOME)/.wasmtime" # It's Wasmtime
-$env.PATH = ($env.PATH | prepend $"($env.WASMTIME_HOME)/bin")
-$env.WASI_SDK_PATH = $"($env.HOME)/opt/wasi-sdk-25.0"
-# }
+# ## WebAssembly
+# $env.WASMTIME_HOME = $"($env.HOME)/.wasmtime" # It's Wasmtime
+# $env.PATH = ($env.PATH | prepend $"($env.WASMTIME_HOME)/bin")
+# $env.WASI_SDK_PATH = $"($env.HOME)/opt/wasi-sdk-25.0-x86_64-linux-sdk-25.0"
+# # }
 
 $env.SQLITE_HISTORY = $"($env.HOME)/.local/state/sqlite3/sqlite_history"
 
@@ -104,6 +103,7 @@ $env.SUDO_EDITOR = 'vim.tiny'
 $env.EDITOR = 'nvim'
 alias vi = nvim
 alias vim = nvim
+alias :q = exit
 def mvim [...args] {
   with-env { NVIM_APPNAME: 'nvim-minimal' } {
     nvim ...$args
@@ -171,21 +171,10 @@ do --env {
   $ssh_agent_env | save --force $ssh_agent_file
 }
 
-# {
-## Password management
-# Must unset else `pass` will try to use non-existent wl-clipboard
-$env.WAYLAND_DISPLAY = ''
-
-do --env {
-  if not ('GITHUB_TOKEN' in $env) {
-    $env.GITHUB_TOKEN = (pass show github/yilisharcs/api/token)
-  }
-  if not ('OPENROUTER_API_KEY' in $env) {
-    $env.OPENROUTER_API_KEY = (pass show llm/openrouter/key)
-  }
-}
-# }
-
+# Shell integrations
 mkdir ($nu.data-dir | path join "vendor/autoload")
+
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+$env.STARSHIP_LOG = 'error'
+
 zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")

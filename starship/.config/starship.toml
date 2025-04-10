@@ -1,4 +1,5 @@
 add_newline = false
+command_timeout = 300
 
 [character]
 success_symbol = '[➜](bold green)'
