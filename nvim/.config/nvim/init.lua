@@ -1,12 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Fallback wincmd (navigator)
-vim.keymap.set({ 'n', 't' }, '<M-h>', '<CMD>wincmd h<CR>')
-vim.keymap.set({ 'n', 't' }, '<M-j>', '<CMD>wincmd j<CR>')
-vim.keymap.set({ 'n', 't' }, '<M-k>', '<CMD>wincmd k<CR>')
-vim.keymap.set({ 'n', 't' }, '<M-l>', '<CMD>wincmd l<CR>')
-
 vim.keymap.set('n', '<leader>ql', '<CMD>Lazy<CR>')
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'

@@ -6,10 +6,13 @@ augroup Auto_Cmds
     au BufWritePre * let s:c=nvim_win_get_cursor(0) | silent! keeppatterns %s/\(\s\|\)\+$//e | call nvim_win_set_cursor(0, s:c)
     " Reads external file changes
     au CursorHold * if &buftype!='nofile' | checktime | endif
-    " Prevent conflicts from autoread
-    au FocusLost * silent! noautocmd update
+    "" Prevent conflicts from autoread
+    "" This bad boy breaks with Neovide
+    " au FocusLost * silent! noautocmd update
+
     " Open file under cursor on the terminal in a tab
-    au TermOpen * nnoremap <buffer> gf <C-w>gF
+    au TermOpen,TermEnter * startinsert | nnoremap <buffer> gf <C-w>gF
+    " au WinEnter term://* startinsert
     " Newline doesn't insert comment from comment
     au FileType * set formatoptions-=o
     " Set listchars like indent-blankline

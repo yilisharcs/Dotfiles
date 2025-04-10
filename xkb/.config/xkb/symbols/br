@@ -1,0 +1,64 @@
+default
+xkb_symbols "abnt2" {
+
+    // Customized Brazilian ABNT-2 keyboard.
+
+    include "latin"
+    name[Group1]="Portuguese (Brazil)";
+
+    key <TLDE> { [   asciitilde,    asciicircum,           grave                  ] };
+
+    key <AE01> { [            1,         exclam,     onesuperior,      exclamdown ] };
+    key <AE02> { [            2,             at,     twosuperior,         onehalf ] };
+    key <AE03> { [            3,     numbersign,   threesuperior,   threequarters ] };
+    key <AE04> { [            4,         dollar,        sterling,      onequarter ] };
+    key <AE05> { [            5,        percent,            cent,    threeeighths ] };
+    key <AE06> { [            6,    asciicircum, dead_circumflex,  dead_diaeresis ] };
+    key <AE07> { [            7,      ampersand,       braceleft,    seveneighths ] };
+    key <AE08> { [            8,       asterisk,     bracketleft,       trademark ] };
+    key <AE09> { [            9,      parenleft,    bracketright,       plusminus ] };
+    key <AE10> { [            0,     parenright,      braceright,          degree ] };
+    key <AE11> { [        minus,     underscore,       backslash,    questiondown ] };
+    key <AE12> { [        equal,           plus,         section,     dead_ogonek ] };
+
+    key <AD01> { [            q,              Q,           slash,           slash ] };
+    key <AD02> { [            w,              W,        question,        question ] };
+    key <AD03> { [            e,              E,          eacute,     ecircumflex ] };
+    key <AD04> { [            r,              R,      registered,      registered ] };
+    key <AD05> { [            t,              T,       trademark,        notequal ] };
+    key <AD06> { [            y,              Y,             yen,       paragraph ] };
+    key <AD07> { [            u,              U,          uacute,         uparrow ] };
+    key <AD08> { [            i,              I,          iacute                  ] };
+    key <AD09> { [            o,              O,          oacute,     ocircumflex ] };
+    key <AD10> { [            p,              P,      registered,      registered ] };
+    key <AD11> { [  bracketleft,      braceleft,     ordfeminine,      braceright ] };
+    key <AD12> { [ bracketright,     braceright,       masculine,       masculine ] };
+
+    key <AC01> { [            a,              A,          aacute,     acircumflex ] };
+    key <AC02> { [            s,              S,       backslash,          ssharp ] };
+    key <AC03> { [            d,              D,             bar,       dead_hook ] };
+    key <AC04> { [            f,              F,         percent,     ordfeminine ] };
+    key <AC10> { [    semicolon,          colon,      dead_tilde,             bar ] };
+    key <AC11> { [   apostrophe,       quotedbl,           grave,     dead_macron ] };
+
+    key <BKSL> { [    backslash,       question,          degree,    questiondown ] };
+
+    key <AB03> { [            c,              C,        ccedilla,       copyright ] };
+    key <AB06> { [            n,              N,          ntilde, rightsinglequotemark ] };
+    key <AB07> { [            m,              M,          emdash,     dead_macron ] };
+    key <AB10> { [        slash,       question,      numbersign,      dead_breve ] };
+
+    // The ABNT-2 keyboard has this special key:
+    key <AB11> { [   dead_tilde, dead_circumflex,     dead_grave,      dead_acute ] };
+
+    include "kpdl(comma)"
+
+    include "level3(ralt_switch)"
+
+    key <LSGT> { [      Shift_L ] };
+
+    replace key <CAPS> { [ Control_L ], type[group1] = "ONE_LEVEL" };
+    replace key <LCTL> { [ Caps_Lock ] };
+    modifier_map Control { <CAPS> };
+    modifier_map Lock    { <LCTL> };
+};

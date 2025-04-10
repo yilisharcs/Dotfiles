@@ -13,7 +13,7 @@ return {
         end
 
         vim.api.nvim_create_autocmd('ColorScheme', {
-          group    = vim.api.nvim_create_augroup('Mini_Icons', { clear = true }),
+          group    = vim.api.nvim_create_augroup('Mini_Icons_Hl', { clear = true }),
           callback = function()
             vim.api.nvim_set_hl(0, 'MiniIconsAzure', { fg = '#74c7ec' })
             vim.api.nvim_set_hl(0, 'MiniIconsBlue', { fg = '#89b4fa' })
