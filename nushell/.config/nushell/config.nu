@@ -5,6 +5,14 @@ $env.PATH = ($env.PATH | prepend $"($env.HOME)/.local/bin")
 ## Rust
 $env.PATH = ($env.PATH | prepend $"($env.HOME)/.cargo/bin")
 # alias cargo = cargo auditable
+def cargoup [] {
+  cargo install --list
+  | find -n :
+  | parse "{pkg} {v}"
+  | get pkg
+  | each {|e| cargo install $e }
+  | ignore
+}
 
 # ## JavaScript ## > fnm is installed via cargo, therefore my alphabetical order is ruined
 # fnm env --json | from json | load-env
@@ -143,6 +151,24 @@ def gitcon [] {
   | histogram committer merger
   | sort-by count # merger
   | reverse
+}
+
+# Percentage of language in a codebase
+def tokeicon [] {
+  tokei --sort code
+  | lines
+  | where $it !~ '='
+  | str trim
+  | split column --regex '\s\s+'
+  | rename ...($in | first | values)
+  | skip 1
+  | drop
+  | update Code {|e| $e.Code | into int }
+  | do {
+    let total = ($in | get Code | math sum)
+    $in | insert Percent {|r| ($r.Code * 100 / $total)}
+  }
+  | select Language Code Percent
 }
 
 # SSH-agent handler
