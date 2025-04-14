@@ -16,7 +16,7 @@ augroup Auto_Cmds
     " Newline doesn't insert comment from comment
     au FileType * set formatoptions-=o
     " Set listchars like indent-blankline
-    au FileType,BufEnter,OptionSet * let &l:listchars=&listchars..',leadmultispace:│'..repeat(' ', &shiftwidth -1)
+    au FileType,BufEnter,OptionSet * let &l:listchars=&listchars..',leadmultispace:▏'..repeat(' ', &shiftwidth -1)
     " Set registers b-z on launch and exit
     au VimEnter * for i in range(98,102) | silent! call setreg(nr2char(i), []) | endfor
                 \| for i in range(104,122) | silent! call setreg(nr2char(i), []) | endfor

@@ -36,7 +36,7 @@ set splitbelow
 
 " Indentation guide
 set list
-set listchars=tab:› ,nbsp:␣
+set listchars=tab:› ,nbsp:␣,space:•
 
 " Fold opts
 set foldcolumn=0
