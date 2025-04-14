@@ -58,6 +58,7 @@ if exists("g:neovide")
     nnoremap <C-SPACE><LEFT> <CMD>-tabmove<CR>
     nnoremap <C-SPACE><RIGHT> <CMD>+tabmove<CR>
     tnoremap <C-SPACE>t <CMD>tab split<CR>
+    tnoremap <C-SPACE>[ <CMD>silent! !tmux copy-mode<TAB><CR>
 
     lua vim.keymap.set({ '', '!', 't' }, '<C-SPACE>-', '<CMD>split | term nu<CR>')
     lua vim.keymap.set({ '', '!', 't' }, '<C-SPACE>=', '<CMD>vsplit | term nu<CR>')
