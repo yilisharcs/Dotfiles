@@ -5,9 +5,9 @@ return {
     'nvim-treesitter/nvim-treesitter',
   },
   keys = {
-    { '<leader>aa', '<CMD>CodeCompanionChat Toggle<CR>', mode = { 'n', 'v' }, desc = 'Open LLM Chat' },
-    { '<leader>as', '<CMD>CodeCompanionActions<CR>',     mode = { 'n', 'v' }, desc = 'Open Actions' },
-    { 'ga',         '<CMD>CodeCompanionChat Add<CR>',    mode = 'v',          desc = 'Add selection to chat' },
+    { '<leader>aa', '<CMD>CodeCompanionChat Toggle<CR>', mode = { 'n', 'x' } },
+    { '<leader>as', '<CMD>CodeCompanionActions<CR>',     mode = { 'n', 'x' } },
+    { 'ga',         '<CMD>CodeCompanionChat Add<CR>',    mode = 'x' },
   },
   opts = {
     opts = {
@@ -15,7 +15,8 @@ return {
         local file = io.open('/home/yilisharcs/notes/LLM/cc-model-of-you.md', 'r')
         local content = file:read('*all')
         file:close()
-        return content .. 'Additionally, you must act as a senior Rust developer mentoring a junior.'
+        return content ..
+            'Additionally, you must act as a senior Rust developer mentoring a junior.'
       end,
     },
     display = {

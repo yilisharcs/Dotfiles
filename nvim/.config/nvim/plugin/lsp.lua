@@ -59,8 +59,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     local namespace = vim.lsp.diagnostic.get_namespace(client.id)
-    map('n', 'grq', function() vim.diagnostic.setqflist({ namespace = namespace, open = true }) end,
-      'Set Quickfix')
+    map('n', 'grq', function()
+      vim.diagnostic.setqflist({ namespace = namespace, open = true })
+    end, 'Set Quickfix')
 
     if client.server_capabilities.inlayHintProvider then
       vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })

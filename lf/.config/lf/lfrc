@@ -99,11 +99,11 @@ cmd zip %{{
     apack $1.zip $fx
 }}
 
-# # File previewer
-# set previewer ctpv
-# set cleaner ctpvclear
-# &ctpv -s $id
-# &ctpvquit $id
+# File previewer
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
 
 cmd fuzzyfind ${{
     lf -remote "send $id select \"$(fzf)\""
