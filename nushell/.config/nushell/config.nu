@@ -155,7 +155,7 @@ def gitcon [] {
 
 # Percentage of language in a codebase
 def tokeicon [] {
-  tokei --sort code
+  tokei --hidden --compact --sort code
   | lines
   | where $it !~ '='
   | str trim
@@ -166,8 +166,9 @@ def tokeicon [] {
   | update Code {|e| $e.Code | into int }
   | do {
     let total = ($in | get Code | math sum)
-    $in | insert Percent {|r| ($r.Code * 100 / $total)}
+    $in | insert Percent {|e| ($e.Code * 100 / $total)}
   }
+  | where Code > 0
   | select Language Code Percent
 }
 
