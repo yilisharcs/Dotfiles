@@ -27,9 +27,9 @@ if exists("g:neovide")
 
     let &guifont='JetBrainsMono Nerd Font Mono:h13'
     let g:neovide_scale_factor = 1.0
-    nnoremap <C--> <CMD>let g:neovide_scale_factor-=0.1<CR>
-    nnoremap <C-=> <CMD>let g:neovide_scale_factor+=0.1<CR>
-    nnoremap <C-0> <CMD>let g:neovide_scale_factor=1.0<CR>
+    lua vim.keymap.set({ 'n', 't' }, '<C-->', '<CMD>let g:neovide_scale_factor-=0.1<CR>')
+    lua vim.keymap.set({ 'n', 't' }, '<C-=>', '<CMD>let g:neovide_scale_factor+=0.1<CR>')
+    lua vim.keymap.set({ 'n', 't' }, '<C-0>', '<CMD>let g:neovide_scale_factor=1.0<CR>')
 
     let g:neovide_fullscreen = v:false
     set linespace=2

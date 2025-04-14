@@ -2,9 +2,6 @@ setlocal colorcolumn=0
 setlocal wrap
 setlocal linebreak
 setlocal nolist
-setlocal tabstop=2
-setlocal softtabstop=2
-setlocal shiftwidth=2
 setlocal noexpandtab
 setlocal suffixesadd+=.md,.lemon
 setlocal iskeyword+=-,'
