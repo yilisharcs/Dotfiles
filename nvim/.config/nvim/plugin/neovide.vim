@@ -16,7 +16,6 @@ if exists("g:neovide")
     let g:terminal_color_14 = '#52BDFF'
     let g:terminal_color_15 = '#E4E4E5'
 
-    set linespace=1
     let g:neovide_padding_top = 0
     let g:neovide_padding_left = 2
     let g:neovide_hide_mouse_when_typing = v:true
@@ -32,12 +31,15 @@ if exists("g:neovide")
     nnoremap <C-=> <CMD>let g:neovide_scale_factor+=0.1<CR>
     nnoremap <C-0> <CMD>let g:neovide_scale_factor=1.0<CR>
 
-    let g:neovide_fullscreen = v:true
+    let g:neovide_fullscreen = v:false
+    set linespace=2
     function! Neovide_F11()
-        if g:neovide_fullscreen == v:true
-            let g:neovide_fullscreen = v:false
-        else
+        if g:neovide_fullscreen == v:false
             let g:neovide_fullscreen = v:true
+            set linespace=1
+        else
+            let g:neovide_fullscreen = v:false
+            set linespace=2
         endif
     endfunction
     lua vim.keymap.set({ '', 'x', '!', 't' }, '<F11>', '<CMD>call Neovide_F11()<CR>')
