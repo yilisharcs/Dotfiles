@@ -1,6 +1,8 @@
 return {
   {
     'williamboman/mason.nvim',
+    build = ':MasonInstall ' ..
+        'lua-language-server',
     ft = {
       'lua',
       'rust',
