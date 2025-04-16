@@ -26,6 +26,9 @@ require('lazy').setup({ import = 'plugins' }, {
     patterns = {},
     fallback = false,
   },
+  install = {
+    colorscheme = { 'lunaperche' },
+  },
   ui = {
     border = 'rounded',
     backdrop = 100,
