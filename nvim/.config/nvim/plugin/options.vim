@@ -65,7 +65,7 @@ set diffopt^=algorithm:patience
 
 set updatetime=1000
 set termguicolors
-set lazyredraw
+set virtualedit=block
 " set winborder=rounded
 
 " Nushell doesn't grok vi
