@@ -18,7 +18,7 @@ xnoremap > >gv
 xnoremap <silent> J :m '>+1<CR>gv=gv
 xnoremap <silent> K :m '<-2<CR>gv=gv
 
-nnoremap X xp
+nnoremap X "zx"zp
 lua vim.keymap.set({ 'n', 'x' }, 'x', '"_x')
 nnoremap C "_C
 nmap U <C-r>
