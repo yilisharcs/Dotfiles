@@ -1,5 +1,5 @@
 setlocal colorcolumn=0
-setlocal wrap
+setlocal wrap nornu winhighlight+=LineNr:EndOfBuffer
 setlocal linebreak
 setlocal nolist
 setlocal noexpandtab
