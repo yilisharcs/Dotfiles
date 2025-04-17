@@ -21,6 +21,7 @@ augroup Auto_Cmds
     au VimEnter * for i in range(98,102) | silent! call setreg(nr2char(i), []) | endfor
                 \| for i in range(104,122) | silent! call setreg(nr2char(i), []) | endfor
                 \| let @c='wvg~'
+                \| let @m='JjJ^r>}j'
     au VimLeavePre * for i in range(98,102) | silent! call setreg(nr2char(i), [' ']) | endfor
                 \| for i in range(104,122) | silent! call setreg(nr2char(i), [' ']) | endfor
     " Automatically open the quickfix window

@@ -1,4 +1,5 @@
 setlocal signcolumn=no
+setlocal nolist
 setlocal nonu nornu
 setlocal winhighlight+=Normal:NormalNC,qfLineNr:Number
 
