@@ -142,6 +142,7 @@ def just [...args] {
 alias visudo = sudo visudo
 alias yeet = sudo apt-get purge --autoremove
 alias tmuxa = tmux attach
+alias fetch = fastfetch
 
 # Git pretty histogram
 def gitcon [] {
