@@ -16,6 +16,7 @@ vim.api.nvim_set_hl(0, 'QuickFixLine', { bg = '#ff87ff', fg = 'Black', bold = tr
 vim.api.nvim_set_hl(0, 'PmenuSbar', { link = 'Pmenu' })
 vim.api.nvim_set_hl(0, 'Removed', { fg = '#e64343' })
 vim.api.nvim_set_hl(0, 'Error', { link = 'Removed' })
+vim.api.nvim_set_hl(0, 'DiagnosticError', { link = 'Removed' })
 vim.api.nvim_set_hl(0, 'ErrorMsg', { bg = '#ff5f5f', fg = 'Black', bold = true })
 vim.api.nvim_set_hl(0, 'ModeMsg', { fg = 'NvimLightGreen' })
 vim.api.nvim_set_hl(0, 'DiffAdd', { bg = 'NvimDarkGreen', fg = '#5fd75f' })
