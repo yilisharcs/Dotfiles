@@ -39,18 +39,18 @@ xnoremap <C-o> :'<,'>diffget<CR>
 xnoremap <C-p> :'<,'>diffput<CR>
 
 function! List_Gmarks()
-    try
-        marks ABCDEFGIMNOPQRSTUVWXYZ
-    catch /E283:/
-    endtry
-    marks HJKL
-    echo('`')
-    try
-        let s:mark = toupper(nr2char(getchar()))
-    catch /^Vim:Interrupt$/
-    endtry
-    redraw
-    silent! execute 'normal! `'..s:mark
+  try
+    marks ABCDEFGIMNOPQRSTUVWXYZ
+  catch /E283:/
+  endtry
+  marks HJKL
+  echo('`')
+  try
+    let s:mark = toupper(nr2char(getchar()))
+  catch /^Vim:Interrupt$/
+  endtry
+  redraw
+  silent! execute 'normal! `'..s:mark
 endfunction
 nnoremap <C-h> <CMD>call List_Gmarks()<CR>
 

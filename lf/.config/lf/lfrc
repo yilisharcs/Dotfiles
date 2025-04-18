@@ -20,83 +20,83 @@ map x $$f
 # map X !$f
 
 cmd open &{{
-    case $(file --mime-type -Lb $f) in
-        text/*) lf -remote "send $id \$$EDITOR \$fx";;
-        inode/x-empty) lf -remote "send $id \$$EDITOR \$fx";;
-        application/javascript) lf -remote "send $id \$$EDITOR \$fx";;
-        application/json) lf -remote "send $id \$$EDITOR \$fx";;
-        *) for f in $fx; do $OPENER $f &> /dev/null & done;;
-    esac
+  case $(file --mime-type -Lb $f) in
+    text/*) lf -remote "send $id \$$EDITOR \$fx";;
+    inode/x-empty) lf -remote "send $id \$$EDITOR \$fx";;
+    application/javascript) lf -remote "send $id \$$EDITOR \$fx";;
+    application/json) lf -remote "send $id \$$EDITOR \$fx";;
+    *) for f in $fx; do $OPENER $f &> /dev/null & done;;
+  esac
 }}
 
 cmd mimetype %{{
-    file -bi $f
+  file -bi $f
 }}
 
 # Requires oil.nvim
 cmd oilrename ${{
-    nvim .
+  nvim .
 }}
 
 cmd deeptouch %{{
-    mkdir -p $(dirname "$1") && touch "$1"
+  mkdir -p $(dirname "$1") && touch "$1"
 }}
 
 cmd mkdir %{{
-    mkdir -p "$1"
+  mkdir -p "$1"
 }}
 
 cmd mkbak ${{
-    cp -nr $f $f.bak
+  cp -nr $f $f.bak
 }}
 
 cmd copyfilepath &{{
-    echo $f | wl-copy
+  echo $f | wl-copy
 }}
 
 cmd copyfilename &{{
-    echo $f | awk -F '/' '{print $NF}' | wl-copy
+  echo $f | awk -F '/' '{print $NF}' | wl-copy
 }}
 
 cmd followsymlink %{{
-    lf -remote "send ${id} select '$(readlink $f)'"
+  lf -remote "send ${id} select '$(readlink $f)'"
 }}
 
 # yy (copy), P for soft-symlink
 # yd (cut), P for hard-symlink
 cmd symlink %{{
-    set -- $(cat ~/.local/share/lf/files)
-    mode="$1"
-    shift
-    if [ "$#" -lt 1 ]; then
-        lf -remote "send $id echo no files to symlink"
-        exit 0
-    fi
-    case "$mode" in
-        # symbolically copy mode is indicating a soft symlink
-        copy) ln -sr -t . -- "$@";;
-        # while a move mode is indicating a hard symlink
-        move) ln -t . -- "$@";;
-    esac
-    rm ~/.local/share/lf/files
-    lf -remote "send clear"
+  set -- $(cat ~/.local/share/lf/files)
+  mode="$1"
+  shift
+  if [ "$#" -lt 1 ]; then
+    lf -remote "send $id echo no files to symlink"
+    exit 0
+  fi
+  case "$mode" in
+    # symbolically copy mode is indicating a soft symlink
+    copy) ln -sr -t . -- "$@";;
+    # while a move mode is indicating a hard symlink
+    move) ln -t . -- "$@";;
+  esac
+  rm ~/.local/share/lf/files
+  lf -remote "send clear"
 }}
 
 ######### INTEGRATIONS ##########
 
 # Atool
 cmd extract ${{
-    set -f
-    aunpack $f
+  set -f
+  aunpack $f
 }}
 cmd tar-gz %{{
-    apack $1.tar.gz $fx
+  apack $1.tar.gz $fx
 }}
 cmd gzip %{{
-    apack $1.gz $fx
+  apack $1.gz $fx
 }}
 cmd zip %{{
-    apack $1.zip $fx
+  apack $1.zip $fx
 }}
 
 # File previewer
@@ -106,23 +106,23 @@ set cleaner ctpvclear
 &ctpvquit $id
 
 cmd fuzzyfind ${{
-    lf -remote "send $id select \"$(fzf)\""
+  lf -remote "send $id select \"$(fzf)\""
 }}
 
 # Trash-cli
 cmd dotrash %{{
-    trash-put $fx
+  trash-put $fx
 }}
 cmd untrash ${{
-    FZF_DEFAULT_OPTS=""
-    file="$(trash-list | grep "$(pwd)" | fzf | awk '{$1=$2=""; print substr($0,3)}')"
-    [ -z "$file" ] && exit 1
-    yes 0 | trash-restore "$file"
+  FZF_DEFAULT_OPTS=""
+  file="$(trash-list | grep "$(pwd)" | fzf | awk '{$1=$2=""; print substr($0,3)}')"
+  [ -z "$file" ] && exit 1
+  yes 0 | trash-restore "$file"
 }}
 
 cmd zoxide ${{
-    result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
-    lf -remote "send $id cd \"$result\""
+  result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+  lf -remote "send $id cd \"$result\""
 }}
 
 ########### MAPPINGS ############

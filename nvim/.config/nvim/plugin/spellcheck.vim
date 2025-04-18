@@ -1,16 +1,16 @@
 function! ToggleLang()
   " Vim stops detecting .spl files if spell isn't set beforehand
-    set spell
+  set spell
 
-    if &l:spelllang =~ "en"
-        setlocal spelllang=pt_br
-        setlocal spellfile=$XDG_CONFIG_HOME/nvim/spell/pt.utf-8.add,$XDG_CONFIG_HOME/nvim/spell/en.utf-8.add
-        echo &spelllang
-    else
-        setlocal spelllang=en_us
-        setlocal spellfile=$XDG_CONFIG_HOME/nvim/spell/en.utf-8.add,$XDG_CONFIG_HOME/nvim/spell/pt.utf-8.add
-        echo &spelllang
-    endif
+  if &l:spelllang =~ "en"
+    setlocal spelllang=pt_br
+    setlocal spellfile=$XDG_CONFIG_HOME/nvim/spell/pt.utf-8.add,$XDG_CONFIG_HOME/nvim/spell/en.utf-8.add
+    echo &spelllang
+  else
+    setlocal spelllang=en_us
+    setlocal spellfile=$XDG_CONFIG_HOME/nvim/spell/en.utf-8.add,$XDG_CONFIG_HOME/nvim/spell/pt.utf-8.add
+    echo &spelllang
+  endif
 endfunction
 
 nnoremap <F7> <CMD>spellinfo<CR>
