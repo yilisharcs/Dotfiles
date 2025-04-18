@@ -8,7 +8,6 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'VimLeavePre' }, {
     for _, mark in ipairs(vim.fn.getmarklist()) do
       local mark_filepath = vim.fn.fnamemodify(mark.file, ':p')
       if mark_filepath == current_file and mark.mark:match('[A-Z]') then
-        -- TODO: find out what the # actually does
         local gmark = string.sub(tostring(mark.mark), 2, #mark.mark)
         vim.api.nvim_buf_set_mark(0, gmark, line, col, {})
       end
