@@ -13,7 +13,7 @@ endfunction
 
 " Prepend to task list
 function! GrepToAdd(...)
-  return system('sed -i "1s/^/- @' . join(a:000, ' ') . '\n/" ~/notes/todo.md')
+  return system('sed -i "1s^- @' . join(a:000, ' ') . '\n" ~/notes/todo.md')
 endfunction
 
 " Remove from task list
@@ -28,7 +28,7 @@ function! GrepToDone(...)
   else
     let text = list[idx].text
     echohl Type | echo "Task done: " . text | echohl None
-    return system('sed -i "/' . text . '/d" ~/notes/todo.md')
+    return system('sed -i "\' . text . 'd" ~/notes/todo.md')
   endif
 endfunction
 
