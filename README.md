@@ -1,3 +1,3 @@
 # .dotfiles
 
-My dotfiles for WSL.
+My dotfiles.
