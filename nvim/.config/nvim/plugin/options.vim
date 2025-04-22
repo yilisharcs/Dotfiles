@@ -52,6 +52,7 @@ set isfname+=@-@
 
 let &pumheight=float2nr(&lines * 0.25 + 0.5)
 set completeopt=menuone,popup,fuzzy
+set completefuzzycollect=keyword
 
 " Ctrl-a/x doesn't recognize signed numbers
 set nrformats+=unsigned
