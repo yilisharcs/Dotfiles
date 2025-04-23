@@ -206,3 +206,6 @@ starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.n
 $env.STARSHIP_LOG = 'error'
 
 zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
+
+# My entries are being duplicated and I don't want to debug that
+$env.PATH = ($env.PATH | uniq)
