@@ -72,3 +72,5 @@ set virtualedit=block
 
 " Nushell doesn't grok vi
 set shell=/usr/bin/bash
+
+colorscheme lunamia
