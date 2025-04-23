@@ -1,21 +1,4 @@
 if exists("g:neovide")
-  let g:terminal_color_0 = '#282828'
-  let g:terminal_color_1 = '#EE5396'
-  let g:terminal_color_2 = '#25BE6A'
-  let g:terminal_color_3 = '#F9E2AF'
-  let g:terminal_color_4 = '#78A9FF'
-  let g:terminal_color_5 = '#BE95FF'
-  let g:terminal_color_6 = '#33B1FF'
-  let g:terminal_color_7 = '#DFDFE0'
-  let g:terminal_color_8 = '#484848'
-  let g:terminal_color_9 = '#F16DA6'
-  let g:terminal_color_10 = '#46C880'
-  let g:terminal_color_11 = '#FAFECB'
-  let g:terminal_color_12 = '#8CB6FF'
-  let g:terminal_color_13 = '#C8A5FF'
-  let g:terminal_color_14 = '#52BDFF'
-  let g:terminal_color_15 = '#E4E4E5'
-
   let g:neovide_padding_top = 0
   let g:neovide_padding_left = 2
   let g:neovide_hide_mouse_when_typing = v:true
