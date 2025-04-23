@@ -4,6 +4,7 @@ set path+=.scripts/.local/**;
 
 " Sync clipboard between OS and Neovim.
 set clipboard+=unnamedplus
+let g:clipboard='xclip'
 
 set ignorecase
 set smartcase
