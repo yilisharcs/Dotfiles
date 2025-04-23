@@ -3,7 +3,8 @@ augroup Auto_Cmds
   " Highlight copied text
   au TextYankPost * lua vim.hl.on_yank({ timeout = 500 })
   " Clear trailing postspaces and windows characters
-  au BufWritePre * let s:c=nvim_win_get_cursor(0) | silent! keeppatterns %s/\(\s\|\)\+$//e | call nvim_win_set_cursor(0, s:c)
+  au BufWritePre * let s:c=nvim_win_get_cursor(0)
+        \| silent! keeppatterns %s/\(\s\|\)\+$//e | call nvim_win_set_cursor(0, s:c)
   " Reads external file changes
   au CursorHold * if &buftype!='nofile' | checktime | endif
   "" Prevent conflicts from autoread
