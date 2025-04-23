@@ -175,8 +175,14 @@ def tokeicon [] {
 
 # SSH-agent handler
 do --env {
+  # Does nothing if another program such as
+  # GNOME Keyring has set the env variable
+  if not ($env.SSH_AUTH_SOCK | is-empty) {
+    return
+  }
+
   let ssh_agent_file = (
-    $nu.temp-path | path join $"ssh-agent-($env.USER).nuon"
+    $nu.temp-path | path join $"ssh-agent-($env.USER? | default $env.USERNAME).nuon"
   )
 
   if ($ssh_agent_file | path exists) {
