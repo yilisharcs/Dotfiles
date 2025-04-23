@@ -100,8 +100,8 @@ nnoremap gj i<CR><ESC>k$
 nmap gcap gcip
 nmap gcA oz<ESC>gcckJfz"_cl
 nmap gc$ i<CR><ESC>gcck$J
-nmap gcO Oz<ESC>gccA<BS>
-nmap gco oz<ESC>gccA<BS>
+nmap gcO Oz<ESC>gccfza<BS>
+nmap gco oz<ESC>gccfza<BS>
 
 lua << EOF
   function P(...)
