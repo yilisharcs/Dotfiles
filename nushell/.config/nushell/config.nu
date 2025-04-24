@@ -143,6 +143,7 @@ alias visudo = sudo visudo
 alias yeet = sudo apt-get purge --autoremove
 alias tmuxa = tmux attach
 alias fetch = fastfetch
+alias brave = brave-browser
 
 # Git pretty histogram
 def gitcon [] {

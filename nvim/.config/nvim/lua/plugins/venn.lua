@@ -4,6 +4,7 @@ return {
     dependencies = {
       'nvimtools/hydra.nvim',
     },
+    event = 'CmdlineEnter',
     keys = { '<leader>v' },
     config = function()
       local hydra = require('hydra')

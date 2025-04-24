@@ -1,7 +1,7 @@
 lua vim.keymap.set({ 'n', 'x' }, '<SPACE>', '<NOP>', { silent = true })
 
 lua vim.keymap.set({ 'n', 'x' }, '<leader>K', 'K')
-inoremap <silent> <expr> <C-c> 'col(.) > 1' ? '<ESC><RIGHT>' : '<ESC>'
+inoremap <C-c> <ESC>
 nnoremap <C-q> @@
 onoremap <C-a> <CMD>normal! ggVG<CR>
 
@@ -22,10 +22,10 @@ nnoremap X "zx"zp
 lua vim.keymap.set({ 'n', 'x' }, 'x', '"_x')
 nnoremap C "_C
 nmap U <C-r>
-
+nnoremap gf gF
 nnoremap <C-w>t <CMD>tab split<CR>
 
-nnoremap ' ` | xnoremap ' `
+lua vim.keymap.set({ 'n', 'x' }, "'", '`')
 nnoremap cgn *``"_cgn
 nnoremap cgN *``"_cgN
 nnoremap dgn *``"_dgn
@@ -59,10 +59,10 @@ nnoremap <leader>j `J
 nnoremap <leader>k `K
 nnoremap <leader>l `L
 
-lua vim.keymap.set({ 'n', 'x', '!', 't' }, '<M-h>', '<CMD>wincmd h<CR>')
-lua vim.keymap.set({ 'n', 'x', '!', 't' }, '<M-j>', '<CMD>wincmd j<CR>')
-lua vim.keymap.set({ 'n', 'x', '!', 't' }, '<M-k>', '<CMD>wincmd k<CR>')
-lua vim.keymap.set({ 'n', 'x', '!', 't' }, '<M-l>', '<CMD>wincmd l<CR>')
+lua vim.keymap.set({ '', '!', 't' }, '<M-h>', '<CMD>wincmd h<CR>')
+lua vim.keymap.set({ '', '!', 't' }, '<M-j>', '<CMD>wincmd j<CR>')
+lua vim.keymap.set({ '', '!', 't' }, '<M-k>', '<CMD>wincmd k<CR>')
+lua vim.keymap.set({ '', '!', 't' }, '<M-l>', '<CMD>wincmd l<CR>')
 
 function! ToggleQuickFix()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
@@ -81,16 +81,6 @@ nnoremap <C-n> <CMD>cnext<CR>zz
 nnoremap <leader><C-p> <CMD>cabove<CR>zz
 nnoremap <leader><C-n> <CMD>cbelow<CR>zz
 
-nnoremap <F8> <CMD>setlocal wrap! wrap? linebreak!<CR>
-nnoremap <expr> <C-d> &wrap ? '<C-d>' : '<C-d>zz'
-nnoremap <expr> <C-u> &wrap ? '<C-u>' : '<C-u>zz'
-noremap <expr> j &wrap ? 'gj' : 'j'
-noremap <expr> k &wrap ? 'gk' : 'k'
-
-nnoremap <F9> <CMD>Inspect<CR>
-nnoremap <F10> <CMD>!chmod +x %<CR>
-nnoremap <leader><F10> <CMD>!chmod -x %<CR>
-
 nnoremap gz <CMD>lua vim.ui.open('', { cmd = { 'xdg-open', 'https://github.com/' .. vim.fn.expand('<cfile>') } })<CR>
 xnoremap gz "zy:lua vim.ui.open('', { cmd = { 'xdg-open', 'https://github.com/' .. vim.fn.getreg('z') } })<CR>
 
@@ -103,6 +93,16 @@ nmap gc$ i<CR><ESC>gcck$J
 nmap gcO Oz<ESC>gccfza<BS>
 nmap gco oz<ESC>gccfza<BS>
 
+noremap <expr> j &wrap ? 'gj' : 'j'
+noremap <expr> k &wrap ? 'gk' : 'k'
+nnoremap <expr> <C-d> &wrap ? '<C-d>' : '<C-d>zz'
+nnoremap <expr> <C-u> &wrap ? '<C-u>' : '<C-u>zz'
+nnoremap <F8> <CMD>setlocal wrap! wrap? linebreak!<CR>
+
+nnoremap <F9> <CMD>Inspect<CR>
+nnoremap <F10> <CMD>!chmod +x %<CR>
+nnoremap <leader><F10> <CMD>!chmod -x %<CR>
+
 lua << EOF
   function P(...)
     local args = {}
@@ -114,4 +114,4 @@ lua << EOF
   end
 EOF
 
-nnoremap <leader>p :lua P()<left>
+nnoremap <F7> :lua P()<left>
