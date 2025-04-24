@@ -19,11 +19,6 @@ return {
 
       hydra({
         name = 'WINCMD',
-        hint = [[
- ^ ^ ^ ^^^Wincmd^^^^^^^^^ ^
- ^ ^ _+_ ^ ^  ^ ^ _K_ ^ ^ ^
- _<_ _=_ _>_  _H_ _c_ _L_ ^
- ^ ^ _-_ ^ ^  ^ ^ _J_ ^ ^ ^]],
         mode = 'n',
         body = '<C-w>',
         heads = {

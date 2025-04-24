@@ -14,7 +14,7 @@ return {
           'rust',
         },
         sync_install = false,
-        auto_install = false,
+        auto_install = true,
         ignore_install = {
           'make',
           'tmux',
