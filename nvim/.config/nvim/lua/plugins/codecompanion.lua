@@ -5,9 +5,9 @@ return {
     'nvim-treesitter/nvim-treesitter',
   },
   keys = {
-    { '<leader>aa', '<CMD>CodeCompanionChat Toggle<CR>', mode = { 'n', 'x' } },
+    { '<F12>',      '<CMD>CodeCompanionChat Toggle<CR>', mode = { 'n', 'x' } },
     { '<leader>as', '<CMD>CodeCompanionActions<CR>',     mode = { 'n', 'x' } },
-    { 'ga',         '<CMD>CodeCompanionChat Add<CR>',    mode = 'x' },
+    { '<leader>ag', '<CMD>CodeCompanionChat Add<CR>',    mode = 'x' },
   },
   opts = {
     opts = {
