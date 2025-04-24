@@ -8,8 +8,7 @@
 --glob=!.cache/*
 --glob=!.git/*
 --glob=!.npm/*
---glob=!Trash-Linux/*
---glob=!Trash-Windows/*
+--glob=!Trash/*
 
 # Enable smart case
 --smart-case
