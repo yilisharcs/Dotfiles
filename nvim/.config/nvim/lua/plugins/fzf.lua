@@ -6,6 +6,7 @@ return {
       { '<leader>fh', function() require('fzf-lua').oldfiles() end },
       { '<leader>fb', function() require('fzf-lua').buffers() end },
       { '<leader>fc', function() require('fzf-lua').git_commits() end },
+      { '<leader>fg', function() require('fzf-lua').live_grep_native({ silent = true }) end },
       { '<leader>fk', function() require('fzf-lua').helptags() end },
       {
         '<C-x><C-f>',
@@ -17,7 +18,41 @@ return {
         mode = 'i',
         desc = '[FZF] Complete Path'
       },
+      { '<C-Space>g', '<CMD>lua _G.fzf_dirs()<CR>' },
     },
+    init = function()
+      _G.fzf_dirs = function(opts)
+        opts = opts or {}
+        opts.prompt = 'TabCD> '
+        opts.fn_transform = function(path)
+          local home = os.getenv("HOME")
+          if home and path:find(home, 1, true) == 1 then
+            if path == home or (path:sub(#home + 1, #home + 1) == "/") then
+              path = "~" .. path:sub(#home + 1)
+            end
+          end
+          return path:gsub('([^/]+)/?$',
+            require('fzf-lua').utils.ansi_codes.cyan('%1'))
+        end
+        opts.actions = {
+          ['default'] = function(selected)
+            vim.cmd('tabnew ' .. selected[1])
+            vim.cmd('tcd ' .. selected[1])
+          end
+        }
+        local dirs = {
+          '~/projects/',
+          '~/projects/nvim',
+          '~/opt',
+          '~/.local/share/nvim/lazy',
+          '~/'
+        }
+        require('fzf-lua').fzf_exec(
+          'fd -L --type d --exact-depth 1 . ' ..
+          table.concat(dirs, ' '), opts
+        )
+      end
+    end,
     opts = {
       'max-perf',
       keymap = {
