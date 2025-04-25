@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+dconf load / < ~/.config/dconf/user.conf
+
+exit 0
