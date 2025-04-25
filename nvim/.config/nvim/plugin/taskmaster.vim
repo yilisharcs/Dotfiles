@@ -1,6 +1,6 @@
 " Search task file
-function! GrepTodo(...)
-  let g:GrepTodo = a:000
+function! TaskList(...)
+  let g:TaskList = a:000
 
   if empty(a:000)
     let s:cmd = join([&grepprg] + ['@.*$', '~/notes/todo.md'], ' ')
@@ -12,12 +12,12 @@ function! GrepTodo(...)
 endfunction
 
 " Prepend to task list
-function! GrepToAdd(...)
+function! TaskAdd(...)
   return system('sed -i "1s^- @' . join(a:000, ' ') . '\n" ~/notes/todo.md')
 endfunction
 
 " Remove from task list
-function! GrepToDone(...)
+function! TaskDone(...)
   let list = getloclist(0)
   " Line numbers directly correspond to 1-based index
   let idx = join(a:000, ' ') - 1
@@ -32,21 +32,21 @@ function! GrepToDone(...)
   endif
 endfunction
 
-command! -nargs=* GrepTodo lgetexpr GrepTodo(<f-args>)
-command! -nargs=+ GrepToAdd lgetexpr GrepToAdd(<f-args>)
-command! -nargs=+ GrepToDone lgetexpr GrepToDone(<f-args>)
+command! -nargs=* TaskList lgetexpr TaskList(<f-args>)
+command! -nargs=+ TaskAdd lgetexpr TaskAdd(<f-args>)
+command! -nargs=+ TaskDone lgetexpr TaskDone(<f-args>)
 
-cnoreabbrev <expr> todo (getcmdtype() ==# ':' && getcmdline() =~# '^todo') ? 'GrepTodo' : 'todo'
-cnoreabbrev <expr> toad (getcmdtype() ==# ':' && getcmdline() =~# '^toad') ? 'GrepToAdd' : 'toad'
-cnoreabbrev <expr> tone (getcmdtype() ==# ':' && getcmdline() =~# '^tone') ? 'GrepToDone' : 'tone'
+cnoreabbrev <expr> todo (getcmdtype() ==# ':' && getcmdline() =~# '^todo') ? 'TaskList' : 'todo'
+cnoreabbrev <expr> toad (getcmdtype() ==# ':' && getcmdline() =~# '^toad') ? 'TaskAdd' : 'toad'
+cnoreabbrev <expr> tone (getcmdtype() ==# ':' && getcmdline() =~# '^tone') ? 'TaskDone' : 'tone'
 
 augroup Taskmaster
   au!
   " Sets the loclist name with the grep cmd; errors if loclist is empty
   au QuickFixCmdPost lgetexpr lwindow | silent! call setloclist(0, [], 'a', {'title': ':' . s:cmd})
   " This refreshes the loclist whenever a task is added or removed
-  " Call with silent! to suppress error if g:GrepTodo is empty
-  au User TaskMaster silent! execute 'GrepTodo '..join(g:GrepTodo, ' ')
+  " Call with silent! to suppress error if g:TaskList is empty
+  au User TaskMaster silent! execute 'TaskList '..join(g:TaskList, ' ')
   au QuickFixCmdPost lgetexpr doau User TaskMaster
 augroup END
 
