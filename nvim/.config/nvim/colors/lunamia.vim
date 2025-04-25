@@ -32,21 +32,21 @@ hi @label.vimdoc guifg=NvimLightGreen gui=bold
 
 let g:terminal_colors_mia = [
       \ '#282828',
-      \ '#EE5396',
-      \ '#25BE6A',
-      \ '#F9E2AF',
-      \ '#78A9FF',
-      \ '#BE95FF',
-      \ '#33B1FF',
-      \ '#DFDFE0',
+      \ '#ee5396',
+      \ '#25be6a',
+      \ '#f9e2af',
+      \ '#78a9ff',
+      \ '#be95ff',
+      \ '#33b1ff',
+      \ '#dfdfe0',
       \ '#484848',
-      \ '#F16DA6',
-      \ '#46C880',
-      \ '#FAFECB',
-      \ '#8CB6FF',
-      \ '#C8A5FF',
-      \ '#52BDFF',
-      \ '#E4E4E5']
+      \ '#f16da6',
+      \ '#46c880',
+      \ '#fafecb',
+      \ '#8cb6ff',
+      \ '#c8a5ff',
+      \ '#52bdff',
+      \ '#e4e4e5']
 
 for i in range(g:terminal_ansi_colors->len())
   let g:terminal_color_{i} = g:terminal_colors_mia[i]
