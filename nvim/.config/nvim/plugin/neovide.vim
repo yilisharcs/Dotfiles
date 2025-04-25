@@ -6,7 +6,6 @@ if exists("g:neovide")
   let g:neovide_cursor_smooth_blink = v:true
   let g:neovide_cursor_animate_in_insert_mode = v:true
   let g:neovide_cursor_animate_command_line = v:true
-  let g:neovide_detach_on_quit = 'always_detach'
 
   let &guifont='JetBrainsMono Nerd Font Mono:h13'
   let g:neovide_scale_factor = 1.0

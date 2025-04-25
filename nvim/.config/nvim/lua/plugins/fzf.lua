@@ -48,7 +48,7 @@ return {
           '~/'
         }
         require('fzf-lua').fzf_exec(
-          'fd -L --type d --exact-depth 1 . ' ..
+          'fd --hidden --follow --type d --exact-depth 1 . ' ..
           table.concat(dirs, ' '), opts
         )
       end
