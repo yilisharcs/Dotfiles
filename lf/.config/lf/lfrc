@@ -38,7 +38,7 @@ cmd oilrename ${{
   nvim .
 }}
 
-cmd deeptouch %{{
+cmd touch %{{
   mkdir -p $(dirname "$1") && touch "$1"
 }}
 
@@ -143,7 +143,7 @@ map dd dotrash
 map fd fuzzyfind
 map ff find
 map gL followsymlink
-map i push :deeptouch<space>
+map i push :touch<space>
 map I push :mkdir<space>
 map p :paste; clear
 map P :symlink
