@@ -1,6 +1,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.keymap.set('n', '-', '<CMD>Ex<CR>')
 vim.keymap.set('n', '<leader>ql', '<CMD>Lazy<CR>')
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
