@@ -6,7 +6,7 @@ hi! link NormalFloat Normal
 hi! link FloatBorder NormalFloat
 hi Folded guibg=#181825 guifg=#fec43f gui=bold
 hi ColorColumn guibg=#181825
-hi StatusLine guibg=#181825 guifg=#edf6f4
+hi StatusLine guibg=#edf6f4 guifg=#181825
 hi! link TabLineFill ColorColumn
 
 hi LineNrAbove guifg=#585858
