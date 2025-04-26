@@ -74,7 +74,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.cmd([[
   augroup Auto_Format
     au!
-    au BufWritePre *.lua,*.vim lua vim.lsp.buf.format()
+    au BufWritePre *.lua,*.vim silent! lua vim.lsp.buf.format()
     au BufWritePre *.rs RustFmt
   augroup END
 ]])
