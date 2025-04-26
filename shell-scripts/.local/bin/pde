@@ -1,0 +1,121 @@
+#!/usr/bin/env bash
+
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+PKG=(
+  atool                          # compression and extraction tools
+  bat                            # better cat
+  bacon                          # background code checker
+  bibata-cursor-theme
+  build-essential                # gnu make and other tools
+  cmus                           # tui music player
+  curl
+  dconf-editor
+  fd-find                        # better find
+  ffmpeg
+  ffmpegthumbnailer
+  fzf                            # fuzzy finder
+  gh                             # github cli client
+  git
+  gnome-shell-extension-manager
+  htop                           # tui system monitor
+  hunspell-pt-br
+  hunspell-en-us
+  imagemagick
+  inkscape                       # image editor
+  krita                          # image editor
+  lf                             # tui file explorer
+  mesa-utils                     # gpu utils
+  ncdu                           # disk space checker
+  pass                           # cli password manager
+  picard                         # music metadata editor
+  pipx                           # python package manager
+  qbittorrent
+  ripgrep                        # better grep
+  rustup                         # rust toolchain manager
+  sccache                        # build cache tool
+  sqlite3
+  starship                       # shell prompt tool
+  stow                           # symlink manager
+  syncthing                      # peer-to-peer file sync
+  timeshift
+  tmux
+  tokei                          # loc counter
+  trash-cli
+  tree                           # dir viewer
+  wget
+  xclip
+  yt-dlp
+  yq                             # cli json, yaml, and xml processor
+  zoxide
+
+  # gnome-extension deps
+  gir1.2-gtop-2.0                # vitals
+  lm-sensors                     # vitals
+
+  # dev libs and tools
+  cmake
+  freeglut3-dev
+  gcc-mingw-w64
+  gcc-multilib
+  gettext
+  g++-multilib
+  libasound2-dev
+  libbz2-dev
+  libcrypto++-dev
+  libexpat1-dev
+  libfontconfig1-dev
+  libfreetype6-dev
+  libmagic-dev
+  libsndio-dev
+  libssl-dev
+  libudev-dev
+  libwayland-dev
+  libxcb-composite0-dev
+  libxcursor-dev
+  libxi-dev
+  libxmu-dev
+  ninja-build
+  pkg-config
+)
+
+echo -e "${BLUE}--> Updating package list and upgrading all installed packages...${NC}"
+if sudo apt update && sudo apt upgrade -y; then
+  echo -e "${GREEN}--> Package list updated and all installed packages upgraded successfully.${NC}"
+  echo -e "${BLUE}--> Installing specified packages from repositories...${NC}"
+  if sudo apt install -y "${PKG[@]}"; then
+    echo -e "${GREEN}--> All specified packages installed successfully.${NC}"
+  else
+    echo -e "${RED}--> Error installing packages. Some packages may not have been installed.${NC}"
+    exit 1
+  fi
+else
+  echo -e "${RED}--> Error updating package list. Exiting...${NC}"
+  exit 1
+fi
+
+CARGO_PKG=(
+  "cargo-modules"
+  "nu"
+  "nu_plugin_gstat"
+  "nu_plugin_inc"
+  "nu_plugin_query"
+  "--git https://github.com/neovide/neovide"
+)
+
+echo -e "${BLUE}--> Installing specified crates...${NC}"
+for pkg_args in "${CARGO_PKG[@]}"; do
+  echo -e "${BLUE}--> Running: cargo install ${pkg_args}${NC}"
+  # Use eval to correctly handle arguments within the string
+  if eval cargo install ${pkg_args}; then
+    echo -e "${GREEN}--> Successfully installed crates: ${pkg_args}${NC}"
+  else
+    echo -e "${RED}--> Error installing crates. Some crates may not have been installed.${NC}"
+    exit 1
+  fi
+done
+
+exit 0
