@@ -68,7 +68,7 @@ return {
         backdrop = 100,
       },
       files = {
-        fd_opts = '--color=always --hidden --follow --type f --type l --exclude .git',
+        fd_opts = '--color=never --hidden --follow --type f --type l --exclude .git',
       },
       grep = {
         rg_opts =
