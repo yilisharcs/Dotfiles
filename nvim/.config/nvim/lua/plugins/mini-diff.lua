@@ -4,7 +4,7 @@ return {
     version = false,
     event = 'BufReadPost [^:]*',
     keys = {
-      { '<leader>gh', '<CMD>lua MiniDiff.toggle_overlay()<CR>' }
+      { '<leader>gh', '<CMD>lua MiniDiff.toggle_overlay()<CR>', desc = '[Git] Diff overlay' }
     },
     opts = {
       view = {

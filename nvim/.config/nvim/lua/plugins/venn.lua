@@ -5,7 +5,7 @@ return {
       'nvimtools/hydra.nvim',
     },
     event = 'CmdlineEnter',
-    keys = { '<leader>v' },
+    keys = { '<leader>v', desc = '[HYDRA] Venn mode' },
     config = function()
       local hydra = require('hydra')
 

@@ -2,12 +2,12 @@ return {
   {
     'ibhagwan/fzf-lua',
     keys = {
-      { '<leader>fl', function() require('fzf-lua').files() end },
-      { '<leader>fh', function() require('fzf-lua').oldfiles() end },
-      { '<leader>fb', function() require('fzf-lua').buffers() end },
-      { '<leader>fc', function() require('fzf-lua').git_commits() end },
-      { '<leader>fg', function() require('fzf-lua').live_grep_native({ silent = true }) end },
-      { '<leader>fk', function() require('fzf-lua').helptags() end },
+      { '<leader>fl', function() require('fzf-lua').files() end,                             desc = '[FZF] Files' },
+      { '<leader>fh', function() require('fzf-lua').oldfiles() end,                          desc = '[FZF] History' },
+      { '<leader>fb', function() require('fzf-lua').buffers() end,                           desc = '[FZF] Buffers' },
+      { '<leader>fc', function() require('fzf-lua').git_commits() end,                       desc = '[FZF] Commits' },
+      { '<leader>fg', function() require('fzf-lua').live_grep_native({ silent = true }) end, desc = '[FZF] Live grep' },
+      { '<leader>fk', function() require('fzf-lua').helptags() end,                          desc = '[FZF] Help tags' },
       {
         '<C-x><C-f>',
         function()
@@ -18,22 +18,12 @@ return {
         mode = 'i',
         desc = '[FZF] Complete Path'
       },
-      { '<C-Space>g', '<CMD>lua _G.fzf_dirs()<CR>' },
+      { '<C-Space>g', '<CMD>lua _G.fzf_dirs()<CR>', desc = '[FZF] New project tab' },
     },
     init = function()
       _G.fzf_dirs = function(opts)
         opts = opts or {}
-        opts.prompt = 'TabCD> '
-        opts.fn_transform = function(path)
-          local home = os.getenv("HOME")
-          if home and path:find(home, 1, true) == 1 then
-            if path == home or (path:sub(#home + 1, #home + 1) == "/") then
-              path = "~" .. path:sub(#home + 1)
-            end
-          end
-          return path:gsub('([^/]+)/?$',
-            require('fzf-lua').utils.ansi_codes.cyan('%1'))
-        end
+        -- opts.prompt = '> '
         opts.actions = {
           ['default'] = function(selected)
             vim.cmd('tabnew ' .. selected[1])

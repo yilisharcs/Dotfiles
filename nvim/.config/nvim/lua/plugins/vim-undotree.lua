@@ -2,7 +2,7 @@ return {
   {
     'mbbill/undotree',
     keys = {
-      { '<leader>u', vim.cmd.UndotreeToggle }
+      { '<leader>u', '<CMD>UndotreeToggle<CR>', desc = 'Toggle history bar' }
     },
     init = function()
       vim.cmd([[
