@@ -41,8 +41,8 @@ return {
         additional_vim_regex_highlighting = false,
       })
 
-      vim.keymap.set('n', '<M-u>', '<CMD>TSBufToggle highlight<CR>', { desc = '[TS] Toggle Highlight' })
-      vim.keymap.set('n', '<leader><F9>', '<CMD>InspectTree<CR>', { desc = '[TS] Inspect Tree' })
+      vim.keymap.set('n', '<M-u>', '<CMD>TSBufToggle highlight<CR>', { desc = '[TS] Toggle highlights' })
+      vim.keymap.set('n', '<leader><F9>', '<CMD>InspectTree<CR>', { desc = '[TS] Inspect tree' })
 
       vim.cmd([[
         " Required: treesitter resets filetype syntax opts

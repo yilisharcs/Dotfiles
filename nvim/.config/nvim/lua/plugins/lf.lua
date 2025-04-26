@@ -5,7 +5,7 @@ return {
     branch = 'emacs-keybindings',
     cmd = { 'Lf' },
     keys = {
-      { '-', '<CMD>Lf<CR>' }
+      { '-', '<CMD>Lf<CR>', desc = 'File manager' }
     },
     init = function()
       vim.g.loaded_netrw = 1

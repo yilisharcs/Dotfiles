@@ -8,7 +8,7 @@ return {
       'rust',
     },
     keys = {
-      { '<leader>qm', vim.cmd.Mason, desc = '[MASON] Open Menu' }
+      { '<leader>qm', vim.cmd.Mason, desc = '[MASON] Menu' }
     },
     opts = {
       ui = { border = 'rounded' }
