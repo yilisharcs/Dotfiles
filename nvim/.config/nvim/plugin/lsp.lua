@@ -40,17 +40,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = false })
     end
 
-    if not client:supports_method('textDocument/willSaveWaitUntil')
-        and client:supports_method('textDocument/formatting') then
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group = vim.api.nvim_create_augroup('LSP_Opts', { clear = false }),
-        buffer = args.buf,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 3000 })
-        end,
-      })
-    end
-
     local map = function(mode, lhs, rhs, desc)
       if desc then
         desc = '[LSP] ' .. desc
@@ -81,3 +70,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', 'grf', function() vim.diagnostic.open_float() end, 'Open Error Float')
   end
 })
+
+vim.cmd([[
+  augroup Auto_Format
+    au!
+    au BufWritePre *.lua,*.vim lua vim.lsp.buf.format()
+    au BufWritePre *.rs RustFmt
+  augroup END
+]])

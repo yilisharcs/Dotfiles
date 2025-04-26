@@ -6,5 +6,5 @@ return {
     ['rust_analyzer'] = {
       cargo = { allFeatures = true }
     }
-  },
+  }
 }
