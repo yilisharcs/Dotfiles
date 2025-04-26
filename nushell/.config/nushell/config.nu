@@ -1,41 +1,8 @@
-$env.XDG_CONFIG_HOME = $"($env.HOME)/.config"
-$env.PATH = ($env.PATH | prepend $"($env.HOME)/.local/bin")
-
-# {
-## Rust
-$env.PATH = ($env.PATH | prepend $"($env.HOME)/.cargo/bin")
-# alias cargo = cargo auditable
-def cargoup [] {
-  cargo install --list
-  | find -n :
-  | parse "{pkg} {v}"
-  | get pkg
-  | each {|e| cargo install $e }
-  | ignore
-}
-
-# ## JavaScript ## > fnm is installed via cargo, therefore my alphabetical order is ruined
-# fnm env --json | from json | load-env
-# $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
-
-# ## WebAssembly
-# $env.WASMTIME_HOME = $"($env.HOME)/.wasmtime" # It's Wasmtime
-# $env.PATH = ($env.PATH | prepend $"($env.WASMTIME_HOME)/bin")
-# $env.WASI_SDK_PATH = $"($env.HOME)/opt/wasi-sdk-25.0-x86_64-linux-sdk-25.0"
-# # }
-
-$env.SQLITE_HISTORY = $"($env.HOME)/.local/state/sqlite3/sqlite_history"
-
-$env.RIPGREP_CONFIG_PATH = $"($env.XDG_CONFIG_HOME)/ripgrep/ripgreprc"
-
-$env.FZF_DEFAULT_COMMAND = "fd --hidden --follow --ignore-case --type file --strip-cwd-prefix --exclude={.cache,.git,.npm}"
-$env.FZF_DEFAULT_OPTS = "--preview 'bat --color=always --wrap=never --style=plain --line-range=:500 {}' --layout=reverse --multi --preview-window border-left --bind backward-eof:abort --bind 'F4:change-preview-window(hidden|right)' --bind 'ctrl-j:preview-page-down,ctrl-k:preview-page-up'"
-
 $env.config.show_banner = false
 
 $env.config.history = {
   file_format: plaintext
-  max_size: 1_000_000
+  max_size: 10_000_000
   sync_on_enter: true
   isolation: false
 }
@@ -107,18 +74,17 @@ $env.config.keybindings = [
 ]
 
 $env.config.buffer_editor = 'nvim'
-$env.SUDO_EDITOR = 'vim.tiny'
-$env.EDITOR = 'nvim'
 alias vi = nvim
 alias vim = nvim
-alias :q = exit
-def mvim [...args] {
-  with-env { NVIM_APPNAME: 'nvim-minimal' } {
-    nvim ...$args
-  }
-}
+alias ":q" = exit
 
-## Build from source and stow with incredible ease
+alias brave = brave-browser
+alias fetch = fastfetch
+alias tmuxa = tmux attach
+alias visudo = sudo visudo
+alias yeet = sudo apt-get purge --autoremove
+
+# build from source and stow with incredible ease
 def just [...args] {
   let project_name = (basename (pwd))
   let install_prefix = ($"($env.HOME)/stow/($project_name)/.local")
@@ -139,13 +105,7 @@ def just [...args] {
   }
 }
 
-alias visudo = sudo visudo
-alias yeet = sudo apt-get purge --autoremove
-alias tmuxa = tmux attach
-alias fetch = fastfetch
-alias brave = brave-browser
-
-# Git pretty histogram
+# git pretty histogram
 def gitcon [] {
   git log --pretty=%h»¦«%aN»¦«%s»¦«%aD
   | lines
@@ -155,7 +115,7 @@ def gitcon [] {
   | reverse
 }
 
-# Percentage of language in a codebase
+# percentage of language in a codebase
 def tokeicon [] {
   tokei --hidden --compact --sort code
   | lines
@@ -174,10 +134,8 @@ def tokeicon [] {
   | select Language Code Percent
 }
 
-# SSH-agent handler
+# starts ssh-agent if another program hasn't done so
 do --env {
-  # Does nothing if another program such as
-  # GNOME Keyring has set the env variable
   if not ($env.SSH_AUTH_SOCK | is-empty) {
     return
   }
@@ -206,13 +164,16 @@ do --env {
   $ssh_agent_env | save --force $ssh_agent_file
 }
 
-# Shell integrations
+# shell integrations
 mkdir ($nu.data-dir | path join "vendor/autoload")
+
+fnm env --json | from json | load-env
+$env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
 
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 $env.STARSHIP_LOG = 'error'
 
 zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
 
-# My entries are being duplicated and I don't want to debug that
+# my entries are being duplicated and I don't want to debug that
 $env.PATH = ($env.PATH | uniq)
