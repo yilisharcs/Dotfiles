@@ -14,13 +14,12 @@ hi! link LineNrBelow LineNrAbove
 hi! link LineNr String
 
 hi MsgArea guifg=#e0d561 gui=bold
-hi QuickFixLine guibg=#ff87ff guifg=Black gui=bold
+hi QuickFixLine gui=bold
 hi! link PmenuSbar Pmenu
 
 hi ModeMsg guifg=NvimLightGreen
 hi ErrorMsg guibg=#ff5f5f guifg=Black gui=bold
 hi DiffAdd guibg=NvimDarkGreen guifg=#5fd75f
-hi Removed guifg=#e64343
 hi! link Error Removed
 hi! link DiagnosticError Removed
 
@@ -53,3 +52,27 @@ let g:terminal_colors_mia = [
 for i in range(g:terminal_ansi_colors->len())
   let g:terminal_color_{i} = g:terminal_colors_mia[i]
 endfor
+
+hi! link RainbowDelimiterRed Special
+hi! link RainbowDelimiterYellow Delimiter
+hi! link RainbowDelimiterBlue Type
+hi! link RainbowDelimiterOrange Delimiter
+hi! link RainbowDelimiterGreen Special
+hi! link RainbowDelimiterViolet Delimiter
+hi! link RainbowDelimiterCyan Type
+
+hi MiniIconsAzure guifg=#74c7ec
+hi MiniIconsBlue guifg=#89b4fa
+hi MiniIconsCyan guifg=#94e2d5
+hi MiniIconsGreen guifg=#a6e3a1
+hi MiniIconsGrey guifg=#cdd6f4
+hi MiniIconsOrange guifg=#fab387
+hi MiniIconsPurple guifg=#cba6f7
+hi MiniIconsRed guifg=#f38ba8
+hi MiniIconsYellow guifg=#f9e2af
+
+hi NeogitStagedchanges guifg=#a6e3a1 gui=bold
+hi NeogitUnstagedchanges guifg=#fab387 gui=bold
+hi NeogitUntrackedfiles guifg=#f38ba8 gui=bold
+hi NeogitUnmergedchanges guifg=#cba6f7 gui=bold
+hi NeogitGraphPurple guifg=#fab387

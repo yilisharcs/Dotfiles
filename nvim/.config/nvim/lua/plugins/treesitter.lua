@@ -3,23 +3,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'RRethy/nvim-treesitter-endwise',
-      {
-        'HiPhish/rainbow-delimiters.nvim',
-        init = function()
-          vim.api.nvim_create_autocmd('ColorScheme', {
-            group    = vim.api.nvim_create_augroup('Rainbow_Delim_Hl', { clear = true }),
-            callback = function()
-              vim.api.nvim_set_hl(0, 'RainbowDelimiterRed', { fg = '#ff5f5f' })
-              vim.api.nvim_set_hl(0, 'RainbowDelimiterYellow', { fg = '#ffd787' })
-              vim.api.nvim_set_hl(0, 'RainbowDelimiterBlue', { fg = '#458588' })
-              vim.api.nvim_set_hl(0, 'RainbowDelimiterOrange', { fg = '#d65d0e' })
-              vim.api.nvim_set_hl(0, 'RainbowDelimiterGreen', { fg = '#46c880' })
-              vim.api.nvim_set_hl(0, 'RainbowDelimiterViolet', { fg = '#c8a5ff' })
-              vim.api.nvim_set_hl(0, 'RainbowDelimiterCyan', { fg = '#52bdff' })
-            end
-          })
-        end
-      },
+      'HiPhish/rainbow-delimiters.nvim',
     },
     build = ':TSUpdate',
     event = { 'BufReadPost [^:]*', 'BufNewFile' },
