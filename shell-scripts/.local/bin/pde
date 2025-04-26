@@ -99,6 +99,7 @@ fi
 
 CARGO_PKG=(
   "cargo-modules"
+  "cargo-update"
   "nu"
   "nu_plugin_gstat"
   "nu_plugin_inc"
