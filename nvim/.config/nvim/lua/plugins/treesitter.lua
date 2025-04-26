@@ -6,6 +6,7 @@ return {
       'HiPhish/rainbow-delimiters.nvim',
     },
     build = ':TSUpdate',
+    cond = not vim.g.nu_buf_editor == true,
     event = { 'BufReadPost [^:]*', 'BufNewFile' },
     config = function()
       require('nvim-treesitter.configs').setup({
