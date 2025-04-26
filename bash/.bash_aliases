@@ -1,0 +1,17 @@
+# editor muscle memory
+alias {vi,vim}="nvim"
+alias :q="exit"
+
+# guard-rails
+alias cp="cp -iv"
+alias rm="rm -I"
+
+# convenience
+alias brave="brave-browser"
+alias fetch="fastfetch"
+alias tmuxa="tmux attach"
+alias visudo="sudo visudo"
+alias yeet="sudo apt-get purge --auto-remove"
+
+# shortcuts
+bind -x '"\C-g":"tmux-sessionizer"'
