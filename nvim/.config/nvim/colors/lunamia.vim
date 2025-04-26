@@ -2,9 +2,11 @@ runtime colors/lunaperche.vim
 
 hi Normal guibg=Black guifg=#cdd6f4
 hi NormalNC guibg=#0f0f0f guifg=#cdd6f4
+hi! link NormalFloat Normal
+hi! link FloatBorder NormalFloat
 hi Folded guibg=#181825 guifg=#fec43f gui=bold
 hi ColorColumn guibg=#181825
-hi Statusline guibg=#181825 guifg=#edf6f4
+hi StatusLine guibg=#181825 guifg=#edf6f4
 hi! link TabLineFill ColorColumn
 
 hi LineNrAbove guifg=#585858

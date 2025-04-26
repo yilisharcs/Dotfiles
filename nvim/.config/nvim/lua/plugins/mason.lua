@@ -13,7 +13,10 @@ return {
       { '<leader>qm', '<CMD>Mason<CR>', desc = '[MASON] Menu' }
     },
     opts = {
-      ui = { border = 'rounded' }
+      ui = {
+        border = 'rounded',
+        backdrop = 100,
+      }
     },
     init = function()
       vim.lsp.enable({
