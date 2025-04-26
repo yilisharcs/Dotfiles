@@ -4,6 +4,7 @@ set path+=.scripts/.local/**;
 
 " Sync clipboard between OS and Neovim.
 set clipboard+=unnamedplus
+let g:clipboard='xclip'
 
 set ignorecase
 set smartcase
@@ -52,7 +53,6 @@ set isfname+=@-@
 
 let &pumheight=float2nr(&lines * 0.25 + 0.5)
 set completeopt=noinsert,menuone,popup,fuzzy
-set completefuzzycollect=keyword
 
 " Ctrl-a/x doesn't recognize signed numbers
 set nrformats+=unsigned
@@ -67,6 +67,6 @@ set diffopt^=algorithm:patience
 set updatetime=1000
 set termguicolors
 set virtualedit=block
-" set winborder=rounded
+set winborder=rounded
 
 colorscheme lunamia
