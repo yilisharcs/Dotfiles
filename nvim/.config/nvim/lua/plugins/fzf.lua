@@ -2,12 +2,12 @@ return {
   {
     'ibhagwan/fzf-lua',
     keys = {
-      { '<leader>fl', function() require('fzf-lua').files() end,                             desc = '[FZF] Files' },
-      { '<leader>fh', function() require('fzf-lua').oldfiles() end,                          desc = '[FZF] History' },
-      { '<leader>fb', function() require('fzf-lua').buffers() end,                           desc = '[FZF] Buffers' },
-      { '<leader>fc', function() require('fzf-lua').git_commits() end,                       desc = '[FZF] Commits' },
-      { '<leader>fg', function() require('fzf-lua').live_grep_native({ silent = true }) end, desc = '[FZF] Live grep' },
-      { '<leader>fk', function() require('fzf-lua').helptags() end,                          desc = '[FZF] Help tags' },
+      { '<leader>fl', '<CMD>FzfLua files<CR>',            desc = '[FZF] Files' },
+      { '<leader>fh', '<CMD>FzfLua oldfiles<CR>',         desc = '[FZF] History' },
+      { '<leader>fb', '<CMD>FzfLua buffers<CR>',          desc = '[FZF] Buffers' },
+      { '<leader>fc', '<CMD>FzfLua git_commits<CR>',      desc = '[FZF] Commits' },
+      { '<leader>fg', '<CMD>FzfLua live_grep_native<CR>', desc = '[FZF] Live grep' },
+      { '<leader>fk', '<CMD>FzfLua helptags<CR>',         desc = '[FZF] Help tags' },
       {
         '<C-x><C-f>',
         function()
@@ -23,7 +23,7 @@ return {
     init = function()
       _G.fzf_dirs = function(opts)
         opts = opts or {}
-        -- opts.prompt = '> '
+        opts.winopts = { title = ' Projects ' }
         opts.actions = {
           ['default'] = function(selected)
             vim.cmd('tabnew ' .. selected[1])
@@ -44,7 +44,6 @@ return {
       end
     end,
     opts = {
-      'max-perf',
       keymap = {
         builtin = {
           ['<C-k>'] = 'preview-page-up',
@@ -67,17 +66,18 @@ return {
         col      = 0.55,
         border   = 'rounded',
         backdrop = 100,
-        preview  = { border = 'border-left' },
       },
       files = {
-        fd_opts = '--color=never --hidden --follow --type f --type l --exclude .git',
+        fd_opts = '--color=always --hidden --follow --type f --type l --exclude .git',
       },
       grep = {
-        rg_opts = '--color=never --hidden --vimgrep --smart-case -g "!.git" --max-columns=4096 -e',
+        rg_opts =
+            '--color=always --column --line-number --no-heading --smart-case ' ..
+            '--max-columns=4096 --hidden -g "!.git" -e',
       },
       helptags = {
-        winopts = { height = 0.3 },
+        winopts = { height = 0.5 },
       },
-    },
+    }
   }
 }
