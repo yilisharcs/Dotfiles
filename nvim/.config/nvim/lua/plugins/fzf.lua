@@ -2,12 +2,13 @@ return {
   {
     'ibhagwan/fzf-lua',
     keys = {
-      { '<leader>fl', '<CMD>FzfLua files<CR>',            desc = '[FZF] Files' },
-      { '<leader>fh', '<CMD>FzfLua oldfiles<CR>',         desc = '[FZF] History' },
+      { '<leader>fl', '<CMD>FzfLua files<CR>',            desc = '[FZF] List files' },
+      { '<leader>fh', '<CMD>FzfLua oldfiles<CR>',         desc = '[FZF] File history' },
       { '<leader>fb', '<CMD>FzfLua buffers<CR>',          desc = '[FZF] Buffers' },
       { '<leader>fc', '<CMD>FzfLua git_commits<CR>',      desc = '[FZF] Commits' },
       { '<leader>fg', '<CMD>FzfLua live_grep_native<CR>', desc = '[FZF] Live grep' },
       { '<leader>fk', '<CMD>FzfLua helptags<CR>',         desc = '[FZF] Help tags' },
+      { '<C-r>',      '<CMD>FzfLua command_history<CR>',  desc = '[FZF] Search cmd history' },
       {
         '<C-x><C-f>',
         function()

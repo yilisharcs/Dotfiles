@@ -21,7 +21,7 @@ xnoremap <silent> K :m '<-2<CR>gv=gv
 nnoremap X "zx"zp
 lua vim.keymap.set({ 'n', 'x' }, 'x', '"_x')
 nnoremap C "_C
-nmap U <C-r>
+nnoremap U <C-r>
 nnoremap gf gF
 nnoremap <C-w>t <CMD>tab split<CR>
 
