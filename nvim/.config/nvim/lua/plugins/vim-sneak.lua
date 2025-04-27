@@ -1,7 +1,7 @@
 return {
   {
     'justinmk/vim-sneak',
-    dependencies = { 'tpope/vim-repeat' },
+    dependencies = { { 'yilisharcs/vim-repeat', branch = 'maparg' } },
     init = function()
       vim.g['sneak#use_ic_scs'] = 1
       vim.cmd([[
