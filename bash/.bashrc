@@ -129,6 +129,7 @@ fi
 # shell integrations
 eval "$(fnm env --use-on-cd --shell bash)"
 eval "$(fzf --bash)"
+eval "$(starship init bash)"
 eval "$(zoxide init bash)"
 
 # probably broken make wrapper

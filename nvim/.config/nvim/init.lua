@@ -4,11 +4,13 @@ vim.g.maplocalleader = ' '
 vim.keymap.set('n', '-', '<CMD>Ex<CR>')
 vim.keymap.set('n', '<leader>ql', '<CMD>Lazy<CR>')
 
-local nushell_ctrl_o = vim.api.nvim_buf_get_name(0)
-local nushell_strlen = string.len(nushell_ctrl_o)
-if string.sub(nushell_ctrl_o, 1, 5) == '/tmp/'
-    and string.sub(nushell_ctrl_o, nushell_strlen - 2) == '.nu' then
-  vim.g.nu_buf_editor = true
+local buf = vim.api.nvim_buf_get_name(0)
+local strlen = string.len(buf)
+
+if string.sub(buf, 1, 9) == '/tmp/bash' or
+    (string.sub(buf, 1, 5) == '/tmp/'
+      and string.sub(buf, strlen - 2) == '.nu') then
+  vim.g.shell_editor = true
 end
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
