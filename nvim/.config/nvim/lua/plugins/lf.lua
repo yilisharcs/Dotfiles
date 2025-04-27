@@ -2,8 +2,6 @@ return {
   {
     'yilisharcs/lf.nvim',
     dependencies = { { 'akinsho/toggleterm.nvim', version = '*', config = true } },
-    branch = 'emacs-keybindings',
-    cmd = { 'Lf' },
     keys = {
       { '-', '<CMD>Lf<CR>', desc = 'File manager' }
     },
