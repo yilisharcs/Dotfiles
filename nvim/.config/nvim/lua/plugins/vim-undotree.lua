@@ -1,6 +1,6 @@
 return {
   {
-    'mbbill/undotree',
+    'yilisharcs/undotree',
     keys = {
       { '<leader>u', '<CMD>UndotreeToggle<CR>', desc = 'Toggle history bar' }
     },
