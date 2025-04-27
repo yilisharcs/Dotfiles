@@ -1,0 +1,10 @@
+[Unit]
+Description=Rust analyzer multiplex server
+
+[Service]
+Type=simple
+ExecStart=/home/yilisharcs/.cargo/bin/ra-multiplex server
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
