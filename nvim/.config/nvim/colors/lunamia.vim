@@ -56,10 +56,10 @@ endfor
 hi! link RainbowDelimiterRed Special
 hi! link RainbowDelimiterYellow Delimiter
 hi! link RainbowDelimiterBlue Type
-hi! link RainbowDelimiterOrange Delimiter
-hi! link RainbowDelimiterGreen Special
-hi! link RainbowDelimiterViolet Delimiter
-hi! link RainbowDelimiterCyan Type
+hi! link RainbowDelimiterOrange Special
+hi! link RainbowDelimiterGreen Delimiter
+hi! link RainbowDelimiterViolet Type
+hi clear RainbowDelimiterCyan
 
 hi MiniIconsAzure guifg=#74c7ec
 hi MiniIconsBlue guifg=#89b4fa
