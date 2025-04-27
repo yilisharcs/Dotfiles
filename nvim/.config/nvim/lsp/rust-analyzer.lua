@@ -1,5 +1,5 @@
 return {
-  cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' },
+  cmd = { 'ra-multiplex' },
   filetypes = { 'rust' },
   root_markers = { 'Cargo.toml' },
   settings = {
