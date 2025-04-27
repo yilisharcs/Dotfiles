@@ -170,8 +170,8 @@ mkdir ($nu.data-dir | path join "vendor/autoload")
 fnm env --json | from json | load-env
 $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
 
-starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
-$env.STARSHIP_LOG = 'error'
+# starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+# $env.STARSHIP_LOG = 'error'
 
 zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
 

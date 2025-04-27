@@ -6,7 +6,7 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
-    cond = not vim.g.nu_buf_editor == true,
+    cond = not vim.g.shell_editor == true,
     keys = {
       { 'ca' },
       { 'ci' },

@@ -43,9 +43,9 @@ if exists("g:neovide")
   tnoremap <C-SPACE>[ <CMD>silent! !tmux copy-mode<TAB><CR>
   tnoremap <C-SPACE>d <CMD>silent! !tmux detach<CR>
 
-  lua vim.keymap.set({ '', '!', 't' }, '<C-SPACE>-', '<CMD>new | term nu<CR>')
-  lua vim.keymap.set({ '', '!', 't' }, '<C-SPACE>=', '<CMD>vnew | term nu<CR>')
-  lua vim.keymap.set({ '', '!', 't' }, '<C-SPACE>c', '<CMD>tabnew | term nu<CR>')
+  lua vim.keymap.set({ '', '!', 't' }, '<C-SPACE>-', '<CMD>new | term<CR>')
+  lua vim.keymap.set({ '', '!', 't' }, '<C-SPACE>=', '<CMD>vnew | term<CR>')
+  lua vim.keymap.set({ '', '!', 't' }, '<C-SPACE>c', '<CMD>tabnew | term<CR>')
   lua vim.keymap.set({ '', '!', 't' }, '<C-SPACE>x', '<CMD>tabclose<CR>')
 
   lua vim.keymap.set({ '', '!', 't' }, '<C-SPACE>1', '<CMD>1tabnext<CR>')
