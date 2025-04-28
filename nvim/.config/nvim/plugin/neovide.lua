@@ -66,8 +66,8 @@ if vim.g.neovide then
       au!
       " Set default cwd if opened with no files as arguments
       au UIEnter * if argc(-1) == 0 | cd ~/.dotfiles | endif
-      " Close nu buffers as if {cmd} wasn't supplied to :term
-      au TermClose *:nu* silent! execute 'bdelete! '.expand('<abuf>')
+      " Close terminal buffers as if {cmd} wasn't supplied to :term
+      au TermClose *:nu*,*/bin/bash* silent! execute 'bdelete! '.expand('<abuf>')
     augroup END
   ]])
 end
