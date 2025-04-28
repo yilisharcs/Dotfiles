@@ -27,8 +27,8 @@ if vim.g.neovide then
 
   vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<F11>', '<CMD>call Neovide_F11()<CR>')
 
-  vim.keymap.set('n', '<C-S-V>', '<C-r>+', { desc = "Paste from clipboard" })
-  vim.keymap.set('t', '<C-S-V>', '<C-\\><C-n>pi', { desc = "Paste from clipboard" })
+  vim.keymap.set({ 'n', 'i', 'c' }, '<C-S-V>', '<C-r>+', { desc = 'Paste from clipboard' })
+  vim.keymap.set('t', '<C-S-V>', '<C-\\><C-n>pi', { desc = 'Paste from clipboard' })
 
   -- Neovide doesn't register C-4 as C-\
   vim.keymap.set('t', '<C-4><C-n>', [[<C-\><C-n>]])
