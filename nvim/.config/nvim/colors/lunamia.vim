@@ -1,24 +1,33 @@
 runtime colors/lunaperche.vim
 
 hi Normal guibg=Black guifg=#cdd6f4
-hi NormalNC guibg=#0f0f0f guifg=#cdd6f4
+hi NormalNC guibg=#0f0f0f
 hi! link NormalFloat Normal
 hi! link FloatBorder NormalFloat
-hi Folded guibg=#181825 guifg=#fec43f gui=bold
+hi Folded guibg=#181825 gui=bold
 hi ColorColumn guibg=#181825
 hi StatusLine guibg=#edf6f4 guifg=#181825
 hi! link TabLineFill ColorColumn
 
-hi LineNrAbove guifg=#585858
-hi! link LineNrBelow LineNrAbove
-hi! link LineNr String
+function Color_Nu()
+  if &rnu && g:colors_name=='lunaperche'
+    hi! link LineNr String
+    hi! link LineNrBelow LineNrAbove
+    hi LineNrAbove guifg=#585858
+  else
+    hi LineNr guifg=#585858
+  endif
+endfunction
+augroup Color_Nu
+  au FileType,OptionSet * call Color_Nu()
+augroup END
 
 hi MsgArea guifg=#e0d561 gui=bold
 hi QuickFixLine gui=bold
 hi! link PmenuSbar Pmenu
 
 hi ModeMsg guifg=NvimLightGreen
-hi ErrorMsg guibg=#ff5f5f guifg=Black gui=bold
+hi ErrorMsg guifg=Black gui=bold
 hi DiffAdd guibg=NvimDarkGreen guifg=#5fd75f
 hi! link Error Removed
 hi! link DiagnosticError Removed
