@@ -1,13 +1,16 @@
 return {
   {
     'tpope/vim-fugitive',
+    dependencies = { 'tpope/vim-rhubarb' },
     cmd = {
       'Git',
+      'GBrowse',
       'Gread',
       'Gwrite',
     },
     keys = {
       { '<leader>gb', '<CMD>Git blame<CR>',    desc = '[Git] Blame' },
+      { '<leader>gB', '<CMD>GBrowse<CR>',      desc = '[GIT] Browse' },
       { '<leader>gd', '<CMD>Gvdiffsplit<CR>',  desc = '[Git] Diff file' },
       { '<leader>gD', '<CMD>Git difftool<CR>', desc = '[Git] Difftool' },
       { '<leader>gl', '<CMD>0Gclog<CR>',       desc = '[Git] File history' },
