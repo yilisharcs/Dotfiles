@@ -2,10 +2,10 @@ return {
   'echasnovski/mini.operators', -- see `:h MiniOperators.config`.
   version = false,
   keys = {
-    { 'g-' },
-    { 'cx' },
-    { 'gm' },
-    { 'cs' },
+    { 'g-', mode = { 'n', 'x' } },
+    { 'cx', mode = { 'n', 'x' } },
+    { 'gm', mode = { 'n', 'x' } },
+    { 'cs', mode = { 'n', 'x' } },
   },
   opts = {
     evaluate = {
