@@ -18,14 +18,14 @@ if vim.g.neovide then
   function Neovide_F11()
     if vim.g.neovide_fullscreen == false then
       vim.g.neovide_fullscreen = true
-      vim.go.linespace = 2
+      vim.go.linespace = 1
     else
       vim.g.neovide_fullscreen = false
       vim.go.linespace = 2
     end
   end
 
-  vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<F11>', '<CMD>call Neovide_F11()<CR>')
+  vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<F11>', '<CMD>lua Neovide_F11()<CR>')
 
   vim.keymap.set({ 'n', 'i', 'c' }, '<C-S-V>', '<C-r>+', { desc = 'Paste from clipboard' })
   vim.keymap.set('t', '<C-S-V>', '<C-\\><C-n>pi', { desc = 'Paste from clipboard' })
