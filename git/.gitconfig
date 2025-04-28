@@ -16,3 +16,5 @@
 	tool = nvimdiff
 [pull]
 	rebase = true
+[rebase]
+	autoStash = true
