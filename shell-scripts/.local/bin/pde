@@ -11,6 +11,7 @@ PKG=(
   bacon                          # background code checker
   bibata-cursor-theme
   build-essential                # gnu make and other tools
+  chafa                          # terminal image visualizer
   cmus                           # tui music player
   curl
   dconf-editor
