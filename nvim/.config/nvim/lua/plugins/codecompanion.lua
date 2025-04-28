@@ -12,7 +12,7 @@ return {
   opts = {
     opts = {
       system_prompt = function(opts)
-        local file = io.open("/home/yilisharcs/notes/LLM/cc-model-of-you.md", 'r')
+        local file = io.open('/home/yilisharcs/notes/LLM/cc-model-of-you.md', 'r')
         local content = file:read('*all')
         file:close()
         return content

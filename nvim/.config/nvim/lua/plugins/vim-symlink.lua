@@ -1,6 +1,4 @@
 return {
-  {
-    'aymericbeaumet/vim-symlink',
-    event = 'BufReadPre',
-  }
+  'aymericbeaumet/vim-symlink',
+  event = 'BufReadPre',
 }
