@@ -7,6 +7,7 @@ alias cp="cp -iv"
 alias rm="rm -I"
 
 # convenience
+alias apkg="apt-cache"
 alias brave="brave-browser"
 alias fetch="fastfetch"
 alias tmuxa="tmux attach"
