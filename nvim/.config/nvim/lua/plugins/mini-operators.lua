@@ -7,7 +7,6 @@ return {
       { 'cx' },
       { 'gm' },
       { 'cs' },
-      { 'X', "<CMD>lua MiniOperators.exchange('visual')<CR>", mode = 'x' }
     },
     opts = {
       evaluate = {

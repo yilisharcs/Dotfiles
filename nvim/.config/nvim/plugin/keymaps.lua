@@ -1,0 +1,125 @@
+vim.keymap.set({ 'n', 'x' }, '<SPACE>', '<Nop>', { silent = true })
+
+vim.keymap.set({ 'n', 'x' }, '<leader>K', 'K', { desc = 'Look up word under cursor' })
+vim.keymap.set('i', '<C-c>', '<ESC>', { silent = true })
+vim.keymap.set('n', '<C-q>', '@@', { desc = 'Repeat previous register' })
+vim.keymap.set('o', '<C-a>', '<CMD>normal! ggVG<CR>', { desc = 'Operate on entire buffer' })
+
+vim.keymap.set({ 'i', 'c' }, '<C-b>', '<LEFT>')
+vim.keymap.set({ 'i', 'c' }, '<C-f>', '<RIGHT>')
+vim.keymap.set('c', '<C-y>', '<C-f>', { desc = 'Open command-line window' })
+vim.keymap.set('c', '<C-k>', [[<c-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>]],
+  { desc = 'Delete words after cursor' })
+vim.keymap.set('c', '<C-a>', '<HOME>')
+vim.keymap.set('c', '<C-x><C-a>', '<C-a>', { desc = 'Insert matches on cursor pattern' })
+vim.keymap.set({ 'i', 'c' }, '<C-d>', '<DEL>')
+vim.keymap.set('c', '<C-x><C-d>', '<C-d>', { desc = 'List matches on cursor pattern' })
+
+vim.keymap.set('x', '<', '<gv', { desc = 'Indent selection backwards' })
+vim.keymap.set('x', '>', '>gv', { desc = 'Indent selection forwards' })
+vim.keymap.set('x', 'J', ":m '>+1<CR>gv=gv", { silent = true, desc = 'Move selection downwards' })
+vim.keymap.set('x', 'K', ":m '<-2<CR>gv=gv", { silent = true, desc = 'Move selection upwards' })
+
+vim.keymap.set('n', 'X', '"zx"zp', { desc = 'Transpose characters' })
+vim.keymap.set({ 'n', 'x' }, 'x', '"_x', { desc = 'Delete without overwriting the clipboard register' })
+vim.keymap.set('n', 'C', '"_C', { desc = 'Delete without overwriting the clipboard register' })
+vim.keymap.set('n', 'U', '<C-r>', { desc = 'Intuitive redo' })
+vim.keymap.set('n', 'gf', 'gF', { desc = 'Go to file under cursor' })
+vim.keymap.set('n', '<C-w>t', '<CMD>tab split<CR>', { desc = 'Open buffer in new tab' })
+
+vim.keymap.set({ 'n', 'x' }, "'", '`', { desc = 'Jump to mark $@' })
+vim.keymap.set('n', 'cgn', '*``"_cgn', { desc = 'Match word and change ahead' })
+vim.keymap.set('n', 'cgN', '*``"_cgN', { desc = 'Match word and change behind' })
+vim.keymap.set('n', 'dgn', '*``"_dgn', { desc = 'Match word and delete ahead' })
+vim.keymap.set('n', 'dgN', '*``"_dgN', { desc = 'Match word and delete behind' })
+
+vim.keymap.set('n', 'gw', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = 'Replace word under cursor' })
+vim.keymap.set('n', 'gW', [[:%s/\<<C-r><C-a>\>/<C-r><C-a>/gI<Left><Left><Left>]],
+  { desc = 'Replace contiguous text under cursor' })
+
+vim.keymap.set('n', 'dy', '<CMD>diffthis<CR>', { desc = 'Enable diff mode for the current body' })
+vim.keymap.set('x', '<C-o>', ":'<,'>diffget<CR>", { silent = true, desc = 'Get diff from alt buffer' })
+vim.keymap.set('x', '<C-p>', ":'<,'>diffput<CR>", { silent = true, desc = 'Change diff of alt buffer' })
+
+vim.cmd([[
+  function! List_Gmarks()
+    try
+      marks ABCDEFGIMNOPQRSTUVWXYZ
+    catch /E283:/
+    endtry
+    marks HJKL
+    echo('`')
+    try
+      let s:mark = toupper(nr2char(getchar()))
+    catch /^Vim:Interrupt$/
+    endtry
+    redraw
+    silent! execute 'normal! `'..s:mark
+  endfunction
+]])
+vim.keymap.set('n', '<C-h>', '<CMD>call List_Gmarks()<CR>', { desc = 'List global marks' })
+
+vim.keymap.set('n', '<leader>h', '`H', { desc = 'File mark `H' })
+vim.keymap.set('n', '<leader>j', '`J', { desc = 'File mark `J' })
+vim.keymap.set('n', '<leader>k', '`K', { desc = 'File mark `K' })
+vim.keymap.set('n', '<leader>l', '`L', { desc = 'File mark `L' })
+
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<M-h>', '<CMD>wincmd h<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<M-j>', '<CMD>wincmd j<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<M-k>', '<CMD>wincmd k<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<M-l>', '<CMD>wincmd l<CR>')
+
+vim.keymap.set('n', 'cu', function()
+  return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), 'v:val.quickfix')) == 1
+      and '<CMD>botright copen | wincmd p<CR>' or '<CMD>cclose<CR>'
+end, { expr = true, desc = 'Toggle quickfix list' })
+
+vim.keymap.set('n', '<C-k>', '<CMD>cpfile<CR>zz', { desc = 'Quickfix previous file' })
+vim.keymap.set('n', '<C-j>', '<CMD>cnfile<CR>zz', { desc = 'Quickfix next file' })
+vim.keymap.set('n', '<C-p>', '<CMD>cprev<CR>zz', { desc = 'Quickfix previous error' })
+vim.keymap.set('n', '<C-n>', '<CMD>cnext<CR>zz', { desc = 'Quickfix next error' })
+vim.keymap.set('n', '<leader><C-p>', '<CMD>cabove<CR>', { desc = 'Quickfix error above cursor' })
+vim.keymap.set('n', '<leader><C-n>', '<CMD>cbelow<CR>', { desc = 'Quickfix error below cursor' })
+
+vim.keymap.set('n', 'gz', function()
+    vim.ui.open('https://github.com/' .. vim.fn.expand('<cfile>'))
+  end,
+  { desc = 'Open github repo under cursor' })
+vim.keymap.set('x', 'gz', function()
+    vim.cmd('norm! "zy')
+    vim.ui.open('https://github.com/' .. vim.fn.getreg('z'))
+  end,
+  { desc = 'Open selection on github' })
+
+vim.keymap.set('n', 'Z', 'jmzk<CMD>m .+1<CR>==`z', { desc = 'Swap lines' })
+vim.keymap.set('n', 'gj', 'i<CR><ESC>k$', { desc = 'Split current line at the cursor position' })
+
+vim.keymap.set('n', 'gcap', 'gcip', { remap = true })
+vim.keymap.set('n', 'gcA', 'oz<ESC>gcckJfz"_cl', { remap = true, desc = 'Add comment on EoL' })
+vim.keymap.set('n', 'gc$', 'i<CR><ESC>gcck$J', { remap = true, desc = 'Comment out text until EoL' })
+vim.keymap.set('n', 'gcO', 'Oz<ESC>gccfza<BS>', { remap = true, desc = 'Add comment above current line' })
+vim.keymap.set('n', 'gco', 'oz<ESC>gccfza<BS>', { remap = true, desc = 'Add comment below current line' })
+
+vim.keymap.set({ 'n', 'x', 'o' }, 'j', "(&wrap ? 'gj' : 'j')", { expr = true })
+vim.keymap.set({ 'n', 'x', 'o' }, 'k', "(&wrap ? 'gk' : 'k')", { expr = true })
+vim.keymap.set({ 'n', 'x' }, '<C-d>', "(&wrap ? '<C-d>' : '<C-d>zz')", { expr = true, desc = 'Centered scrolling' })
+vim.keymap.set({ 'n', 'x' }, '<C-u>', "(&wrap ? '<C-u>' : '<C-u>zz')", { expr = true, desc = 'Centered scrolling' })
+vim.keymap.set({ 'n', 'x' }, '<F8>', '<CMD>setlocal wrap! wrap? linebreak!<CR>', { desc = 'Toggle wrap' })
+
+vim.keymap.set('n', '<F9>', '<CMD>Inspect<CR>', { desc = 'Inspect element under cursor' })
+vim.keymap.set('n', '<F10>', '<CMD>!chmod +x %<CR>',
+  { desc = 'Give executable permissions to the current file' })
+vim.keymap.set('n', '<leader><F10>', '<CMD>!chmod -x %<CR>',
+  { desc = 'Remove executable permissions of the current file' })
+
+function P(...)
+  local args = {}
+  for _, arg in ipairs({ ... }) do
+    table.insert(args, vim.inspect(arg))
+  end
+  print(unpack(args))
+  return ...
+end
+
+vim.keymap.set('n', '<F7>', ':lua P()<LEFT>', { desc = 'Print data structures' })

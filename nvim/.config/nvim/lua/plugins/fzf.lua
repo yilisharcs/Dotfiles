@@ -8,7 +8,13 @@ return {
       { '<leader>fc', '<CMD>FzfLua git_commits<CR>',      desc = '[FZF] Commits' },
       { '<leader>fg', '<CMD>FzfLua live_grep_native<CR>', desc = '[FZF] Live grep' },
       { '<leader>fk', '<CMD>FzfLua helptags<CR>',         desc = '[FZF] Help tags' },
-      { '<C-r>',      '<CMD>FzfLua command_history<CR>',  desc = '[FZF] Search cmd history' },
+      { '<leader>fK', '<CMD>FzfLua keymaps<CR>',          desc = '[FZF] List mappings' },
+      {
+        '<C-r>',
+        '<CMD>FzfLua command_history<CR>',
+        mode = { 'n', 'x' },
+        desc = '[FZF] Search command history'
+      },
       {
         '<C-x><C-f>',
         function()
