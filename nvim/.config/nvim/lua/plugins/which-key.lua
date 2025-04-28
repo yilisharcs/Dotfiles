@@ -1,7 +1,11 @@
 return {
   {
     'folke/which-key.nvim',
-    event = { 'CursorHold', 'InsertEnter' },
-    opts = {}
+    lazy = false,
+    opts = {
+      win = {
+        border = 'solid'
+      }
+    }
   }
 }
