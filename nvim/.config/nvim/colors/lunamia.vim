@@ -85,3 +85,6 @@ hi NeogitUnstagedchanges guifg=#fab387 gui=bold
 hi NeogitUntrackedfiles guifg=#f38ba8 gui=bold
 hi NeogitUnmergedchanges guifg=#cba6f7 gui=bold
 hi NeogitGraphPurple guifg=#fab387
+hi! link NeogitPopupConfigEnabled Statement
+hi! link NeogitPopupOptionEnabled Statement
+hi! link NeogitPopupSwitchEnabled Statement
