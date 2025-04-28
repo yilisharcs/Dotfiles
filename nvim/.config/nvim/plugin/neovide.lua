@@ -50,6 +50,7 @@ if vim.g.neovide then
   vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>=', '<CMD>vnew | term<CR>')
   vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>c', '<CMD>tabnew | term<CR>')
   vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>x', '<CMD>tabclose<CR>')
+  vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>h', '<CMD>tabnew | term btop<CR>')
 
   vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>1', '<CMD>1tabnext<CR>')
   vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>2', '<CMD>2tabnext<CR>')

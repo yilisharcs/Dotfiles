@@ -10,6 +10,7 @@ PKG=(
   bat                            # better cat
   bacon                          # background code checker
   bibata-cursor-theme
+  btop                           # tui system monitor
   build-essential                # gnu make and other tools
   chafa                          # terminal image visualizer
   cmus                           # tui music player
@@ -22,7 +23,6 @@ PKG=(
   gh                             # github cli client
   git
   gnome-shell-extension-manager
-  htop                           # tui system monitor
   hunspell-pt-br
   hunspell-en-us
   imagemagick
