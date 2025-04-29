@@ -1,6 +1,5 @@
 " Include config dirs
 set path+=.dotfiles/**1/.config/**;,.dotfiles/**1;
-set path+=.scripts/.local/**;
 
 " Sync clipboard between OS and Neovim.
 set clipboard+=unnamedplus
