@@ -28,6 +28,7 @@ PKG=(
   ncdu                           # disk space checker
   pass                           # cli password manager
   picard                         # music metadata editor
+  preload                        # fetch frequently-used binaries to ram
   qbittorrent
   ripgrep                        # better grep
   starship                       # shell prompt tool
