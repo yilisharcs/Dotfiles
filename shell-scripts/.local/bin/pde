@@ -8,23 +8,18 @@ NC='\033[0m'
 PKG=(
   atool                          # compression and extraction tools
   bat                            # better cat
-  bacon                          # background code checker
   bibata-cursor-theme
   btop                           # tui system monitor
-  build-essential                # gnu make and other tools
   chafa                          # terminal image visualizer
   cmus                           # tui music player
-  curl
   dconf-editor
   fd-find                        # better find
   ffmpeg
   ffmpegthumbnailer
   fzf                            # fuzzy finder
-  gh                             # github cli client
-  git
   gnome-shell-extension-manager
-  hunspell-pt-br
   hunspell-en-us
+  hunspell-pt-br
   imagemagick
   inkscape                       # image editor
   krita                          # image editor
@@ -33,37 +28,34 @@ PKG=(
   ncdu                           # disk space checker
   pass                           # cli password manager
   picard                         # music metadata editor
-  pipx                           # python package manager
   qbittorrent
   ripgrep                        # better grep
-  rustup                         # rust toolchain manager
-  sccache                        # build cache tool
-  sqlite3
   starship                       # shell prompt tool
   stow                           # symlink manager
   syncthing                      # peer-to-peer file sync
   timeshift
-  tmux
-  tokei                          # loc counter
   trash-cli
   tree                           # dir viewer
-  wget
-  xclip
+  xclip                          # in use because wl-clip creates a window to access the clipboard
   yt-dlp
-  yq                             # cli json, yaml, and xml processor
-  zoxide
+  zoxide                         # better cd
 
   # gnome-extension deps
   gir1.2-gtop-2.0                # vitals
   lm-sensors                     # vitals
 
   # dev libs and tools
+  bacon                          # background code checker
+  build-essential                # provides gnu make
   cmake
+  curl
   freeglut3-dev
+  g++-multilib
   gcc-mingw-w64
   gcc-multilib
   gettext
-  g++-multilib
+  gh                             # github cli client
+  git
   libasound2-dev
   libbz2-dev
   libcrypto++-dev
@@ -80,7 +72,15 @@ PKG=(
   libxi-dev
   libxmu-dev
   ninja-build
+  pipx                           # python package manager
   pkg-config
+  rustup                         # rust toolchain manager
+  sccache                        # build cache tool
+  sqlite3
+  tmux
+  tokei                          # loc counter
+  wget
+  yq                             # cli json, yaml, and xml processor
 )
 
 echo -e "${BLUE}--> Updating package list and upgrading all installed packages...${NC}"
