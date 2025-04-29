@@ -87,6 +87,7 @@ return {
     },
     marks = {
       marks = '[A-Z]',
+      fzf_opts = { ['--cycle'] = true },
       winopts = {
         height = 0.5,
         title = ' Global marks ',
