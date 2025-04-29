@@ -76,6 +76,7 @@ return {
     },
     files = {
       fd_opts = '--color=never --hidden --follow --type f --type l --exclude .git',
+      winopts = { preview = { layout = 'vertical' } },
     },
     grep = {
       rg_opts =
@@ -89,9 +90,8 @@ return {
       marks = '[A-Z]',
       fzf_opts = { ['--cycle'] = true },
       winopts = {
-        height = 0.5,
         title = ' Global marks ',
-        preview = { hidden = true },
+        preview = { layout = 'vertical' },
       }
     }
   }
