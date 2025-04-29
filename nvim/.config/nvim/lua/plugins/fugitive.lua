@@ -8,12 +8,13 @@ return {
     'Gwrite',
   },
   keys = {
-    { '<leader>gb', '<CMD>Git blame<CR>',    desc = '[Git] Blame' },
-    { '<leader>gB', '<CMD>GBrowse<CR>',      desc = '[GIT] Browse' },
-    { '<leader>gd', '<CMD>Gvdiffsplit<CR>',  desc = '[Git] Diff file' },
-    { '<leader>gD', '<CMD>Git difftool<CR>', desc = '[Git] Difftool' },
-    { '<leader>gl', '<CMD>0Gclog<CR>',       desc = '[Git] File history' },
-    { '<leader>gL', '<CMD>Gclog<CR>',        desc = '[Git] Repo history' },
+    { '<leader>gb', '<CMD>Git blame<CR>',     desc = '[Git] Blame' },
+    { '<leader>gB', '<CMD>GBrowse<CR>',       desc = '[GIT] Browse' },
+    { '<leader>gd', '<CMD>Gvdiffsplit<CR>',   desc = '[Git] Diff file' },
+    { '<leader>gD', '<CMD>Git difftool<CR>',  desc = '[Git] Difftool' },
+    { '<leader>gm', '<CMD>Git mergetool<CR>', desc = '[Git] Mergetool' },
+    { '<leader>gl', '<CMD>0Gclog<CR>',        desc = '[Git] File history' },
+    { '<leader>gL', '<CMD>Gclog<CR>',         desc = '[Git] Repo history' },
   },
   init = function()
     vim.g.fugitive_summary_format = '%an | %s'
