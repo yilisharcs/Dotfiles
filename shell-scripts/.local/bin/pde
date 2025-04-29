@@ -50,6 +50,7 @@ PKG=(
   build-essential                # provides gnu make
   cmake
   curl
+  file
   freeglut3-dev
   g++-multilib
   gcc-mingw-w64
@@ -58,18 +59,22 @@ PKG=(
   gh                             # github cli client
   git
   libasound2-dev
+  libayatana-appindicator3-dev
   libbz2-dev
   libcrypto++-dev
   libexpat1-dev
   libfontconfig1-dev
   libfreetype6-dev
   libmagic-dev
+  librsvg2-dev
   libsndio-dev
   libssl-dev
   libudev-dev
   libwayland-dev
+  libwebkit2gtk-4.1-dev
   libxcb-composite0-dev
   libxcursor-dev
+  libxdo-dev
   libxi-dev
   libxmu-dev
   ninja-build
@@ -102,6 +107,7 @@ fi
 CARGO_PKG=(
   "cargo-modules"
   "cargo-update"
+  "dioxus-cli"
   "nu"
   "nu_plugin_gstat"
   "nu_plugin_inc"
