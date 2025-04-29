@@ -42,24 +42,6 @@ vim.keymap.set('n', 'dy', '<CMD>diffthis<CR>', { desc = 'Enable diff mode for th
 vim.keymap.set('x', '<C-o>', ":'<,'>diffget<CR>", { silent = true, desc = 'Get diff from alt buffer' })
 vim.keymap.set('x', '<C-p>', ":'<,'>diffput<CR>", { silent = true, desc = 'Change diff of alt buffer' })
 
-vim.cmd([[
-  function! List_Gmarks()
-    try
-      marks ABCDEFGIMNOPQRSTUVWXYZ
-    catch /E283:/
-    endtry
-    marks HJKL
-    echo('`')
-    try
-      let s:mark = toupper(nr2char(getchar()))
-    catch /^Vim:Interrupt$/
-    endtry
-    redraw
-    silent! execute 'normal! `'..s:mark
-  endfunction
-]])
-vim.keymap.set('n', '<C-h>', '<CMD>call List_Gmarks()<CR>', { desc = 'List global marks' })
-
 vim.keymap.set('n', '<leader>h', '`H', { desc = 'File mark `H' })
 vim.keymap.set('n', '<leader>j', '`J', { desc = 'File mark `J' })
 vim.keymap.set('n', '<leader>k', '`K', { desc = 'File mark `K' })

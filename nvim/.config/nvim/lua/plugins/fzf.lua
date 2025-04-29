@@ -8,6 +8,7 @@ return {
     { '<leader>fg', '<CMD>FzfLua live_grep_native<CR>', desc = '[FZF] Live grep' },
     { '<leader>fk', '<CMD>FzfLua helptags<CR>',         desc = '[FZF] Help tags' },
     { '<leader>fK', '<CMD>FzfLua keymaps<CR>',          desc = '[FZF] List mappings' },
+    { '<C-h>',      '<CMD>FzfLua marks<CR>',            desc = '[FZF] Get global marks' },
     {
       '<C-r>',
       '<CMD>FzfLua command_history<CR>',
@@ -84,5 +85,13 @@ return {
     helptags = {
       winopts = { height = 0.5 },
     },
+    marks = {
+      marks = '[A-Z]',
+      winopts = {
+        height = 0.5,
+        title = ' Global marks ',
+        preview = { hidden = true },
+      }
+    }
   }
 }
