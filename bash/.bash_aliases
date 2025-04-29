@@ -8,6 +8,7 @@ alias rm="rm -I"
 
 # convenience
 alias apkg="apt-cache"
+alias apgrep="apt list --installed | grep"
 alias brave="brave-browser"
 alias fetch="fastfetch"
 alias tmuxa="tmux attach"
