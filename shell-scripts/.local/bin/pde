@@ -102,6 +102,16 @@ GPG_KEYS=(
 
 gpg_status=0
 
+if ! command -v curl &> /dev/null; then
+  echo -e "${BLUE}--> curl is not installed. Attempting to install it...${NC}"
+  if sudo apt install -y curl; then
+    echo -e "${GREEN}==> curl installed successfully.${NC}"
+  else
+    echo -e "${RED}==> Error installing curl.${NC}"
+    exit 1
+  fi
+fi
+
 echo -e "${BLUE}--> Updating GPG keys and source lists...${NC}"
 
 for key_data in "${GPG_KEYS[@]}"; do
@@ -115,22 +125,22 @@ for key_data in "${GPG_KEYS[@]}"; do
     if [[ "$key_url" == *.key ]]; then
       echo -e "${BLUE}--> URL ends with '.key', de-armoring...${NC}"
       if curl -fsSL "$key_url" | sudo gpg --dearmor -o "$keyring_file"; then
-        echo -e "${GREEN}--> Key downloaded and de-armored successfully to '$keyring_file'.${NC}"
+        echo -e "${GREEN}==> Key downloaded and de-armored successfully to '$keyring_file'.${NC}"
       else
-        echo -e "${RED}--> Error downloading or de-armoring key from '$key_url'.${NC}"
+        echo -e "${RED}==> Error downloading or de-armoring key from '$key_url'.${NC}"
         gpg_status=1
       fi
     else
       echo -e "${BLUE}--> Downloading key directly...${NC}"
       if curl -fsSL -o "$keyring_file" "$key_url"; then
-        echo -e "${GREEN}--> Key downloaded successfully to '$keyring_file'.${NC}"
+        echo -e "${GREEN}==> Key downloaded successfully to '$keyring_file'.${NC}"
       else
-        echo -e "${RED}--> Error downloading key from '$key_url'.${NC}"
+        echo -e "${RED}==> Error downloading key from '$key_url'.${NC}"
         gpg_status=1
       fi
     fi
   else
-    echo -e "${GREEN}--> Keyring file '$keyring_file' already exists.${NC}"
+    echo -e "${GREEN}==> Keyring file '$keyring_file' already exists.${NC}"
   fi
 
   repo_url=$(dirname "$key_url")
@@ -147,37 +157,37 @@ else
 fi)
 END
 )
-  echo -e "${GREEN}--> Created sources file: $sources_file with URI: $repo_url${NC}"
+  echo -e "${GREEN}==> Created sources file: $sources_file with URI: $repo_url${NC}"
 done
 
 echo -e "${BLUE}--> Updating package list and upgrading all installed packages...${NC}"
 if sudo apt update && sudo apt upgrade -y; then
-  echo -e "${GREEN}--> Package list updated and all installed packages upgraded successfully.${NC}"
+  echo -e "${GREEN}==> Package list updated and all installed packages upgraded successfully.${NC}"
   echo -e "${BLUE}--> Installing specified packages from repositories...${NC}"
   if sudo apt install -y "${PKG[@]}"; then
-    echo -e "${GREEN}--> All specified packages installed successfully.${NC}"
+    echo -e "${GREEN}==> All specified packages installed successfully.${NC}"
     if [ "$gpg_status" -eq 0 ]; then
       echo -e "${BLUE}--> Installing third-party packages...${NC}"
       sudo apt install -y "${THIRD_PARTY_PKG[@]}"
     else
-      echo -e "${RED}--> Not installing third-party packages due to GPG key errors.${NC}"
+      echo -e "${RED}==> Not installing third-party packages due to GPG key errors.${NC}"
     fi
   else
-    echo -e "${RED}--> Error installing packages. Some packages may not have been installed.${NC}"
+    echo -e "${RED}==> Error installing packages. Some packages may not have been installed.${NC}"
     exit 1
   fi
 else
-  echo -e "${RED}--> Error updating package list. Exiting...${NC}"
+  echo -e "${RED}==> Error updating package list. Exiting...${NC}"
   exit 1
 fi
 
 if command -v nu &> /dev/null; then
-  ${GREEN}echo "Found 'nu' binary. Adding plugins..."${NC}
+  echo -e "${GREEN}==> Found 'nu' binary. Adding plugins...${NC}"
   nu -c "plugin add /usr/libexec/nushell/nu_plugin_gstat"
   nu -c "plugin add /usr/libexec/nushell/nu_plugin_inc"
   nu -c "plugin add /usr/libexec/nushell/nu_plugin_query"
 else
-  ${RED}echo "'nu' binary not found. Skipping plugin installation."${NC}
+  echo -e "${RED}==> 'nu' binary not found. Skipping plugin installation.${NC}"
 fi
 
 CARGO_PKG=(
@@ -195,9 +205,9 @@ for pkg_args in "${CARGO_PKG[@]}"; do
   echo -e "${BLUE}--> Running: cargo install ${pkg_args}${NC}"
   # Use eval to correctly handle arguments within the string
   if eval cargo install ${pkg_args}; then
-    echo -e "${GREEN}--> Successfully installed crates: ${pkg_args}${NC}"
+    echo -e "${GREEN}==> Successfully installed crates: ${pkg_args}${NC}"
   else
-    echo -e "${RED}--> Error installing crates. Some crates may not have been installed.${NC}"
+    echo -e "${RED}==> Error installing crates. Some crates may not have been installed.${NC}"
     exit 1
   fi
 done
