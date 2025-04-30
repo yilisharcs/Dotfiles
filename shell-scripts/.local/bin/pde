@@ -17,6 +17,7 @@ PKG=(
   ffmpeg
   ffmpegthumbnailer
   fzf                            # fuzzy finder
+  gnome-boxes                    # virtualization
   gnome-shell-extension-manager
   hunspell-en-us
   hunspell-pt-br
