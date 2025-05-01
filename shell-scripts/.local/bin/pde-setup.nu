@@ -1,38 +1,5 @@
 #!/usr/bin/env nu
 
-# Stow symlinks whole dirs if they don't exist. Without this,
-# the system will cram stuff where it isn't supposed to go.
-[
-  .cargo
-  .config
-  .local/bin
-  .local/include
-  .local/lib
-  .local/share/icons/hicolor/128x128/apps
-  .local/share/nvim/lazy
-  .local/share/nvim/mason
-  .local/share/man/man1
-  .local/state
-  opt
-  stow
-] | each {|e| $env.HOME | path join $e | mkdir $in }
-
-# Symlinks that stow can't automate
-{
-  ## Dirs
-  $"($env.HOME)/.local/share/Trash": $"($env.HOME)/Trash",
-
-  ## Bins
-  $"(^which batcat)": $"($env.HOME)/.local/bin/bat",
-  $"(^which fdfind)": $"($env.HOME)/.local/bin/fd",
-} | items {|k, v|
-  if ( ($v) | path exists ) {
-    print $'(ansi green_bold)  Symlink (ansi yellow_bold)($v) (ansi green_bold)already exists.(ansi reset)'
-  } else {
-    ln -s ($k) ($v)
-  }
-} | ignore
-
 ##################
 ### DEBIAN-APT ###
 ##################
@@ -129,9 +96,6 @@
 rustup component add rust-analyzer
 rustup target install wasm32-unknown-unknown
 
-# FIXME: eval fails in the block below if --git $crate is a string
-cargo install --git https://github.com/neovide/neovide
-
 [
   # cargo-audit
   # cargo-auditable
@@ -144,6 +108,9 @@ cargo install --git https://github.com/neovide/neovide
   fnm
   ra-multiplex
 ] | cargo install ...$in | ignore
+
+# FIXME: eval fails in the block above if --git $crate is a string
+cargo install --git https://github.com/neovide/neovide
 
 ##################
 ### NU-PLUGINS ###
@@ -161,3 +128,70 @@ echo $'(ansi blue_bold)    Added Nushell plugins!(ansi reset)'
 ###############
 
 sudo update-alternatives --set editor /usr/bin/vim.tiny
+
+# Stow symlinks whole dirs if they don't exist. Without this,
+# the system will cram stuff where it isn't supposed to go.
+[
+  .config
+  .local/bin
+  .local/include
+  .local/lib
+  .local/share/icons/hicolor/128x128/apps
+  .local/share/nvim/lazy
+  .local/share/nvim/mason
+  .local/share/man/man1
+  .local/state
+  opt
+  stow
+] | each {|e| $env.HOME | path join $e | mkdir $in }
+
+# Symlinks that stow can't automate
+{
+  ## Dirs
+  $"($env.HOME)/.local/share/Trash": $"($env.HOME)/Trash",
+
+  ## Bins
+  $"(^which batcat)": $"($env.HOME)/.local/bin/bat",
+  $"(^which fdfind)": $"($env.HOME)/.local/bin/fd",
+} | items {|k, v|
+  if ( ($v) | path exists ) {
+    print $'(ansi green_bold)  Symlink (ansi yellow_bold)($v) (ansi green_bold)already exists.(ansi reset)'
+  } else {
+    ln -s ($k) ($v)
+  }
+} | ignore
+
+make -C $"($env.HOME)/.dotfiles"
+
+# use std/dirs; dirs add $"($env.HOME)/opt/"
+#
+# [
+#   https://github.com/NikitaIvanovV/ctpv
+#   https://github.com/neovim/neovim
+# ] | each {|e| git clone $e } | ignore
+#
+# def setupmake [src: string] {
+#   let project_name = $src
+#   let install_prefix = ($"($env.HOME)/stow/($src)/.local")
+#
+#   # TODO: run only if $src exists
+#   with-env {
+#     CMAKE_BUILD_TYPE: 'Release',
+#     CMAKE_INSTALL_PREFIX: $install_prefix,
+#     PREFIX: $install_prefix,
+#     INSTALL_DIR: $install_prefix
+#   } {
+#     # TODO: do `git checkout stable` if dir == neovim
+#     make -e -C $src install
+#
+#     stow -d $"($env.HOME)/stow" $project_name | ignore
+#   }
+# }
+# ls | where type == dir | get name | path basename | each {|e| setupmake $e }
+#
+# dirs drop
+#
+### TODO: GNOME extensions
+## dash-to-dock@micxgx.gmail.com
+## clipboard-indicator@tudmotu.com
+## Vitals@CoreCoding.com

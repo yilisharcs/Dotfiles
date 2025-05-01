@@ -85,10 +85,8 @@ fi
 
 if [ ! -f "$HOME/.dotfiles/Makefile" ]; then
   git clone https://github.com/yilisharcs/.dotfiles $HOME/.dotfiles
-else
-  make -C $HOME/.dotfiles
 fi
 
-nu -c "source $(which pde-setup.nu)"
+nu -c "source $HOME/.dotfiles/shell-scripts/.local/bin/pde-setup.nu"
 
 exit 0
