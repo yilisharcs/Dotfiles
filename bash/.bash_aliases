@@ -11,7 +11,6 @@ alias apkg="apt-cache"
 alias apgrep="apt list --installed | grep"
 alias brave="brave-browser"
 alias fetch="fastfetch"
-alias tmuxa="tmux attach"
 alias visudo="sudo visudo"
 alias yeet="sudo apt-get purge --auto-remove"
 
