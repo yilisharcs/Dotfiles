@@ -42,7 +42,7 @@ if vim.g.neovide then
   vim.keymap.set('t', '<C-SPACE><C-6>', '<CMD>wincmd g<TAB><CR>')
   vim.keymap.set('n', '<C-SPACE><LEFT>', '<CMD>-tabmove<CR>')
   vim.keymap.set('n', '<C-SPACE><RIGHT>', '<CMD>+tabmove<CR>')
-  vim.keymap.set({ 'n', 't' }, '<C-SPACE>t', '<C-w>T', { desc = 'Open buffer in new tab' })
+  vim.keymap.set({ 'n', 't' }, '<C-SPACE>t', '<CMD>wincmd T<CR>', { desc = 'Open buffer in new tab' })
 
   vim.keymap.set('t', '<C-SPACE>[', '<CMD>silent! !tmux copy-mode<TAB><CR>')
   vim.keymap.set('t', '<C-SPACE>d', '<CMD>silent! !tmux detach<CR>')
