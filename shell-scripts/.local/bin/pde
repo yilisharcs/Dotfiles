@@ -5,90 +5,8 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-PKG=(
-  atool                          # compression and extraction tools
-  bat                            # better cat
-  bibata-cursor-theme
-  btop                           # tui system monitor
-  chafa                          # terminal image visualizer
-  cmus                           # tui music player
-  dconf-editor
-  fd-find                        # better find
-  ffmpeg
-  ffmpegthumbnailer
-  fzf                            # fuzzy finder
-  gnome-boxes                    # virtualization
-  gnome-shell-extension-manager
-  hunspell-en-us
-  hunspell-pt-br
-  imagemagick
-  inkscape                       # image editor
-  krita                          # image editor
-  lf                             # tui file explorer
-  mesa-utils                     # gpu utils
-  ncdu                           # disk space checker
-  pass                           # cli password manager
-  picard                         # music metadata editor
-  preload                        # fetch frequently-used binaries to ram
-  qbittorrent
-  ripgrep                        # better grep
-  starship                       # shell prompt tool
-  stow                           # symlink manager
-  syncthing                      # peer-to-peer file sync
-  timeshift
-  trash-cli
-  tree                           # dir viewer
-  xclip                          # in use because wl-clip creates a window to access the clipboard
-  yt-dlp
-  zoxide                         # better cd
-
-  # gnome-extension deps
-  gir1.2-gtop-2.0                # vitals
-  lm-sensors                     # vitals
-
-  # dev libs and tools
-  bacon                          # background code checker
-  build-essential                # provides gnu make
-  cmake
-  curl
-  file
-  freeglut3-dev
-  g++-multilib
-  gcc-mingw-w64
-  gcc-multilib
-  gettext
-  gh                             # github cli client
-  git
-  libasound2-dev
-  libayatana-appindicator3-dev
-  libbz2-dev
-  libcrypto++-dev
-  libexpat1-dev
-  libfontconfig1-dev
-  libfreetype6-dev
-  libmagic-dev
-  librsvg2-dev
-  libsndio-dev
-  libssl-dev
-  libudev-dev
-  libwayland-dev
-  libwebkit2gtk-4.1-dev
-  libxcb-composite0-dev
-  libxcursor-dev
-  libxdo-dev
-  libxi-dev
-  libxmu-dev
-  ninja-build
-  pipx                           # python package manager
-  pkg-config
-  rustup                         # rust toolchain manager
-  sccache                        # build cache tool
-  sqlite3
-  tmux
-  tokei                          # loc counter
-  wget
-  yq                             # cli json, yaml, and xml processor
-)
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y curl git
 
 THIRD_PARTY_PKG=(
   brave-browser
@@ -102,45 +20,35 @@ GPG_KEYS=(
 
 gpg_status=0
 
-if ! command -v curl &> /dev/null; then
-  echo -e "${BLUE}--> curl is not installed. Attempting to install it...${NC}"
-  if sudo apt install -y curl; then
-    echo -e "${GREEN}==> curl installed successfully.${NC}"
-  else
-    echo -e "${RED}==> Error installing curl.${NC}"
-    exit 1
-  fi
-fi
-
-echo -e "${BLUE}--> Updating GPG keys and source lists...${NC}"
+echo -e "${BLUE}==> Updating GPG keys and source lists...${NC}"
 
 for key_data in "${GPG_KEYS[@]}"; do
   IFS=' ' read -r keyring_file key_url source_name <<< "$key_data"
   unset IFS
 
-  echo -e "${BLUE}--> Processing key from '$key_url' to '$keyring_file'...${NC}"
+  echo -e "${BLUE}==> Processing key from '$key_url' to '$keyring_file'...${NC}"
 
   if [ ! -f "$keyring_file" ]; then
-    echo -e "${BLUE}--> Keyring file '$keyring_file' does not exist. Downloading...${NC}"
+    echo -e "${BLUE}==> Keyring file '$keyring_file' does not exist. Downloading...${NC}"
     if [[ "$key_url" == *.key ]]; then
-      echo -e "${BLUE}--> URL ends with '.key', de-armoring...${NC}"
+      echo -e "${BLUE}==> URL ends with '.key', de-armoring...${NC}"
       if curl -fsSL "$key_url" | sudo gpg --dearmor -o "$keyring_file"; then
-        echo -e "${GREEN}==> Key downloaded and de-armored successfully to '$keyring_file'.${NC}"
+        echo -e "${GREEN} -> Key downloaded and de-armored successfully to '$keyring_file'.${NC}"
       else
-        echo -e "${RED}==> Error downloading or de-armoring key from '$key_url'.${NC}"
+        echo -e "${RED} -> Error downloading or de-armoring key from '$key_url'.${NC}"
         gpg_status=1
       fi
     else
-      echo -e "${BLUE}--> Downloading key directly...${NC}"
-      if curl -fsSL -o "$keyring_file" "$key_url"; then
-        echo -e "${GREEN}==> Key downloaded successfully to '$keyring_file'.${NC}"
+      echo -e "${BLUE}==> Downloading key directly...${NC}"
+      if curl -fsSLo "$keyring_file" "$key_url"; then
+        echo -e "${GREEN} -> Key downloaded successfully to '$keyring_file'.${NC}"
       else
-        echo -e "${RED}==> Error downloading key from '$key_url'.${NC}"
+        echo -e "${RED} -> Error downloading key from '$key_url'.${NC}"
         gpg_status=1
       fi
     fi
   else
-    echo -e "${GREEN}==> Keyring file '$keyring_file' already exists.${NC}"
+    echo -e "${GREEN} -> Keyring file '$keyring_file' already exists.${NC}"
   fi
 
   repo_url=$(dirname "$key_url")
@@ -157,59 +65,30 @@ else
 fi)
 END
 )
-  echo -e "${GREEN}==> Created sources file: $sources_file with URI: $repo_url${NC}"
+  echo -e "${GREEN} -> Created sources file: $sources_file with URI: $repo_url${NC}"
 done
 
-echo -e "${BLUE}--> Updating package list and upgrading all installed packages...${NC}"
+echo -e "${BLUE}==> Updating package list and upgrading all installed packages...${NC}"
 if sudo apt update && sudo apt upgrade -y; then
-  echo -e "${GREEN}==> Package list updated and all installed packages upgraded successfully.${NC}"
-  echo -e "${BLUE}--> Installing specified packages from repositories...${NC}"
-  if sudo apt install -y "${PKG[@]}"; then
-    echo -e "${GREEN}==> All specified packages installed successfully.${NC}"
-    if [ "$gpg_status" -eq 0 ]; then
-      echo -e "${BLUE}--> Installing third-party packages...${NC}"
-      sudo apt install -y "${THIRD_PARTY_PKG[@]}"
-    else
-      echo -e "${RED}==> Not installing third-party packages due to GPG key errors.${NC}"
-    fi
+  echo -e "${GREEN} -> Package list updated and all installed packages upgraded successfully.${NC}"
+  echo -e "${BLUE}==> Installing specified packages from repositories...${NC}"
+  if [ "$gpg_status" -eq 0 ]; then
+    echo -e "${BLUE}==> Installing third-party packages...${NC}"
+    sudo apt install -y "${THIRD_PARTY_PKG[@]}"
   else
-    echo -e "${RED}==> Error installing packages. Some packages may not have been installed.${NC}"
-    exit 1
+    echo -e "${RED} -> Error installing packages. Some packages may not have been installed.${NC}"
   fi
 else
-  echo -e "${RED}==> Error updating package list. Exiting...${NC}"
+  echo -e "${RED} -> Error updating package list. Exiting...${NC}"
   exit 1
 fi
 
-if command -v nu &> /dev/null; then
-  echo -e "${GREEN}==> Found 'nu' binary. Adding plugins...${NC}"
-  nu -c "plugin add /usr/libexec/nushell/nu_plugin_gstat"
-  nu -c "plugin add /usr/libexec/nushell/nu_plugin_inc"
-  nu -c "plugin add /usr/libexec/nushell/nu_plugin_query"
+if [ ! -f "$HOME/.dotfiles/Makefile" ]; then
+  git clone https://github.com/yilisharcs/.dotfiles $HOME/.dotfiles
 else
-  echo -e "${RED}==> 'nu' binary not found. Skipping plugin installation.${NC}"
+  make -C $HOME/.dotfiles
 fi
 
-CARGO_PKG=(
-  "cargo-binstall"
-  "cargo-modules"
-  "cargo-update"
-  "dioxus-cli"
-  "fnm"
-  "ra-multiplex"
-  "--git https://github.com/neovide/neovide"
-)
-
-echo -e "${BLUE}--> Installing specified crates...${NC}"
-for pkg_args in "${CARGO_PKG[@]}"; do
-  echo -e "${BLUE}--> Running: cargo install ${pkg_args}${NC}"
-  # Use eval to correctly handle arguments within the string
-  if eval cargo install ${pkg_args}; then
-    echo -e "${GREEN}==> Successfully installed crates: ${pkg_args}${NC}"
-  else
-    echo -e "${RED}==> Error installing crates. Some crates may not have been installed.${NC}"
-    exit 1
-  fi
-done
+nu -c "source $(which pde-setup.nu)"
 
 exit 0
