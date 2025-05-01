@@ -15,3 +15,4 @@ cabbrev bd1 bd!
 cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'silent grep' : 'grep'
 cnoreabbrev <expr> hgrep (getcmdtype() ==# ':' && getcmdline() =~# '^hgrep') ? 'helpgrep' : 'hgrep'
 cnoreabbrev <expr> cfilter (getcmdtype() ==# ':' && getcmdline() =~# '^cfilter') ? 'Cfilter' : 'cfilter'
+cnoreabbrev <expr> man (getcmdtype() ==# ':' && getcmdline() =~# '^man') ? 'Man' : 'man'
