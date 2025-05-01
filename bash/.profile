@@ -41,6 +41,8 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window hidden \
 
 export SQLITE_HISTORY="$HOME/.local/state/sqlite3/sqlite_history"
 
+export STARSHIP_LOG="error"
+
 # {
 
 ## Rust
