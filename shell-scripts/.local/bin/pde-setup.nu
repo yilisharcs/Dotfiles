@@ -100,11 +100,11 @@ rustup target install wasm32-unknown-unknown
   # cargo-audit
   # cargo-auditable
   cargo-binstall
+  cargo-generate
   cargo-modules
   # cargo-nextest
   # cargo-sweep
   cargo-update
-  dioxus-cli
   fnm
   ra-multiplex
 ] | cargo install ...$in | ignore
