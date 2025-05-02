@@ -47,8 +47,6 @@ if vim.g.neovide then
   vim.keymap.set('t', '<C-SPACE>[', '<CMD>silent! !tmux copy-mode<TAB><CR>')
   vim.keymap.set('t', '<C-SPACE>d', '<CMD>silent! !tmux detach<CR>')
 
-  vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>-', '<CMD>new | term<CR>')
-  vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>=', '<CMD>vnew | term<CR>')
   vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>c', '<CMD>tabnew | term<CR>')
   vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>x', '<CMD>tabclose<CR>')
   vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>h', '<CMD>tabnew | term btop<CR>')
