@@ -1,6 +1,8 @@
 [build]
 rustc-wrapper = "sccache"
-rustflags = ["-C", "target-cpu=native"]
 
 [target.x86_64-unknown-linux-gnu]
-rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+rustflags = [
+  "-C", "target-cpu=native",
+  "-C", "link-arg=-fuse-ld=mold"
+]
