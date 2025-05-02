@@ -1,5 +1,6 @@
 return {
-  'nvim-lualine/lualine.nvim',
+  'yilisharcs/lualine.nvim',
+  branch = 'lf-extension',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   init = function()
     vim.go.showmode = false
@@ -75,6 +76,7 @@ return {
       lualine_z = { 'mode' }
     },
     extensions = {
+      'lf',
       'man',
       'oil',
       'quickfix',
