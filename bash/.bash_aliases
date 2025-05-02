@@ -17,3 +17,8 @@ alias yeet="sudo apt-get purge --auto-remove"
 # shortcuts
 bind -x '"\C-g":"tmux-sessionizer"'
 bind    '"\C-o": edit-and-execute-command'
+
+# nushell scripts
+alias gitcon="gitcon.nu"
+alias gstat="gstat.nu"
+alias tokeicon="tokeicon.nu"
