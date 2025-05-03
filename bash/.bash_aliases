@@ -11,6 +11,7 @@ alias apkg="apt-cache"
 alias apgrep="apt list --installed 2> /dev/null | rg"
 alias brave="brave-browser"
 alias fetch="fastfetch"
+alias speedtest="speedtest-rs"
 alias visudo="sudo visudo"
 alias yeet="sudo apt-get purge --auto-remove"
 
