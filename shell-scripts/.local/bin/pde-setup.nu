@@ -97,26 +97,24 @@ rustup component add rust-analyzer
 rustup target install wasm32-unknown-unknown
 
 [
-  bob-nvim
-  # cargo-audit
-  # cargo-auditable
-  cargo-binstall
-  cargo-generate
-  cargo-modules
-  # cargo-nextest
-  # cargo-sweep
-  cargo-update
-  dioxus-cli
-  fnm
-  ra-multiplex
-  speedtest-rs
-] | cargo install ...$in | ignore
+  [ "--git", "https://github.com/neovide/neovide" ]
+  [ "--locked", "wiki-tui" ]
+  [ "bob-nvim" ]
+  # [ "cargo-audit" ]
+  # [ "cargo-auditable" ]
+  [ "cargo-binstall" ]
+  [ "cargo-generate" ]
+  [ "cargo-modules" ]
+  # [ "cargo-nextest" ]
+  # [ "cargo-sweep" ]
+  [ "cargo-update" ]
+  [ "dioxus-cli" ]
+  [ "fnm" ]
+  [ "ra-multiplex" ]
+  [ "speedtest-rs" ]
+] | each {|e| cargo install ...$e } | ignore
 
 bob use stable
-
-# FIXME: eval fails in the block above if passing --args
-cargo install --git https://github.com/neovide/neovide
-cargo install --locked wiki-tui
 
 ##################
 ### NU-PLUGINS ###
