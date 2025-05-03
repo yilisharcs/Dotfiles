@@ -97,6 +97,7 @@ rustup component add rust-analyzer
 rustup target install wasm32-unknown-unknown
 
 [
+  bob-nvim
   # cargo-audit
   # cargo-auditable
   cargo-binstall
@@ -109,6 +110,8 @@ rustup target install wasm32-unknown-unknown
   fnm
   ra-multiplex
 ] | cargo install ...$in | ignore
+
+bob use stable
 
 # FIXME: eval fails in the block above if --git $crate is a string
 cargo install --git https://github.com/neovide/neovide
