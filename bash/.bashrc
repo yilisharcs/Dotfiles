@@ -127,6 +127,7 @@ if [ -z $SSH_AUTH_SOCK ]; then
 fi
 
 # shell integrations
+eval "$(bob complete bash)"
 eval "$(fnm env --use-on-cd --shell bash)"
 eval "$(fzf --bash)"
 eval "$(starship init bash)"
