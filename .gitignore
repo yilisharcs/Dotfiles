@@ -2,7 +2,7 @@ TODO.md
 
 nvim/.config/nvim/lsp/_lsp.lua
 nvim/.config/nvim/spell/*.add.spl
-massren/.config/massren/profile.sqlite
+bob-nvim/.config/bob/nvim.version
 
 nushell/.config/nushell/env.nu
 nushell/.config/nushell/history.*
