@@ -110,6 +110,7 @@ rustup target install wasm32-unknown-unknown
   [ "cargo-update" ]
   [ "dioxus-cli" ]
   [ "fnm" ]
+  [ "porsmo" ]
   [ "ra-multiplex" ]
   [ "speedtest-rs" ]
 ] | each {|e| cargo install ...$e } | ignore
