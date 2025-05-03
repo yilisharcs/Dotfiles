@@ -7,8 +7,8 @@ alias cp="cp -iv"
 alias rm="rm -I"
 
 # convenience
-alias apkg="apt-cache"
 alias apgrep="apt list --installed 2> /dev/null | rg"
+alias apkg="apt-cache"
 alias brave="brave-browser"
 alias fetch="fastfetch"
 alias speedtest="speedtest-rs"
