@@ -8,7 +8,7 @@ alias rm="rm -I"
 
 # convenience
 alias apkg="apt-cache"
-alias apgrep="apt list --installed | grep"
+alias apgrep="apt list --installed 2> /dev/null | grep"
 alias brave="brave-browser"
 alias fetch="fastfetch"
 alias visudo="sudo visudo"
