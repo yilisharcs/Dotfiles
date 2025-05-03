@@ -109,6 +109,7 @@ rustup target install wasm32-unknown-unknown
   dioxus-cli
   fnm
   ra-multiplex
+  speedtest-rs
 ] | cargo install ...$in | ignore
 
 bob use stable
