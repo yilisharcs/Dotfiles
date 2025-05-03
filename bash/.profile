@@ -26,9 +26,11 @@ if [ -d "$HOME/.local/bin" ] ; then
   PATH="$HOME/.local/bin:$PATH"
 fi
 
+# set user-specific configuration variable
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
+
 export FZF_DEFAULT_COMMAND="fd --hidden --follow --ignore-case --type file \
   --strip-cwd-prefix --exclude={.cache,.git,.npm}"
 export FZF_DEFAULT_OPTS="--preview 'bat --color=always --wrap=never --style=plain \
@@ -39,8 +41,10 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window hidden \
   --bind 'ctrl-y:execute-silent(echo -n {2..} | xsel -ib)+abort' \
   --header 'Press CTRL-Y to copy command into clipboard'"
 
+# set sqlite histfile elsewhere instead of HOME
 export SQLITE_HISTORY="$HOME/.local/state/sqlite3/sqlite_history"
 
+# disable "command timed-out" prompt errors
 export STARSHIP_LOG="error"
 
 # {
