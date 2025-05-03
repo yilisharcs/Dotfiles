@@ -45,6 +45,9 @@ export STARSHIP_LOG="error"
 
 # {
 
+# bob-nvim
+export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+
 ## Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
