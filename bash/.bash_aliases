@@ -13,6 +13,7 @@ alias brave="brave-browser"
 alias fetch="fastfetch"
 alias speedtest="speedtest-rs"
 alias visudo="sudo visudo"
+alias wiki="wiki-tui"
 alias yeet="sudo apt-get purge --auto-remove"
 
 # shortcuts

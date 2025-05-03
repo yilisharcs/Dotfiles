@@ -114,8 +114,9 @@ rustup target install wasm32-unknown-unknown
 
 bob use stable
 
-# FIXME: eval fails in the block above if --git $crate is a string
+# FIXME: eval fails in the block above if passing --args
 cargo install --git https://github.com/neovide/neovide
+cargo install --locked wiki-tui
 
 ##################
 ### NU-PLUGINS ###
