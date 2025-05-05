@@ -88,3 +88,5 @@ hi NeogitGraphPurple guifg=#fab387
 hi! link NeogitPopupConfigEnabled Statement
 hi! link NeogitPopupOptionEnabled Statement
 hi! link NeogitPopupSwitchEnabled Statement
+
+hi @lsp.type.property.lua guifg=#87d787
