@@ -25,6 +25,10 @@ if vim.g.neovide then
       vim.g.neovide_fullscreen = false
       vim.go.linespace = 2
     end
+    if package.loaded['vim._extui'] then
+      vim.cmd('sleep 500m')
+      vim.cmd('new | close')
+    end
   end
 
   vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<F11>', '<CMD>lua Neovide_F11()<CR>')
