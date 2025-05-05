@@ -1,4 +1,4 @@
-setlocal colorcolumn=80
+setlocal colorcolumn=120
 setlocal iskeyword+=-
 let &l:commentstring='" %s'
 
