@@ -54,7 +54,7 @@ vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<M-l>', '<CMD>wincmd l<CR>')
 
 vim.keymap.set('n', 'cu', function()
   return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), 'v:val.quickfix')) == 1
-      and '<CMD>botright copen | wincmd p<CR>' or '<CMD>cclose<CR>'
+    and '<CMD>botright copen | wincmd p<CR>' or '<CMD>cclose<CR>'
 end, { expr = true, desc = 'Toggle quickfix list' })
 
 vim.keymap.set('n', '<C-k>', '<CMD>cpfile<CR>zz', { desc = 'Quickfix previous file' })
@@ -94,6 +94,33 @@ vim.keymap.set({ 'n', 'x' }, '<C-f>', "(&wrap ? '<C-f>' : '<C-f>zz')",
 vim.keymap.set({ 'n', 'x' }, '<C-b>', "(&wrap ? '<C-b>' : '<C-b>zz')",
   { expr = true, desc = 'Center full-scroll up' })
 vim.keymap.set({ 'n', 'x' }, '<F8>', '<CMD>setlocal wrap! wrap? linebreak!<CR>', { desc = 'Toggle wrap' })
+
+vim.keymap.set({ 'n', 'i', 'c' }, '<C-S-V>', '<C-r>+', { desc = 'Paste from clipboard' })
+vim.keymap.set('t', '<C-S-V>', '<C-\\><C-n>pi', { desc = 'Paste from clipboard' })
+vim.keymap.set('t', '<C-4><C-r>', [['<C-\><C-n>"'.nr2char(getchar()).'pi']],
+  { expr = true, desc = 'Paste from register $@' })
+
+-- Tmux-like workflow
+vim.keymap.set('n', '<C-SPACE><C-^>', '<CMD>wincmd g<TAB><CR>')
+-- C-^ registers as <TAB> for reasons unknown
+vim.keymap.set('t', '<C-SPACE><C-6>', '<CMD>wincmd g<TAB><CR>')
+vim.keymap.set('n', '<C-SPACE><LEFT>', '<CMD>-tabmove<CR>')
+vim.keymap.set('n', '<C-SPACE><RIGHT>', '<CMD>+tabmove<CR>')
+vim.keymap.set({ 'n', 't' }, '<C-SPACE>t', '<CMD>wincmd T<CR>', { desc = 'Open buffer in new tab' })
+
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>c', '<CMD>tabnew | term<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>x', '<CMD>tabclose<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>h', '<CMD>tabnew | term btop<CR>')
+
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>1', '<CMD>1tabnext<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>2', '<CMD>2tabnext<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>3', '<CMD>3tabnext<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>4', '<CMD>4tabnext<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>5', '<CMD>5tabnext<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>6', '<CMD>6tabnext<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>7', '<CMD>7tabnext<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>8', '<CMD>8tabnext<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>9', '<CMD>9tabnext<CR>')
 
 vim.keymap.set('n', '<F9>', '<CMD>Inspect<CR>', { desc = 'Inspect element under cursor' })
 vim.keymap.set('n', '<F10>', '<CMD>!chmod +x %<CR>',
