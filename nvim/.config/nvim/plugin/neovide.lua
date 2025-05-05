@@ -9,6 +9,7 @@ if vim.g.neovide then
   vim.o.winblend = 1
 
   vim.go.guifont = 'JetBrainsMono_Nerd_Font_Mono,Noto_Color_Emoji:h13'
+  -- vim.go.guifont = 'JetBrainsMonoNL_Nerd_Font_Mono,Noto_Color_Emoji:h13'
   vim.g.neovide_scale_factor = 1.0
   vim.keymap.set({ 'n', 't' }, '<C-->', '<CMD>let g:neovide_scale_factor-=0.1<CR>')
   vim.keymap.set({ 'n', 't' }, '<C-=>', '<CMD>let g:neovide_scale_factor+=0.1<CR>')
