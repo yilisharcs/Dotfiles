@@ -55,7 +55,15 @@ return {
         },
       },
       lualine_c = { { 'filename', path = 1 } },
-      lualine_x = { { 'location', padding = 2 } },
+      lualine_x = {
+        {
+          'searchcount',
+          maxcount = 999,
+          timeout = 500,
+          separator = { right = '' }
+        },
+        { 'location', padding = 2 }
+      },
       lualine_y = { 'progress' },
       lualine_z = { 'mode' }
     },
