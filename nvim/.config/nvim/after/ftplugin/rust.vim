@@ -1,4 +1,4 @@
-setlocal colorcolumn=80
+setlocal colorcolumn=120
 let &l:commentstring='// %s'
 
 cnoreabbrev <buffer> <expr> cargo (getcmdtype() ==# ':' && getcmdline() =~# '^cargo') ? 'Cargo' : 'cargo'
