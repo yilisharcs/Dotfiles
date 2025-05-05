@@ -64,10 +64,10 @@ endfor
 
 hi! link RainbowDelimiterRed Special
 hi! link RainbowDelimiterYellow Delimiter
-hi! link RainbowDelimiterBlue Type
+hi RainbowDelimiterBlue guifg=#87d787
 hi! link RainbowDelimiterOrange Special
 hi! link RainbowDelimiterGreen Delimiter
-hi! link RainbowDelimiterViolet Type
+hi RainbowDelimiterViolet guifg=#87d787
 hi clear RainbowDelimiterCyan
 
 hi MiniIconsAzure guifg=#74c7ec
@@ -89,4 +89,4 @@ hi! link NeogitPopupConfigEnabled Statement
 hi! link NeogitPopupOptionEnabled Statement
 hi! link NeogitPopupSwitchEnabled Statement
 
-hi @lsp.type.property.lua guifg=#87d787
+hi! link @lsp.type.property.lua Type
