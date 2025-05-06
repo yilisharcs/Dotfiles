@@ -3,9 +3,14 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    bigfile = { enabled = true },
+    image = { enabled = true },
     notifier = { enabled = true },
+    quickfile = { enabled = true },
+    scroll = { enabled = true },
   },
   init = function()
+    -- simple lsp progress example
     vim.api.nvim_create_autocmd('LspProgress', {
       ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
       callback = function(ev)
