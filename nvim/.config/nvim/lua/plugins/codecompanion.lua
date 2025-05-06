@@ -24,7 +24,7 @@ return {
         intro_message = 'Hi, senpai!!! (˶˃ ᵕ ˂˶)',
         window = {
           opts = {
-            signcolumn = 'yes',
+            signcolumn = 'no',
             number = false,
             relativenumber = false,
           },
