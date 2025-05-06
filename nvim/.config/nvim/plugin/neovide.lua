@@ -15,8 +15,10 @@ if vim.g.neovide then
   vim.keymap.set({ 'n', 't' }, '<C-=>', '<CMD>let g:neovide_scale_factor+=0.1<CR>')
   vim.keymap.set({ 'n', 't' }, '<C-0>', '<CMD>let g:neovide_scale_factor=1.0<CR>')
 
-  vim.g.neovide_fullscreen = false
-  vim.go.linespace = 2
+  vim.g.neovide_fullscreen = true
+  vim.go.linespace = 1
+  -- vim.g.neovide_fullscreen = false
+  -- vim.go.linespace = 2
   function Neovide_F11()
     if vim.g.neovide_fullscreen == false then
       vim.g.neovide_fullscreen = true
