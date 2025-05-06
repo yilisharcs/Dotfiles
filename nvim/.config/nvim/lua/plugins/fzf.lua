@@ -80,8 +80,8 @@ return {
     },
     grep = {
       rg_opts =
-          '--color=always --column --line-number --no-heading --smart-case ' ..
-          '--max-columns=4096 --hidden -g "!.git" -e',
+        '--color=always --column --line-number --no-heading --smart-case ' ..
+        '--max-columns=4096 --hidden -g "!.git" -e',
     },
     helptags = {
       winopts = { height = 0.5 },
