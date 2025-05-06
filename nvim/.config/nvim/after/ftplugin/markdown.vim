@@ -1,6 +1,5 @@
 setlocal colorcolumn=0
 setlocal wrap nornu
-setlocal linebreak
 setlocal nolist
 setlocal noexpandtab
 setlocal suffixesadd+=.md,.lemon

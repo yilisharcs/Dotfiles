@@ -16,6 +16,7 @@ set expandtab
 set smartindent
 
 set nowrap
+set linebreak
 
 " Long-running undo trees
 set noswapfile
