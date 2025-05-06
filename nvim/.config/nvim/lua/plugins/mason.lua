@@ -20,7 +20,7 @@ return {
   init = function()
     vim.lsp.enable({
       'luals',
-      'rust-analyzer',
+      -- 'rust-analyzer',
       'vimls',
     })
     -- make sure mason can detect fnm
