@@ -8,7 +8,7 @@ return {
         version = 'LuaJIT',
         path = { 'lua/?.lua', 'lua/?/init.lua' }
       },
-      diagnostics = { globals = { 'vim' } },
+      diagnostics = { globals = { 'vim', 'Snacks' } },
       workspace = {
         library = { 'lua', vim.env.VIMRUNTIME, '${3rd}/luv/library' },
         checkThirdParty = false,

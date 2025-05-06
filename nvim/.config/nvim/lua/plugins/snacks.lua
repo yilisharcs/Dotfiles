@@ -2,8 +2,12 @@ return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
+  keys = {
+    { '<leader>gB', function() Snacks.gitbrowse() end, { desc = '' } }
+  },
   opts = {
     bigfile = { enabled = true },
+    gitbrowse = { enabled = true },
     image = { enabled = true },
     notifier = { enabled = true },
     quickfile = { enabled = true },
