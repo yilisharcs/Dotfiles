@@ -75,6 +75,6 @@ vim.cmd([[
   augroup Auto_Format
     au!
     au BufWritePre *.lua,*.vim silent! lua vim.lsp.buf.format()
-    au BufWritePre *.rs RustFmt
+    au BufWritePre *.rs silent! RustFmt
   augroup END
 ]])
