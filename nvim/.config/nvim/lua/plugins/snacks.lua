@@ -14,6 +14,9 @@ return {
     notifier = { enabled = true },
     quickfile = { enabled = true },
     scroll = { enabled = not vim.g.neovide },
+    styles = {
+      notification_history = { wo = { wrap = true } }
+    }
   },
   init = function()
     -- setup some globals for debugging
