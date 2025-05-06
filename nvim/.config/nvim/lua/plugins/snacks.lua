@@ -3,7 +3,9 @@ return {
   priority = 1000,
   lazy = false,
   keys = {
-    { '<leader>gB', function() Snacks.gitbrowse() end, { desc = '' } }
+    { '<leader>gB', function() Snacks.gitbrowse() end,             desc = 'Open git repo in the browser' },
+    { '<leader>n',  function() Snacks.notifier.show_history() end, desc = 'Notification History' },
+    { '<F7>',       ':= _G.dd()<LEFT>',                            desc = 'Debug inspect' },
   },
   opts = {
     bigfile = { enabled = true },
@@ -14,6 +16,10 @@ return {
     scroll = { enabled = true },
   },
   init = function()
+    -- setup some globals for debugging
+    _G.dd = function(...) Snacks.debug.inspect(...) end
+    _G.bt = function() Snacks.debug.backtrace() end
+
     -- simple lsp progress example
     vim.api.nvim_create_autocmd('LspProgress', {
       ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}

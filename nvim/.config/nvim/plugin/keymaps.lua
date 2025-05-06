@@ -136,5 +136,3 @@ function P(...)
   print(unpack(args))
   return ...
 end
-
-vim.keymap.set('n', '<F7>', ':lua P()<LEFT>', { desc = 'Print data structures' })
