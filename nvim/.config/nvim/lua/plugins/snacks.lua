@@ -10,10 +10,9 @@ return {
   opts = {
     bigfile = { enabled = true },
     gitbrowse = { enabled = true },
-    image = { enabled = true },
+    -- image = { enabled = true },
     notifier = { enabled = true },
     quickfile = { enabled = true },
-    -- scroll = { enabled = true },
     scroll = { enabled = not vim.g.neovide },
   },
   init = function()
