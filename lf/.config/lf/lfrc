@@ -35,7 +35,7 @@ cmd mimetype %{{
 
 # Requires oil.nvim
 cmd oilrename ${{
-  nvim .
+  nvim -c Oil
 }}
 
 cmd touch %{{
