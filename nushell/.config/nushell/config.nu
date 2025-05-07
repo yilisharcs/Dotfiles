@@ -1,3 +1,7 @@
+##############
+### CONFIG ###
+##############
+
 $env.config.show_banner = false
 
 $env.config.history = {
@@ -13,12 +17,8 @@ $env.config.plugin_gc = {
     stop_after: 10sec
   }
   plugins: {
-    gstat: {
-      stop_after: 1min
-    }
-    inc: {
-      stop_after: 0sec
-    }
+    gstat: { stop_after: 1min }
+    inc: { stop_after: 0sec }
   }
 }
 
@@ -74,65 +74,10 @@ $env.config.keybindings = [
 ]
 
 $env.config.buffer_editor = 'nvim'
-alias vi = nvim
-alias vim = nvim
-alias ":q" = exit
 
-alias brave = brave-browser
-alias fetch = fastfetch
-alias tmuxa = tmux attach
-alias visudo = sudo visudo
-alias yeet = sudo apt-get purge --autoremove
-
-# build from source and stow with incredible ease
-def just [...args] {
-  let project_name = (basename (pwd))
-  let install_prefix = ($"($env.HOME)/stow/($project_name)/.local")
-
-  with-env { CMAKE_BUILD_TYPE: 'Release',
-    CMAKE_INSTALL_PREFIX: $install_prefix,
-    PREFIX: $install_prefix,
-    INSTALL_DIR: $install_prefix } {
-    make -e ...$args
-
-    if $args.0? == "install" {
-      try {
-        stow -d ~/stow $project_name
-      } catch {
-        echo $"Stow failed; files are in ($install_prefix)"
-      }
-    }
-  }
-}
-
-# git pretty histogram
-def gitcon [] {
-  git log --pretty=%h»¦«%aN»¦«%s»¦«%aD
-  | lines
-  | split column "»¦«" sha1 committer desc merged_at
-  | histogram committer merger
-  | sort-by count # merger
-  | reverse
-}
-
-# percentage of language in a codebase
-def tokeicon [] {
-  tokei --hidden --compact --sort code
-  | lines
-  | where $it !~ '='
-  | str trim
-  | split column --regex '\s\s+'
-  | rename ...($in | first | values)
-  | skip 1
-  | drop
-  | update Code {|e| $e.Code | into int }
-  | do {
-    let total = ($in | get Code | math sum)
-    $in | insert Percent {|e| ($e.Code * 100 / $total)}
-  }
-  | where Code > 0
-  | select Language Code Percent
-}
+###############
+### ALIASES ###
+###############
 
 # starts ssh-agent if another program hasn't done so
 do --env {
@@ -164,14 +109,17 @@ do --env {
   $ssh_agent_env | save --force $ssh_agent_file
 }
 
-# shell integrations
+####################
+### INTEGRATIONS ###
+####################
+
 mkdir ($nu.data-dir | path join "vendor/autoload")
 
 fnm env --json | from json | load-env
 $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
 
-# starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
-# $env.STARSHIP_LOG = 'error'
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+$env.STARSHIP_LOG = 'error'
 
 zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
 

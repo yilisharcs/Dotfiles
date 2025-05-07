@@ -11,6 +11,8 @@ return {
       },
     },
     opts = {
+      -- direction = 'tab',
+      shell = vim.fn.executable('nu') == 1 and '/usr/bin/nu' or vim.o.shell,
       size = function(term)
         if term.direction == 'horizontal' then
           return vim.o.lines * 0.4
