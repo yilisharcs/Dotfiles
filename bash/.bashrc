@@ -129,7 +129,7 @@ fi
 # shell integrations
 eval "$(bob complete bash)"
 eval "$(fnm env --use-on-cd --shell bash)"
-eval "$(fzf --bash)"
+# eval "$(fzf --bash)"
 eval "$(pandoc --bash-completion)"
 # eval "$(starship init bash)"
 eval "$(zoxide init bash)"

@@ -57,14 +57,11 @@ $env.config.keybindings = [
         | reverse
         | uniq
         | str join (char -i 0)
-        | fzf
-        --preview '{}'
-        --preview-window 'right:30%'
-        --scheme history
+        | sk
         --read0
         --layout reverse
-        --height 40%
         --query (commandline)
+        --bind=ctrl-y:(echo {} | wl-copy)+abort
         | decode utf-8
         | str trim
         )"
