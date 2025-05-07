@@ -10,6 +10,8 @@ augroup Auto_Cmds
   au TermOpen,TermEnter,WinEnter term://* startinsert
   " Newline doesn't insert comment from comment
   au FileType * set formatoptions-=o
+  " <cfile> only registers apostrophes in markdown files
+  au FileType * if &filetype=='markdown' | set isfname+=' | else | set isfname-=' | endif
   " Set listchars like indent-blankline
   au FileType,BufEnter,OptionSet * let &l:listchars=&listchars..',leadmultispace:│'..repeat(' ', &shiftwidth -1)
   " Set registers b-z on launch and exit
