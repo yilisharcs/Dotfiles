@@ -123,11 +123,24 @@ bob use stable
 ### NU-PLUGINS ###
 ##################
 
+# CORE
 [
   /usr/libexec/nushell/nu_plugin_gstat
   /usr/libexec/nushell/nu_plugin_inc
   /usr/libexec/nushell/nu_plugin_query
 ] | each { plugin add $in } | ignore
+
+# THIRD-PARTY
+[
+  [ "--locked", "nu_plugin_skim" ]
+  [ "--locked", "nu_plugin_regex" ]
+] | each {|e| cargo install ...$e } | ignore
+
+[
+  $"($env.HOME)/.cargo/bin/nu_plugin_skim"
+  $"($env.HOME)/.cargo/bin/nu_plugin_regex"
+] | each {|e| plugin add $e } | ignore
+
 echo $'(ansi blue_bold)    Added Nushell plugins!(ansi reset)'
 
 ###############

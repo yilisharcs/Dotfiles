@@ -57,7 +57,7 @@ $env.config.keybindings = [
         | reverse
         | uniq
         | str join (char -i 0)
-        | sk
+        | ^sk
         --read0
         --layout reverse
         --query (commandline)
