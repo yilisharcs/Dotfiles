@@ -3,6 +3,7 @@ return {
   dependencies = { { 'akinsho/toggleterm.nvim', version = '*' } },
   dev = true,
   cmd = { 'Lf' },
+  lazy = false,
   keys = {
     { '-', '<CMD>Lf<CR>', desc = 'File manager' }
   },
