@@ -31,16 +31,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 
-export FZF_DEFAULT_COMMAND="fd --hidden --follow --ignore-case --type file \
-  --strip-cwd-prefix --exclude={.cache,.git,.npm}"
-export FZF_DEFAULT_OPTS="--preview 'bat --color=always --wrap=never --style=plain \
-  --line-range=:500 {}' --layout=reverse --multi --preview-window border-left \
-  --bind backward-eof:abort --bind 'F4:change-preview-window(hidden|right)' \
-  --bind 'ctrl-j:preview-page-down,ctrl-k:preview-page-up'"
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window hidden \
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | xsel -ib)+abort' \
-  --header 'Press CTRL-Y to copy command into clipboard'"
-
 # set sqlite histfile elsewhere instead of HOME
 export SQLITE_HISTORY="$HOME/.local/state/sqlite3/sqlite_history"
 

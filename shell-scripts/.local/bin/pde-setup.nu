@@ -114,6 +114,7 @@ rustup target install wasm32-unknown-unknown
   [ "porsmo" ]
   [ "ra-multiplex" ]
   [ "speedtest-rs" ]
+  [ "skim" ]
 ] | each {|e| cargo install ...$e } | ignore
 
 bob use stable

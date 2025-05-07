@@ -56,6 +56,7 @@ return {
     end
   end,
   opts = {
+    fzf_bin = 'sk',
     keymap = {
       builtin = {
         ['<C-k>'] = 'preview-page-up',
