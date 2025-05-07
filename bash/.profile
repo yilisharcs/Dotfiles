@@ -31,6 +31,11 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 
+export SKIM_DEFAULT_COMMAND="fd --color=never --hidden --follow --type f --type l --exclude .git"
+export SKIM_DEFAULT_OPTIONS="--bind='ctrl-j:preview-page-down,ctrl-k:preview-page-up' \
+  --layout=reverse --multi --bind='F4:toggle-preview,ctrl-h:backward-char+delete-charEOF' \
+  --preview 'bat {} --color=always --wrap=never --style=plain --line-range=:500'"
+
 # set sqlite histfile elsewhere instead of HOME
 export SQLITE_HISTORY="$HOME/.local/state/sqlite3/sqlite_history"
 
