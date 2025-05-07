@@ -38,7 +38,7 @@ return {
           -- HACK: this should be implemented in the plugin itself
           vim.cmd('Lf')
           vim.cmd('only')
-          -- working alternative to :startinsert
+          -- working alternative to :startinsert with Lf
           vim.api.nvim_feedkeys('i', 'n', false)
         end
       }
