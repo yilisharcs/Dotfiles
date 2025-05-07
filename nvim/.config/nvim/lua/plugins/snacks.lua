@@ -6,6 +6,8 @@ return {
     { '<leader>gB', function() Snacks.gitbrowse() end,             desc = 'Open git repo in the browser' },
     { '<leader>n',  function() Snacks.notifier.show_history() end, desc = 'Notification History' },
     { '<F7>',       ':= _G.dd()<LEFT>',                            desc = 'Debug inspect' },
+    { '<leader>s',  function() Snacks.scratch() end,               desc = 'Toggle Scratch Buffer' },
+    { '<leader>S',  function() Snacks.scratch.select() end,        desc = 'Select Scratch Buffer' },
   },
   opts = {
     bigfile = { enabled = true },
@@ -13,15 +15,20 @@ return {
     -- image = { enabled = true },
     notifier = { enabled = true },
     quickfile = { enabled = true },
+    scratch = { enable = true },
     scroll = { enabled = not vim.g.neovide },
     styles = {
-      notification_history = { wo = { wrap = true } }
+      notification_history = {
+        width = 0.9,
+        wo = { wrap = true },
+      }
     }
   },
   init = function()
     -- setup some globals for debugging
     _G.dd = function(...) Snacks.debug.inspect(...) end
     _G.bt = function() Snacks.debug.backtrace() end
+    vim.print = _G.dd
 
     -- simple lsp progress example
     vim.api.nvim_create_autocmd('LspProgress', {
