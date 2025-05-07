@@ -4,7 +4,6 @@ setlocal nolist
 setlocal noexpandtab
 setlocal suffixesadd+=.md,.lemon
 setlocal iskeyword+=-,'
-setlocal isfname+='
 let &l:commentstring='<!-- %s -->'
 
 inoremap <buffer> ... …
