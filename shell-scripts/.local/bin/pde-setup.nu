@@ -27,6 +27,7 @@
   mesa-utils                     # gpu utils
   ncdu                           # disk space checker
   pass                           # cli password manager
+  pandoc                         # markup converter
   picard                         # music metadata editor
   preload                        # fetch frequently-used binaries to ram
   qbittorrent
