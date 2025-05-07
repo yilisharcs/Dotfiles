@@ -35,6 +35,11 @@ return {
         ['default'] = function(selected)
           vim.cmd('tabnew ' .. selected[1])
           vim.cmd('tcd ' .. selected[1])
+          -- HACK: this should be implemented in the plugin itself
+          vim.cmd('Lf')
+          vim.cmd('only')
+          -- working alternative to :startinsert
+          vim.api.nvim_feedkeys('i', 'n', false)
         end
       }
       local dirs = {
