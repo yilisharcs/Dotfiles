@@ -3,7 +3,7 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   lazy = false,
   opts = {
-    default_file_explorer = true,
+    default_file_explorer = false,
     columns = {
       'icon',
       'permissions',
