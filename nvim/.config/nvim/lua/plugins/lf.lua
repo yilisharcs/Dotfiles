@@ -1,6 +1,8 @@
 return {
   'yilisharcs/lf.nvim',
   dependencies = { { 'akinsho/toggleterm.nvim', version = '*' } },
+  dev = true,
+  cmd = { 'Lf' },
   keys = {
     { '-', '<CMD>Lf<CR>', desc = 'File manager' }
   },
