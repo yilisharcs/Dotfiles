@@ -10,10 +10,10 @@ return {
     { '<leader>S',  function() Snacks.scratch.select() end,        desc = 'Select Scratch Buffer' },
   },
   opts = {
-    bigfile = {
-      enabled = true,
-      size = 1.5 * 1024 * 1024, -- 1.5MB
-    },
+    -- bigfile = {
+    --   enabled = true,
+    --   size = 1.5 * 1024 * 1024, -- 1.5MB
+    -- },
     gitbrowse = { enabled = true },
     -- image = { enabled = true },
     notifier = { enabled = true },
