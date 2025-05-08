@@ -108,7 +108,7 @@ vim.keymap.set('n', '<C-SPACE><LEFT>', '<CMD>-tabmove<CR>')
 vim.keymap.set('n', '<C-SPACE><RIGHT>', '<CMD>+tabmove<CR>')
 vim.keymap.set({ 'n', 't' }, '<C-SPACE>t', '<CMD>wincmd T<CR>', { desc = 'Open buffer in new tab' })
 
-vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>c', '<CMD>tabnew | term<CR>')
+vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>c', '<CMD>tabnew | term nu<CR>')
 vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>x', '<CMD>tabclose<CR>')
 vim.keymap.set({ 'n', 'x', 'i', 'c', 't' }, '<C-SPACE>h', '<CMD>tabnew | term btop<CR>')
 
