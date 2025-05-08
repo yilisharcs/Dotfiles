@@ -15,7 +15,7 @@ return {
     --   size = 1.5 * 1024 * 1024, -- 1.5MB
     -- },
     gitbrowse = { enabled = true },
-    -- image = { enabled = true },
+    image = { enabled = vim.env.TERM == "xterm-kitty" },
     notifier = { enabled = true },
     quickfile = { enabled = true },
     scratch = { enable = true },
