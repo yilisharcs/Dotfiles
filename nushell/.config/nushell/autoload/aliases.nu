@@ -41,6 +41,7 @@ def just [...args] {
 }
 
 # explore, with tables!
+# TODO: add a --find flag (it's harder than it sounds)
 def wut [...arg: string] {
   match $arg {
     aliases => { help aliases | explore }
