@@ -42,7 +42,7 @@ return {
             modes = { n = '<C-y>', i = '<C-y>' },
           },
           close = {
-            modes = { n = '<ESC>' },
+            modes = { n = '<C-q>', i = '<C-q>' },
           },
         },
       },
