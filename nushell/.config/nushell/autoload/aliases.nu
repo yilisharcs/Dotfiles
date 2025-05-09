@@ -12,6 +12,7 @@ alias pomo = porsmo
 alias speedtest = speedtest-rs
 alias visudo = sudo visudo
 alias wiki = wiki-tui
+def wut [arg: string] { help $arg | less -R }
 alias yeet = sudo apt-get purge --autoremove
 
 # nushell scripts
