@@ -19,7 +19,6 @@ return {
     notifier = { enabled = true },
     quickfile = { enabled = true },
     scratch = { enable = true },
-    scroll = { enabled = not vim.g.neovide },
     styles = {
       notification_history = {
         width = 0.9,
