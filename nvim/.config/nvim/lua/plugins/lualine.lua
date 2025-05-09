@@ -15,6 +15,9 @@ return {
       icons_enabled        = true,
       section_separators   = { left = '', right = '' },
       component_separators = { left = '│', right = '│' },
+      ignore_focus         = {
+        'codecompanion',
+      },
       theme                = {
         normal = {
           a = { bg = '#181825', fg = '#89b4fa', gui = 'bold' },
