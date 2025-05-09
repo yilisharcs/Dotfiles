@@ -23,4 +23,7 @@ augroup Auto_Cmds
         \| for i in range(104,122) | silent! call setreg(nr2char(i), [' ']) | endfor
   " Automatically open the quickfix window
   au QuickFixCmdPost [^l]* nested cwindow
+  " Clear control character from LLM output
+  au BufWritePre * let s:c=nvim_win_get_cursor(0)
+        \| silent! keeppatterns %s/\\+$//e | call nvim_win_set_cursor(0, s:c)
 augroup END

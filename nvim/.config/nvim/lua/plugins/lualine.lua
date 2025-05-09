@@ -83,10 +83,10 @@ return {
           padding = { left = 1, right = 0 }
         },
       },
-      lualine_c = { { 'filename', path = 1 } },
+      lualine_c = { { 'filename', path = 0 } },
       lualine_x = { { 'location', padding = 2 } },
       lualine_y = { 'progress' },
-      lualine_z = { 'mode' }
+      lualine_z = {},
     },
     extensions = {
       'lf',
