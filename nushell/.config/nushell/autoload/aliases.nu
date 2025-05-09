@@ -41,7 +41,7 @@ def just [...args] {
 }
 
 # explore, with tables!
-def wut [arg?: string] {
+def wut [...arg: string] {
   match $arg {
     aliases => { help aliases | explore }
     commands => { help commands | explore }
@@ -51,6 +51,6 @@ def wut [arg?: string] {
     operators => { help operators | explore }
     pipe-and-redirect => { help pipe-and-redirect | explore }
     null => { help | less -R }
-    _ => { help $arg | less -R }
+    _ => { help ...$arg | less -R }
   }
 }
