@@ -68,7 +68,8 @@ return {
           'searchcount',
           maxcount = 999,
           timeout = 500,
-          separator = { right = '' }
+          separator = { right = '' },
+          color = { fg = '#e0d561', gui = 'bold' }
         },
         { 'location', padding = 2 }
       },
