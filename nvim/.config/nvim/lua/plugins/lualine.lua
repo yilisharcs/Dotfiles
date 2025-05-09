@@ -1,3 +1,8 @@
+local cond = function()
+  if vim.api.nvim_win_get_width(0) < 80 then return false end
+  return true
+end
+
 return {
   'yilisharcs/lualine.nvim',
   branch = 'lf-extension',
@@ -46,8 +51,8 @@ return {
     sections = {
       lualine_a = { 'branch' },
       lualine_b = {
-        'diff',
-        'diagnostics',
+        { 'diff',        cond = cond },
+        { 'diagnostics', cond = cond },
         {
           'filetype',
           icon_only = true,
@@ -70,8 +75,8 @@ return {
     inactive_sections = {
       lualine_a = { 'branch' },
       lualine_b = {
-        'diff',
-        'diagnostics',
+        { 'diff',        cond = cond },
+        { 'diagnostics', cond = cond },
         {
           'filetype',
           icon_only = true,
