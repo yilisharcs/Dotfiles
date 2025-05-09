@@ -12,7 +12,6 @@ alias pomo = porsmo
 alias speedtest = speedtest-rs
 alias visudo = sudo visudo
 alias wiki = wiki-tui
-def wut [arg: string] { help $arg | less -R }
 alias yeet = sudo apt-get purge --autoremove
 
 # nushell scripts
@@ -38,5 +37,20 @@ def just [...args] {
         echo $"Stow failed; files are in ($install_prefix)"
       }
     }
+  }
+}
+
+# explore, with tables!
+def wut [arg?: string] {
+  match $arg {
+    aliases => { help aliases | explore }
+    commands => { help commands | explore }
+    escapes => { help operators | explore }
+    externs => { help externs | explore }
+    modules => { help modules | explore }
+    operators => { help operators | explore }
+    pipe-and-redirect => { help pipe-and-redirect | explore }
+    null => { help | less -R }
+    _ => { help $arg | less -R }
   }
 }
