@@ -16,13 +16,13 @@
   ffmpeg
   ffmpegthumbnailer
   fzf                            # fuzzy finder
+  gimp                           # image editor
   gnome-boxes                    # virtualization
   gnome-shell-extension-manager
   hunspell-en-us
   hunspell-pt-br
   imagemagick
   inkscape                       # image editor
-  krita                          # image editor
   lf                             # tui file explorer
   mesa-utils                     # gpu utils
   ncdu                           # disk space checker
