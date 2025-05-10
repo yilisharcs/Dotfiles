@@ -61,7 +61,7 @@ $env.config.keybindings = [
         --read0
         --layout reverse
         --query (commandline)
-        --bind=ctrl-y:(echo {} | wl-copy)+abort
+        --preview-window hidden
         | decode utf-8
         | str trim
         )"
