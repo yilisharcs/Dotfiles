@@ -47,7 +47,7 @@ return {
         '~/projects/nvim',
         '~/opt',
         '~/.local/share/nvim/lazy',
-        '/home/yilisharcs/.local/share/bob/nightly/share/nvim/runtime/',
+        '/home/yilisharcs/.local/share/bob/nightly/share/nvim/',
         '~/'
       }
       require('fzf-lua').fzf_exec(
