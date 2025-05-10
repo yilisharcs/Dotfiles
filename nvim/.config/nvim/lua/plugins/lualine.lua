@@ -65,6 +65,16 @@ return {
       lualine_c = { { 'filename', path = 1 } },
       lualine_x = {
         {
+          function()
+            local macro = vim.fn.reg_recording()
+            if macro == '' then return '' end
+            return 'recording @' .. vim.fn.reg_recording()
+          end,
+          padding = { left = 0, right = 1 },
+          separator = { right = '' },
+          color = { fg = '#fab387', gui = 'bold' },
+        },
+        {
           'searchcount',
           maxcount = 999,
           timeout = 500,
