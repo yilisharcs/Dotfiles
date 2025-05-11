@@ -1,0 +1,11 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "yilisharcs"
+email = "yilisharcs@gmail.com"
+
+[ui]
+default-command = ["log", "--reversed"]
+
+[aliases]
+init = ["git", "init"]
