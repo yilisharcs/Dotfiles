@@ -98,8 +98,8 @@ rustup component add rust-analyzer
 rustup target install wasm32-unknown-unknown
 
 [
-  [ "--git", "https://github.com/neovide/neovide" ]
-  [ "--locked", "wiki-tui" ]
+  [ "--git" "https://github.com/neovide/neovide" ]
+  [ "--locked" "wiki-tui" ]
   [ "bob-nvim" ]
   # [ "cargo-audit" ]
   # [ "cargo-auditable" ]
@@ -132,8 +132,8 @@ bob use stable
 
 # THIRD-PARTY
 [
-  [ "--locked", "nu_plugin_skim" ]
-  [ "--locked", "nu_plugin_regex" ]
+  [ "--locked" "nu_plugin_skim" ]
+  [ "--locked" "nu_plugin_regex" ]
 ] | each {|e| cargo install ...$e } | ignore
 
 [
