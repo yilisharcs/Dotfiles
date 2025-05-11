@@ -22,7 +22,7 @@ return {
     vim.lsp.enable({
       'luals',
       -- 'rust-analyzer',
-      'vimls',
+      -- 'vimls',
     })
     -- make sure mason can detect fnm
     vim.env.PATH = vim.env.HOME ..
