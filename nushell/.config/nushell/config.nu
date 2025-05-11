@@ -112,6 +112,9 @@ do --env {
 
 mkdir ($nu.data-dir | path join "vendor/autoload")
 
+carapace _carapace nushell | save -f ($nu.data-dir | path join "vendor/autoload/carapace.nu")
+$env.CARAPACE_BRIDGES = "zsh,fish,bash,inshellisense"
+
 fnm env --json | from json | load-env
 $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
 
