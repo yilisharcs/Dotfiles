@@ -59,6 +59,7 @@
   gettext
   gh                             # github cli client
   git
+  golang                         # rdeps: carapace, zk
   libasound2-dev
   libayatana-appindicator3-dev
   libbz2-dev
@@ -89,6 +90,17 @@
   wget
   yq                             # cli json, yaml, and xml processor
 ] | sudo apt install -y ...$in
+
+##############
+### GOLANG ###
+##############
+
+use std/dirs; dirs add $"($env.HOME)/opt/"
+
+[ https://github.com/zk-org/zk ] | each {|e| git clone $e } | ignore
+make -C $"($env.HOME)/opt/zk"
+
+dirs drop
 
 ####################
 ### RUST-N-CARGO ###
