@@ -51,7 +51,7 @@ def wut [...arg: string] {
     modules => { help modules | explore }
     operators => { help operators | explore }
     pipe-and-redirect => { help pipe-and-redirect | explore }
-    null => { help | less -R }
-    _ => { help ...$arg | less -R }
+    null => { help | less -FRX }
+    _ => { help ...$arg | less -FRX }
   }
 }
