@@ -62,3 +62,4 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export SUDO_EDITOR=vim.tiny
 export EDITOR=nvim
 export MANPAGER="nvim +Man!"
+export LESS="-FRX"
