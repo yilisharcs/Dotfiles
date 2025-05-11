@@ -42,6 +42,8 @@ export SQLITE_HISTORY="$HOME/.local/state/sqlite3/sqlite_history"
 # disable "command timed-out" prompt errors
 export STARSHIP_LOG="error"
 
+export ZK_NOTEBOOK_DIR="$HOME/notebook"
+
 # {
 
 # bob-nvim
