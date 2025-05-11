@@ -148,7 +148,7 @@ map I push :mkdir<space>
 map p :paste; clear
 map P :symlink
 map R oilrename
-map w $$SHELL
+map w $nu
 map U untrash
 map v :toggle; down
 map V invert
