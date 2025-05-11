@@ -47,6 +47,11 @@ export STARSHIP_LOG="error"
 # bob-nvim
 export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
+# Golang
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export PATH="$GOBIN:$PATH"
+
 ## Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
