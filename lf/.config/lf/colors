@@ -200,7 +200,7 @@ fi      00      # FILE
 ~/games/          01;33
 ~/Pictures/       01;33
 ~/Music/          01;33
-~/notes/          01;33
+~/notebook/       01;33
 ~/personal/       01;33
 ~/projects/       01;33
 ~/Videos/         01;33
