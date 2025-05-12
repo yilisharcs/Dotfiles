@@ -178,7 +178,7 @@ fi      00      # FILE
 .git/        01;33
 .git*        00;33
 *.gitignore  00;33
-*.jj/        00;33
+.jj/         00;33
 *README.md   00;33
 
 *Makefile         00;32
