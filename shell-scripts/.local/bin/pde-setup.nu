@@ -25,6 +25,7 @@
   inkscape                       # image editor
   lf                             # tui file explorer
   mesa-utils                     # gpu utils
+  mold                           # better linker
   ncdu                           # disk space checker
   pass                           # cli password manager
   pandoc                         # markup converter
@@ -106,12 +107,13 @@ dirs drop
 ### RUST-N-CARGO ###
 ####################
 
+rustup default stable
 rustup component add rust-analyzer
 rustup target install wasm32-unknown-unknown
 
 [
   [ "--git" "https://github.com/neovide/neovide" ]
-  [ "--locked" "wiki-tui" ]
+  # [ "--locked" "wiki-tui" ]
   [ "bob-nvim" ]
   # [ "cargo-audit" ]
   # [ "cargo-auditable" ]
@@ -149,8 +151,8 @@ bob use stable
 ] | each {|e| cargo install ...$e } | ignore
 
 [
-  $"($env.HOME)/.cargo/bin/nu_plugin_skim"
-  $"($env.HOME)/.cargo/bin/nu_plugin_regex"
+  "~/.cargo/bin/nu_plugin_skim"
+  "~/.cargo/bin/nu_plugin_regex"
 ] | each {|e| plugin add $e } | ignore
 
 echo $'(ansi blue_bold)    Added Nushell plugins!(ansi reset)'
@@ -180,11 +182,11 @@ sudo update-alternatives --set editor /usr/bin/vim.tiny
 # Symlinks that stow can't automate
 {
   ## Dirs
-  $"($env.HOME)/.local/share/Trash": $"($env.HOME)/Trash",
+ln -s "~/.local/share/Trash" "~/Trash"
 
   ## Bins
-  $"(^which batcat)": $"($env.HOME)/.local/bin/bat",
-  $"(^which fdfind)": $"($env.HOME)/.local/bin/fd",
+  $"(^which batcat)": "~/.local/bin/bat",
+  $"(^which fdfind)": "~/.local/bin/fd",
 } | items {|k, v|
   if ( ($v) | path exists ) {
     print $'(ansi green_bold)  Symlink (ansi yellow_bold)($v) (ansi green_bold)already exists.(ansi reset)'
@@ -193,7 +195,7 @@ sudo update-alternatives --set editor /usr/bin/vim.tiny
   }
 } | ignore
 
-make -C $"($env.HOME)/.dotfiles"
+make -C "~/.dotfiles"
 
 # use std/dirs; dirs add $"($env.HOME)/opt/"
 #
