@@ -59,7 +59,7 @@
   gcc-multilib
   gettext
   gh                             # github cli client
-  git
+  git                            # version control system
   golang                         # rdeps: carapace, zk
   libasound2-dev
   libayatana-appindicator3-dev
