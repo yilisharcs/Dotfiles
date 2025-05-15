@@ -69,4 +69,7 @@ set termguicolors
 set virtualedit=block
 set winborder=rounded
 
+" Nushell doesn't grok vi
+let &shell=exepath('bash')
+
 colorscheme lunamia
