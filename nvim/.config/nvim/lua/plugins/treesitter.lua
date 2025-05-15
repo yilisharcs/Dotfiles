@@ -11,6 +11,7 @@ return {
     require('nvim-treesitter.configs').setup({
       ensure_installed = {
         'comment',
+        'nix',
         'nu',
         'rust',
       },
