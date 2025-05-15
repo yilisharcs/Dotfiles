@@ -1,3 +1,9 @@
+vim.lsp.enable({
+  'luals',
+  -- 'rust-analyzer',
+  'vimls',
+})
+
 vim.lsp.set_log_level('off')
 
 vim.lsp.config('*', {
