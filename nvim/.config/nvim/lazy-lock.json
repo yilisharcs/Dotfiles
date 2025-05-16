@@ -38,5 +38,6 @@
   "vim-repeat": { "branch": "maparg", "commit": "711fe37dd34dd53d22742044817e180740868e20" },
   "vim-sneak": { "branch": "master", "commit": "18b1faf020e6a66c1ce09b3ff5e6b6feb182973b" },
   "vim-symlink": { "branch": "master", "commit": "fec2d1a72c6875557109ce6113f26d3140b64374" },
-  "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" }
+  "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
+  "zk-nvim": { "branch": "main", "commit": "69e6f9c9793d4884a15310314f33dc4f0d57275a" }
 }
