@@ -60,6 +60,7 @@ return {
     fzf_bin = 'sk',
     keymap = {
       builtin = {
+        ['<C-h>'] = 'backward-char+delete-charEOF',
         ['<C-k>'] = 'preview-page-up',
         ['<C-j>'] = 'preview-page-down',
         ['<F1>'] = 'toggle-help',
