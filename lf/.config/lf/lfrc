@@ -106,7 +106,7 @@ set cleaner ctpvclear
 &ctpvquit $id
 
 cmd fuzzyfind ${{
-  lf -remote "send $id select \"$(fzf)\""
+  lf -remote "send $id select \"$(sk)\""
 }}
 
 # Trash-cli
@@ -114,8 +114,8 @@ cmd dotrash %{{
   trash-put $fx
 }}
 cmd untrash ${{
-  FZF_DEFAULT_OPTS=""
-  file="$(trash-list | grep "$(pwd)" | fzf | awk '{$1=$2=""; print substr($0,3)}')"
+  SKIM_DEFAULT_OPTS="--bind='ctrl-h:backward-char+delete-charEOF' --preview-window hidden"
+  file="$(trash-list | grep "$(pwd)" | sk | awk '{$1=$2=""; print substr($0,3)}')"
   [ -z "$file" ] && exit 1
   yes 0 | trash-restore "$file"
 }}
