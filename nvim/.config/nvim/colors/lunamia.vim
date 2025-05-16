@@ -33,7 +33,7 @@ hi! link Error Removed
 hi! link DiagnosticError Removed
 
 hi NonText guifg=#282835
-hi LspInlayHint guifg=#585858 guibg=#0f0f0f gui=bold
+hi LspInlayHint guifg=#fec43f guibg=#0f0f0f gui=bold
 hi Delimiter guifg=NvimLightGrey2
 hi Statement guifg=#afffff
 hi markdownBlockQuote gui=bold
