@@ -3,6 +3,7 @@ return {
   dependencies = {
     'RRethy/nvim-treesitter-endwise',
     'HiPhish/rainbow-delimiters.nvim',
+    -- { 'nvim-treesitter/nvim-treesitter-context', opts = { min_window_height = 20 } },
   },
   build = ':TSUpdate',
   cond = not vim.g.shell_editor == true,
