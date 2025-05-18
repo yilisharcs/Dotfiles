@@ -19,7 +19,7 @@ return {
       '<C-x><C-f>',
       function()
         require('fzf-lua').complete_path({
-          cmd = 'fd --color=never --hidden --follow --exclude .git'
+          cmd = 'fd --color=never --hidden --follow --exclude={.git,Trash}'
         })
       end,
       mode = 'i',
@@ -82,7 +82,7 @@ return {
       backdrop = 100,
     },
     files = {
-      fd_opts = '--color=never --hidden --follow --type f --type l --exclude .git',
+      fd_opts = '--color=never --hidden --follow --type f --type l --exclude={.git,Trash}',
       winopts = { preview = { layout = 'vertical' } },
     },
     grep = {
