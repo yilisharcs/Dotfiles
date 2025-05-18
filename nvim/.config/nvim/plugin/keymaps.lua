@@ -1,7 +1,7 @@
 vim.keymap.set({ 'n', 'x' }, '<SPACE>', '<Nop>', { silent = true })
 
 vim.keymap.set({ 'n', 'x' }, '<leader>K', 'K', { desc = 'Look up word under cursor' })
-vim.keymap.set('i', '<C-c>', '<ESC>', { silent = true })
+vim.keymap.set({ 'x', 'i' }, '<C-c>', '<ESC>', { silent = true })
 vim.keymap.set('n', '<C-q>', '@@', { desc = 'Repeat previous register' })
 vim.keymap.set('o', '<C-a>', '<CMD>normal! ggVG<CR>', { desc = 'Operate on entire buffer' })
 
