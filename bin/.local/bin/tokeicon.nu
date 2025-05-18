@@ -2,7 +2,7 @@
 
 tokei --hidden --compact --sort code
 | lines
-| where $it !~ '='
+| where $it !~ '━'
 | str trim
 | split column --regex '\s\s+'
 | rename ...($in | first | values)
