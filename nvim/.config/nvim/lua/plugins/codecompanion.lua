@@ -12,7 +12,7 @@ return {
   opts = {
     opts = {
       system_prompt = function(opts)
-        local file = io.open('/home/yilisharcs/notes/LLM/cc-model-of-you.md', 'r')
+        local file = io.open('/home/yilisharcs/7vtlk-wj5qh/LLM/cc-model-of-you.md', 'r')
         ---@diagnostic disable: need-check-nil
         local content = file:read('*all')
         file:close()
@@ -55,7 +55,7 @@ return {
         return require('codecompanion.adapters').extend('openai_compatible', {
           env = {
             url = 'https://openrouter.ai/api',
-            api_key = 'cmd:pass show llm/openrouter/key',
+            api_key = 'cmd: cat /home/yilisharcs/projects/.env', -- 'cmd:pass show llm/openrouter/key',
             chat_url = '/v1/chat/completions',
           },
           schema = {
