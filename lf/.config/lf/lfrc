@@ -172,8 +172,10 @@ map gd cd ~/Downloads
 map gi cd ~/Pictures
 map gm cd ~/Music
 map gn cd ~/.dotfiles/nvim/.config/nvim
-map go cd ~/opt
+# map go cd ~/opt
+# map go cd ~/Games
 map gp cd ~/projects
 map gr cd ~/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f
-map gs cd ~/stow
+map gs cd ~/.dotfiles/bin/.local/bin
+map gv cd ~/Videos
 map gz cd ~/.local/share/nvim/lazy
