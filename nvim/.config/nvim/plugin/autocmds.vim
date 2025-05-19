@@ -13,7 +13,9 @@ augroup Auto_Cmds
   " <cfile> only registers apostrophes in markdown files
   au FileType * if &filetype=='markdown' | set isfname+=' | else | set isfname-=' | endif
   " Set listchars like indent-blankline
-  au FileType,BufEnter,OptionSet * let &l:listchars=&listchars..',leadmultispace:│'..repeat(' ', &shiftwidth -1)
+  au FileType,BufEnter,OptionSet * if &ft != 'snacks_notif'
+        \| let &l:listchars=&listchars..',leadmultispace:│'..repeat(' ', &shiftwidth -1)
+        \| endif
   " Set registers b-z on launch and exit
   au VimEnter * for i in range(98,102) | silent! call setreg(nr2char(i), []) | endfor
         \| for i in range(104,122) | silent! call setreg(nr2char(i), []) | endfor
