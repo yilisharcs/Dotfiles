@@ -9,19 +9,6 @@ hi ColorColumn guibg=#181825
 hi StatusLine guibg=#edf6f4 guifg=#181825
 hi! link TabLineFill ColorColumn
 
-function Color_Nu()
-  if &rnu && g:colors_name=='lunaperche'
-    hi! link LineNr String
-    hi! link LineNrBelow LineNrAbove
-    hi LineNrAbove guifg=#585858
-  else
-    hi LineNr guifg=#585858
-  endif
-endfunction
-augroup Color_Nu
-  au FileType,OptionSet * call Color_Nu()
-augroup END
-
 hi MsgArea guifg=#e0d561 gui=bold
 hi QuickFixLine gui=bold
 hi! link PmenuSbar Pmenu
@@ -88,5 +75,7 @@ hi NeogitGraphPurple guifg=#fab387
 hi! link NeogitPopupConfigEnabled Statement
 hi! link NeogitPopupOptionEnabled Statement
 hi! link NeogitPopupSwitchEnabled Statement
+
+hi TreesitterContextSeparator guibg=#181825
 
 hi! link @lsp.type.property.lua Type
