@@ -27,7 +27,7 @@ return {
       mode = 'n',
       body = '<leader>v',
       heads = {
-        { '<C-h>', 'xi<C-v>u25c4<Esc>' },   -- mode = 'v' somehow breaks
+        { '<C-h>', 'xi<C-v>u25c4<Esc>' }, -- mode = 'v' somehow breaks
         { '<C-j>', 'xi<C-v>u25bc<Esc>' },
         { '<C-k>', 'xi<C-v>u25b2<Esc>' },
         { '<C-l>', 'xi<C-v>u25ba<Esc>' },

@@ -1,5 +1,5 @@
 return {
-  'echasnovski/mini.surround',   -- see `:h MiniSurround.config`.
+  'echasnovski/mini.surround', -- see `:h MiniSurround.config`.
   version = false,
   keys = {
     { 'ys' },
@@ -22,19 +22,19 @@ return {
     respect_selection_type = true,
     search_method = 'cover_or_next',
     custom_surroundings = {
-      ['B'] = {   -- Bold
+      ['B'] = { -- Bold
         input = { '%*%*().-()%*%*' },
         output = { left = '**', right = '**' },
       },
-      ['I'] = {   -- Italics
+      ['I'] = { -- Italics
         input = { '%_().-()%_' },
         output = { left = '_', right = '_' },
       },
-      ['M'] = {   -- Monospace
+      ['M'] = { -- Monospace
         input = { '%`().-()%`' },
         output = { left = '`', right = '`' },
       },
-      ['G'] = {   -- Code block
+      ['G'] = { -- Code block
         input = { '%```().-()%```' },
         output = { left = '```', right = '```' },
       },

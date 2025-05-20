@@ -1,5 +1,5 @@
 return {
-  'echasnovski/mini.diff',   -- see `:h MiniDiff.config`.
+  'echasnovski/mini.diff', -- see `:h MiniDiff.config`.
   version = false,
   event = 'BufReadPost [^:]*',
   keys = {

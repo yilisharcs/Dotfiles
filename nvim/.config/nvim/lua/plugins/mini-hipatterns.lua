@@ -1,5 +1,5 @@
 return {
-  'echasnovski/mini.hipatterns',   -- see `:h MiniHipatterns.config`.
+  'echasnovski/mini.hipatterns', -- see `:h MiniHipatterns.config`.
   version = false,
   event = 'BufReadPost [^:]*',
   config = function()
