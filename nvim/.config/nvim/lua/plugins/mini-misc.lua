@@ -1,5 +1,5 @@
 return {
-  'echasnovski/mini.misc',   -- see `:h MiniMisc.config`.
+  'echasnovski/mini.misc', -- see `:h MiniMisc.config`.
   version = false,
   event = 'BufReadPost [^:]*',
   config = function()
