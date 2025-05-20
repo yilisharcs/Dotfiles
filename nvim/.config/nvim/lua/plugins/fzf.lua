@@ -45,9 +45,8 @@ return {
       local dirs = {
         '~/projects/',
         '~/projects/nvim',
-        '~/opt',
+        '~/projects/rust-by-example',
         '~/.local/share/nvim/lazy',
-        '/home/yilisharcs/.local/share/bob/nightly/share/nvim/',
         '~/'
       }
       require('fzf-lua').fzf_exec(
