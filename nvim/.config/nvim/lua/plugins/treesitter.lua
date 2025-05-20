@@ -8,6 +8,9 @@ return {
       opts = {
         min_window_height = 20,
         separator = '⥰',
+        on_attach = function(bufnr)
+          return vim.bo[bufnr].filetype ~= 'markdown'
+        end
       }
     },
   },
