@@ -76,6 +76,4 @@ hi! link NeogitPopupConfigEnabled Statement
 hi! link NeogitPopupOptionEnabled Statement
 hi! link NeogitPopupSwitchEnabled Statement
 
-hi TreesitterContextSeparator guibg=#181825
-
 hi! link @lsp.type.property.lua Type
