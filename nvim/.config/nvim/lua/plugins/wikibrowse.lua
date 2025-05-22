@@ -1,5 +1,6 @@
 return {
   'yilisharcs/wikibrowse.nvim',
+  enabled = false,
   dev = true,
   lazy = false,
   cmd = 'WikiBrowse',
