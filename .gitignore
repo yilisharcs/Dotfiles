@@ -2,8 +2,12 @@ TODO.md
 
 nvim/.config/nvim/lsp/_lsp.lua
 nvim/.config/nvim/spell/*.add.spl
-bob-nvim/.config/bob/nvim.version
 
 nushell/.config/nushell/env.nu
 nushell/.config/nushell/history.*
 nushell/.config/nushell/plugin.msgpackz
+
+qBittorrent/.config/qBittorrent/categories.json
+qBittorrent/.config/qBittorrent/lockfile
+qBittorrent/.config/qBittorrent/rss/
+qBittorrent/.config/qBittorrent/watched_folders.json
