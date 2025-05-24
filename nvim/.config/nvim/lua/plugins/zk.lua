@@ -6,9 +6,20 @@ return {
       function()
         vim.ui.input({ prompt = 'Title: ' }, function(input)
           require('zk').new({ title = input })
+          vim.defer_fn(function()
+            vim.cmd('norm! G')
+            vim.cmd.startinsert()
+          end, 100)
         end)
       end,
       desc = 'Create new note'
+    },
+    {
+      '<leader>zl',
+      function()
+        require('zk').new({ dir = 'journal', group = 'journal' })
+      end,
+      desc = 'Create journal entry'
     },
     {
       '<leader>zo',
