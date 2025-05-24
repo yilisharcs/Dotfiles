@@ -166,7 +166,8 @@ map zz zoxide
 
 # CD Shortcuts
 map g/ cd /
-map gb cd ~/notes
+map gb cd ~/notebook
+map gB cd ~/vault
 map gc cd ~/.dotfiles
 map gd cd ~/Downloads
 map gi cd ~/Pictures

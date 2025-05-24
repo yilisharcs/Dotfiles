@@ -6,7 +6,7 @@ setlocal suffixesadd+=.md,.lemon
 setlocal iskeyword+=-,'
 let &l:commentstring='<!-- %s -->'
 
-inoremap <buffer> ... …
+nnoremap <F2> G{{O<CR>### <C-r>=strftime('%H:%M')<CR><CR>
 
 " mini doesn't surround a line with newlines
 lua << EOF
