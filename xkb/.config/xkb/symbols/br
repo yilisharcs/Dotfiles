@@ -6,7 +6,7 @@ xkb_symbols "abnt2" {
   include "latin"
   name[Group1]="Portuguese (Brazil)";
 
-  key <TLDE> { [   asciitilde,    asciicircum,           grave                  ] };
+  key <TLDE> { [   asciitilde,          grave                                   ] };
 
   key <AE01> { [            1,         exclam,     onesuperior,      exclamdown ] };
   key <AE02> { [            2,             at,     twosuperior,         onehalf ] };
@@ -29,19 +29,19 @@ xkb_symbols "abnt2" {
   key <AD06> { [            y,              Y,             yen,       paragraph ] };
   key <AD07> { [            u,              U,          uacute,         uparrow ] };
   key <AD08> { [            i,              I,          iacute                  ] };
-  key <AD09> { [            o,              O,          oacute,     ocircumflex ] };
+  key <AD09> { [            o,              O,          otilde,     ocircumflex ] };
   key <AD10> { [            p,              P,      registered,      registered ] };
   key <AD11> { [  bracketleft,      braceleft,     ordfeminine,      braceright ] };
   key <AD12> { [ bracketright,     braceright,       masculine,       masculine ] };
 
-  key <AC01> { [            a,              A,          aacute,     acircumflex ] };
+  key <AC01> { [            a,              A,          atilde,     acircumflex ] };
   key <AC02> { [            s,              S,       backslash,          ssharp ] };
   key <AC03> { [            d,              D,             bar,       dead_hook ] };
   key <AC04> { [            f,              F,         percent,     ordfeminine ] };
   key <AC10> { [    semicolon,          colon,      dead_tilde,             bar ] };
   key <AC11> { [   apostrophe,       quotedbl,           grave,     dead_macron ] };
 
-  key <BKSL> { [    backslash,       question,          degree,    questiondown ] };
+  key <BKSL> { [   dead_acute,     dead_tilde,          degree,    questiondown ] };
 
   key <AB03> { [            c,              C,        ccedilla,       copyright ] };
   key <AB06> { [            n,              N,          ntilde, rightsinglequotemark ] };
