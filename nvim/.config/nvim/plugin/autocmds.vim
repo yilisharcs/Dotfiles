@@ -9,7 +9,7 @@ augroup Auto_Cmds
   " Enter terminal on insert mode
   au TermOpen,TermEnter,WinEnter term://* startinsert
   " Newline doesn't insert comment from comment
-  au FileType * set formatoptions-=o
+  au FileType * set formatoptions-=o | set formatoptions+=r
   " <cfile> only registers apostrophes in markdown files
   au FileType * if &filetype=='markdown' | set isfname+=' | else | set isfname-=' | endif
   " Set listchars like indent-blankline
