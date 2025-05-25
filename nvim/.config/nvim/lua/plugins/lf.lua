@@ -1,7 +1,7 @@
 return {
   'yilisharcs/lf.nvim',
   dependencies = { { 'akinsho/toggleterm.nvim', version = '*' } },
-  dev = true,
+  -- dev = true,
   cmd = { 'Lf' },
   lazy = false,
   keys = {
