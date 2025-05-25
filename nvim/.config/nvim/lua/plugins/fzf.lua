@@ -56,7 +56,6 @@ return {
     end
   end,
   opts = {
-    fzf_bin = 'sk',
     keymap = {
       builtin = {
         ['<C-k>'] = 'preview-page-up',
@@ -66,7 +65,7 @@ return {
         ['<F4>'] = 'toggle-preview',
       },
       fzf = {
-        ['ctrl-y'] = 'select-all+accept(enter)',
+        ['ctrl-y'] = 'select-all+accept',
         ['alt-a'] = 'toggle-all',
         ['alt-g'] = 'last',
         ['alt-G'] = 'first',
