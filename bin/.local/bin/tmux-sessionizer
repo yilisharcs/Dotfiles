@@ -7,7 +7,7 @@ if [[ $# -eq 1 ]]; then
 else
   selected=$(
   find -L ~/projects/ ~/projects/nvim ~/opt ~/.local/share/nvim/lazy ~/ \
-      -mindepth 1 -maxdepth 1 -type d | sk --preview-window hidden
+      -mindepth 1 -maxdepth 1 -type d | fzf --preview-window hidden
   )
 fi
 
