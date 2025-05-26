@@ -1,10 +1,9 @@
 return {
   'MeanderingProgrammer/render-markdown.nvim',
-  enabled = false,
+  -- enabled = false,
   ft = { 'markdown', 'codecompanion' },
   opts = {
-    sign = {
-      enabled = false,
-    }
+    anti_conceal = { enabled = false },
+    sign = { enabled = false },
   }
 }
