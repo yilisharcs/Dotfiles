@@ -12,7 +12,7 @@ return {
   opts = {
     opts = {
       system_prompt = function(opts)
-        local file = io.open('/home/yilisharcs/7vtlk-wj5qh/LLM/cc-model-of-you.md', 'r')
+        local file = io.open('/home/yilisharcs/vault/LLM/cc-model-of-you.md', 'r')
         ---@diagnostic disable: need-check-nil
         local content = file:read('*all')
         file:close()
