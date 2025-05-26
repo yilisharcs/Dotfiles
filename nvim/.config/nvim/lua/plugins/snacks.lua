@@ -16,6 +16,7 @@ return {
     },
     gitbrowse = { enabled = true },
     image = { enabled = vim.env.TERM == "xterm-kitty" },
+    input = { enabled = true },
     notifier = { enabled = true },
     quickfile = { enabled = true },
     scratch = { enable = true },

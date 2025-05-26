@@ -9,7 +9,7 @@ return {
   },
   opts = {
     open_for_directories = true,
-    open_multiple_tabs = true, -- open visible splits and quickfix items as yazi tabs
+    open_multiple_tabs = true,
     log_level = vim.log.levels.WARN,
     floating_window_scaling_factor = 1.0,
     keymaps = {
