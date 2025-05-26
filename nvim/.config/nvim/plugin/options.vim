@@ -71,6 +71,7 @@ set updatetime=1000
 set termguicolors
 set virtualedit=block
 set winborder=rounded
+set inccommand=split
 
 " Nushell doesn't grok vi
 let &shell=exepath('bash')
