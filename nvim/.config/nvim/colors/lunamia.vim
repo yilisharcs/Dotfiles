@@ -8,6 +8,7 @@ hi Folded guibg=#181825 gui=bold
 hi ColorColumn guibg=#181825
 hi StatusLine guibg=#edf6f4 guifg=#181825
 hi! link TabLineFill ColorColumn
+hi! link CursorLineNr String
 
 hi MsgArea guifg=#e0d561 gui=bold
 hi QuickFixLine gui=bold

@@ -64,6 +64,9 @@ set guicursor=a:block,c-ci-i-r:blinkwait700-blinkoff700-blinkon700
 
 set diffopt^=algorithm:patience
 
+set cursorline
+set cursorlineopt=number
+
 set updatetime=1000
 set termguicolors
 set virtualedit=block
