@@ -12,11 +12,13 @@ return {
   end,
   opts = {
     options = {
-      icons_enabled = true,
-      ignore_focus  = {
+      icons_enabled        = true,
+      section_separators   = { left = '', right = '' },
+      component_separators = { left = '', right = '' },
+      ignore_focus         = {
         'codecompanion',
       },
-      theme         = {
+      theme                = {
         normal = {
           a = { bg = '#181825', fg = '#89b4fa', gui = 'bold' },
           b = { bg = '#313244', fg = '#89b4fa', gui = 'bold' },

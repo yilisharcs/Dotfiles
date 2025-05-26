@@ -100,6 +100,9 @@ vim.keymap.set('t', '<C-S-V>', '<C-\\><C-n>pi', { desc = 'Paste from clipboard' 
 vim.keymap.set('t', '<C-4><C-r>', [['<C-\><C-n>"'.nr2char(getchar()).'pi']],
   { expr = true, desc = 'Paste from register $@' })
 
+-- Lots of terminal programs don't register C-4 as C-\
+vim.keymap.set('t', '<C-4><C-n>', [[<C-\><C-n>]])
+
 -- Tmux-like workflow
 vim.keymap.set('n', '<C-SPACE><C-^>', '<CMD>wincmd g<TAB><CR>')
 -- C-^ registers as <TAB> for reasons unknown
