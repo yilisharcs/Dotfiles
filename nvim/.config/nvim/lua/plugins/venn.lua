@@ -20,6 +20,7 @@ return {
       name = 'Draw Utf-8 Venn Diagram',
       hint = venn_hint_utf,
       config = {
+        hint = { position = 'bottom-right' },
         color = 'pink',
         invoke_on_body = true,
         on_enter = function() vim.wo.virtualedit = 'all' end,
