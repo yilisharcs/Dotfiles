@@ -5,12 +5,12 @@ hi NormalNC guibg=#0f0f0f
 hi! link NormalFloat Normal
 hi! link FloatBorder NormalFloat
 hi Folded guibg=#181825 gui=bold
-hi ColorColumn guibg=#181825
-hi StatusLine guibg=#edf6f4 guifg=#181825
+hi ColorColumn guibg=#313244
+hi StatusLine guibg=#edf6f4 guifg=#313244
 hi! link TabLineFill ColorColumn
 hi! link CursorLineNr String
 
-hi MsgArea guifg=#e0d561 gui=bold
+hi MsgArea guifg=#5fd75f gui=bold
 hi QuickFixLine gui=bold
 hi! link PmenuSbar Pmenu
 
@@ -27,6 +27,9 @@ hi Statement guifg=#afffff
 hi markdownBlockQuote gui=bold
 hi @markup.link.vimdoc guifg=#e0d561 gui=bold
 hi @label.vimdoc guifg=NvimLightGreen gui=bold
+
+hi gitcommitSummary guifg=#87d787 gui=bold
+hi! link @markup.heading.gitcommit gitcommitSummary
 
 let g:terminal_colors_mia = [
       \ '#282828',
@@ -68,7 +71,7 @@ hi MiniIconsPurple guifg=#cba6f7
 hi MiniIconsRed guifg=#f38ba8
 hi MiniIconsYellow guifg=#f9e2af
 
-hi NeogitStagedchanges guifg=#a6e3a1 gui=bold
+hi NeogitStagedchanges guifg=#87d787 gui=bold
 hi NeogitUnstagedchanges guifg=#fab387 gui=bold
 hi NeogitUntrackedfiles guifg=#f38ba8 gui=bold
 hi NeogitUnmergedchanges guifg=#cba6f7 gui=bold
