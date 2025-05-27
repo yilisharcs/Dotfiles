@@ -1,10 +1,13 @@
 return {
   'mikavilpas/yazi.nvim',
   lazy = false,
-  dependencies = { 'ibhagwan/fzf-lua' },
+  dependencies = {
+    'folke/snacks.nvim',
+    'ibhagwan/fzf-lua',
+  },
   keys = {
     { '-',         '<CMD>Yazi<CR>',        desc = 'Open yazi at the current file' },
-    { '<leader>-', '<CMD>Yazi cwd<CR>',    desc = "Open yazi in the working directory" },
+    { '<leader>-', '<CMD>Yazi cwd<CR>',    desc = 'Open yazi in the working directory' },
     { '<leader>_', '<CMD>Yazi toggle<CR>', desc = 'Resume the last yazi session', },
   },
   opts = {
@@ -13,12 +16,13 @@ return {
     log_level = vim.log.levels.WARN,
     floating_window_scaling_factor = 1.0,
     keymaps = {
-      show_help = '<F1>',
-      replace_in_directory = false,
+      -- https://github.com/mikavilpas/yazi.nvim/issues/739
+      open_file_in_vertical_split = false,
+      open_file_in_horizontal_split = false,
     },
     integrations = {
-      grep_in_directory = "fzf-lua",
-      grep_in_selected_files = "fzf-lua",
+      grep_in_directory = 'fzf-lua',
+      grep_in_selected_files = 'fzf-lua',
     },
   },
   init = function()
