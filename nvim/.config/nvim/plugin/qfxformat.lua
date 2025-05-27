@@ -48,7 +48,7 @@ function _G.qfx(info)
       elseif qtype == 'I|' then
         qtype = ''
       elseif qtype == 'N|' or qtype == 'H|' then
-        qtype = '󰞏'
+        qtype = '󰌶'
       end
       str = validFmt:format(qtype, fname, lnum, col, e.text)
     else

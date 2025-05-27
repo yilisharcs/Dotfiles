@@ -42,6 +42,7 @@ return {
         '~/projects/nvim',
         '~/projects/rust-by-example',
         '~/.local/share/nvim/lazy',
+        '~/projects/neovim/runtime',
         '~/'
       }
       require('fzf-lua').fzf_exec(

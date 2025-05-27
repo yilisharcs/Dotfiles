@@ -1,9 +1,3 @@
-require('vim._extui').enable({
-  enable = true,
-  msg = {
-    pos = 'cmd',
-    box = { timeout = 2500 }
-  },
-})
+require('vim._extui').enable({ enable = true })
 
 vim.o.cmdheight = 0
