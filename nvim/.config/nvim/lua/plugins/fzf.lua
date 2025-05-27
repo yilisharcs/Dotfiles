@@ -61,7 +61,7 @@ return {
         ['<F4>'] = 'toggle-preview',
       },
       fzf = {
-        ['ctrl-y'] = 'select-all+accept',
+        ['ctrl-q'] = 'select-all+accept',
         ['alt-a'] = 'toggle-all',
         ['alt-g'] = 'last',
         ['alt-G'] = 'first',
