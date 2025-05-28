@@ -33,10 +33,9 @@ return {
     },
     strategies = {
       chat = {
-        adapter = 'openrouter_deepseek',
-        roles = {
-          llm = 'Deepseek-chan',
-        },
+        adapter = 'openrouter',
+        -- roles = { llm = 'Deepseek-chan' },
+        roles = { llm = 'Gemini-san' },
         keymaps = {
           send = {
             modes = { n = '<C-y>', i = '<C-y>' },
@@ -47,11 +46,11 @@ return {
         },
       },
       inline = {
-        adapter = 'openrouter_deepseek'
+        adapter = 'openrouter'
       },
     },
     adapters = {
-      openrouter_deepseek = function()
+      openrouter = function()
         return require('codecompanion.adapters').extend('openai_compatible', {
           env = {
             url = 'https://openrouter.ai/api',
@@ -60,7 +59,8 @@ return {
           },
           schema = {
             model = {
-              default = 'deepseek/deepseek-r1:free',
+              -- default = 'deepseek/deepseek-r1:free',
+              default = 'google/gemini-2.0-flash-exp:free',
             },
           },
         })
