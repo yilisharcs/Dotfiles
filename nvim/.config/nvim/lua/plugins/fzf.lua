@@ -76,7 +76,7 @@ return {
       backdrop = 100,
     },
     files = {
-      fd_opts = '--color=never --hidden --follow --type f --type l --exclude={.git,Trash}',
+      fd_opts = '--color=never --hidden --follow --type f --type l --exclude={.git,.cache,Trash}',
       winopts = { preview = { layout = 'vertical' } },
     },
     grep = {
