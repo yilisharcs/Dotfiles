@@ -38,11 +38,11 @@ return {
         end
       }
       local dirs = {
-        '~/projects/',
-        '~/projects/nvim',
-        '~/projects/rust-by-example',
+        '~/Projects/',
+        '~/Projects/nvim',
+        '~/Projects/rust-by-example',
         '~/.local/share/nvim/lazy',
-        '~/projects/neovim/runtime',
+        '~/Projects/neovim/runtime',
         '~/'
       }
       require('fzf-lua').fzf_exec(
