@@ -14,7 +14,10 @@ return {
     open_for_directories = true,
     open_multiple_tabs = true,
     log_level = vim.log.levels.WARN,
-    floating_window_scaling_factor = 1.0,
+    floating_window_scaling_factor = {
+      height = 0.92,
+      width = 0.99,
+    },
     keymaps = {
       -- https://github.com/mikavilpas/yazi.nvim/issues/739
       open_file_in_vertical_split = false,
