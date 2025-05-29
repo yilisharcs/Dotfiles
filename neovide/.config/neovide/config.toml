@@ -1,0 +1,16 @@
+[font]
+normal = ["JetBrainsMono Nerd Font", "Noto Color Emoji"]
+size = 13
+edging = "subpixelantialias"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "BoldItalic"
+
+maximized = true
+no-multigrid = false
+wsl = false
