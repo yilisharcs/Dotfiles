@@ -1,6 +1,7 @@
 return {
   'mikavilpas/yazi.nvim',
   lazy = false,
+  dev = true,
   dependencies = {
     'folke/snacks.nvim',
     'ibhagwan/fzf-lua',
