@@ -7,7 +7,7 @@ setlocal iskeyword+=-,'
 let &l:commentstring='<!-- %s -->'
 
 " Make time heading for zk
-nnoremap <F2> G{{O<CR>### <C-r>=strftime('%H:%M')<CR><CR>
+nnoremap <silent> <F2> G{{O<CR>### <C-r>=strftime('%H:%M')<CR><CR>
 
 " mini doesn't surround a line with newlines
 lua << EOF
