@@ -53,14 +53,6 @@ for i in range(g:terminal_ansi_colors->len())
   let g:terminal_color_{i} = g:terminal_colors_mia[i]
 endfor
 
-hi! link RainbowDelimiterRed Special
-hi! link RainbowDelimiterYellow Delimiter
-hi RainbowDelimiterBlue guifg=#87d787
-hi! link RainbowDelimiterOrange Special
-hi! link RainbowDelimiterGreen Delimiter
-hi RainbowDelimiterViolet guifg=#87d787
-hi clear RainbowDelimiterCyan
-
 hi MiniIconsAzure guifg=#74c7ec
 hi MiniIconsBlue guifg=#89b4fa
 hi MiniIconsCyan guifg=#94e2d5
@@ -79,5 +71,15 @@ hi NeogitGraphPurple guifg=#fab387
 hi! link NeogitPopupConfigEnabled Statement
 hi! link NeogitPopupOptionEnabled Statement
 hi! link NeogitPopupSwitchEnabled Statement
+
+hi! link RainbowDelimiterRed Special
+hi! link RainbowDelimiterYellow Delimiter
+hi RainbowDelimiterBlue guifg=#87d787
+hi! link RainbowDelimiterOrange Special
+hi! link RainbowDelimiterGreen Delimiter
+hi RainbowDelimiterViolet guifg=#87d787
+hi clear RainbowDelimiterCyan
+
+hi RenderMarkdownCode guibg=#181825
 
 hi! link @lsp.type.property.lua Type
