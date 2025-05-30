@@ -11,7 +11,6 @@ return {
       },
     },
     opts = {
-      -- direction = 'tab',
       shell = vim.fn.executable('nu') == 1 and vim.fn.exepath('nu') or vim.o.shell,
       size = function(term)
         if term.direction == 'horizontal' then
