@@ -1,9 +1,9 @@
 return {
-  'NeogitOrg/neogit',
-  dependencies = { 'nvim-lua/plenary.nvim' },
-  event = 'CmdlineEnter',
+  "NeogitOrg/neogit",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  event = "CmdlineEnter",
   keys = {
-    { '<leader>i', '<CMD>Neogit<CR>' },
+    { "<leader>i", "<CMD>Neogit<CR>" },
   },
   init = function()
     vim.cmd([[
@@ -17,6 +17,6 @@ return {
     ]])
   end,
   opts = {
-    graph_style = 'unicode',
+    graph_style = "unicode",
   }
 }

@@ -1,9 +1,9 @@
 return {
-  'echasnovski/mini.bufremove', -- see `:h MiniBufremove.config`.
+  "echasnovski/mini.bufremove", -- see `:h MiniBufremove.config`.
   version = false,
   keys = {
     {
-      '<M-q>',
+      "<M-q>",
       function()
         vim.cmd([[
           func! s:focusable_wins() abort
@@ -17,7 +17,7 @@ return {
           endif
         ]])
       end,
-      desc = '[MINI] Delete buffer'
+      desc = "[MINI] Delete buffer"
     }
   }
 }

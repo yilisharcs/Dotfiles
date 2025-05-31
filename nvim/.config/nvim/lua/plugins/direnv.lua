@@ -1,4 +1,4 @@
 return {
-  'direnv/direnv.vim',
+  "direnv/direnv.vim",
   enabled = false,
 }

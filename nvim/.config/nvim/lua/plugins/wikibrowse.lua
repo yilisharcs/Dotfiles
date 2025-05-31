@@ -1,11 +1,11 @@
 return {
-  'yilisharcs/wikibrowse.nvim',
+  "yilisharcs/wikibrowse.nvim",
   enabled = false,
   dev = true,
   lazy = false,
-  cmd = 'WikiBrowse',
+  cmd = "WikiBrowse",
   keys = {
-    { '<leader>y', '<CMD>WikiBrowse pizza<CR>' },
+    { "<leader>y", "<CMD>WikiBrowse pizza<CR>" },
   },
   init =
     function()

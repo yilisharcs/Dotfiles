@@ -1,12 +1,12 @@
 return {
-  cmd = { 'tinymist' },
-  filetypes = { 'typst' },
+  cmd = { "tinymist" },
+  filetypes = { "typst" },
   settings = {
-    formatterMode = 'typstyle',
-    exportPdf = 'onType',
+    formatterMode = "typstyle",
+    exportPdf = "onType",
     lint = {
       enabled = true,
-      when = 'onSave',
+      when = "onSave",
     }
   }
 }

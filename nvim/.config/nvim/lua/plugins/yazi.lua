@@ -1,15 +1,15 @@
 return {
-  'mikavilpas/yazi.nvim',
+  "mikavilpas/yazi.nvim",
   lazy = false,
   dev = true,
   dependencies = {
-    'folke/snacks.nvim',
-    'ibhagwan/fzf-lua',
+    "folke/snacks.nvim",
+    "ibhagwan/fzf-lua",
   },
   keys = {
-    { '-',         '<CMD>Yazi<CR>',        desc = 'Open yazi at the current file' },
-    { '<leader>-', '<CMD>Yazi cwd<CR>',    desc = 'Open yazi in the working directory' },
-    { '<leader>_', '<CMD>Yazi toggle<CR>', desc = 'Resume the last yazi session', },
+    { "-",         "<CMD>Yazi<CR>",        desc = "Open yazi at the current file" },
+    { "<leader>-", "<CMD>Yazi cwd<CR>",    desc = "Open yazi in the working directory" },
+    { "<leader>_", "<CMD>Yazi toggle<CR>", desc = "Resume the last yazi session", },
   },
   opts = {
     open_for_directories = true,
@@ -25,8 +25,8 @@ return {
       open_file_in_horizontal_split = false,
     },
     integrations = {
-      grep_in_directory = 'fzf-lua',
-      grep_in_selected_files = 'fzf-lua',
+      grep_in_directory = "fzf-lua",
+      grep_in_selected_files = "fzf-lua",
     },
   },
   init = function()

@@ -1,20 +1,20 @@
 return {
-  'olimorris/codecompanion.nvim',
+  "olimorris/codecompanion.nvim",
   dependencies = {
-    'nvim-lua/plenary.nvim',
-    'nvim-treesitter/nvim-treesitter',
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
   },
   keys = {
-    { '<F12>',      '<CMD>CodeCompanionChat Toggle<CR>', mode = { 'n', 'x', 'i' }, desc = '[CC] Toggle chat' },
-    { '<leader>as', '<CMD>CodeCompanionActions<CR>',     mode = { 'n', 'x' },      desc = '[CC] Actions' },
-    { '<leader>ag', '<CMD>CodeCompanionChat Add<CR>',    mode = 'x',               desc = '[CC] Chat add' },
+    { "<F12>",      "<CMD>CodeCompanionChat Toggle<CR>", mode = { "n", "x", "i" }, desc = "[CC] Toggle chat" },
+    { "<leader>as", "<CMD>CodeCompanionActions<CR>",     mode = { "n", "x" },      desc = "[CC] Actions" },
+    { "<leader>ag", "<CMD>CodeCompanionChat Add<CR>",    mode = "x",               desc = "[CC] Chat add" },
   },
   opts = {
     opts = {
       system_prompt = function(opts)
-        local file = io.open('/home/yilisharcs/vault/LLM/cc-model-of-you.md', 'r')
+        local file = io.open("/home/yilisharcs/vault/LLM/cc-model-of-you.md", "r")
         if file ~= nil then
-          local content = file:read('*all')
+          local content = file:read("*all")
           file:close()
           return content
         else
@@ -57,10 +57,10 @@ return {
     },
     display = {
       chat = {
-        intro_message = 'Hi, senpai!!! (˶˃ ᵕ ˂˶)',
+        intro_message = "Hi, senpai!!! (˶˃ ᵕ ˂˶)",
         window = {
           opts = {
-            signcolumn = 'no',
+            signcolumn = "no",
             number = false,
             relativenumber = false,
           },
@@ -69,34 +69,34 @@ return {
     },
     strategies = {
       chat = {
-        adapter = 'openrouter',
-        -- roles = { llm = 'Deepseek-chan' },
-        roles = { llm = 'Gemini-san' },
+        adapter = "openrouter",
+        -- roles = { llm = "Deepseek-chan" },
+        roles = { llm = "Gemini-san" },
         keymaps = {
           send = {
-            modes = { n = '<C-y>', i = '<C-y>' },
+            modes = { n = "<C-y>", i = "<C-y>" },
           },
           close = {
-            modes = { n = '<C-q>', i = '<C-q>' },
+            modes = { n = "<C-q>", i = "<C-q>" },
           },
         },
       },
       inline = {
-        adapter = 'openrouter'
+        adapter = "openrouter"
       },
     },
     adapters = {
       openrouter = function()
-        return require('codecompanion.adapters').extend('openai_compatible', {
+        return require("codecompanion.adapters").extend("openai_compatible", {
           env = {
-            url = 'https://openrouter.ai/api',
-            api_key = 'cmd: cat /home/yilisharcs/projects/.env', -- 'cmd:pass show llm/openrouter/key',
-            chat_url = '/v1/chat/completions',
+            url = "https://openrouter.ai/api",
+            api_key = "cmd: cat /home/yilisharcs/projects/.env", -- "cmd:pass show llm/openrouter/key",
+            chat_url = "/v1/chat/completions",
           },
           schema = {
             model = {
-              -- default = 'deepseek/deepseek-r1:free',
-              default = 'google/gemini-2.0-flash-exp:free',
+              -- default = "deepseek/deepseek-r1:free",
+              default = "google/gemini-2.0-flash-exp:free",
             },
           },
         })
