@@ -1,7 +1,7 @@
 return {
-  'yilisharcs/undotree',
+  "yilisharcs/undotree",
   keys = {
-    { '<leader>u', '<CMD>UndotreeToggle<CR>', desc = 'Toggle history bar' }
+    { "<leader>u", "<CMD>UndotreeToggle<CR>", desc = "Toggle history bar" }
   },
   init = function()
     vim.cmd([[

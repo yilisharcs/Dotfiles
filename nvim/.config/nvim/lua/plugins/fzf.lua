@@ -1,70 +1,70 @@
 return {
-  'ibhagwan/fzf-lua',
+  "ibhagwan/fzf-lua",
   keys = {
-    { '<leader>fl', '<CMD>FzfLua files<CR>',            desc = '[FZF] List files' },
-    { '<leader>fh', '<CMD>FzfLua oldfiles<CR>',         desc = '[FZF] File history' },
-    { '<leader>fb', '<CMD>FzfLua buffers<CR>',          desc = '[FZF] Buffers' },
-    { '<leader>fc', '<CMD>FzfLua git_commits<CR>',      desc = '[FZF] Commits' },
-    { '<leader>fg', '<CMD>FzfLua live_grep_native<CR>', desc = '[FZF] Live grep' },
-    { '<leader>fk', '<CMD>FzfLua helptags<CR>',         desc = '[FZF] Help tags' },
-    { '<leader>fK', '<CMD>FzfLua keymaps<CR>',          desc = '[FZF] List mappings' },
-    { '<C-h>',      '<CMD>FzfLua marks<CR>',            desc = '[FZF] Get global marks' },
+    { "<leader>fl", "<CMD>FzfLua files<CR>",            desc = "[FZF] List files" },
+    { "<leader>fh", "<CMD>FzfLua oldfiles<CR>",         desc = "[FZF] File history" },
+    { "<leader>fb", "<CMD>FzfLua buffers<CR>",          desc = "[FZF] Buffers" },
+    { "<leader>fc", "<CMD>FzfLua git_commits<CR>",      desc = "[FZF] Commits" },
+    { "<leader>fg", "<CMD>FzfLua live_grep_native<CR>", desc = "[FZF] Live grep" },
+    { "<leader>fk", "<CMD>FzfLua helptags<CR>",         desc = "[FZF] Help tags" },
+    { "<leader>fK", "<CMD>FzfLua keymaps<CR>",          desc = "[FZF] List mappings" },
+    { "<C-h>",      "<CMD>FzfLua marks<CR>",            desc = "[FZF] Get global marks" },
     {
-      '<C-r>',
-      '<CMD>FzfLua command_history<CR>',
-      mode = { 'n', 'x' },
-      desc = '[FZF] Search command history'
+      "<C-r>",
+      "<CMD>FzfLua command_history<CR>",
+      mode = { "n", "x" },
+      desc = "[FZF] Search command history"
     },
     {
-      '<C-x><C-f>',
+      "<C-x><C-f>",
       function()
-        require('fzf-lua').complete_path({
-          cmd = 'fd --color=never --hidden --follow --exclude={.git,Trash}'
+        require("fzf-lua").complete_path({
+          cmd = "fd --color=never --hidden --follow --exclude={.git,Trash}"
         })
       end,
-      mode = 'i',
-      desc = '[FZF] Complete Path'
+      mode = "i",
+      desc = "[FZF] Complete Path"
     },
-    { '<C-Space>g', '<CMD>lua _G.fzf_dirs()<CR>', desc = '[FZF] New project tab' },
+    { "<C-Space>g", "<CMD>lua _G.fzf_dirs()<CR>", desc = "[FZF] New project tab" },
   },
   init = function()
     _G.fzf_dirs = function(opts)
       opts = opts or {}
-      opts.winopts = { title = ' Projects ' }
+      opts.winopts = { title = " Projects " }
       opts.actions = {
-        ['default'] = function(selected)
-          vim.cmd('tabnew ' .. selected[1])
-          vim.cmd('tcd ' .. selected[1])
+        ["default"] = function(selected)
+          vim.cmd("tabnew " .. selected[1])
+          vim.cmd("tcd " .. selected[1])
         end
       }
       local dirs = {
-        '~/Projects/',
-        '~/Projects/nvim',
-        '~/Projects/rust-by-example',
-        '~/.local/share/nvim/lazy',
-        '~/Projects/neovim/runtime',
-        '~/'
+        "~/Projects/",
+        "~/Projects/nvim",
+        "~/Projects/rust-by-example",
+        "~/.local/share/nvim/lazy",
+        "~/Projects/neovim/runtime",
+        "~/"
       }
-      require('fzf-lua').fzf_exec(
-        'fd --hidden --follow --type d --exact-depth 1 . ' ..
-        table.concat(dirs, ' '), opts
+      require("fzf-lua").fzf_exec(
+        "fd --hidden --follow --type d --exact-depth 1 . " ..
+        table.concat(dirs, " "), opts
       )
     end
   end,
   opts = {
     keymap = {
       builtin = {
-        ['<C-k>'] = 'preview-page-up',
-        ['<C-j>'] = 'preview-page-down',
-        ['<F1>'] = 'toggle-help',
-        ['<F2>'] = 'toggle-fullscreen',
-        ['<F4>'] = 'toggle-preview',
+        ["<C-k>"] = "preview-page-up",
+        ["<C-j>"] = "preview-page-down",
+        ["<F1>"] = "toggle-help",
+        ["<F2>"] = "toggle-fullscreen",
+        ["<F4>"] = "toggle-preview",
       },
       fzf = {
-        ['ctrl-q'] = 'select-all+accept',
-        ['alt-a'] = 'toggle-all',
-        ['alt-g'] = 'last',
-        ['alt-G'] = 'first',
+        ["ctrl-q"] = "select-all+accept",
+        ["alt-a"] = "toggle-all",
+        ["alt-g"] = "last",
+        ["alt-G"] = "first",
       },
     },
     winopts = {
@@ -72,27 +72,27 @@ return {
       width    = 0.90,
       row      = 0.50,
       col      = 0.55,
-      border   = 'rounded',
+      border   = "rounded",
       backdrop = 100,
     },
     files = {
-      fd_opts = '--color=never --hidden --follow --type f --type l --exclude={.git,.cache,Trash}',
-      winopts = { preview = { layout = 'vertical' } },
+      fd_opts = "--color=never --hidden --follow --type f --type l --exclude={.git,.cache,Trash}",
+      winopts = { preview = { layout = "vertical" } },
     },
     grep = {
       rg_opts =
-        '--color=always --column --line-number --no-heading --smart-case ' ..
-        '--max-columns=4096 --hidden -g "!.git" -e',
+        "--color=always --column --line-number --no-heading --smart-case " ..
+        "--max-columns=4096 --hidden -g '!.git' -e",
     },
     helptags = {
       winopts = { height = 0.5 },
     },
     marks = {
-      marks = '[A-Z]',
-      fzf_opts = { ['--cycle'] = true },
+      marks = "[A-Z]",
+      fzf_opts = { ["--cycle"] = true },
       winopts = {
-        title = ' Global marks ',
-        preview = { layout = 'vertical' },
+        title = " Global marks ",
+        preview = { layout = "vertical" },
       }
     }
   }

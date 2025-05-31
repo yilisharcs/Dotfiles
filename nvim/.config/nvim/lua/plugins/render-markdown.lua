@@ -1,7 +1,7 @@
 return {
-  'MeanderingProgrammer/render-markdown.nvim',
+  "MeanderingProgrammer/render-markdown.nvim",
   -- enabled = false,
-  ft = { 'markdown', 'codecompanion' },
+  ft = { "markdown", "codecompanion" },
   opts = {
     render_modes = true,
     anti_conceal = {
@@ -9,7 +9,7 @@ return {
       above = 1,
       below = 1,
     },
-    pipe_table = { preset = 'round' },
+    pipe_table = { preset = "round" },
     html = { comment = { conceal = false } },
     sign = { enabled = false },
   }

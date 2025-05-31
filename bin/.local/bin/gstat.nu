@@ -23,7 +23,7 @@ let git_status = ($repos | each {|repo|
   {
     "Path": $repo, "Status": ($git
       | if $in == [] {
-        $'(ansi green_bold)OK(ansi reset)'
+        $"(ansi green_bold)OK(ansi reset)"
       } else {
         $in
       })
@@ -31,7 +31,7 @@ let git_status = ($repos | each {|repo|
 })
 
 $git_status | if ($in | length) > 1 {
-  insert is_empty {|row| $row.Status == $'(ansi green_bold)OK(ansi reset)' }
+  insert is_empty {|row| $row.Status == $"(ansi green_bold)OK(ansi reset)" }
   | sort-by is_empty
   | reject is_empty
 } else {
