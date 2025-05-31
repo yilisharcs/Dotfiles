@@ -2,6 +2,7 @@ vim.lsp.enable({
   'luals',
   'nil-nix',
   'rust-analyzer',
+  'typls',
   'vimls',
 })
 
@@ -81,7 +82,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.cmd([[
   augroup Auto_Format
     au!
-    au BufWritePre *.lua,*.vim silent! lua vim.lsp.buf.format()
     au BufWritePre *.rs silent! RustFmt
   augroup END
 ]])
+
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  group   = vim.api.nvim_create_augroup('Auto_Format_LSP', { clear = true }),
+  pattern = {
+    '*.lua',
+    '*.vim',
+    '*.typ',
+  },
+  command = 'silent! lua vim.lsp.buf.format()'
+})
