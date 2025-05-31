@@ -3,9 +3,9 @@ function! TaskList(...)
   let g:TaskList = a:000
 
   if empty(a:000)
-    let s:cmd = join([&grepprg] + ['@.*$', '~/7vtlk-wj5qh/todo.md'], ' ')
+    let s:cmd = join([&grepprg] + ['@.*$', '~/vault/todo.md'], ' ')
   else
-    let s:cmd = join([&grepprg] + a:000 + ['~/7vtlk-wj5qh/todo.md'], ' ')
+    let s:cmd = join([&grepprg] + a:000 + ['~/vault/todo.md'], ' ')
   endif
 
   return system(s:cmd)
@@ -13,7 +13,7 @@ endfunction
 
 " Prepend to task list
 function! TaskAdd(...)
-  return system('sed -i "1s^- @' . join(a:000, ' ') . '\n" ~/7vtlk-wj5qh/todo.md')
+  return system('sed -i "1s^- @' . join(a:000, ' ') . '\n" ~/vault/todo.md')
 endfunction
 
 " Remove from task list
@@ -28,7 +28,7 @@ function! TaskDone(...)
   else
     let text = list[idx].text
     echohl Type | echo "Task done: " . text | echohl None
-    return system('sed -i "\' . text . 'd" ~/7vtlk-wj5qh/todo.md')
+    return system('sed -i "\' . text . 'd" ~/vault/todo.md')
   endif
 endfunction
 
