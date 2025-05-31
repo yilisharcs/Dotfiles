@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = vim.lsp.get_clients()[1]
 
     if client:supports_method('textDocument/completion') then
-      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = false })
+      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
     end
 
     local map = function(mode, lhs, rhs, desc)
