@@ -6,6 +6,9 @@ setlocal suffixesadd+=.md,.lemon
 setlocal iskeyword+=-,'
 let &l:commentstring='<!-- %s -->'
 
+" This helps distinguish comments within fenced code blocks
+setlocal winhighlight+=@comment:FilterMenuLineNr,@comment.html:Comment
+
 " Make time heading for zk
 nnoremap <silent> <F2> G{{O<CR>### <C-r>=strftime('%H:%M')<CR><CR>
 
