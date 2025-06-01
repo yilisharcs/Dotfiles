@@ -67,6 +67,9 @@ set diffopt^=algorithm:patience
 set cursorline
 set cursorlineopt=number
 
+" Terminal scrollback
+set scrollback=100000
+
 set updatetime=1000
 set termguicolors
 set virtualedit=block
