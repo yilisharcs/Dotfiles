@@ -72,10 +72,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     map("n", "K", function() vim.lsp.buf.hover() end, "Help") -- required if keywordprg is set
-    map("n", "grd", function() vim.lsp.buf.declaration() end)
-    map("n", "grt", function() vim.lsp.buf.type_definition() end)
-    map("n", "grw", function() vim.lsp.buf.workspace_symbol() end)
-    map("n", "grf", function() vim.diagnostic.open_float() end, "Open Error Float")
+    map("n", "grd", function() vim.lsp.buf.declaration() end, "Go to declaration")
+    map("n", "grt", function() vim.lsp.buf.type_definition() end, "Go to type definition")
+    map("n", "grw", function() vim.lsp.buf.workspace_symbol() end, "List workspace symbols")
+    map("n", "grf", function() vim.diagnostic.open_float() end, "Open error float")
   end
 })
 
