@@ -83,3 +83,4 @@ hi clear RainbowDelimiterCyan
 hi RenderMarkdownCode guibg=#181825
 
 hi! link @lsp.type.property.lua Type
+hi! link @comment Comment
