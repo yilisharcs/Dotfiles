@@ -12,7 +12,6 @@ hi! link CursorLineNr String
 
 hi MsgArea guifg=#5fd75f gui=bold
 hi QuickFixLine gui=bold
-hi! link PmenuSbar Pmenu
 
 hi ModeMsg guifg=NvimLightGreen
 hi ErrorMsg guifg=Black gui=bold
@@ -52,6 +51,13 @@ let g:terminal_colors_mia = [
 for i in range(g:terminal_ansi_colors->len())
   let g:terminal_color_{i} = g:terminal_colors_mia[i]
 endfor
+
+hi Pmenu guibg=#181825
+hi PmenuExtra guibg=#181825
+hi PmenuKind guifg=#ffd787 guibg=#181825
+hi! link PmenuSbar Pmenu
+hi BlinkCmpDoc guifg=#cdd6f4 guibg=#181825
+hi! link BlinkCmpDocBorder BlinkCmpDoc
 
 hi MiniIconsAzure guifg=#74c7ec
 hi MiniIconsBlue guifg=#89b4fa

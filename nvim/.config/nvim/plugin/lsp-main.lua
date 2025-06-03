@@ -8,17 +8,6 @@ vim.lsp.enable({
 
 vim.lsp.set_log_level("off")
 
-vim.lsp.config("*", {
-  root_markers = { ".git" },
-  capabilities = {
-    textDocument = {
-      semanticTokens = {
-        multilineTokenSupport = true,
-      }
-    }
-  }
-})
-
 vim.diagnostic.config({
   virtual_text = true,
   float = { border = "rounded" },
@@ -34,6 +23,7 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
       [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
       [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+      [vim.diagnostic.severity.INFO] = "DiagnosticSignHint",
     }
   },
 })
@@ -44,21 +34,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_clients()[1]
 
-    if client:supports_method("textDocument/completion") then
-      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-    end
-
     local map = function(mode, lhs, rhs, desc)
-      if desc then
-        desc = "[LSP] " .. desc
-      end
+      if desc then desc = "[LSP] " .. desc end
       vim.keymap.set(mode, lhs, rhs, { silent = true, buffer = args.buf, desc = desc })
     end
-
-    local namespace = vim.lsp.diagnostic.get_namespace(client.id)
-    map("n", "grq", function()
-      vim.diagnostic.setqflist({ namespace = namespace, open = true })
-    end, "Set Quickfix")
 
     if client.server_capabilities.inlayHintProvider then
       vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
@@ -76,6 +55,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "grt", function() vim.lsp.buf.type_definition() end, "Go to type definition")
     map("n", "grw", function() vim.lsp.buf.workspace_symbol() end, "List workspace symbols")
     map("n", "grf", function() vim.diagnostic.open_float() end, "Open error float")
+    map("n", "grq", function()
+      vim.diagnostic.setqflist({ namespace = vim.lsp.diagnostic.get_namespace(client.id), open = true })
+    end, "Send diagnostics to quickfix list")
   end
 })
 
