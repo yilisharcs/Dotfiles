@@ -7,12 +7,23 @@ return {
         vim.ui.input({ prompt = "Title: " }, function(input)
           require("zk").new({ title = input })
           vim.defer_fn(function()
-            vim.cmd("norm! G")
-            vim.cmd.startinsert()
-          end, 100)
+            vim.api.nvim_feedkeys("Gi", "n", false)
+          end, 200)
         end)
       end,
       desc = "Create new note"
+    },
+    {
+      "<leader>zc",
+      function()
+        vim.ui.input({ prompt = "Title: " }, function(input)
+          require("zk").new({ title = input, group = "chess" })
+          vim.defer_fn(function()
+            vim.api.nvim_feedkeys("9GA ", "n", false)
+          end, 200)
+        end)
+      end,
+      desc = "Create chess game entry"
     },
     {
       "<leader>zl",
