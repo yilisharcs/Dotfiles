@@ -28,8 +28,16 @@ return {
     appearance = { nerd_font_variant = "mono" },
     completion = {
       documentation = { auto_show = false },
-      ghost_text = { enabled = true },
+      ghost_text = {
+        enabled = function()
+          return not vim.tbl_contains({
+            "markdown",
+            "gitcommit",
+          }, vim.bo.filetype)
+        end
+      },
       menu = {
+        auto_show = false,
         draw = {
           treesitter = { "lsp" },
           components = {
@@ -104,9 +112,6 @@ return {
           end
         },
       },
-      min_keyword_length = function()
-        return vim.bo.filetype == "markdown" and 8 or 3
-      end
     },
   },
   opts_extend = { "sources.default" },
