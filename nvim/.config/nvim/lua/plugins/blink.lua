@@ -4,10 +4,9 @@ return {
   version = "1.*",
   opts = {
     keymap = {
-      preset = "default",
+      preset = "none",
       ["<C-k>"] = { "show", "show_documentation", "hide_documentation", "fallback" },
-      ["<C-e>"] = { "hide", "fallback" },
-      ["<C-y>"] = { "fallback" },
+      ["<C-l>"] = { "hide", "fallback" },
       ["<C-p>"] = { "select_prev", "fallback" },
       ["<C-n>"] = { "select_next", "fallback" },
       ["<C-u>"] = { "scroll_documentation_up", "fallback" },
@@ -25,9 +24,8 @@ return {
         "fallback"
       },
     },
-    appearance = {
-      nerd_font_variant = "mono"
-    },
+    cmdline = { keymap = { preset = "inherit" } },
+    appearance = { nerd_font_variant = "mono" },
     completion = {
       documentation = { auto_show = false },
       ghost_text = { enabled = true },
@@ -36,7 +34,7 @@ return {
           treesitter = { "lsp" },
           components = {
             kind_icon = {
-              text = function(ctx) return ' ' .. ctx.kind_icon .. ctx.icon_gap .. ' ' end
+              text = function(ctx) return " " .. ctx.kind_icon .. ctx.icon_gap .. " " end
             },
             item_idx = {
               text = function(ctx)
