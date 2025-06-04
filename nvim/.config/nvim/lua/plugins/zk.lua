@@ -61,6 +61,20 @@ return {
     },
     { "<leader>zt", "<CMD>ZkTags<CR>", desc = "Open tagged notes" },
     {
+      "<leader>zy",
+      function()
+        -- HACK: https://github.com/zk-org/zk-nvim/issues/122
+        -- The methods discussed here didn't work for me.
+        vim.api.nvim_feedkeys('"zy', "x", false)
+        require("zk").new({ title = vim.fn.getreg("z") })
+        vim.defer_fn(function()
+          vim.api.nvim_feedkeys("Gi", "n", false)
+        end, 200)
+      end,
+      mode = "x",
+      desc = "Create note from selection"
+    },
+    {
       "<leader>zf",
       ":ZkMatch<CR>",
       mode = "x",
