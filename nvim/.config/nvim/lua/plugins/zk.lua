@@ -14,9 +14,29 @@ return {
       desc = "Create new note"
     },
     {
+      "<leader>zu",
+      function()
+        vim.ui.input({ prompt = "Source: " }, function(input)
+          local title = string.match(input, "%s(.*)")
+          local type_l = string.match(input, "(%a*)")
+          local type = string.gsub(type_l, "^%l", string.upper)
+
+          require("zk").new({
+            title = type .. " - " .. title,
+            group = "source",
+            extra = { type = type },
+          })
+          vim.defer_fn(function()
+            vim.api.nvim_feedkeys("11GA ", "n", false)
+          end, 200)
+        end)
+      end,
+      desc = "Create source note"
+    },
+    {
       "<leader>zc",
       function()
-        vim.ui.input({ prompt = "Title: " }, function(input)
+        vim.ui.input({ prompt = "Opponent: " }, function(input)
           require("zk").new({ title = input, group = "chess" })
           vim.defer_fn(function()
             vim.api.nvim_feedkeys("9GA ", "n", false)
