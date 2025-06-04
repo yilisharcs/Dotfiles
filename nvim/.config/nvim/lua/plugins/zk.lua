@@ -62,6 +62,12 @@ return {
     { "<leader>zt", "<CMD>ZkTags<CR>", desc = "Open tagged notes" },
     {
       "<leader>zf",
+      ":ZkMatch<CR>",
+      mode = "x",
+      desc = "Find matching selection in notebook"
+    },
+    {
+      "<leader>zf",
       function()
         vim.ui.input({ prompt = "Query: " }, function(input)
           require("zk").edit({
@@ -71,12 +77,6 @@ return {
         end)
       end,
       desc = "Find matching query in notebook"
-    },
-    {
-      "<leader>zf",
-      ":'<,'>ZkMatch<CR>",
-      mode = "x",
-      desc = "Find matching selection in notebook"
     },
   },
   opts = { picker = "fzf_lua" },
