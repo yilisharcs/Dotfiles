@@ -1,7 +1,7 @@
 ---
 id: {{id}}
 title: Versus {{title}}
-date: {{format-date now "%Y-%m-%d %H:%M %A"}}
+creation: {{format-date now "%Y-%m-%d %H:%M %A"}}
 tags: [chess, game-log]
 ---
 
@@ -14,4 +14,4 @@ tags: [chess, game-log]
 
 ## PGN
 
-1.
+{{content}}
