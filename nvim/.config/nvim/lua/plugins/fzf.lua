@@ -1,7 +1,10 @@
+local fd_exclude = "--exclude={Trash,.git,.cache,state/undo,target}"
+
 return {
   "ibhagwan/fzf-lua",
   keys = {
-    { "<leader>fl", "<CMD>FzfLua files<CR>",            desc = "[FZF] List files" },
+    { "<leader>fi", "<CMD>FzfLua files<CR>",            desc = "[FZF] List all files" },
+    { "<leader>fl", "<CMD>FzfLua git_files<CR>",        desc = "[FZF] List tracked files" },
     { "<leader>fh", "<CMD>FzfLua oldfiles<CR>",         desc = "[FZF] File history" },
     { "<leader>fb", "<CMD>FzfLua buffers<CR>",          desc = "[FZF] Buffers" },
     { "<leader>fc", "<CMD>FzfLua git_commits<CR>",      desc = "[FZF] Commits" },
@@ -19,7 +22,14 @@ return {
       "<C-x><C-f>",
       function()
         require("fzf-lua").complete_path({
-          cmd = "fd --color=never --hidden --follow --exclude={.git,Trash}"
+          cmd = table.concat({
+            "fd",
+            "--color=never",
+            "--hidden",
+            "--follow",
+            "--no-ignore",
+            fd_exclude
+          }, " "),
         })
       end,
       mode = "i",
@@ -46,7 +56,14 @@ return {
         "~/"
       }
       require("fzf-lua").fzf_exec(
-        "fd --hidden --follow --type d --exact-depth 1 . " ..
+        table.concat({
+          "fd",
+          "--hidden",
+          "--follow",
+          "--type d",
+          "--exact-depth 1",
+          ". "
+        }, " ") ..
         table.concat(dirs, " "), opts
       )
     end
@@ -76,13 +93,30 @@ return {
       backdrop = 100,
     },
     files = {
-      fd_opts = "--color=never --hidden --follow --type f --type l --exclude={.git,.cache,Trash}",
+      fd_opts = table.concat({
+        "--color=never",
+        "--hidden",
+        "--follow",
+        "--no-ignore",
+        "--type f",
+        "--type l",
+        fd_exclude
+      }, " "),
       winopts = { preview = { layout = "vertical" } },
     },
     grep = {
       rg_opts =
-        "--color=always --column --line-number --no-heading --smart-case " ..
-        "--max-columns=4096 --hidden -g '!.git' -e",
+        table.concat({
+          "--color=always",
+          "--column",
+          "--line-number",
+          "--no-heading",
+          "--smart-case",
+          "--max-columns=4096",
+          "--hidden",
+          "-g '!.git'",
+          "-e",
+        }, " ")
     },
     helptags = {
       winopts = { height = 0.5 },
