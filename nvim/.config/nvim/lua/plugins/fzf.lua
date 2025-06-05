@@ -49,10 +49,9 @@ return {
       }
       local dirs = {
         "~/Projects/",
-        "~/Projects/nvim",
-        "~/Projects/rust-by-example",
-        "~/.local/share/nvim/lazy",
-        "~/Projects/neovim/runtime",
+        "~/Projects/plugins-nvim/",
+        "~/.local/share/nvim/lazy/",
+        "~/Projects/_src/neovim/runtime/",
         "~/"
       }
       require("fzf-lua").fzf_exec(
