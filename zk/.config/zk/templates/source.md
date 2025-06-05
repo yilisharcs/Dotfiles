@@ -1,6 +1,6 @@
 ---
 id: {{id}}
-title: {{extra.type}} @ {{title}}
+title: {{title}}
 creation: {{format-date now "%Y-%m-%d %H:%M %A"}}
 tags: [source]
 ---
