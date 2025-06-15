@@ -12,7 +12,6 @@ return {
       augroup Neo_Legit
         au!
         au Filetype NeogitCommitMessage setlocal iskeyword+=-,'
-        au Filetype NeogitCommitMessage nnoremap <buffer> <C-s> <ESC>gEB1z=eea
       augroup END
     ]])
   end,

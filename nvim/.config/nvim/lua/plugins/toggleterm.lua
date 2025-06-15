@@ -4,7 +4,7 @@ return {
     version = "*",
     keys = {
       {
-        "<C-.>",
+        "<C-s>",
         "<CMD>exe v:count1 . 'ToggleTerm'<CR>",
         mode = { "n", "i", "t" },
         desc = "Toggle terminal window"
