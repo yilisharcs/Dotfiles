@@ -1,4 +1,4 @@
 return {
-  "direnv/direnv.vim",
-  enabled = false,
+  "yilisharcs/direnv.vim",
+  dev = true,
 }
