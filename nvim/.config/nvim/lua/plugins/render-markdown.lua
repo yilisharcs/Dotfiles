@@ -1,6 +1,7 @@
 return {
   "MeanderingProgrammer/render-markdown.nvim",
   -- enabled = false,
+  cond = vim.env.DISPLAY ~= nil,
   ft = { "markdown", "codecompanion" },
   opts = {
     render_modes = true,

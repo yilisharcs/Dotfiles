@@ -1,6 +1,33 @@
-local cond = function()
-  if vim.api.nvim_win_get_width(0) < 80 then return false end
-  return true
+local icons_cond
+if vim.env.DISPLAY == nil then
+  icons_cond = false
+else
+  icons_cond = true
+end
+
+local component_separators
+local section_separators
+if vim.env.DISPLAY == nil then
+  section_separators   = { left = '>', right = '<' }
+  component_separators = { left = '|', right = '|' }
+else
+  section_separators   = { left = "", right = "" }
+  component_separators = { left = "", right = "" }
+end
+
+local diagnostic_cond = function()
+  if vim.api.nvim_win_get_width(0) < 80 then
+    return false
+  else
+    return true
+  end
+end
+
+local icon_rightpad
+if vim.env.DISPLAY == nil then
+  icon_rightpad = 1
+else
+  icon_rightpad = 0
 end
 
 return {
@@ -12,9 +39,9 @@ return {
   end,
   opts = {
     options = {
-      icons_enabled        = true,
-      section_separators   = { left = "", right = "" },
-      component_separators = { left = "", right = "" },
+      icons_enabled        = icons_cond,
+      section_separators   = section_separators,
+      component_separators = component_separators,
       ignore_focus         = {
         "codecompanion",
       },
@@ -54,12 +81,12 @@ return {
     sections = {
       lualine_a = { "branch" },
       lualine_b = {
-        { "diff",        cond = cond },
-        { "diagnostics", cond = cond },
+        { "diff",        cond = diagnostic_cond },
+        { "diagnostics", cond = diagnostic_cond },
         {
           "filetype",
           icon_only = true,
-          padding = { left = 1, right = 0 }
+          padding = { left = 1, right = icon_rightpad }
         },
       },
       lualine_c = { { "filename", path = 1 } },
@@ -89,12 +116,12 @@ return {
     inactive_sections = {
       lualine_a = { "branch" },
       lualine_b = {
-        { "diff",        cond = cond },
-        { "diagnostics", cond = cond },
+        { "diff",        cond = diagnostic_cond },
+        { "diagnostics", cond = diagnostic_cond },
         {
           "filetype",
           icon_only = true,
-          padding = { left = 1, right = 0 }
+          padding = { left = 1, right = icon_rightpad }
         },
       },
       lualine_c = { { "filename", path = 0 } },
