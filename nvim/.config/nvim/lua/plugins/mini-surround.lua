@@ -36,7 +36,7 @@ return {
       },
       ["G"] = { -- Code block
         input = { "%```().-()%```" },
-        output = { left = "```", right = "```" },
+        output = { left = "```", right = "\n```" },
       },
     },
   },
