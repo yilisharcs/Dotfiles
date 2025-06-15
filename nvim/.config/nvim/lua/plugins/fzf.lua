@@ -122,7 +122,10 @@ return {
     },
     marks = {
       marks = "[A-Z]",
-      fzf_opts = { ["--cycle"] = true },
+      fzf_opts = {
+        ["--cycle"] = true,
+        ["--tiebreak"] = "begin",
+      },
       winopts = {
         title = " Global marks ",
         preview = { layout = "vertical" },
