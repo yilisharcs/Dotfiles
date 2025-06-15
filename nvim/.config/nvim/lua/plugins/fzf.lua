@@ -113,7 +113,8 @@ return {
           "--smart-case",
           "--max-columns=4096",
           "--hidden",
-          "-g '!.git'",
+          "-g=!.git",
+          "-g=!flake.lock",
           "-e",
         }, " ")
     },
