@@ -3,7 +3,7 @@ return {
   keys = {
     { "<leader>u", "<CMD>UndotreeToggle<CR>", desc = "Toggle history bar" }
   },
-  init = function()
+  config = function()
     vim.cmd([[
       let g:undotree_SplitWidth=float2nr(&columns * 0.27 + 0.5)
       let g:undotree_WindowLayout=4
