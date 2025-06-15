@@ -59,6 +59,8 @@ hi! link PmenuSbar Pmenu
 hi BlinkCmpDoc guifg=#cdd6f4 guibg=#181825
 hi! link BlinkCmpDocBorder BlinkCmpDoc
 
+hi MiniHipatternsNote guifg=#a6e3a1 gui=bold,reverse
+
 hi MiniIconsAzure guifg=#74c7ec
 hi MiniIconsBlue guifg=#89b4fa
 hi MiniIconsCyan guifg=#94e2d5
