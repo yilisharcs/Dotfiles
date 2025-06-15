@@ -67,6 +67,8 @@ set diffopt^=algorithm:patience
 set cursorline
 set cursorlineopt=number
 
+let &grepprg='rg --vimgrep'
+
 " Terminal scrollback
 set scrollback=100000
 
