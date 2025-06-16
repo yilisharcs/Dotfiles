@@ -105,7 +105,6 @@ return {
       fd_opts = table.concat({
         "--color=never",
         "--hidden",
-        "--follow",
         "--no-ignore",
         "--type f",
         "--type l",
