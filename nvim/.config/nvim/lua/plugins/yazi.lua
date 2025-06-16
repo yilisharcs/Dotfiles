@@ -23,6 +23,7 @@ return {
       -- https://github.com/mikavilpas/yazi.nvim/issues/739
       open_file_in_vertical_split = false,
       open_file_in_horizontal_split = false,
+      cycle_open_buffers = false,
     },
     integrations = {
       grep_in_directory = "fzf-lua",
