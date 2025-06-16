@@ -1,8 +1,0 @@
-[favorites.simpcli]
-description = "RataTUI base"
-git = "https://github.com/yilisharcs/templates"
-branch = "main"
-subfolder = "simpcli"
-vcs = "Git"
-init = true
-overwrite = false
