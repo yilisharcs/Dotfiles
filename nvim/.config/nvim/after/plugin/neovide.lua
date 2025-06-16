@@ -1,4 +1,16 @@
 if vim.g.neovide then
+  -- Set default cwd if opened with no files as arguments
+  vim.api.nvim_create_autocmd({ "UIEnter" }, {
+    group = vim.api.nvim_create_augroup("Neovide_Default_Dir", { clear = true }),
+    callback = function()
+      vim.cmd([[
+        if argc(-1) == 0
+          cd ~/.dotfiles
+        endif
+      ]])
+    end
+  })
+
   vim.g.neovide_padding_top = 0
   vim.g.neovide_padding_left = 2
   vim.g.neovide_hide_mouse_when_typing = true
