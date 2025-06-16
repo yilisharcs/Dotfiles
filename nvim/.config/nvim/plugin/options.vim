@@ -1,9 +1,10 @@
 " Include config dirs
 set path+=.dotfiles/**1/.config/**;,.dotfiles/**1;
 
-" Sync clipboard between OS and Neovim.
-set clipboard+=unnamedplus
-let g:clipboard='xclip'
+" " NOTE: https://github.com/pop-os/cosmic-comp/issues/1181
+" " Sync clipboard between OS and Neovim.
+" set clipboard+=unnamedplus
+" let g:clipboard='xclip'
 
 set ignorecase
 set smartcase

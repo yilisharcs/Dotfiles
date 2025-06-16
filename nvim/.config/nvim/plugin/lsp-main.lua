@@ -1,8 +1,8 @@
 vim.lsp.enable({
   "luals",
   "nil-nix",
-  "rust-analyzer",
-  "typls",
+  -- "rust-analyzer",
+  -- "typls",
   "vimls",
 })
 

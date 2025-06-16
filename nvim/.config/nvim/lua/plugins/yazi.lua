@@ -1,7 +1,7 @@
 return {
   "mikavilpas/yazi.nvim",
   lazy = false,
-  dev = true,
+  -- dev = true,
   dependencies = {
     "folke/snacks.nvim",
     "ibhagwan/fzf-lua",
@@ -16,6 +16,7 @@ return {
     open_multiple_tabs = true,
     log_level = vim.log.levels.WARN,
     floating_window_scaling_factor = {
+      -- height = 0.96,
       height = 0.92,
       width = 0.99,
     },
