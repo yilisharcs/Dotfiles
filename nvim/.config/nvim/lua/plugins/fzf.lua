@@ -1,5 +1,13 @@
 local fd_exclude = "--exclude={Trash,.git,.cache,state/undo,target}"
 
+local icons_cond
+if vim.env.DISPLAY == nil then
+  icons_cond = false
+else
+  icons_cond = true
+end
+
+
 return {
   "ibhagwan/fzf-lua",
   keys = {
@@ -91,7 +99,9 @@ return {
       border   = "rounded",
       backdrop = 100,
     },
+    git = { files = { file_icons = icons_cond } },
     files = {
+      file_icons = icons_cond,
       fd_opts = table.concat({
         "--color=never",
         "--hidden",
