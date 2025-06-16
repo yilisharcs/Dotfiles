@@ -38,9 +38,6 @@ augroup Auto_Cmds
   au BufWritePre * let s:c=nvim_win_get_cursor(0)
         \| silent! keeppatterns %s/\\+$//e | call nvim_win_set_cursor(0, s:c)
 
-  " Set default cwd if opened with no files as arguments
-  au UIEnter * if argc(-1) == 0 | cd ~/.dotfiles | endif
-
   " Close terminal buffers as if {cmd} wasn't supplied to :term
   au TermClose *:btop*,*:nu*,*/bin/bash*
         \| silent! execute 'bdelete! '.expand('<abuf>')
