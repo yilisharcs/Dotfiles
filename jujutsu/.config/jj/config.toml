@@ -1,0 +1,16 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+email = "yilisharcs@gmail.com"
+name = "yilisharcs"
+
+[ui]
+default-command = "ls"
+diff-formatter = ["difft", "--color=always", "$left", "$right"]
+
+[aliases]
+clone = ["git", "clone", "--colocate"]
+fetch = ["git", "fetch"]
+init  = ["git", "init", "--colocate"]
+ls    = ["log", "--summary"]
+push  = ["git", "push"]

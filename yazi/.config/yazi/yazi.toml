@@ -1,0 +1,40 @@
+[mgr]
+sort_by        = "alphabetical"
+sort_sensitive = false
+sort_dir_first = true
+sort_translit  = true
+linemode       = "mtime"
+show_hidden    = true
+show_symlink   = true
+scrolloff      = 2
+
+[preview]
+wrap           = "yes"
+
+[opener]
+play = [
+  { desc = "Open with VLC",   run = 'vlc "$@"', orphan = true, for = "unix" },
+  { desc = "Show media info", run = 'mediainfo "$1" | bat', block = true, for = "unix" },
+]
+gimp     = [ { desc = "Open with GIMP",     run = 'gimp "$@"',     orphan = true } ]
+inkscape = [ { desc = "Open with Inkscape", run = 'inkscape "$@"', orphan = true } ]
+krita    = [ { desc = "Open with Krita",    run = 'krita "$@"',    orphan = true } ]
+
+[open]
+prepend_rules = [
+  { mime = "text/*",                            use = ["edit", "reveal"] },
+  { mime = "inode/x-empty",                     use = "edit" },
+  { name = "*.html",                            use = ["open", "edit"] },
+  { mime = "image/*",                           use = ["open", "gimp", "inkscape", "krita", "reveal"] },
+  { mime = "application/{gzip,x-xz,zip,zstd}",  use = ["edit", "reveal"] },
+]
+
+[plugin]
+prepend_previewers = [
+  { mime = "application/{gzip,x-xz,zip,zstd}",  run = "ouch" }
+]
+
+[confirm]
+trash     = true
+delete    = true
+overwrite = true

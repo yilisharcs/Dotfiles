@@ -1,0 +1,14 @@
+# Search hidden files / directories (e.g. dotfiles) by default
+--hidden
+
+# Follow symbiotic links
+--follow
+
+# Enable smart case
+--smart-case
+
+# Exclude files/folders with glob patterns
+--glob=!.cache/*
+--glob=!.git/*
+--glob=!.npm/*
+--glob=!Trash/*

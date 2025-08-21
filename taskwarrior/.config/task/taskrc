@@ -1,0 +1,15 @@
+# vim:ft=conf:cms=#\ %s
+
+include ~/.local/share/taskwarrior/solarized-dark-256.theme
+news.version=3.4.1
+
+alias.ro=project:Routine list
+allow.empty.filter=0
+column.padding=2
+confirmation=1
+data.location=$HOME/notebook/.task
+default.command=project.not:Routine next
+defaultwidth=120
+detection=1
+report.list.dateformat=Y-M-D H:N
+search.case.sensitive=0

@@ -1,0 +1,19 @@
+[Default Applications]
+application/xhtml+xml=brave-browser.desktop
+text/html=brave-browser.desktop
+x-scheme-handler/about=brave-browser.desktop
+x-scheme-handler/http=brave-browser.desktop
+x-scheme-handler/https=brave-browser.desktop
+x-scheme-handler/unknown=brave-browser.desktop
+application/x-zerosize=neovide.desktop
+application/octet-stream=neovide.desktop
+text/plain=neovide.desktop
+video/webm=vlc.desktop
+video/mp4=vlc.desktop
+
+[Added Associations]
+application/x-zerosize=neovide.desktop;nvim.desktop;
+application/octet-stream=neovide.desktop;nvim.desktop;
+text/plain=neovide.desktop;nvim.desktop;
+video/webm=vlc.desktop;
+video/mp4=vlc.desktop;
