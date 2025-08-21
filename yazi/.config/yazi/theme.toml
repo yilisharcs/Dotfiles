@@ -1,0 +1,32 @@
+[mgr]
+count_copied   = { fg = "black", bg = "green" }
+count_cut      = { fg = "black", bg = "red" }
+count_selected = { fg = "black", bg = "yellow" }
+
+[tabs]
+active   = { bg = "blue", fg = "black", bold = true }
+inactive = { fg = "blue", bg = "black" }
+
+[mode]
+normal_main = { bg = "blue", fg = "black", bold = true }
+normal_alt  = { fg = "blue", bg = "black" }
+select_main = { bg = "red",  fg = "black", bold = true }
+select_alt  = { fg = "red",  bg = "black" }
+unset_main  = { bg = "red",  fg = "black", bold = true }
+unset_alt   = { fg = "red",  bg = "black" }
+
+[icon]
+prepend_dirs = [
+  { name = ".git",      text = "", fg = "#f54d27" },
+  { name = ".jj",       text = "", fg = "#f54d27" },
+  { name = "Documents", text = "", fg = "#85ea2d" },
+  { name = "Dotfiles",  text = "", fg = "#85ea2d" },
+  { name = "Downloads", text = "", fg = "#85ea2d" },
+  { name = "Games",     text = "󰺶", fg = "#85ea2d" },
+  { name = "Library",   text = "", fg = "#85ea2d" },
+  { name = "Music",     text = "", fg = "#85ea2d" },
+  { name = "Pictures",  text = "", fg = "#85ea2d" },
+  { name = "Projects",  text = "", fg = "#85ea2d" },
+  { name = "Videos",    text = "", fg = "#85ea2d" },
+]
+prepend_files = [ { name = "maskfile.md", text = "", fg = "#6d8086" } ]
