@@ -1,0 +1,4 @@
+colorscheme spotify
+clear
+add ~/Music/
+update-cache -f
