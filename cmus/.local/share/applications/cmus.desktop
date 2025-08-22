@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Cmus
+Comment=Play and organize your music collection
+Exec=cmus
+Terminal=true
+Type=Application
+Keywords=Music;Player;
+Icon=cmus
+Categories=Player;Audio;
