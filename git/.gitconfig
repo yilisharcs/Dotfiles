@@ -5,7 +5,7 @@
 	defaultBranch = main
 [core]
 	editor = nvim
-	excludesfile = /home/yilisharcs/.gitignore_global
+	excludesfile = ~/.config/git/ignore
 [diff]
 	tool = nvimdiff
 [merge]
