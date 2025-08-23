@@ -10,6 +10,7 @@ application/octet-stream=neovide.desktop
 text/plain=neovide.desktop
 video/webm=vlc.desktop
 video/mp4=vlc.desktop
+x-scheme-handler/fcade=fcade-quark.desktop
 
 [Added Associations]
 application/x-zerosize=neovide.desktop;nvim.desktop;
