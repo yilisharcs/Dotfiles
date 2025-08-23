@@ -24,13 +24,13 @@ xbin     = [ { desc = "Execute binary",     run = '"$@"',                   orph
 
 [open]
 prepend_rules = [
-  { mime = "text/*",                                     use = ["edit", "reveal"] },
-  { mime = "inode/x-empty",                              use = "edit" },
-  { name = "*.html",                                     use = ["open", "edit"] },
-  { mime = "image/*",                                    use = ["open", "gimp", "inkscape", "krita", "reveal"] },
-  { mime = "application/{gzip,x-xz,zip,zstd}",           use = ["edit", "reveal"] },
-  { mime = "application/{pie-executable,executable}",    use = "xbin" },
-  { mime = "application/microsoft.portable-executable",  use = "wine" }
+  { mime = "text/*",                                           use = ["edit", "reveal"] },
+  { mime = "inode/x-empty",                                    use = "edit" },
+  { name = "*.html",                                           use = ["open", "edit"] },
+  { mime = "image/*",                                          use = ["open", "gimp", "inkscape", "krita", "reveal"] },
+  { mime = "application/{gzip,x-xz,zip,zstd}",                 use = ["edit", "reveal"] },
+  { mime = "application/{pie-executable,executable}",          use = "xbin" },
+  { mime = "application/{microsoft.portable-executable,msi}",  use = "wine" }
 ]
 
 [plugin]
