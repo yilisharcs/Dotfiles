@@ -7,7 +7,10 @@ prepend_keymap = [
 
   # Compress and extract
   { on = ["e", "e"], run = "shell 'ouch d \"$@\"'", desc = "Extract archive" },
-  { on = ["e", "p"], run = "shell 'ouch c -S \"$@\" .tar.zst' --interactive --cursor=15 --orphan", desc = "Compress as tar.zst" },
+  { on = ["e", "g"], run = "shell 'ouch c \"$@\" \"$0\".tar.gz' --orphan", desc = "Compress as .tar.gz" },
+  { on = ["e", "t"], run = "shell 'ouch c \"$@\" \"$0\".tar.zst' --orphan", desc = "Compress as .tar.zst" },
+  { on = ["e", "x"], run = "shell 'ouch c \"$@\" \"$0\".tar.xz' --orphan", desc = "Compress as .tar.xz" },
+  { on = ["e", "z"], run = "shell 'ouch c \"$@\" \"$0\".zip' --orphan", desc = "Compress as .zip" },
 
   # chmod
   { on = "C", run  = "plugin chmod", desc = "Change file permissions" },
