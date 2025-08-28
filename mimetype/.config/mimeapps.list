@@ -11,6 +11,7 @@ text/plain=neovide.desktop
 video/webm=vlc.desktop
 video/mp4=vlc.desktop
 x-scheme-handler/fcade=fcade-quark.desktop
+x-scheme-handler/discord-816168432860790794=discord-816168432860790794.desktop
 
 [Added Associations]
 application/x-zerosize=neovide.desktop;nvim.desktop;
