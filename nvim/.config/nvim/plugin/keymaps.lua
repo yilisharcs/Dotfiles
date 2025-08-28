@@ -38,7 +38,8 @@ vim.keymap.set("n", "gw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
 vim.keymap.set("n", "gW", [[:%s/\<<C-r><C-a>\>/<C-r><C-a>/gI<Left><Left><Left>]],
   { desc = "Replace contiguous text under cursor" })
 
-vim.keymap.set("n", "dy", "<CMD>diffthis<CR>", { desc = "Enable diff mode for the current body" })
+vim.keymap.set("n", "dy", "<CMD>diffthis<CR>", { desc = "Enable diff mode for the current buffer" })
+vim.keymap.set("n", "du", "<CMD>diffoff<CR>", { desc = "Disable diff mode for the current buffer" })
 vim.keymap.set("x", "<C-o>", ":'<,'>diffget<CR>", { silent = true, desc = "Get diff from alt buffer" })
 vim.keymap.set("x", "<C-p>", ":'<,'>diffput<CR>", { silent = true, desc = "Change diff of alt buffer" })
 
@@ -54,12 +55,12 @@ vim.keymap.set({ "n", "x", "i", "c", "t" }, "<M-l>", "<CMD>wincmd l<CR>")
 
 vim.keymap.set("n", "cu", function()
   return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.quickfix")) == 1
-    and "<CMD>botright copen | wincmd p<CR>" or "<CMD>cclose<CR>"
+      and "<CMD>botright copen | wincmd p<CR>" or "<CMD>cclose<CR>"
 end, { expr = true, desc = "Toggle quickfix list" })
 
 vim.keymap.set("n", "co", function()
   return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")) == 1
-    and "<CMD>botright lopen | wincmd p<CR>" or "<CMD>lclose<CR>"
+      and "<CMD>botright lopen | wincmd p<CR>" or "<CMD>lclose<CR>"
 end, { expr = true, desc = "Toggle location list" })
 
 vim.keymap.set("n", "<C-k>", "<CMD>cpfile<CR>zz", { desc = "Quickfix previous file" })
