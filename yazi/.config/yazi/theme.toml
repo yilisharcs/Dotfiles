@@ -30,3 +30,4 @@ prepend_dirs = [
   { name = "Videos",    text = "", fg = "#85ea2d" },
 ]
 prepend_files = [ { name = "maskfile.md", text = "", fg = "#6d8086" } ]
+prepend_exts = [ { name = "lemon", text = "", fg = "#ddd06a" } ]
