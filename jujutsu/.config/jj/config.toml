@@ -9,6 +9,7 @@ default-command = "ls"
 diff-formatter = ["difft", "--color=always", "$left", "$right"]
 
 [aliases]
+amend = ["squash"]
 clone = ["git", "clone", "--colocate"]
 fetch = ["git", "fetch"]
 init  = ["git", "init", "--colocate"]
