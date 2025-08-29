@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE lmms-config-file>
+<lmms version="1.2.2">
+  <MidiAlsaRaw device="default"/>
+  <MidiJack device="lmms"/>
+  <Midialsaseq device="default"/>
+  <app language="en" displaydbfs="0" disablebackup="0" nanhandler="1" openlastproject="0" configured="1" nomsgaftersetup="0" nommpz="0"/>
+  <audioalsa device="null" channels="2"/>
+  <audiojack clientname="lmms" channels="2"/>
+  <audiooss device="/dev/dsp" channels="2"/>
+  <audiopa device="default" channels="2"/>
+  <audioportaudio backend="" device=""/>
+  <audiosdl device=""/>
+  <audiosndio device="" channels="2"/>
+  <audiosoundio backend="PulseAudio" out_device_id="alsa_output.pci-0000_00_1b.0.analog-stereo" out_device_raw="no"/>
+  <midioss device="/dev/midi"/>
+  <mixer mididev="ALSA-Sequencer (Advanced Linux Sound Architecture)" framesperaudiobuffer="256" audiodev="SDL (Simple DirectMedia Layer)" hqaudio="0"/>
+  <paths sf2dir="/home/yilisharcs/Documents/lmms/samples/soundfonts/" defaultsf2="" vstdir="/home/yilisharcs/Documents/lmms/plugins/vst/" workingdir="/home/yilisharcs/Documents/lmms/" backgroundartwork="" laddir="/home/yilisharcs/Documents/lmms/plugins/ladspa/" stkdir="/usr/share/stk/rawwaves/" artwork="data:/themes/default/" gigdir="/home/yilisharcs/Documents/lmms/samples/gig/"/>
+  <tooltips disabled="0"/>
+  <ui smoothscroll="0" syncvstplugins="1" enableautosave="1" compacttrackbuttons="0" vstembedmethod="qt" displaywaveform="0" oneinstrumenttrackwindow="0" animateafp="1" disableautoquit="1" enablerunningautosave="0" printnotelabels="0" saveinterval="2" vstalwaysontop="0"/>
+  <recentfiles>
+    <file path="/home/yilisharcs/Documents/lmms/projects/prey-s3air.mmpz"/>
+    <file path="data:/projects/templates/default.mpt"/>
+  </recentfiles>
+</lmms>
