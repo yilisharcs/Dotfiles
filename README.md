@@ -2,6 +2,10 @@
 
 This repo houses my dotfiles. The nix pill sucks.
 
+# TODO
+
+- [ ] Figure out where to put this: `gnome-keyring-daemon --replace --components=ssh,secrets,pkcs11`. If ssh isn't included, the agent will ask for the password every login.
+
 # MASKFILE RULES
 
 This section contains commands for the task runner **mask**.
