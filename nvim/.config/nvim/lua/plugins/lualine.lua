@@ -10,9 +10,6 @@ local section_separators
 if vim.env.DISPLAY == nil then
   section_separators   = { left = '>', right = '<' }
   component_separators = { left = '|', right = '|' }
--- elseif vim.g.neovide then
---   section_separators   = { left = '', right = '' }
---   component_separators = { left = '', right = '' }
 else
   section_separators   = { left = "", right = "" }
   component_separators = { left = "", right = "" }
