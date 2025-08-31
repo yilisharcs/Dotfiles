@@ -1,6 +1,7 @@
 [user]
 	name = yilisharcs
 	email = yilisharcs@gmail.com
+	signingkey = 1D1CA99103BF8677
 [init]
 	defaultBranch = main
 [core]
@@ -18,3 +19,7 @@
 	last = log -1 HEAD
 	logd = log --decorate --oneline --graph
 	unstage = reset HEAD --
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true
