@@ -1,6 +1,7 @@
 return {
   "mikavilpas/yazi.nvim",
   lazy = false,
+  version = "v11.10.2",
   -- dev = true,
   dependencies = {
     "folke/snacks.nvim",
