@@ -1,12 +1,20 @@
 "$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
 
 [user]
+name  = "yilisharcs"
 email = "yilisharcs@gmail.com"
-name = "yilisharcs"
+
+[signing]
+behavior = "drop"
+backend  = "gpg"
+key      = "1D1CA99103BF8677"
+
+[git]
+sign-on-push = true
 
 [ui]
 default-command = "ls"
-diff-formatter = ["difft", "--color=always", "$left", "$right"]
+diff-formatter  = ["difft", "--color=always", "$left", "$right"]
 
 [aliases]
 amend = ["squash"]
