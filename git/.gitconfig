@@ -1,7 +1,7 @@
 [user]
-	name = yilisharcs
-	email = yilisharcs@gmail.com
-	signingkey = 1D1CA99103BF8677
+	name       = yilisharcs
+	email      = yilisharcs@gmail.com
+	signingKey = 1D1CA99103BF8677
 [init]
 	defaultBranch = main
 [core]
@@ -16,8 +16,9 @@
 [rebase]
 	autoStash = true
 [alias]
-	last = log -1 HEAD
-	logd = log --decorate --oneline --graph
+	last	  = log -1 HEAD
+	logd	  = log --decorate --oneline --graph
+	st      = status
 	unstage = reset HEAD --
 [commit]
 	gpgSign = true
