@@ -1,3 +1,3 @@
--- require('vim._extui').enable({ enable = true })
---
--- vim.o.cmdheight = 0
+require('vim._extui').enable({ enable = true })
+
+vim.o.cmdheight = 0
