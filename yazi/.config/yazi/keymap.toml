@@ -17,7 +17,7 @@ prepend_keymap = [
 
   # Backup
   # NOTE: Adding a date suffix ensures backed-up files won't be overwritten by accident
-  { on = "b", run = "shell 'cp -r $0 $0-$(date +%s).bak'", desc = "Backup current file" },
+  { on = "b", run = "shell 'cp -r \"$0\" \"$0\"-$(date +%s).bak'", desc = "Backup current file" },
 
   # Pager
   { on = "i", run = "shell 'bat $0' --block" },
