@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.lemon set filetype=c
+au BufRead,BufNewFile *.lemon set filetype=lemon
