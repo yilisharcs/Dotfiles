@@ -10,7 +10,6 @@
   "lualine.nvim": { "branch": "lf-extension", "commit": "c1d4eb454ef8662d7307fd876099355dd36c3758" },
   "mason.nvim": { "branch": "main", "commit": "7dc4facca9702f95353d5a1f87daf23d78e31c2a" },
   "mini.ai": { "branch": "main", "commit": "45a26d032d8703f280c69c2ed9fb4e1bfc8f24f9" },
-  "mini.bufremove": { "branch": "main", "commit": "e60941ab23eb0679f0da0e92ac0b572425756dc2" },
   "mini.diff": { "branch": "main", "commit": "7077b636d642fcd5cd48554e187a251883239660" },
   "mini.hipatterns": { "branch": "main", "commit": "96d07d32a0db0d8d8a10c83a964ec557cca005e7" },
   "mini.icons": { "branch": "main", "commit": "f9a177c11daa7829389b7b6eaaec8b8a5c47052d" },

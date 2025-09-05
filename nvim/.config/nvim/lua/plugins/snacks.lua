@@ -4,10 +4,21 @@ return {
   lazy = false,
   keys = {
     { "<leader>gB", function() Snacks.gitbrowse() end,             desc = "Open git repo in the browser" },
-    { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+    { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification history" },
     { "<F7>",       ":= _G.dd()<LEFT>",                            desc = "Debug inspect" },
-    { "<leader>s",  function() Snacks.scratch() end,               desc = "Toggle Scratch Buffer" },
-    { "<leader>S",  function() Snacks.scratch.select() end,        desc = "Select Scratch Buffer" },
+    { "<leader>s",  function() Snacks.scratch() end,               desc = "Toggle scratch buffer" },
+    { "<leader>S",  function() Snacks.scratch.select() end,        desc = "Select scratch buffer" },
+    {
+      "<M-q>",
+      function()
+        if vim.bo.filetype ~= "help" then
+          Snacks.bufdelete.delete()
+        else
+          vim.cmd("bdelete!")
+        end
+      end,
+      desc = "Delete buffer"
+    },
   },
   opts = {
     bigfile = {
