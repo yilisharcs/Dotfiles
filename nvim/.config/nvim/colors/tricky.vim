@@ -53,6 +53,7 @@ hi! link BlinkCmpDocBorder BlinkCmpDoc
 
 "{{
 hi MiniHipatternsNote guifg=#00af5f gui=bold,reverse ctermfg=7 cterm=bold,reverse
+hi MiniHipatternsFixme guifg=#d7005f gui=bold,reverse ctermfg=1 cterm=bold,reverse
 "}}
 
 "{{
