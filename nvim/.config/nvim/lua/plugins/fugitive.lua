@@ -14,6 +14,8 @@ return {
     { "<leader>gL", "<CMD>Gclog<CR>",         desc = "[Git] Repo history" },
   },
   init = function()
+    vim.keymap.set("ca", "git", "(getcmdtype() ==# ':' && getcmdline() =~# '^git') ? 'Git' : 'git'", { expr = true })
+
     vim.g.fugitive_summary_format = "%an | %s"
 
     function _G.qfxfugitive(info)
