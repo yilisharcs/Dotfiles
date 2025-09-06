@@ -8,10 +8,10 @@ return {
     { "<leader>y", "<CMD>WikiBrowse pizza<CR>" },
   },
   init =
-    function()
-      vim.cmd([[
+      function()
+        vim.cmd([[
         cnoreabbrev <expr> wiki (getcmdtype() ==# ':' && getcmdline() =~# '^wiki') ? 'WikiBrowse' : 'wiki'
       ]])
-    end,
+      end,
   opts = true
 }
