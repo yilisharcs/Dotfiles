@@ -8,8 +8,8 @@ local buf = vim.api.nvim_buf_get_name(0)
 local strlen = string.len(buf)
 
 if string.sub(buf, 1, 9) == "/tmp/bash" or
-  (string.sub(buf, 1, 5) == "/tmp/"
-    and string.sub(buf, strlen - 2) == ".nu") then
+    (string.sub(buf, 1, 5) == "/tmp/"
+      and string.sub(buf, strlen - 2) == ".nu") then
   vim.g.shell_editor = true
 end
 
