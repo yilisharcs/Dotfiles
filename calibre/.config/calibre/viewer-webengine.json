@@ -127,6 +127,17 @@
     "standalone_font_settings": {
       "minimum_font_size": 20
     },
-    "standalone_misc_settings": {}
+    "standalone_misc_settings": {},
+    "standalone_recently_opened": [
+      {
+        "authors": [
+          "Ken Youens-Clark"
+        ],
+        "key": "/home/yilisharcs/Library/Coding/Command-Line Rust -- Ken Youens-Clark -- 2022 -- O'Reilly Media, Inc_ -- 9781098109387 -- eaaa175457685cf198416c77f050a6bb -- Anna’s Archive.epub",
+        "pathtoebook": "/home/yilisharcs/Library/Coding/Command-Line Rust -- Ken Youens-Clark -- 2022 -- O'Reilly Media, Inc_ -- 9781098109387 -- eaaa175457685cf198416c77f050a6bb -- Anna’s Archive.epub",
+        "timestamp": "2025-09-07T01:46:03.348Z",
+        "title": "Command-Line Rust"
+      }
+    ]
   }
 }
