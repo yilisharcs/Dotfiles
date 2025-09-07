@@ -1,0 +1,19 @@
+{
+  "add books dialog dir": "/home/yilisharcs/Library/Coding",
+  "add books dialog dir-last-used-filter-spec-all-files": false,
+  "choose calibre library": "/home/yilisharcs/Library/Calibre Library",
+  "database location dialog": "/home/yilisharcs/Library/Calibre Library",
+  "sort_history": [
+    [
+      "timestamp",
+      false
+    ],
+    [
+      "timestamp",
+      false
+    ]
+  ],
+  "systray_msg": true,
+  "welcome_wizard_device": "default",
+  "welcome_wizard_was_run": true
+}
