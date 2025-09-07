@@ -25,15 +25,16 @@ return {
     local actions = require("diffview.actions")
 
     require("diffview").setup({
-      -- view = {
-      --   default = {
-      --     layout = "diff2_vertical"
-      --   }
-      -- },
+      -- diff_binaries = true,
+      view = {
+        default = {
+          layout = "diff2_vertical"
+        }
+      },
       file_panel = {
         win_config = {
           position = "right",
-          -- width = math.floor(vim.o.columns * 0.33 + 0.5),
+          width = math.floor(vim.o.columns * 0.33 + 0.5),
         },
       },
       keymaps = {
