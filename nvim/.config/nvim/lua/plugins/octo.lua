@@ -1,5 +1,6 @@
 return {
   "pwntester/octo.nvim",
+  lazy = false,
   dependencies = {
     "ibhagwan/fzf-lua",
     "nvim-tree/nvim-web-devicons",

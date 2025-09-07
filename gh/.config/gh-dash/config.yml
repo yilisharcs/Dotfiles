@@ -64,9 +64,15 @@ defaults:
 keybindings:
   universal: []
   issues: []
-  prs: []
+  prs:
+    - key: e
+      name: edit
+      command: >
+        kitten @ --to=${KITTY_LISTEN_ON} launch --type=tab --cwd={{.RepoPath}}
+        nvim -c ':Octo pr edit {{.PrNumber}}'
   branches: []
-repoPaths: {}
+repoPaths:
+  :owner/:repo: ~/Projects/github.com/:owner/:repo
 theme:
   ui:
     sectionsShowCount: true
@@ -77,7 +83,7 @@ theme:
     background:
       selected: "#510039"
 pager:
-  diff: ""
+  diff: less
 confirmQuit: false
 showAuthorIcons: true
 smartFilteringAtLaunch: true
