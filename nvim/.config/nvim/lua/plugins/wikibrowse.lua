@@ -5,7 +5,7 @@ return {
   lazy = false,
   cmd = "WikiBrowse",
   keys = {
-    { "<leader>y", "<CMD>WikiBrowse pizza<CR>" },
+    { "<leader>e", "<CMD>WikiBrowse pizza<CR>" },
   },
   init =
       function()
