@@ -10,6 +10,7 @@ end
 
 return {
   "ibhagwan/fzf-lua",
+  commit = "8ebb4f53b0c450b468834e96b1e1b86415e2d7dc",
   keys = {
     { "<leader>fi", "<CMD>FzfLua files<CR>",            desc = "[FZF] List all files" },
     { "<leader>fl", "<CMD>FzfLua git_files<CR>",        desc = "[FZF] List tracked files" },
