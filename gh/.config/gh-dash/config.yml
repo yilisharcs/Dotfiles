@@ -73,6 +73,9 @@ theme:
     table:
       showSeparator: true
       compact: false
+  colors:
+    background:
+      selected: "#510039"
 pager:
   diff: ""
 confirmQuit: false
