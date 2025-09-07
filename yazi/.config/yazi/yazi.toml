@@ -16,11 +16,12 @@ play = [
   { desc = "Open with VLC",   run = 'vlc "$@"', orphan = true, for = "unix" },
   { desc = "Show media info", run = 'mediainfo "$1" | bat', block = true, for = "unix" },
 ]
-gimp     = [ { desc = "Open with GIMP",     run = 'gimp "$@"',              orphan = true } ]
-inkscape = [ { desc = "Open with Inkscape", run = 'inkscape "$@"',          orphan = true } ]
-krita    = [ { desc = "Open with Krita",    run = 'krita "$@"',             orphan = true } ]
-wine     = [ { desc = "Execute with Wine",  run = 'firejail wine "$@"',     orphan = true } ]
-xbin     = [ { desc = "Execute binary",     run = '"$@"',                   orphan = true } ]
+calibre  = [ { desc = "Read with Calibre",   run = 'ebook-viewer "$@"',   orphan = true } ]
+gimp     = [ { desc = "Open with GIMP",      run = 'gimp "$@"',           orphan = true } ]
+inkscape = [ { desc = "Open with Inkscape",  run = 'inkscape "$@"',       orphan = true } ]
+krita    = [ { desc = "Open with Krita",     run = 'krita "$@"',          orphan = true } ]
+wine     = [ { desc = "Execute with Wine",   run = 'firejail wine "$@"',  orphan = true } ]
+xbin     = [ { desc = "Execute binary",      run = '"$@"',                orphan = true } ]
 
 [open]
 prepend_rules = [
@@ -28,6 +29,8 @@ prepend_rules = [
   { mime = "inode/x-empty",                                    use = "edit" },
   { name = "*.html",                                           use = ["open", "edit"] },
   { mime = "image/*",                                          use = ["open", "gimp", "inkscape", "krita", "reveal"] },
+  { mime = "application/epub+zip",                             use = "calibre" },
+  { mime = "application/zip",                                  use = "calibre" },
   { mime = "application/{gzip,x-xz,zip,zstd}",                 use = ["edit", "reveal"] },
   { mime = "application/{pie-executable,executable}",          use = "xbin" },
   { mime = "application/{microsoft.portable-executable,msi}",  use = "wine" }
