@@ -120,7 +120,6 @@ vim.keymap.set({ "n", "t" }, "<C-SPACE>t", "<CMD>wincmd T<CR>", { desc = "Open b
 
 vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>c", "<CMD>tabnew | term nu<CR>")
 vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>x", "<CMD>tabclose<CR>")
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>h", "<CMD>tabnew | term btop<CR>")
 
 vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>1", "<CMD>1tabnext<CR>")
 vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>2", "<CMD>2tabnext<CR>")
