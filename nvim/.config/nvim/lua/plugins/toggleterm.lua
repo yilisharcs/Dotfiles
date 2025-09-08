@@ -1,15 +1,34 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
+  event = "VeryLazy",
   keys = {
     {
-      "<C-g>",
-      "<CMD>exe v:count1 . 'ToggleTerm'<CR>",
+      "<C-SPACE>h",
+      "<CMD>" ..
+      "2TermExec " ..
+      "cmd='btop' " ..
+      "direction=float " ..
+      "name='RESOURCE MONITOR' " ..
+      "<CR>",
       mode = { "n", "i", "t" },
-      desc = "Toggle terminal window"
+      desc = "Toggleterm resource monitor"
+    },
+    {
+      "<C-SPACE>g",
+      "<CMD>" ..
+      "3TermExec " ..
+      "cmd='gh dash' " ..
+      "dir=~ " ..
+      "direction=float " ..
+      "name='GITHUB DASHBOARD' " ..
+      "<CR>",
+      mode = { "n", "i", "t" },
+      desc = "Toggleterm Github dashboard"
     },
   },
   opts = {
+    open_mapping = "<C-g>",
     shell = vim.fn.executable("nu") == 1 and vim.fn.exepath("nu") or vim.o.shell,
     size = function(term)
       if term.direction == "horizontal" then

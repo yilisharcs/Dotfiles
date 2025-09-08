@@ -44,7 +44,7 @@ return {
       mode = "i",
       desc = "[FZF] Complete Path"
     },
-    { "<C-Space>g", "<CMD>lua _G.fzf_dirs()<CR>", desc = "[FZF] New project tab" },
+    { "<leader>fs", "<CMD>lua _G.fzf_dirs()<CR>", desc = "[FZF] New project tab" },
   },
   init = function()
     _G.fzf_dirs = function(opts)
