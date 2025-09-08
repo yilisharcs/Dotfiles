@@ -1,4 +1,7 @@
--- Sync clipboard between OS and Neovim.
+-- Enable project-local configuration
+vim.o.exrc = true
+
+-- Sync clipboard between OS and Neovim
 vim.opt.clipboard:append({ "unnamedplus" })
 vim.g.clipboard = "xclip"
 
