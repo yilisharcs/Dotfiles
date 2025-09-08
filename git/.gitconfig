@@ -11,13 +11,14 @@
 	tool = nvimdiff
 [merge]
 	tool = nvimdiff
+	autoStash = true
 [pull]
 	rebase = true
 [rebase]
 	autoStash = true
 [alias]
-	last	  = log -1 HEAD
-	logd	  = log --decorate --oneline --graph
+	last    = log -1 HEAD
+	logd    = log --decorate --oneline --graph
 	st      = status
 	unstage = reset HEAD --
 [commit]
