@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.pairs", -- see `:h MiniPairs.config`.
+  "nvim-mini/mini.pairs", -- see `:h MiniPairs.config`.
   version = false,
   event = { "InsertEnter", "CmdlineEnter", "CmdwinEnter" },
   opts = {

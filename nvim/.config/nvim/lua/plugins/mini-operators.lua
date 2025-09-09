@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.operators", -- see `:h MiniOperators.config`.
+  "nvim-mini/mini.operators", -- see `:h MiniOperators.config`.
   version = false,
   keys = {
     { "g-", mode = { "n", "x" } },
