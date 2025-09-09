@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.ai", -- see `:h MiniAi.config`.
+  "nvim-mini/mini.ai", -- see `:h MiniAi.config`.
   version = false,
   dependencies = {
     "nvim-treesitter/nvim-treesitter",

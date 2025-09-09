@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.icons", -- see `:h MiniIcons.config`.
+  "nvim-mini/mini.icons", -- see `:h MiniIcons.config`.
   version = false,
   lazy = true,
   specs = { { "nvim-tree/nvim-web-devicons", enabled = false, optional = true } },

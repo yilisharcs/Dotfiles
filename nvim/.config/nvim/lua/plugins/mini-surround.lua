@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.surround", -- see `:h MiniSurround.config`.
+  "nvim-mini/mini.surround", -- see `:h MiniSurround.config`.
   version = false,
   keys = {
     { "ys" },

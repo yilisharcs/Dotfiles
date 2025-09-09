@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.misc", -- see `:h MiniMisc.config`.
+  "nvim-mini/mini.misc", -- see `:h MiniMisc.config`.
   version = false,
   event = "BufReadPost [^:]*",
   config = function()
