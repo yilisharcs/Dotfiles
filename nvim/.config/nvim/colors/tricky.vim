@@ -82,12 +82,12 @@ hi RainbowDelimiterCyan   guifg=#5f00d7 ctermfg=6
 "}}
 
 "{{
-hi RenderMarkdownH1Bg guifg=#87ff00 guibg=NONE gui=bold,reverse
-hi RenderMarkdownH2Bg guifg=#ff5faf guibg=NONE gui=bold,reverse
-hi RenderMarkdownH3Bg guifg=#8787ff guibg=NONE gui=bold,reverse
-hi RenderMarkdownH4Bg guifg=#ffaf00 guibg=NONE gui=bold,reverse
-hi RenderMarkdownH5Bg guifg=#00af5f guibg=NONE gui=bold,reverse
-hi RenderMarkdownH6Bg guifg=#afafff guibg=NONE gui=bold,reverse
+hi RenderMarkdownH1Bg guifg=#87ff00 guibg=#510039 gui=bold
+hi RenderMarkdownH2Bg guifg=#ffff5f guibg=#470032 gui=bold
+hi RenderMarkdownH3Bg guifg=#87ffff guibg=#3d002a gui=bold
+hi RenderMarkdownH4Bg guifg=#ff5faf guibg=#320023 gui=bold
+hi RenderMarkdownH5Bg guifg=#ffaf00 guibg=#28001c gui=bold
+hi RenderMarkdownH6Bg guifg=#afafff guibg=#1e0015 gui=bold
 "}}
 
 "{{
