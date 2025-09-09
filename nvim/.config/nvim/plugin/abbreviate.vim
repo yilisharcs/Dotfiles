@@ -13,7 +13,7 @@ cabbrev qa1 qa!
 cabbrev bd1 bd!
 
 cnoreabbrev <expr> cfilter (getcmdtype() ==# ':' && getcmdline() =~# '^cfilter') ? 'Cfilter' : 'cfilter'
-cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'silent grep' : 'grep'
+" cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'silent grep' : 'grep'
 cnoreabbrev <expr> hgrep (getcmdtype() ==# ':' && getcmdline() =~# '^hgrep') ? 'helpgrep' : 'hgrep'
 cnoreabbrev <expr> man (getcmdtype() ==# ':' && getcmdline() =~# '^man') ? 'Man' : 'man'
 cnoreabbrev <expr> task (getcmdtype() ==# ':' && getcmdline() =~# '^task') ? '!task' : 'task'
