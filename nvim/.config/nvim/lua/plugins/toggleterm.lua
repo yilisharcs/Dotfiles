@@ -18,15 +18,6 @@ return {
 
     local Terminal = require("toggleterm.terminal").Terminal
 
-    local btop = Terminal:new({
-      cmd = "btop",
-      direction = "float",
-      display_name = "RESOURCE MONITOR",
-      count = 3
-    })
-    btop:toggle():toggle()
-    vim.keymap.set({ "n", "t" }, "<C-SPACE>h", function() btop:toggle() end)
-
     local gh_dash = Terminal:new({
       cmd = "gh dash",
       dir = "~",
@@ -34,7 +25,14 @@ return {
       display_name = "GITHUB DASHBOARD",
       count = 2
     })
-    gh_dash:toggle():toggle()
-    vim.keymap.set({ "n", "t" }, "<C-SPACE>g", function() gh_dash:toggle() end)
+    vim.keymap.set("n", "<leader><F2>", function() gh_dash:toggle() end)
+
+    local btop = Terminal:new({
+      cmd = "btop",
+      direction = "float",
+      display_name = "RESOURCE MONITOR",
+      count = 3
+    })
+    vim.keymap.set("n", "<leader><F3>", function() btop:toggle() end)
   end
 }
