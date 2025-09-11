@@ -29,8 +29,7 @@ prepend_rules = [
   { mime = "inode/x-empty",                                    use = "edit" },
   { name = "*.html",                                           use = ["open", "edit"] },
   { mime = "image/*",                                          use = ["open", "gimp", "inkscape", "krita", "reveal"] },
-  { mime = "application/epub+zip",                             use = "calibre" },
-  { mime = "application/zip",                                  use = "calibre" },
+  { mime = "application/{epub+zip, zip}",                      use = "calibre" },
   { mime = "application/{gzip,x-xz,zip,zstd}",                 use = ["edit", "reveal"] },
   { mime = "application/{pie-executable,executable}",          use = "xbin" },
   { mime = "application/{microsoft.portable-executable,msi}",  use = "wine" }
