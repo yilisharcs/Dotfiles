@@ -6,4 +6,4 @@ function! NoPlugLua()
   write
 endfunction
 
-nnoremap <leader><F3> <CMD>call NoPlugLua()<CR>
+nnoremap <leader><F1> <CMD>call NoPlugLua()<CR>
