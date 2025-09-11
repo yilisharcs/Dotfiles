@@ -3,6 +3,9 @@ return {
   -- enabled = false,
   cond = vim.env.DISPLAY ~= nil,
   ft = { "markdown", "codecompanion" },
+  keys = {
+    { "<leader>y", "<CMD>RenderMarkdown toggle<CR>", desc = "Toggle markdown render" },
+  },
   opts = {
     render_modes = true,
     anti_conceal = {
