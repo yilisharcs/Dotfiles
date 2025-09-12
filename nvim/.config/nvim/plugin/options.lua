@@ -37,8 +37,8 @@ vim.o.splitbelow = true
 
 -- Fold opts
 vim.o.foldcolumn = "0"
-vim.o.foldmethod = "indent"
-vim.o.foldlevel = 99
+vim.o.foldmethod = "marker"
+vim.o.foldlevel = 0
 
 -- Column opts
 vim.o.numberwidth = 3
