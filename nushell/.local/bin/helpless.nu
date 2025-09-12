@@ -8,7 +8,7 @@
 # or, if applicable, nushell's built-in `explore`.
 def main [
   --find (-f): string  # string to find in command names, descriptions, and search terms
-  ...arg: string
+  arg?: string
 ] {
   if not ($find | is-empty) {
     help --find $find | explore
@@ -19,15 +19,16 @@ def main [
   # If not individually matched, they will
   # be interpreted as arguments and fail.
   match $arg {
+    # Doesn't work
     aliases => { help aliases | explore }
     commands => { help commands | explore }
-    escapes => { help operators | explore }
+    escapes => { help escapes | explore }
     externs => { help externs | explore }
     modules => { help modules | explore }
     operators => { help operators | explore }
     pipe-and-redirect => { help pipe-and-redirect | explore }
     # Return the default help page
     null => { help | less -FRX }
-    _ => { help ...$arg | less -FRX }
+    _ => { help $arg | less -FRX }
   }
 }
