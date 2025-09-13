@@ -43,7 +43,7 @@ print $"(ansi green_bold)Stow \"(pwd)\" complete.(ansi reset)"
 ```nu
 ls
 | where type == dir
-| where name =~ "_"
+| where name =~ "^_"
 | get name
 | each { sudo stow -R --target=/ $in }
 
