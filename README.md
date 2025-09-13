@@ -68,12 +68,6 @@ if not ("~/Extern-Media" | path exists) {
     ln -sf /media/yilisharcs ~/Extern-Media
 }
 
-ln -sf /usr/bin/batcat                ~/.local/bin/bat
-ln -sf /usr/bin/fdfind                ~/.local/bin/fd
-ln -sf /usr/bin/kitty                 ~/.local/bin/gnome-terminal
-ln -sf ~/.config/nushell/history.txt  ~/.nu_history.txt
-ln -sf ~/.local/share/Trash/files     ~/Trash
-
 print $"(ansi green_bold)Created symlinks.(ansi reset)"
 
 mkdir ~/.config
