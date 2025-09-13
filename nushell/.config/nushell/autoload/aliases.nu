@@ -14,6 +14,7 @@ alias visudo = sudo visudo
 alias yeet = sudo apt-get purge --autoremove
 
 alias brave = brave-browser
+alias cz = czkawka_cli
 alias fd = fd --hidden
 alias fetch = fastfetch
 alias grep = rg
