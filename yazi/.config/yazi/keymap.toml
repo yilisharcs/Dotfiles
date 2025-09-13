@@ -33,7 +33,7 @@ prepend_keymap = [
 
   # Hardlink
   # NOTE: <C--> is a dedicated terminal keybinding for zooming out
-  { on = "<C-S-->", run = "hardlink", desc = "Hardlink yanked files" },
+  { on = "<C-A-->", run = "hardlink", desc = "Hardlink yanked files" },
 
   # Goto
   { on = ["g", "/"], run = "cd /",                                          desc = "Go to root" },
