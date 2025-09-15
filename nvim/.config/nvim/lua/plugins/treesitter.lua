@@ -10,6 +10,7 @@ return {
   config = function()
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
+        "asm",
         "bash",
         "c",
         "comment",
@@ -20,14 +21,18 @@ return {
         "gitcommit",
         "gitignore",
         "html",
+        "ini",
         "json",
         "lua",
         "markdown",
         "markdown_inline",
-        "comment",
+        -- "muttrc",
         "nu",
+        "objdump",
+        "python",
         "query",
         "rust",
+        "strace",
         "toml",
         "typst",
         "udev",
