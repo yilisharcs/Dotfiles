@@ -1,4 +1,4 @@
-vim.lsp.log.set_level("debug")
+vim.lsp.log.set_level("off")
 
 vim.diagnostic.config({
   virtual_text = true,
