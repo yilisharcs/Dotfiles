@@ -31,7 +31,6 @@ prepend_keymap = [
   { on = "Z", run = "plugin fzf",    desc = "Jump to a file/directory via fzf" },
 
   # Hardlink
-  # NOTE: <C--> is a dedicated terminal keybinding for zooming out
   { on = "<C-A-->", run = "hardlink", desc = "Hardlink yanked files" },
 
   # Goto
