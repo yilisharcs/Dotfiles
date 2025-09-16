@@ -1,2 +1,2 @@
-vim.wo.relativenumber = false
-vim.wo.wrap = true
+vim.wo[0][0].relativenumber = false
+vim.wo[0][0].wrap = true
