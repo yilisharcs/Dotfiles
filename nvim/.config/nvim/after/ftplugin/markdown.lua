@@ -6,9 +6,6 @@ vim.wo.list = false
 vim.wo.relativenumber = false
 vim.wo.wrap = true
 
--- This helps distinguish comments within fenced code blocks
-vim.wo.winhighlight = "@comment:FilterMenuLineNr,@comment.html:Comment"
-
 -- Make time heading for zk
 vim.keymap.set("n", "<F2>", "G{{O<CR>### <C-r>=strftime('%H:%M')<CR><CR>", { silent = true })
 
