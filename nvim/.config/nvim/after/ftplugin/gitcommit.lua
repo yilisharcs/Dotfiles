@@ -1,1 +1,1 @@
-vim.wo.list = false
+vim.wo[0][0].list = false
