@@ -19,6 +19,7 @@ return {
         config = function()
                 require("mini.ai").setup({
                         custom_textobjects = {
+                                -- FIXME: doesn't work
                                 a = require("mini.ai").gen_spec.treesitter({
                                         a = "@parameter.outer",
                                         i = "@parameter.inner"
