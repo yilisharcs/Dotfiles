@@ -5,6 +5,7 @@ return {
             "tinymist " ..
             "vim-language-server",
         ft = {
+                -- "c",
                 "lua",
                 "rust",
                 "typst",

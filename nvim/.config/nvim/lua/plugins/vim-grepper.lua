@@ -20,7 +20,7 @@ return {
                         tools = { "rg", "git", "grep" },
                 }
 
-                vim.keymap.set({ "n", "x" }, "ga", "<Plug>(GrepperOperator)")
+                vim.keymap.set({ "n", "x" }, "gs", "<Plug>(GrepperOperator)")
                 vim.keymap.set("ca", "grep", "(getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'GrepperRg' : 'grep'",
                         { expr = true })
         end
