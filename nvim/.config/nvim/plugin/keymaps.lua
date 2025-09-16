@@ -9,7 +9,7 @@ vim.keymap.set({ "i", "c" }, "<C-b>", "<LEFT>")
 vim.keymap.set({ "i", "c" }, "<C-f>", "<RIGHT>")
 vim.keymap.set("c", "<C-y>", "<C-f>", { desc = "Open command-line window" })
 vim.keymap.set("c", "<C-k>", [[<c-\>e getcmdpos() == 1 ? "" : getcmdline()[:getcmdpos()-2]<CR>]],
-  { desc = "Delete words after cursor" })
+        { desc = "Delete words after cursor" })
 vim.keymap.set("c", "<C-a>", "<HOME>")
 vim.keymap.set("c", "<C-x><C-a>", "<C-a>", { desc = "Insert matches on cursor pattern" })
 vim.keymap.set({ "i", "c" }, "<C-d>", "<DEL>")
@@ -34,9 +34,9 @@ vim.keymap.set("n", "dgn", '*``"_dgn', { desc = "Match word and delete ahead" })
 vim.keymap.set("n", "dgN", '*``"_dgN', { desc = "Match word and delete behind" })
 
 vim.keymap.set("n", "gw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "Replace word under cursor" })
+        { desc = "Replace word under cursor" })
 vim.keymap.set("n", "gW", [[:%s/\<<C-r><C-a>\>/<C-r><C-a>/gI<Left><Left><Left>]],
-  { desc = "Replace contiguous text under cursor" })
+        { desc = "Replace contiguous text under cursor" })
 
 vim.keymap.set("n", "dy", "<CMD>diffthis<CR>", { desc = "Enable diff mode for the current buffer" })
 vim.keymap.set("n", "du", "<CMD>diffoff<CR>", { desc = "Disable diff mode for the current buffer" })
@@ -54,13 +54,13 @@ vim.keymap.set({ "n", "x", "i", "c", "t" }, "<M-k>", "<CMD>wincmd k<CR>")
 vim.keymap.set({ "n", "x", "i", "c", "t" }, "<M-l>", "<CMD>wincmd l<CR>")
 
 vim.keymap.set("n", "cu", function()
-  return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.quickfix")) == 1
-      and "<CMD>botright copen | wincmd p<CR>" or "<CMD>cclose<CR>"
+        return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.quickfix")) == 1
+            and "<CMD>botright copen | wincmd p<CR>" or "<CMD>cclose<CR>"
 end, { expr = true, desc = "Toggle quickfix list" })
 
 vim.keymap.set("n", "co", function()
-  return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")) == 1
-      and "<CMD>botright lopen | wincmd p<CR>" or "<CMD>lclose<CR>"
+        return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")) == 1
+            and "<CMD>botright lopen | wincmd p<CR>" or "<CMD>lclose<CR>"
 end, { expr = true, desc = "Toggle location list" })
 
 vim.keymap.set("n", "<C-k>", "<CMD>cpfile<CR>zz", { desc = "Quickfix previous file" })
@@ -71,14 +71,14 @@ vim.keymap.set("n", "<leader><C-p>", "<CMD>cabove<CR>", { desc = "Quickfix error
 vim.keymap.set("n", "<leader><C-n>", "<CMD>cbelow<CR>", { desc = "Quickfix error below cursor" })
 
 vim.keymap.set("n", "gz", function()
-    vim.ui.open("https://github.com/" .. vim.fn.expand("<cfile>"))
-  end,
-  { desc = "Open github repo under cursor" })
+                vim.ui.open("https://github.com/" .. vim.fn.expand("<cfile>"))
+        end,
+        { desc = "Open github repo under cursor" })
 vim.keymap.set("x", "gz", function()
-    vim.cmd('norm! "zy')
-    vim.ui.open("https://github.com/" .. vim.fn.getreg("z"))
-  end,
-  { desc = "Open selection on github" })
+                vim.cmd('norm! "zy')
+                vim.ui.open("https://github.com/" .. vim.fn.getreg("z"))
+        end,
+        { desc = "Open selection on github" })
 
 vim.keymap.set("n", "Z", "jmzk<CMD>m .+1<CR>==`z", { desc = "Swap lines" })
 vim.keymap.set("n", "gj", "i<CR><ESC>k$", { desc = "Split current line at the cursor position" })
@@ -92,19 +92,19 @@ vim.keymap.set("n", "gco", "oz<ESC>gccfza<BS>", { remap = true, desc = "Add comm
 vim.keymap.set({ "n", "x", "o" }, "j", "(&wrap ? 'gj' : 'j')", { expr = true })
 vim.keymap.set({ "n", "x", "o" }, "k", "(&wrap ? 'gk' : 'k')", { expr = true })
 vim.keymap.set({ "n", "x" }, "<C-d>", "(&wrap ? '<C-d>' : '<C-d>zz')",
-  { expr = true, desc = "Center half-scroll down" })
+        { expr = true, desc = "Center half-scroll down" })
 vim.keymap.set({ "n", "x" }, "<C-u>", "(&wrap ? '<C-u>' : '<C-u>zz')",
-  { expr = true, desc = "Center half-scroll up" })
+        { expr = true, desc = "Center half-scroll up" })
 vim.keymap.set({ "n", "x" }, "<C-f>", "(&wrap ? '<C-f>' : '<C-f>zz')",
-  { expr = true, desc = "Center full-scroll down" })
+        { expr = true, desc = "Center full-scroll down" })
 vim.keymap.set({ "n", "x" }, "<C-b>", "(&wrap ? '<C-b>' : '<C-b>zz')",
-  { expr = true, desc = "Center full-scroll up" })
+        { expr = true, desc = "Center full-scroll up" })
 vim.keymap.set({ "n", "x" }, "<F8>", '<CMD>setlocal wrap! wrap?<CR>', { desc = "Toggle wrap" })
 
 vim.keymap.set({ "n", "i", "c" }, "<C-S-V>", "<C-r>+", { desc = "Paste from clipboard" })
 vim.keymap.set("t", "<C-S-V>", "<C-\\><C-n>pi", { desc = "Paste from clipboard" })
 vim.keymap.set("t", "<C-4><C-r>", [['<C-\><C-n>"'.nr2char(getchar()).'pi']],
-  { expr = true, desc = "Paste from register $@" })
+        { expr = true, desc = "Paste from register $@" })
 
 -- Lots of terminal programs don't register C-4 as C-\
 vim.keymap.set("t", "<C-4><C-n>", [[<C-\><C-n>]])
@@ -133,25 +133,25 @@ vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>9", "<CMD>9tabnext<CR>")
 
 vim.keymap.set("n", "<F9>", "<CMD>Inspect<CR>", { desc = "Inspect element under cursor" })
 vim.keymap.set("n", "<F10>", "<CMD>!chmod +x %<CR>",
-  { desc = "Give executable permissions to the current file" })
+        { desc = "Give executable permissions to the current file" })
 vim.keymap.set("n", "<leader><F10>", "<CMD>!chmod -x %<CR>",
-  { desc = "Remove executable permissions of the current file" })
+        { desc = "Remove executable permissions of the current file" })
 
 vim.keymap.set("n", "<C-.>", function()
-  if vim.g.toggle_comment_hl == true or vim.g.toggle_comment_hl == nil then
-    vim.g.toggle_comment_hl = false
-    vim.cmd("hi! link Comment CommentHide")
-  else
-    vim.g.toggle_comment_hl = true
-    vim.cmd("hi! link Comment CommentShow")
-  end
+        if vim.g.toggle_comment_hl == true or vim.g.toggle_comment_hl == nil then
+                vim.g.toggle_comment_hl = false
+                vim.cmd("hi! link Comment CommentHide")
+        else
+                vim.g.toggle_comment_hl = true
+                vim.cmd("hi! link Comment CommentShow")
+        end
 end)
 
 function P(...)
-  local args = {}
-  for _, arg in ipairs({ ... }) do
-    table.insert(args, vim.inspect(arg))
-  end
-  print(unpack(args))
-  return ...
+        local args = {}
+        for _, arg in ipairs({ ... }) do
+                table.insert(args, vim.inspect(arg))
+        end
+        print(unpack(args))
+        return ...
 end

@@ -9,9 +9,9 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Indenting
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.shiftwidth = 2
+vim.o.tabstop = 8
+vim.o.softtabstop = 8
+vim.o.shiftwidth = 8
 vim.o.expandtab = true
 vim.o.smartindent = true
 
@@ -82,7 +82,7 @@ vim.o.termguicolors = true
 vim.opt.listchars = { nbsp = "␣", tab = "› ", trail = "•" }
 
 if vim.env.DISPLAY == nil then
-  vim.o.termguicolors = false
+        vim.o.termguicolors = false
 end
 
 vim.cmd.colorscheme("tricky")

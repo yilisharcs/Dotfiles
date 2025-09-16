@@ -4,3 +4,7 @@ setlocal keywordprg=:help
 " Source config
 nnoremap <leader><leader>x <CMD>write \| source %<CR>
 nnoremap <leader><leader>c :lua <C-r><C-l><CR>
+
+setlocal tabstop=8
+setlocal softtabstop=8
+setlocal shiftwidth=8
