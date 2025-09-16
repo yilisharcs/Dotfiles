@@ -6,7 +6,6 @@ return {
             "vim-language-server",
         ft = {
                 "lua",
-                "markdown",
                 "rust",
                 "typst",
                 "vim",
