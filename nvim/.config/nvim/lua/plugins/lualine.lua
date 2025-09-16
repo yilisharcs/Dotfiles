@@ -130,9 +130,7 @@ return {
                         lualine_z = {},
                 },
                 extensions = {
-                        "lf",
                         "man",
-                        "oil",
                         "quickfix",
                         "toggleterm",
                 }
