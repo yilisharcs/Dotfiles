@@ -1,7 +1,10 @@
 return {
         cmd = { "ra-multiplex" },
         filetypes = { "rust" },
-        root_markers = { "Cargo.toml" },
+        root_markers = {
+                "Cargo.toml",
+                "Cargo.lock",
+        },
         settings = {
                 ["rust_analyzer"] = {
                         cargo = { allFeatures = true },

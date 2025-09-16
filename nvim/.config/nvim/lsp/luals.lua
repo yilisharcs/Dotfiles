@@ -1,16 +1,35 @@
 return {
         cmd = { "lua-language-server" },
         filetypes = { "lua" },
-        root_markers = { "init.lua", ".luarc.json", ".luarc.jsonc" },
+        root_markers = {
+                "init.lua",
+                {
+                        ".luarc.json",
+                        ".luarc.jsonc",
+                },
+                ".nvimrc.lua",
+        },
         settings = {
                 Lua = {
                         runtime = {
                                 version = "LuaJIT",
-                                path = { "lua/?.lua", "lua/?/init.lua" }
+                                path = {
+                                        "lua/?.lua",
+                                        "lua/?/init.lua",
+                                }
                         },
-                        diagnostics = { globals = { "vim", "Snacks" } },
+                        diagnostics = {
+                                globals = {
+                                        "vim",
+                                        "Snacks",
+                                }
+                        },
                         workspace = {
-                                library = { "lua", vim.env.VIMRUNTIME, "${3rd}/luv/library" },
+                                library = {
+                                        "lua",
+                                        vim.env.VIMRUNTIME,
+                                        "${3rd}/luv/library",
+                                },
                                 checkThirdParty = false,
                         },
                         telemetry = { enable = false },
