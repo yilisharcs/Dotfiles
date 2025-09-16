@@ -35,7 +35,8 @@ prepend_keymap = [
 
   # Goto
   { on = ["g", "/"], run = "cd /",                                          desc = "Go to root" },
-  { on = ["g", "a"], run = "cd ~/Projects/github.com/sonicretro/skdisasm/", desc = "Go to S3K Disassembly" },
+  { on = ["g", "a"], run = "cd ~/Projects/github.com/yilisharcs/",          desc = "Go to local github.com/yilisharcs" },
+  { on = ["g", "A"], run = "cd ~/Projects/github.com/sonicretro/skdisasm/", desc = "Go to S3K Disassembly" },
   { on = ["g", "b"], run = "cd ~/notebook",                                 desc = "Go ~/notebook" },
   { on = ["g", "B"], run = "cd ~/vault",                                    desc = "Go ~/vault" },
   { on = ["g", "c"], run = "cd ~/.config",                                  desc = "Go ~/.config" },
@@ -48,7 +49,6 @@ prepend_keymap = [
   { on = ["g", "n"], run = "cd ~/.config/nvim",                             desc = "Go to nvim/init.lua" },
   { on = ["g", "o"], run = "cd ~/opt",                                      desc = "Go to private /opt" },
   { on = ["g", "p"], run = "cd ~/Projects",                                 desc = "Go ~/Projects" },
-  { on = ["g", "q"], run = "cd ~/Projects/github.com/yilisharcs/",          desc = "Go to local github.com/yilisharcs" },
   { on = ["g", "r"], run = "cd ~/.cargo/registry/src",                      desc = "Go to cargo registry" },
   { on = ["g", "s"], run = "cd ~/.local/bin",                               desc = "Go to private /bin" },
   { on = ["g", "u"], run = "cd ~/Library",                                  desc = "Go ~/Library" },
