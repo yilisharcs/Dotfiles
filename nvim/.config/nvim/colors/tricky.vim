@@ -28,6 +28,7 @@ hi DiffDelete gui=bold
 
 hi MatchParen gui=bold
 hi NonText guifg=#878092 guibg=NONE
+hi LspInlayHint guifg=#edf6f4 guibg=#1e0015 gui=bold
 hi EndOfBuffer guibg=NONE
 hi Delimiter guifg=NvimLightGrey2
 hi markdownBlockQuote gui=bold
