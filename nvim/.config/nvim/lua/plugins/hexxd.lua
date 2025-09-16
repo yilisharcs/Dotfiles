@@ -1,5 +1,5 @@
 return {
-  "RaafatTurki/hex.nvim",
-  event = "BufReadPre",
-  opts = {}
+        "RaafatTurki/hex.nvim",
+        event = "BufReadPre",
+        opts = {}
 }
