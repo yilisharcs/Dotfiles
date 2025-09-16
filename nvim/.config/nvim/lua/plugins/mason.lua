@@ -1,11 +1,12 @@
 return {
         "williamboman/mason.nvim",
         build = ":MasonInstall " ..
+            "clangd " ..
             "lua-language-server " ..
             "tinymist " ..
             "vim-language-server",
         ft = {
-                -- "c",
+                "c",
                 "lua",
                 "rust",
                 "typst",
@@ -22,6 +23,7 @@ return {
         },
         init = function()
                 vim.lsp.enable({
+                        "clangd",
                         "luals",
                         "rust-analyzer",
                         "typls",
