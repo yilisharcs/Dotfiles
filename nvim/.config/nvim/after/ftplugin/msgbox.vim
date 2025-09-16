@@ -1,1 +1,1 @@
-runtime! ftplugin/msgmore.vim
+runtime! ftplugin/msgmore.lua
