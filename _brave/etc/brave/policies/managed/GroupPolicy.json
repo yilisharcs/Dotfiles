@@ -1,54 +1,54 @@
 {
-  "AllowDinosaurEasterEgg": false,
-  "BookmarkBarEnabled": false,
-  "BraveNewsDisabled": true,
-  "BraveRewardsDisabled": true,
-  "BraveWalletDisabled": true,
-  "RestoreOnStartup": 1,
-  "ExtensionInstallForcelist": [
-    "cofdbpoegempjloogbagkncekinflcnj",
-    "eimadpbcbfnmbkopoojfekhnkhdbieeh",
-    "ghmbeldphafepmbegfdlkpapadhbakde",
-    "eninkmbmgkpkcelmohdlgldafpkfpnaf",
-    "fakeocdnmmmnokabaiflppclocckihoj",
-    "dbepggeogbaibhgnhhndojpepiihcmeb",
-    "kkmlkkjojmombglmlpbpapmhcaljjkde",
-    "hnmpcagpplmpfojmgmnngilcnanddlhb"
-  ],
-  "ExtensionSettings": {
-    "cofdbpoegempjloogbagkncekinflcnj": {
-      "__DeepL": 0,
-      "toolbar_pin": "default_unpinned"
-    },
-    "eimadpbcbfnmbkopoojfekhnkhdbieeh": {
-      "__Dark_Reader": 0,
-      "toolbar_pin": "force_pinned",
-      "file_url_navigation_allowed": true
-    },
-    "ghmbeldphafepmbegfdlkpapadhbakde": {
-      "__Proton_Pass": 0,
-      "toolbar_pin": "force_pinned"
-    },
-    "eninkmbmgkpkcelmohdlgldafpkfpnaf": {
-      "__Reddit_Untranslate": 0,
-      "toolbar_pin": "default_unpinned"
-    },
-    "fakeocdnmmmnokabaiflppclocckihoj": {
-      "__Sprucemarks": 0,
-      "toolbar_pin": "default_unpinned"
-    },
-    "dbepggeogbaibhgnhhndojpepiihcmeb": {
-      "__Vimium": 0,
-      "toolbar_pin": "force_pinned",
-      "file_url_navigation_allowed": true
-    },
-    "hnmpcagpplmpfojmgmnngilcnanddlhb": {
-      "__Windscribe": 0,
-      "toolbar_pin": "force_pinned"
-    },
-    "kkmlkkjojmombglmlpbpapmhcaljjkde": {
-      "__Zhongwen_Zh_En_Dictionary": 0,
-      "toolbar_pin": "force_pinned"
-    }
-  }
+        "AllowDinosaurEasterEgg": false,
+        "BookmarkBarEnabled": false,
+        "BraveNewsDisabled": true,
+        "BraveRewardsDisabled": true,
+        "BraveWalletDisabled": true,
+        "RestoreOnStartup": 1,
+        "ExtensionInstallForcelist": [
+                "cofdbpoegempjloogbagkncekinflcnj",
+                "eimadpbcbfnmbkopoojfekhnkhdbieeh",
+                "ghmbeldphafepmbegfdlkpapadhbakde",
+                "eninkmbmgkpkcelmohdlgldafpkfpnaf",
+                "fakeocdnmmmnokabaiflppclocckihoj",
+                "dbepggeogbaibhgnhhndojpepiihcmeb",
+                "kkmlkkjojmombglmlpbpapmhcaljjkde",
+                "hnmpcagpplmpfojmgmnngilcnanddlhb"
+        ],
+        "ExtensionSettings": {
+                "cofdbpoegempjloogbagkncekinflcnj": {
+                        "__DeepL": 0,
+                        "toolbar_pin": "default_unpinned"
+                },
+                "eimadpbcbfnmbkopoojfekhnkhdbieeh": {
+                        "__Dark_Reader": 0,
+                        "toolbar_pin": "force_pinned",
+                        "file_url_navigation_allowed": true
+                },
+                "ghmbeldphafepmbegfdlkpapadhbakde": {
+                        "__Proton_Pass": 0,
+                        "toolbar_pin": "force_pinned"
+                },
+                "eninkmbmgkpkcelmohdlgldafpkfpnaf": {
+                        "__Reddit_Untranslate": 0,
+                        "toolbar_pin": "default_unpinned"
+                },
+                "fakeocdnmmmnokabaiflppclocckihoj": {
+                        "__Sprucemarks": 0,
+                        "toolbar_pin": "default_unpinned"
+                },
+                "dbepggeogbaibhgnhhndojpepiihcmeb": {
+                        "__Vimium": 0,
+                        "toolbar_pin": "force_pinned",
+                        "file_url_navigation_allowed": true
+                },
+                "hnmpcagpplmpfojmgmnngilcnanddlhb": {
+                        "__Windscribe": 0,
+                        "toolbar_pin": "force_pinned"
+                },
+                "kkmlkkjojmombglmlpbpapmhcaljjkde": {
+                        "__Zhongwen_Zh_En_Dictionary": 0,
+                        "toolbar_pin": "force_pinned"
+                }
+        }
 }
