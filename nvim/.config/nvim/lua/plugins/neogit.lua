@@ -17,7 +17,7 @@ return {
                 ]])
         end,
         opts = {
-                graph_style = "unicode",
+                graph_style = "kitty",
         },
         config = function(_, opts)
                 require("neogit").setup(opts)
