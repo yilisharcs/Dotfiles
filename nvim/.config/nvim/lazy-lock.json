@@ -3,7 +3,7 @@
   "crates.nvim": { "branch": "main", "commit": "afcd1cc3eeceb5783676fc8464389b9216a29d05" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
-  "fzf-lua": { "branch": "main", "commit": "8ebb4f53b0c450b468834e96b1e1b86415e2d7dc" },
+  "fzf-lua": { "branch": "main", "commit": "a9a286e1663e5c26eefa5778322ea2ea2bc0bf6e" },
   "gemini-cli.nvim": { "branch": "main", "commit": "c9fd62adda823628f5131a939d9c56ef7a898600" },
   "hex.nvim": { "branch": "master", "commit": "b46e63356a69e8d6f046c38a9708d55d17f15038" },
   "hydra.nvim": { "branch": "main", "commit": "8c4a9f621ec7cdc30411a1f3b6d5eebb12b469dc" },
