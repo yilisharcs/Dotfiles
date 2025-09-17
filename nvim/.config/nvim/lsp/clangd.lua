@@ -8,6 +8,7 @@ return {
         },
         filetypes = {
                 "c",
-                "cpp",
+                -- FIXME: Breaks with header files. Investigate.
+                -- "cpp",
         },
 }

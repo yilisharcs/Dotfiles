@@ -13,6 +13,7 @@ return {
                                 "asm",
                                 "bash",
                                 "c",
+                                "cpp",
                                 "comment",
                                 "desktop",
                                 "diff",

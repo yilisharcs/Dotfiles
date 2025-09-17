@@ -7,6 +7,7 @@ return {
             "vim-language-server",
         ft = {
                 "c",
+                "cpp",
                 "lua",
                 "rust",
                 "typst",
