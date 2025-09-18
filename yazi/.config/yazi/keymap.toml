@@ -1,59 +1,59 @@
 [mgr]
 prepend_keymap = [
-  { on = ":", run = "shell 'nu' --block", desc = "Launch a shell" },
+        { on = ":", run = "shell 'nu' --block", desc = "Launch a shell" },
 
-  # Smart enter
-  { on = "l", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
+        # Smart enter
+        { on = "l", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
 
-  # Compress and extract
-  { on = ["e", "e"], run = "shell 'ouch d \"$@\"'", desc = "Extract archive" },
-  { on = ["e", "g"], run = "shell --orphan 'ouch c --slow \"$@\" \"$0\".tar.gz'",  desc = "Compress as .tar.gz" },
-  { on = ["e", "t"], run = "shell --orphan 'ouch c --slow \"$@\" \"$0\".tar.zst'", desc = "Compress as .tar.zst" },
-  { on = ["e", "x"], run = "shell --orphan 'ouch c --slow \"$@\" \"$0\".tar.xz'",  desc = "Compress as .tar.xz" },
-  { on = ["e", "z"], run = "shell --orphan 'ouch c --slow \"$@\" \"$0\".zip'",     desc = "Compress as .zip" },
+        # Compress and extract
+        { on = ["e", "e"], run = "shell 'ouch d \"$@\"'", desc = "Extract archive" },
+        { on = ["e", "g"], run = "shell --orphan 'ouch c --slow \"$@\" \"$0\".tar.gz'",  desc = "Compress as .tar.gz" },
+        { on = ["e", "t"], run = "shell --orphan 'ouch c --slow \"$@\" \"$0\".tar.zst'", desc = "Compress as .tar.zst" },
+        { on = ["e", "x"], run = "shell --orphan 'ouch c --slow \"$@\" \"$0\".tar.xz'",  desc = "Compress as .tar.xz" },
+        { on = ["e", "z"], run = "shell --orphan 'ouch c --slow \"$@\" \"$0\".zip'",     desc = "Compress as .zip" },
 
-  # chmod
-  { on = "C", run = "plugin chmod", desc = "Change file permissions" },
+        # chmod
+        { on = "C", run = "plugin chmod", desc = "Change file permissions" },
 
-  # Backup
-  { on = "b", run = "shell 'cp -r \"$0\" \"$0\".bak.$(date +%s)'", desc = "Backup current file" },
+        # Backup
+        { on = "b", run = "shell 'cp -r \"$0\" \"$0\".bak.$(date +%s)'", desc = "Backup current file" },
 
-  # Pager
-  { on = "i", run = "shell 'bat $0' --block" },
+        # Pager
+        { on = "i", run = "shell 'bat $0' --block" },
 
-  # Restore trashed files
-  { on = "u", run = """shell 'file=$(trash-list | grep \"$(pwd)\" \
-    | fzf --preview-window hidden | cut -b21-) && [ -n \"$file\" ] \
-    && yes 0 | trash-restore \"$file\"' --block""", desc = "Restore trashed file" },
+        # Restore trashed files
+        { on = "u", run = """shell 'file=$(trash-list | grep \"$(pwd)\" \
+                | fzf --preview-window hidden | cut -b21-) && [ -n \"$file\" ] \
+                && yes 0 | trash-restore \"$file\"' --block""", desc = "Restore trashed file" },
 
-  # Plugins: zoxide & fzf
-  { on = "z", run = "plugin zoxide", desc = "Jump to a directory via zoxide" },
-  { on = "Z", run = "plugin fzf",    desc = "Jump to a file/directory via fzf" },
+        # Plugins: zoxide & fzf
+        { on = "z", run = "plugin zoxide", desc = "Jump to a directory via zoxide" },
+        { on = "Z", run = "plugin fzf",    desc = "Jump to a file/directory via fzf" },
 
-  # Hardlink
-  { on = "<C-A-->", run = "hardlink", desc = "Hardlink yanked files" },
+        # Hardlink
+        { on = "<C-A-->", run = "hardlink", desc = "Hardlink yanked files" },
 
-  # Goto
-  { on = ["g", "/"], run = "cd /",                                          desc = "Go to root" },
-  { on = ["g", "a"], run = "cd ~/Projects/github.com/yilisharcs/",          desc = "Go to local github.com/yilisharcs" },
-  { on = ["g", "A"], run = "cd ~/Projects/github.com/sonicretro/skdisasm/", desc = "Go to S3K Disassembly" },
-  { on = ["g", "b"], run = "cd ~/notebook",                                 desc = "Go ~/notebook" },
-  { on = ["g", "B"], run = "cd ~/vault",                                    desc = "Go ~/vault" },
-  { on = ["g", "c"], run = "cd ~/.config",                                  desc = "Go ~/.config" },
-  { on = ["g", "d"], run = "cd ~/Downloads",                                desc = "Go ~/Downloads" },
-  { on = ["g", "e"], run = "cd ~/Documents",                                desc = "Go ~/Documents" },
-  { on = ["g", "f"], run = "follow",                                        desc = "Follow hovered symlink" },
-  { on = ["g", "i"], run = "cd ~/Pictures",                                 desc = "Go ~/Pictures" },
-  { on = ["g", "l"], run = "cd ~/Dotfiles",                                 desc = "Go ~/Dotfiles" },
-  { on = ["g", "m"], run = "cd ~/Music",                                    desc = "Go ~/Music" },
-  { on = ["g", "n"], run = "cd ~/.config/nvim",                             desc = "Go to nvim/init.lua" },
-  { on = ["g", "o"], run = "cd ~/opt",                                      desc = "Go to private /opt" },
-  { on = ["g", "p"], run = "cd ~/Projects",                                 desc = "Go ~/Projects" },
-  { on = ["g", "r"], run = "cd ~/.cargo/registry/src",                      desc = "Go to cargo registry" },
-  { on = ["g", "s"], run = "cd ~/.local/bin",                               desc = "Go to private /bin" },
-  { on = ["g", "u"], run = "cd ~/Library",                                  desc = "Go ~/Library" },
-  { on = ["g", "v"], run = "cd ~/Videos",                                   desc = "Go ~/Videos" },
-  { on = ["g", "w"], run = "cd ~/.wine/drive_c",                            desc = "Go to Wine C:" },
-  { on = ["g", "y"], run = "cd ~/Games",                                    desc = "Go ~/Games" },
-  { on = ["g", "z"], run = "cd ~/.local/share/nvim/lazy",                   desc = "Go to lazydir" },
+        # Goto
+        { on = ["g", "/"], run = "cd /",                                          desc = "Go to root" },
+        { on = ["g", "a"], run = "cd ~/Projects/github.com/yilisharcs/",          desc = "Go to local github.com/yilisharcs" },
+        { on = ["g", "A"], run = "cd ~/Projects/github.com/sonicretro/skdisasm/", desc = "Go to S3K Disassembly" },
+        { on = ["g", "b"], run = "cd ~/notebook",                                 desc = "Go ~/notebook" },
+        { on = ["g", "B"], run = "cd ~/vault",                                    desc = "Go ~/vault" },
+        { on = ["g", "c"], run = "cd ~/.config",                                  desc = "Go ~/.config" },
+        { on = ["g", "d"], run = "cd ~/Downloads",                                desc = "Go ~/Downloads" },
+        { on = ["g", "e"], run = "cd ~/Documents",                                desc = "Go ~/Documents" },
+        { on = ["g", "f"], run = "follow",                                        desc = "Follow hovered symlink" },
+        { on = ["g", "i"], run = "cd ~/Pictures",                                 desc = "Go ~/Pictures" },
+        { on = ["g", "l"], run = "cd ~/Dotfiles",                                 desc = "Go ~/Dotfiles" },
+        { on = ["g", "m"], run = "cd ~/Music",                                    desc = "Go ~/Music" },
+        { on = ["g", "n"], run = "cd ~/.config/nvim",                             desc = "Go to nvim/init.lua" },
+        { on = ["g", "o"], run = "cd ~/opt",                                      desc = "Go to private /opt" },
+        { on = ["g", "p"], run = "cd ~/Projects",                                 desc = "Go ~/Projects" },
+        { on = ["g", "r"], run = "cd ~/.cargo/registry/src",                      desc = "Go to cargo registry" },
+        { on = ["g", "s"], run = "cd ~/.local/bin",                               desc = "Go to private /bin" },
+        { on = ["g", "u"], run = "cd ~/Library",                                  desc = "Go ~/Library" },
+        { on = ["g", "v"], run = "cd ~/Videos",                                   desc = "Go ~/Videos" },
+        { on = ["g", "w"], run = "cd ~/.wine/drive_c",                            desc = "Go to Wine C:" },
+        { on = ["g", "y"], run = "cd ~/Games",                                    desc = "Go ~/Games" },
+        { on = ["g", "z"], run = "cd ~/.local/share/nvim/lazy",                   desc = "Go to lazydir" },
 ]

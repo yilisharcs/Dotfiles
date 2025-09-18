@@ -3,5 +3,8 @@ no-multigrid = false
 wsl = false
 
 [font]
-normal = ["Iosevka Nerd Font", "Noto Color Emoji"]
+normal = [
+        "Iosevka Nerd Font",
+        "Noto Color Emoji",
+]
 size = 14.0
