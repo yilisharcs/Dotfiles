@@ -2,10 +2,7 @@ return {
         "mikavilpas/yazi.nvim",
         lazy = false,
         -- dev = true,
-        dependencies = {
-                "folke/snacks.nvim",
-                "ibhagwan/fzf-lua",
-        },
+        dependencies = { "ibhagwan/fzf-lua" },
         keys = {
                 { "-",         "<CMD>Yazi<CR>",        desc = "Open yazi at the current file" },
                 { "<leader>-", "<CMD>Yazi cwd<CR>",    desc = "Open yazi in the working directory" },
@@ -17,11 +14,10 @@ return {
                 log_level = vim.log.levels.WARN,
                 floating_window_scaling_factor = {
                         height = 0.96,
-                        -- height = 0.92,
                         width = 0.99,
                 },
                 keymaps = {
-                        -- https://github.com/mikavilpas/yazi.nvim/issues/739
+                        -- FIXME: https://github.com/mikavilpas/yazi.nvim/issues/739
                         open_file_in_vertical_split = false,
                         open_file_in_horizontal_split = false,
                         cycle_open_buffers = false,

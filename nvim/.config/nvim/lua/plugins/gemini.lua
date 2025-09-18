@@ -1,6 +1,9 @@
 return {
         "marcinjahn/gemini-cli.nvim",
-        dependencies = { "folke/snacks.nvim" },
+        dependencies = {
+                -- "folke/snacks.nvim"
+                "yilisharcs/snacks.nvim"
+        },
         cmd = "Gemini",
         keys = {
                 { "<F12>",      "<CMD>Gemini toggle<CR>",   mode = { "n", "t" },                desc = "Toggle Gemini CLI" },
