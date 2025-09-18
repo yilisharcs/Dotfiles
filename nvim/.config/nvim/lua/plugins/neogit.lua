@@ -1,5 +1,6 @@
 return {
-        "NeogitOrg/neogit",
+        "yilisharcs/neogit",
+        branch = "fzf-lua-winopts",
         dependencies = {
                 "nvim-lua/plenary.nvim",
                 "sindrets/diffview.nvim",
@@ -18,6 +19,10 @@ return {
         end,
         opts = {
                 graph_style = "kitty",
+                integrations = {
+                        fzf_lua = true,
+                        snacks = false,
+                }
         },
         config = function(_, opts)
                 require("neogit").setup(opts)
