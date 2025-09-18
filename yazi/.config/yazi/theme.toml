@@ -39,3 +39,6 @@ prepend_exts = [
   { name = "lemon", text = "", fg = "#ddd06a" },
   { name = "xxd",   text = "", fg = "#019833" },
 ]
+prepend_conds = [
+  { if = "link", text = "", fg = "red" },
+]
