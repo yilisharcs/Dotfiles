@@ -40,5 +40,5 @@ prepend_exts = [
         { name = "xxd",   text = "", fg = "#019833" },
 ]
 prepend_conds = [
-        { if = "link", text = "", fg = "red" },
+        { if = "link", text = "", fg = "#6d8086" },
 ]
