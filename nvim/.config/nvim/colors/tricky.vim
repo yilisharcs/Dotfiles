@@ -4,10 +4,11 @@ hi Normal guifg=#cdd6f4
 hi NormalNC guibg=#0a001a
 hi! link NormalFloat Normal
 hi! link FloatBorder NormalFloat
-hi Folded gui=bold,reverse
+hi Folded guifg=#edf6f4 guibg=#28001c gui=NONE
 hi! link TabLineFill ColorColumn
 hi! link CursorLineNr Special
 hi CursorLine guibg=NONE
+hi CursorLineFold guifg=#edf6f4
 
 hi CommentHide guifg=#0e0024 ctermfg=0
 hi CommentShow guifg=#afafff ctermfg=8

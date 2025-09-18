@@ -36,14 +36,14 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 
 -- Fold opts
-vim.o.foldcolumn = "0"
+vim.o.foldcolumn = "1"
 vim.o.foldmethod = "marker"
 vim.o.foldlevel = 0
 
 -- Column opts
 vim.o.numberwidth = 3
 vim.o.signcolumn = "yes:1"
-vim.o.statuscolumn = "%l%s"
+vim.o.statuscolumn = "%C%l%s"
 
 vim.opt.isfname:append({ "@-@" })
 
