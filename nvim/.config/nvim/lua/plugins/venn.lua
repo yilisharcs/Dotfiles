@@ -24,7 +24,7 @@ return {
                                 hint = { position = "bottom-right" },
                                 color = "pink",
                                 invoke_on_body = true,
-                                on_enter = function() vim.wo[0][0].virtualedit = "all" end,
+                                on_enter = function() vim.wo.virtualedit = "all" end,
                         },
                         mode = "n",
                         body = "<leader>v",
