@@ -208,6 +208,3 @@ hist = "zk list --format path --delimiter0 --quiet $@ | xargs -t -0 git log --pa
 
 # Create a new daily journal entry.
 daily = "zk new journal --no-input"
-
-# che = "zk new \"$ZK_NOTEBOOK_DIR/\" --no-input --title \"$@\""
-# so = "zk new \"$ZK_NOTEBOOK_DIR/\" --no-input --title \"$@\""
