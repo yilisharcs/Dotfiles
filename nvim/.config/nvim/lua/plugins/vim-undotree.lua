@@ -1,5 +1,6 @@
 return {
         "yilisharcs/undotree",
+        branch = "u-redo",
         keys = {
                 { "<leader>u", "<CMD>UndotreeToggle<CR>", desc = "Toggle history bar" }
         },

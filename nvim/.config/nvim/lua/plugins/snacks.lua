@@ -1,6 +1,7 @@
 return {
-        "folke/snacks.nvim",
-        dev = true,
+        -- "folke/snacks.nvim",
+        "yilisharcs/snacks.nvim",
+        branch = "bigfile-mini-hipatterns",
         priority = 1000,
         lazy = false,
         keys = {
