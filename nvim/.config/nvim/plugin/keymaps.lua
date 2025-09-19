@@ -173,8 +173,8 @@ vim.keymap.set("ca", "bd1", "bd!")
 
 vim.keymap.set("ca", "cfilter", "(getcmdtype() ==# ':' && getcmdline() =~# '^cfilter') ? 'Cfilter' : 'cfilter'",
         { expr = true })
-vim.keymap.set("ca", "grep", "(getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'silent grep' : 'grep'",
-        { expr = true })
+-- vim.keymap.set("ca", "grep", "(getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'silent grep' : 'grep'",
+--         { expr = true })
 vim.keymap.set("ca", "hgrep", "(getcmdtype() ==# ':' && getcmdline() =~# '^hgrep') ? 'helpgrep' : 'hgrep'",
         { expr = true })
 vim.keymap.set("ca", "man", "(getcmdtype() ==# ':' && getcmdline() =~# '^man') ? 'Man' : 'man'",
