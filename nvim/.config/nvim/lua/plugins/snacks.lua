@@ -13,10 +13,10 @@ return {
                 {
                         "<M-q>",
                         function()
-                                if vim.bo.filetype ~= "help" then
-                                        Snacks.bufdelete.delete()
+                                if vim.bo.filetype == "help" then
+                                        vim.cmd.bdelete()
                                 else
-                                        vim.cmd("bdelete!")
+                                        Snacks.bufdelete.delete()
                                 end
                         end,
                         desc = "Delete buffer"
