@@ -3,7 +3,7 @@
 # This script is necessary to force compatibility
 # between vim-grepper/:grep and vim-symlink
 def --wrapped main [...rest] {
-        rg --vimgrep ...$rest
+        rg --vimgrep --no-follow ...$rest
         | lines
         | split column :
         | update column1 { realpath $in }
