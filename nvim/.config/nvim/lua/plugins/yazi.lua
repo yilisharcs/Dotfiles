@@ -1,7 +1,6 @@
 return {
         "mikavilpas/yazi.nvim",
         lazy = false,
-        -- dev = true,
         dependencies = { "ibhagwan/fzf-lua" },
         keys = {
                 { "-",         "<CMD>Yazi<CR>",        desc = "Open yazi at the current file" },
