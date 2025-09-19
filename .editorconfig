@@ -1,8 +1,10 @@
 root = true
 
-[*.{lua,vim}]
+[*]
 charset = utf-8
 end_of_line = lf
 insert_final_newline = true
-max_line_length = 120
 trim_trailing_whitespace = true
+
+[*.{lua,vim}]
+max_line_length = 120
