@@ -1,7 +1,7 @@
 return {
         "RaafatTurki/hex.nvim",
         keys = {
-                { "<leader>y", "<CMD>HexToggle<CR>", desc = "Toggle hex dump" },
+                { "<leader>x", "<CMD>HexToggle<CR>", desc = "Toggle hex dump" },
         },
         opts = {
                 -- Not too fond of this plugin trying to read files that
