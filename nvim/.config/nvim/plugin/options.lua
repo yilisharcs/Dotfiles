@@ -63,7 +63,7 @@ vim.opt.diffopt:prepend({ "algorithm:patience" })
 vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
 
-vim.o.grepprg = "rg --vimgrep"
+vim.o.grepprg = "vimgrep.nu"
 
 -- Terminal scrollback
 vim.o.scrollback = 100000

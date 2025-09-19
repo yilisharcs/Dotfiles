@@ -15,7 +15,7 @@ return {
                         rg = {
                                 escape = "\\^$.*[]",
                                 grepformat = "%f:%l:%c:%m",
-                                grepprg = "rg --vimgrep",
+                                grepprg = "vimgrep.nu",
                         },
                         tools = { "rg", "git", "grep" },
                 }
