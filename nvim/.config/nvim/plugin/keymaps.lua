@@ -155,3 +155,29 @@ function P(...)
         print(unpack(args))
         return ...
 end
+
+-- General abbreviations
+vim.keymap.set("ca", "W", "w")
+vim.keymap.set("ca", "Wq", "wq")
+vim.keymap.set("ca", "Wa", "wa")
+vim.keymap.set("ca", "wa1", "wa!")
+vim.keymap.set("ca", "W1", "w!")
+vim.keymap.set("ca", "w1", "w!")
+vim.keymap.set("ca", "wq1", "wq!")
+vim.keymap.set("ca", "Q", "q")
+vim.keymap.set("ca", "Qa", "qa")
+vim.keymap.set("ca", "Qa1", "qa!")
+vim.keymap.set("ca", "q1", "q!")
+vim.keymap.set("ca", "qa1", "qa!")
+vim.keymap.set("ca", "bd1", "bd!")
+
+vim.keymap.set("ca", "cfilter", "(getcmdtype() ==# ':' && getcmdline() =~# '^cfilter') ? 'Cfilter' : 'cfilter'",
+        { expr = true })
+vim.keymap.set("ca", "grep", "(getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'silent grep' : 'grep'",
+        { expr = true })
+vim.keymap.set("ca", "hgrep", "(getcmdtype() ==# ':' && getcmdline() =~# '^hgrep') ? 'helpgrep' : 'hgrep'",
+        { expr = true })
+vim.keymap.set("ca", "man", "(getcmdtype() ==# ':' && getcmdline() =~# '^man') ? 'Man' : 'man'",
+        { expr = true })
+vim.keymap.set("ca", "task", "(getcmdtype() ==# ':' && getcmdline() =~# '^task') ? '!task' : 'task'",
+        { expr = true })
