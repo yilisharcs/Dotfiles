@@ -15,8 +15,13 @@ This section contains commands for the task runner **mask**.
 
 > Create symlinks
 
-This accepts an `adopt` flag due to `mimeapps.list`, `background` being
-completely overwritten if modified externally.
+This accepts an `adopt` flag due to certain files being completely
+overwritten if modified externally, listed below:
+
+- mimetype/.config/mimeapps.list
+- qBittorrent/.config/qBittorrent/qBittorrent.conf
+- syncthing/.local/state/syncthing/config.xml
+- wallpaper/.config/background
 
 **OPTIONS**
 * adopt
