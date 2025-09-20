@@ -28,12 +28,19 @@ overwritten if modified externally, listed below:
     * flags: -a --adopt
     * desc: Adopt contents of conflicting files
 
+* delete
+    * flags: -d --delete
+    * desc: Remove symlinks
+
 ```nu
 ls
 | where type == dir
 | where name !~ "_"
+| where name != "mask"
 | get name
-| if $env.adopt? == "true" {
+| if ($env.delete? | is-not-empty) {
+    each { stow -D $in }
+} else if ($env.adopt? | is-not-empty) {
     each { stow -R --no-folding --adopt $in }
 } else {
     each { stow -R --no-folding $in }
