@@ -60,7 +60,6 @@ export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 # }
 
-export GTK_THEME=Adwaita:dark                                      # Force dark mode for buggy applications like libreoffice
 export SUDO_EDITOR=nvim
 export EDITOR=nvim
 export MANPAGER="nvim +Man!"
