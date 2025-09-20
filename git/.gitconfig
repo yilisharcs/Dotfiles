@@ -18,6 +18,7 @@
 	autoSetupRemote = true
 [rebase]
 	autoStash = true
+	autoSquash = true
 [alias]
 	last    = log -1 HEAD
 	logd    = log --decorate --oneline --graph
