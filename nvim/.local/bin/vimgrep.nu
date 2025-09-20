@@ -7,6 +7,6 @@ def --wrapped main [...rest] {
         | lines
         | split column :
         | update column1 { realpath $in }
-        | each { $in | values | str join ':' }
+        | each { $in | values | str join ":" }
         | to text
 }
