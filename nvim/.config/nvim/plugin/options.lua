@@ -71,7 +71,6 @@ vim.o.scrollback = 100000
 vim.o.updatetime = 1000
 vim.o.virtualedit = "block"
 vim.o.winborder = "rounded"
-vim.o.inccommand = "split"
 
 -- Nushell doesn't grok vi
 vim.o.shell = vim.fn.exepath("bash")
