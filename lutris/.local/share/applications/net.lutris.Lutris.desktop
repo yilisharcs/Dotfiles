@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Lutris
+StartupWMClass=Lutris
+Comment=Video Game Preservation Platform
+Categories=Game;
+Keywords=gaming;wine;emulator;
+Exec=env GTK_THEME=Adwaita:dark lutris %U
+Icon=net.lutris.Lutris
+Terminal=false
+Type=Application
+StartupNotify=true
+MimeType=x-scheme-handler/lutris;
+X-GNOME-UsesNotifications=true
