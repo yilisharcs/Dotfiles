@@ -32,24 +32,3 @@ alias gitlist = gitlist.nu
 alias mask = maskfile.nu
 alias tokeicon = tokeicon.nu
 alias wut = helpless.nu
-
-# # build from source and stow with incredible ease
-# def just [...args] {
-#   let project_name = (basename (pwd))
-#   let install_prefix = ($"($env.HOME)/stow/($project_name)/.local")
-#
-#   with-env { CMAKE_BUILD_TYPE: 'Release',
-#     CMAKE_INSTALL_PREFIX: $install_prefix,
-#     PREFIX: $install_prefix,
-#     INSTALL_DIR: $install_prefix } {
-#     make -e ...$args
-#
-#     if $args.0? == "install" {
-#       try {
-#         stow -d ~/stow $project_name
-#       } catch {
-#         echo $"Stow failed; files are in ($install_prefix)"
-#       }
-#     }
-#   }
-# }
