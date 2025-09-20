@@ -17,8 +17,6 @@ if vim.g.neovide then
         vim.o.winblend = 1
         vim.g.neovide_floating_shadow = false
 
-        vim.o.inccommand = "nosplit"
-
         vim.g.neovide_scale_factor = 1.0
         vim.keymap.set({ "n", "t" }, "<C-->", "<CMD>let g:neovide_scale_factor-=0.1<CR>")
         vim.keymap.set({ "n", "t" }, "<C-=>", "<CMD>let g:neovide_scale_factor+=0.1<CR>")
