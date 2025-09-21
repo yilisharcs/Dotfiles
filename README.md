@@ -35,15 +35,16 @@ overwritten if modified externally, listed below:
 ```nu
 ls
 | where type == dir
-| where name !~ "_"
-| where name != "mask"
+| where name !~ "_|mask|^nvim"
 | get name
 | if ($env.delete? | is-not-empty) {
     each { stow -D $in }
+    stow -D nvim
 } else if ($env.adopt? | is-not-empty) {
     each { stow -R --no-folding --adopt $in }
 } else {
     each { stow -R --no-folding $in }
+    stow -R nvim
 }
 
 print $"(ansi green_bold)Stow \"(pwd)\" complete.(ansi reset)"
