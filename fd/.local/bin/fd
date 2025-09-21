@@ -1,1 +1,5 @@
-../../../../../../usr/bin/fdfind
+#!/usr/bin/env nu
+
+def --wrapped main [...rest] {
+        fdfind --hidden ...$rest
+}
