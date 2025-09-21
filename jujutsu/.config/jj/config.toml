@@ -14,7 +14,6 @@ sign-on-push = true
 
 [ui]
 default-command = "ls"
-diff-formatter  = ["difft", "--color=always", "$left", "$right"]
 
 [aliases]
 amend = ["squash"]
