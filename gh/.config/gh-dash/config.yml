@@ -68,8 +68,8 @@ keybindings:
     - key: e
       name: edit
       command: >
-        kitten @ --to=${KITTY_LISTEN_ON} launch --type=tab --cwd={{.RepoPath}}
-        nvim -c ':Octo pr edit {{.PrNumber}}'
+        nvim --server $NEOVIDE_LISTEN_ON --remote-send "<C-\\><C-n>:tabnew
+        | tcd {{.RepoPath}} | Octo pr edit {{.PrNumber}}<C-m><ESC>"
   branches: []
 repoPaths:
   :owner/:repo: ~/Projects/github.com/:owner/:repo
