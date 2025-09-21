@@ -7,18 +7,22 @@
 [core]
 	editor = nvim
 	excludesfile = ~/.config/git/ignore
+[color "diff"]
+	meta = yellow
 [diff]
+	colorMoved = plain
+	mnemonicPrefix = true
 	tool = nvimdiff
 [merge]
-	tool = nvimdiff
 	autoStash = true
+	tool = nvimdiff
 [pull]
 	rebase = true
 [push]
 	autoSetupRemote = true
 [rebase]
-	autoStash = true
 	autoSquash = true
+	autoStash = true
 [alias]
 	last    = log -1 HEAD
 	logd    = log --decorate --oneline --graph

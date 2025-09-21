@@ -24,7 +24,7 @@ hi Removed guifg=#ff5faf ctermfg=3
 
 hi DiffAdd    gui=bold
 hi DiffChange gui=bold
-hi DiffText   gui=bold
+hi DiffText   guifg=#ffaf00 gui=bold
 hi DiffDelete gui=bold
 
 hi MatchParen gui=bold
