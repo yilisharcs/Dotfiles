@@ -8,10 +8,10 @@ return {
                 nest_if_no_args = true,
                 hooks = {
                         should_nest = function()
-                                local yazi = vim.fn.system("ps a | grep '/tmp/yazi-1000/bulk-' | grep -v 'grep'")
+                                local tmpfiles = vim.fn.system("ps a | grep 'vim.*/tmp' | grep -v 'grep'")
                                 local rebase = vim.fn.system("ps a | grep '.git/rebase' | grep -v 'grep'")
 
-                                if yazi ~= "" or rebase ~= "" then
+                                if tmpfiles ~= "" or rebase ~= "" then
                                         return true
                                 end
                         end
