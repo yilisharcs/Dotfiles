@@ -1,3 +1,10 @@
+local graph_style
+if vim.g.neovide then
+        graph_style = "unicode"
+else
+        graph_style = "kitty"
+end
+
 return {
         "yilisharcs/neogit",
         branch = "fzf-lua-winopts",
@@ -18,7 +25,7 @@ return {
                 ]])
         end,
         opts = {
-                graph_style = "kitty",
+                graph_style = graph_style,
                 integrations = {
                         fzf_lua = true,
                         snacks = false,
