@@ -12,6 +12,9 @@ return {
                                 return vim.o.columns * 0.5
                         end
                 end,
+                float_opts = {
+                        border = "rounded"
+                }
         },
         config = function(_, opts)
                 require("toggleterm").setup(opts)
