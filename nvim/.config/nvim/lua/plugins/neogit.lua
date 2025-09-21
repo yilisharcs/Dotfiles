@@ -50,14 +50,14 @@ return {
                                 file_panel = {
                                         { "n", "<C-n>", actions.select_next_entry,  { desc = "Open the diff for the next file" } },
                                         { "n", "<C-p>", actions.select_prev_entry,  { desc = "Open the diff for the previous file" } },
-                                        { "n", "<c-k>", actions.scroll_view(-0.25), { desc = "Scroll the view up" } },
-                                        { "n", "<c-j>", actions.scroll_view(0.25),  { desc = "Scroll the view down" } },
+                                        { "n", "<C-k>", actions.scroll_view(-0.25), { desc = "Scroll the view up" } },
+                                        { "n", "<C-j>", actions.scroll_view(0.25),  { desc = "Scroll the view down" } },
                                 },
                                 file_history_panel = {
                                         { "n", "<C-n>", actions.select_next_entry,  { desc = "Open the diff for the next file" } },
                                         { "n", "<C-p>", actions.select_prev_entry,  { desc = "Open the diff for the previous file" } },
-                                        { "n", "<c-k>", actions.scroll_view(-0.25), { desc = "Scroll the view up" } },
-                                        { "n", "<c-j>", actions.scroll_view(0.25),  { desc = "Scroll the view down" } },
+                                        { "n", "<C-k>", actions.scroll_view(-0.25), { desc = "Scroll the view up" } },
+                                        { "n", "<C-j>", actions.scroll_view(0.25),  { desc = "Scroll the view down" } },
                                 },
                         },
                 })

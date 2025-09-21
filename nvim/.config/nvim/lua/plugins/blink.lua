@@ -42,8 +42,10 @@ return {
                                         treesitter = { "lsp" },
                                         components = {
                                                 kind_icon = {
-                                                        text = function(ctx) return " " ..
-                                                                ctx.kind_icon .. ctx.icon_gap .. " " end
+                                                        text = function(ctx)
+                                                                return " " ..
+                                                                    ctx.kind_icon .. ctx.icon_gap .. " "
+                                                        end
                                                 },
                                                 item_idx = {
                                                         text = function(ctx)
