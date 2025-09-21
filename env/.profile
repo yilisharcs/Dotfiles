@@ -47,9 +47,6 @@ export FZF_CTRL_R_OPTS="--preview-window=hidden \
 
 # {
 
-# bob-nvim
-export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
-
 # # Golang
 # export GOPATH="$HOME/go"
 # export GOBIN="$GOPATH/bin"
