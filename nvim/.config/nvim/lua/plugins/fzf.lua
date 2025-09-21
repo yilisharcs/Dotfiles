@@ -115,19 +115,18 @@ return {
                         winopts = { preview = { layout = "vertical" } },
                 },
                 grep = {
-                        rg_opts =
-                            table.concat({
-                                    "--color=always",
-                                    "--column",
-                                    "--line-number",
-                                    "--no-heading",
-                                    "--smart-case",
-                                    "--max-columns=4096",
-                                    "--hidden",
-                                    "-g=!.git",
-                                    "-g=!.jj",
-                                    "-e",
-                            }, " ")
+                        rg_opts = table.concat({
+                                "--color=always",
+                                "--column",
+                                "--line-number",
+                                "--no-heading",
+                                "--smart-case",
+                                "--max-columns=4096",
+                                "--hidden",
+                                "-g=!.git",
+                                "-g=!.jj",
+                                "-e",
+                        }, " "),
                 },
                 helptags = {
                         winopts = { height = 0.5 },
