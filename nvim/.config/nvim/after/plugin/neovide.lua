@@ -1,6 +1,4 @@
 if vim.g.neovide then
-        vim.env.NEOVIDE_LISTEN_ON = vim.v.servername
-
         -- Set default cwd if opened with no files as arguments
         vim.api.nvim_create_autocmd({ "UIEnter" }, {
                 group = vim.api.nvim_create_augroup("Neovide_Default_Dir", { clear = true }),

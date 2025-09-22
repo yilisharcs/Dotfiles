@@ -63,12 +63,17 @@ defaults:
   refetchIntervalMinutes: 30
 keybindings:
   universal: []
-  issues: []
+  issues:
+    - key: e
+      name: edit
+      command: >
+        nvim --server $NVIM_LISTEN_SOCKET --remote-send "<C-\\><C-n>:tabnew
+        | tcd {{.RepoPath}} | Octo issue edit {{.IssueNumber}}<C-m><ESC>"
   prs:
     - key: e
       name: edit
       command: >
-        nvim --server $NEOVIDE_LISTEN_ON --remote-send "<C-\\><C-n>:tabnew
+        nvim --server $NVIM_LISTEN_SOCKET --remote-send "<C-\\><C-n>:tabnew
         | tcd {{.RepoPath}} | Octo pr edit {{.PrNumber}}<C-m><ESC>"
   branches: []
 repoPaths:

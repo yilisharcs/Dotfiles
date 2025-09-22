@@ -4,6 +4,8 @@ vim.g.maplocalleader = " "
 vim.keymap.set("n", "-", "<CMD>Ex<CR>")
 vim.keymap.set("n", "<leader>ql", "<CMD>Lazy<CR>")
 
+vim.env.NVIM_LISTEN_SOCKET = vim.v.servername
+
 if vim.v.argv[3] ~= nil then
         local shell_editor = {
                 "^/tmp/%S+%.nu$",
