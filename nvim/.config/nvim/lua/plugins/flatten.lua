@@ -8,11 +8,21 @@ return {
                 nest_if_no_args = true,
                 hooks = {
                         should_nest = function()
-                                local tmpfiles = vim.fn.system("ps a | grep 'vim.*/tmp' | grep -v 'grep'")
-                                local rebase = vim.fn.system("ps a | grep '.git/rebase' | grep -v 'grep'")
+                                local argv = vim.v.argv
+                                if argv[3] == nil then return end
 
-                                if tmpfiles ~= "" or rebase ~= "" then
-                                        return true
+                                local denylist = {
+                                        "%.git/rebase%-merge/git%-rebase%-todo$",
+                                        "^/tmp/%S+%.nu$",
+                                        "^/tmp/bash%-fc%.%w+$",
+                                        "^/tmp/crontab%.%w+/crontab$",
+                                        "^/tmp/yazi%-%d+/bulk",
+                                }
+
+                                for _, pat in ipairs(denylist) do
+                                        if string.match(argv[3], pat) ~= nil then
+                                                return true
+                                        end
                                 end
                         end
                 }
