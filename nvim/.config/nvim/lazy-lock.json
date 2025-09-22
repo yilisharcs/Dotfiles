@@ -43,5 +43,6 @@
   "vim-symlink": { "branch": "master", "commit": "fec2d1a72c6875557109ce6113f26d3140b64374" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
   "yazi.nvim": { "branch": "main", "commit": "6ae04fcb4b55bcd08aead33168d868130d4a7cf0" },
-  "zk-nvim": { "branch": "main", "commit": "8e0446f448e03dfe76ab671724f4c8db7a46cd37" }
+  "zk-nvim": { "branch": "main", "commit": "8e0446f448e03dfe76ab671724f4c8db7a46cd37" },
+  "zoxide.vim": { "branch": "master", "commit": "520d1abeb71ba42989a842251f8ba5c46be89aab" }
 }

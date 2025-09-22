@@ -46,6 +46,8 @@ return {
                 { "<leader>fs", "<CMD>lua _G.fzf_dirs()<CR>", desc = "[FZF] New project tab" },
         },
         init = function()
+                require("fzf-lua").register_ui_select()
+
                 _G.fzf_dirs = function(opts)
                         opts = opts or {}
                         opts.winopts = { title = " Projects " }
