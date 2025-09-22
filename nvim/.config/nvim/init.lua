@@ -4,13 +4,16 @@ vim.g.maplocalleader = " "
 vim.keymap.set("n", "-", "<CMD>Ex<CR>")
 vim.keymap.set("n", "<leader>ql", "<CMD>Lazy<CR>")
 
-local buf = vim.api.nvim_buf_get_name(0)
-local strlen = string.len(buf)
-
-if string.sub(buf, 1, 9) == "/tmp/bash" or
-    (string.sub(buf, 1, 5) == "/tmp/"
-            and string.sub(buf, strlen - 2) == ".nu") then
-        vim.g.shell_editor = true
+if vim.v.argv[3] ~= nil then
+        local shell_editor = {
+                "^/tmp/%S+%.nu$",
+                "^/tmp/bash%-fc%.%w+$",
+        }
+        for _, pat in ipairs(shell_editor) do
+                if string.match(vim.v.argv[3], pat) ~= nil then
+                        vim.g.shell_editor = true
+                end
+        end
 end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

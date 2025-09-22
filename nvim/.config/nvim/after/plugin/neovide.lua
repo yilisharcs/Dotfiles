@@ -5,7 +5,9 @@ if vim.g.neovide then
         vim.api.nvim_create_autocmd({ "UIEnter" }, {
                 group = vim.api.nvim_create_augroup("Neovide_Default_Dir", { clear = true }),
                 callback = function()
-                        vim.cmd("if argc(-1) == 0 | cd ~/Dotfiles | endif")
+                        if vim.v.argv[3] == nil then
+                                vim.cmd.cd("~/Dotfiles")
+                        end
                 end
         })
 
@@ -13,6 +15,7 @@ if vim.g.neovide then
         vim.g.neovide_padding_left = 2
         vim.g.neovide_hide_mouse_when_typing = true
         vim.g.neovide_confirm_quit = true
+        vim.g.neovide_detach_on_quit = "always_detach"
         vim.g.neovide_cursor_smooth_blink = true
         vim.g.neovide_cursor_animate_in_insert_mode = true
         vim.g.neovide_cursor_animate_command_line = true
