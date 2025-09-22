@@ -88,7 +88,7 @@ theme:
     background:
       selected: "#510039"
 pager:
-  diff: less
+  diff: less -+F
 confirmQuit: false
 showAuthorIcons: true
 smartFilteringAtLaunch: true
