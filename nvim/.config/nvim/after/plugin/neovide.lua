@@ -25,19 +25,13 @@ if vim.g.neovide then
         vim.keymap.set({ "n", "t" }, "<C-=>", "<CMD>let g:neovide_scale_factor+=0.1<CR>")
         vim.keymap.set({ "n", "t" }, "<C-0>", "<CMD>let g:neovide_scale_factor=1.0<CR>")
 
-        vim.g.neovide_fullscreen = true
+        vim.g.neovide_fullscreen = false
         vim.go.linespace = 0
         function Neovide_F11()
                 if vim.g.neovide_fullscreen == false then
                         vim.g.neovide_fullscreen = true
-                        vim.go.linespace = 0
                 else
                         vim.g.neovide_fullscreen = false
-                        vim.go.linespace = 1
-                end
-                if package.loaded["vim._extui"] then
-                        vim.cmd("sleep 500m")
-                        vim.cmd("new | close")
                 end
         end
 
