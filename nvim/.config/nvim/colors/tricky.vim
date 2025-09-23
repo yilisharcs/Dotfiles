@@ -54,6 +54,10 @@ hi BlinkCmpDoc guifg=#cdd6f4 guibg=#0a001a
 hi! link BlinkCmpDocBorder BlinkCmpDoc
 
 "{{
+hi FzfLuaCustomMarks guifg=#ffaf00 guibg=NONE
+"}}
+
+"{{
 hi MiniHipatternsNote guifg=#00af5f gui=bold,reverse ctermfg=7 cterm=bold,reverse
 hi MiniHipatternsFixme guifg=#d7005f gui=bold,reverse ctermfg=1 cterm=bold,reverse
 "}}
