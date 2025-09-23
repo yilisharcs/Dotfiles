@@ -2,14 +2,24 @@
 vim.api.nvim_create_autocmd({ "BufLeave", "VimLeavePre" }, {
         group    = vim.api.nvim_create_augroup("Smart_Marks", { clear = true }),
         callback = function()
-                local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-                local current_file = vim.api.nvim_buf_get_name(0)
+                local name = vim.api.nvim_buf_get_name(0)
+                local lnum, col = unpack(vim.api.nvim_win_get_cursor(0))
 
-                for _, mark in ipairs(vim.fn.getmarklist()) do
-                        local mark_filepath = vim.fn.fnamemodify(mark.file, ":p")
-                        if mark_filepath == current_file and mark.mark:match("[A-Z]") then
-                                local gmark = string.sub(tostring(mark.mark), 2, #mark.mark)
-                                vim.api.nvim_buf_set_mark(0, gmark, line, col, {})
+                for _, m in ipairs(vim.fn.getmarklist()) do
+                        local mark, file = m.mark:sub(2, 2), m.file
+
+                        if string.match(mark, "[%d]") ~= nil then return end
+
+                        -- Opening a file with a global mark causes its path to be
+                        -- shortened. While shada undoes this on close, it doesn't
+                        -- help us any here.
+                        if string.sub(file, 1, 2) == "~/" then
+                                file = os.getenv("HOME") .. string.sub(file, 2)
+                        end
+
+                        if file == name then
+                                vim.api.nvim_buf_set_mark(0, mark, lnum, col, {})
+                                return
                         end
                 end
         end
