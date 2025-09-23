@@ -103,6 +103,7 @@ return {
                         border   = "rounded",
                         preview  = { border = "rounded" },
                 },
+                hls = { buf_nr = "FzfLuaCustomMarks" },
                 git = { files = { file_icons = icons_cond } },
                 files = {
                         file_icons = icons_cond,
@@ -134,13 +135,13 @@ return {
                         winopts = { height = 0.5 },
                 },
                 marks = {
-                        marks = "[A-Z]",
+                        sort = true,
+                        marks = "[^%d%.']",
                         fzf_opts = {
                                 ["--cycle"] = true,
                                 ["--tiebreak"] = "begin",
                         },
                         winopts = {
-                                title = " Global marks ",
                                 preview = { layout = "vertical" },
                         }
                 }
