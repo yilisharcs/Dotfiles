@@ -46,15 +46,17 @@ mkdir ($nu.data-dir | path join "vendor/autoload")
 
 carapace _carapace nushell | save -f ($nu.data-dir | path join "vendor/autoload/carapace.nu")
 $env.CARAPACE_BRIDGES = "zsh,fish,bash,inshellisense"
+# FIXME: https://github.com/carapace-sh/carapace-bin/issues/2978
+# Remove once carapace-bin releases v1.5.1
+$env.PATH = ($env.PATH | where { not ($in | str contains ".config/carapace/bin") })
 
-fnm env --json | from json | load-env
-$env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
+if ($env.FNM_MULTISHELL_PATH? | is-empty) {
+  fnm env --json | from json | load-env
+  $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
+}
 
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
-
-# # my entries are being duplicated and I don't want to debug that
-# $env.PATH = ($env.PATH | uniq)
 
 # Yazi shell wrapper
 def --env yf [...args] {
