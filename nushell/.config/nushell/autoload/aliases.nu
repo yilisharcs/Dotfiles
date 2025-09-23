@@ -1,7 +1,3 @@
-# Convenience
-alias reboot = systemctl reboot
-alias shutdown = systemctl poweroff
-
 alias ":q" = exit
 def apgrep [str: string] { apt list --installed e> /dev/null | rg $str }
 alias apkg = apt-cache
