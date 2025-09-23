@@ -1,7 +1,3 @@
-# Editor
-alias vi = nvim
-alias vim = nvim
-
 # Convenience
 alias reboot = systemctl reboot
 alias shutdown = systemctl poweroff

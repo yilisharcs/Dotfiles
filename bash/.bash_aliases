@@ -1,6 +1,3 @@
-# Editor
-alias {vi,vim}="nvim"
-
 # Guard-rails
 alias cp="cp -iv"
 alias rm="rm -I"
