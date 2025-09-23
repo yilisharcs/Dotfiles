@@ -77,6 +77,7 @@ def --env yf [...args] {
 
 
 
+# FIXME: ssh/gpg agent
 # # starts ssh-agent if another program hasn't done so
 # do --env {
 #   if not ($env.SSH_AUTH_SOCK | is-empty) {
