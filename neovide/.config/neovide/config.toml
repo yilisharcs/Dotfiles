@@ -1,6 +1,6 @@
 maximized = true
 no-multigrid = false
-tabs = false
+tabs = true
 wsl = false
 
 [font]
