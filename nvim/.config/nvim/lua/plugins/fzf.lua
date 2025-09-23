@@ -136,7 +136,7 @@ return {
                 },
                 marks = {
                         sort = true,
-                        marks = "[^%d%.']",
+                        marks = "[^%d%.'<>]",
                         fzf_opts = {
                                 ["--cycle"] = true,
                                 ["--tiebreak"] = "begin",
