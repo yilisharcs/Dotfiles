@@ -124,6 +124,7 @@ HISTIGNORE="vi:vim:nvim:\:q:l[fs]:pwd:[bf]g"
 bind    '"\C-o": edit-and-execute-command'
 
 
+# FIXME: ssh/gpg agent
 # # starts ssh-agent if another program hasn't done so
 # if [ -z $SSH_AUTH_SOCK ]; then
 #   eval "$(ssh-agent -s)"
