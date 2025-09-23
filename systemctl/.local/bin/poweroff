@@ -1,0 +1,9 @@
+#!/usr/bin/env nu
+
+def --wrapped main [...rest] {
+        if ($rest | is-empty) {
+                systemctl poweroff --when=+1min
+        } else {
+                systemctl poweroff ...$rest
+        }
+}
