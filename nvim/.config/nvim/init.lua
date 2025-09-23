@@ -6,15 +6,13 @@ vim.keymap.set("n", "<leader>ql", "<CMD>Lazy<CR>")
 
 vim.env.NVIM_LISTEN_SOCKET = vim.v.servername
 
-if vim.v.argv[3] ~= nil then
-        local shell_editor = {
-                "^/tmp/%S+%.nu$",
-                "^/tmp/bash%-fc%.%w+$",
-        }
-        for _, pat in ipairs(shell_editor) do
-                if string.match(vim.v.argv[3], pat) ~= nil then
-                        vim.g.shell_editor = true
-                end
+local tmpfiles = {
+        "^/tmp/%S+%.nu$",
+        "^/tmp/bash%-fc%.%w+$",
+}
+for _, pat in ipairs(tmpfiles) do
+        if string.match(vim.v.argv[#vim.v.argv], pat) ~= nil then
+                vim.g.shell_editor = true
         end
 end
 
