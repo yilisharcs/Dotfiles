@@ -9,3 +9,4 @@ normal = [
         "Noto Color Emoji",
 ]
 size = 14.0
+edging = "subpixelantialias"
