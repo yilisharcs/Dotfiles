@@ -58,17 +58,20 @@ vim.keymap.set("n", "cu", function()
             and "<CMD>botright copen | wincmd p<CR>" or "<CMD>cclose<CR>"
 end, { expr = true, desc = "Toggle quickfix list" })
 
+vim.keymap.set("n", "<C-k>", "<CMD>cpfile<CR>zz", { desc = "Quickfix previous file" })
+vim.keymap.set("n", "<C-j>", "<CMD>cnfile<CR>zz", { desc = "Quickfix next file" })
+vim.keymap.set("n", "<C-p>", "<CMD>cprev<CR>zz", { desc = "Quickfix previous error" })
+vim.keymap.set("n", "<C-n>", "<CMD>cnext<CR>zz", { desc = "Quickfix next error" })
+vim.keymap.set("n", "<leader><C-p>", "<CMD>cabove<CR>", { desc = "Quickfix error above cursor" })
+vim.keymap.set("n", "<leader><C-n>", "<CMD>cbelow<CR>", { desc = "Quickfix error below cursor" })
+
 vim.keymap.set("n", "co", function()
         return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")) == 1
             and "<CMD>botright lopen | wincmd p<CR>" or "<CMD>lclose<CR>"
 end, { expr = true, desc = "Toggle location list" })
 
-vim.keymap.set("n", "<C-k>", "<CMD>cpfile<CR>zz", { desc = "Quickfix previous file" })
-vim.keymap.set("n", "<C-j>", "<CMD>cnfile<CR>zz", { desc = "Quickfix next file" })
-vim.keymap.set("n", "<C-p>", "<CMD>cprev<CR>zz", { desc = 'Quickfix previous error' })
-vim.keymap.set("n", "<C-n>", "<CMD>cnext<CR>zz", { desc = "Quickfix next error" })
-vim.keymap.set("n", "<leader><C-p>", "<CMD>cabove<CR>", { desc = "Quickfix error above cursor" })
-vim.keymap.set("n", "<leader><C-n>", "<CMD>cbelow<CR>", { desc = "Quickfix error below cursor" })
+vim.keymap.set("n", "<M-p>", "<CMD>lprev<CR>zz", { desc = "Loclist previous error" })
+vim.keymap.set("n", "<M-n>", "<CMD>lnext<CR>zz", { desc = "Loclist next error" })
 
 vim.keymap.set("n", "gz", function()
                 vim.ui.open("https://github.com/" .. vim.fn.expand("<cfile>"))
