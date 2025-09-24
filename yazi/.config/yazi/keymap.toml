@@ -19,7 +19,7 @@ prepend_keymap = [
         { on = "b", run = "shell 'cp -r \"$0\" \"$0\".bak.$(date +%s)'", desc = "Backup current file" },
 
         # Pager
-        { on = "i", run = "shell 'bat $0 --pager=\"less -+F\"' --block" },
+        { on = "i", run = "shell 'bat \"$0\" --pager=\"less -+F\"' --block" },
 
         # Restore trashed files
         { on = "u", run = """shell 'file=$(trash-list | grep \"$(pwd)\" \
