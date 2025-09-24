@@ -54,6 +54,7 @@ export FZF_CTRL_R_OPTS="--preview-window=hidden \
 
 ## Rust
 export PATH="$HOME/.cargo/bin:$PATH"
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
 
 # }
 

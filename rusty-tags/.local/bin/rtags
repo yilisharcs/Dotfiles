@@ -1,0 +1,3 @@
+#!/usr/bin/env nu
+
+def --wrapped main [...rest] { rusty-tags vi ...$rest }
