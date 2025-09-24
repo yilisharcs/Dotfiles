@@ -10,3 +10,6 @@ normal = [
 ]
 size = 14.0
 edging = "subpixelantialias"
+
+[font.features]
+"Iosevka Nerd Font" = [ "+NWID" ]
