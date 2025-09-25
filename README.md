@@ -33,18 +33,25 @@ overwritten if modified externally, listed below:
     * desc: Remove symlinks
 
 ```nu
+let fold_dir = [
+    "git"
+    "mask"
+    "neovim-config"
+]
+
 ls
 | where type == dir
-| where name !~ "_|mask|^neovim-config"
+| where name !~ "^_"
+| where not ($fold_dir | any {|pat| $it.name == $pat })
 | get name
 | if ($env.delete? | is-not-empty) {
     each { stow -D $in }
-    stow -D neovim-config
+    stow -D ...$fold_dir
 } else if ($env.adopt? | is-not-empty) {
     each { stow -R --no-folding --adopt $in }
 } else {
     each { stow -R --no-folding $in }
-    stow -R neovim-config
+    stow -R ...$fold_dir
 }
 
 print $"(ansi green_bold)Stow \"(pwd)\" complete.(ansi reset)"
