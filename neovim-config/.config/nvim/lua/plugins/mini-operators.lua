@@ -23,6 +23,9 @@ return {
                 replace = {
                         prefix = "cs",
                         reindent_linewise = true,
+                },
+                sort = {
+                        prefix = ""
                 }
         }
 }
