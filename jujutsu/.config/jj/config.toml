@@ -11,14 +11,15 @@ key      = "1D1CA99103BF8677"
 
 [git]
 sign-on-push = true
+colocate = true
 
 [ui]
 default-command = "ls"
 
 [aliases]
 amend = ["squash"]
-clone = ["git", "clone", "--colocate"]
+clone = ["git", "clone"]
 fetch = ["git", "fetch"]
-init  = ["git", "init", "--colocate"]
+init  = ["git", "init"]
 ls    = ["log", "--summary"]
 push  = ["git", "push"]
