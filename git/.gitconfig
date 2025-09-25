@@ -4,9 +4,9 @@
 	signingKey = 1D1CA99103BF8677
 [init]
 	defaultBranch = main
+	templateDir = /home/yilisharcs/.config/git/templates
 [core]
 	editor = nvim
-	excludesfile = ~/.config/git/ignore
 [color "diff"]
 	meta = yellow
 [diff]
@@ -28,6 +28,7 @@
 	logd    = log --decorate --oneline --graph
 	st      = status
 	unstage = reset HEAD --
+	ctags = !.git/hooks/ctags
 [commit]
 	gpgSign = true
 [tag]
