@@ -1,0 +1,21 @@
+{
+        "security": {
+                "auth": {
+                        "selectedType": "oauth-personal"
+                }
+        },
+        "vimMode": false,
+        "general": {
+                "preferredEditor": "nvim"
+        },
+        "context": {
+                "fileFiltering": {
+                        "respectGitIgnore": true
+                }
+        },
+        "ui": {
+                "theme": "Ayu",
+                "hideBanner": true,
+                "hideTips": false
+        }
+}
