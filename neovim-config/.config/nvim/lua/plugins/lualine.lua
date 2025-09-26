@@ -41,9 +41,6 @@ return {
                         icons_enabled        = icons_cond,
                         section_separators   = section_separators,
                         component_separators = component_separators,
-                        ignore_focus         = {
-                                "codecompanion",
-                        },
                         theme                = {
                                 normal = {
                                         a = "LualineNormalA",
