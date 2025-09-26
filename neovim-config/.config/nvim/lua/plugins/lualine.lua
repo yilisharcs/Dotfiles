@@ -1,16 +1,16 @@
 local icons_cond
-if vim.env.DISPLAY == nil then
-        icons_cond = false
-else
-        icons_cond = true
-end
-
+local icon_rightpad
 local component_separators
 local section_separators
-if vim.env.DISPLAY == nil then
+
+if os.getenv("DISPLAY") == nil then
+        icons_cond           = false
+        icon_rightpad        = 1
         section_separators   = { left = '>', right = '<' }
         component_separators = { left = '|', right = '|' }
 else
+        icons_cond           = true
+        icon_rightpad        = 0
         section_separators   = { left = "", right = "" }
         component_separators = { left = "", right = "" }
 end
@@ -21,13 +21,6 @@ local diagnostic_cond = function()
         else
                 return true
         end
-end
-
-local icon_rightpad
-if vim.env.DISPLAY == nil then
-        icon_rightpad = 1
-else
-        icon_rightpad = 0
 end
 
 return {
