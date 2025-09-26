@@ -18,7 +18,7 @@ return {
                 keymaps = {
                         open_file_in_vertical_split = "<C-v>",
                         open_file_in_horizontal_split = "<C-s>",
-                        grep_in_directory = "<C-f>",
+                        grep_in_directory = "<C-x>",
                         cycle_open_buffers = false,
                 },
                 integrations = {
