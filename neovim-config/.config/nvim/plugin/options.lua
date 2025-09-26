@@ -72,8 +72,14 @@ vim.o.updatetime = 1000
 vim.o.virtualedit = "block"
 vim.o.winborder = "rounded"
 
--- Nushell doesn't grok vi
-vim.o.shell = vim.fn.exepath("bash")
+if vim.fn.exepath("nu") ~= "" then
+        vim.o.shell = vim.fn.exepath("nu")
+        vim.o.shelltemp = false
+        vim.o.shellredir = "o+e> %s"
+        vim.o.shellcmdflag = "--no-config-file --no-newline --stdin -c"
+        vim.o.shellpipe =
+        "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
+end
 
 -- Display vs TTY
 vim.o.list = true
