@@ -132,7 +132,7 @@ bind    '"\C-o": edit-and-execute-command'
 
 # shell integrations
 eval "$(bob complete bash)"
-# eval "$(fnm env --use-on-cd --shell bash)"
+source <(carapace _carapace)
 eval "$(fzf --bash)"
 eval "$(pandoc --bash-completion)"
 eval "$(zoxide init bash)"
