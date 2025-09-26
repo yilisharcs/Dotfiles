@@ -16,9 +16,9 @@ return {
                         width = 0.99,
                 },
                 keymaps = {
-                        -- FIXME: https://github.com/mikavilpas/yazi.nvim/issues/739
-                        open_file_in_vertical_split = false,
-                        open_file_in_horizontal_split = false,
+                        open_file_in_vertical_split = "<C-v>",
+                        open_file_in_horizontal_split = "<C-s>",
+                        grep_in_directory = "<C-f>",
                         cycle_open_buffers = false,
                 },
                 integrations = {
