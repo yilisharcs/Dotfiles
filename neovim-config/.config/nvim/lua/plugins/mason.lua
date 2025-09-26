@@ -9,6 +9,7 @@ return {
                 "c",
                 "cpp",
                 "lua",
+                "nu",
                 "rust",
                 "typst",
                 "vim",
@@ -26,6 +27,7 @@ return {
                 vim.lsp.enable({
                         "clangd",
                         "luals",
+                        "nuls",
                         "rust-analyzer",
                         "typls",
                         "vimls",
