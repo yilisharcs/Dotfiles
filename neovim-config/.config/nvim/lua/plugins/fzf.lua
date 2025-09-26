@@ -1,7 +1,7 @@
 local fd_exclude = "--exclude={Trash,.git,.cache,state/undo,target}"
 
 local icons_cond
-if vim.env.DISPLAY == nil then
+if os.getenv("DISPLAY") == nil then
         icons_cond = false
 else
         icons_cond = true
