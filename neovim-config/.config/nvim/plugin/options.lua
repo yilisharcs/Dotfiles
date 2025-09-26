@@ -58,7 +58,7 @@ vim.o.fillchars = "eob: "
 
 vim.o.guicursor = "a:block,c-ci-i-r:blinkwait700-blinkoff700-blinkon700"
 
-vim.opt.diffopt:prepend({ "algorithm:patience" })
+vim.opt.diffopt:prepend({ "algorithm:patience", "hiddenoff" })
 
 vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
