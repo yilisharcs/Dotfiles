@@ -1,7 +1,7 @@
 return {
         "MeanderingProgrammer/render-markdown.nvim",
         -- enabled = false,
-        cond = vim.env.DISPLAY ~= nil,
+        cond = os.getenv("DISPLAY") ~= nil,
         ft = "markdown",
         keys = {
                 { "<leader>y", "<CMD>RenderMarkdown toggle<CR>", desc = "Toggle markdown rendering" },

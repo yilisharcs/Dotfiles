@@ -80,7 +80,7 @@ vim.o.list = true
 vim.o.termguicolors = true
 vim.opt.listchars = { nbsp = "␣", tab = "› ", trail = "•" }
 
-if vim.env.DISPLAY == nil then
+if os.getenv("DISPLAY") == nil then
         vim.o.termguicolors = false
 end
 
