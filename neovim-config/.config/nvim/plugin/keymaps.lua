@@ -174,13 +174,27 @@ vim.keymap.set("ca", "q1", "q!")
 vim.keymap.set("ca", "qa1", "qa!")
 vim.keymap.set("ca", "bd1", "bd!")
 
-vim.keymap.set("ca", "cfilter", "(getcmdtype() ==# ':' && getcmdline() =~# '^cfilter') ? 'Cfilter' : 'cfilter'",
-        { expr = true })
--- vim.keymap.set("ca", "grep", "(getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'silent grep' : 'grep'",
---         { expr = true })
-vim.keymap.set("ca", "hgrep", "(getcmdtype() ==# ':' && getcmdline() =~# '^hgrep') ? 'helpgrep' : 'hgrep'",
-        { expr = true })
-vim.keymap.set("ca", "man", "(getcmdtype() ==# ':' && getcmdline() =~# '^man') ? 'Man' : 'man'",
-        { expr = true })
-vim.keymap.set("ca", "task", "(getcmdtype() ==# ':' && getcmdline() =~# '^task') ? '!task' : 'task'",
-        { expr = true })
+vim.keymap.set("ca", "cfilter", function()
+        if vim.fn.getcmdtype() == ":" then
+                local cmd = vim.fn.getcmdline()
+                if cmd:match("^cfilter") then return "Cfilter" else return "cfilter" end
+        end
+end, { expr = true })
+-- vim.keymap.set("ca", "grep", function()
+--         if vim.fn.getcmdtype() == ":" then
+--                 local cmd = vim.fn.getcmdline()
+--                 if cmd:match("^grep") then return "silent grep" else return "grep" end
+--         end
+-- end, { expr = true })
+vim.keymap.set("ca", "man", function()
+        if vim.fn.getcmdtype() == ":" then
+                local cmd = vim.fn.getcmdline()
+                if cmd:match("^man") then return "Man" else return "man" end
+        end
+end, { expr = true })
+vim.keymap.set("ca", "task", function()
+        if vim.fn.getcmdtype() == ":" then
+                local cmd = vim.fn.getcmdline()
+                if cmd:match("^task") then return "!task" else return "task" end
+        end
+end, { expr = true })

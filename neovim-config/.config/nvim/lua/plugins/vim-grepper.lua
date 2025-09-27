@@ -21,7 +21,15 @@ return {
                 }
 
                 vim.keymap.set({ "n", "x" }, "gs", "<Plug>(GrepperOperator)")
-                vim.keymap.set("ca", "grep", "(getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'GrepperRg' : 'grep'",
-                        { expr = true })
+                vim.keymap.set("ca", "grep", function()
+                        if vim.fn.getcmdtype() == ":" then
+                                local cmd = vim.fn.getcmdline()
+                                if cmd:match("^grep") then
+                                        return "GrepperRg"
+                                else
+                                        return "grep"
+                                end
+                        end
+                end, { expr = true })
         end
 }
