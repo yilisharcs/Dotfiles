@@ -1,5 +1,5 @@
 # the file name used for vi tags
-vi_tags = "tags"
+vi_tags = "rtags"
 
 # # options given to the ctags executable
 # ctags_options = ""
