@@ -13,16 +13,20 @@ vim.keymap.set("ca", "cargo", function()
         end
 end, { expr = true })
 
--- augroup Rust_C_Plug
---   au!
---   " Jump to file error; requires vim-sneak
---   au TermOpen *:cargo* lua vim.keymap.set('n', '-', '6s> ', { remap = true, buffer = true })
--- augroup END
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+        group = vim.api.nvim_create_augroup("Rust_Cargo_Jump", { clear = true }),
+        pattern = "*:cargo*",
+        callback = function()
+                local key = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true)
+                vim.api.nvim_feedkeys(key, "t", false)
+                vim.keymap.set("n", "-", "6s> ", { remap = true, buffer = true })
+        end
+})
 
 -- Although `let g:rustfmt_autosave = 1` exists,
 -- running RustFmt directly populates the loclist
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-        group = vim.api.nvim_create_augroup("RustAutoFmt", { clear = true }),
+        group = vim.api.nvim_create_augroup("Rust_Auto_Fmt", { clear = true }),
         pattern = "*.rs",
         callback = function()
                 -- RustFmt expects a POSIX compliant shell with shellcmdflag
