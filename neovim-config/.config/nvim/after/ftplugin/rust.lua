@@ -1,3 +1,5 @@
+vim.b.editorconfig = false
+
 vim.bo.commentstring = "// %s"
 
 vim.keymap.set("ca", "cargo", function()
@@ -17,4 +19,10 @@ end, { expr = true })
 --   au TermOpen *:cargo* lua vim.keymap.set('n', '-', '6s> ', { remap = true, buffer = true })
 -- augroup END
 
-vim.b.editorconfig = false
+-- Although `let g:rustfmt_autosave = 1` exists,
+-- running RustFmt directly populates the loclist
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+        group = vim.api.nvim_create_augroup("RustAutoFmt", { clear = true }),
+        pattern = "*.rs",
+        command = "silent! RustFmt"
+})

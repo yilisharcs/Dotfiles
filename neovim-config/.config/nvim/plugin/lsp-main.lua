@@ -53,20 +53,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 })
 
--- While `let g:rustfmt_autosave = 1` does exist,
--- running RustFmt directly populates the loclist
-vim.cmd([[
-  augroup Auto_Format
-    au!
-    au BufWritePre *.rs silent! RustFmt
-  augroup END
-]])
-
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
         group   = vim.api.nvim_create_augroup("Auto_Format_LSP", { clear = true }),
         pattern = {
+                "*.c",
                 "*.lua",
-                "*.vim",
                 "*.typ",
         },
         command = "silent! lua vim.lsp.buf.format()"
