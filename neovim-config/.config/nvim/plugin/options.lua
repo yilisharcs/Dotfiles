@@ -72,6 +72,9 @@ vim.o.updatetime = 1000
 vim.o.virtualedit = "block"
 vim.o.winborder = "rounded"
 
+-- Rusty-tags support with custom tagfile name
+vim.opt.tags:append({ "./rtags", ",rtags" })
+
 vim.o.shell = vim.fn.exepath("bash")
 if vim.fn.exepath("nu") ~= "" then
         vim.o.shell = vim.fn.exepath("nu")
