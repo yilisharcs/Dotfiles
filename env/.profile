@@ -8,14 +8,6 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-        # include .bashrc if it exists
-        if [ -f "$HOME/.bashrc" ]; then
-                . "$HOME/.bashrc"
-        fi
-fi
-
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
         PATH="$HOME/bin:$PATH"
@@ -25,6 +17,19 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
         PATH="$HOME/.local/bin:$PATH"
 fi
+
+# {
+
+# # Golang
+# export GOPATH="$HOME/go"
+# export GOBIN="$GOPATH/bin"
+# export PATH="$GOBIN:$PATH"
+
+## Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
+
+# }
 
 export XDG_CONFIG_HOME="$HOME/.config"                             # set user config directory
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"       # create ripgrep config pointer
@@ -45,19 +50,14 @@ export FZF_CTRL_R_OPTS="--preview-window=hidden \
         --bind='ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort' \
         --header 'Press CTRL-Y to copy command into clipboard'"
 
-# {
-
-# # Golang
-# export GOPATH="$HOME/go"
-# export GOBIN="$GOPATH/bin"
-# export PATH="$GOBIN:$PATH"
-
-## Rust
-export PATH="$HOME/.cargo/bin:$PATH"
-export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
-
-# }
-
 export SUDO_EDITOR=nvim
 export EDITOR=nvim
 export MANPAGER="nvim +Man!"
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+        # include .bashrc if it exists
+        if [ -f "$HOME/.bashrc" ]; then
+                . "$HOME/.bashrc"
+        fi
+fi
