@@ -80,6 +80,20 @@ if vim.fn.exepath("nu") ~= "" then
         vim.o.shellpipe =
         "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
 end
+vim.keymap.set("ca", "nu", function()
+        if vim.fn.getcmdtype() == ":" then
+                local cmd = vim.fn.getcmdline()
+                if cmd:match("^('<,'>)!nu")
+                    or cmd:match("^%.!nu")
+                    or cmd:match("^%.,%$!nu")
+                    or cmd:match("^%.,%.%+%d+!nu")
+                then
+                        return "nu -c $in"
+                else
+                        return "nu"
+                end
+        end
+end, { expr = true })
 
 -- Display vs TTY
 vim.o.list = true
