@@ -3,7 +3,7 @@ return {
         version = false,
         event = { "InsertEnter", "CmdlineEnter", "CmdwinEnter" },
         opts = {
-                modes = { insert = true, command = true, terminal = false },
+                modes = { insert = true, command = false, terminal = false },
                 mappings = {
                         ["("] = { action = "open", pair = "()", neigh_pattern = "[^\\].", register = { bs = true, cr = true } },
                         ["["] = { action = "open", pair = "[]", neigh_pattern = "[^\\].", register = { bs = true, cr = true } },
