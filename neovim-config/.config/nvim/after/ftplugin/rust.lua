@@ -1,7 +1,15 @@
 vim.bo.commentstring = "// %s"
 
-vim.keymap.set("ca", "cargo", "(getcmdtype() ==# ':' && getcmdline() =~# '^cargo') ? 'Cargo' : 'cargo'",
-        { expr = true })
+vim.keymap.set("ca", "cargo", function()
+        if vim.fn.getcmdtype() == ":" then
+                local cmd = vim.fn.getcmdline()
+                if cmd:match("^cargo") then
+                        return "Cargo"
+                else
+                        return "cargo"
+                end
+        end
+end, { expr = true })
 
 -- augroup Rust_C_Plug
 --   au!
