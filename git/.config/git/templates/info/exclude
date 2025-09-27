@@ -5,5 +5,5 @@
 # *.[oa]
 # *~
 
-**/env
-**/tags
+**/.env
+tags
