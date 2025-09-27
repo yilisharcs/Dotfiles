@@ -16,14 +16,6 @@ return {
         keys = {
                 { "<leader>i", "<CMD>Neogit<CR>" },
         },
-        init = function()
-                vim.cmd([[
-                        augroup Neo_Legit
-                                au!
-                                au Filetype NeogitCommitMessage setlocal iskeyword+=-,'
-                        augroup END
-                ]])
-        end,
         opts = {
                 graph_style = graph_style,
                 integrations = {
