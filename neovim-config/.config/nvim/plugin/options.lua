@@ -72,6 +72,7 @@ vim.o.updatetime = 1000
 vim.o.virtualedit = "block"
 vim.o.winborder = "rounded"
 
+vim.o.shell = vim.fn.exepath("bash")
 if vim.fn.exepath("nu") ~= "" then
         vim.o.shell = vim.fn.exepath("nu")
         vim.o.shelltemp = false
@@ -79,21 +80,22 @@ if vim.fn.exepath("nu") ~= "" then
         vim.o.shellcmdflag = "--no-config-file --no-newline --stdin -c"
         vim.o.shellpipe =
         "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
-end
-vim.keymap.set("ca", "nu", function()
-        if vim.fn.getcmdtype() == ":" then
-                local cmd = vim.fn.getcmdline()
-                if cmd:match("^('<,'>)!nu")
-                    or cmd:match("^%.!nu")
-                    or cmd:match("^%.,%$!nu")
-                    or cmd:match("^%.,%.%+%d+!nu")
-                then
-                        return "nu -c $in"
-                else
-                        return "nu"
+
+        vim.keymap.set("ca", "nu", function()
+                if vim.fn.getcmdtype() == ":" then
+                        local cmd = vim.fn.getcmdline()
+                        if cmd:match("^('<,'>)!nu")
+                            or cmd:match("^%.!nu")
+                            or cmd:match("^%.,%$!nu")
+                            or cmd:match("^%.,%.%+%d+!nu")
+                        then
+                                return "nu -c $in"
+                        else
+                                return "nu"
+                        end
                 end
-        end
-end, { expr = true })
+        end, { expr = true })
+end
 
 -- Display vs TTY
 vim.o.list = true
