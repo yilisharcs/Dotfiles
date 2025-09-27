@@ -32,5 +32,10 @@ return {
                         "typls",
                         "vimls",
                 })
+
+                -- Ensure Mason can detect fnm
+                vim.env.PATH = os.getenv("HOME") ..
+                    "/.local/share/fnm/aliases/default/bin:" ..
+                    os.getenv("PATH")
         end
 }
