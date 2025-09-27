@@ -14,8 +14,16 @@ return {
                 { "<leader>gL", "<CMD>Gclog<CR>",         desc = "[Git] Repo history" },
         },
         init = function()
-                vim.keymap.set("ca", "git", "(getcmdtype() ==# ':' && getcmdline() =~# '^git') ? 'Git' : 'git'",
-                        { expr = true })
+                vim.keymap.set("ca", "git", function()
+                        if vim.fn.getcmdtype() == ":" then
+                                local cmd = vim.fn.getcmdline()
+                                if cmd:match("^git") then
+                                        return "Git"
+                                else
+                                        return "git"
+                                end
+                        end
+                end, { expr = true })
 
                 vim.g.fugitive_summary_format = "%an | %s"
 
