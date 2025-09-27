@@ -44,6 +44,10 @@ $env.config = {
 # Integrations
 mkdir ($nu.data-dir | path join "vendor/autoload")
 
+# FIXME: missing completions for bob
+# https://github.com/MordechaiHadad/bob/pull/320
+# bob complete nu | save -f ($nu.data-dir | path join "vendor/autoload/bob.nu")
+
 carapace _carapace nushell | save -f ($nu.data-dir | path join "vendor/autoload/carapace.nu")
 $env.CARAPACE_BRIDGES = "zsh,fish,bash,inshellisense"
 # FIXME: https://github.com/carapace-sh/carapace-bin/issues/2978
