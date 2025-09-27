@@ -6,14 +6,8 @@ vim.keymap.set("n", "<leader>ql", "<CMD>Lazy<CR>")
 
 vim.env.NVIM_LISTEN_SOCKET = vim.v.servername
 
-local tmpfiles = {
-        "^/tmp/%S+%.nu$",
-        "^/tmp/bash%-fc%.%w+$",
-}
-for _, pat in ipairs(tmpfiles) do
-        if string.match(vim.v.argv[#vim.v.argv], pat) ~= nil then
-                vim.g.shell_editor = true
-        end
+if string.match(vim.v.argv[#vim.v.argv], "^/tmp/%S+%.nu$") ~= nil then
+        vim.g.shell_editor = true
 end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

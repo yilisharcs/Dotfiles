@@ -39,6 +39,5 @@ augroup Auto_Cmds
         \| silent! keeppatterns %s/\\+$//e | call nvim_win_set_cursor(0, s:c)
 
   " Close terminal buffers as if {cmd} wasn't supplied to :term
-  au TermClose *:btop*,*:nu*,*/bin/bash*
-        \| silent! execute 'bdelete! '.expand('<abuf>')
+  au TermClose *:nu* silent! execute 'bdelete! '.expand('<abuf>')
 augroup END
