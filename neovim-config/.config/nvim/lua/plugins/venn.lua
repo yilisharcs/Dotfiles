@@ -8,12 +8,11 @@ return {
 
                 local M = {}
 
-                -- FIXME: Is there really no way to do this without the ugly formatting?
-                local venn_hint_utf = [[
- Arrow^^^^^^  Select region with <C-v>^^^^^^ ^
- ^ ^ _K_ ^ ^  _f_: Surround with box ^ ^ ^ ^ ^
- _H_ ^ ^ _L_  _<C-h>_: ◄, _<C-j>_: ▼ ^
- ^ ^ _J_ ^ ^  _<C-k>_: ▲, _<C-l>_: ► _<C-c>_ ^]]
+                local venn_hint_utf = "" ..
+                    "Arrow^^^^^^  Select region with <C-v>^^^^^^" .. "\n" ..
+                    "^ ^ _K_ ^ ^  _f_: Surround with box ^ ^ ^ ^" .. "\n" ..
+                    "_H_ ^ ^ _L_  _<C-h>_: ◄, _<C-j>_: ▼ ^ ^ ^ ^" .. "\n" ..
+                    "^ ^ _J_ ^ ^  _<C-k>_: ▲, _<C-l>_: ► _<C-c>_"
 
                 -- :setlocal ve=all
                 -- :setlocal ve=none
