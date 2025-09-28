@@ -11,7 +11,6 @@ return {
                                 local denylist = {
                                         "%.git/rebase%-merge/git%-rebase%-todo$",
                                         "^/tmp/%S+%.nu$",
-                                        "^/tmp/bash%-fc%.%w+$",
                                         "^/tmp/crontab%.%w+/crontab$",
                                         "^/tmp/yazi%-%d+/bulk",
                                 }
