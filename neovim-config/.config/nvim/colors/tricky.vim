@@ -1,7 +1,7 @@
 runtime colors/zaibatsu.vim
 
 hi Normal guifg=#cdd6f4
-hi NormalNC guibg=#0a001a
+hi NormalNC guibg=#060010
 hi! link NormalFloat Normal
 hi! link FloatBorder NormalFloat
 hi Folded guifg=#00afff guibg=#1e1829 gui=bold
@@ -41,16 +41,16 @@ hi! link @markup.heading.gitcommit gitcommitSummary
 
 hi! link @lsp.type.property.lua Delimiter
 
-let g:terminal_color_0  = '#0a001a'
+let g:terminal_color_0  = '#060010'
 
-hi Pmenu guifg=NONE guibg=#0a001a
-hi PmenuExtra guibg=#0a001a
-hi PmenuKind guifg=#ffaf00 guibg=#0a001a
+hi Pmenu guifg=NONE guibg=#060010
+hi PmenuExtra guibg=#060010
+hi PmenuKind guifg=#ffaf00 guibg=#060010
 hi PmenuMatch guifg=#ffafff guibg=#0e0024
 hi PmenuMatchSel guifg=#d7005f
 hi! link PmenuSbar Pmenu
 hi PmenuThumb guibg=#afafff
-hi BlinkCmpDoc guifg=#cdd6f4 guibg=#0a001a
+hi BlinkCmpDoc guifg=#cdd6f4 guibg=#060010
 hi! link BlinkCmpDocBorder BlinkCmpDoc
 
 "{{
