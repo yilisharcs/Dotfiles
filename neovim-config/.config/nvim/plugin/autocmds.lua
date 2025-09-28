@@ -83,7 +83,8 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 vim.api.nvim_create_autocmd({ "QuickFixCmdPost" }, {
         group = group,
         pattern = "[^l]*",
-        command = "nested cwindow"
+        nested = true,
+        command = "cwindow"
 })
 
 -- Clear newline character from LLM output
