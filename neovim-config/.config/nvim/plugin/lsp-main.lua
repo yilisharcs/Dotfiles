@@ -31,7 +31,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 end
 
                 if client.server_capabilities.inlayHintProvider then
-                        vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
                         map("n", "<C-,>", function()
                                 if vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf }) then
                                         vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
