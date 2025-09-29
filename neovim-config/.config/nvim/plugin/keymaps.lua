@@ -178,12 +178,6 @@ vim.keymap.set("ca", "cfilter", function()
                 if cmd:match("^cfilter") then return "Cfilter" else return "cfilter" end
         end
 end, { expr = true })
--- vim.keymap.set("ca", "grep", function()
---         if vim.fn.getcmdtype() == ":" then
---                 local cmd = vim.fn.getcmdline()
---                 if cmd:match("^grep") then return "silent grep" else return "grep" end
---         end
--- end, { expr = true })
 vim.keymap.set("ca", "man", function()
         if vim.fn.getcmdtype() == ":" then
                 local cmd = vim.fn.getcmdline()
