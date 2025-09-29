@@ -33,15 +33,6 @@ vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter", "WinEnter" }, {
         command = "startinsert"
 })
 
--- Newline doesn't insert comment from comment
-vim.api.nvim_create_autocmd({ "FileType" }, {
-        group = group,
-        callback = function()
-                vim.opt_local.formatoptions:append({ "r" })
-                vim.opt_local.formatoptions:remove({ "o" })
-        end
-})
-
 -- <cfile> only registers apostrophes in markdown files
 vim.api.nvim_create_autocmd({ "FileType" }, {
         group = group,
