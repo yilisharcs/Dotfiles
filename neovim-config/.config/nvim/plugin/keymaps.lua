@@ -94,14 +94,10 @@ vim.keymap.set("n", "gco", "oz<ESC>gccfza<BS>", { remap = true, desc = "Add comm
 
 vim.keymap.set({ "n", "x", "o" }, "j", "(&wrap ? 'gj' : 'j')", { expr = true })
 vim.keymap.set({ "n", "x", "o" }, "k", "(&wrap ? 'gk' : 'k')", { expr = true })
-vim.keymap.set({ "n", "x" }, "<C-d>", "(&wrap ? '<C-d>' : '<C-d>zz')",
-        { expr = true, desc = "Center half-scroll down" })
-vim.keymap.set({ "n", "x" }, "<C-u>", "(&wrap ? '<C-u>' : '<C-u>zz')",
-        { expr = true, desc = "Center half-scroll up" })
-vim.keymap.set({ "n", "x" }, "<C-f>", "(&wrap ? '<C-f>' : '<C-f>zz')",
-        { expr = true, desc = "Center full-scroll down" })
-vim.keymap.set({ "n", "x" }, "<C-b>", "(&wrap ? '<C-b>' : '<C-b>zz')",
-        { expr = true, desc = "Center full-scroll up" })
+vim.keymap.set({ "n", "x" }, "<C-d>", "(&wrap ? '<C-d>' : '<C-d>zz')", { expr = true, desc = "Center half-scroll down" })
+vim.keymap.set({ "n", "x" }, "<C-u>", "(&wrap ? '<C-u>' : '<C-u>zz')", { expr = true, desc = "Center half-scroll up" })
+vim.keymap.set({ "n", "x" }, "<C-f>", "(&wrap ? '<C-f>' : '<C-f>zz')", { expr = true, desc = "Center full-scroll down" })
+vim.keymap.set({ "n", "x" }, "<C-b>", "(&wrap ? '<C-b>' : '<C-b>zz')", { expr = true, desc = "Center full-scroll up" })
 vim.keymap.set({ "n", "x" }, "<F8>", '<CMD>setlocal wrap! wrap?<CR>', { desc = "Toggle wrap" })
 
 vim.keymap.set({ "n", "i", "c" }, "<C-S-V>", "<C-r>+", { desc = "Paste from clipboard" })
