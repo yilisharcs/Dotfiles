@@ -7,7 +7,7 @@ return {
         keys = {
                 { "<leader>gB", function() Snacks.gitbrowse() end,             desc = "Open git repo in the browser" },
                 { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification history" },
-                { "<F7>",       ":= _G.dd()<LEFT>",                            desc = "Debug inspect" },
+                { "<leader>p",  ":= _G.dd()<LEFT>",                            desc = "Debug inspect" },
                 { "<leader>s",  function() Snacks.scratch() end,               desc = "Toggle scratch buffer" },
                 { "<leader>S",  function() Snacks.scratch.select() end,        desc = "Select scratch buffer" },
                 {
