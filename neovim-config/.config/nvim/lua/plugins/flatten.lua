@@ -1,4 +1,6 @@
 return {
+        -- FIXME: bad interaction with neogit's git console
+        enabled = false,
         -- https://github.com/willothy/flatten.nvim/issues/108
         -- "willothy/flatten.nvim",
         "qw457812/flatten.nvim",
