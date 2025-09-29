@@ -7,6 +7,10 @@ return {
                 { "gm", mode = { "n", "x" } },
                 { "cs", mode = { "n", "x" } },
         },
+        init = function()
+                vim.keymap.set("n", "gyy", "mzgmmkgcc`zj", { remap = true, desc = "Duplicate and comment" })
+                vim.keymap.set("x", "gy", "gmmzgvgc`z", { remap = true, desc = "Duplicate and comment selection" })
+        end,
         opts = {
                 evaluate = {
                         prefix = "g=",
