@@ -141,12 +141,12 @@ vim.keymap.set("n", "<leader><F10>", "<CMD>!chmod -x %<CR>",
         { desc = "Remove executable permissions of the current file" })
 
 vim.keymap.set("n", "<C-.>", function()
-        if vim.g.toggle_comment_hl == true or vim.g.toggle_comment_hl == nil then
-                vim.g.toggle_comment_hl = false
-                vim.cmd("hi! link Comment CommentHide")
+        if vim.b.toggle_comment_hl ~= nil then
+                vim.b.toggle_comment_hl = nil
+                vim.wo[0][0].winhighlight = "Comment:CommentShow"
         else
-                vim.g.toggle_comment_hl = true
-                vim.cmd("hi! link Comment CommentShow")
+                vim.b.toggle_comment_hl = true
+                vim.wo[0][0].winhighlight = "Comment:CommentHide"
         end
 end)
 

@@ -10,9 +10,9 @@ hi! link CursorLineNr Special
 hi CursorLine guibg=NONE
 hi CursorLineFold guifg=#edf6f4
 
-hi CommentHide guifg=#0e0024 ctermfg=0
+hi CommentHide guifg=bg ctermfg=0
 hi CommentShow guifg=#afafff ctermfg=8
-hi Comment ctermfg=8
+hi! link Comment CommentShow
 
 hi Visual ctermbg=6
 hi! link MsgArea Special
