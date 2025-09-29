@@ -1,3 +1,11 @@
 #!/bin/sh
 
+if git show-ref --verify --quiet refs/heads/master; then
+        if ! git show-ref --verify --quiet refs/heads/main; then
+            git symbolic-ref refs/heads/main            refs/heads/master
+            git symbolic-ref refs/remotes/origin/main   refs/remotes/origin/master
+            git symbolic-ref refs/remotes/upstream/main refs/remotes/upstream/master
+        fi
+fi
+
 .git/hooks/ctags >/dev/null 2>&1 &
