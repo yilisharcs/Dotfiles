@@ -1,4 +1,5 @@
 vim.bo.commentstring = "<!-- %s -->"
+vim.cmd("set formatoptions+=r")
 vim.opt_local.iskeyword:append({ "-", "'" }) -- NOTE: vim.opt/_local/_global will be deprecated by v1.0
 vim.bo.suffixesadd = ".md,.lemon"
 vim.wo[0][0].colorcolumn = "0"
