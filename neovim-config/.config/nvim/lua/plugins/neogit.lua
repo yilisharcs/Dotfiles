@@ -18,6 +18,7 @@ return {
         },
         opts = {
                 graph_style = graph_style,
+                disable_hint = true,
                 integrations = {
                         fzf_lua = true,
                         snacks = false,
