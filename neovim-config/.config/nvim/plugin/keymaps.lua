@@ -159,6 +159,8 @@ function P(...)
         return ...
 end
 
+vim.keymap.set("n", "<leader>P", ":= P()<LEFT>")
+
 -- General abbreviations
 vim.keymap.set("ca", "W", "w")
 vim.keymap.set("ca", "Wq", "wq")
