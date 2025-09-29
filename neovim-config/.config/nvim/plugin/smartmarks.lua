@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd({ "BufLeave", "VimLeavePre" }, {
                         -- shortened. While shada undoes this on close, it doesn't
                         -- help us any here.
                         if string.sub(file, 1, 2) == "~/" then
-                                file = vim.fs.abspath(string.sub(file, 2))
+                                file = vim.fs.abspath(file)
                         end
 
                         if file == name then
