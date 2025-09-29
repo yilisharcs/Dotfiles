@@ -1,18 +1,17 @@
 return {
         "yilisharcs/wikibrowse.nvim",
-        enabled = false,
         dev = true,
         lazy = false,
-        cmd = "WikiBrowse",
+        cmd = "Wikibrowse",
         keys = {
-                { "<leader>e", "<CMD>WikiBrowse pizza<CR>" },
+                { "<leader>e", "<CMD>Wikibrowse pizza<CR>" },
         },
         init = function()
                 vim.keymap.set("ca", "wiki", function()
                         if vim.fn.getcmdtype() == ":" then
                                 local cmd = vim.fn.getcmdline()
                                 if cmd:match("^wiki") then
-                                        return "WikiBrowse"
+                                        return "Wikibrowse"
                                 else
                                         return "wiki"
                                 end
