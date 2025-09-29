@@ -29,6 +29,7 @@ vim.o.swapfile = false
 vim.o.undofile = true
 
 vim.o.grepprg = "vimgrep.nu"
+vim.o.spelllang = "en_us"
 
 vim.o.ignorecase = true
 vim.o.smartcase = true
