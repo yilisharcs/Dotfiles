@@ -14,5 +14,3 @@ function! ToggleLang()
 endfunction
 
 nnoremap <F4> <CMD>call ToggleLang()<CR>
-nnoremap <C-s> <CMD>set spell!<CR>
-inoremap <C-s> <ESC>gEB1z=Eea
