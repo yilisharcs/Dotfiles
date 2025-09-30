@@ -4,6 +4,9 @@ hi Normal guifg=#cdd6f4
 hi NormalNC guibg=#060010
 hi! link NormalFloat Normal
 hi! link FloatBorder NormalFloat
+hi StatusLine guibg=#1e0015 guifg=#edf6f4 gui=bold
+hi StatusLineNC guibg=#afafff guifg=#0e0024 gui=bold
+
 hi Folded guifg=#00afff guibg=#1e1829 gui=bold
 hi! link TabLineFill ColorColumn
 hi! link CursorLineNr Special
@@ -116,7 +119,7 @@ hi LualineReplaceB guibg=#510039 guifg=#ffff5f gui=bold
 hi LualineCommandA guibg=#1e0015 guifg=#ff5faf gui=bold
 hi LualineCommandB guibg=#510039 guifg=#ff5faf gui=bold
 
-hi LualineInactiveA guibg=#ff5faf guifg=#0e0024 gui=bold
+hi LualineInactiveA guibg=#afafff guifg=#0e0024 gui=bold
 hi LualineInactiveB guibg=#510039 guifg=#edf6f4 gui=bold
-hi LualineInactiveC guibg=#ff5faf guifg=#0e0024 gui=bold
+hi LualineInactiveC guibg=#afafff guifg=#0e0024 gui=bold
 "}}
