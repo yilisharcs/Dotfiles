@@ -18,6 +18,11 @@ if [ -d "$HOME/.local/bin" ] ; then
         PATH="$HOME/.local/bin:$PATH"
 fi
 
+# See bash(1) for more options
+export HISTCONTROL=ignoreboth   # don't put duplicate lines or lines starting with space in the history.
+export HISTSIZE=1000
+export HISTFILESIZE=2000
+
 # {
 
 # # Golang
