@@ -101,20 +101,20 @@ hi LualineNormalA guibg=#1e0015 guifg=#afafff gui=bold
 hi LualineNormalB guibg=#510039 guifg=#afafff gui=bold
 hi LualineNormalC guibg=#1e0015 guifg=#edf6f4
 
-hi LualineInsertA guibg=#1e0015 guifg=#00af5f gui=bold
-hi LualineInsertB guibg=#510039 guifg=#00af5f gui=bold
+hi LualineInsertA guibg=#1e0015 guifg=#87ff00 gui=bold
+hi LualineInsertB guibg=#510039 guifg=#87ff00 gui=bold
 
-hi! link LualineTerminalA LualineInsertA
-hi! link LualineTerminalB LualineInsertB
+hi LualineTerminalA guibg=#1e0015 guifg=#00af5f gui=bold
+hi LualineTerminalB guibg=#510039 guifg=#00af5f gui=bold
 
 hi LualineVisualA guibg=#1e0015 guifg=#5fd7ff gui=bold
 hi LualineVisualB guibg=#510039 guifg=#5fd7ff gui=bold
 
-hi LualineReplaceA guibg=#1e0015 guifg=#d7005f gui=bold
-hi LualineReplaceB guibg=#510039 guifg=#d7005f gui=bold
+hi LualineReplaceA guibg=#1e0015 guifg=#ffff5f gui=bold
+hi LualineReplaceB guibg=#510039 guifg=#ffff5f gui=bold
 
-hi LualineCommandA guibg=#1e0015 guifg=#ffaf00 gui=bold
-hi LualineCommandB guibg=#510039 guifg=#ffaf00 gui=bold
+hi LualineCommandA guibg=#1e0015 guifg=#ff5faf gui=bold
+hi LualineCommandB guibg=#510039 guifg=#ff5faf gui=bold
 
 hi LualineInactiveA guibg=#ff5faf guifg=#0e0024 gui=bold
 hi LualineInactiveB guibg=#510039 guifg=#edf6f4 gui=bold
