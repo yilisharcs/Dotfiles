@@ -45,9 +45,6 @@ vim.o.shiftwidth = 8
 vim.o.expandtab = true
 vim.o.smartindent = true
 
--- Newline doesn't insert comment from comment
-vim.cmd("set formatoptions-=o")
-
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
