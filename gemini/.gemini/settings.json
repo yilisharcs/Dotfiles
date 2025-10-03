@@ -1,21 +1,20 @@
 {
-        "security": {
-                "auth": {
-                        "selectedType": "oauth-personal"
-                }
-        },
-        "vimMode": false,
-        "general": {
-                "preferredEditor": "nvim"
-        },
-        "context": {
-                "fileFiltering": {
-                        "respectGitIgnore": true
-                }
-        },
-        "ui": {
-                "theme": "Ayu",
-                "hideBanner": true,
-                "hideTips": false
-        }
+  "general": {
+    "preferredEditor": "nvim"
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "context": {
+    "fileFiltering": {
+      "respectGitIgnore": false
+    }
+  },
+  "ui": {
+    "theme": "Ayu",
+    "hideBanner": true,
+    "hideTips": false
+  }
 }
