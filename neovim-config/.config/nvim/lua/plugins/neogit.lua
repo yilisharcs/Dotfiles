@@ -23,7 +23,10 @@ return {
                         fzf_lua = true,
                         snacks = false,
                 },
-                commit_editor = { show_staged_diff = false },
+                commit_editor = {
+                        kind = "split",
+                        show_staged_diff = false,
+                },
         },
         config = function(_, opts)
                 require("neogit").setup(opts)
