@@ -57,6 +57,8 @@ vim.opt.shortmess:append({ s = true })
 vim.o.splitright = true
 vim.o.splitbelow = true
 
+vim.o.tabclose = "uselast"
+
 vim.o.foldcolumn = "1"
 vim.o.foldmethod = "marker"
 vim.o.foldlevel = 0
