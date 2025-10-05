@@ -1,5 +1,6 @@
 return {
         "mikavilpas/yazi.nvim",
+        dev = true,
         lazy = false,
         dependencies = { "ibhagwan/fzf-lua" },
         keys = {
