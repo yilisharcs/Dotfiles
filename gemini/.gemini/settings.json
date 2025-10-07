@@ -1,7 +1,4 @@
 {
-  "general": {
-    "preferredEditor": "nvim"
-  },
   "security": {
     "auth": {
       "selectedType": "oauth-personal"
@@ -15,6 +12,13 @@
   "ui": {
     "theme": "Ayu",
     "hideBanner": true,
-    "hideTips": false
+    "hideTips": false,
+    "showCitations": true
+  },
+  "preferredEditor": "neovim",
+  "tools": {
+    "shell": {
+      "showColor": true
+    }
   }
 }
