@@ -24,6 +24,9 @@ vim.o.exrc = true
 vim.opt.clipboard:append({ "unnamedplus" })
 vim.g.clipboard = "xclip"
 
+vim.cmd("aunmenu PopUp.How-to\\ disable\\ mouse")
+vim.cmd("aunmenu PopUp.-2-")
+
 -- Long-running undo trees
 vim.o.swapfile = false
 vim.o.undofile = true
