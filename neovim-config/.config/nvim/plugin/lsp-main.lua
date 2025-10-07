@@ -59,5 +59,5 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
                 "*.lua",
                 "*.typ",
         },
-        command = "silent! lua vim.lsp.buf.format({ async = true })"
+        command = "silent! lua vim.lsp.buf.format({ timeout_ms = 2500 })"
 })
