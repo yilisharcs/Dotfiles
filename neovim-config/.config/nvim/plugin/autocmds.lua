@@ -42,18 +42,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         end
 })
 
--- <cfile> only registers apostrophes in markdown files
-vim.api.nvim_create_autocmd({ "FileType" }, {
-        group = group,
-        callback = function()
-                if vim.bo.filetype == "markdown" then
-                        vim.opt.isfname:append({ "'" })
-                else
-                        vim.opt.isfname:remove({ "'" })
-                end
-        end
-})
-
 -- Set listchars like indent-blankline
 vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "OptionSet" }, {
         group = group,
