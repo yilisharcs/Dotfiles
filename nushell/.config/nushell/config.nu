@@ -50,9 +50,6 @@ mkdir ($nu.data-dir | path join "vendor/autoload")
 
 carapace _carapace nushell | save -f ($nu.data-dir | path join "vendor/autoload/carapace.nu")
 $env.CARAPACE_BRIDGES = "zsh,fish,bash,inshellisense"
-# FIXME: https://github.com/carapace-sh/carapace-bin/issues/2978
-# Remove once carapace-bin releases v1.5.1
-$env.PATH = ($env.PATH | where { not ($in | str contains ".config/carapace/bin") })
 
 if ($env.FNM_MULTISHELL_PATH? | is-empty) {
   fnm env --json | from json | load-env
