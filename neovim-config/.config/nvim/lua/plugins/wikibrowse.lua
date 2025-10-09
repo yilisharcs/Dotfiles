@@ -1,9 +1,10 @@
 return {
         "yilisharcs/wikibrowse.nvim",
         dev = true,
-        config = function()
+        init = function()
                 vim.g.wikibrowse = {
-                        -- lang = "pt"
+                        -- lang = "pt",
+                        hello = "world"
                 }
                 -- vim.keymap.set("ca", "wiki", function()
                 --         if vim.fn.getcmdtype() == ":" then
