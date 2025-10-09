@@ -19,7 +19,6 @@
   "mini.pairs": { "branch": "main", "commit": "3738ea30ff33e0cbf2983dc67319a5468d25b0a9" },
   "mini.splitjoin": { "branch": "main", "commit": "93b14b5e8e8107b77724b09763dcd6de58626af7" },
   "mini.surround": { "branch": "main", "commit": "e170a2dde4b0a8905c9bb218ed428be94ec0b255" },
-  "neogit": { "branch": "fzf-lua-winopts", "commit": "b6e0cdfc3698944bfb76bfd4340b946e903173df" },
   "nvim-fundo": { "branch": "main", "commit": "ac9c9372c4bf677721e24f144ef29d3a05c2b589" },
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
   "nvim-treesitter-endwise": { "branch": "master", "commit": "a61a9de7965324d4019fb1637b66bfacdcb01f51" },
