@@ -1,5 +1,6 @@
 return {
         "nvim-treesitter/nvim-treesitter",
+        enabled = false,
         dependencies = {
                 "RRethy/nvim-treesitter-endwise",
                 "HiPhish/rainbow-delimiters.nvim",
