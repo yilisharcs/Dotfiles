@@ -26,14 +26,6 @@ return {
                                 input = { "%*%*().-()%*%*" },
                                 output = { left = "**", right = "**" },
                         },
-                        ["I"] = { -- Italics
-                                input = { "%_().-()%_" },
-                                output = { left = "_", right = "_" },
-                        },
-                        ["M"] = { -- Monospace
-                                input = { "%`().-()%`" },
-                                output = { left = "`", right = "`" },
-                        },
                         ["G"] = { -- Code block
                                 input = { "%```().-()%```" },
                                 output = { left = "```", right = "\n```" },
