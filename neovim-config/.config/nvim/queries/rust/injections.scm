@@ -11,7 +11,7 @@
 (const_item
   name: (identifier) @_name (#match? @_name "^.*_SQL$")
   type: (reference_type
-          type: (primitive_type) @_type (#eq? @_type "str"))
+    type: (primitive_type) @_type (#eq? @_type "str"))
   value: (raw_string_literal
-           (string_content) @injection.content
-           (#set! injection.language "sql")))
+    (string_content) @injection.content
+    (#set! injection.language "sql")))
