@@ -25,6 +25,7 @@ return {
                         end
                 end, { expr = true })
 
+                vim.g.fugitive_no_maps = 1
                 vim.g.fugitive_summary_format = "%an | %s"
 
                 function _G.qfxfugitive(info)
