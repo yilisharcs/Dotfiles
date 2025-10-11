@@ -1,6 +1,4 @@
 function! NoPlugLua()
-        " FIXME: use vim.pack?
-        packadd cfilter
         silent grep "return \{" ~/Dotfiles
         Cfilter lua/plugins
         cdo s/$/\renabled = false,
