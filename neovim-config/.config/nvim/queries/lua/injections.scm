@@ -1,3 +1,5 @@
+;; extends
+
 (assignment_statement
   (variable_list
     name: (identifier) @_var
