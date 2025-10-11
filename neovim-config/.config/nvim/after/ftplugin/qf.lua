@@ -4,9 +4,6 @@ vim.wo[0][0].relativenumber = false
 vim.wo[0][0].signcolumn = "no"
 vim.wo[0][0].winhighlight = "Normal:NormalNC,qfLineNr:Number"
 
--- FIXME: use vim.pack?
-vim.cmd.packadd("cfilter")
-
 vim.fn.matchadd("DiagnosticError", "|E|")
 vim.fn.matchadd("DiagnosticWarn", "|W|")
 vim.fn.matchadd("DiagnosticInfo", "|I|")

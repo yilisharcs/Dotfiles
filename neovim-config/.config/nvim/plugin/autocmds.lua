@@ -9,6 +9,7 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 })
 
 -- Reads external file changes
+-- FIXME: This breaks sometimes
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
         group = group,
         callback = function()
