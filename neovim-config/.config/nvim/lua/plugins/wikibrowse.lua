@@ -1,7 +1,7 @@
 return {
         "yilisharcs/wikibrowse.nvim",
         dev = true,
-        config = function()
+        init = function()
                 vim.g.wikibrowse = {
                         -- lang = "pt"
                 }
