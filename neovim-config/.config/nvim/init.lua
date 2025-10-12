@@ -95,30 +95,8 @@ vim.o.winborder = "rounded"
 -- Rusty-tags support with custom tagfile name
 vim.opt.tags:append({ "./rtags", ",rtags" })
 
+-- Nushell doesn't grok vi
 vim.o.shell = vim.fn.exepath("bash")
-if vim.fn.exepath("nu") ~= "" then
-        vim.o.shell = vim.fn.exepath("nu")
-        vim.o.shelltemp = false
-        vim.o.shellredir = "o+e> %s"
-        vim.o.shellcmdflag = "--no-config-file --no-newline --stdin -c"
-        vim.o.shellpipe =
-        "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
-
-        vim.keymap.set("ca", "nu", function()
-                if vim.fn.getcmdtype() == ":" then
-                        local cmd = vim.fn.getcmdline()
-                        if cmd:match("^('<,'>)!nu")
-                            or cmd:match("^%.!nu")
-                            or cmd:match("^%.,%$!nu")
-                            or cmd:match("^%.,%.%+%d+!nu")
-                        then
-                                return "nu -c $in"
-                        else
-                                return "nu"
-                        end
-                end
-        end, { expr = true })
-end
 
 -- Display vs TTY
 vim.o.list = true
