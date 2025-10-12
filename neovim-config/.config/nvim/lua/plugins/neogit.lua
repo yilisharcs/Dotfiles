@@ -6,9 +6,8 @@ else
 end
 
 return {
-        -- "NeogitOrg/neogit",
         "yilisharcs/neogit",
-        dev = true,
+        branch = "fzf-lua-winopts",
         dependencies = {
                 "nvim-lua/plenary.nvim",
                 "sindrets/diffview.nvim",
