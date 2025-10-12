@@ -42,8 +42,8 @@ vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter", "WinEnter" }, {
 vim.api.nvim_create_autocmd({ "FileType" }, {
         group = group,
         callback = function()
-                vim.cmd("set formatoptions+=r")
-                vim.cmd("set formatoptions-=o")
+                vim.opt.formatoptions:append("r")
+                vim.opt.formatoptions:remove("o")
         end
 })
 
