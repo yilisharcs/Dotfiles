@@ -28,7 +28,6 @@ return {
                         size = 1.5 * 1024 * 1024, -- 1.5MB
                 },
                 gitbrowse = { enabled = true },
-                -- picker = { enabled = true },
                 image = {
                         enabled = vim.env.TERM == "xterm-kitty",
                         doc = { inline = false }
