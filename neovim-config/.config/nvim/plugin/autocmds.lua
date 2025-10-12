@@ -8,9 +8,13 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
         end
 })
 
--- Reads external file changes
--- FIXME: This breaks sometimes
-vim.api.nvim_create_autocmd({ "CursorHold" }, {
+vim.api.nvim_create_autocmd({
+        "CursorHold",
+        "FileChangedShell",
+        "TabEnter",
+        "TermLeave",
+        "WinEnter",
+}, {
         group = group,
         callback = function()
                 if vim.bo.buftype ~= "nofile" then
