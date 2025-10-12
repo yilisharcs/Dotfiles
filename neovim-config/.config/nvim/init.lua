@@ -88,6 +88,7 @@ vim.opt.diffopt:prepend({ "algorithm:patience", "hiddenoff" })
 -- Terminal scrollback
 vim.o.scrollback = 100000
 
+vim.o.updatetime = 1500
 vim.o.virtualedit = "block"
 vim.o.winborder = "rounded"
 
