@@ -1,6 +1,6 @@
 return {
         "MeanderingProgrammer/render-markdown.nvim",
-        enabled = false,
+        -- enabled = false,
         cond = os.getenv("DISPLAY") ~= nil,
         ft = "markdown",
         keys = {

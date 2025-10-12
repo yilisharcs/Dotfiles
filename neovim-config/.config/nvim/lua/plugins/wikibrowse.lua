@@ -1,10 +1,9 @@
 return {
         "yilisharcs/wikibrowse.nvim",
         dev = true,
-        init = function()
+        config = function()
                 vim.g.wikibrowse = {
-                        -- lang = "pt",
-                        hello = "world"
+                        -- lang = "pt"
                 }
 
                 vim.api.nvim_create_user_command("Reload", function()
