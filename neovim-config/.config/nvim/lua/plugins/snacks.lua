@@ -30,8 +30,7 @@ return {
                 gitbrowse = { enabled = true },
                 -- picker = { enabled = true },
                 image = {
-                        -- enabled = vim.env.TERM == "xterm-kitty",
-                        enabled = false,
+                        enabled = vim.env.TERM == "xterm-kitty",
                         doc = { inline = false }
                 },
                 input = { enabled = true },
