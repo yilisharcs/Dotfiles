@@ -17,11 +17,7 @@ return {
                 vim.keymap.set("ca", "git", function()
                         if vim.fn.getcmdtype() == ":" then
                                 local cmd = vim.fn.getcmdline()
-                                if cmd:match("^git") then
-                                        return "Git"
-                                else
-                                        return "git"
-                                end
+                                if cmd:match("^git") then return "Git" else return "git" end
                         end
                 end, { expr = true })
 
