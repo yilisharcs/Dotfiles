@@ -9,12 +9,6 @@ if string.match(vim.v.argv[#vim.v.argv], "^/tmp/%S+%.nu$") ~= nil then
 end
 
 vim.keymap.set("n", "-", "<CMD>Ex<CR>", { desc = "Fallback file explorer " })
-vim.keymap.set("ca", "grep", function()
-        if vim.fn.getcmdtype() == ":" then
-                local cmd = vim.fn.getcmdline()
-                if cmd:match("^grep") then return "silent grep" else return "grep" end
-        end
-end, { expr = true, desc = "Fallback grep command" })
 
 -- EDITOR OPTIONS {{{
 -- Enable project-local configuration
