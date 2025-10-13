@@ -6,8 +6,8 @@ local section_separators
 if os.getenv("DISPLAY") == nil then
         icons_cond           = false
         icon_rightpad        = 1
-        section_separators   = { left = '>', right = '<' }
-        component_separators = { left = '|', right = '|' }
+        section_separators   = { left = ">", right = "<" }
+        component_separators = { left = "|", right = "|" }
 else
         icons_cond           = true
         icon_rightpad        = 0
