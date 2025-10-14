@@ -28,7 +28,6 @@
 	logd    = log --decorate --oneline --graph
 	st      = status
 	unstage = reset HEAD --
-	ctags = !.git/hooks/ctags
 [commit]
 	gpgSign = true
 [tag]
