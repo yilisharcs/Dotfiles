@@ -100,6 +100,15 @@ hi RenderMarkdownH6Bg guifg=#afafff guibg=#1e0015 gui=bold
 "}}
 
 "{{
+augroup Sneak_Insert_HL
+        au!
+        au InsertEnter * hi Sneak NONE
+        au ColorScheme,InsertLeave * hi Sneak guifg=#060010 guibg=#87ff00 gui=bold
+        au TermOpen * hi SneakScope guibg=Black
+augroup END
+"}}
+
+"{{
 hi LualineNormalA guibg=#1e0015 guifg=#afafff gui=bold
 hi LualineNormalB guibg=#510039 guifg=#afafff gui=bold
 hi LualineNormalC guibg=#1e0015 guifg=#edf6f4
