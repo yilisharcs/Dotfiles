@@ -7,5 +7,3 @@ if git show-ref --verify --quiet refs/heads/master; then
                 git symbolic-ref refs/remotes/upstream/main refs/remotes/upstream/master
         fi
 fi
-
-.git/hooks/ctags >/dev/null 2>&1 &
