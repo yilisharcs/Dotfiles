@@ -23,8 +23,8 @@ return {
 
                 local gemini = Terminal:new({
                         cmd = "tmux new -A -s gemini 'gemini'",
-                        direction = "vertical",
-                        display_name = "GEMINI MUX",
+                        direction = "float",
+                        display_name = "GEMINI",
                         count = 2
                 })
                 vim.keymap.set("n", "<leader><F2>", function() gemini:toggle() end)
