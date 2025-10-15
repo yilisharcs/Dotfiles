@@ -13,7 +13,8 @@ return {
                         end
                 end,
                 float_opts = {
-                        border = "rounded"
+                        border = "rounded",
+                        height = vim.o.lines * 0.9,
                 }
         },
         config = function(_, opts)
