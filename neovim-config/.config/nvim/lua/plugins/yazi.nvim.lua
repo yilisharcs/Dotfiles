@@ -13,7 +13,7 @@ return {
                 open_multiple_tabs = true,
                 log_level = vim.log.levels.WARN,
                 floating_window_scaling_factor = {
-                        height = 0.96,
+                        height = 0.93,
                         width = 0.99,
                 },
                 keymaps = {
