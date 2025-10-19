@@ -18,8 +18,8 @@ def --wrapped main [...rest] {
         }
 
         if ($path == "/") {
-                mask ...$rest
+                mask-bin ...$rest
         } else {
-                mask --maskfile ([$path "maskfile.md"] | path join) ...$rest
+                mask-bin --maskfile ([$path "maskfile.md"] | path join) ...$rest
         }
 }
