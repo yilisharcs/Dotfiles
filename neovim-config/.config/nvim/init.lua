@@ -24,6 +24,9 @@ vim.cmd("aunmenu PopUp.-2-")
 -- Long-running undo trees
 vim.o.swapfile = false
 vim.o.undofile = true
+vim.o.backup = true
+vim.o.backupext = ".backup"
+vim.o.backupdir = os.getenv("HOME") .. "/.local/state/nvim/backup//"
 
 vim.o.grepprg = "vimgrep.nu"
 vim.o.spelllang = "en_us"
