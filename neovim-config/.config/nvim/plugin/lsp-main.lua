@@ -53,11 +53,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-        group   = vim.api.nvim_create_augroup("Auto_Format_LSP", { clear = true }),
-        pattern = {
+        group    = vim.api.nvim_create_augroup("LSP_Autoformat", { clear = true }),
+        pattern  = {
                 "*.c",
                 "*.lua",
                 "*.typ",
         },
-        command = "silent! lua vim.lsp.buf.format({ timeout_ms = 2500 })"
+        callback = function()
+                local fold = vim.fn.foldclosed(".")
+                vim.cmd("silent! lua vim.lsp.buf.format({ timeout_ms = 2500 })")
+                if fold == -1 then
+                        vim.cmd("silent! norm! zO")
+                end
+        end
 })
