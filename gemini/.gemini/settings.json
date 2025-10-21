@@ -1,10 +1,17 @@
 {
+  "general": {
+    "preferredEditor": "neovim"
+  },
   "security": {
     "auth": {
       "selectedType": "oauth-personal"
     }
   },
   "context": {
+    "fileName": [
+      "GEMINI.md",
+      "AGENTS.md"
+    ],
     "fileFiltering": {
       "respectGitIgnore": false
     }
@@ -15,7 +22,6 @@
     "hideTips": false,
     "showCitations": true
   },
-  "preferredEditor": "neovim",
   "tools": {
     "shell": {
       "showColor": true
