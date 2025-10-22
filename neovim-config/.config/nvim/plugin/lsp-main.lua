@@ -45,9 +45,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 map("n", "grt", function() vim.lsp.buf.type_definition() end, "Go to type definition")
                 map("n", "grw", function() vim.lsp.buf.workspace_symbol() end, "List workspace symbols")
                 map("n", "grf", function() vim.diagnostic.open_float() end, "Open error float")
-                -- FIXME: This no longer works
                 map("n", "grq", function()
-                        vim.diagnostic.setqflist({ namespace = vim.lsp.diagnostic.get_namespace(client.id), open = true })
+                        vim.diagnostic.setqflist({
+                                namespace = vim.lsp.diagnostic.get_namespace(client.id),
+                                open = true,
+                        })
                 end, "Send diagnostics to quickfix list")
         end
 })
