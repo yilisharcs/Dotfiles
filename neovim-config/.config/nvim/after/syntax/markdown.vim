@@ -1,5 +1,5 @@
-hi! link mdTextInQuotes String
-hi userHandle guifg=#87ffff
+hi! link TextInQuoteMarks String
+hi UserHandle guifg=#87ffff
 
-syn match mdTextInQuotes /\v(["])%(\1@![^\\]|\\.)*\1/
-syn match userHandle /\v(^|\s)\zs\@\w*/
+syn match TextInQuoteMarks /\v"([^"\\]|\\.)*"/
+syn match UserHandle /\v(^|\s)\zs\@\w*/
