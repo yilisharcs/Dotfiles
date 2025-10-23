@@ -1,0 +1,130 @@
+{
+  "plugins": {
+    "blink.cmp": {
+      "rev": "327fff9",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": "1.0.0 - 2.0.0"
+    },
+    "diffview.nvim": {
+      "rev": "4516612",
+      "src": "https://github.com/sindrets/diffview.nvim"
+    },
+    "friendly-snippets": {
+      "rev": "572f566",
+      "src": "https://github.com/rafamadriz/friendly-snippets"
+    },
+    "fzf-lua": {
+      "rev": "5363c9c",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
+    "hex.nvim": {
+      "rev": "b46e633",
+      "src": "https://github.com/RaafatTurki/hex.nvim"
+    },
+    "hydra.nvim": {
+      "rev": "8c4a9f6",
+      "src": "https://github.com/nvimtools/hydra.nvim"
+    },
+    "lualine.nvim": {
+      "rev": "3946f01",
+      "src": "https://github.com/nvim-lualine/lualine.nvim"
+    },
+    "mason.nvim": {
+      "rev": "ad7146a",
+      "src": "https://github.com/williamboman/mason.nvim"
+    },
+    "mini.nvim": {
+      "rev": "94cae46",
+      "src": "https://github.com/nvim-mini/mini.nvim",
+      "version": ">=0.0.0"
+    },
+    "neogit": {
+      "rev": "24fd963f",
+      "src": "https://github.com/yilisharcs/neogit",
+      "version": "'fzf-lua-winopts'"
+    },
+    "nvim-fundo": {
+      "rev": "ac9c937",
+      "src": "https://github.com/kevinhwang91/nvim-fundo"
+    },
+    "nvim-treesitter": {
+      "rev": "42fc28ba",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "nvim-treesitter-endwise": {
+      "rev": "a61a9de",
+      "src": "https://github.com/RRethy/nvim-treesitter-endwise"
+    },
+    "nvim-treesitter-textobjects": {
+      "rev": "a9742cb",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
+    },
+    "octo.nvim": {
+      "rev": "f6ecb85",
+      "src": "https://github.com/pwntester/octo.nvim"
+    },
+    "plenary.nvim": {
+      "rev": "b9fd522",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "promise-async": {
+      "rev": "119e896",
+      "src": "https://github.com/kevinhwang91/promise-async"
+    },
+    "rainbow-delimiters.nvim": {
+      "rev": "3277ad5",
+      "src": "https://github.com/HiPhish/rainbow-delimiters.nvim"
+    },
+    "render-markdown.nvim": {
+      "rev": "475d3ad",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+    },
+    "snacks.nvim": {
+      "rev": "277ba02",
+      "src": "https://github.com/folke/snacks.nvim"
+    },
+    "toggleterm.nvim": {
+      "rev": "50ea089",
+      "src": "https://github.com/akinsho/toggleterm.nvim",
+      "version": ">=0.0.0"
+    },
+    "typst-preview.nvim": {
+      "rev": "1603d37",
+      "src": "https://github.com/chomosuke/typst-preview.nvim",
+      "version": "1.0.0 - 2.0.0"
+    },
+    "vim-fugitive": {
+      "rev": "61b51c0",
+      "src": "https://github.com/tpope/vim-fugitive"
+    },
+    "vim-repeat": {
+      "rev": "711fe37",
+      "src": "https://github.com/yilisharcs/vim-repeat",
+      "version": "'maparg'"
+    },
+    "vim-sneak": {
+      "rev": "18b1faf",
+      "src": "https://github.com/justinmk/vim-sneak"
+    },
+    "vim-symlink": {
+      "rev": "fec2d1a",
+      "src": "https://github.com/aymericbeaumet/vim-symlink"
+    },
+    "which-key.nvim": {
+      "rev": "b4177e3",
+      "src": "https://github.com/folke/which-key.nvim"
+    },
+    "wikibrowse.nvim": {
+      "rev": "39e7f25",
+      "src": "https://github.com/yilisharcs/wikibrowse.nvim"
+    },
+    "yazi.nvim": {
+      "rev": "141c195",
+      "src": "https://github.com/mikavilpas/yazi.nvim"
+    },
+    "zk-nvim": {
+      "rev": "575c3e8",
+      "src": "https://github.com/zk-org/zk-nvim"
+    }
+  }
+}

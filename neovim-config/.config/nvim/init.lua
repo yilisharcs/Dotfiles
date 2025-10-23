@@ -10,7 +10,17 @@ end
 
 vim.keymap.set("n", "-", "<CMD>Ex<CR>", { desc = "Fallback file explorer " })
 
--- EDITOR OPTIONS {{{
+vim.keymap.set("n", "<leader>P", ":= P()<LEFT>")
+function P(...)
+        local args = {}
+        for _, arg in ipairs({ ... }) do
+                table.insert(args, vim.inspect(arg))
+        end
+        print(unpack(args))
+        return ...
+end
+
+-- EDITOR OPTIONS
 -- Enable project-local configuration
 vim.o.exrc = true
 
@@ -105,37 +115,3 @@ if os.getenv("DISPLAY") == nil then
 end
 
 vim.cmd.colorscheme("tricky")
--- }}}
-
--- Package manager {{{
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-        local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-        local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-        if vim.v.shell_error ~= 0 then
-                vim.api.nvim_echo({
-                        { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-                        { out,                            "WarningMsg" },
-                        { "\nPress any key to exit..." },
-                }, true, {})
-                vim.fn.getchar()
-                os.exit(1)
-        end
-end
-vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup({ import = "plugins" }, {
-        change_detection = { notify = false },
-        dev = {
-                path = vim.fs.joinpath(vim.fn.stdpath("config"), "pack/dev/opt"),
-                patterns = {},
-                fallback = false,
-        },
-        ui = {
-                border = "rounded",
-                backdrop = 100,
-        },
-})
-
-vim.keymap.set("n", "<leader>ql", "<CMD>Lazy<CR>")
---- }}}
