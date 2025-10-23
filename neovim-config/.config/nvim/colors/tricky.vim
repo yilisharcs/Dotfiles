@@ -1,7 +1,6 @@
 runtime colors/zaibatsu.vim
 
 hi Normal guifg=#cdd6f4
-hi NormalNC guibg=#060010
 hi! link NormalFloat Normal
 hi! link FloatBorder NormalFloat
 hi StatusLine guibg=#1e0015 guifg=#edf6f4 gui=bold
