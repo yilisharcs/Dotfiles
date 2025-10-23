@@ -6,6 +6,8 @@ return {
                 { "<leader>gB", function() Snacks.gitbrowse() end,             desc = "Open git repo in the browser" },
                 { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification history" },
                 { "<leader>p",  ":= _G.dd()<LEFT>",                            desc = "Debug inspect" },
+                { "<leader>s",  function() Snacks.scratch() end,               desc = "Toggle scratch buffer" },
+                { "<leader>S",  function() Snacks.scratch.select() end,        desc = "Select scratch buffer" },
                 {
                         "<M-q>",
                         function()
@@ -31,6 +33,12 @@ return {
                 input = { enabled = true },
                 notifier = { enabled = true },
                 quickfile = { enabled = true },
+                scratch = {
+                        enable = true,
+                        win = {
+                                height = 24
+                        }
+                },
                 styles = {
                         notification_history = {
                                 width = 0.9,
