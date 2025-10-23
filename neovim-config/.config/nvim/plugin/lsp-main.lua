@@ -57,7 +57,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
         group    = vim.api.nvim_create_augroup("LSP_Autoformat", { clear = true }),
         pattern  = {
-                "*.c",
+                -- "*.c",
                 "*.lua",
                 "*.typ",
         },
