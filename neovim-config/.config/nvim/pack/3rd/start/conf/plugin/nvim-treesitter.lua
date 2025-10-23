@@ -76,18 +76,12 @@ require("nvim-treesitter.configs").setup({
                 "make",
                 "tmux",
         },
-        highlight = { enable = true },
         indent = { enable = true },
-        additional_vim_regex_highlighting = { "markdown" },
+        highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = { "markdown" },
+        },
 })
 
 vim.keymap.set("n", "<M-u>", "<CMD>TSBufToggle highlight<CR>", { desc = "[TS] Toggle highlights" })
 vim.keymap.set("n", "<leader><F9>", "<CMD>InspectTree<CR>", { desc = "[TS] Inspect tree" })
-
-vim.cmd([[
-        " Required: treesitter resets filetype syntax opts
-        augroup Markdown_Syn
-                au!
-                au BufEnter *.md set syntax=ON
-        augroup END
-]])
