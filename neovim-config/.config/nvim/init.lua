@@ -127,7 +127,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({ import = "plugins" }, {
         change_detection = { notify = false },
         dev = {
-                path = "~/Projects/plugins-nvim",
+                path = vim.fs.joinpath(vim.fn.stdpath("config"), "pack/dev/opt"),
                 patterns = {},
                 fallback = false,
         },
