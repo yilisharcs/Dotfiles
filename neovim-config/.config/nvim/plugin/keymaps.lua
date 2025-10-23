@@ -78,14 +78,6 @@ vim.keymap.set("n", "<leader><C-n>", "<CMD>cbelow<CR>", { desc = "Quickfix error
 vim.keymap.set("n", "<M-p>", "<CMD>lprev<CR>zz", { desc = "Loclist previous error" })
 vim.keymap.set("n", "<M-n>", "<CMD>lnext<CR>zz", { desc = "Loclist next error" })
 
-vim.keymap.set("n", "gz", function()
-        vim.ui.open("https://github.com/" .. vim.fn.expand("<cfile>"))
-end, { desc = "Open github repo under cursor" })
-vim.keymap.set("x", "gz", function()
-        vim.cmd('norm! "zy')
-        vim.ui.open("https://github.com/" .. vim.fn.getreg("z"))
-end, { desc = "Open selection on github" })
-
 vim.keymap.set("n", "Z", "jmzk<CMD>m .+1<CR>==`z", { desc = "Swap lines" })
 vim.keymap.set("n", "gj", "i<CR><ESC>k$", { desc = "Split current line at the cursor position" })
 
@@ -148,17 +140,6 @@ vim.keymap.set("n", "<C-.>", function()
                 vim.wo[0][0].winhighlight = "Comment:CommentHide"
         end
 end)
-
-function P(...)
-        local args = {}
-        for _, arg in ipairs({ ... }) do
-                table.insert(args, vim.inspect(arg))
-        end
-        print(unpack(args))
-        return ...
-end
-
-vim.keymap.set("n", "<leader>P", ":= P()<LEFT>")
 
 -- General abbreviations
 vim.keymap.set("ca", "W", "w")
