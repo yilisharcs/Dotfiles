@@ -20,5 +20,5 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
                 local key = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true)
                 vim.api.nvim_feedkeys(key, "t", false)
                 vim.keymap.set("n", "-", "6s> ", { remap = true, buffer = true })
-        end
+        end,
 })

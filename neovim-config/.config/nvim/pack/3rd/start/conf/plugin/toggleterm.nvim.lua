@@ -2,7 +2,7 @@ vim.pack.add({
         {
                 src = "https://github.com/akinsho/toggleterm.nvim",
                 version = vim.version.range("*"),
-        }
+        },
 })
 
 require("toggleterm").setup({
@@ -24,23 +24,29 @@ local gemini = Terminal:new({
         cmd = "tmux new -A -s gemini 'gemini'",
         direction = "float",
         display_name = "GEMINI",
-        count = 2
+        count = 2,
 })
-vim.keymap.set("n", "<leader><F2>", function() gemini:toggle() end)
+vim.keymap.set("n", "<leader><F2>", function()
+        gemini:toggle()
+end)
 
 local gh_dash = Terminal:new({
         cmd = "gh dash",
         dir = "~",
         direction = "float",
         display_name = "GITHUB DASHBOARD",
-        count = 3
+        count = 3,
 })
-vim.keymap.set("n", "<leader><F3>", function() gh_dash:toggle() end)
+vim.keymap.set("n", "<leader><F3>", function()
+        gh_dash:toggle()
+end)
 
 local btop = Terminal:new({
         cmd = "btop",
         direction = "float",
         display_name = "RESOURCE MONITOR",
-        count = 4
+        count = 4,
 })
-vim.keymap.set("n", "<leader><F4>", function() btop:toggle() end)
+vim.keymap.set("n", "<leader><F4>", function()
+        btop:toggle()
+end)

@@ -5,6 +5,6 @@ end
 
 require("mini.icons").setup({
         filetype = {
-                nu = { glyph = "" }
-        }
+                nu = { glyph = "" },
+        },
 })

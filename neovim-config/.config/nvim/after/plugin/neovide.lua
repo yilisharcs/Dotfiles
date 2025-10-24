@@ -3,10 +3,8 @@ if vim.g.neovide then
         vim.api.nvim_create_autocmd({ "UIEnter" }, {
                 group = vim.api.nvim_create_augroup("Neovide_Default_Dir", { clear = true }),
                 callback = function()
-                        if string.match(vim.v.argv[#vim.v.argv], "^%-+") ~= nil then
-                                vim.cmd.cd("~/Dotfiles")
-                        end
-                end
+                        if string.match(vim.v.argv[#vim.v.argv], "^%-+") ~= nil then vim.cmd.cd("~/Dotfiles") end
+                end,
         })
 
         vim.g.neovide_padding_top = 0

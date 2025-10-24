@@ -15,7 +15,7 @@ require("mini.operators").setup({
         },
         sort = {
                 prefix = "_s",
-        }
+        },
 })
 
 vim.keymap.set("n", "gyy", "mzgmmkgcc`zj", { remap = true, desc = "Duplicate and comment" })

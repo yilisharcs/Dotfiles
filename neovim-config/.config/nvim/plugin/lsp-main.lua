@@ -6,16 +6,16 @@ vim.diagnostic.config({
         signs = {
                 text = {
                         [vim.diagnostic.severity.ERROR] = "",
-                        [vim.diagnostic.severity.WARN]  = "",
-                        [vim.diagnostic.severity.INFO]  = "",
-                        [vim.diagnostic.severity.HINT]  = "",
+                        [vim.diagnostic.severity.WARN] = "",
+                        [vim.diagnostic.severity.INFO] = "",
+                        [vim.diagnostic.severity.HINT] = "",
                 },
                 numhl = {
                         [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-                        [vim.diagnostic.severity.WARN]  = "DiagnosticSignWarn",
-                        [vim.diagnostic.severity.INFO]  = "DiagnosticSignInfo",
-                        [vim.diagnostic.severity.HINT]  = "DiagnosticSignHint",
-                }
+                        [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+                        [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+                        [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+                },
         },
 })
 
@@ -24,6 +24,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("LSProtocol", {}),
         callback = function(args)
                 local client = vim.lsp.get_clients()[1]
+                local ns = vim.lsp.diagnostic.get_namespace(client.id)
 
                 local map = function(mode, lhs, rhs, desc)
                         if desc then desc = "[LSP] " .. desc end
@@ -40,16 +41,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
                         end)
                 end
 
-                map("n", "K", function() vim.lsp.buf.hover() end, "Help") -- required if keywordprg is set
-                map("n", "grd", function() vim.lsp.buf.declaration() end, "Go to declaration")
-                map("n", "grt", function() vim.lsp.buf.type_definition() end, "Go to type definition")
-                map("n", "grw", function() vim.lsp.buf.workspace_symbol() end, "List workspace symbols")
-                map("n", "grf", function() vim.diagnostic.open_float() end, "Open error float")
+                map("n", "K", function()
+                        vim.lsp.buf.hover()
+                end, "Help") -- required if keywordprg is set
+                map("n", "grd", function()
+                        vim.lsp.buf.declaration()
+                end, "Go to declaration")
+                map("n", "grt", function()
+                        vim.lsp.buf.type_definition()
+                end, "Go to type definition")
+                map("n", "grw", function()
+                        vim.lsp.buf.workspace_symbol()
+                end, "List workspace symbols")
+                map("n", "grf", function()
+                        vim.diagnostic.open_float()
+                end, "Open error float")
                 map("n", "grq", function()
-                        vim.diagnostic.setqflist({
-                                namespace = vim.lsp.diagnostic.get_namespace(client.id),
-                                open = true,
-                        })
-                end, "Send diagnostics to quickfix list")
-        end
+                        vim.diagnostic.setqflist({ namespace = ns })
+                end, "Quickfix diagnostics")
+        end,
 })

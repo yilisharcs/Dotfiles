@@ -7,6 +7,6 @@ return {
                 lint = {
                         enabled = true,
                         when = "onSave",
-                }
-        }
+                },
+        },
 }

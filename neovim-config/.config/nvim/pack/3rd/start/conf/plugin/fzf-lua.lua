@@ -27,13 +27,13 @@ require("fzf-lua").setup({
                 },
         },
         winopts = {
-                height     = 0.80,
-                width      = 0.90,
-                row        = 0.50,
-                col        = 0.55,
-                backdrop   = 100,
-                border     = "rounded",
-                preview    = { border = "rounded" },
+                height = 0.80,
+                width = 0.90,
+                row = 0.50,
+                col = 0.55,
+                backdrop = 100,
+                border = "rounded",
+                preview = { border = "rounded" },
                 treesitter = { enabled = false },
         },
         fzf_colors = {
@@ -48,7 +48,7 @@ require("fzf-lua").setup({
         },
         hls = { buf_nr = "FzfLuaCustomMarks" },
         git = {
-                files = { file_icons = icons_cond }
+                files = { file_icons = icons_cond },
         },
         files = {
                 file_icons = icons_cond,
@@ -61,7 +61,7 @@ require("fzf-lua").setup({
                         fd_exclude,
                 }, " "),
                 winopts = {
-                        preview = { layout = "vertical" }
+                        preview = { layout = "vertical" },
                 },
         },
         grep = {
@@ -79,7 +79,7 @@ require("fzf-lua").setup({
                 }, " "),
         },
         helptags = {
-                winopts = { height = 0.5 }
+                winopts = { height = 0.5 },
         },
         marks = {
                 sort = true,
@@ -89,9 +89,9 @@ require("fzf-lua").setup({
                         ["--tiebreak"] = "begin",
                 },
                 winopts = {
-                        preview = { layout = "vertical" }
+                        preview = { layout = "vertical" },
                 },
-        }
+        },
 })
 require("fzf-lua").register_ui_select()
 
@@ -113,8 +113,8 @@ vim.keymap.set("i", "<C-x><C-f>", function()
                         "--hidden",
                         "--follow",
                         "--no-ignore",
-                        fd_exclude
-                }, " ")
+                        fd_exclude,
+                }, " "),
         })
 end, { desc = "[FZF] Complete path" })
 vim.keymap.set("n", "<leader>fs", function()
@@ -124,7 +124,7 @@ vim.keymap.set("n", "<leader>fs", function()
                 ["default"] = function(selected)
                         vim.cmd("tabnew " .. selected[1])
                         vim.cmd("tcd " .. selected[1])
-                end
+                end,
         }
         local dirs = {
                 "~/Projects/",
@@ -132,18 +132,15 @@ vim.keymap.set("n", "<leader>fs", function()
                 -- "~/.local/share/nvim/lazy/",
                 "~/.local/share/nvim/site/pack/core/opt/",
                 "~/.local/share/bob/nightly/share/nvim/runtime/",
-                "~/"
+                "~/",
         }
-        require("fzf-lua").fzf_exec(
-                table.concat({
-                        "fd",
-                        "--hidden",
-                        "--follow",
-                        "--type d",
-                        "--no-ignore",
-                        "--exact-depth 1",
-                        ". "
-                }, " ") ..
-                table.concat(dirs, " "), opts
-        )
+        require("fzf-lua").fzf_exec(table.concat({
+                "fd",
+                "--hidden",
+                "--follow",
+                "--type d",
+                "--no-ignore",
+                "--exact-depth 1",
+                ". ",
+        }, " ") .. table.concat(dirs, " "), opts)
 end, { desc = "[FZF] New project tab" })

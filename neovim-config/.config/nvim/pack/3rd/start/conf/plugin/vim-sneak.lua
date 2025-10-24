@@ -22,17 +22,17 @@ vim.api.nvim_create_autocmd("InsertEnter", {
         group = group,
         callback = function()
                 vim.api.nvim_set_hl(0, "Sneak", { link = "SneakHide", force = true })
-        end
+        end,
 })
 vim.api.nvim_create_autocmd({ "ColorScheme", "InsertLeave" }, {
         group = group,
         callback = function()
                 vim.api.nvim_set_hl(0, "Sneak", { link = "SneakShow", force = true })
-        end
+        end,
 })
 vim.api.nvim_create_autocmd("TermOpen", {
         group = group,
         callback = function()
                 vim.api.nvim_set_hl(0, "SneakScope", { bg = "#060010" })
-        end
+        end,
 })

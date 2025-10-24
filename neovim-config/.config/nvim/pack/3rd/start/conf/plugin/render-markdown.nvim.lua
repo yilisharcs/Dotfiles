@@ -1,7 +1,7 @@
 if not os.getenv("DISPLAY") then return end
 
 vim.pack.add({
-        "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+        "https://github.com/MeanderingProgrammer/render-markdown.nvim",
 }, { load = true })
 
 require("render-markdown").setup({

@@ -1,15 +1,17 @@
 require("mini.pairs").setup({
         modes = { insert = true, command = false, terminal = false },
         mappings = {
+                --stylua: ignore start
                 ["("] = { action = "open", pair = "()", neigh_pattern = "[^\\].", register = { bs = true, cr = true } },
                 ["["] = { action = "open", pair = "[]", neigh_pattern = "[^\\].", register = { bs = true, cr = true } },
                 ["{"] = { action = "open", pair = "{}", neigh_pattern = "[^\\].", register = { bs = true, cr = true } },
                 ["<"] = { action = "open", pair = "<>", neigh_pattern = "[^ \\].", register = { bs = true } },
                 [">"] = { action = "close", pair = "<>", neigh_pattern = "[^\\]." },
-                ["|"] = { action = "closeopen", pair = "||", neigh_pattern = "[\\{\\][}]", register = { bs = true } },     -- closures
-                ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^%a&<\\][^>]", register = { cr = false } }, -- lifetimes
+                ["|"] = { action = "closeopen", pair = "||", neigh_pattern = "[\\{\\][}]", register = { bs = true } }, -- closures
+                ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^%a&<\\][^>]", register = { cr = false }, }, -- lifetimes
                 ['"'] = { action = "closeopen", pair = '""', neigh_pattern = "[^%a\\].", register = { cr = false } },
-        }
+                --stylua: ignore end
+        },
 })
 
 local map_bs = function(lhs, rhs)

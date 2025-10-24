@@ -11,7 +11,7 @@ vim.keymap.set("n", "<F4>", function()
                 vim.o.spellfile = table.concat({ en, pt }, ",")
         end
         vim.notify("Language: " .. vim.bo.spelllang, vim.log.levels.INFO, {
-                title = "Spell Checker"
+                title = "Spell Checker",
         })
 end)
 

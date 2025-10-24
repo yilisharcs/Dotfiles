@@ -51,6 +51,10 @@ end, { expr = true, desc = "Greppy operator" })
 vim.keymap.set("ca", "grep", function()
         if vim.fn.getcmdtype() == ":" then
                 local cmd = vim.fn.getcmdline()
-                if cmd:match("^grep") then return "silent grep" else return "grep" end
+                if cmd:match("^grep") then
+                        return "silent grep"
+                else
+                        return "grep"
+                end
         end
 end, { expr = true, desc = "Fallback grep command" })

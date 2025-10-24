@@ -25,7 +25,7 @@ require("blink.cmp").setup({
                                 end
                         end,
                         "snippet_forward",
-                        "fallback"
+                        "fallback",
                 },
         },
         cmdline = { keymap = { preset = "inherit" } },
@@ -38,7 +38,7 @@ require("blink.cmp").setup({
                                         "markdown",
                                         "gitcommit",
                                 }, vim.bo.filetype)
-                        end
+                        end,
                 },
                 menu = {
                         auto_show = false,
@@ -47,14 +47,13 @@ require("blink.cmp").setup({
                                 components = {
                                         kind_icon = {
                                                 text = function(ctx)
-                                                        return " " ..
-                                                            ctx.kind_icon .. ctx.icon_gap .. " "
-                                                end
+                                                        return " " .. ctx.kind_icon .. ctx.icon_gap .. " "
+                                                end,
                                         },
                                         item_idx = {
                                                 text = function(ctx)
                                                         return tostring(ctx.idx)
-                                                end
+                                                end,
                                         },
                                 },
                                 columns = {
@@ -69,9 +68,9 @@ require("blink.cmp").setup({
                                                 "kind",
                                                 "source_name",
                                                 gap = 1,
-                                        }
+                                        },
                                 },
-                        }
+                        },
                 },
         },
         fuzzy = {
@@ -121,7 +120,7 @@ require("blink.cmp").setup({
                                                 end
                                         end
                                         return out
-                                end
+                                end,
                         },
                 },
         },

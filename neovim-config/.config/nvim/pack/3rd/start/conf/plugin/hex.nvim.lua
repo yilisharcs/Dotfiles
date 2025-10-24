@@ -1,7 +1,7 @@
 vim.g.hex = {
         keymaps = false,
         prettify = {
-                unicode = false
+                unicode = false,
         },
 }
 

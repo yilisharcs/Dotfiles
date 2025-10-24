@@ -1,5 +1,6 @@
+collapse_simple_statement = "ConditionalOnly"
 column_width = 120
-line_endings = "Unix"
 indent_type = "Spaces"
 indent_width = 8
-quote_style = "ForceDouble"
+line_endings = "Unix"
+quote_style = "AutoPreferDouble"

@@ -4,9 +4,7 @@ vim.g.maplocalleader = " "
 -- Expose socket env variable outside of nvim
 vim.env.NVIM_LISTEN_SOCKET = vim.v.servername
 
-if string.match(vim.v.argv[#vim.v.argv], "^/tmp/%S+%.nu$") ~= nil then
-        vim.g.shell_editor = true
-end
+if string.match(vim.v.argv[#vim.v.argv], "^/tmp/%S+%.nu$") ~= nil then vim.g.shell_editor = true end
 
 vim.keymap.set("n", "-", "<CMD>Ex<CR>", { desc = "Fallback file explorer " })
 
@@ -110,8 +108,6 @@ vim.o.list = true
 vim.o.termguicolors = true
 vim.opt_global.listchars = { nbsp = "␣", tab = "› ", trail = "•" }
 
-if os.getenv("DISPLAY") == nil then
-        vim.o.termguicolors = false
-end
+if os.getenv("DISPLAY") == nil then vim.o.termguicolors = false end
 
 vim.cmd.colorscheme("tricky")
