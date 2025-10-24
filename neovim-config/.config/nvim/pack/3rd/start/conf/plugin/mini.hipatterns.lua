@@ -6,5 +6,5 @@ require("mini.hipatterns").setup({
                 todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
                 note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
                 todo_rust_macro = { pattern = "todo!%(%)", group = "MiniHipatternsFixme" },
-        }
+        },
 })

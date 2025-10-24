@@ -15,8 +15,8 @@ return {
                                         "--fix",
                                         "--allow-dirty",
                                         "--message-format=json-diagnostic-rendered-ansi",
-                                }
-                        }
-                }
-        }
+                                },
+                        },
+                },
+        },
 }

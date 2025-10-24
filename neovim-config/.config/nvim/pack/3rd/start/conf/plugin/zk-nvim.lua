@@ -4,7 +4,7 @@ vim.pack.add({
 })
 
 require("zk").setup({
-        picker = "fzf_lua"
+        picker = "fzf_lua",
 })
 
 vim.keymap.set("n", "<leader>zl", function()

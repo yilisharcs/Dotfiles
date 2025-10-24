@@ -5,7 +5,7 @@ vim.pack.add({
 
 require("octo").setup({
         picker = "fzf-lua",
-        picker_config = { use_emojis = true }
+        picker_config = { use_emojis = true },
 })
 
 vim.keymap.set("n", "<leader>o", "<CMD>Octo actions<CR>", { desc = "[OCTO] Actions picker" })

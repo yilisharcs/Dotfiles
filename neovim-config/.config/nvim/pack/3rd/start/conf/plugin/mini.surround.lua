@@ -19,7 +19,7 @@ require("mini.surround").setup({
                         input = { "%```().-()%```" },
                         output = { left = "```", right = "\n```" },
                 },
-        }
+        },
 })
 
 vim.keymap.del("x", "ys")

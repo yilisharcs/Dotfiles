@@ -16,23 +16,23 @@ local icon_rightpad
 local component_separators
 local section_separators
 if os.getenv("DISPLAY") == nil then
-        icons_cond           = false
-        icon_rightpad        = 1
-        section_separators   = { left = ">", right = "<" }
+        icons_cond = false
+        icon_rightpad = 1
+        section_separators = { left = ">", right = "<" }
         component_separators = { left = "|", right = "|" }
 else
-        icons_cond           = true
-        icon_rightpad        = 0
-        section_separators   = { left = "", right = "" }
+        icons_cond = true
+        icon_rightpad = 0
+        section_separators = { left = "", right = "" }
         component_separators = { left = "", right = "" }
 end
 
 require("lualine").setup({
         options = {
-                icons_enabled        = icons_cond,
-                section_separators   = section_separators,
+                icons_enabled = icons_cond,
+                section_separators = section_separators,
                 component_separators = component_separators,
-                theme                = {
+                theme = {
                         normal = {
                                 a = "LualineNormalA",
                                 b = "LualineNormalB",
@@ -68,12 +68,12 @@ require("lualine").setup({
         sections = {
                 lualine_a = { "branch" },
                 lualine_b = {
-                        { "diff",        cond = diagnostic_cond },
+                        { "diff", cond = diagnostic_cond },
                         { "diagnostics", cond = diagnostic_cond },
                         {
                                 "filetype",
                                 icon_only = true,
-                                padding = { left = 1, right = icon_rightpad }
+                                padding = { left = 1, right = icon_rightpad },
                         },
                 },
                 lualine_c = { { "filename", path = 1 } },
@@ -93,22 +93,22 @@ require("lualine").setup({
                                 maxcount = 999,
                                 timeout = 500,
                                 separator = { right = "" },
-                                color = { fg = "#e0d561", gui = "bold" }
+                                color = { fg = "#e0d561", gui = "bold" },
                         },
-                        { "location", padding = 2 }
+                        { "location", padding = 2 },
                 },
                 lualine_y = { "progress" },
-                lualine_z = { "mode" }
+                lualine_z = { "mode" },
         },
         inactive_sections = {
                 lualine_a = { "branch" },
                 lualine_b = {
-                        { "diff",        cond = diagnostic_cond },
+                        { "diff", cond = diagnostic_cond },
                         { "diagnostics", cond = diagnostic_cond },
                         {
                                 "filetype",
                                 icon_only = true,
-                                padding = { left = 1, right = icon_rightpad }
+                                padding = { left = 1, right = icon_rightpad },
                         },
                 },
                 lualine_c = { { "filename", path = 0 } },
@@ -120,5 +120,5 @@ require("lualine").setup({
                 "man",
                 "quickfix",
                 "toggleterm",
-        }
+        },
 })

@@ -16,7 +16,7 @@ return {
                                 path = {
                                         "lua/?.lua",
                                         "lua/?/init.lua",
-                                }
+                                },
                         },
                         diagnostics = {
                                 globals = {
@@ -24,8 +24,8 @@ return {
                                         "Snacks",
                                 },
                                 unusedLocalExclude = {
-                                        "_*"
-                                }
+                                        "_*",
+                                },
                         },
                         workspace = {
                                 library = {
@@ -36,6 +36,6 @@ return {
                                 checkThirdParty = false,
                         },
                         telemetry = { enable = false },
-                }
-        }
+                },
+        },
 }

@@ -39,7 +39,7 @@ require("mason").setup({
         ui = {
                 border = "rounded",
                 backdrop = 100,
-        }
+        },
 })
 
 vim.keymap.set("n", "<leader>qm", "<CMD>Mason<CR>", { desc = "Open Mason menu" })
@@ -47,14 +47,11 @@ vim.keymap.set("n", "<leader>qm", "<CMD>Mason<CR>", { desc = "Open Mason menu" }
 vim.lsp.enable({
         "clangd",
         "luals",
-        "nuls",          -- External
+        "nuls", -- External
         "rust-analyzer", -- External
         "typls",
         "vimls",
 })
 
 -- Ensure Mason can detect fnm
-vim.env.PATH =
-    vim.fs.abspath(".local/share/fnm/aliases/default/bin")
-    .. ":"
-    .. os.getenv("PATH")
+vim.env.PATH = vim.fs.abspath(".local/share/fnm/aliases/default/bin") .. ":" .. os.getenv("PATH")

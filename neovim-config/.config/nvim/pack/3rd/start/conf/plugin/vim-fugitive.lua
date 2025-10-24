@@ -12,7 +12,11 @@ vim.keymap.set("n", "<leader>gL", "<CMD>Gclog<CR>", { desc = "[Git] Repo history
 vim.keymap.set("ca", "git", function()
         if vim.fn.getcmdtype() == ":" then
                 local cmd = vim.fn.getcmdline()
-                if cmd:match("^git") then return "Git" else return "git" end
+                if cmd:match("^git") then
+                        return "Git"
+                else
+                        return "git"
+                end
         end
 end, { expr = true })
 
@@ -22,9 +26,7 @@ vim.g.fugitive_summary_format = "%an | %s"
 function _G.qfxfugitive(info)
         local items
         local ret = {}
-        if info.quickfix == 1 then
-                items = vim.fn.getqflist({ id = info.id, items = 0 }).items
-        end
+        if info.quickfix == 1 then items = vim.fn.getqflist({ id = info.id, items = 0 }).items end
         local validFmt = " %s || %s"
         for i = info.start_idx, info.end_idx do
                 local e = items[i]
@@ -37,8 +39,8 @@ end
 
 local Qfx_Format = vim.api.nvim_create_augroup("Qfx_Format", { clear = true })
 vim.api.nvim_create_autocmd({ "QuickFixCmdPre", "QuickFixCmdPost" }, {
-        desc     = "Post Fugitive quickfix format",
-        group    = Qfx_Format,
+        desc = "Post Fugitive quickfix format",
+        group = Qfx_Format,
         callback = function()
                 local qf_title = vim.fn.getqflist({ title = 1 }).title
                 if qf_title:match("Gclog") then
@@ -46,5 +48,5 @@ vim.api.nvim_create_autocmd({ "QuickFixCmdPre", "QuickFixCmdPost" }, {
                 else
                         vim.o.qftf = "{info -> v:lua._G.qfx(info)}"
                 end
-        end
+        end,
 })

@@ -23,7 +23,7 @@ require("yazi").setup({
         integrations = {
                 grep_in_directory = "fzf-lua",
                 grep_in_selected_files = "fzf-lua",
-        }
+        },
 })
 
 vim.keymap.set("n", "-", "<CMD>Yazi<CR>", { desc = "Open yazi at the current file" })

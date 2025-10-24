@@ -3,5 +3,5 @@ vim.pack.add({
 })
 
 require("which-key").setup({
-        win = { border = "solid" }
+        win = { border = "solid" },
 })

@@ -1,6 +1,6 @@
 return {
         cmd = {
-                "clangd"
+                "clangd",
         },
         root_markers = {
                 ".clangd",

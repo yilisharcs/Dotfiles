@@ -10,7 +10,7 @@ require("snacks").setup({
         gitbrowse = { enabled = true },
         image = {
                 enabled = vim.env.TERM == "xterm-kitty",
-                doc = { inline = false }
+                doc = { inline = false },
         },
         input = { enabled = true },
         notifier = { enabled = true },
@@ -18,20 +18,24 @@ require("snacks").setup({
         scratch = {
                 enable = true,
                 win = {
-                        height = 24
+                        height = 24,
                 },
         },
         styles = {
                 notification_history = {
                         width = 0.9,
                         wo = { wrap = true },
-                }
-        }
+                },
+        },
 })
 
 -- Debugging globals
-_G.dd = function(...) Snacks.debug.inspect(...) end
-_G.bt = function() Snacks.debug.backtrace() end
+_G.bt = function()
+        Snacks.debug.backtrace()
+end
+_G.dd = function(...)
+        Snacks.debug.inspect(...)
+end
 vim.print = _G.dd
 
 vim.api.nvim_create_autocmd("LspProgress", {
@@ -43,17 +47,25 @@ vim.api.nvim_create_autocmd("LspProgress", {
                         title = "LSP Progress",
                         opts = function(notif)
                                 notif.icon = ev.data.params.value.kind == "end" and " "
-                                    or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
-                        end
+                                        or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+                        end,
                 })
-        end
+        end,
 })
 
-vim.keymap.set("n", "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Open git repo in the browser" })
-vim.keymap.set("n", "<leader>n", function() Snacks.notifier.show_history() end, { desc = "Notification history" })
+vim.keymap.set("n", "<leader>gB", function()
+        Snacks.gitbrowse()
+end, { desc = "Open git repo in the browser" })
+vim.keymap.set("n", "<leader>n", function()
+        Snacks.notifier.show_history()
+end, { desc = "Notification history" })
 vim.keymap.set("n", "<leader>p", ":= dd()<LEFT>", { desc = "Debug inspect" })
-vim.keymap.set("n", "<leader>s", function() Snacks.scratch() end, { desc = "Toggle scratch buffer" })
-vim.keymap.set("n", "<leader>S", function() Snacks.scratch.select() end, { desc = "Select scratch buffer" })
+vim.keymap.set("n", "<leader>s", function()
+        Snacks.scratch()
+end, { desc = "Toggle scratch buffer" })
+vim.keymap.set("n", "<leader>S", function()
+        Snacks.scratch.select()
+end, { desc = "Select scratch buffer" })
 vim.keymap.set("n", "<M-q>", function()
         if vim.bo.filetype == "help" then
                 vim.cmd.bdelete()
