@@ -6,30 +6,30 @@ vim.pack.add({
         "https://github.com/HiPhish/rainbow-delimiters.nvim",
 }, { load = true })
 
-local group = vim.api.nvim_create_augroup("Vimpack_Treesitter", { clear = true })
-vim.api.nvim_create_autocmd("PackChanged", {
-        desc = "Update Treesitter parsers",
-        group = group,
-        callback = function(event)
-                if vim.g.did_vimpack_nvim_treesitter == 1 then return end
-                vim.g.did_vimpack_nvim_treesitter = 1
-                if event.data.kind == "update" then
-                        ---@diagnostic disable-next-line: param-type-mismatch
-                        local ok = pcall(vim.cmd, "TSUpdate")
-                        if ok then
-                                vim.notify(
-                                        "TSUpdate completed successfully!",
-                                        vim.log.levels.INFO,
-                                        { title = "vim.pack" })
-                        else
-                                vim.notify(
-                                        "TSUpdate command not available yet, skipping",
-                                        vim.log.levels.WARN,
-                                        { title = "vim.pack" })
-                        end
-                end
-        end
-})
+-- local group = vim.api.nvim_create_augroup("Vimpack_Treesitter", { clear = true })
+-- vim.api.nvim_create_autocmd("PackChanged", {
+--         desc = "Update Treesitter parsers",
+--         group = group,
+--         callback = function(event)
+--                 if vim.g.did_vimpack_nvim_treesitter == 1 then return end
+--                 vim.g.did_vimpack_nvim_treesitter = 1
+--                 if event.data.kind == "update" then
+--                         ---@diagnostic disable-next-line: param-type-mismatch
+--                         local ok = pcall(vim.cmd, "TSUpdate")
+--                         if ok then
+--                                 vim.notify(
+--                                         "TSUpdate completed successfully!",
+--                                         vim.log.levels.INFO,
+--                                         { title = "vim.pack" })
+--                         else
+--                                 vim.notify(
+--                                         "TSUpdate command not available yet, skipping",
+--                                         vim.log.levels.WARN,
+--                                         { title = "vim.pack" })
+--                         end
+--                 end
+--         end
+-- })
 
 require("nvim-treesitter.configs").setup({
         ensure_installed = {
