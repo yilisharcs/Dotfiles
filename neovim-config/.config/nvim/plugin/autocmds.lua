@@ -36,12 +36,14 @@ vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter", "WinEnter" }, {
         command = "startinsert",
 })
 
--- Newline doesn't insert comment from comment
+-- Insert comment leader
 vim.api.nvim_create_autocmd({ "FileType" }, {
         group = group,
         callback = function()
                 vim.opt.formatoptions:append("r")
-                vim.opt.formatoptions:remove("o")
+                if not vim.tbl_contains({ "markdown", "text" }, vim.bo.filetype) then
+                        vim.opt.formatoptions:remove("o")
+                end
         end,
 })
 

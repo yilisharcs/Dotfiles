@@ -76,7 +76,10 @@ require("nvim-treesitter.configs").setup({
                 "make",
                 "tmux",
         },
-        indent = { enable = true },
+        indent = {
+                enable = true,
+                disable = { "markdown" },
+        },
         highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = { "markdown" },
