@@ -16,8 +16,17 @@ vim.keymap.set(
 )
 vim.keymap.set("c", "<C-a>", "<HOME>")
 vim.keymap.set("c", "<C-x><C-a>", "<C-a>", { desc = "Insert matches on cursor pattern" })
-vim.keymap.set({ "i", "c" }, "<C-d>", "<DEL>")
 vim.keymap.set("c", "<C-x><C-d>", "<C-d>", { desc = "List matches on cursor pattern" })
+vim.keymap.set("c", "<C-d>", "<DEL>")
+vim.keymap.set("i", "<C-d>", function()
+        local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+        local line_len = #vim.api.nvim_get_current_line()
+        if col == line_len then
+                return "<C-d>"
+        else
+                return "<DEL>"
+        end
+end, { expr = true })
 
 vim.keymap.set("x", "<", "<gv", { desc = "Indent selection backwards" })
 vim.keymap.set("x", ">", ">gv", { desc = "Indent selection forwards" })

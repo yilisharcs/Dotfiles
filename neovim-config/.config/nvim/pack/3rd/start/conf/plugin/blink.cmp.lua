@@ -9,7 +9,7 @@ vim.pack.add({
 require("blink.cmp").setup({
         keymap = {
                 preset = "none",
-                ["<C-t>"] = { "show", "show_documentation", "hide_documentation", "fallback" },
+                ["<C-;>"] = { "show", "show_documentation", "hide_documentation", "fallback" },
                 ["<C-l>"] = { "hide", "fallback" },
                 ["<C-p>"] = { "select_prev", "fallback" },
                 ["<C-n>"] = { "select_next", "fallback" },
