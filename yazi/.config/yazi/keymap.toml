@@ -55,5 +55,6 @@ prepend_keymap = [
         { on = ["g", "v"], run = "cd ~/Videos",                                   desc = "Go ~/Videos" },
         { on = ["g", "w"], run = "cd ~/.wine/drive_c",                            desc = "Go to Wine C:" },
         { on = ["g", "y"], run = "cd ~/Games",                                    desc = "Go ~/Games" },
+        { on = ["g", "x"], run = "cd ~/.local/state/nvim",                        desc = "Go to state/nvim" },
         { on = ["g", "z"], run = "cd ~/.local/share/nvim/site/pack/core/opt",     desc = "Go to vim.pack-directory" },
 ]
