@@ -86,6 +86,21 @@ hi("Todo",       {                 reverse = true,                              
 hi("Type",       { fg = "#ff5faf",                                   ctermfg = "red" })
 hi("Underlined", {                                 underline = true,                      cterm = { underline = true } })
 
+-- MatchParen
+local matchparen = vim.api.nvim_create_augroup("MatchParenInsertMode", { clear = true })
+vim.api.nvim_create_autocmd("InsertEnter", {
+        group = matchparen,
+        callback = function()
+                hi("MatchParen", {  })
+        end,
+})
+vim.api.nvim_create_autocmd({ "ColorScheme", "InsertLeave" }, {
+        group = matchparen,
+        callback = function()
+                hi("MatchParen", { bold = true, reverse = true, cterm = { reverse = true } })
+        end,
+})
+
 -- Spelling
 hi("SpellBad",   { sp = "#ff5faf", undercurl = true, ctermfg = "red",     cterm = { undercurl = true } })
 hi("SpellCap",   { sp = "#87ff00", undercurl = true, ctermfg = "green",   cterm = { undercurl = true } })
@@ -143,7 +158,6 @@ hi("@markup.heading.gitcommit",   { link = "gitcommitSummary" })
 -- Miscellaneous
 hi("IncSearch",       { fg = "#ffaf00", bg = "#0e0024",              reverse = true, ctermfg = "darkyellow", ctermbg = "black",   cterm = { reverse = true } })
 hi("Search",          { fg = "#87ffff", bg = "#0e0024",              reverse = true,                                              cterm = { reverse = true } })
-hi("MatchParen",      {                                 bold = true, reverse = true,                                              cterm = { reverse = true } })
 hi("WildMenu",        { fg = "#0e0024", bg = "#afafff",                              ctermfg = "white",      ctermbg = "blue" })
 hi("Visual",          { fg = "#0e0024", bg = "#5fd7ff",                              ctermfg = "black",      ctermbg = "darkcyan" })
 hi("VisualNOS",       { fg = "#0e0024", bg = "#ffffff",                              ctermfg = "black",      ctermbg = "white" })
@@ -156,6 +170,7 @@ hi("debugBreakpoint", { fg = "#87ff00", bg = "#5f00d7",              reverse = t
 hi("debugPC",         { fg = "#87ff00", bg = "#5f00d7",              reverse = true, ctermfg = "cyan",       ctermbg = "darkblue", cterm = { reverse = true } })
 hi("ToolbarButton",   { fg = "#ffffff", bg = "#5e556d",                              ctermfg = "white",      ctermbg = "darkgray" })
 hi("ToolbarLine",     {})
+hi("DiagnosticError", { fg = "#d70000" })
 
 -- blink.cmp {{{
 hi("BlinkCmpDoc",       { fg = "#cdd6f4", bg = "#060010" })
@@ -225,7 +240,6 @@ hi("RenderMarkdownH6Bg", { fg = "#afafff", bg = "#1e0015", bold = true })
 -- }}}
 
 -- vim-sneak {{{
-hi("SneakHide",  {})
 hi("SneakShow",  { fg = "#060010", bg = "#87ff00", bold = true })
 hi("Sneak",      { link = "SneakShow" })
 -- }}}
