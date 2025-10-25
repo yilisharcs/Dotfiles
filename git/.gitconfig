@@ -33,3 +33,5 @@
 	gpgSign = true
 [tag]
 	gpgSign = true
+[remote]
+	pushDefault = origin
