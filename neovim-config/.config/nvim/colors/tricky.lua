@@ -22,12 +22,14 @@ end
 
 -- General
 hi("Normal",       { fg = "#cdd6f4", bg = "#0e0024",              ctermfg = "white",    ctermbg = "black" })
+hi("NormalNC",     {                 bg = "#090019" })
 hi("NonText",      { fg = "#878092",                              ctermfg = "darkgray", ctermbg = "black" })
 hi("Conceal",      {})
 hi("StatusLine",   { fg = "#edf6f4", bg = "#1e0015", bold = true, ctermfg = "white",    ctermbg = "black", cterm = { reverse = true } })
 hi("StatusLineNC", { fg = "#0e0024", bg = "#afafff", bold = true, ctermfg = "darkgray", ctermbg = "gray",  cterm = { reverse = true } })
 hi("NormalFloat",  { link = "Normal" })
 hi("FloatBorder",  { link = "Normal" })
+hi("ExTUIArea",    { fg = "#87ff00", bg = "#0e0024" })
 
 -- Color lines
 hi("ColorColumn",    {                 bg = "#510039",                              ctermfg = "white",      ctermbg = "darkred" })
