@@ -10,7 +10,11 @@ require("snacks").setup({
         gitbrowse = { enabled = true },
         image = {
                 enabled = vim.env.TERM == "xterm-kitty",
-                doc = { inline = false },
+                doc = {
+                        inline = false,
+                        max_width = 20,
+                        max_height = 11,
+                },
         },
         input = { enabled = true },
         notifier = { enabled = true },
