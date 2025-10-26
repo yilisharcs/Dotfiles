@@ -1,43 +1,38 @@
 local group = vim.api.nvim_create_augroup("My_Autocmds", { clear = true })
 
--- Highlight text on copy
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+        desc = "Highlight text on copy",
         group = group,
         callback = function()
                 vim.hl.on_yank({ higroup = "Visual", timeout = 500 })
         end,
 })
 
-vim.api.nvim_create_autocmd({
-        "CursorHold",
-        "FileChangedShell",
-        "TabEnter",
-        "TermLeave",
-        "WinEnter",
-}, {
+vim.api.nvim_create_autocmd({ "CursorHold", "FileChangedShell", "TabEnter", "TermLeave", "WinEnter" }, {
+        desc = "Check for external changes",
         group = group,
         callback = function()
                 if vim.bo.buftype ~= "nofile" then vim.cmd.checktime() end
         end,
 })
 
--- Open file under cursor on the terminal in a tab
 vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter" }, {
+        desc = "Open file under cursor on the terminal in a tab",
         group = group,
         callback = function()
                 vim.keymap.set("n", "gf", "<C-w>gF", { buffer = true })
         end,
 })
 
--- Enter terminal on insert mode
 vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter", "WinEnter" }, {
+        desc = "Enter terminal on insert mode",
         group = group,
         pattern = "term://*",
         command = "startinsert",
 })
 
--- Insert comment leader
 vim.api.nvim_create_autocmd({ "FileType" }, {
+        desc = "Insert comment leader",
         group = group,
         callback = function()
                 vim.opt.formatoptions:append("r")
@@ -47,8 +42,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         end,
 })
 
--- Set listchars like indent-blankline
 vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "OptionSet" }, {
+        desc = "Set listchars like indent-blankline",
         group = group,
         callback = function()
                 if vim.bo.filetype ~= "snacks_notif" then
@@ -58,9 +53,8 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "OptionSet" }, {
         end,
 })
 
--- Set registers b-z on launch. They're filled
--- with one-off macros and other such garbage.
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
+        desc = "Set registers b-z on launch to overwrite one-off garbages",
         group = group,
         callback = function()
                 for i = 98, 122 do
@@ -72,16 +66,16 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
         end,
 })
 
--- Automatically open the quickfix window
 vim.api.nvim_create_autocmd({ "QuickFixCmdPost" }, {
+        desc = "Automatically open the quickfix window",
         group = group,
         pattern = "[^l]*",
         nested = true,
         command = "cwindow",
 })
 
--- Clear newline character from LLM output
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+        desc = "Clear newline character from LLM output",
         group = group,
         callback = function()
                 local cursor = vim.api.nvim_win_get_cursor(0)
@@ -90,8 +84,8 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
         end,
 })
 
--- Remove stupid "smart" quotes
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+        desc = 'Remove stupid "smart" quotes',
         group = group,
         callback = function()
                 local bufname = vim.api.nvim_buf_get_name(0)
@@ -104,8 +98,8 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
         end,
 })
 
--- Close nushell terminal buffers as if {cmd} wasn't supplied to :term
 vim.api.nvim_create_autocmd({ "TermClose" }, {
+        desc = "Close nushell terminal buffers as if {cmd} wasn't supplied to :term",
         group = group,
         pattern = "*:/usr/bin/nu",
         command = "silent! execute 'bdelete! '.expand('<abuf>')",
