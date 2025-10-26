@@ -14,6 +14,7 @@ require("render-markdown").setup({
         pipe_table = { preset = "round" },
         html = { comment = { conceal = false } },
         sign = { enabled = false },
+        code = { border = "thin" },
 })
 
 vim.keymap.set("n", "<leader>y", "<CMD>RenderMarkdown toggle<CR>", { desc = "Toggle markdown rendering" })
