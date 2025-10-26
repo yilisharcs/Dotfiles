@@ -23,18 +23,13 @@ export HISTCONTROL=ignoreboth   # don't put duplicate lines or lines starting wi
 export HISTSIZE=1000
 export HISTFILESIZE=2000
 
-# {
-
-# # Golang
-# export GOPATH="$HOME/go"
-# export GOBIN="$GOPATH/bin"
-# export PATH="$GOBIN:$PATH"
+# Programming {{{
 
 ## Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
 
-# }
+# }}}
 
 export XDG_CONFIG_HOME="$HOME/.config"                             # set user config directory
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"       # create ripgrep config pointer
