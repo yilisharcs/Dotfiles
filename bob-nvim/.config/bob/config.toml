@@ -1,10 +1,3 @@
-# Whether bob should automatically add the neovim proxy to the system PATH
-add_neovim_binary_to_path = false
-
-# Compile neovim nightly or a certain hash version as a release build (slightly
-# improved performance, no debug info)
 enable_release_build = true
-
-# The path to a file that will hold the neovim version string, useful for config
-# version tracking, bob will error if the specified file is not a valid file path
-version_sync_file_location = "$HOME/.local/share/bob/nvim.version"
+version_sync_file_location = "/home/yilisharcs/.local/share/bob/nvim.version"
+add_neovim_binary_to_path = false
