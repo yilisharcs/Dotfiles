@@ -6,18 +6,6 @@ vim.env.NVIM_LISTEN_SOCKET = vim.v.servername
 
 if string.match(vim.v.argv[#vim.v.argv], "^/tmp/%S+%.nu$") ~= nil then vim.g.shell_editor = true end
 
-vim.keymap.set("n", "-", "<CMD>Ex<CR>", { desc = "Fallback file explorer " })
-
-vim.keymap.set("n", "<leader>P", ":= P()<LEFT>")
-function P(...)
-        local args = {}
-        for _, arg in ipairs({ ... }) do
-                table.insert(args, vim.inspect(arg))
-        end
-        print(unpack(args))
-        return ...
-end
-
 -- EDITOR OPTIONS
 -- Enable project-local configuration
 vim.o.exrc = true
