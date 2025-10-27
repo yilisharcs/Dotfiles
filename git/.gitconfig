@@ -14,6 +14,8 @@
 	colorMoved = plain
 	mnemonicPrefix = true
 	tool = nvimdiff
+[difftool]
+	prompt = false
 [merge]
 	autoStash = true
 	tool = nvimdiff
@@ -29,6 +31,10 @@
 	logd    = log --decorate --oneline --graph
 	st      = status
 	unstage = reset HEAD --
+	# Difftastic
+	dlog  = -c diff.external=difft log -p --ext-diff
+	dshow = -c diff.external=difft show --ext-diff
+	ddiff = -c diff.external=difft diff
 [commit]
 	gpgSign = true
 [tag]
