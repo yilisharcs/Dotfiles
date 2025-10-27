@@ -8,7 +8,10 @@ vim.pack.add({
 require("toggleterm").setup({
         open_mapping = "<C-g>",
         shell = vim.fn.executable("nu") == 1 and vim.fn.exepath("nu") or vim.o.shell,
-        float_opts = { border = "rounded" },
+        float_opts = {
+                border = "rounded",
+                height = vim.o.lines * 0.8,
+        },
         size = function(term)
                 if term.direction == "horizontal" then
                         return vim.o.lines * 0.4
