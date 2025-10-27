@@ -233,12 +233,13 @@ hi("RainbowDelimiterCyan",   { fg = "#5f00d7", ctermfg = "darkcyan" })
 -- }}}
 
 -- Render Markdown {{{
-hi("RenderMarkdownH1Bg", { fg = "#87ff00", bg = "#510039", bold = true })
-hi("RenderMarkdownH2Bg", { fg = "#ffff5f", bg = "#470032", bold = true })
-hi("RenderMarkdownH3Bg", { fg = "#87ffff", bg = "#3d002a", bold = true })
-hi("RenderMarkdownH4Bg", { fg = "#ff5faf", bg = "#320023", bold = true })
-hi("RenderMarkdownH5Bg", { fg = "#ffaf00", bg = "#28001c", bold = true })
-hi("RenderMarkdownH6Bg", { fg = "#afafff", bg = "#1e0015", bold = true })
+hi("RenderMarkdownH1Bg",   { fg = "#87ff00", bg = "#510039", bold = true })
+hi("RenderMarkdownH2Bg",   { fg = "#ffff5f", bg = "#470032", bold = true })
+hi("RenderMarkdownH3Bg",   { fg = "#87ffff", bg = "#3d002a", bold = true })
+hi("RenderMarkdownH4Bg",   { fg = "#ff5faf", bg = "#320023", bold = true })
+hi("RenderMarkdownH5Bg",   { fg = "#ffaf00", bg = "#28001c", bold = true })
+hi("RenderMarkdownH6Bg",   { fg = "#afafff", bg = "#1e0015", bold = true })
+hi("RenderMarkdownBullet", { link = "Statement" })
 -- }}}
 
 -- vim-sneak {{{
