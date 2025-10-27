@@ -1,5 +1,17 @@
 vim.keymap.set({ "n", "x" }, "<SPACE>", "<Nop>", { silent = true })
 
+vim.keymap.set("n", "-", "<CMD>Ex<CR>", { desc = "Fallback file explorer " })
+
+vim.keymap.set("n", "<leader>P", ":= P()<LEFT>", { desc = "Printf util" })
+function P(...)
+        local args = {}
+        for _, arg in ipairs({ ... }) do
+                table.insert(args, vim.inspect(arg))
+        end
+        print(unpack(args))
+        return ...
+end
+
 vim.keymap.set({ "n", "x" }, "<leader>K", "K", { desc = "Look up word under cursor" })
 vim.keymap.set({ "x", "i" }, "<C-c>", "<ESC>", { silent = true })
 vim.keymap.set("n", "<C-q>", "@@", { desc = "Repeat previous register" })
