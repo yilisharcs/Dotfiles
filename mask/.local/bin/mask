@@ -3,6 +3,14 @@
 # Search up the directory tree for
 # a maskfile.md and execute it
 def --wrapped main [...rest] {
+        let cmd = (
+                if ($rest | is-empty) {
+                        ["_default"]
+                } else {
+                        $rest
+                }
+        )
+
         mut path = pwd
         while not (
                 [$path "maskfile.md"]
@@ -18,8 +26,8 @@ def --wrapped main [...rest] {
         }
 
         if ($path == "/") {
-                mask-bin ...$rest
+                mask-bin ...$cmd
         } else {
-                mask-bin --maskfile ([$path "maskfile.md"] | path join) ...$rest
+                mask-bin --maskfile ([$path "maskfile.md"] | path join) ...$cmd
         }
 }
