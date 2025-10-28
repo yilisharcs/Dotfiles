@@ -6,8 +6,8 @@ vim.keymap.set("n", "<leader>gb", "<CMD>Git blame<CR>", { desc = "[Git] Blame" }
 vim.keymap.set("n", "<leader>gd", "<CMD>Gvdiffsplit<CR>", { desc = "[Git] Diff file" })
 vim.keymap.set("n", "<leader>gD", "<CMD>Git difftool<CR>", { desc = "[Git] Difftool" })
 vim.keymap.set("n", "<leader>gm", "<CMD>Git mergetool<CR>", { desc = "[Git] Mergetool" })
-vim.keymap.set("n", "<leader>gl", "<CMD>0Gclog<CR>", { desc = "[Git] File history" })
-vim.keymap.set("n", "<leader>gL", "<CMD>Gclog<CR>", { desc = "[Git] Repo history" })
+-- vim.keymap.set("n", "<leader>gl", "<CMD>0Gclog<CR>", { desc = "[Git] File history" })
+-- vim.keymap.set("n", "<leader>gL", "<CMD>Gclog<CR>", { desc = "[Git] Repo history" })
 
 vim.keymap.set("ca", "git", function()
         if vim.fn.getcmdtype() == ":" then
