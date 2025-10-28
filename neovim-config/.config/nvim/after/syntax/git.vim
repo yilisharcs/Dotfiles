@@ -5,7 +5,7 @@ syn match gitLogRefs /([^)]*)/ contained containedin=gitLogHead
 syn match gitLogGraph /^[_\*|\/\\ ]\+/ contained containedin=gitLogHead,gitLogCommit nextgroup=gitHashAbbrev skipwhite
 syn match gitLogCommit /^[^-]\+- / contained containedin=gitLogHead nextgroup=gitLogDate skipwhite
 syn match gitLogIdentity /<[^>]*>$/ contained containedin=gitLogLine
-hi def link gitLogGraph Comment
+hi def link gitLogGraph Special
 hi def link gitLogDate gitDate
 hi def link gitLogRefs Type
 hi def link gitLogIdentity gitIdentity
