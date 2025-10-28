@@ -13,6 +13,10 @@
       "rev": "4516612",
       "src": "https://github.com/sindrets/diffview.nvim"
     },
+    "flatten.nvim": {
+      "rev": "d0cfed2",
+      "src": "https://github.com/qw457812/flatten.nvim"
+    },
     "friendly-snippets": {
       "rev": "572f566",
       "src": "https://github.com/rafamadriz/friendly-snippets"
