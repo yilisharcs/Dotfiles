@@ -80,6 +80,7 @@ vim.o.scrollback = 100000
 vim.o.updatetime = 1500
 vim.o.virtualedit = "block"
 vim.o.winborder = "rounded"
+vim.o.winwidth = 15
 
 -- Rusty-tags support with custom tagfile name
 vim.opt.tags:append({ "./rtags", ",rtags" })
