@@ -5,5 +5,6 @@ def h [str: string] { nu -c $"($str) --help" | less -FRX }
 alias visudo = sudo visudo
 alias yeet = sudo apt-get purge --autoremove
 
-# # FIXME: trying to call from a wrapper script causes a memory leak??
-# alias pandoc = pandoc --defaults=defaults
+alias eza = eza.nu
+alias mask = maskfile.nu
+alias pandoc = pandoc.nu
