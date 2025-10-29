@@ -20,7 +20,6 @@ require("flatten").setup({
         },
         hooks = {
                 should_nest = function()
-                        P(vim.v.argv)
                         local denylist = {
                                 arg0 = {
                                         "^/tmp/%S+%.nu$",
