@@ -7,15 +7,15 @@ return {
                         ".luarc.json",
                         ".luarc.jsonc",
                 },
-                ".nvimrc.lua",
+                ".nvim.lua",
         },
         settings = {
                 Lua = {
                         runtime = {
                                 version = "LuaJIT",
                                 path = {
-                                        "lua/?.lua",
-                                        "lua/?/init.lua",
+                                        "./lua/?.lua",
+                                        "./lua/?/init.lua",
                                 },
                         },
                         diagnostics = {
