@@ -32,7 +32,6 @@ prepend_dirs = [
 prepend_files = [
         { name = ".exrc",       text = "", fg = "#019833" },
         { name = ".nvimrc",     text = "", fg = "#019833" },
-        { name = ".nvim.lua",   text = "", fg = "#019833" },
         { name = "maskfile.md", text = "", fg = "#6d8086" },
 ]
 prepend_exts = [
