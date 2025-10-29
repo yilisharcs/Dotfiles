@@ -219,6 +219,16 @@ vim.keymap.set("ca", "cfilter", function()
                 end
         end
 end, { expr = true })
+vim.keymap.set("ca", "grep", function()
+        if vim.fn.getcmdtype() == ":" then
+                local cmd = vim.fn.getcmdline()
+                if cmd:match("^grep") then
+                        return "silent grep"
+                else
+                        return "grep"
+                end
+        end
+end, { expr = true })
 vim.keymap.set("ca", "man", function()
         if vim.fn.getcmdtype() == ":" then
                 local cmd = vim.fn.getcmdline()
@@ -226,6 +236,16 @@ vim.keymap.set("ca", "man", function()
                         return "Man"
                 else
                         return "man"
+                end
+        end
+end, { expr = true })
+vim.keymap.set("ca", "mask", function()
+        if vim.fn.getcmdtype() == ":" then
+                local cmd = vim.fn.getcmdline()
+                if cmd:match("^mask") then
+                        return "make"
+                else
+                        return "mask"
                 end
         end
 end, { expr = true })
