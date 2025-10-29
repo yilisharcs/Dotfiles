@@ -238,6 +238,7 @@ hi("RenderMarkdownH3Bg",   { fg = "#87ffff", bg = "#3d002a", bold = true })
 hi("RenderMarkdownH4Bg",   { fg = "#ff5faf", bg = "#320023", bold = true })
 hi("RenderMarkdownH5Bg",   { fg = "#ffaf00", bg = "#28001c", bold = true })
 hi("RenderMarkdownH6Bg",   { fg = "#afafff", bg = "#1e0015", bold = true })
+hi("RenderMarkdownCode",   {                 bg = "#1e1829" })
 hi("RenderMarkdownBullet", { link = "Statement" })
 -- }}}
 
