@@ -14,6 +14,9 @@ vim.o.exrc = true
 vim.opt.clipboard:append({ "unnamedplus" })
 vim.g.clipboard = "xclip"
 
+vim.o.grepprg = "vimgrep.nu"
+vim.o.makeprg = "mask"
+
 vim.cmd("aunmenu PopUp.How-to\\ disable\\ mouse")
 vim.cmd("aunmenu PopUp.-2-")
 
@@ -24,7 +27,6 @@ vim.o.backup = true
 vim.o.backupext = ".backup"
 vim.o.backupdir = os.getenv("HOME") .. "/.local/state/nvim/backup//"
 
-vim.o.grepprg = "vimgrep.nu"
 vim.o.spelllang = "en_us"
 
 vim.o.ignorecase = true
