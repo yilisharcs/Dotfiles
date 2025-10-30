@@ -22,6 +22,7 @@ return {
                                 globals = {
                                         "vim",
                                         "Snacks",
+                                        "P",
                                 },
                                 unusedLocalExclude = {
                                         "_*",
