@@ -58,18 +58,9 @@ vim.keymap.set("n", "cgN", '*``"_cgN', { desc = "Match word and change behind" }
 vim.keymap.set("n", "dgn", '*``"_dgn', { desc = "Match word and delete ahead" })
 vim.keymap.set("n", "dgN", '*``"_dgN', { desc = "Match word and delete behind" })
 
-vim.keymap.set(
-        "n",
-        "gw",
-        [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-        { desc = "Replace word under cursor" }
-)
-vim.keymap.set(
-        "n",
-        "gW",
-        [[:%s/\<<C-r><C-a>\>/<C-r><C-a>/gI<Left><Left><Left>]],
-        { desc = "Replace contiguous text under cursor" }
-)
+vim.keymap.set("n", "gw", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { desc = "Replace word" })
+vim.keymap.set("n", "gW", ":%s/\\<<C-r><C-a>\\>/<C-r><C-a>/gI<Left><Left><Left>", { desc = "Replace contiguous word" })
+vim.keymap.set("x", "gw", '"zy:%s/\\<<C-r>z\\>/<C-r>z/gI<Left><Left><Left>', { desc = "Replace selection" })
 
 vim.keymap.set("n", "dy", "<CMD>diffthis<CR>", { desc = "Enable diff mode for the current buffer" })
 vim.keymap.set("n", "du", "<CMD>diffoff<CR>", { desc = "Disable diff mode for the current buffer" })

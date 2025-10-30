@@ -93,7 +93,7 @@ local matchparen = vim.api.nvim_create_augroup("MatchParenInsertMode", { clear =
 vim.api.nvim_create_autocmd("InsertEnter", {
         group = matchparen,
         callback = function()
-                hi("MatchParen", {  })
+                hi("MatchParen", {})
         end,
 })
 vim.api.nvim_create_autocmd({ "ColorScheme", "InsertLeave" }, {
