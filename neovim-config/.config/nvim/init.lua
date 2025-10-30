@@ -51,6 +51,10 @@ vim.o.cursorlineopt = "number"
 -- Hide search finish warning
 vim.opt.shortmess:append({ s = true })
 
+-- Proper splits
+vim.o.splitright = true
+vim.o.splitbelow = true
+
 vim.o.tabclose = "uselast"
 
 vim.o.foldcolumn = "1"
