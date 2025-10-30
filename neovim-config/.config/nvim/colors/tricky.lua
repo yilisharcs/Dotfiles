@@ -90,13 +90,13 @@ hi("Underlined", {                                 underline = true,            
 
 -- MatchParen
 local matchparen = vim.api.nvim_create_augroup("MatchParenInsertMode", { clear = true })
-vim.api.nvim_create_autocmd("InsertEnter", {
+vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
         group = matchparen,
         callback = function()
                 hi("MatchParen", {})
         end,
 })
-vim.api.nvim_create_autocmd({ "ColorScheme", "InsertLeave" }, {
+vim.api.nvim_create_autocmd({ "ColorScheme", "InsertLeave", "CmdlineLeave" }, {
         group = matchparen,
         callback = function()
                 hi("MatchParen", { bold = true, reverse = true, cterm = { reverse = true } })
