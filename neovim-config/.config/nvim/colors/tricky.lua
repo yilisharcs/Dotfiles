@@ -112,13 +112,14 @@ hi("SpellLocal", { sp = "#ffffff", undercurl = true, ctermfg = "white",   cterm 
 hi("SpellRare",  { sp = "#ffafff", undercurl = true, ctermfg = "magenta", cterm = { undercurl = true } })
 
 -- Treesitter
-hi("markdownBlockQuote",          {                 bold = true })
-hi("@markup.link.vimdoc",         { fg = "#ffaf00", bold = true })
-hi("@label.vimdoc",               { fg = "#00af5f", bold = true })
-hi("gitcommitSummary",            { link = "Identifier" })
-hi("@markup.raw.block.markdown",  { link = "CommentShow" })
-hi("@markup.raw.markdown_inline", { link = "CommentShow" })
-hi("@markup.heading.gitcommit",   { link = "gitcommitSummary" })
+hi("markdownBlockQuote",                 {                 bold = true })
+hi("@markup.link.vimdoc",                { fg = "#ffaf00", bold = true })
+hi("@label.vimdoc",                      { fg = "#00af5f", bold = true })
+hi("gitcommitSummary",                   { link = "Identifier" })
+hi("@markup.link.label.markdown_inline", { link = "Identifier" })
+hi("@markup.heading.gitcommit",          { link = "gitcommitSummary" })
+hi("@markup.raw.block.markdown",         { link = "CommentShow" })
+hi("@markup.raw.markdown_inline",        { link = "CommentShow" })
 
 -- Miscellaneous
 hi("IncSearch",         { fg = "#ffaf00", bg = "#0e0024",              reverse = true, ctermfg = "darkyellow", ctermbg = "black",   cterm = { reverse = true } })
