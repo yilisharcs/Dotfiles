@@ -25,6 +25,12 @@ export HISTFILESIZE=2000
 
 # Programming {{{
 
+## Lua
+export PATH="$HOME/.luarocks/bin:$PATH"
+export LUA_PATH=";;$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua"
+export LUA_CPATH=";;$HOME/.luarocks/lib/lua/5.1/?.so"
+export ROCKTREE="${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/rocks"
+
 ## Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/

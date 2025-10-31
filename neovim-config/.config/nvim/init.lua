@@ -10,6 +10,12 @@ if string.match(vim.v.argv[#vim.v.argv], "^/tmp/%S+%.nu$") ~= nil then vim.g.she
 -- Enable project-local configuration
 vim.o.exrc = true
 
+-- Add luarocks to packages and packpath
+local data = vim.fn.stdpath("data")
+local rocks = vim.fs.joinpath(data, "site/rocks")
+package.path = package.path .. ";" .. rocks .. "/share/lua/5.1/?.lua;" .. rocks .. "/share/lua/5.1/?/init.lua"
+package.cpath = package.cpath .. ";" .. rocks .. "/lib/lua/5.1/?.so"
+
 -- Sync clipboard between OS and Neovim
 vim.opt.clipboard:append({ "unnamedplus" })
 vim.g.clipboard = "xclip"
