@@ -111,7 +111,7 @@ require("lualine").setup({
                                 padding = { left = 1, right = icon_rightpad },
                         },
                 },
-                lualine_c = { { "filename", path = 0 } },
+                lualine_c = { { "filename", path = 2 } },
                 lualine_x = { { "location", padding = 2 } },
                 lualine_y = { "progress" },
                 lualine_z = {},
