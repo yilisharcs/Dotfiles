@@ -48,8 +48,7 @@
     },
     "neogit": {
       "rev": "24fd963f",
-      "src": "https://github.com/yilisharcs/neogit",
-      "version": "'fzf-lua-winopts'"
+      "src": "https://github.com/NeogitOrg/neogit"
     },
     "nvim-fundo": {
       "rev": "ac9c937",

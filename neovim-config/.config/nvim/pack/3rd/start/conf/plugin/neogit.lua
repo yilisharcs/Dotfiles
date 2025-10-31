@@ -1,8 +1,5 @@
 vim.pack.add({
-        {
-                src = "https://github.com/yilisharcs/neogit",
-                version = "fzf-lua-winopts",
-        },
+        "https://github.com/NeogitOrg/neogit",
         "https://github.com/sindrets/diffview.nvim",
         "https://github.com/ibhagwan/fzf-lua",
         "https://github.com/nvim-lua/plenary.nvim",
