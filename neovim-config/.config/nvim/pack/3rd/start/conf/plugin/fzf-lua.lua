@@ -11,6 +11,7 @@ end
 local fd_exclude = "--exclude={Trash,.git,.cache,state/undo,target}"
 
 require("fzf-lua").setup({
+        "ivy",
         keymap = {
                 builtin = {
                         ["<C-k>"] = "preview-page-up",
@@ -25,16 +26,6 @@ require("fzf-lua").setup({
                         ["alt-g"] = "last",
                         ["alt-G"] = "first",
                 },
-        },
-        winopts = {
-                height = 0.80,
-                width = 0.90,
-                row = 0.50,
-                col = 0.55,
-                backdrop = 100,
-                border = "rounded",
-                preview = { border = "rounded" },
-                treesitter = { enabled = false },
         },
         fzf_colors = {
                 ["hl"] = { "fg", "Type", "bold" },
@@ -60,9 +51,9 @@ require("fzf-lua").setup({
                         "--type l",
                         fd_exclude,
                 }, " "),
-                winopts = {
-                        preview = { layout = "vertical" },
-                },
+                -- winopts = {
+                --         preview = { layout = "vertical" },
+                -- },
         },
         grep = {
                 rg_opts = table.concat({
@@ -78,18 +69,12 @@ require("fzf-lua").setup({
                         "-e",
                 }, " "),
         },
-        helptags = {
-                winopts = { height = 0.5 },
-        },
         marks = {
                 sort = true,
                 marks = "[^%d%.\"'<>]",
                 fzf_opts = {
                         ["--cycle"] = true,
                         ["--tiebreak"] = "begin",
-                },
-                winopts = {
-                        preview = { layout = "vertical" },
                 },
         },
         args = {
