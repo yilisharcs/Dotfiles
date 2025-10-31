@@ -65,6 +65,10 @@ return {
                 )
                 -- }}}
 
+                -- mini.doc {{{
+                require("mini.doc").setup({})
+                -- }}}
+
                 -- mini.git {{{
                 local executable = "git"
 
