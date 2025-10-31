@@ -6,18 +6,22 @@ vim.env.NVIM_LISTEN_SOCKET = vim.v.servername
 
 if string.match(vim.v.argv[#vim.v.argv], "^/tmp/%S+%.nu$") ~= nil then vim.g.shell_editor = true end
 
+vim.keymap.set("n", "-", "<CMD>Ex<CR>", { desc = "Fallback file explorer " })
+vim.keymap.set("n", "<leader>h", "`H", { desc = "File mark `H" })
+vim.keymap.set("n", "<leader>j", "`J", { desc = "File mark `J" })
+vim.keymap.set("n", "<leader>k", "`K", { desc = "File mark `K" })
+vim.keymap.set("n", "<leader>l", "`L", { desc = "File mark `L" })
+
 -- EDITOR OPTIONS
 -- Enable project-local configuration
 vim.o.exrc = true
 
--- Add luarocks to packages and packpath
-local data = vim.fn.stdpath("data")
-local rocks = vim.fs.joinpath(data, "site/rocks")
-package.path = package.path .. ";" .. rocks .. "/share/lua/5.1/?.lua;" .. rocks .. "/share/lua/5.1/?/init.lua"
-package.cpath = package.cpath .. ";" .. rocks .. "/lib/lua/5.1/?.so"
-
 -- Sync clipboard between OS and Neovim
-vim.opt.clipboard:append({ "unnamedplus" })
+vim.api.nvim_create_autocmd("UIEnter", {
+        callback = function()
+                vim.o.clipboard = "unnamedplus"
+        end,
+})
 vim.g.clipboard = "xclip"
 
 vim.o.grepprg = "vimgrep.nu"
@@ -108,3 +112,38 @@ vim.opt_global.listchars = { nbsp = "␣", tab = "› ", trail = "•" }
 if os.getenv("DISPLAY") == nil then vim.o.termguicolors = false end
 
 vim.cmd.colorscheme("tricky")
+
+-- PACKAGE MANAGER
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.uv.fs_stat(lazypath) then
+        local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+        local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+        if vim.v.shell_error ~= 0 then
+                vim.api.nvim_echo({
+                        { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+                        { out, "WarningMsg" },
+                        { "\nPress any key to exit..." },
+                }, true, {})
+                vim.fn.getchar()
+                os.exit(1)
+        end
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({ import = "plugins" }, {
+        change_detection = {
+                notify = false,
+        },
+        dev = {
+                path = vim.fs.joinpath(vim.fn.stdpath("config"), "pack/dev/opt"),
+        },
+        ui = {
+                size = {
+                        height = 0.93,
+                        width = 0.99,
+                },
+                border = "rounded",
+                backdrop = 100,
+        },
+})
+vim.keymap.set("n", "<leader>ql", "<CMD>Lazy<CR>")

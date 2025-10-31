@@ -1,7 +1,5 @@
 vim.keymap.set({ "n", "x" }, "<SPACE>", "<Nop>", { silent = true })
 
-vim.keymap.set("n", "-", "<CMD>Ex<CR>", { desc = "Fallback file explorer " })
-
 vim.keymap.set("n", "<leader>P", ":= P()<LEFT>", { desc = "Printf util" })
 function P(...)
         local args = {}
@@ -66,11 +64,6 @@ vim.keymap.set("n", "dy", "<CMD>diffthis<CR>", { desc = "Enable diff mode for th
 vim.keymap.set("n", "du", "<CMD>diffoff<CR>", { desc = "Disable diff mode for the current buffer" })
 vim.keymap.set("x", "<C-o>", ":'<,'>diffget<CR>", { silent = true, desc = "Get diff from alt buffer" })
 vim.keymap.set("x", "<C-p>", ":'<,'>diffput<CR>", { silent = true, desc = "Change diff of alt buffer" })
-
-vim.keymap.set("n", "<leader>h", "`H", { desc = "File mark `H" })
-vim.keymap.set("n", "<leader>j", "`J", { desc = "File mark `J" })
-vim.keymap.set("n", "<leader>k", "`K", { desc = "File mark `K" })
-vim.keymap.set("n", "<leader>l", "`L", { desc = "File mark `L" })
 
 vim.keymap.set({ "n", "x", "i", "c", "t" }, "<M-h>", "<CMD>wincmd h<CR>")
 vim.keymap.set({ "n", "x", "i", "c", "t" }, "<M-j>", "<CMD>wincmd j<CR>")
