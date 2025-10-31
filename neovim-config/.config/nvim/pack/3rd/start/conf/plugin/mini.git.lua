@@ -28,12 +28,25 @@ vim.keymap.set("ca", "jj", function()
 end, { expr = true })
 
 if executable == "git" then
+        local group = vim.api.nvim_create_augroup("MyMiniGit", { clear = true })
         vim.keymap.set(
                 "n",
                 "<leader>gd",
-                "<CMD>diffthis<CR><CMD>vert Git show HEAD:%<CR><CMD>difft<CR><C-w>w",
+                "<CMD>difft<CR><CMD>vert Git show HEAD:%<CR><C-w>W",
                 { desc = "Diff current file" }
         )
+        vim.api.nvim_create_autocmd({ "FileType" }, {
+                desc = "MiniGit diff buffers",
+                group = group,
+                callback = function()
+                        local name = vim.api.nvim_buf_get_name(0)
+                        if not name:match("^minigit://.*/git show HEAD:") then return end
+                        local basename = vim.fs.basename(name)
+                        vim.api.nvim_buf_set_name(0, "minigit://" .. basename)
+                        vim.api.nvim_set_option_value("modifiable", false, { scope = "local" })
+                        vim.cmd.diffthis()
+                end,
+        })
 
         vim.keymap.set(
                 "n",
@@ -43,9 +56,8 @@ if executable == "git" then
         )
 
         local ns = vim.api.nvim_create_namespace("mini_git_blame")
-        local group = vim.api.nvim_create_augroup("MiniGitBlame", { clear = true })
         vim.api.nvim_create_autocmd({ "FileType" }, {
-                desc = "Format git blame",
+                desc = "Format MiniGit blame buffer",
                 pattern = "git",
                 group = group,
                 callback = function()
@@ -65,6 +77,7 @@ if executable == "git" then
                                 })
                         end
 
+                        vim.api.nvim_set_option_value("modifiable", false, { scope = "local" })
                         vim.api.nvim_set_option_value("cursorbind", true, { scope = "local" })
                         vim.api.nvim_set_option_value("scrollbind", true, { scope = "local" })
                         vim.api.nvim_set_option_value("winfixwidth", true, { scope = "local" })
