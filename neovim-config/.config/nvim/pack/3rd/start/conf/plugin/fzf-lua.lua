@@ -92,6 +92,9 @@ require("fzf-lua").setup({
                         preview = { layout = "vertical" },
                 },
         },
+        args = {
+                files_only = false,
+        },
 })
 require("fzf-lua").register_ui_select()
 
@@ -103,7 +106,8 @@ vim.keymap.set("n", "<leader>fc", "<CMD>FzfLua git_commits<CR>", { desc = "[FZF]
 vim.keymap.set("n", "<leader>fg", "<CMD>FzfLua live_grep_native<CR>", { desc = "[FZF] Live grep" })
 vim.keymap.set("n", "<leader>fk", "<CMD>FzfLua helptags<CR>", { desc = "[FZF] Help tags" })
 vim.keymap.set("n", "<leader>fK", "<CMD>FzfLua keymaps<CR>", { desc = "[FZF] List mappings" })
-vim.keymap.set("n", "<C-h>", "<CMD>FzfLua marks<CR>", { desc = "[FZF] Get global marks" })
+vim.keymap.set("n", "<C-;>", "<CMD>FzfLua marks<CR>", { desc = "[FZF] Get global marks" })
+vim.keymap.set("n", "<C-h>", "<CMD>FzfLua args<CR>", { desc = "[FZF] Arglist" })
 vim.keymap.set({ "n", "x" }, "<C-r>", "<CMD>FzfLua command_history<CR>", { desc = "[FZF] Search command history" })
 vim.keymap.set("i", "<C-x><C-f>", function()
         require("fzf-lua").complete_path({
