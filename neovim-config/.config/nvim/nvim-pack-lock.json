@@ -22,7 +22,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "5363c9c",
+      "rev": "a8458b7",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "hex.nvim": {
@@ -63,11 +63,11 @@
       "src": "https://github.com/RRethy/nvim-treesitter-endwise"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "a9742cb",
+      "rev": "5ca4aaa",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
     "octo.nvim": {
-      "rev": "f6ecb85",
+      "rev": "4be7903",
       "src": "https://github.com/pwntester/octo.nvim"
     },
     "plenary.nvim": {
@@ -79,15 +79,15 @@
       "src": "https://github.com/kevinhwang91/promise-async"
     },
     "rainbow-delimiters.nvim": {
-      "rev": "3277ad5",
+      "rev": "b6b3c9e",
       "src": "https://github.com/HiPhish/rainbow-delimiters.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "475d3ad",
+      "rev": "10126ef",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "snacks.nvim": {
-      "rev": "277ba02",
+      "rev": "76160be",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "toggleterm.nvim": {
@@ -96,7 +96,7 @@
       "version": ">=0.0.0"
     },
     "typst-preview.nvim": {
-      "rev": "1603d37",
+      "rev": "e544812",
       "src": "https://github.com/chomosuke/typst-preview.nvim",
       "version": "1.0.0 - 2.0.0"
     },
@@ -122,7 +122,7 @@
       "src": "https://github.com/aymericbeaumet/vim-symlink"
     },
     "which-key.nvim": {
-      "rev": "b4177e3",
+      "rev": "3aab214",
       "src": "https://github.com/folke/which-key.nvim"
     },
     "wikibrowse.nvim": {
@@ -130,7 +130,7 @@
       "src": "https://github.com/yilisharcs/wikibrowse.nvim"
     },
     "yazi.nvim": {
-      "rev": "141c195",
+      "rev": "f710a9e",
       "src": "https://github.com/mikavilpas/yazi.nvim"
     },
     "zk-nvim": {
