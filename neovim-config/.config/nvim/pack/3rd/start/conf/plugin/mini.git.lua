@@ -51,7 +51,7 @@ if executable == "git" then
         vim.keymap.set(
                 "n",
                 "<leader>gb",
-                "mzgg<CMD>vert Git blame -- %<CR><C-w>l<CMD>set cursorbind<CR><CMD>set scrollbind<CR>`z",
+                "mzgg<CMD>vert Git blame -- %<CR><C-w>W<CMD>set cursorbind<CR><CMD>set scrollbind<CR>`z",
                 { desc = "Git blame" }
         )
 
