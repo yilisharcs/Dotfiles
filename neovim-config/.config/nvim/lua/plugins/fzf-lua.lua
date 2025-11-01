@@ -104,6 +104,14 @@ return {
                                 ["hl+"] = { "fg", "Type", "bold" },
                         },
                 },
+                winopts = {
+                        preview = {
+                                winopts = {
+                                        numberwidth = 4,
+                                        statuscolumn = " %l%s",
+                                },
+                        },
+                },
                 hls = { buf_nr = "FzfLuaCustomMarks" },
                 git = {
                         files = { file_icons = icons_cond },
