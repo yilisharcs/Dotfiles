@@ -2,6 +2,6 @@
 
 def main [...str: string] {
         let regexp = ($str | str join " ")
-        let rev_list = git rev-list --all | lines
+        let rev_list = (git rev-list --all | lines)
         git grep -E $regexp ...$rev_list
 }

@@ -180,6 +180,7 @@ end)
 -- General abbreviations
 vim.keymap.set("ca", "W", "w")
 vim.keymap.set("ca", "Wq", "wq")
+vim.keymap.set("ca", "Wqa", "wqa")
 vim.keymap.set("ca", "Wa", "wa")
 vim.keymap.set("ca", "wa1", "wa!")
 vim.keymap.set("ca", "W1", "w!")

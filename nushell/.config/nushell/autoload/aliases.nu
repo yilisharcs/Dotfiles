@@ -6,5 +6,4 @@ alias visudo = sudo visudo
 alias yeet = sudo apt-get purge --autoremove
 
 alias eza = eza.nu
-alias mask = maskfile.nu
 alias pandoc = pandoc.nu
