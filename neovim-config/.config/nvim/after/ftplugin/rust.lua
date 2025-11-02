@@ -2,16 +2,9 @@ vim.b.editorconfig = false
 
 vim.bo.commentstring = "// %s"
 
-vim.keymap.set("ca", "cargo", function()
-        if vim.fn.getcmdtype() == ":" then
-                local cmd = vim.fn.getcmdline()
-                if cmd:match("^cargo") then
-                        return "Cargo"
-                else
-                        return "cargo"
-                end
-        end
-end, { expr = true })
+require("utils.cabbrev")({
+        ["Cargo"] = { "cargo" },
+})
 
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
         group = vim.api.nvim_create_augroup("Rust_Cargo_Jump", { clear = true }),

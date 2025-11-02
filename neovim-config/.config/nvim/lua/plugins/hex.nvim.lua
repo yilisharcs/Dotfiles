@@ -24,15 +24,8 @@ return {
                 vim.keymap.set("n", "u", "<Plug>(HexUndo)", { desc = "Undo one change" })
                 vim.keymap.set("n", "U", "<Plug>(HexRedo)", { desc = "Redo one change which was undone" })
 
-                vim.keymap.set("ca", "hex", function()
-                        if vim.fn.getcmdtype() == ":" then
-                                local cmd = vim.fn.getcmdline()
-                                if cmd:match("^hex") then
-                                        return "Hex"
-                                else
-                                        return "hex"
-                                end
-                        end
-                end, { expr = true })
+                require("utils.cabbrev")({
+                        ["Hex"] = { "hex" },
+                })
         end,
 }
