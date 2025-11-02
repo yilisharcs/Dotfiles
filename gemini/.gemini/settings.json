@@ -20,7 +20,12 @@
     "theme": "Ayu",
     "hideBanner": true,
     "hideTips": false,
-    "showCitations": true
+    "showCitations": true,
+    "footer": {
+      "hideModelInfo": false,
+      "hideContextPercentage": false
+    },
+    "useFullWidth": true
   },
   "tools": {
     "shell": {
