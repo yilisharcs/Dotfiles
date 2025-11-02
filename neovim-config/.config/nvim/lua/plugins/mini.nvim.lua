@@ -201,7 +201,6 @@ return {
                                 prefix = "g=",
                         },
                         exchange = {
-                                prefix = "cx",
                                 reindent_linewise = true,
                         },
                         multiply = {
@@ -214,6 +213,11 @@ return {
                         sort = {
                                 prefix = "_s",
                         },
+                })
+                require("mini.operators").make_mappings("exchange", {
+                        textobject = "cx",
+                        line = "cxx",
+                        selection = "X",
                 })
 
                 vim.keymap.set("n", "gyy", "mzgmmkgcc`zj", { remap = true, desc = "Duplicate and comment" })
