@@ -77,27 +77,9 @@ return {
                                 git_executable = executable,
                         },
                 })
-
-                vim.keymap.set("ca", "git", function()
-                        if vim.fn.getcmdtype() == ":" then
-                                local cmd = vim.fn.getcmdline()
-                                if cmd:match("^git") then
-                                        return "Git"
-                                else
-                                        return "git"
-                                end
-                        end
-                end, { expr = true })
-                vim.keymap.set("ca", "jj", function()
-                        if vim.fn.getcmdtype() == ":" then
-                                local cmd = vim.fn.getcmdline()
-                                if cmd:match("^jj") then
-                                        return "Git"
-                                else
-                                        return "jj"
-                                end
-                        end
-                end, { expr = true })
+                require("utils.cabbrev")({
+                        ["Git"] = { "git", "jj" },
+                })
 
                 if executable == "git" then
                         local group = vim.api.nvim_create_augroup("MyMiniGit", { clear = true })
