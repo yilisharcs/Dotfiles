@@ -1,13 +1,13 @@
 return {
         "https://github.com/folke/which-key.nvim",
-        event = "VeryLazy",
+        lazy = false,
         keys = {
                 {
                         "<leader>?",
                         function()
                                 require("which-key").show({ global = false })
                         end,
-                        desc = "Buffer Local Keymaps (which-key)",
+                        desc = "List buffer-local keymaps",
                 },
         },
         opts = {
