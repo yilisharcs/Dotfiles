@@ -146,3 +146,9 @@ require("lazy").setup({ import = "plugins" }, {
         },
 })
 vim.keymap.set("n", "<leader>ql", "<CMD>Lazy<CR>")
+
+vim.api.nvim_create_autocmd("User", {
+        desc = "Useful for plugin devs? I don't think so!",
+        pattern = "VeryLazy",
+        command = "autocmd! BufWritePost *.rockspec",
+})
