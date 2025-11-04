@@ -1,1 +1,1 @@
-syn clear userHandle
+silent! syn clear UserHandle
