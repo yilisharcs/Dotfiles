@@ -1,0 +1,6 @@
+#!/usr/bin/env nu
+
+def main [keyword: string] {
+        jj help -k $keyword
+        | bat --plain --language markdown
+}
