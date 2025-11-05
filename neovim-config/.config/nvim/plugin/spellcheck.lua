@@ -15,7 +15,27 @@ vim.keymap.set("n", "<F4>", function()
         })
 end)
 
-vim.keymap.set("n", "<C-s>", "<CMD>set spell!<CR>", { desc = "Toggle spell checking" })
-vim.keymap.set("i", "<C-s>", "<C-g>u<ESC>[s1z=gi<C-g>u", { desc = "Fix last spelling error" })
-vim.keymap.set("n", "z2g", "zg2zg", { desc = "Add good word to both spell files" })
-vim.keymap.set("n", "z2w", "zw2zw", { desc = "Add bad word to both spell files" })
+vim.keymap.set(
+        "n",
+        "<C-s>",
+        "<CMD>set spell!<CR>",
+        { desc = "Toggle spell checking" }
+)
+vim.keymap.set(
+        "i",
+        "<C-s>",
+        "<C-g>u<ESC>[s1z=gi<C-g>u",
+        { desc = "Fix last spelling error" }
+)
+vim.keymap.set(
+        "n",
+        "z2g",
+        "zg2zg",
+        { desc = "Add good word to both spell files" }
+)
+vim.keymap.set(
+        "n",
+        "z2w",
+        "zw2zw",
+        { desc = "Add bad word to both spell files" }
+)

@@ -8,7 +8,13 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
         end,
 })
 
-vim.api.nvim_create_autocmd({ "CursorHold", "FileChangedShell", "TabEnter", "TermLeave", "WinEnter" }, {
+vim.api.nvim_create_autocmd({
+        "CursorHold",
+        "FileChangedShell",
+        "TabEnter",
+        "TermLeave",
+        "WinEnter",
+}, {
         desc = "Check for external changes",
         group = group,
         callback = function()
@@ -36,7 +42,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         group = group,
         callback = function()
                 vim.opt.formatoptions:append("r")
-                if not vim.tbl_contains({ "markdown", "text" }, vim.bo.filetype) then
+                if
+                        not vim.tbl_contains(
+                                { "markdown", "text" },
+                                vim.bo.filetype
+                        )
+                then
                         vim.opt.formatoptions:remove("o")
                 end
         end,
@@ -46,9 +57,17 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "OptionSet" }, {
         desc = "Set listchars like indent-blankline",
         group = group,
         callback = function()
-                if vim.bo.filetype ~= "snacks_notif" then
-                        local append = "leadmultispace:│" .. string.rep(" ", vim.o.shiftwidth - 1)
-                        vim.wo[0][0].listchars = vim.go.listchars .. "," .. append
+                if
+                        not vim.tbl_contains({
+                                "snacks_notif",
+                                "Makefile",
+                        }, vim.bo.filetype)
+                then
+                        local append = "leadmultispace:│"
+                                .. string.rep(" ", vim.o.shiftwidth - 1)
+                        vim.wo[0][0].listchars = vim.go.listchars
+                                .. ","
+                                .. append
                 end
         end,
 })

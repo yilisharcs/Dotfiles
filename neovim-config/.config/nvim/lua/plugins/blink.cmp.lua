@@ -16,7 +16,8 @@ return {
                                 },
                         },
                 }
-                capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+                capabilities =
+                        require("blink.cmp").get_lsp_capabilities(capabilities)
 
                 vim.lsp.config("*", {
                         root_markers = { ".git", ".jj" },
@@ -26,7 +27,12 @@ return {
         opts = {
                 keymap = {
                         preset = "none",
-                        ["<C-;>"] = { "show", "show_documentation", "hide_documentation", "fallback" },
+                        ["<C-;>"] = {
+                                "show",
+                                "show_documentation",
+                                "hide_documentation",
+                                "fallback",
+                        },
                         ["<C-l>"] = { "hide", "fallback" },
                         ["<C-p>"] = { "select_prev", "fallback" },
                         ["<C-n>"] = { "select_next", "fallback" },
@@ -64,11 +70,15 @@ return {
                                         components = {
                                                 kind_icon = {
                                                         text = function(ctx)
-                                                                return " " .. ctx.kind_icon .. ctx.icon_gap .. " "
+                                                                return " "
+                                                                        .. ctx.kind_icon
+                                                                        .. ctx.icon_gap
+                                                                        .. " "
                                                         end,
                                                 },
                                                 item_idx = {
                                                         text = function(ctx)
+                                                                -- stylua: ignore
                                                                 return tostring(ctx.idx)
                                                         end,
                                                 },
@@ -119,6 +129,7 @@ return {
                                                 -- avoid duplicates from the corrections
                                                 local seen = {}
                                                 local out = {}
+                                                -- stylua: ignore
                                                 for _, item in ipairs(items) do
                                                         local raw = item.insertText
                                                         if raw:match(correct) then

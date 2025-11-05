@@ -1,9 +1,17 @@
 if vim.g.neovide then
         -- Set default cwd if opened with no files as arguments
         vim.api.nvim_create_autocmd({ "UIEnter" }, {
-                group = vim.api.nvim_create_augroup("Neovide_Default_Dir", { clear = true }),
+                group = vim.api.nvim_create_augroup(
+                        "Neovide_Default_Dir",
+                        { clear = true }
+                ),
                 callback = function()
-                        if string.match(vim.v.argv[#vim.v.argv], "^%-+") ~= nil then vim.cmd.cd("~/Dotfiles") end
+                        if
+                                string.match(vim.v.argv[#vim.v.argv], "^%-+")
+                                ~= nil
+                        then
+                                vim.cmd.cd("~/Dotfiles")
+                        end
                 end,
         })
 
@@ -19,9 +27,21 @@ if vim.g.neovide then
         vim.g.neovide_floating_shadow = false
 
         vim.g.neovide_scale_factor = 1.0
-        vim.keymap.set({ "n", "t" }, "<C-->", "<CMD>let g:neovide_scale_factor-=0.1<CR>")
-        vim.keymap.set({ "n", "t" }, "<C-=>", "<CMD>let g:neovide_scale_factor+=0.1<CR>")
-        vim.keymap.set({ "n", "t" }, "<C-0>", "<CMD>let g:neovide_scale_factor=1.0<CR>")
+        vim.keymap.set(
+                { "n", "t" },
+                "<C-->",
+                "<CMD>let g:neovide_scale_factor-=0.1<CR>"
+        )
+        vim.keymap.set(
+                { "n", "t" },
+                "<C-=>",
+                "<CMD>let g:neovide_scale_factor+=0.1<CR>"
+        )
+        vim.keymap.set(
+                { "n", "t" },
+                "<C-0>",
+                "<CMD>let g:neovide_scale_factor=1.0<CR>"
+        )
 
         vim.g.neovide_fullscreen = false
         vim.go.linespace = 0
@@ -33,5 +53,9 @@ if vim.g.neovide then
                 end
         end
 
-        vim.keymap.set({ "n", "x", "i", "c", "t" }, "<F11>", "<CMD>lua Neovide_F11()<CR>")
+        vim.keymap.set(
+                { "n", "x", "i", "c", "t" },
+                "<F11>",
+                "<CMD>lua Neovide_F11()<CR>"
+        )
 end

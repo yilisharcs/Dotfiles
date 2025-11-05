@@ -6,9 +6,21 @@ return {
         },
         lazy = false,
         keys = {
-                { "-", "<CMD>Yazi<CR>", desc = "Open yazi at the current file" },
-                { "<leader>-", "<CMD>Yazi cwd<CR>", desc = "Open yazi in the working directory" },
-                { "<leader>_", "<CMD>Yazi toggle<CR>", desc = "Resume the last yazi session" },
+                {
+                        "-",
+                        "<CMD>Yazi<CR>",
+                        desc = "Open yazi at the current file",
+                },
+                {
+                        "<leader>-",
+                        "<CMD>Yazi cwd<CR>",
+                        desc = "Open yazi in the working directory",
+                },
+                {
+                        "<leader>_",
+                        "<CMD>Yazi toggle<CR>",
+                        desc = "Resume the last yazi session",
+                },
         },
         init = function()
                 vim.g.loaded_netrw = 1

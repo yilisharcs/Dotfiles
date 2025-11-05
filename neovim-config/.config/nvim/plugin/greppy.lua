@@ -16,7 +16,8 @@ function Greppy(mode)
         local text = {}
         start.row, start.col = start.pos[1], start.pos[2]
         limit.row, limit.col = limit.pos[1], limit.pos[2]
-        local lines = vim.api.nvim_buf_get_lines(0, start.row - 1, limit.row, false)
+        local lines =
+                vim.api.nvim_buf_get_lines(0, start.row - 1, limit.row, false)
 
         if mode == "line" then
                 text = lines
@@ -24,11 +25,20 @@ function Greppy(mode)
                 start.block = math.min(start.col, limit.col)
                 limit.block = math.max(start.col, limit.col)
                 for _, line_content in ipairs(lines) do
-                        table.insert(text, line_content:sub(start.block + 1, limit.block + 1))
+                        table.insert(
+                                text,
+                                line_content:sub(
+                                        start.block + 1,
+                                        limit.block + 1
+                                )
+                        )
                 end
         elseif mode == "char" then
                 if #lines == 1 then
-                        table.insert(text, lines[1]:sub(start.col + 1, limit.col + 1))
+                        table.insert(
+                                text,
+                                lines[1]:sub(start.col + 1, limit.col + 1)
+                        )
                 else
                         table.insert(text, lines[1]:sub(start.col + 1))
                         for i = 2, #lines - 1 do

@@ -4,7 +4,9 @@ vim.g.maplocalleader = " "
 -- Expose socket env variable outside of nvim
 vim.env.NVIM_LISTEN_SOCKET = vim.v.servername
 
-if string.match(vim.v.argv[#vim.v.argv], "^/tmp/%S+%.nu$") ~= nil then vim.g.shell_editor = true end
+if string.match(vim.v.argv[#vim.v.argv], "^/tmp/%S+%.nu$") ~= nil then
+        vim.g.shell_editor = true
+end
 
 vim.keymap.set("n", "-", "<CMD>Ex<CR>", { desc = "Fallback file explorer " })
 vim.keymap.set("n", "<leader>h", "`H", { desc = "File mark `H" })
@@ -116,7 +118,14 @@ vim.cmd.colorscheme("tricky")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
         local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-        local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+        local out = vim.fn.system({
+                "git",
+                "clone",
+                "--filter=blob:none",
+                "--branch=stable",
+                lazyrepo,
+                lazypath,
+        })
         if vim.v.shell_error ~= 0 then
                 vim.api.nvim_echo({
                         { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
@@ -134,7 +143,10 @@ require("lazy").setup({ import = "plugins" }, {
                 notify = false,
         },
         dev = {
-                path = vim.fs.joinpath(vim.fn.stdpath("config"), "pack/dev/opt"),
+                path = vim.fs.joinpath(
+                        vim.fn.stdpath("config"),
+                        "pack/dev/opt"
+                ),
         },
         ui = {
                 size = {
