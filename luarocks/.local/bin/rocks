@@ -1,9 +1,3 @@
 #!/usr/bin/env nu
 
-def --wrapped main [...rest] {
-        if ($rest | is-not-empty) and ($rest.0 == vimstall) {
-                luarocks install --tree=($env.ROCKTREE?) ...($rest | skip 1)
-                return
-        }
-        luarocks ...$rest
-}
+def --wrapped main [...rest] { luarocks ...$rest }
