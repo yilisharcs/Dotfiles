@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
                 if
                         string.match(
                                 bufname,
-                                ".config/nvim/plugin/autocmds.lua"
+                                ".config/nvim/plugin/nosmartquotes.lua"
                         ) == nil
                 then
                         local cursor = vim.api.nvim_win_get_cursor(0)
