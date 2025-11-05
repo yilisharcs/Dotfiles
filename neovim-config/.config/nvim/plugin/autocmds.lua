@@ -22,14 +22,6 @@ vim.api.nvim_create_autocmd({
         end,
 })
 
-vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter" }, {
-        desc = "Open file under cursor on the terminal in a tab",
-        group = group,
-        callback = function()
-                vim.keymap.set("n", "gf", "<C-w>gF", { buffer = true })
-        end,
-})
-
 vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter", "WinEnter" }, {
         desc = "Enter terminal on insert mode",
         group = group,
