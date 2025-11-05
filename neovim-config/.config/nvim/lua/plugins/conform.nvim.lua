@@ -3,6 +3,7 @@ return {
         event = "BufReadPost",
         opts = {
                 formatters_by_ft = {
+                        c = { "clang-format" },
                         lua = { "stylua" },
                         rust = { "rustfmt", lsp_format = "fallback" },
                 },

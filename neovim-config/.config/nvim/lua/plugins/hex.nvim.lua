@@ -3,7 +3,11 @@ return {
         dev = true,
         lazy = false,
         keys = {
-                { "<leader>b", "<CMD>Hex toggle<CR>", desc = "Toggle hex dump" },
+                {
+                        "<leader>b",
+                        "<CMD>Hex toggle<CR>",
+                        desc = "Toggle hex dump",
+                },
         },
         init = function()
                 vim.g.hex = {
@@ -21,8 +25,18 @@ return {
                         -- end,
                 }
 
-                vim.keymap.set("n", "u", "<Plug>(HexUndo)", { desc = "Undo one change" })
-                vim.keymap.set("n", "U", "<Plug>(HexRedo)", { desc = "Redo one change which was undone" })
+                vim.keymap.set(
+                        "n",
+                        "u",
+                        "<Plug>(HexUndo)",
+                        { desc = "Undo one change" }
+                )
+                vim.keymap.set(
+                        "n",
+                        "U",
+                        "<Plug>(HexRedo)",
+                        { desc = "Redo one change which was undone" }
+                )
 
                 require("utils.cabbrev")({
                         ["Hex"] = { "hex" },

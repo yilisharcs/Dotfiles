@@ -4,7 +4,11 @@ return {
         cond = os.getenv("DISPLAY") ~= nil,
         ft = "markdown",
         keys = {
-                { "<leader>y", "<CMD>RenderMarkdown toggle<CR>", desc = "Toggle markdown rendering" },
+                {
+                        "<leader>y",
+                        "<CMD>RenderMarkdown toggle<CR>",
+                        desc = "Toggle markdown rendering",
+                },
         },
         opts = {
                 render_modes = true,

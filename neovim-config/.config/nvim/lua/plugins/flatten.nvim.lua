@@ -34,12 +34,24 @@ return {
                                                 },
                                         }
                                         for _, pat in ipairs(denylist.arg0) do
-                                                if string.match(vim.v.argv[#vim.v.argv], pat) ~= nil then
+                                                if
+                                                        string.match(
+                                                                vim.v.argv[#vim.v.argv],
+                                                                pat
+                                                        )
+                                                        ~= nil
+                                                then
                                                         return true
                                                 end
                                         end
                                         for _, pat in ipairs(denylist.arg1) do
-                                                if string.match(vim.v.argv[#vim.v.argv - 1], pat) ~= nil then
+                                                if
+                                                        string.match(
+                                                                vim.v.argv[#vim.v.argv - 1],
+                                                                pat
+                                                        )
+                                                        ~= nil
+                                                then
                                                         return true
                                                 end
                                         end
@@ -50,11 +62,17 @@ return {
                                 end,
                                 post_open = function(opts)
                                         local bufnr, winnr, ft, is_blocking, is_diff =
-                                                opts.bufnr, opts.winnr, opts.filetype, opts.is_blocking, opts.is_diff
+                                                opts.bufnr,
+                                                opts.winnr,
+                                                opts.filetype,
+                                                opts.is_blocking,
+                                                opts.is_diff
                                         if is_blocking and saved_term then
                                                 saved_term:close()
                                         elseif not is_diff then
-                                                vim.api.nvim_set_current_win(winnr)
+                                                vim.api.nvim_set_current_win(
+                                                        winnr
+                                                )
                                         end
                                         if
                                                 vim.tbl_contains({
@@ -63,12 +81,20 @@ return {
                                                         "gitcommit",
                                                 }, ft)
                                         then
-                                                vim.api.nvim_create_autocmd("BufWritePost", {
-                                                        buffer = bufnr,
-                                                        callback = vim.schedule_wrap(function()
-                                                                vim.api.nvim_buf_delete(bufnr, {})
-                                                        end),
-                                                })
+                                                vim.api.nvim_create_autocmd(
+                                                        "BufWritePost",
+                                                        {
+                                                                buffer = bufnr,
+                                                                callback = vim.schedule_wrap(
+                                                                        function()
+                                                                                vim.api.nvim_buf_delete(
+                                                                                        bufnr,
+                                                                                        {}
+                                                                                )
+                                                                        end
+                                                                ),
+                                                        }
+                                                )
                                         end
                                 end,
                                 block_end = function()

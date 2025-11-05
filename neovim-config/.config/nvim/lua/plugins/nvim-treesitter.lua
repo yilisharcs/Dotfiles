@@ -52,12 +52,18 @@ return {
                 require("nvim-treesitter").install(filetypes)
                 vim.api.nvim_create_autocmd({ "FileType" }, {
                         desc = "Enable nvim-treesitter features",
-                        group = vim.api.nvim_create_augroup("PlugTreesitter", { clear = true }),
+                        group = vim.api.nvim_create_augroup(
+                                "PlugTreesitter",
+                                { clear = true }
+                        ),
                         pattern = filetypes,
                         callback = function()
                                 vim.treesitter.start()
-                                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-                                if vim.bo.filetype == "markdown" then vim.bo.syntax = "ON" end
+                                vim.bo.indentexpr =
+                                        "v:lua.require'nvim-treesitter'.indentexpr()"
+                                if vim.bo.filetype == "markdown" then
+                                        vim.bo.syntax = "ON"
+                                end
                         end,
                 })
 
@@ -67,6 +73,11 @@ return {
                         "<CMD>TSBufToggle highlight<CR>",
                         { desc = "Toggle treesitter highlights" }
                 )
-                vim.keymap.set("n", "<leader><F9>", "<CMD>InspectTree<CR>", { desc = "Inspect treesitter AST" })
+                vim.keymap.set(
+                        "n",
+                        "<leader><F9>",
+                        "<CMD>InspectTree<CR>",
+                        { desc = "Inspect treesitter AST" }
+                )
         end,
 }

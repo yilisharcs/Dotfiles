@@ -30,7 +30,9 @@ return {
                 })
 
                 -- Ensure Mason can detect fnm
-                vim.env.PATH = vim.fs.abspath(".local/share/fnm/aliases/default/bin") .. ":" .. os.getenv("PATH")
+                vim.env.PATH = vim.fs.abspath(
+                        ".local/share/fnm/aliases/default/bin"
+                ) .. ":" .. os.getenv("PATH")
         end,
         opts = {
                 ui = {

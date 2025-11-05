@@ -72,16 +72,23 @@ return {
                                 {
                                         "filetype",
                                         icon_only = true,
-                                        padding = { left = 1, right = icon_rightpad },
+                                        padding = {
+                                                left = 1,
+                                                right = icon_rightpad,
+                                        },
                                 },
                         },
                         lualine_c = { { "filename", path = 1 } },
                         lualine_x = {
                                 {
                                         function()
-                                                local macro = vim.fn.reg_recording()
-                                                if macro == "" then return "" end
-                                                return "recording @" .. vim.fn.reg_recording()
+                                                local macro =
+                                                        vim.fn.reg_recording()
+                                                if macro == "" then
+                                                        return ""
+                                                end
+                                                return "recording @"
+                                                        .. vim.fn.reg_recording()
                                         end,
                                         padding = { left = 0, right = 1 },
                                         separator = { right = "" },
@@ -107,7 +114,10 @@ return {
                                 {
                                         "filetype",
                                         icon_only = true,
-                                        padding = { left = 1, right = icon_rightpad },
+                                        padding = {
+                                                left = 1,
+                                                right = icon_rightpad,
+                                        },
                                 },
                         },
                         lualine_c = { { "filename", path = 2 } },

@@ -5,7 +5,11 @@ return {
         },
         lazy = false,
         keys = {
-                { "<leader>o", "<CMD>Octo actions<CR>", desc = "[OCTO] Actions picker" },
+                {
+                        "<leader>o",
+                        "<CMD>Octo actions<CR>",
+                        desc = "[OCTO] Actions picker",
+                },
         },
         opts = {
                 picker = "fzf-lua",

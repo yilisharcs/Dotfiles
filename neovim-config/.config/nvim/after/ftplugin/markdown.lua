@@ -12,7 +12,12 @@ vim.bo.softtabstop = 4
 vim.bo.shiftwidth = 4
 
 -- Make time heading for zk
-vim.keymap.set("n", "<F2>", "G{{O<CR>### <C-r>=strftime('%H:%M')<CR><CR>", { buffer = true, silent = true })
+vim.keymap.set(
+        "n",
+        "<F2>",
+        "G{{O<CR>### <C-r>=strftime('%H:%M')<CR><CR>",
+        { buffer = true, silent = true }
+)
 
 -- mini doesn't surround a line with newlines
 vim.b.minisurround_config = {
