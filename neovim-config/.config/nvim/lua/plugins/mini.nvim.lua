@@ -183,6 +183,7 @@ return {
                                 prefix = "g=",
                         },
                         exchange = {
+                                prefix = "cx",
                                 reindent_linewise = true,
                         },
                         multiply = {
