@@ -27,8 +27,8 @@ export HISTFILESIZE=2000
 
 ## Lua
 export PATH="$HOME/.luarocks/bin:$PATH"
-export LUA_PATH=";;$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua"
-export LUA_CPATH=";;$HOME/.luarocks/lib/lua/5.1/?.so"
+export LUA_PATH=";./src/?.lua;./src/?/init.lua;;$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua"
+export LUA_CPATH=";./lib/?.so;;$HOME/.luarocks/lib/lua/5.1/?.so"
 
 ## Rust
 export PATH="$HOME/.cargo/bin:$PATH"
