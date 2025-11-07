@@ -21,5 +21,17 @@ return {
                 html = { comment = { conceal = false } },
                 sign = { enabled = false },
                 code = { border = "thin" },
+                link = {
+                        custom = {
+                                twitter1 = {
+                                        pattern = "^x%.com",
+                                        icon = " ",
+                                },
+                                twitter2 = {
+                                        pattern = "^https?://x%.com",
+                                        icon = " ",
+                                },
+                        },
+                },
         },
 }
