@@ -38,6 +38,7 @@ return {
                         open_file_in_vertical_split = "<C-v>",
                         open_file_in_horizontal_split = "<C-s>",
                         grep_in_directory = "<C-x>",
+                        replace_in_directory = false,
                         cycle_open_buffers = false,
                 },
                 integrations = {
