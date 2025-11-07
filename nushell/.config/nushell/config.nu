@@ -21,24 +21,24 @@ $env.SUDO_PROMPT = $'(ansi red_bold)[sudo](ansi reset) password for %u: '
 
 # Settings
 $env.config = {
-  show_banner: false
-  buffer_editor: "nvim"
-  history: {
-    file_format: plaintext
-    max_size: 10_000_000
-    sync_on_enter: true
-    isolation: false
-  }
-  plugin_gc: {
-    default: {
-      enabled: true
-      stop_after: 10sec
-    }
-    plugins: {
-      gstat: { stop_after: 1min }
-      inc: { stop_after: 0sec }
-    }
-  }
+        show_banner: false
+        buffer_editor: "nvim"
+        history: {
+                file_format: plaintext
+                max_size: 10_000_000
+                sync_on_enter: true
+                isolation: false
+        }
+        plugin_gc: {
+                default: {
+                        enabled: true
+                        stop_after: 10sec
+                }
+                plugins: {
+                        gstat: { stop_after: 1min }
+                        inc: { stop_after: 0sec }
+                }
+        }
 }
 
 # Integrations
@@ -52,8 +52,8 @@ carapace _carapace nushell | save -f ($nu.data-dir | path join "vendor/autoload/
 $env.CARAPACE_BRIDGES = "zsh,fish,bash,inshellisense"
 
 if ($env.FNM_MULTISHELL_PATH? | is-empty) {
-  fnm env --json | from json | load-env
-  $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
+        fnm env --json | from json | load-env
+        $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
 }
 
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
@@ -61,11 +61,11 @@ zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.
 
 # Yazi shell wrapper
 def --env yf [...args] {
-  let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-  yazi ...$args --cwd-file $tmp
-  let cwd = (open $tmp)
-  if $cwd != "" and $cwd != $env.PWD {
-    cd $cwd
-  }
-  rm -fp $tmp
+        let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+        yazi ...$args --cwd-file $tmp
+        let cwd = (open $tmp)
+        if $cwd != "" and $cwd != $env.PWD {
+                cd $cwd
+        }
+        rm -fp $tmp
 }
