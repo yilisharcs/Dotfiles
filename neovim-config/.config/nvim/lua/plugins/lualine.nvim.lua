@@ -28,6 +28,7 @@ return {
         end,
         opts = {
                 options = {
+                        refresh = { statusline = 16 },
                         icons_enabled = icons_cond,
                         section_separators = section_separators,
                         component_separators = component_separators,
@@ -129,7 +130,7 @@ return {
                         "man",
                         -- "nvim-dap-ui"
                         "quickfix",
-                        "toggleterm",
+                        -- "toggleterm",
                 },
         },
 }
