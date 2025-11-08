@@ -173,6 +173,7 @@ hi("Typedef",           { link = "Type" })
 hi("Terminal",          { link = "Normal" })
 hi("MessageWindow",     { link = "Pmenu" })
 hi("PopupNotification", { link = "Todo" })
+hi("qfLineNr",          { link = "String" })
 
 -- blink.cmp {{{
 hi("BlinkCmpDoc",       { fg = "#cdd6f4", bg = "#060010" })
