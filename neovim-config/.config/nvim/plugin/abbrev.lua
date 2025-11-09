@@ -14,6 +14,10 @@ require("utils.cabbrev")({
                 "wa!", "wa1", "wA!", "wA1",
                 "Wa!", "Wa1", "WA!", "WA1",
         },
+        ["qa!"] = {
+                "qa!", "qa1", "qA!", "qA1",
+                "Qa!", "Qa1", "QA!", "QA1",
+        },
         ["bd!"] = {
                 "bd!", "bd1", "bD!", "bD1",
                 "Bd!", "Bd1", "BD!", "BD1",
