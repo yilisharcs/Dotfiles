@@ -1,5 +1,7 @@
 #!/usr/bin/env nu
 
+$env.config.display_errors.termination_signal = false
+
 # This script is necessary to force compatibility
 # between vim-grepper/:grep and vim-symlink
 def --wrapped main [...rest] {

@@ -1,5 +1,7 @@
 #!/usr/bin/env nu
 
+$env.config.display_errors.termination_signal = false
+
 def main [keyword: string] {
         jj help -k $keyword
         | bat --plain --language markdown
