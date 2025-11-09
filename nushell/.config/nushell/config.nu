@@ -23,6 +23,9 @@ $env.SUDO_PROMPT = $'(ansi red_bold)[sudo](ansi reset) password for %u: '
 $env.config = {
         show_banner: false
         buffer_editor: "nvim"
+        display_errors: {
+                termination_signal: false
+        }
         history: {
                 file_format: plaintext
                 max_size: 10_000_000

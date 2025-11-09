@@ -1,5 +1,7 @@
 #!/usr/bin/env nu
 
+$env.config.display_errors.termination_signal = false
+
 # Search up the directory tree for
 # a maskfile.md and execute it
 def --wrapped main [...rest] {
