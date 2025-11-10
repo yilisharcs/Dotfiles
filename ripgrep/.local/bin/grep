@@ -2,4 +2,4 @@
 
 $env.config.display_errors.termination_signal = false
 
-def --wrapped main [...rest] { rg ...$rest }
+def --wrapped main [...rest] { rg --vimgrep ...$rest }
