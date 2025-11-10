@@ -28,12 +28,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
                 local map = function(mode, lhs, rhs, desc)
                         if desc then desc = "[LSP] " .. desc end
-                        vim.keymap.set(
-                                mode,
-                                lhs,
-                                rhs,
-                                { silent = true, buffer = args.buf, desc = desc }
-                        )
+                        vim.keymap.set(mode, lhs, rhs, {
+                                silent = true,
+                                buffer = args.buf,
+                                desc = desc,
+                        })
                 end
 
                 if client.server_capabilities.inlayHintProvider then

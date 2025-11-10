@@ -1,4 +1,4 @@
-vim.wo[0][0].colorcolumn = "80"
+vim.wo[0][0].colorcolumn = "100"
 vim.opt_local.iskeyword:remove({ "-" })
 vim.bo.commentstring = '" %s'
 
