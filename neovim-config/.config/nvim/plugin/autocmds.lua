@@ -26,7 +26,11 @@ vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter", "WinEnter" }, {
         desc = "Enter terminal on insert mode",
         group = group,
         pattern = "term://*",
-        command = "startinsert",
+        callback = function(data)
+                if not data.match:match("cme%-nvim%.sh") then
+                        vim.cmd.startinsert()
+                end
+        end,
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
