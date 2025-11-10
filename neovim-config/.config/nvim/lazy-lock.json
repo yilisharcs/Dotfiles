@@ -12,7 +12,7 @@
   "lualine.nvim": { "branch": "master", "commit": "3946f0122255bc377d14a59b27b609fb3ab25768" },
   "mason.nvim": { "branch": "main", "commit": "ad7146aa61dcaeb54fa900144d768f040090bff0" },
   "mini.nvim": { "branch": "main", "commit": "429e5f9dc9cd59bf76cd98b687300f0a384a7f52" },
-  "neogit": { "branch": "master", "commit": "268ddf7cabad7203e761df62eaa99f8c635c1907" },
+  "neogit": { "branch": "master", "commit": "2cc5daffb838f718174d2c07f2ca0c39149bb2c1" },
   "nvim-treesitter": { "branch": "main", "commit": "64f4755b9d6ea9008265b09eb79fd91727311682" },
   "nvim-treesitter-endwise": { "branch": "master", "commit": "a61a9de7965324d4019fb1637b66bfacdcb01f51" },
   "nvim-treesitter-textobjects": { "branch": "main", "commit": "5d63945ad7002ee3702c2f2150a662d5ed20626b" },
