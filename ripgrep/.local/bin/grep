@@ -2,4 +2,10 @@
 
 $env.config.display_errors.termination_signal = false
 
-def --wrapped main [...rest] { rg --vimgrep ...$rest }
+def --wrapped main [...rest] {
+        if (is-terminal --stdout) {
+                rg --vimgrep ...$rest
+        } else {
+                rg ...$rest
+        }
+}
