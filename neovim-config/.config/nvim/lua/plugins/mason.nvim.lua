@@ -24,7 +24,7 @@ return {
                         "clangd",
                         "luals",
                         "nuls", -- External
-                        "rust-analyzer", -- External
+                        -- "rust-analyzer", -- External
                         "typls",
                         "vimls",
                 })
