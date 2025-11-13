@@ -20,7 +20,7 @@ return {
                         require("blink.cmp").get_lsp_capabilities(capabilities)
 
                 vim.lsp.config("*", {
-                        root_markers = { ".git", ".jj" },
+                        root_markers = { ".git" },
                         capabilities = capabilities,
                 })
         end,

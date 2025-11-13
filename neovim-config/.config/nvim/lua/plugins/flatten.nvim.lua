@@ -25,7 +25,6 @@ return {
                                                         "^/tmp/%S+%.nu$",
                                                         "^/tmp/crontab%.%w+/crontab$",
                                                         "^/tmp/yazi%-%d+/bulk",
-                                                        "^/tmp/editor%-%w+.jjdescription$",
                                                         "^/tmp/gemini%-edit%-%w+/buffer.txt",
                                                         "%.git/COMMIT_EDITMSG$",
                                                         "%.git/rebase%-merge/git%-rebase%-todo$",
