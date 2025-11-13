@@ -1,0 +1,9 @@
+[Unit]
+Description=Rust analyzer multiplex server
+
+[Service]
+Type=simple
+ExecStart=/home/yilisharcs/.cargo/bin/lspmux server
+
+[Install]
+WantedBy=default.target
