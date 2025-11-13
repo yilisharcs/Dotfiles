@@ -105,165 +105,101 @@ return {
                         },
                 })
                 require("utils.cabbrev")({
-                        ["Git"] = { "git", "jj" },
+                        ["Git"] = { "git" },
                 })
 
-                if executable == "git" then
-                        local group = vim.api.nvim_create_augroup(
-                                "MyMiniGit",
-                                { clear = true }
-                        )
-                        vim.keymap.set(
-                                "n",
-                                "<leader>gd",
-                                "<CMD>difft<CR><CMD>vert Git show HEAD:%<CR><C-w>W",
-                                { desc = "Diff current file" }
-                        )
-                        vim.api.nvim_create_autocmd({ "FileType" }, {
-                                desc = "MiniGit diff buffers",
-                                group = group,
-                                callback = function()
-                                        local name =
-                                                vim.api.nvim_buf_get_name(0)
-                                        if
-                                                not name:match(
-                                                        "^minigit://.*/git show HEAD:"
-                                                )
-                                        then
-                                                return
-                                        end
-                                        local basename = vim.fs.basename(name)
-                                        vim.api.nvim_buf_set_name(
-                                                0,
-                                                "minigit://" .. basename
+                local group = vim.api.nvim_create_augroup(
+                        "MyMiniGit",
+                        { clear = true }
+                )
+                vim.keymap.set(
+                        "n",
+                        "<leader>gd",
+                        "<CMD>difft<CR><CMD>vert Git show HEAD:%<CR><C-w>W",
+                        { desc = "Diff current file" }
+                )
+                vim.api.nvim_create_autocmd({ "FileType" }, {
+                        desc = "MiniGit diff buffers",
+                        group = group,
+                        callback = function()
+                                local name = vim.api.nvim_buf_get_name(0)
+                                if
+                                        not name:match(
+                                                "^minigit://.*/git show HEAD:"
                                         )
-                                        vim.api.nvim_set_option_value(
-                                                "modifiable",
-                                                false,
-                                                { scope = "local" }
-                                        )
-                                        vim.cmd.diffthis()
-                                end,
-                        })
+                                then
+                                        return
+                                end
+                                local basename = vim.fs.basename(name)
+                                vim.api.nvim_buf_set_name(
+                                        0,
+                                        "minigit://" .. basename
+                                )
+                                vim.api.nvim_set_option_value(
+                                        "modifiable",
+                                        false,
+                                        { scope = "local" }
+                                )
+                                vim.cmd.diffthis()
+                        end,
+                })
 
-                        vim.keymap.set(
-                                "n",
-                                "<leader>gb",
-                                "mzgg<CMD>vert Git blame -- %<CR><C-w>W<CMD>set cursorbind<CR><CMD>set scrollbind<CR>`z",
-                                { desc = "Git blame" }
-                        )
+                vim.keymap.set(
+                        "n",
+                        "<leader>gb",
+                        "mzgg<CMD>vert Git blame -- %<CR><C-w>W<CMD>set cursorbind<CR><CMD>set scrollbind<CR>`z",
+                        { desc = "Git blame" }
+                )
 
-                        local ns =
-                                vim.api.nvim_create_namespace("mini_git_blame")
-                        vim.api.nvim_create_autocmd({ "FileType" }, {
-                                desc = "Format MiniGit blame buffer",
-                                pattern = "git",
-                                group = group,
-                                callback = function()
-                                        local name =
-                                                vim.api.nvim_buf_get_name(0)
-                                        if
-                                                not name:match(
-                                                        "^minigit://.*/git blame"
-                                                )
-                                        then
-                                                return
-                                        end
+                local ns = vim.api.nvim_create_namespace("mini_git_blame")
+                vim.api.nvim_create_autocmd({ "FileType" }, {
+                        desc = "Format MiniGit blame buffer",
+                        pattern = "git",
+                        group = group,
+                        callback = function()
+                                local name = vim.api.nvim_buf_get_name(0)
+                                -- stylua: ignore
+                                if not name:match( "^minigit://.*/git blame") then return end
 
-                                        local line = vim.api.nvim_buf_get_lines(
-                                                0,
-                                                0,
-                                                1,
-                                                false
-                                        )[1]
-                                        local match = line:find("[+-]%d%d%d%d")
-                                        vim.cmd.resize({
-                                                match + 5,
-                                                mods = { vertical = true },
-                                        })
+                                -- stylua: ignore
+                                local line = vim.api.nvim_buf_get_lines(0, 0, 1, false)
+                                local match = line[1]:find("[+-]%d%d%d%d")
+                                vim.cmd.resize({
+                                        match + 5,
+                                        mods = { vertical = true },
+                                })
 
-                                        vim.api.nvim_buf_clear_namespace(
+                                vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+                                local last_line = vim.api.nvim_buf_line_count(0)
+                                for lnum = 0, last_line - 1 do
+                                        vim.api.nvim_buf_set_extmark(
                                                 0,
                                                 ns,
-                                                0,
-                                                -1
+                                                lnum,
+                                                match + 4,
+                                                {
+                                                        -- stylua: ignore
+                                                        virt_text = { { ")", "Normal" } },
+                                                        virt_text_pos = "overlay",
+                                                }
                                         )
-                                        local last_line = vim.api.nvim_buf_line_count(
-                                                0
-                                        ) - 1
-                                        for lnum = 0, last_line do
-                                                vim.api.nvim_buf_set_extmark(
-                                                        0,
-                                                        ns,
-                                                        lnum,
-                                                        match + 4,
-                                                        {
-                                                                virt_text = {
-                                                                        {
-                                                                                ")",
-                                                                                "Normal",
-                                                                        },
-                                                                },
-                                                                virt_text_pos = "overlay",
-                                                        }
-                                                )
-                                        end
+                                end
 
-                                        vim.api.nvim_set_option_value(
-                                                "modifiable",
-                                                false,
-                                                { scope = "local" }
-                                        )
-                                        vim.api.nvim_set_option_value(
-                                                "cursorbind",
-                                                true,
-                                                { scope = "local" }
-                                        )
-                                        vim.api.nvim_set_option_value(
-                                                "scrollbind",
-                                                true,
-                                                { scope = "local" }
-                                        )
-                                        vim.api.nvim_set_option_value(
-                                                "winfixwidth",
-                                                true,
-                                                { scope = "local" }
-                                        )
-                                        vim.api.nvim_set_option_value(
-                                                "winfixbuf",
-                                                true,
-                                                { scope = "local" }
-                                        )
-                                        vim.api.nvim_set_option_value(
-                                                "number",
-                                                false,
-                                                { scope = "local" }
-                                        )
-                                        vim.api.nvim_set_option_value(
-                                                "relativenumber",
-                                                false,
-                                                { scope = "local" }
-                                        )
-                                        vim.api.nvim_set_option_value(
-                                                "signcolumn",
-                                                "no",
-                                                { scope = "local" }
-                                        )
-                                        vim.api.nvim_set_option_value(
-                                                "foldcolumn",
-                                                "0",
-                                                { scope = "local" }
-                                        )
-                                        vim.api.nvim_set_option_value(
-                                                "statuscolumn",
-                                                "",
-                                                { scope = "local" }
-                                        )
-                                end,
-                        })
-                elseif executable == "jj" then
-                        -- Pending
-                end
+                                -- stylua: ignore start
+                                local opts = { scope = "local" }
+                                vim.api.nvim_set_option_value("modifiable", false, opts)
+                                vim.api.nvim_set_option_value("cursorbind", true, opts)
+                                vim.api.nvim_set_option_value("scrollbind", true, opts)
+                                vim.api.nvim_set_option_value("winfixwidth", true, opts)
+                                vim.api.nvim_set_option_value("winfixbuf", true, opts)
+                                vim.api.nvim_set_option_value("number", false, opts)
+                                vim.api.nvim_set_option_value("relativenumber", false, opts)
+                                vim.api.nvim_set_option_value("signcolumn", "no", opts)
+                                vim.api.nvim_set_option_value("foldcolumn", "0", opts)
+                                vim.api.nvim_set_option_value("statuscolumn", "", opts)
+                                -- stylua: ignore end
+                        end,
+                })
                 -- }}}
 
                 -- mini.hipatterns {{{
@@ -306,7 +242,7 @@ return {
                 -- }}}
 
                 -- mini.misc {{{
-                require("mini.misc").setup_auto_root({ ".git", ".jj" })
+                require("mini.misc").setup_auto_root({ ".git" })
                 require("mini.misc").setup_restore_cursor({ center = false })
                 -- }}}
 
