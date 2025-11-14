@@ -35,8 +35,5 @@ require("utils.cabbrev")({
         -- Extras
         ["Cfilter"]     = { "cfilter" },
         ["Cfilter!"]    = { "cfilter1" },
-        ["silent grep"] = { "grep" },
         ["Man"]         = { "man" },
-        ["make"]        = { "mask" },
-        ["!task"]       = { "task" },
 })
