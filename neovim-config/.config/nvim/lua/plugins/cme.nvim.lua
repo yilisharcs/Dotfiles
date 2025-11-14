@@ -7,6 +7,7 @@ return {
                 }
 
                 vim.keymap.set("n", "<leader>c", ":Compile ")
+                vim.keymap.set("n", "<leader><S-c>", "<CMD>Compile!<CR>")
 
                 require("utils.cabbrev")({
                         ["Compile"] = { "c", "C" },
