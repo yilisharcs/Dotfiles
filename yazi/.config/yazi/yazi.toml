@@ -18,8 +18,6 @@ play = [
 ]
 calibre  = [ { desc = "Read with Calibre",   run = 'ebook-viewer "$@"',                      orphan = true } ]
 gimp     = [ { desc = "Open with GIMP",      run = 'gimp "$@"',                              orphan = true } ]
-inkscape = [ { desc = "Open with Inkscape",  run = 'inkscape "$@"',                          orphan = true } ]
-krita    = [ { desc = "Open with Krita",     run = 'krita "$@"',                             orphan = true } ]
 wine     = [ { desc = "Execute with Wine",   run = 'firejail wine "$@"',                     orphan = true } ]
 xbin     = [ { desc = "Execute binary",      run = '"$@"',                                   orphan = true } ]
 dpkg-ext = [ { desc = "Extract deb-package", run = 'dpkg-deb -R "$@" $(basename "$@" .deb)', orphan = true } ]
@@ -29,7 +27,7 @@ prepend_rules = [
         { mime = "text/*",                                          use = ["edit", "reveal"] },
         { mime = "inode/x-empty",                                   use = "edit" },
         { name = "*.html",                                          use = ["open", "edit"] },
-        { mime = "image/*",                                         use = ["open", "gimp", "inkscape", "krita", "reveal"] },
+        { mime = "image/*",                                         use = ["open", "gimp", "reveal"] },
         { mime = "application/debian.binary-package",               use = "dpkg-ext" },
         { mime = "application/{epub+zip, zip}",                     use = "calibre" },
         { mime = "application/{gzip,x-xz,zip,zstd}",                use = ["edit", "reveal"] },
