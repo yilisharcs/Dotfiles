@@ -73,6 +73,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
         group = group,
         callback = function()
                 for i = 98, 122 do
+                        if i == 114 or i == 116 then return end
                         vim.fn.setreg(vim.fn.nr2char(i), {})
                 end
 
