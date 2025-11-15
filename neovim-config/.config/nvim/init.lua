@@ -99,7 +99,10 @@ vim.o.winborder = "rounded"
 vim.o.winwidth = 15
 
 -- Rusty-tags support with custom tagfile name
-vim.opt.tags:append({ "./rtags", ",rtags" })
+vim.opt.tags:append({
+        "./rtags",
+        os.getenv("RUST_SRC_PATH") .. "/rtags",
+})
 
 -- Nushell doesn't grok vi
 vim.o.shell = vim.fn.exepath("bash")
