@@ -35,9 +35,10 @@ prepend_files = [
 ]
 prepend_exts = [
         { name = "lemon",     text = "", fg = "#ddd06a" },
-        { name = "xxd",       text = "", fg = "#019833" },
-        { name = "msgpack",   text = "", fg = "#eca517" },
         { name = "love",      text = "󰋑", fg = "#ff5faf" },
+        { name = "msgpack",   text = "", fg = "#eca517" },
+        { name = "ron",       text = "󰠮", fg = "#dea584" },
+        { name = "xxd",       text = "", fg = "#019833" },
 ]
 prepend_conds = [
         { if = "link", text = "", fg = "#6d8086" },
