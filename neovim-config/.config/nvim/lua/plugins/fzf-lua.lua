@@ -149,6 +149,7 @@ return {
                         },
                 },
                 winopts = {
+                        treesitter = { enabled = false },
                         preview = {
                                 winopts = {
                                         numberwidth = 4,
