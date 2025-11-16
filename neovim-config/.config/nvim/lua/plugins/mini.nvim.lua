@@ -97,13 +97,7 @@ return {
                 -- }}}
 
                 -- mini.git {{{
-                local executable = "git"
-
-                require("mini.git").setup({
-                        job = {
-                                git_executable = executable,
-                        },
-                })
+                require("mini.git").setup()
                 require("utils.cabbrev")({
                         ["Git"] = { "git" },
                 })
