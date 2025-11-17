@@ -92,10 +92,9 @@ return {
         end,
         opts = {
                 bigfile = {
-                        enabled = true,
                         size = 1.5 * 1024 * 1024, -- 1.5MB
                 },
-                gitbrowse = { enabled = true },
+                gitbrowse = {},
                 image = {
                         enabled = vim.env.TERM == "xterm-kitty",
                         doc = {
@@ -104,11 +103,10 @@ return {
                                 max_height = 11,
                         },
                 },
-                input = { enabled = true },
-                notifier = { enabled = true },
-                quickfile = { enabled = true },
+                input = {},
+                notifier = {},
+                quickfile = {},
                 scratch = {
-                        enable = true,
                         win = {
                                 height = 24,
                         },
