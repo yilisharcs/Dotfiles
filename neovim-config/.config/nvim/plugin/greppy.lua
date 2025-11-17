@@ -50,7 +50,12 @@ function Greppy(mode)
 
         local args = table.concat(text, "\n")
         args = vim.fn.shellescape(args)
-        vim.cmd("silent grep -F " .. args)
+
+        if vim.g.cme then
+                vim.cmd("Compile grep -F " .. args)
+        else
+                vim.cmd("silent grep -F " .. args)
+        end
 end
 
 vim.keymap.set({ "n", "x" }, "gs", function()
