@@ -182,6 +182,7 @@ return {
                                 -- stylua: ignore start
                                 local opts = { scope = "local" }
                                 vim.api.nvim_set_option_value("modifiable", false, opts)
+                                vim.api.nvim_set_option_value("wrap", false, opts)
                                 vim.api.nvim_set_option_value("cursorbind", true, opts)
                                 vim.api.nvim_set_option_value("scrollbind", true, opts)
                                 vim.api.nvim_set_option_value("winfixwidth", true, opts)
