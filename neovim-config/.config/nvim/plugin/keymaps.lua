@@ -160,29 +160,51 @@ vim.keymap.set({ "n", "x", "i", "c", "t" }, "<M-j>", "<CMD>wincmd j<CR>")
 vim.keymap.set({ "n", "x", "i", "c", "t" }, "<M-k>", "<CMD>wincmd k<CR>")
 vim.keymap.set({ "n", "x", "i", "c", "t" }, "<M-l>", "<CMD>wincmd l<CR>")
 
--- stylua: ignore start
 vim.keymap.set("n", "cu", function()
-        return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.quickfix")) == 1
-                        and "<CMD>botright copen | wincmd p<CR>"
-                or "<CMD>cclose<CR>"
+        if
+                vim.fn.empty(
+                        vim.fn.filter(vim.fn.getwininfo(), "v:val.quickfix")
+                ) == 1
+        then
+                return "<CMD>botright copen | wincmd p<CR>"
+        else
+                return "<CMD>cclose<CR>"
+        end
 end, { expr = true, desc = "Toggle quickfix list" })
 vim.keymap.set("n", "co", function()
-        return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")) == 1
-                        and "<CMD>botright lopen | wincmd p<CR>"
-                or "<CMD>lclose<CR>"
+        if
+                vim.fn.empty(
+                        vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")
+                ) == 1
+        then
+                return "<CMD>botright lopen | wincmd p<CR>"
+        else
+                return "<CMD>lclose<CR>"
+        end
 end, { expr = true, desc = "Toggle location list" })
 
 vim.keymap.set("n", "<C-p>", function()
-        return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")) == 1
-                        and "<CMD>cprev<CR>zz"
-                or "<CMD>lprev<CR>zz"
+        if
+                vim.fn.empty(
+                        vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")
+                ) == 1
+        then
+                return "<CMD>cprev<CR>zz"
+        else
+                return "<CMD>lprev<CR>zz"
+        end
 end, { expr = true, desc = "Previous error" })
 vim.keymap.set("n", "<C-n>", function()
-        return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")) == 1
-                        and "<CMD>cnext<CR>zz"
-                or "<CMD>lnext<CR>zz"
+        if
+                vim.fn.empty(
+                        vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")
+                ) == 1
+        then
+                return "<CMD>cnext<CR>zz"
+        else
+                return "<CMD>lnext<CR>zz"
+        end
 end, { expr = true, desc = "Next error" })
--- stylua: ignore end
 
 vim.keymap.set(
         "n",
@@ -331,15 +353,13 @@ vim.keymap.set(
 )
 vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>x", "<CMD>tabclose<CR>")
 
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>1", "<CMD>1tabnext<CR>")
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>2", "<CMD>2tabnext<CR>")
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>3", "<CMD>3tabnext<CR>")
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>4", "<CMD>4tabnext<CR>")
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>5", "<CMD>5tabnext<CR>")
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>6", "<CMD>6tabnext<CR>")
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>7", "<CMD>7tabnext<CR>")
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>8", "<CMD>8tabnext<CR>")
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>9", "<CMD>9tabnext<CR>")
+for i = 1, 9 do
+        vim.keymap.set(
+                { "n", "x", "i", "c", "t" },
+                ("<C-SPACE>%d"):format(i),
+                ("<CMD>%dtabnext<CR>"):format(i)
+        )
+end
 
 vim.keymap.set(
         "n",
