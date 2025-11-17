@@ -31,7 +31,7 @@ return {
                 })
                 vim.keymap.set("n", "<leader><F2>", function()
                         gemini:toggle()
-                end)
+                end, { desc = "Toggleterm Gemini" })
 
                 local gh_dash = Terminal:new({
                         cmd = "gh dash",
@@ -42,7 +42,7 @@ return {
                 })
                 vim.keymap.set("n", "<leader><F3>", function()
                         gh_dash:toggle()
-                end)
+                end, { desc = "Toggleterm Github Dashboard" })
 
                 local btop = Terminal:new({
                         cmd = "btop",
@@ -52,6 +52,6 @@ return {
                 })
                 vim.keymap.set("n", "<leader><F4>", function()
                         btop:toggle()
-                end)
+                end, { desc = "Toggleterm Resource Monitor" })
         end,
 }
