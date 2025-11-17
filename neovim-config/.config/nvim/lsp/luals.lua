@@ -1,5 +1,5 @@
 return {
-        cmd = { "lua-language-server" },
+        cmd = { "lua-language-server.sh" },
         filetypes = { "lua" },
         root_markers = {
                 {

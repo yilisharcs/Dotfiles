@@ -72,7 +72,7 @@ hi("DiffDelete", { fg = "#ff5faf", bg = "#362b49", bold = true, ctermfg = "darkm
 -- Command-line
 hi("Error",      { fg = "#d70000", bg = "#ffffff", reverse = true, ctermfg = "red",   ctermbg = "white", cterm = { reverse = true } })
 hi("ErrorMsg",   { fg = "#ffffff", bg = "#d70000",                 ctermfg = "white", ctermbg = "red" })
-hi("ModeMsg",    { fg = "#0e0024", bg = "#87ff00",                 ctermfg = "black", ctermbg = "green" })
+hi("ModeMsg",    { fg = "#87ff00", bg = "#0e0024",                 ctermfg = "black", ctermbg = "green" })
 hi("MoreMsg",    { fg = "#87ffff",                                 ctermfg = "cyan" })
 hi("WarningMsg", { fg = "#ffafff",                                 ctermfg = "magenta" })
 hi("MsgArea",    { link = "Special" })
@@ -118,8 +118,7 @@ hi("@label.vimdoc",                      { fg = "#00af5f", bold = true })
 hi("gitcommitSummary",                   { link = "Identifier" })
 hi("@markup.link.label.markdown_inline", { link = "Identifier" })
 hi("@markup.heading.gitcommit",          { link = "gitcommitSummary" })
-hi("@markup.raw.block.markdown",         { link = "CommentShow" })
-hi("@markup.raw.markdown_inline",        { link = "CommentShow" })
+hi("@markup.raw.markdown_inline",        { fg = "#87ff00", bg = "#1e1829", ctermfg = "green" })
 
 -- Miscellaneous
 hi("IncSearch",         { fg = "#ffaf00", bg = "#0e0024",              reverse = true, ctermfg = "darkyellow", ctermbg = "black",   cterm = { reverse = true } })
@@ -137,6 +136,7 @@ hi("debugPC",           { fg = "#87ff00", bg = "#5f00d7",              reverse =
 hi("ToolbarButton",     { fg = "#ffffff", bg = "#5e556d",                              ctermfg = "white",      ctermbg = "darkgray" })
 hi("ToolbarLine",       {})
 hi("DiagnosticError",   { fg = "#d70000" })
+hi("markdownCodeBlock", {                 bg = "#1e1829" })
 hi("CurSearch",         { link = "IncSearch" })
 hi("CursorLineNr",      { link = "Special" })
 hi("CursorLineSign",    { link = "CursorLine" })
@@ -177,32 +177,8 @@ hi("qfLineNr",          { link = "String" })
 hi("qfText",            { link = "Directory" })
 hi("qfFileName",        { link = "Normal" })
 
--- blink.cmp {{{
-hi("BlinkCmpDoc",       { fg = "#cdd6f4", bg = "#060010" })
-hi("BlinkCmpDocBorder", { link = "BlinkCmpDoc" })
--- }}}
-
 -- fzf-lua {{{
 hi("FzfLuaCustomMarks", { fg = "#ffaf00" })
--- }}}
-
--- Lualine {{{
-hi("LualineNormalA",   { fg = "#afafff", bg = "#1e0015", bold = true })
-hi("LualineNormalB",   { fg = "#afafff", bg = "#510039", bold = true })
-hi("LualineNormalC",   { fg = "#edf6f4", bg = "#1e0015" })
-hi("LualineInsertA",   { fg = "#87ff00", bg = "#1e0015", bold = true })
-hi("LualineInsertB",   { fg = "#87ff00", bg = "#510039", bold = true })
-hi("LualineTerminalA", { fg = "#00af5f", bg = "#1e0015", bold = true })
-hi("LualineTerminalB", { fg = "#00af5f", bg = "#510039", bold = true })
-hi("LualineVisualA",   { fg = "#5fd7ff", bg = "#1e0015", bold = true })
-hi("LualineVisualB",   { fg = "#5fd7ff", bg = "#510039", bold = true })
-hi("LualineReplaceA",  { fg = "#ffff5f", bg = "#1e0015", bold = true })
-hi("LualineReplaceB",  { fg = "#ffff5f", bg = "#510039", bold = true })
-hi("LualineCommandA",  { fg = "#ff5faf", bg = "#1e0015", bold = true })
-hi("LualineCommandB",  { fg = "#ff5faf", bg = "#510039", bold = true })
-hi("LualineInactiveA", { fg = "#0e0024", bg = "#afafff", bold = true })
-hi("LualineInactiveB", { fg = "#edf6f4", bg = "#510039", bold = true })
-hi("LualineInactiveC", { fg = "#0e0024", bg = "#afafff", bold = true })
 -- }}}
 
 -- mini.hipatterns {{{
@@ -223,27 +199,6 @@ hi("NeogitGraphPurple",         { fg = "#ffaf00",                               
 hi("NeogitPopupConfigEnabled",  { link = "Special" })
 hi("NeogitPopupOptionEnabled",  { link = "Special" })
 hi("NeogitPopupSwitchEnabled",  { link = "Special" })
--- }}}
-
--- rainbow-delimiters {{{
-hi("RainbowDelimiterRed",    { fg = "#87ff00", ctermfg = "black" })
-hi("RainbowDelimiterYellow", { fg = "#d7005f", ctermfg = "darkyellow" })
-hi("RainbowDelimiterBlue",   { fg = "#00afff", ctermfg = "darkblue" })
-hi("RainbowDelimiterOrange", { fg = "#ffaf00", ctermfg = "lightgrey" })
-hi("RainbowDelimiterGreen",  { fg = "#00af5f", ctermfg = "darkgreen" })
-hi("RainbowDelimiterViolet", { fg = "#ff5faf", ctermfg = "darkmagenta" })
-hi("RainbowDelimiterCyan",   { fg = "#5f00d7", ctermfg = "darkcyan" })
--- }}}
-
--- Render Markdown {{{
-hi("RenderMarkdownH1Bg",   { fg = "#87ff00", bg = "#510039", bold = true })
-hi("RenderMarkdownH2Bg",   { fg = "#ffff5f", bg = "#470032", bold = true })
-hi("RenderMarkdownH3Bg",   { fg = "#87ffff", bg = "#3d002a", bold = true })
-hi("RenderMarkdownH4Bg",   { fg = "#ff5faf", bg = "#320023", bold = true })
-hi("RenderMarkdownH5Bg",   { fg = "#ffaf00", bg = "#28001c", bold = true })
-hi("RenderMarkdownH6Bg",   { fg = "#afafff", bg = "#1e0015", bold = true })
-hi("RenderMarkdownCode",   {                 bg = "#1e1829" })
-hi("RenderMarkdownBullet", { link = "Statement" })
 -- }}}
 
 -- vim-sneak {{{
