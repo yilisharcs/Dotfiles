@@ -330,14 +330,14 @@ return {
                         },
                 })
 
-                vim.keymap.set("n", "<leader>mn", function()
+                vim.keymap.set("n", "<leader>dn", function()
                         local cwd = vim.fs.basename(vim.uv.cwd())
                         require("mini.sessions").write(cwd .. ".vim")
                 end, { desc = "Make session" })
-                vim.keymap.set("n", "<leader>ml", function()
+                vim.keymap.set("n", "<leader>dl", function()
                         require("mini.sessions").select()
                 end, { desc = "List sessions" })
-                vim.keymap.set("n", "<leader>md", function()
+                vim.keymap.set("n", "<leader>dd", function()
                         require("mini.sessions").delete()
                 end, { desc = "Delete session" })
                 -- }}}
