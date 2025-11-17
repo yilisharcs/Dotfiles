@@ -1,3 +1,10 @@
+vim.lsp.enable({
+        "luals",
+        "nuls", -- External
+        -- "rust-analyzer", -- External
+        "vimls",
+})
+
 vim.lsp.log.set_level("off")
 
 vim.diagnostic.config({
@@ -25,6 +32,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
                 local client = vim.lsp.get_clients()[1]
                 local ns = vim.lsp.diagnostic.get_namespace(client.id)
+
+                vim.lsp.completion.enable(true, client.id, args.buf, {
+                        autotrigger = true,
+                        convert = function(item)
+                                return { abbr = item.label:gsub("%b()", "") }
+                        end,
+                })
 
                 local map = function(mode, lhs, rhs, desc)
                         if desc then desc = "[LSP] " .. desc end

@@ -3,7 +3,6 @@ return {
         branch = "main",
         build = ":TSUpdate",
         dependencies = {
-                "https://github.com/HiPhish/rainbow-delimiters.nvim",
                 "https://github.com/RRethy/nvim-treesitter-endwise",
         },
         cond = not vim.g.shell_editor == true,
