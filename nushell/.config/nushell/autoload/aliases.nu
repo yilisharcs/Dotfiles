@@ -5,5 +5,4 @@ def h [str: string] { nu -c $"($str) --help" | less -FRX }
 alias visudo = sudo visudo
 alias yeet = sudo apt-get purge --autoremove
 
-alias eza = eza.nu
 alias pandoc = pandoc.nu
