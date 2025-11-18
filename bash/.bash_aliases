@@ -1,4 +1,3 @@
-alias :q="exit"
 alias ".."="cd .."
 alias cp="cp -iv"
 alias rm="rm -I"

@@ -1,4 +1,3 @@
-alias ":q" = exit
 def h [str: string] { nu -c $"($str) --help" | less -FRX }
 alias visudo = sudo visudo
 
