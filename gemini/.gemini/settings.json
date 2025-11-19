@@ -1,6 +1,7 @@
 {
   "general": {
-    "preferredEditor": "neovim"
+    "preferredEditor": "neovim",
+    "previewFeatures": true
   },
   "security": {
     "auth": {
