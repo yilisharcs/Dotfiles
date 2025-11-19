@@ -11,8 +11,9 @@ return {
 
                 require("utils.cabbrev")({
                         ["Compile"] = { "c", "C" },
-                        ["Compile make"] = { "make" },
+                        ["Compile git"] = { "git" },
                         ["Compile grep"] = { "grep" },
+                        ["Compile make"] = { "make" },
                         ["Compile task"] = { "task" },
                 })
         end,

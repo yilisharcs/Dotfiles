@@ -98,9 +98,6 @@ return {
 
                 -- mini.git {{{
                 require("mini.git").setup()
-                require("utils.cabbrev")({
-                        ["Git"] = { "git" },
-                })
 
                 local group = vim.api.nvim_create_augroup(
                         "MyMiniGit",
