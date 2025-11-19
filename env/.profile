@@ -43,8 +43,6 @@ export STARSHIP_LOG="error"                                        # disable "co
 export XCOMPOSEFILE="/usr/share/keyd/keyd.compose"                 # keyd compat file for non-ASCII characters
 export ZK_NOTEBOOK_DIR="$HOME/notebook"                            # default path to zk files
 
-export GEMINI_MODEL="gemini-2.5-pro"                               # NOTE: remove once json config is fixed upstream
-
 export FZF_DEFAULT_COMMAND="fd --color=never --ignore-case --strip-cwd-prefix \
         --hidden --follow --type f --type l --exclude={.git,.cache,.npm}"
 export FZF_DEFAULT_OPTS="--layout=reverse --multi \
