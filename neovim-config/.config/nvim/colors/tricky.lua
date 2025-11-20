@@ -177,6 +177,11 @@ hi("qfLineNr",          { link = "String" })
 hi("qfText",            { link = "Directory" })
 hi("qfFileName",        { link = "Normal" })
 
+-- cme.nvim {{{
+hi("CmePipe1", { fg = "#090019", ctermfg = "black" })
+hi("CmePipe2", { link = "CmePipe1" })
+-- }}}
+
 -- fzf-lua {{{
 hi("FzfLuaCustomMarks", { fg = "#ffaf00" })
 -- }}}
