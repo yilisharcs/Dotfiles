@@ -210,7 +210,7 @@ return {
                                         group = "MiniHipatternsNote",
                                 },
                                 todo_rust_macro = {
-                                        pattern = "todo!%(%)",
+                                        pattern = "todo!%([^%)]*%)",
                                         group = "MiniHipatternsFixme",
                                 },
                         },
