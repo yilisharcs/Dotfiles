@@ -7,8 +7,8 @@ local function make_cmdline_abbreviations(tbl)
                                         if cmd:match("^" .. lhs) then
                                                 return key
                                         end
-                                        return lhs
                                 end
+                                return lhs
                         end, { expr = true })
                 end
         end
