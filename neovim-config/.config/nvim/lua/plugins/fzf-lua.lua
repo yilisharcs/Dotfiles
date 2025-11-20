@@ -4,7 +4,6 @@ if os.getenv("DISPLAY") == nil then
 else
         icons_cond = true
 end
-local fd_exclude = "--exclude={Trash,.git,.cache,state/undo,target}"
 
 return {
         "https://github.com/ibhagwan/fzf-lua",
@@ -75,7 +74,6 @@ return {
                                                 "--hidden",
                                                 "--follow",
                                                 "--no-ignore",
-                                                fd_exclude,
                                         }, " "),
                                 })
                         end,
