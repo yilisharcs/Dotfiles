@@ -103,24 +103,19 @@ return {
                         "MyMiniGit",
                         { clear = true }
                 )
-                vim.keymap.set(
-                        "n",
-                        "<leader>gd",
-                        "<CMD>difft<CR><CMD>vert Git show HEAD:%<CR><C-w>W",
-                        { desc = "Diff current file" }
-                )
+                vim.keymap.set("n", "<leader>gd", function()
+                        vim.cmd.difft()
+                        -- stylua: ignore
+                        vim.cmd(("vert Git show HEAD~%d:%%"):format(vim.v.count))
+                        vim.cmd.wincmd("w")
+                end, { desc = "Diff current file" })
                 vim.api.nvim_create_autocmd({ "FileType" }, {
                         desc = "MiniGit diff buffers",
                         group = group,
                         callback = function()
                                 local name = vim.api.nvim_buf_get_name(0)
-                                if
-                                        not name:match(
-                                                "^minigit://.*/git show HEAD:"
-                                        )
-                                then
-                                        return
-                                end
+                                -- stylua: ignore
+                                if not name:match( "^minigit://.*/git show HEAD~") then return end
                                 local basename = vim.fs.basename(name)
                                 vim.api.nvim_buf_set_name(
                                         0,
