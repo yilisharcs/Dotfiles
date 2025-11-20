@@ -11,6 +11,7 @@ return {
 
                 require("utils.cabbrev")({
                         ["Compile"] = { "c", "C" },
+                        ["Compile fd --strip-cwd-prefix=never"] = { "find" },
                         ["Compile git"] = { "git" },
                         ["Compile grep"] = { "grep" },
                         ["Compile make"] = { "make" },
