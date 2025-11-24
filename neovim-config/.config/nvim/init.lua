@@ -76,7 +76,7 @@ vim.o.statuscolumn = "%C%l%s"
 vim.opt.isfname:append({ "@-@" })
 
 vim.o.pumheight = math.floor(vim.o.lines * 0.25 + 0.5)
-vim.o.completeopt = "noinsert,menuone,popup,fuzzy"
+vim.o.completeopt = "noselect,menuone,popup,fuzzy"
 
 -- Ctrl-a/x doesn't recognize signed numbers
 vim.opt.nrformats:append({ "unsigned" })
