@@ -60,7 +60,12 @@ return {
                                 vim.treesitter.start()
                                 vim.bo.indentexpr =
                                         "v:lua.require'nvim-treesitter'.indentexpr()"
-                                if vim.bo.filetype == "markdown" then
+                                if
+                                        vim.tbl_contains({
+                                                "markdown",
+                                                "rust",
+                                        }, vim.bo.filetype)
+                                then
                                         vim.bo.syntax = "ON"
                                 end
                         end,
