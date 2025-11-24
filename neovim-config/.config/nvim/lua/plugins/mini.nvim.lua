@@ -211,7 +211,7 @@ return {
                                 },
                                 todo_rust_macro = {
                                         pattern = "todo!%([^%)]*%)",
-                                        group = "MiniHipatternsFixme",
+                                        group = "MiniHipatternsTodo",
                                 },
                         },
                 })
