@@ -2,8 +2,14 @@ vim.cmd.highlight("clear")
 vim.g.colors_name = "tricky"
 
 --stylua: ignore start
+local main_bg    = "#0a001a"
+local main_bg_nc = "#060010"
+local black_gui  = "#030008"
+local wine_light = "#2a0048"
+local wine_dark  = "#1b002f"
+
 vim.g.terminal_ansi_colors = {
-        "#060010", "#d7005f", "#00af5f", "#ffaf00", "#5f5fff", "#d700ff", "#00afff", "#d7d5db",
+        black_gui, "#d7005f", "#00af5f", "#ffaf00", "#5f5fff", "#d700ff", "#00afff", "#d7d5db",
         "#878092", "#ff5faf", "#00d700", "#ffd700", "#8787ff", "#ff87ff", "#00ffff", "#ffffff"
 }
 for k, v in ipairs(vim.g.terminal_ansi_colors) do
@@ -21,25 +27,25 @@ local function hi(name, val)
 end
 
 -- General
-hi("Normal",       { fg = "#cdd6f4", bg = "#0e0024",              ctermfg = "white",    ctermbg = "black" })
-hi("NormalNC",     {                 bg = "#090019" })
+hi("Normal",       { fg = "#cdd6f4", bg = main_bg,              ctermfg = "white",    ctermbg = "black" })
+hi("NormalNC",     {                 bg = main_bg_nc })
 hi("NonText",      { fg = "#878092",                              ctermfg = "darkgray", ctermbg = "black" })
 hi("Conceal",      {})
-hi("StatusLine",   { fg = "#edf6f4", bg = "#1e0015", bold = true, ctermfg = "white",    ctermbg = "black", cterm = { reverse = true } })
-hi("StatusLineNC", { fg = "#0e0024", bg = "#afafff", bold = true, ctermfg = "darkgray", ctermbg = "gray",  cterm = { reverse = true } })
+hi("StatusLine",   { fg = "#edf6f4", bg = wine_dark, bold = true, ctermfg = "white",    ctermbg = "black", cterm = { reverse = true } })
+hi("StatusLineNC", { fg = main_bg,   bg = "#afafff", bold = true, ctermfg = "darkgray", ctermbg = "gray",  cterm = { reverse = true } })
 hi("NormalFloat",  { link = "Normal" })
 hi("FloatBorder",  { link = "Normal" })
-hi("ExTUIArea",    { fg = "#87ff00", bg = "#0e0024" })
+hi("ExTUIArea",    { fg = "#87ff00", bg = main_bg })
 
 -- Color lines
-hi("ColorColumn",    {                 bg = "#510039",                              ctermfg = "white",      ctermbg = "darkred" })
+hi("ColorColumn",    {                 bg = wine_light,                             ctermfg = "white",      ctermbg = "darkred" })
 hi("CursorLine",     {                                                                                                           cterm = { underline = true } })
 hi("CursorLineFold", { fg = "#edf6f4" })
 hi("CursorColumn",   {                 bg = "#362b49",                              ctermbg = "blue" })
 hi("FoldColumn",     { fg = "#00afff",                                              ctermfg = "darkcyan" })
 hi("Folded",         { fg = "#00afff", bg = "#1e1829", bold = true,                 ctermfg = "darkyellow", ctermbg = "black",   cterm = { reverse = true } })
 hi("LineNr",         { fg = "#afafff",                                              ctermfg = "blue" })
-hi("QuickFixLine",   { fg = "#ffafff", bg = "#0e0024", bold = true, reverse = true, ctermfg = "magenta",    ctermbg = "black",   cterm = { reverse = true } })
+hi("QuickFixLine",   { fg = "#ffafff", bg = main_bg, bold = true, reverse = true,   ctermfg = "magenta",    ctermbg = "black",   cterm = { reverse = true } })
 hi("SignColumn",     { fg = "#00afff",                                                                      ctermfg = "darkcyan" })
 hi("VertSplit",      { fg = "#afafff",                                              ctermfg = "blue" })
 
@@ -49,12 +55,12 @@ hi("CommentShow",  { fg = "#afafff", ctermfg = "darkgray" })
 hi("Comment",      { link = "CommentShow" })
 
 -- Completion menu
-hi("Pmenu",         {                 bg = "#060010", ctermfg = "black",    ctermbg = "white" })
-hi("PmenuSel",      { fg = "#0e0024", bg = "#afafff", ctermfg = "white",    ctermbg = "blue" })
+hi("Pmenu",         {                 bg = black_gui,     ctermfg = "black",    ctermbg = "white" })
+hi("PmenuSel",      { fg = main_bg,   bg = "#afafff", ctermfg = "white",    ctermbg = "blue" })
 hi("PmenuThumb",    { fg = "#878092", bg = "#afafff", ctermfg = "darkgray", ctermbg = "darkgray" })
-hi("PmenuExtra",    { fg = "#878092", bg = "#060010", ctermfg = "darkgray", ctermbg = "white" })
-hi("PmenuKind",     { fg = "#ffaf00", bg = "#060010", ctermfg = "darkgray", ctermbg = "white" })
-hi("PmenuMatch",    { fg = "#ffafff", bg = "#0e0024", ctermfg = "black",    ctermbg = "white",   cterm = { bold = true } })
+hi("PmenuExtra",    { fg = "#878092", bg = black_gui,     ctermfg = "darkgray", ctermbg = "white" })
+hi("PmenuKind",     { fg = "#ffaf00", bg = black_gui,     ctermfg = "darkgray", ctermbg = "white" })
+hi("PmenuMatch",    { fg = "#ffafff", bg = main_bg,   ctermfg = "black",    ctermbg = "white",   cterm = { bold = true } })
 hi("PmenuMatchSel", { fg = "#d7005f", bg = "#afafff", ctermfg = "white",    ctermbg = "blue" ,   cterm = { bold = true } })
 hi("PmenuSbar",     { link = "Pmenu" })
 hi("PmenuExtraSel", { link = "PmenuSel" })
@@ -72,7 +78,7 @@ hi("DiffDelete", { fg = "#ff5faf", bg = "#362b49", bold = true, ctermfg = "darkm
 -- Command-line
 hi("Error",      { fg = "#d70000", bg = "#ffffff", reverse = true, ctermfg = "red",   ctermbg = "white", cterm = { reverse = true } })
 hi("ErrorMsg",   { fg = "#ffffff", bg = "#d70000",                 ctermfg = "white", ctermbg = "red" })
-hi("ModeMsg",    { fg = "#87ff00", bg = "#0e0024",                 ctermfg = "black", ctermbg = "green" })
+hi("ModeMsg",    { fg = "#87ff00", bg = main_bg,                   ctermfg = "black", ctermbg = "green" })
 hi("MoreMsg",    { fg = "#87ffff",                                 ctermfg = "cyan" })
 hi("WarningMsg", { fg = "#ffafff",                                 ctermfg = "magenta" })
 hi("MsgArea",    { link = "Special" })
@@ -121,11 +127,11 @@ hi("@markup.heading.gitcommit",          { link = "gitcommitSummary" })
 hi("@markup.raw.markdown_inline",        { fg = "#87ff00", bg = "#1e1829", ctermfg = "green" })
 
 -- Miscellaneous
-hi("IncSearch",         { fg = "#ffaf00", bg = "#0e0024",              reverse = true, ctermfg = "darkyellow", ctermbg = "black",   cterm = { reverse = true } })
-hi("Search",            { fg = "#87ffff", bg = "#0e0024",              reverse = true,                                              cterm = { reverse = true } })
-hi("WildMenu",          { fg = "#0e0024", bg = "#afafff",                              ctermfg = "white",      ctermbg = "blue" })
-hi("Visual",            { fg = "#0e0024", bg = "#5fd7ff",                              ctermfg = "black",      ctermbg = "darkcyan" })
-hi("VisualNOS",         { fg = "#0e0024", bg = "#ffffff",                              ctermfg = "black",      ctermbg = "white" })
+hi("IncSearch",         { fg = "#ffaf00", bg = main_bg,                reverse = true, ctermfg = "darkyellow", ctermbg = "black",   cterm = { reverse = true } })
+hi("Search",            { fg = "#87ffff", bg = main_bg,                reverse = true,                                              cterm = { reverse = true } })
+hi("WildMenu",          { fg = main_bg,   bg = "#afafff",                              ctermfg = "white",      ctermbg = "blue" })
+hi("Visual",            { fg = main_bg,   bg = "#5fd7ff",                              ctermfg = "black",      ctermbg = "darkcyan" })
+hi("VisualNOS",         { fg = main_bg,   bg = "#ffffff",                              ctermfg = "black",      ctermbg = "white" })
 hi("Directory",         { fg = "#87ffff",                                              ctermfg = "cyan" })
 hi("Title",             {})
 hi("LspInlayHint",      { fg = "#edf6f4", bg = "#1e0015", bold = true })
@@ -207,7 +213,7 @@ hi("NeogitPopupSwitchEnabled",  { link = "Special" })
 -- }}}
 
 -- vim-sneak {{{
-hi("SneakShow",  { fg = "#060010", bg = "#87ff00", bold = true })
+hi("SneakShow",  { fg = black_gui, bg = "#87ff00", bold = true })
 hi("Sneak",      { link = "SneakShow" })
 -- }}}
 
