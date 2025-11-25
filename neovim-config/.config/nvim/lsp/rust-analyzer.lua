@@ -1,20 +1,25 @@
 return {
-        cmd = { "lspmux" },
+        -- cmd = { "lspmux" },
+        cmd = { "rust-analyzer" },
         filetypes = { "rust" },
         root_markers = {
                 "Cargo.toml",
                 "Cargo.lock",
         },
         settings = {
-                ["rust_analyzer"] = {
+                ["rust-analyzer"] = {
                         cargo = { allFeatures = true },
                         check = {
-                                overrideCommand = {
-                                        "cargo",
-                                        "clippy",
-                                        "--fix",
-                                        "--allow-dirty",
-                                        "--message-format=json-diagnostic-rendered-ansi",
+                                command = "clippy",
+                                ignore = {
+                                        "dead_code",
+                                        "unused_variables",
+                                        "unused_mut",
+                                },
+                        },
+                        diagnostics = {
+                                disabled = {
+                                        "unlinked-file",
                                 },
                         },
                 },

@@ -1,7 +1,7 @@
 vim.lsp.enable({
         "luals",
         "nuls", -- External
-        -- "rust-analyzer", -- External
+        "rust-analyzer", -- External
         "vimls",
 })
 
