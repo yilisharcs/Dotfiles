@@ -2,6 +2,13 @@ return {
         "https://github.com/akinsho/toggleterm.nvim",
         version = "*",
         event = "VeryLazy",
+        keys = {
+                {
+                        "<leader><C-g>",
+                        "<CMD>ToggleTerm direction=vertical<CR>",
+                        desc = "Toggleterm plain vertical",
+                },
+        },
         opts = {
                 open_mapping = "<C-g>",
                 shell = vim.fn.executable("nu") == 1 and vim.fn.exepath("nu")
