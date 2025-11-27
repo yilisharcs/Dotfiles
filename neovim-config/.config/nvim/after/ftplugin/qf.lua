@@ -5,11 +5,7 @@ vim.wo[0][0].statuscolumn = ""
 vim.wo[0][0].winhighlight = "Normal:NormalNC"
 vim.wo[0][0].wrap = false
 
-vim.fn.matchadd("DiagnosticError", "|E|")
-vim.fn.matchadd("DiagnosticWarn", "|W|")
-vim.fn.matchadd("DiagnosticInfo", "|I|")
-vim.fn.matchadd("DiagnosticHint", "|H|")
-vim.fn.matchadd("DiagnosticError", "")
-vim.fn.matchadd("DiagnosticWarn", "")
-vim.fn.matchadd("DiagnosticInfo", "")
-vim.fn.matchadd("DiagnosticHint", "󰞏")
+vim.fn.matchadd("DiagnosticError", [[^\zsE\ze|]])
+vim.fn.matchadd("DiagnosticWarn", [[^\zsW\ze|]])
+vim.fn.matchadd("DiagnosticInfo", [[^\zs\(I\|N\)\ze|]])
+vim.fn.matchadd("DiagnosticHint", [[^\zsH\ze|]])
