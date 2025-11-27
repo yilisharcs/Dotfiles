@@ -51,15 +51,6 @@ function _G.qfx(info)
                         else
                                 validFmt = "%s %s | %5d:%-3d | %s"
                         end
-                        if qtype == "E|" then
-                                qtype = ""
-                        elseif qtype == "W|" then
-                                qtype = ""
-                        elseif qtype == "I|" then
-                                qtype = ""
-                        elseif qtype == "N|" or qtype == "H|" then
-                                qtype = "󰌶"
-                        end
                         str = validFmt:format(qtype, fname, lnum, col, e.text)
                 else
                         str = e.text
