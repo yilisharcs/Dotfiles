@@ -7,6 +7,33 @@ vim.lsp.enable({
 
 vim.lsp.log.set_level("off")
 
+-- HACK: The docs floating window does not respect `vim.o.winborder`. Does not respect
+-- `vim.lsp.handlers["textDocument/signatureHelp"]` either. We must force it to obey.
+vim.api.nvim_create_autocmd("CompleteChanged", {
+        callback = function()
+                vim.schedule(function()
+                        local winid = vim.fn.complete_info().preview_winid
+                        if winid and vim.api.nvim_win_is_valid(winid) then
+                                vim.api.nvim_win_set_config(
+                                        winid,
+                                        { border = "rounded" }
+                                )
+                                -- We like treesitter highlighting
+                                pcall(
+                                        vim.api.nvim_set_option_value,
+                                        "filetype",
+                                        "markdown",
+                                        {
+                                                win = vim.api.nvim_win_get_buf(
+                                                        winid
+                                                ),
+                                        }
+                                )
+                        end
+                end)
+        end,
+})
+
 vim.diagnostic.config({
         virtual_text = true,
         float = { border = "rounded" },
