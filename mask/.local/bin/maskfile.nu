@@ -5,14 +5,6 @@ $env.config.display_errors.termination_signal = false
 # Search up the directory tree for
 # a maskfile.md and execute it
 def --wrapped main [...rest] {
-        let cmd = (
-                if ($rest | is-empty) {
-                        ["_default"]
-                } else {
-                        $rest
-                }
-        )
-
         mut path = pwd
         while not (
                 [$path "maskfile.md"]
@@ -28,8 +20,8 @@ def --wrapped main [...rest] {
         }
 
         if ($path == "/") {
-                mask-bin ...$cmd
+                mask ...$rest
         } else {
-                mask-bin --maskfile ([$path "maskfile.md"] | path join) ...$cmd
+                mask --maskfile ([$path "maskfile.md"] | path join) ...$rest
         }
 }
