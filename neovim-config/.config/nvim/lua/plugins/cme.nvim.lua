@@ -16,6 +16,7 @@ return {
                         ["Compile grep"] = { "grep" },
                         ["Compile make"] = { "make" },
                         ["Compile task"] = { "task" },
+                        ["Compile cargo"] = { "cargo" },
                 })
         end,
 }
