@@ -26,8 +26,9 @@ vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter", "WinEnter" }, {
         desc = "Enter terminal on insert mode",
         group = group,
         pattern = "term://*",
-        callback = function(data)
-                if not data.match:match("cme%-nvim%.sh") then
+        callback = function()
+                local buf = vim.api.nvim_buf_get_name(0)
+                if not buf:match("compilation://*") then
                         vim.cmd.startinsert()
                 end
         end,

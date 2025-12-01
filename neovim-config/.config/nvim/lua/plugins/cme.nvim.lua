@@ -10,7 +10,7 @@ return {
                 vim.keymap.set("n", "<leader><S-c>", "<CMD>Compile<CR>")
 
                 require("utils.cabbrev")({
-                        ["Compile"] = { "c", "C" },
+                        ["Compile"] = { "c", "C", "compile" },
                         ["Compile fd --strip-cwd-prefix=never"] = { "find" },
                         ["Compile git"] = { "git" },
                         ["Compile grep"] = { "grep" },
