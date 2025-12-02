@@ -1,4 +1,4 @@
-vim.keymap.set({ "n", "x" }, "<SPACE>", "<Nop>", { silent = true })
+vim.keymap.set({ "n", "x" }, "<Space>", "<Nop>", { silent = true })
 
 vim.keymap.set("n", "<leader>P", ":= P()<LEFT>", { desc = "Printf util" })
 function P(...)
@@ -333,30 +333,30 @@ vim.keymap.set(
 vim.keymap.set("t", "<C-4><C-n>", [[<C-\><C-n>]])
 
 -- Tmux-like workflow
-vim.keymap.set("n", "<C-SPACE><C-^>", "<CMD>wincmd g<TAB><CR>")
+vim.keymap.set("n", "<C-Space><C-^>", "<CMD>wincmd g<TAB><CR>")
 -- C-^ registers as <TAB> for reasons unknown
-vim.keymap.set("t", "<C-SPACE><C-6>", "<CMD>wincmd g<TAB><CR>")
-vim.keymap.set("t", "<C-SPACE><C-^>", "<CMD>wincmd g<TAB><CR>")
-vim.keymap.set("n", "<C-SPACE><LEFT>", "<CMD>-tabmove<CR>")
-vim.keymap.set("n", "<C-SPACE><RIGHT>", "<CMD>+tabmove<CR>")
+vim.keymap.set("t", "<C-Space><C-6>", "<CMD>wincmd g<TAB><CR>")
+vim.keymap.set("t", "<C-Space><C-^>", "<CMD>wincmd g<TAB><CR>")
+vim.keymap.set("n", "<C-Space><LEFT>", "<CMD>-tabmove<CR>")
+vim.keymap.set("n", "<C-Space><RIGHT>", "<CMD>+tabmove<CR>")
 vim.keymap.set(
         { "n", "t" },
-        "<C-SPACE>t",
+        "<C-Space>t",
         "<CMD>wincmd T<CR>",
         { desc = "Open buffer in new tab" }
 )
 
 vim.keymap.set(
         { "n", "x", "i", "c", "t" },
-        "<C-SPACE>c",
+        "<C-Space>c",
         "<CMD>tabnew | term<CR>"
 )
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-SPACE>x", "<CMD>tabclose<CR>")
+vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-Space>x", "<CMD>tabclose<CR>")
 
 for i = 1, 9 do
         vim.keymap.set(
                 { "n", "x", "i", "c", "t" },
-                ("<C-SPACE>%d"):format(i),
+                ("<C-Space>%d"):format(i),
                 ("<CMD>%dtabnext<CR>"):format(i)
         )
 end

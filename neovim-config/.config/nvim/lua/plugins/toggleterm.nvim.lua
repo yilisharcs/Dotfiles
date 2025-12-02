@@ -4,7 +4,7 @@ return {
         event = "VeryLazy",
         keys = {
                 {
-                        "<leader><C-g>",
+                        "<C-Space>g",
                         "<CMD>ToggleTerm direction=vertical<CR>",
                         desc = "Toggleterm plain vertical",
                 },
@@ -25,40 +25,4 @@ return {
                         end
                 end,
         },
-        config = function(_, opts)
-                require("toggleterm").setup(opts)
-
-                local Terminal = require("toggleterm.terminal").Terminal
-
-                local gemini = Terminal:new({
-                        cmd = "tmux new -A -s gemini 'gemini'",
-                        direction = "float",
-                        display_name = "GEMINI",
-                        count = 2,
-                })
-                vim.keymap.set("n", "<leader><F2>", function()
-                        gemini:toggle()
-                end, { desc = "Toggleterm Gemini" })
-
-                local gh_dash = Terminal:new({
-                        cmd = "gh dash",
-                        dir = "~",
-                        direction = "float",
-                        display_name = "GITHUB DASHBOARD",
-                        count = 3,
-                })
-                vim.keymap.set("n", "<leader><F3>", function()
-                        gh_dash:toggle()
-                end, { desc = "Toggleterm Github Dashboard" })
-
-                local btop = Terminal:new({
-                        cmd = "btop",
-                        direction = "float",
-                        display_name = "RESOURCE MONITOR",
-                        count = 4,
-                })
-                vim.keymap.set("n", "<leader><F4>", function()
-                        btop:toggle()
-                end, { desc = "Toggleterm Resource Monitor" })
-        end,
 }
