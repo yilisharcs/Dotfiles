@@ -108,3 +108,22 @@ vim.api.nvim_create_autocmd({ "TermClose" }, {
         pattern = "*:/usr/bin/nu",
         command = "silent! execute 'bdelete! '.expand('<abuf>')",
 })
+
+vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+        desc = "Suppress ModeMsg in any visual mode so *v_g_CTRL-G* is visible",
+        group = group,
+        callback = function(opts)
+                local is_visual = vim.iter({
+                        "*:v",
+                        "*:vs",
+                        "*:V",
+                        "*:Vs",
+                        "*:",
+                        "*:s",
+                }):any(function(pattern)
+                        return vim.endswith(opts.match, pattern:sub(2))
+                end)
+
+                vim.o.showmode = not is_visual
+        end,
+})
