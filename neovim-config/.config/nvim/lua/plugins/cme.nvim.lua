@@ -1,9 +1,46 @@
+local efm = {}
+
+efm.rust = table.concat({
+        "%-G",
+        "%-Gerror: aborting %.%#",
+        "%-Gerror: Could not compile %.%#",
+        "%Eerror: %m",
+        "%Eerror[E%n]: %m",
+        "%Wwarning: %m",
+        "%Inote: %m",
+        "%C %#--> %f:%l:%c",
+        "%E  left:%m",
+        "%C right:%m %f:%l:%c",
+        "%Z",
+        "%f:%l:%c: %t%*[^:]: %m",
+        "%f:%l:%c: %*\\d:%*\\d %t%*[^:]: %m",
+        "%-G%f:%l %s",
+        "%-G%*[ ]^",
+        "%-G%*[ ]^%*[~]",
+        "%-G%*[ ]...",
+        -- "%-G%\\s%#Downloading%.%#",
+        -- "%-G%\\s%#Checking%.%#",
+        -- "%-G%\\s%#Compiling%.%#",
+        -- "%-G%\\s%#Finished%.%#",
+        "%-G%\\s%#error: Could not compile %.%#",
+        "%-G%\\s%#To learn more\\",
+        "%.%#",
+        "%-G%\\s%#For more information about this error\\",
+        "%.%#",
+        "%-Gnote: Run with `RUST_BACKTRACE=%.%#",
+        "%.%#panicked at \\'%m\\'\\",
+        "%f:%l:%c",
+}, ",")
+
 return {
         "https://github.com/yilisharcs/cme.nvim",
         dev = true,
         init = function()
                 vim.g.cme = {
                         shell = "nu",
+                        efm_rules = {
+                                [efm.rust] = { "cargo", "mask" },
+                        },
                 }
 
                 vim.keymap.set("n", "<leader>c", ":Compile ")
@@ -20,5 +57,21 @@ return {
                         ["Compile task"] = { "task" },
                         ["Compile cargo"] = { "cargo" },
                 })
+
+                vim.keymap.set("n", "<leader>w", function()
+                        package.loaded["cme"] = nil
+                        package.loaded["cme.efm"] = nil
+                        print()
+                end)
+
+                vim.keymap.set(
+                        "n",
+                        "<leader>e",
+                        -- "<CMD>Compile ^find<CR>"
+                        -- "<CMD>Compile fd . /usr<CR>"
+                        -- "<CMD>Compile rm -rf target/; cargo build<CR>"
+                        -- "<CMD>Recompile echo 'hello world'<CR>"
+                        "<CMD>Compile grep cme<CR>"
+                )
         end,
 }
