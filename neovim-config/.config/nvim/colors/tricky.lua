@@ -179,9 +179,6 @@ hi("Typedef",           { link = "Type" })
 hi("Terminal",          { link = "Normal" })
 hi("MessageWindow",     { link = "Pmenu" })
 hi("PopupNotification", { link = "Todo" })
-hi("qfLineNr",          { link = "String" })
-hi("qfText",            { link = "Directory" })
-hi("qfFileName",        { link = "Normal" })
 
 -- cme.nvim {{{
 hi("CmePipe1", { fg = "#090019", ctermfg = "black" })
