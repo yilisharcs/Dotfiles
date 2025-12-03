@@ -92,10 +92,9 @@ return {
                                         end,
                                 }
                                 local dirs = {
-                                        "~/Projects/",
+                                        "~/Projects/github.com/yilisharcs/",
                                         "~/.config/nvim/pack/dev/opt/",
-                                        -- "~/.local/share/nvim/lazy/",
-                                        "~/.local/share/nvim/site/pack/core/opt/",
+                                        "~/.local/share/nvim/lazy/",
                                         "~/.local/share/bob/nightly/share/nvim/runtime/",
                                         "~/",
                                 }
