@@ -25,6 +25,7 @@ return {
                         "gitignore",
                         "html",
                         "ini",
+                        "javascript",
                         "json",
                         "lua",
                         "markdown",
