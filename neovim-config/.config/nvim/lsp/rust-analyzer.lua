@@ -10,7 +10,6 @@ return {
                 ["rust-analyzer"] = {
                         checkOnSave = false,
                         cargo = { allFeatures = true },
-                        -- NOTE: I'm using bacon to populate the quickfix list {{{
                         check = {
                                 command = "clippy",
                                 ignore = {
@@ -24,7 +23,6 @@ return {
                                         "unlinked-file",
                                 },
                         },
-                        -- }}}
                 },
         },
 }
