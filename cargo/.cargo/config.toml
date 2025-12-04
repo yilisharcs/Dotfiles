@@ -1,3 +1,6 @@
+[unstable]
+rustc-unicode = true
+
 [build]
 rustc-wrapper = "sccache"
 
