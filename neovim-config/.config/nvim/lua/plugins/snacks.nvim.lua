@@ -110,6 +110,7 @@ return {
                         win = {
                                 height = 24,
                         },
+                        ft = "lua",
                 },
                 styles = {
                         notification_history = {
