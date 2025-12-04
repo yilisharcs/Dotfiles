@@ -5,6 +5,9 @@ vim.wo[0][0].statuscolumn = ""
 vim.wo[0][0].winhighlight = "Normal:NormalNC"
 vim.wo[0][0].wrap = false
 
+local middle = math.floor(vim.o.lines * 0.5)
+vim.api.nvim_win_set_height(0, middle)
+
 vim.fn.matchadd("DiagnosticError", [[^\zsE\ze|]])
 vim.fn.matchadd("DiagnosticWarn", [[^\zsW\ze|]])
 vim.fn.matchadd("DiagnosticInfo", [[^\zs\(I\|N\)\ze|]])
