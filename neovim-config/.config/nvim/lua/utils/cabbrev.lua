@@ -3,8 +3,7 @@ local function make_cmdline_abbreviations(tbl)
                 for _, lhs in ipairs(variants) do
                         vim.keymap.set("ca", lhs, function()
                                 if vim.fn.getcmdtype() == ":" then
-                                        local cmd = vim.fn.getcmdline()
-                                        if cmd:match("^" .. lhs) then
+                                        if vim.fn.getcmdpos() == (#lhs + 1) then
                                                 return key
                                         end
                                 end
