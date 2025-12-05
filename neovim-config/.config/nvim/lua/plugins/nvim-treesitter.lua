@@ -52,15 +52,11 @@ return {
                 require("nvim-treesitter").install(filetypes)
                 vim.api.nvim_create_autocmd({ "FileType" }, {
                         desc = "Enable nvim-treesitter features",
-                        group = vim.api.nvim_create_augroup(
-                                "PlugTreesitter",
-                                { clear = true }
-                        ),
+                        group = vim.api.nvim_create_augroup("PlugTreesitter", { clear = true }),
                         pattern = filetypes,
                         callback = function()
                                 vim.treesitter.start()
-                                vim.bo.indentexpr =
-                                        "v:lua.require'nvim-treesitter'.indentexpr()"
+                                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                                 if
                                         vim.tbl_contains({
                                                 "markdown",

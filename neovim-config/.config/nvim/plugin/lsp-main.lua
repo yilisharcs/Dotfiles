@@ -14,21 +14,11 @@ vim.api.nvim_create_autocmd("CompleteChanged", {
                 vim.schedule(function()
                         local winid = vim.fn.complete_info().preview_winid
                         if winid and vim.api.nvim_win_is_valid(winid) then
-                                vim.api.nvim_win_set_config(
-                                        winid,
-                                        { border = "rounded" }
-                                )
+                                vim.api.nvim_win_set_config(winid, { border = "rounded" })
                                 -- We like treesitter highlighting
-                                pcall(
-                                        vim.api.nvim_set_option_value,
-                                        "filetype",
-                                        "markdown",
-                                        {
-                                                win = vim.api.nvim_win_get_buf(
-                                                        winid
-                                                ),
-                                        }
-                                )
+                                pcall(vim.api.nvim_set_option_value, "filetype", "markdown", {
+                                        win = vim.api.nvim_win_get_buf(winid),
+                                })
                         end
                 end)
         end,
@@ -70,15 +60,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
                                                 bufnr = args.buf,
                                         })
                                 then
-                                        vim.lsp.inlay_hint.enable(
-                                                false,
-                                                { bufnr = args.buf }
-                                        )
+                                        vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
                                 else
-                                        vim.lsp.inlay_hint.enable(
-                                                true,
-                                                { bufnr = args.buf }
-                                        )
+                                        vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
                                 end
                         end)
                 end

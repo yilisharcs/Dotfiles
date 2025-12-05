@@ -1,19 +1,11 @@
 if vim.g.neovide then
         vim.api.nvim_create_autocmd({ "UIEnter" }, {
                 desc = "Set default cwd to Dotfiles if opened with no file arguments",
-                group = vim.api.nvim_create_augroup(
-                        "Neovide_Default_Dir",
-                        { clear = true }
-                ),
+                group = vim.api.nvim_create_augroup("Neovide_Default_Dir", { clear = true }),
                 callback = function()
-                        if
-                                string.match(vim.v.argv[#vim.v.argv], "^%-+")
-                                ~= nil
-                        then
+                        if string.match(vim.v.argv[#vim.v.argv], "^%-+") ~= nil then
                                 vim.cmd.cd("~/Dotfiles")
-                                if vim.g.loaded_quarrel == 1 then
-                                        require("quarrel").argread()
-                                end
+                                if vim.g.loaded_quarrel == 1 then require("quarrel").argread() end
                         end
                 end,
         })
@@ -66,16 +58,6 @@ if vim.g.neovide then
                 { desc = "Toggle fullscreen" }
         )
 
-        vim.keymap.set(
-                { "n", "t" },
-                "<C-S-n>",
-                "<CMD>tabnext<CR>",
-                { desc = "Go to next tab" }
-        )
-        vim.keymap.set(
-                { "n", "t" },
-                "<C-S-p>",
-                "<CMD>tabprev<CR>",
-                { desc = "Go to prev tab" }
-        )
+        vim.keymap.set({ "n", "t" }, "<C-S-n>", "<CMD>tabnext<CR>", { desc = "Go to next tab" })
+        vim.keymap.set({ "n", "t" }, "<C-S-p>", "<CMD>tabprev<CR>", { desc = "Go to prev tab" })
 end

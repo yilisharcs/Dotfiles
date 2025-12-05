@@ -7,9 +7,4 @@ vim.keymap.set(
         "<CMD>write | source %<CR>",
         { desc = "Source config file" }
 )
-vim.keymap.set(
-        "n",
-        "<leader><leader>c",
-        ":.lua<CR>",
-        { desc = "Source config line" }
-)
+vim.keymap.set("n", "<leader><leader>c", ":.lua<CR>", { desc = "Source config line" })

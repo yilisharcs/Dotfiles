@@ -11,8 +11,7 @@ return {
         },
         opts = {
                 open_mapping = "<C-g>",
-                shell = vim.fn.executable("nu") == 1 and vim.fn.exepath("nu")
-                        or vim.o.shell,
+                shell = vim.fn.executable("nu") == 1 and vim.fn.exepath("nu") or vim.o.shell,
                 float_opts = {
                         border = "rounded",
                         height = math.floor(vim.o.lines * 0.8),

@@ -26,20 +26,15 @@ return {
                         once = true,
                         callback = function()
                                 if package.loaded["which-key"] ~= nil then
-                                        vim.api.nvim_create_autocmd(
-                                                { "FileType" },
-                                                {
-                                                        pattern = {
-                                                                "NeogitPopup",
-                                                                "NeogitStatus",
-                                                        },
-                                                        callback = function()
-                                                                require(
-                                                                        "which-key.buf"
-                                                                ).clear()
-                                                        end,
-                                                }
-                                        )
+                                        vim.api.nvim_create_autocmd({ "FileType" }, {
+                                                pattern = {
+                                                        "NeogitPopup",
+                                                        "NeogitStatus",
+                                                },
+                                                callback = function()
+                                                        require("which-key.buf").clear()
+                                                end,
+                                        })
                                 end
                         end,
                 })
