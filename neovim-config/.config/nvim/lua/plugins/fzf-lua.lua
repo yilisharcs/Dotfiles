@@ -104,7 +104,6 @@ return {
                                                 "--hidden",
                                                 "--follow",
                                                 "--type d",
-                                                "--no-ignore",
                                                 "--exact-depth 1",
                                                 ". ",
                                         }, " ")
@@ -166,7 +165,6 @@ return {
                                 "--no-ignore",
                                 "--type f",
                                 "--type l",
-                                fd_exclude,
                         }, " "),
                 },
                 grep = {
