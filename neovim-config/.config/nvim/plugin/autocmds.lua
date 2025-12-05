@@ -28,9 +28,7 @@ vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter", "WinEnter" }, {
         pattern = "term://*",
         callback = function()
                 local buf = vim.api.nvim_buf_get_name(0)
-                if not buf:match("compilation://*") then
-                        vim.cmd.startinsert()
-                end
+                if not buf:match("compilation://*") then vim.cmd.startinsert() end
         end,
 })
 
@@ -39,12 +37,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         group = group,
         callback = function()
                 vim.opt.formatoptions:append("r")
-                if
-                        not vim.tbl_contains(
-                                { "markdown", "text" },
-                                vim.bo.filetype
-                        )
-                then
+                if not vim.tbl_contains({ "markdown", "text" }, vim.bo.filetype) then
                         vim.opt.formatoptions:remove("o")
                 end
         end,
@@ -60,11 +53,8 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "OptionSet" }, {
                                 "Makefile",
                         }, vim.bo.filetype)
                 then
-                        local append = "leadmultispace:│"
-                                .. string.rep(" ", vim.o.shiftwidth - 1)
-                        vim.wo[0][0].listchars = vim.go.listchars
-                                .. ","
-                                .. append
+                        local append = "leadmultispace:│" .. string.rep(" ", vim.o.shiftwidth - 1)
+                        vim.wo[0][0].listchars = vim.go.listchars .. "," .. append
                 end
         end,
 })

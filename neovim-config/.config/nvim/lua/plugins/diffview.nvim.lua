@@ -29,9 +29,7 @@ return {
                         file_panel = {
                                 win_config = {
                                         position = "right",
-                                        width = math.floor(
-                                                vim.o.columns * 0.33 + 0.5
-                                        ),
+                                        width = math.floor(vim.o.columns * 0.33 + 0.5),
                                 },
                         },
                         file_history_panel = {

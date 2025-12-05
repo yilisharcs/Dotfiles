@@ -30,33 +30,24 @@ return {
                         require("mini.ai").setup({
                                 custom_textobjects = {
                                         -- FIXME: doesn't work
-                                        a = require("mini.ai").gen_spec.treesitter(
-                                                {
-                                                        a = "@parameter.outer",
-                                                        i = "@parameter.inner",
+                                        a = require("mini.ai").gen_spec.treesitter({
+                                                a = "@parameter.outer",
+                                                i = "@parameter.inner",
+                                        }, {}),
+                                        f = require("mini.ai").gen_spec.treesitter({
+                                                a = "@function.outer",
+                                                i = "@function.inner",
+                                        }, {}),
+                                        g = require("mini.ai").gen_spec.treesitter({
+                                                a = {
+                                                        "@conditional.outer",
+                                                        "@loop.outer",
                                                 },
-                                                {}
-                                        ),
-                                        f = require("mini.ai").gen_spec.treesitter(
-                                                {
-                                                        a = "@function.outer",
-                                                        i = "@function.inner",
+                                                i = {
+                                                        "@conditional.inner",
+                                                        "@loop.inner",
                                                 },
-                                                {}
-                                        ),
-                                        g = require("mini.ai").gen_spec.treesitter(
-                                                {
-                                                        a = {
-                                                                "@conditional.outer",
-                                                                "@loop.outer",
-                                                        },
-                                                        i = {
-                                                                "@conditional.inner",
-                                                                "@loop.inner",
-                                                        },
-                                                },
-                                                {}
-                                        ),
+                                        }, {}),
                                         h = require("mini.ai").gen_spec.pair(
                                                 "— ",
                                                 " —",
@@ -99,10 +90,7 @@ return {
                 -- mini.git {{{
                 require("mini.git").setup()
 
-                local group = vim.api.nvim_create_augroup(
-                        "MyMiniGit",
-                        { clear = true }
-                )
+                local group = vim.api.nvim_create_augroup("MyMiniGit", { clear = true })
                 vim.keymap.set("n", "<leader>gd", function()
                         vim.cmd.difft()
                         -- stylua: ignore
@@ -117,10 +105,7 @@ return {
                                 -- stylua: ignore
                                 if not name:match( "^minigit://.*/git show HEAD~") then return end
                                 local basename = vim.fs.basename(name)
-                                vim.api.nvim_buf_set_name(
-                                        0,
-                                        "minigit://" .. basename
-                                )
+                                vim.api.nvim_buf_set_name(0, "minigit://" .. basename)
                                 vim.api.nvim_set_option_value(
                                         "modifiable",
                                         false,
@@ -158,17 +143,11 @@ return {
                                 vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
                                 local last_line = vim.api.nvim_buf_line_count(0)
                                 for lnum = 0, last_line - 1 do
-                                        vim.api.nvim_buf_set_extmark(
-                                                0,
-                                                ns,
-                                                lnum,
-                                                match + 4,
-                                                {
+                                        vim.api.nvim_buf_set_extmark(0, ns, lnum, match + 4, {
                                                         -- stylua: ignore
                                                         virt_text = { { ")", "Normal" } },
-                                                        virt_text_pos = "overlay",
-                                                }
-                                        )
+                                                virt_text_pos = "overlay",
+                                        })
                                 end
 
                                 -- stylua: ignore start
