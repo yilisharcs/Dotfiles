@@ -56,6 +56,9 @@ return {
                 constrain_cursor = "editable",
                 view_options = {
                         show_hidden = true,
+                        is_always_hidden = function(name)
+                                return name == ".."
+                        end,
                 },
                 watch_for_changes = true,
                 keymaps = {
@@ -77,12 +80,14 @@ return {
                                 },
                                 desc = "Enter cmdline with the current directory as an argument",
                         },
-                        ["ms"] = { "actions.change_sort", mode = "n" },
                         ["_"] = {
                                 "actions.open_cwd",
                                 mode = "n",
                                 nowait = true,
                         },
+                        ["<C-s>"] = { "actions.select", opts = { horizontal = true } },
+                        ["<C-v>"] = { "actions.select", opts = { vertical = true } },
+                        ["ms"] = { "actions.change_sort", mode = "n" },
                         ["g/"] = { "<CMD>edit /<CR>", nowait = true },
                         ["ga"] = {
                                 "<CMD>edit ~/Projects/github.com/yilisharcs/<CR>",
