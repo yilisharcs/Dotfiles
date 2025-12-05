@@ -1,3 +1,10 @@
+local graph_style
+if vim.g.neovide then
+        graph_style = "unicode"
+else
+        graph_style = "kitty"
+end
+
 return {
         "https://github.com/NeogitOrg/neogit",
         dependencies = {
@@ -38,7 +45,7 @@ return {
                 })
         end,
         opts = {
-                graph_style = "kitty",
+                graph_style = graph_style,
                 disable_hint = true,
                 integrations = {
                         fzf_lua = true,
