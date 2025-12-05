@@ -64,15 +64,5 @@ return {
                         package.loaded["cme.efm"] = nil
                         print()
                 end)
-
-                vim.keymap.set(
-                        "n",
-                        "<leader>e",
-                        -- "<CMD>Compile ^find<CR>"
-                        -- "<CMD>Compile fd . /usr<CR>"
-                        -- "<CMD>Compile rm -rf target/; cargo build<CR>"
-                        -- "<CMD>Recompile echo 'hello world'<CR>"
-                        "<CMD>Compile grep cme<CR>"
-                )
         end,
 }
