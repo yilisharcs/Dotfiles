@@ -3,6 +3,7 @@ if vim.g.neovide then
                 desc = "Set default cwd to Dotfiles if opened with no file arguments",
                 group = vim.api.nvim_create_augroup("Neovide_Default_Dir", { clear = true }),
                 callback = function()
+                        if vim.uv.cwd() ~= vim.env.HOME then return end
                         if string.match(vim.v.argv[#vim.v.argv], "^%-+") ~= nil then
                                 vim.cmd.cd("~/Dotfiles")
                                 if vim.g.loaded_quarrel == 1 then require("quarrel").argread() end
