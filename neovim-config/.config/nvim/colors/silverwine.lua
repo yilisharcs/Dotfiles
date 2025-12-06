@@ -8,7 +8,7 @@ local colors = {
         --      Wine1: 1
         --      Wine3: 0
         --      Ink1: 1
-        --      Ink2: 2
+        --      Ink2: 4
         --      Ink3: 4
         --      Green3: 2
         --      Green4: 1
@@ -177,6 +177,9 @@ if vim.o.background == "dark" then
         hi("NeogitUntrackedfiles", { fg = colors.Red2, bold = true })
         hi("NeogitUnmergedchanges", { fg = colors.Magenta1, bold = true })
         hi("NeogitGraphPurple", { fg = colors.Yellow2 })
+        hi("NeogitChangeModified", { fg = colors.Cyan2, bold = true, italic = true })
+        hi("NeogitHunkHeaderHighlight", { fg = colors.Ink2, bg = colors.Gray1, bold = true })
+        hi("NeogitHunkHeaderCursor", { fg = colors.Ink2, bg = colors.Silver3, bold = true })
         -- }}}
 
         -- vim-sneak {{{
