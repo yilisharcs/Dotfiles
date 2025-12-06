@@ -62,9 +62,19 @@ return {
                 },
                 watch_for_changes = true,
                 keymaps = {
-                        ["<leader>fl"] = {
+                        ["<leader>fi"] = {
                                 function()
                                         require("fzf-lua").files({
+                                                cwd = require("oil").get_current_dir(),
+                                        })
+                                end,
+                                mode = "n",
+                                nowait = true,
+                                desc = "Find files from current directory",
+                        },
+                        ["<leader>fl"] = {
+                                function()
+                                        require("fzf-lua").git_files({
                                                 cwd = require("oil").get_current_dir(),
                                         })
                                 end,
