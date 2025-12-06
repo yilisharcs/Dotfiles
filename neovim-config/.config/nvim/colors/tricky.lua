@@ -215,3 +215,5 @@ hi("Sneak",      { link = "SneakShow" })
 -- }}}
 
 -- stylua: ignore end
+
+-- vim: nowrap

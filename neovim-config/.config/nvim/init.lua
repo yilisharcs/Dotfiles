@@ -104,7 +104,8 @@ vim.opt_global.listchars = { nbsp = "␣", tab = "› ", trail = "•" }
 
 if os.getenv("DISPLAY") == nil then vim.o.termguicolors = false end
 
-vim.cmd.colorscheme("tricky")
+vim.o.background = "dark"
+vim.cmd.colorscheme("silverwine")
 
 -- PACKAGE MANAGER
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

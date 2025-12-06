@@ -10,6 +10,7 @@ return {
                 },
         },
         opts = {
+                shade_terminals = vim.o.background == "dark" and true or false,
                 open_mapping = "<C-g>",
                 shell = vim.fn.executable("nu") == 1 and vim.fn.exepath("nu") or vim.o.shell,
                 float_opts = {
