@@ -6,7 +6,7 @@ vim.g.colors_name = "silverwine"
 local colors = {
         -- NOTE
         --      Wine1: 1
-        --      Wine3: 0
+        --      Wine3: 0 (1)
         --      Ink1: 1
         --      Ink2: 4
         --      Ink3: 4
@@ -18,7 +18,7 @@ local colors = {
         --      Magenta1: 1
         Wine1 = "#3f006c",
         Wine2 = "#2a0048",
-        Wine3 = "#1b002f",
+        Wine3 = "#12001f",
 
         Silver1 = "#cdd6f4",
         Silver2 = "#bcc8f0",
@@ -90,11 +90,16 @@ local function hi(name, val)
 end
 
 if vim.o.background == "dark" then
+        -- Custom
+        hi("QuickFixBg", { bg = colors.Wine3 })
+
         -- General
         hi("Normal", { fg = colors.Silver1, bg = colors.Ink2 })
         hi("NormalNC", { bg = colors.Ink3 })
         hi("StatusLine", { fg = colors.Ink3, bg = colors.Silver3, bold = true })
         hi("StatusLineNC", { fg = "fg", bg = colors.Wine2, bold = true })
+        hi("TabLineSel", { fg = "bg", bg = colors.Silver3, bold = true })
+        hi("Title", { fg = "NONE", bold = true })
 
         -- Color lines
         hi("ColorColumn", { bg = colors.Wine2 })
@@ -141,6 +146,7 @@ if vim.o.background == "dark" then
         hi("Constant", { fg = colors.Yellow1, bold = true })
         hi("String", { fg = colors.Green1 })
         hi("PreProc", { fg = colors.Red1 })
+        hi("Delimiter", { fg = colors.Silver3 })
 
         -- Treesitter
         hi("@markup.link.vimdoc", { fg = colors.Yellow2, bold = true })
@@ -187,12 +193,17 @@ if vim.o.background == "dark" then
         hi("Sneak", { link = "SneakShow" })
         -- }}}
 elseif vim.o.background == "light" then
+        -- Custom
+        hi("QuickFixBg", { bg = colors.Silver3 })
+
         -- General
         hi("Normal", { fg = colors.Ink2, bg = colors.Silver1 })
         hi("NormalNC", { bg = colors.Silver2 })
         hi("NormalFloat", { link = "NormalNC" })
         hi("StatusLine", { fg = "bg", bg = "fg" })
         hi("StatusLineNC", { fg = colors.Ink3, bg = colors.Silver3, bold = true })
+        hi("TabLineSel", { fg = "bg", bg = "fg" })
+        hi("Title", { fg = "NONE", bold = true })
 
         -- Color lines
         hi("ColorColumn", { bg = colors.Silver3 })
@@ -202,7 +213,7 @@ elseif vim.o.background == "light" then
         hi("FoldColumn", { fg = colors.Cyan2 })
         hi("Folded", { fg = colors.Cyan3, bg = colors.Silver3, bold = true })
         hi("LineNr", { fg = colors.Gray2 })
-        hi("QuickFixLine", { fg = colors.Cyan2, bg = "bg", bold = true, reverse = true })
+        hi("QuickFixLine", { fg = colors.Cyan3, bg = "bg", bold = true, reverse = true })
 
         -- Comment toggle
         hi("CommentHide", { fg = "bg" })
@@ -239,6 +250,7 @@ elseif vim.o.background == "light" then
         hi("Constant", { fg = colors.Yellow3, bold = true })
         hi("String", { fg = colors.Green3 })
         hi("PreProc", { fg = colors.Red1 })
+        hi("Delimiter", { fg = colors.Wine1 })
 
         -- Spelling
         hi("SpellBad", { sp = colors.Red2, undercurl = true })
@@ -274,6 +286,7 @@ elseif vim.o.background == "light" then
         hi("NeogitUntrackedfiles", { fg = colors.Red2, bold = true })
         hi("NeogitUnmergedchanges", { fg = colors.Magenta1, bold = true })
         hi("NeogitGraphPurple", { fg = colors.Yellow2 })
+        hi("NeogitChangeModified", { fg = colors.Cyan3, bold = true, italic = true })
         -- }}}
 
         -- vim-sneak {{{
@@ -293,7 +306,7 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
 vim.api.nvim_create_autocmd({ "ColorScheme", "InsertLeave", "CmdlineLeave" }, {
         group = matchparen,
         callback = function()
-                hi("MatchParen", { bold = true, reverse = true })
+                hi("MatchParen", { fg = colors.Red2, bold = true })
         end,
 })
 
