@@ -63,6 +63,10 @@ return {
                 end
                 -- }}}
 
+                -- mini.align {{{
+                require("mini.align").setup({})
+                -- }}}
+
                 -- mini.diff {{{
                 require("mini.diff").setup({
                         view = {
