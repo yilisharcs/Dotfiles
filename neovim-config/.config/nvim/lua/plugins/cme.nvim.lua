@@ -7,6 +7,10 @@ efm.rust = table.concat({
         "%Eerror: %m",
         "%Eerror[E%n]: %m",
         "%Wwarning: %m",
+        -- Custom {{{
+        "%Wwarning[E%n]: %m", -- Unsafe
+        "%C %#╭▸ %f:%l:%c", -- Nightly rustc-unicode
+        -- }}}
         "%Inote: %m",
         "%C %#--> %f:%l:%c",
         "%E  left:%m",
