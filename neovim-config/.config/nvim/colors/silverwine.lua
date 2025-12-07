@@ -7,7 +7,7 @@ local colors = {
         -- NOTE
         --      Wine1: 1
         --      Wine3: 0 (1)
-        --      Ink1: 1
+        --      Ink1: 2
         --      Ink2: 4
         --      Ink3: 4
         --      Green3: 2
@@ -98,7 +98,7 @@ if vim.o.background == "dark" then
         hi("NormalNC", { bg = colors.Ink3 })
         hi("StatusLine", { fg = colors.Ink3, bg = colors.Silver3, bold = true })
         hi("StatusLineNC", { fg = "fg", bg = colors.Wine2, bold = true })
-        hi("TabLineSel", { fg = "bg", bg = colors.Silver3, bold = true })
+        hi("TabLineSel", { fg = colors.Yellow1, bg = colors.Ink1, bold = true })
         hi("Title", { fg = "NONE", bold = true })
 
         -- Color lines
@@ -202,7 +202,7 @@ elseif vim.o.background == "light" then
         hi("NormalFloat", { link = "NormalNC" })
         hi("StatusLine", { fg = "bg", bg = "fg" })
         hi("StatusLineNC", { fg = colors.Ink3, bg = colors.Silver3, bold = true })
-        hi("TabLineSel", { fg = "bg", bg = "fg" })
+        hi("TabLineSel", { fg = colors.Yellow1, bg = colors.Ink1, bold = true })
         hi("Title", { fg = "NONE", bold = true })
 
         -- Color lines
