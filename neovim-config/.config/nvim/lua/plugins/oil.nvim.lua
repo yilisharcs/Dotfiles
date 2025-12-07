@@ -53,7 +53,7 @@ return {
                 lsp_file_methods = {
                         enabled = false,
                 },
-                constrain_cursor = "editable",
+                constrain_cursor = "name",
                 view_options = {
                         show_hidden = true,
                         is_always_hidden = function(name)
