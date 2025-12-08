@@ -59,6 +59,7 @@ return {
                         is_always_hidden = function(name)
                                 return name == ".."
                         end,
+                        case_insensitive = true,
                 },
                 watch_for_changes = true,
                 keymaps = {
