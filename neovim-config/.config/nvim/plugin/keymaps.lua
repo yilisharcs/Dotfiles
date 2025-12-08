@@ -115,21 +115,6 @@ vim.keymap.set("n", "co", function()
         end
 end, { expr = true, desc = "Toggle location list" })
 
-vim.keymap.set("n", "<C-p>", function()
-        if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")) == 1 then
-                return "<CMD>cprev<CR>zz"
-        else
-                return "<CMD>lprev<CR>zz"
-        end
-end, { expr = true, desc = "Previous error" })
-vim.keymap.set("n", "<C-n>", function()
-        if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")) == 1 then
-                return "<CMD>cnext<CR>zz"
-        else
-                return "<CMD>lnext<CR>zz"
-        end
-end, { expr = true, desc = "Next error" })
-
 vim.keymap.set("n", "<C-k>", "<CMD>cpfile<CR>zz", { desc = "Quickfix previous file" })
 vim.keymap.set("n", "<C-j>", "<CMD>cnfile<CR>zz", { desc = "Quickfix next file" })
 vim.keymap.set("n", "<leader><C-p>", "<CMD>cabove<CR>", { desc = "Quickfix error above cursor" })
