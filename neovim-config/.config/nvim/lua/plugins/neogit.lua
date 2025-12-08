@@ -30,6 +30,7 @@ return {
                                                 pattern = {
                                                         "NeogitPopup",
                                                         "NeogitStatus",
+                                                        "gitrebase",
                                                 },
                                                 callback = function()
                                                         require("which-key.buf").clear()
