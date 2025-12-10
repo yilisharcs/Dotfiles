@@ -1,6 +1,5 @@
 return {
-        -- cmd = { "lspmux" },
-        cmd = { "rust-analyzer" },
+        cmd = { "lspmux" },
         filetypes = { "rust" },
         root_markers = {
                 "Cargo.toml",
