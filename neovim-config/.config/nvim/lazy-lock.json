@@ -4,7 +4,6 @@
   "direnv.vim": { "branch": "clean-ansi-codes", "commit": "6b0e42a5870cc352ef4fa84c9d8b43b3ca02eff6" },
   "fundo": { "branch": "main", "commit": "ac9c9372c4bf677721e24f144ef29d3a05c2b589" },
   "fzf-lua": { "branch": "main", "commit": "f6d949549cc43fb5d35ef43db56f03131da469a7" },
-  "hex.nvim": { "branch": "master", "commit": "b46e63356a69e8d6f046c38a9708d55d17f15038" },
   "lazy.nvim": { "branch": "main", "commit": "85c7ff3711b730b4030d03144f6db6375044ae82" },
   "mini.nvim": { "branch": "main", "commit": "dca98843fab66d080779cd973e7139e258ff164c" },
   "neogit": { "branch": "master", "commit": "300949af63fa48cb6bc8d93822b78cb9dbb4fd75" },
