@@ -2,104 +2,68 @@ return {
         "https://github.com/zk-org/zk-nvim",
         name = "zk",
         keys = {
-                {
-                        "<leader>zl",
-                        function()
-                                require("zk").new({
-                                        dir = "journal",
-                                        group = "journal",
-                                })
-                        end,
-                        desc = "Create journal entry",
-                },
+                { "<leader>zg", "<CMD>ZkTags<CR>", desc = "Open tags picker" },
                 {
                         "<leader>zn",
                         function()
-                                vim.ui.input({ prompt = "Title: " }, function(input)
-                                        require("zk").new({
-                                                title = input,
-                                        })
-                                        vim.defer_fn(function()
-                                                vim.api.nvim_feedkeys("Gi", "n", false)
-                                        end, 200)
-                                end)
-                        end,
-                        desc = "Create new note",
-                },
-                {
-                        "<leader>zu",
-                        function()
-                                vim.ui.input({ prompt = "Source: " }, function(input)
-                                        local title = string.match(input, "%s(.*)")
-                                        local type_l = string.match(input, "(%a*)")
-                                        local type = string.gsub(type_l, "^%l", string.upper)
+                                vim.ui.input({ prompt = "Task: " }, function(input)
+                                        if not input then return end
 
-                                        require("zk").new({
-                                                title = type .. " - " .. title,
-                                                group = "source",
-                                                extra = { type = type },
-                                        })
-                                        vim.defer_fn(function()
-                                                vim.api.nvim_feedkeys("11GA ", "n", false)
-                                        end, 200)
+                                        local cmd = { "task", "add", "--print-path" }
+                                        local fargs = vim.split(input, " ", { trimempty = true })
+                                        for _, v in ipairs(fargs) do
+                                                table.insert(cmd, v)
+                                        end
+
+                                        vim.system(cmd, { text = true }, function(obj)
+                                                if obj.code ~= 0 then
+                                                        vim.schedule(function()
+                                                                -- stylua: ignore
+                                                                vim.notify(obj.stderr, vim.log.levels.ERROR)
+                                                        end)
+                                                        return
+                                                end
+
+                                                local opts = { trimempty = true }
+                                                local path = vim.split(obj.stdout, "\n", opts)[1]
+                                                vim.schedule(function()
+                                                        vim.cmd.edit(path)
+                                                        vim.api.nvim_win_set_cursor(0, { 7, 0 })
+                                                end)
+                                        end)
                                 end)
                         end,
-                        desc = "Create source note",
+                        desc = "Create new task",
                 },
                 {
-                        "<leader>zc",
+                        "<leader>zl",
                         function()
-                                vim.ui.input({ prompt = "Opponent: " }, function(input)
-                                        require("zk").new({
-                                                title = input,
-                                                group = "chess",
-                                        })
-                                        vim.defer_fn(function()
-                                                vim.api.nvim_feedkeys("9GA ", "n", false)
-                                        end, 200)
+                                -- HACK: The lsp complains if I don't do this directly
+                                vim.system({
+                                        "zk",
+                                        "new",
+                                        "--no-input",
+                                        "--print-path",
+                                        "-W",
+                                        vim.fs.joinpath(vim.env.ZK_NOTEBOOK_DIR, "journal"),
+                                        "--group",
+                                        "journal",
+                                }, { text = true }, function(obj)
+                                        if obj.code ~= 0 then
+                                                vim.schedule(function()
+                                                        vim.notify(obj.stderr, vim.log.levels.ERROR)
+                                                end)
+                                                return
+                                        end
+
+                                        local opts = { trimempty = true }
+                                        local path = vim.split(obj.stdout, "\n", opts)[1]
+                                        vim.schedule(function()
+                                                vim.cmd.edit(path)
+                                        end)
                                 end)
                         end,
-                        desc = "Create chess game entry",
-                },
-                {
-                        "<leader>zo",
-                        function()
-                                require("zk").edit({ sort = { "modified" } })
-                        end,
-                        desc = "Open notes",
-                },
-                { "<leader>zt", "<CMD>ZkTags<CR>", desc = "Open tagged notes" },
-                {
-                        "<leader>zy",
-                        function()
-                                -- HACK: https://github.com/zk-org/zk-nvim/issues/122
-                                -- The methods discussed here didn't work for me.
-                                vim.api.nvim_feedkeys('"zy', "x", false)
-                                require("zk").new({ title = vim.fn.getreg("z") })
-                                vim.defer_fn(function()
-                                        vim.api.nvim_feedkeys("Gi", "n", false)
-                                end, 200)
-                        end,
-                        mode = "x",
-                        desc = "Create note from selection",
-                },
-                {
-                        "<leader>zf",
-                        ":ZkMatch<CR>",
-                        mode = "x",
-                        desc = "Find matching selection in notebook",
-                },
-                {
-                        "<leader>zf",
-                        function()
-                                vim.ui.input({ prompt = "Query: " }, function(input)
-                                        require("zk").edit({
-                                                sort = { "modified" },
-                                                match = { input },
-                                        })
-                                end)
-                        end,
-                        desc = "Find matching query in notebook",
+                        desc = "Create journal entry",
                 },
         },
         opts = {

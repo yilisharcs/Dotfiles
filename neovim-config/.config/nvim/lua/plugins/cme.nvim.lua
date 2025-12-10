@@ -44,6 +44,8 @@ return {
                         shell = "nu",
                         efm_rules = {
                                 [efm.rust] = { "cargo", "mask" },
+                                -- NOTE: zk/.local/bin/task
+                                [vim.o.grepformat] = { "task" },
                         },
                 }
 
