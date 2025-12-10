@@ -16,14 +16,12 @@ return {
                         prettify = {
                                 unicode = true,
                         },
-                        -- Not too fond of this plugin trying to read files that
-                        -- are NOT binary or are already read by other plugins
-                        -- checkbin_pre = function()
-                        --         return false
-                        -- end,
-                        -- checkbin_post = function()
-                        --         return false
-                        -- end,
+                        extensions = {
+                                "bin",
+                                "so",
+                                "out",
+                                "tess",
+                        },
                 }
 
                 vim.keymap.set("n", "u", "<Plug>(HexUndo)", { desc = "Undo one change" })
