@@ -5,7 +5,7 @@ vim.g.colors_name = "silverwine"
 
 local colors = {
         -- NOTE
-        --      Wine1: 1
+        --      Wine1: 2
         --      Wine3: 0 (1)
         --      Ink1: 2
         --      Ink2: 4
@@ -92,6 +92,7 @@ end
 if vim.o.background == "dark" then
         -- Custom
         hi("QuickFixBg", { bg = colors.Wine3 })
+        hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false })
 
         -- General
         hi("Normal", { fg = colors.Silver1, bg = colors.Ink2 })
@@ -163,6 +164,10 @@ if vim.o.background == "dark" then
         hi("IncSearch", { fg = colors.Yellow2, bg = "bg", reverse = true })
         hi("CurSearch", { link = "IncSearch" })
 
+        -- diffview.nvim {{{
+        hi("DiffviewFilePanelSelected", { fg = colors.Yellow1, bold = true })
+        -- }}}
+
         -- fzf-lua {{{
         hi("FzfLuaCustomMarks", { fg = colors.Yellow2 })
         -- }}}
@@ -172,7 +177,7 @@ if vim.o.background == "dark" then
         hi("MiniHipatternsFixme", { fg = colors.Red2, bold = true, reverse = true })
         -- }}}
 
-        ---{{{
+        -- neogit {{{
         hi("NeogitDiffAddHighlight", { fg = "NONE", bg = colors.Green3 })
         hi("NeogitDiffAdd", { fg = "NONE", bg = colors.Green4 })
         hi("NeogitDiffDelete", { fg = colors.Red2, bg = colors.Ink1 })
@@ -195,6 +200,7 @@ if vim.o.background == "dark" then
 elseif vim.o.background == "light" then
         -- Custom
         hi("QuickFixBg", { bg = colors.Silver3 })
+        hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false })
 
         -- General
         hi("Normal", { fg = colors.Ink2, bg = colors.Silver1 })
@@ -269,12 +275,16 @@ elseif vim.o.background == "light" then
         hi("IncSearch", { fg = colors.Yellow2, bg = "fg", reverse = true })
         hi("CurSearch", { link = "IncSearch" })
 
+        -- diffview.nvim {{{
+        hi("DiffviewFilePanelSelected", { fg = colors.Wine1, bold = true })
+        -- }}}
+
         -- mini.hipatterns {{{
         hi("MiniHipatternsNote", { fg = colors.Green2, bold = true, reverse = true })
         hi("MiniHipatternsFixme", { fg = colors.Red2, bold = true, reverse = true })
         -- }}}
 
-        ---{{{
+        -- neogit {{{
         hi("NeogitDiffAddHighlight", { fg = "NONE", bg = colors.Green1 })
         hi("NeogitDiffAdd", { fg = "NONE", bg = colors.Green2 })
         hi("NeogitDiffDelete", { fg = colors.Ink4, bg = colors.Red2 })
