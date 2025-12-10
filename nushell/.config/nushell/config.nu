@@ -61,8 +61,9 @@ mkdir ($nu.data-dir | path join "vendor/autoload")
 carapace _carapace nushell | save -f ($nu.data-dir | path join "vendor/autoload/carapace.nu")
 $env.CARAPACE_BRIDGES = "zsh,fish,bash,inshellisense"
 
-if ($env.FNM_MULTISHELL_PATH? | is-empty) {
-        fnm env --json | from json | load-env
+if ($env.FNM_MULTISHELL_PATH? | is-empty) { fnm env --json | from json | load-env }
+# FNM is dropped from PATH if opening tmux. Prepend it manually.
+if not ($env.PATH | any {|it| $it == $"($env.FNM_MULTISHELL_PATH)/bin" }) {
         $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
 }
 
