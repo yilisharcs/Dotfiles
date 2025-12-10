@@ -254,6 +254,19 @@ return {
                 })
                 -- }}}
 
+                -- mini.pairs {{{
+                require("mini.pairs").setup({
+                        mappings = {
+                                ["("] = false,
+                                ["["] = false,
+                                ["{"] = {},
+                                ["'"] = false,
+                                ['"'] = false,
+                                ["`"] = false,
+                        },
+                })
+                -- }}}
+
                 -- mini.sessions {{{
                 require("mini.sessions").setup({
                         force = {
