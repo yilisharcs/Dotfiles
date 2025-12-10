@@ -103,7 +103,6 @@ return {
                                 max_height = 11,
                         },
                 },
-                input = {},
                 notifier = {},
                 quickfile = {},
                 scratch = {

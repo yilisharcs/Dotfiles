@@ -1,0 +1,193 @@
+#!/usr/bin/env nu
+
+let zk_config = r##'
+[note]
+# Index only the tasks/ directory
+exclude = ["*", "!tasks/*"]
+
+language = "en"
+extension = "md"
+
+# Name collision safeguard
+id-charset = "hex"
+id-length = 8
+
+filename = "tasks/{{format-date now \"%Y%m%d-%H%M%S\"}}.{{id}}/TASK"
+template = "task.md"
+default-title = "untitled"
+
+[format.markdown]
+link-format = "markdown"
+link-drop-extension = true
+hashtags = true
+colon-tags = false
+multiword-tags = true
+'##
+
+
+let zk_template = r###'---
+status: OPEN
+priority: {{extra.priority}}
+tags: {{extra.tags}}
+---
+
+# {{title}}
+
+{{content}}
+'###
+
+
+def get_tasklist [] {
+        zk list --format=json --match "path:tasks/*" --quiet
+        | from json
+        | sort-by path
+        | enumerate
+        | each {|item|
+                $item | insert id ($item.index + 1)
+        }
+}
+
+# Simple task management system, inspired by Mr. Zozin.
+#
+# Tasks are self-contained directories with a main markdown file
+# and any amount of file attachments. Output is friendly to grep.
+def main [
+        --closed (-c) # Include closed issues
+] {
+        let tasklist = (
+                get_tasklist
+                | sort-by --reverse item.metadata.priority?
+        )
+
+        let visible_tasks = ($tasklist
+                | where {|it|
+                        let status = $it.item.metadata.status?
+                        if ($status == "CLOSED") and (not $closed) { false } else { true }
+                }
+        )
+        if ($visible_tasks | is-empty) {
+                print "No tasks found."
+                return
+        }
+
+        $tasklist
+        | each {|it|
+                let meta = $it.item.metadata?
+
+                # Validate metadata block {{{
+                if ([
+                        $meta,
+                        $meta.priority?,
+                        $meta.status?,
+                        $meta.tags?
+                ] | any {|it| $it == null }) {
+                        print $"($it.item.path):1:($it.id): MALFORMED METADATA BLOCK"
+                        return
+                }
+
+                if not ($meta.status in ["OPEN", "CLOSED"]) {
+                        print $"($it.item.path):1:($it.id): MALFORMED STATUS"
+                        return
+                }
+
+                if not ((($meta.priority | describe) == "int") and ($meta.priority >= 0)) {
+                        print $"($it.item.path):1:($it.id): MALFORMED PRIORITY"
+                        return
+                }
+                # }}}
+
+                let tags = if ($meta.tags | is-empty) { "" } else { $" [TAGS: ($meta.tags | str join ',')]" }
+                let p_align = ($meta.priority | into string | fill --alignment right --width 3)
+
+                if $meta.status == "OPEN" {
+                        print $"($it.item.path):1:($it.id): [PRIORITY: ($p_align)]($tags) ($it.item.title)"
+                } else if $meta.status == "CLOSED" {
+                        if not $closed { return }
+                        print $"($it.item.path):1:($it.id): [PRIORITY: ($p_align)] [STATUS: ($meta.status)]($tags) ($it.item.title)"
+                        return
+                }
+        }
+
+        exit 0
+}
+
+def "main init" [
+        --force  (-f) # Force re-initialization if .zk exists
+] {
+        let zk_dir = ".zk"
+        if ($zk_dir | path exists) {
+                if $force {
+                        rm -r $zk_dir
+                } else {
+                        print -e $"[task]: error: a notebook already exists in (pwd). Use --force to reinitialize."
+                        exit 1
+                }
+        }
+        zk init --no-input
+
+        $zk_config   | save --force ([$zk_dir "config.toml"]         | path join)
+        $zk_template | save --force ([$zk_dir "templates" "task.md"] | path join)
+}
+
+def "main add" [
+        ...args: string           # Arguments to create a task
+        --priority (-p): int = 10 # Task priority (default: 10)
+        --print-path              # Return path of the newly-created task
+] {
+        let title     = ($args | where not ($it starts-with "+"))
+        let tags_json = ($args | where     ($it starts-with "+"))
+
+        if ($title | is-empty) { print -e "[task]: error: Task description required."; exit 1 }
+
+        let tags = if ($tags_json | is-empty) { "" } else {
+                $tags_json
+                | each { str substring 1.. }
+                | where {|it| $it != "" }
+                | str join '\, '
+        }
+
+        mut cmd = [
+                --title ($title | str join " ")
+                --extra $"priority=($priority)"
+                --extra $"tags=[($tags)]"
+        ]
+
+        if not ($print_path | is-empty) {
+                $cmd = ($cmd | append "--print-path")
+        }
+
+        zk new ...$cmd
+}
+
+def "main done" [
+        id: int    # Task to close
+] {
+        let tasklist = get_tasklist
+        let task = ($tasklist | where id == $id | first)
+
+        if ($task | is-empty) {
+                print -e $"[task]: error: No matches."
+                exit 1
+        }
+
+        if ($task.item.metadata.status == "CLOSED") {
+                print -e $"[task]: error: Task ($task.id) '($task.item.title)' is already CLOSED."
+                exit 1
+        }
+
+        let zk_path = $task.item.absPath
+
+        $zk_path
+        | open
+        | lines
+        | each {|line|
+                if ($line starts-with "status: ") {
+                        $line | str replace --regex "^status: OPEN$" "status: CLOSED"
+                } else { $line }
+        }
+        | to text
+        | collect
+        | save -f $zk_path
+
+        print $"Completed task ($task.id) '($task.item.title)'."
+}
