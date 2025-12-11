@@ -81,17 +81,17 @@ def main [
                         $meta.status?,
                         $meta.tags?
                 ] | any {|it| $it == null }) {
-                        print $"($it.item.path):1:($it.id): MALFORMED METADATA BLOCK"
+                        print $"($it.item.absPath):1:($it.id): MALFORMED METADATA BLOCK"
                         return
                 }
 
                 if not ($meta.status in ["OPEN", "CLOSED"]) {
-                        print $"($it.item.path):1:($it.id): MALFORMED STATUS"
+                        print $"($it.item.absPath):1:($it.id): MALFORMED STATUS"
                         return
                 }
 
                 if not ((($meta.priority | describe) == "int") and ($meta.priority >= 0)) {
-                        print $"($it.item.path):1:($it.id): MALFORMED PRIORITY"
+                        print $"($it.item.absPath):1:($it.id): MALFORMED PRIORITY"
                         return
                 }
                 # }}}
@@ -100,10 +100,10 @@ def main [
                 let p_align = ($meta.priority | into string | fill --alignment right --width 3)
 
                 if $meta.status == "OPEN" {
-                        print $"($it.item.path):1:($it.id): [PRIORITY: ($p_align)]($tags) ($it.item.title)"
+                        print $"($it.item.absPath):1:($it.id): [PRIORITY: ($p_align)]($tags) ($it.item.title)"
                 } else if $meta.status == "CLOSED" {
                         if not $closed { return }
-                        print $"($it.item.path):1:($it.id): [PRIORITY: ($p_align)] [STATUS: ($meta.status)]($tags) ($it.item.title)"
+                        print $"($it.item.absPath):1:($it.id): [PRIORITY: ($p_align)] [STATUS: ($meta.status)]($tags) ($it.item.title)"
                         return
                 }
         }
