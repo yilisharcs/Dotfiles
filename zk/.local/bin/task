@@ -1,10 +1,6 @@
 #!/usr/bin/env nu
 
-let zk_config = r##'
-[note]
-# Index only the tasks/ directory
-exclude = ["*", "!tasks/*"]
-
+let zk_config = r##'[group.tasks.note]
 language = "en"
 extension = "md"
 
@@ -12,7 +8,7 @@ extension = "md"
 id-charset = "hex"
 id-length = 8
 
-filename = "tasks/{{format-date now \"%Y%m%d-%H%M%S\"}}.{{id}}/TASK"
+filename = "{{format-date now \"%Y%m%d-%H%M%S\"}}.{{id}}/TASK"
 template = "task.md"
 default-title = "untitled"
 
@@ -156,7 +152,7 @@ def "main add" [
                 $cmd = ($cmd | append "--print-path")
         }
 
-        zk new ...$cmd
+        zk new tasks ...$cmd
 }
 
 def "main done" [
