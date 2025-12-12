@@ -1,3 +1,6 @@
+-- TODO: remove on stable
+if vim.version().minor < 12 then return end
+
 vim.cmd.packadd("nvim.undotree")
 vim.keymap.set("n", "<leader>u", function()
         local split_width = math.floor(vim.o.columns * 0.27 + 0.5)
