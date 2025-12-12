@@ -12,9 +12,9 @@ local colors = {
         --      Ink3: 4
         --      Green3: 2
         --      Green4: 1
-        --      Yellow3: 1
+        --      Yellow3: 3
         --      Blue1: 1
-        --      Blue2: 1
+        --      Blue2: 3
         --      Magenta1: 1
         Wine1 = "#3f006c",
         Wine2 = "#2a0048",
@@ -157,6 +157,13 @@ if vim.o.background == "dark" then
         hi("@markup.heading.gitcommit", { link = "gitcommitSummary" })
         hi("@markup.raw.markdown_inline", { fg = colors.Green1, bg = colors.Gray3 })
 
+        -- LSP
+        hi("DiagnosticError", { fg = colors.Red2 })
+        hi("DiagnosticWarn", { fg = colors.Yellow3 })
+        hi("DiagnosticInfo", { fg = colors.Cyan2 })
+        hi("DiagnosticHint", { fg = colors.Blue2 })
+        hi("DiagnosticOk", { fg = colors.Green2 })
+
         -- Miscellaneous
         hi("Visual", { fg = "fg", bg = colors.Cyan3 })
         hi("LspInlayHint", { fg = colors.Cyan2, bg = colors.Ink3 })
@@ -268,6 +275,13 @@ elseif vim.o.background == "light" then
         hi("@markup.link.label.markdown_inline", { link = "Identifier" })
         hi("@markup.heading.gitcommit", { link = "gitcommitSummary" })
         hi("@markup.raw.markdown_inline", { fg = colors.Cyan3, bg = colors.Silver3 })
+
+        -- LSP
+        hi("DiagnosticError", { fg = colors.Red2 })
+        hi("DiagnosticWarn", { fg = colors.Yellow3 })
+        hi("DiagnosticInfo", { fg = colors.Cyan2 })
+        hi("DiagnosticHint", { fg = colors.Blue2 })
+        hi("DiagnosticOk", { fg = colors.Green2 })
 
         -- Miscellaneous
         hi("Visual", { fg = "bg", bg = colors.Cyan3 })
