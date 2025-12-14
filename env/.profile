@@ -41,6 +41,7 @@ export SQLITE_HISTORY="$HOME/.local/state/sqlite3/sqlite_history"  # set sqlite 
 export STARSHIP_LOG="error"                                        # disable "command timed-out" errors
 export XCOMPOSEFILE="/usr/share/keyd/keyd.compose"                 # keyd compat file for non-ASCII characters
 export ZK_NOTEBOOK_DIR="$HOME/notebook"                            # default path to zk files
+export TAFSK_STORE_DIR="$HOME/notebook/tasks"                      # default path to tafsk store
 
 export FZF_DEFAULT_COMMAND="fd --color=never --ignore-case --strip-cwd-prefix \
         --hidden --follow --type f --type l --exclude={.git,.cache,.npm}"
