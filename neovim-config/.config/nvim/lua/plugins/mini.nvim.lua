@@ -192,10 +192,6 @@ return {
                                         pattern = "%f[%w]()NOTE()%f[%W]",
                                         group = "MiniHipatternsNote",
                                 },
-                                todo_rust_macro = {
-                                        pattern = "todo!%([^%)]*%)",
-                                        group = "MiniHipatternsTodo",
-                                },
                         },
                 })
                 -- }}}
