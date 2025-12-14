@@ -92,7 +92,6 @@ end
 if vim.o.background == "dark" then
         -- Custom
         hi("QuickFixBg", { bg = colors.Wine3 })
-        hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false })
 
         -- General
         hi("Normal", { fg = colors.Silver1, bg = colors.Ink2 })
@@ -156,6 +155,8 @@ if vim.o.background == "dark" then
         hi("@markup.link.label.markdown_inline", { link = "Identifier" })
         hi("@markup.heading.gitcommit", { link = "gitcommitSummary" })
         hi("@markup.raw.markdown_inline", { fg = colors.Green1, bg = colors.Gray3 })
+        hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false })
+        hi("@character.rust", { link = "String", bold = false })
 
         -- LSP
         hi("DiagnosticError", { fg = colors.Red2 })
@@ -207,7 +208,6 @@ if vim.o.background == "dark" then
 elseif vim.o.background == "light" then
         -- Custom
         hi("QuickFixBg", { bg = colors.Silver3 })
-        hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false })
 
         -- General
         hi("Normal", { fg = colors.Ink2, bg = colors.Silver1 })
@@ -275,6 +275,8 @@ elseif vim.o.background == "light" then
         hi("@markup.link.label.markdown_inline", { link = "Identifier" })
         hi("@markup.heading.gitcommit", { link = "gitcommitSummary" })
         hi("@markup.raw.markdown_inline", { fg = colors.Cyan3, bg = colors.Silver3 })
+        hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false })
+        hi("@character.rust", { link = "String", bold = false })
 
         -- LSP
         hi("DiagnosticError", { fg = colors.Red2 })
