@@ -96,6 +96,7 @@ return {
                                         "~/.config/nvim/pack/dev/opt/",
                                         "~/.local/share/nvim/lazy/",
                                         "~/.local/share/bob/nightly/share/nvim/runtime/",
+                                        "~/Documents/",
                                         "~/",
                                 }
                                 require("fzf-lua").fzf_exec(
