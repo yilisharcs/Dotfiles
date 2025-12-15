@@ -5,10 +5,12 @@ return {
                 formatters_by_ft = {
                         c = { "clang-format" },
                         lua = { "stylua" },
-                        rust = {
+                        rust = { "rustfmt" },
+                },
+                formatters = {
+                        rustfmt = {
                                 -- Rust shim is slower than providing the path manually
-                                "/home/yilisharcs/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustfmt",
-                                lsp_format = "fallback",
+                                command = "/home/yilisharcs/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustfmt",
                         },
                 },
                 format_on_save = {
