@@ -161,7 +161,7 @@ if vim.o.background == "dark" then
         -- LSP
         hi("DiagnosticError", { fg = colors.Red2 })
         hi("DiagnosticWarn", { fg = colors.Yellow3 })
-        hi("DiagnosticInfo", { fg = colors.Cyan2 })
+        hi("DiagnosticInfo", { fg = colors.Cyan3 })
         hi("DiagnosticHint", { fg = colors.Blue2 })
         hi("DiagnosticOk", { fg = colors.Green2 })
 
@@ -183,6 +183,7 @@ if vim.o.background == "dark" then
         -- mini.hipatterns {{{
         hi("MiniHipatternsNote", { fg = colors.Green2, bold = true, reverse = true })
         hi("MiniHipatternsFixme", { fg = colors.Red2, bold = true, reverse = true })
+        hi("MiniHipatternsTodo", { fg = colors.Cyan2, bold = true, reverse = true })
         -- }}}
 
         -- neogit {{{
@@ -281,7 +282,7 @@ elseif vim.o.background == "light" then
         -- LSP
         hi("DiagnosticError", { fg = colors.Red2 })
         hi("DiagnosticWarn", { fg = colors.Yellow3 })
-        hi("DiagnosticInfo", { fg = colors.Cyan2 })
+        hi("DiagnosticInfo", { fg = colors.Cyan3 })
         hi("DiagnosticHint", { fg = colors.Blue2 })
         hi("DiagnosticOk", { fg = colors.Green2 })
 
