@@ -83,12 +83,31 @@ return {
                 {
                         "<leader>fs",
                         function()
+                                local function tabedit(selected)
+                                        local is_empty = vim.api.nvim_buf_get_name(0) == ""
+                                                and not vim.bo.modified
+
+                                        if is_empty then
+                                                vim.cmd("edit " .. selected[1])
+                                        else
+                                                vim.cmd("tabe " .. selected[1])
+                                        end
+
+                                        vim.cmd("tcd " .. selected[1])
+                                end
+
                                 local opts = {}
                                 opts.winopts = { title = " Projects " }
                                 opts.actions = {
-                                        ["default"] = function(selected)
-                                                vim.cmd("tabe " .. selected[1])
-                                                vim.cmd("tcd " .. selected[1])
+                                        ["default"] = tabedit,
+                                        ["ctrl-t"] = tabedit,
+                                        ["ctrl-s"] = function(selected)
+                                                vim.cmd("new")
+                                                vim.cmd("edit " .. selected[1])
+                                        end,
+                                        ["ctrl-v"] = function(selected)
+                                                vim.cmd("vnew")
+                                                vim.cmd("edit " .. selected[1])
                                         end,
                                 }
                                 local dirs = {
