@@ -6,10 +6,10 @@ vim.g.colors_name = "silverwine"
 local colors = {
         -- NOTE
         --      Wine1: 2
-        --      Wine3: 0 (1)
+        --      Wine3: 2
         --      Ink1: 2
         --      Ink2: 4
-        --      Ink3: 4
+        --      Ink3: 3
         --      Green3: 2
         --      Green4: 1
         --      Yellow3: 3
@@ -96,7 +96,7 @@ if vim.o.background == "dark" then
         -- General
         hi("Normal", { fg = colors.Silver1, bg = colors.Ink2 })
         hi("NormalNC", { bg = colors.Ink3 })
-        hi("StatusLine", { fg = colors.Ink3, bg = colors.Silver3, bold = true })
+        hi("StatusLine", { fg = "fg", bg = colors.Gray2, bold = true })
         hi("StatusLineNC", { fg = "fg", bg = colors.Wine2, bold = true })
         hi("TabLineSel", { fg = colors.Yellow1, bg = colors.Ink1, bold = true })
         hi("Title", { fg = "NONE", bold = true })
@@ -161,7 +161,7 @@ if vim.o.background == "dark" then
         -- LSP
         hi("DiagnosticError", { fg = colors.Red2 })
         hi("DiagnosticWarn", { fg = colors.Yellow3 })
-        hi("DiagnosticInfo", { fg = colors.Cyan3 })
+        hi("DiagnosticInfo", { fg = colors.Cyan2 })
         hi("DiagnosticHint", { fg = colors.Blue2 })
         hi("DiagnosticOk", { fg = colors.Green2 })
 
@@ -183,7 +183,6 @@ if vim.o.background == "dark" then
         -- mini.hipatterns {{{
         hi("MiniHipatternsNote", { fg = colors.Green2, bold = true, reverse = true })
         hi("MiniHipatternsFixme", { fg = colors.Red2, bold = true, reverse = true })
-        hi("MiniHipatternsTodo", { fg = colors.Cyan2, bold = true, reverse = true })
         -- }}}
 
         -- neogit {{{
@@ -214,7 +213,7 @@ elseif vim.o.background == "light" then
         hi("Normal", { fg = colors.Ink2, bg = colors.Silver1 })
         hi("NormalNC", { bg = colors.Silver2 })
         hi("NormalFloat", { link = "NormalNC" })
-        hi("StatusLine", { fg = "bg", bg = "fg" })
+        hi("StatusLine", { fg = "bg", bg = colors.Wine3 })
         hi("StatusLineNC", { fg = colors.Ink3, bg = colors.Silver3, bold = true })
         hi("TabLineSel", { fg = colors.Yellow1, bg = colors.Ink1, bold = true })
         hi("Title", { fg = "NONE", bold = true })
