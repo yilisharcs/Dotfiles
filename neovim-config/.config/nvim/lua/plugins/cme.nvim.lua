@@ -1,5 +1,39 @@
 local efm = {}
 
+-- c {{{
+efm.c = table.concat({
+        "%*[^\"]\"%f\"%*\\D%l: %m",
+        "\"%f\"%*\\D%l: %m",
+        "%-Gg%\\?make[%*\\d]: *** [%f:%l:%m",
+        "%-Gg%\\?make: *** [%f:%l:%m",
+        "%-G%f:%l: (Each undeclared identifier is reported only once",
+        "%-G%f:%l: for each function it appears in.)",
+        "%-GIn file included from %f:%l:%c:",
+        "%-GIn file included from %f:%l:%c\\ ",
+        "%-GIn file included from %f:%l:%c",
+        "%-GIn file included from %f:%l",
+        "%-G%*[ ]from %f:%l:%c",
+        "%-G%*[ ]from %f:%l:",
+        "%-G%*[ ]from %f:%l\\ ",
+        "%-G%*[ ]from %f:%l",
+        -- Capture error type {{{
+        "%f:%l:%c: %t%*[^:]: %m",
+        -- }}}
+        "%f:%l:%c:%m",
+        "%f(%l):%m",
+        "%f:%l:%m",
+        "\"%f\"\\",
+        " line %l%*\\D%c%*[^ ] %m",
+        "%D%*\\a[%*\\d]: Entering directory %*[`']%f'",
+        "%X%*\\a[%*\\d]: Leaving directory %*[`']%f'",
+        "%D%*\\a: Entering directory %*[`']%f'",
+        "%X%*\\a: Leaving directory %*[`']%f'",
+        "%DMaking %*\\a in %f",
+        "%f|%l| %m",
+}, ",")
+-- }}}
+
+-- rust {{{
 efm.rust = table.concat({
         "%-G",
         "%-Gerror: aborting %.%#",
@@ -35,6 +69,7 @@ efm.rust = table.concat({
         "%.%#panicked at \\'%m\\'\\",
         "%f:%l:%c",
 }, ",")
+-- }}}
 
 return {
         "https://github.com/yilisharcs/cme.nvim",
@@ -44,6 +79,7 @@ return {
                         shell = "nu",
                         efm_rules = {
                                 [efm.rust] = { "cargo", "mask" },
+                                [efm.c] = { "make", "mask" },
                                 -- NOTE: zk/.local/bin/task
                                 [vim.o.grepformat] = { "task" },
                         },
