@@ -4,21 +4,25 @@ return {
         keys = {
                 { "<leader>zg", "<CMD>ZkTags<CR>", desc = "Open tags picker" },
                 {
+                        "<leader>zo",
+                        function()
+                                require("zk").edit({ sort = { "modified" } })
+                        end,
+                        desc = "Open notes",
+                },
+                {
                         "<leader>zn",
                         function()
-                                vim.ui.input({ prompt = "Task: " }, function(input)
+                                vim.ui.input({ prompt = "Title: " }, function(input)
                                         if not input then return end
 
-                                        local cmd = { "task", "add", "--print-path" }
-                                        local fargs = vim.split(input, " ", { trimempty = true })
-                                        for _, v in ipairs(fargs) do
-                                                table.insert(cmd, v)
-                                        end
-
-                                        vim.system(cmd, { text = true }, function(obj)
+                                        -- stylua: ignore
+                                        vim.system({
+                                                "zk", "new", "--no-input",
+                                                "--print-path", "--title", input,
+                                        }, { text = true }, function(obj)
                                                 if obj.code ~= 0 then
                                                         vim.schedule(function()
-                                                                -- stylua: ignore
                                                                 vim.notify(obj.stderr, vim.log.levels.ERROR)
                                                         end)
                                                         return
@@ -28,26 +32,20 @@ return {
                                                 local path = vim.split(obj.stdout, "\n", opts)[1]
                                                 vim.schedule(function()
                                                         vim.cmd.edit(path)
-                                                        vim.api.nvim_win_set_cursor(0, { 7, 0 })
+                                                        vim.api.nvim_win_set_cursor(0, { 10, 0 })
                                                 end)
                                         end)
                                 end)
                         end,
-                        desc = "Create new task",
+                        desc = "Create new note",
                 },
                 {
                         "<leader>zl",
                         function()
-                                -- HACK: The lsp complains if I don't do this directly
+                                -- stylua: ignore
                                 vim.system({
-                                        "zk",
-                                        "new",
-                                        "--no-input",
-                                        "--print-path",
-                                        "-W",
-                                        vim.fs.joinpath(vim.env.ZK_NOTEBOOK_DIR, "journal"),
-                                        "--group",
-                                        "journal",
+                                        "zk", "new", "--no-input",
+                                        "--print-path", "--group", "journal",
                                 }, { text = true }, function(obj)
                                         if obj.code ~= 0 then
                                                 vim.schedule(function()
