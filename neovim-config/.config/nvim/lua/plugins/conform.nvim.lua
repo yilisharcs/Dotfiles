@@ -15,9 +15,8 @@ return {
                 },
                 format_after_save = function(bufnr)
                         local name = vim.api.nvim_buf_get_name(bufnr)
-                        if name:find("Projects/github.com/neovim/neovim/", 1, true) then
-                                return nil
-                        end
+                        if name:find("Projects/github.com/neovim/neovim/", 1, true) then return end
+                        if name:find("diffview://", 1, true) then return end
                         return { timeout_ms = 2000 }
                 end,
         },
