@@ -44,8 +44,7 @@ return {
                         function()
                                 -- stylua: ignore
                                 vim.system({
-                                        "zk", "new", "--no-input",
-                                        "--print-path", "--group", "journal",
+                                        "zk", "new", "journal", "--no-input", "--print-path"
                                 }, { text = true }, function(obj)
                                         if obj.code ~= 0 then
                                                 vim.schedule(function()
