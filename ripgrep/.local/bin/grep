@@ -6,6 +6,6 @@ def --wrapped main [...rest] {
         if (is-terminal --stdout) or ($env.CME_NVIM? == "1") {
                 rg --vimgrep ...$rest
         } else {
-                rg ...$rest
+                ^/usr/bin/grep ...$rest
         }
 }
