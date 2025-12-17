@@ -149,12 +149,13 @@ if vim.o.background == "dark" then
         hi("Delimiter", { fg = colors.Silver3 })
 
         -- Treesitter
+        hi("@markup.raw.markdown_inline", { fg = colors.Green1, bg = colors.Gray3 })
+        hi("markdownCodeBlock", { bg = colors.Gray3 })
         hi("@markup.link.vimdoc", { fg = colors.Yellow2, bold = true })
         hi("@label.vimdoc", { fg = colors.Green2, bold = true })
         hi("gitcommitSummary", { link = "Identifier" })
         hi("@markup.link.label.markdown_inline", { link = "Identifier" })
         hi("@markup.heading.gitcommit", { link = "gitcommitSummary" })
-        hi("@markup.raw.markdown_inline", { fg = colors.Green1, bg = colors.Gray3 })
         hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false })
         hi("@character.rust", { link = "String", bold = false })
 
@@ -269,12 +270,13 @@ elseif vim.o.background == "light" then
         hi("SpellBad", { sp = colors.Red2, undercurl = true })
 
         -- Treesitter
+        hi("markdownCodeBlock", { bg = colors.Silver3 })
+        hi("@markup.raw.markdown_inline", { fg = colors.Cyan3, bg = colors.Silver3 })
         hi("@markup.link.vimdoc", { fg = colors.Cyan3, bold = true })
         hi("@label.vimdoc", { fg = colors.Green2, bold = true })
         hi("gitcommitSummary", { link = "Identifier" })
         hi("@markup.link.label.markdown_inline", { link = "Identifier" })
         hi("@markup.heading.gitcommit", { link = "gitcommitSummary" })
-        hi("@markup.raw.markdown_inline", { fg = colors.Cyan3, bg = colors.Silver3 })
         hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false })
         hi("@character.rust", { link = "String", bold = false })
 
