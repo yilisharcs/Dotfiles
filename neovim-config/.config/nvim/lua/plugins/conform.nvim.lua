@@ -13,8 +13,12 @@ return {
                                 command = "/home/yilisharcs/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustfmt",
                         },
                 },
-                format_on_save = {
-                        timeout_ms = 2000,
-                },
+                format_after_save = function(bufnr)
+                        local name = vim.api.nvim_buf_get_name(bufnr)
+                        if name:find("Projects/github.com/neovim/neovim/", 1, true) then
+                                return nil
+                        end
+                        return { timeout_ms = 2000 }
+                end,
         },
 }
