@@ -10,7 +10,7 @@ function _G.qfx(info)
         end
 
         -- truncate file names
-        local limit = 31
+        local limit = 34
         local fnameFmt1, fnameFmt2 = "%-" .. limit .. "s", "…%." .. (limit - 1) .. "s"
 
         local validFmt = ""
