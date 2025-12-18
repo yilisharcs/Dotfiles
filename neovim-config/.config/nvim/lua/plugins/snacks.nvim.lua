@@ -89,7 +89,7 @@ return {
                 },
                 gitbrowse = {},
                 image = {
-                        enabled = vim.env.TERM == "xterm-kitty",
+                        enabled = not vim.g.neovide,
                         doc = {
                                 inline = false,
                                 max_width = 20,
