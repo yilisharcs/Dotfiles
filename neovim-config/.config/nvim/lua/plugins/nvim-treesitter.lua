@@ -23,6 +23,7 @@ return {
                         "gitattributes",
                         "gitcommit",
                         "gitignore",
+                        "glsl",
                         "html",
                         "ini",
                         "javascript",
@@ -45,7 +46,6 @@ return {
                         "udev",
                         "vim",
                         "vimdoc",
-                        -- "wgsl_bevy",
                         "xml",
                         "yaml",
                 }
