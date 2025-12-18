@@ -32,6 +32,7 @@ end
 return {
         "stevearc/oil.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
+        dev = true,
         lazy = false,
         keys = {
                 { "-", "<CMD>Oil<CR>", desc = "Open file explorer" },
