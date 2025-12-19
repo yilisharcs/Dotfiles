@@ -71,7 +71,7 @@ return {
                                         "⠏",
                                 }
 
-                                vim.notify(vim.lsp.status(), vim.log.levels.INFO, {
+                                vim.notify((vim.lsp.status() or ""), vim.log.levels.INFO, {
                                         id = "lsp_progress",
                                         title = "LSP Progress",
                                         opts = function(notif)
