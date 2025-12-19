@@ -24,8 +24,22 @@ function _G.tafsk_resolve(pattern, flags, _)
 
         vim.api.nvim_echo({ { "E426: Tag not found: " .. id, "ErrorMsg" } }, true, {})
 
-        return nil
+        return {}
 end
+
+vim.keymap.set("n", "<C-]>", function()
+        local key = vim.api.nvim_replace_termcodes("<C-]>", true, false, true)
+        local ok, err = pcall(vim.cmd.normal, { args = { key }, bang = true })
+        if not ok then
+                local task_not_found = err:match("E426")
+                if task_not_found and vim.fn.expand("<cWORD>"):match("TASK%((%d+%-%d+%.%w+)%)") then
+                        return
+                else
+                        local msg = err:match("(E%d+:.*)") or err
+                        vim.api.nvim_echo({ { msg, "ErrorMsg" } }, true, {})
+                end
+        end
+end, { desc = "Jump to the task or the tag under the cursor" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
         desc = "Ensure LSP tagfunc fallback for Tafsk",
@@ -36,15 +50,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 end)
         end,
 })
-
-vim.keymap.set("n", "<C-]>", function()
-        local ok, err = pcall(vim.cmd.tag, vim.fn.expand("<cword>"))
-        if not ok then
-                if not err:match("E426") then
-                        vim.api.nvim_echo({ { err:gsub("^Vim:", ""), "ErrorMsg" } }, true, {})
-                end
-        end
-end)
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
         desc = "Toggle tafsk status",
