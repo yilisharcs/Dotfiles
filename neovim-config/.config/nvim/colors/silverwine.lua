@@ -33,6 +33,8 @@ local colors = {
         Gray2 = "#362b49",
         Gray3 = "#1e1829",
 
+        White1 = "#faebd7",
+
         Cyan1 = "#8cf8f7",
         Cyan2 = "#00afff",
         Cyan3 = "#004666",
@@ -56,30 +58,6 @@ local colors = {
         Magenta2 = "#b348ff",
 }
 
-vim.g.terminal_ansi_colors = {
-        colors.Ink4,
-        colors.Red2,
-        colors.Green2,
-        colors.Yellow2,
-        colors.Blue2,
-        colors.Magenta2,
-        colors.Cyan2,
-        colors.Silver3,
-        --
-        colors.Gray1,
-        colors.Red1,
-        colors.Green2,
-        colors.Yellow1,
-        colors.Blue1,
-        colors.Magenta1,
-        colors.Cyan1,
-        colors.Silver1,
-}
-for k, v in ipairs(vim.g.terminal_ansi_colors) do
-        local num = "terminal_color_" .. k - 1
-        vim.g[num] = v
-end
-
 local function hi(name, val)
         -- Force links
         val.force = true
@@ -90,6 +68,30 @@ local function hi(name, val)
 end
 
 if vim.o.background == "dark" then
+        local terminal_ansi_colors = {
+                colors.Ink4,
+                colors.Red2,
+                colors.Green2,
+                colors.Yellow2,
+                colors.Blue2,
+                colors.Magenta2,
+                colors.Cyan2,
+                colors.Silver3,
+                --
+                colors.Gray1,
+                colors.Red1,
+                colors.Green2,
+                colors.Yellow1,
+                colors.Blue1,
+                colors.Magenta1,
+                colors.Cyan1,
+                colors.Silver1,
+        }
+        for k, v in ipairs(terminal_ansi_colors) do
+                local num = "terminal_color_" .. k - 1
+                vim.g[num] = v
+        end
+
         -- Custom
         hi("QuickFixBg", { bg = colors.Wine3 })
 
@@ -207,6 +209,30 @@ if vim.o.background == "dark" then
         hi("Sneak", { link = "SneakShow" })
         -- }}}
 elseif vim.o.background == "light" then
+        local terminal_ansi_colors = {
+                colors.Ink4,
+                colors.Red2,
+                colors.Green2,
+                colors.Yellow2,
+                colors.Blue2,
+                colors.Magenta2,
+                colors.Cyan2,
+                colors.Gray1,
+                --
+                colors.Gray2,
+                colors.Red1,
+                colors.Green2,
+                colors.Yellow1,
+                colors.Blue1,
+                colors.Magenta1,
+                colors.Cyan1,
+                colors.White1,
+        }
+        for k, v in ipairs(terminal_ansi_colors) do
+                local num = "terminal_color_" .. k - 1
+                vim.g[num] = v
+        end
+
         -- Custom
         hi("QuickFixBg", { bg = colors.Silver3 })
 
