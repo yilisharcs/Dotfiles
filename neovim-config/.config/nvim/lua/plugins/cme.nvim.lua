@@ -60,11 +60,6 @@ return {
                         ["Compile"] = { "c", "C", "compile" },
                         ["Recompile"] = { "r", "R", "recompile" },
                         ["Compile fd --strip-cwd-prefix=never"] = { "find" },
-                        ["Compile git"] = { "git" },
-                        ["Compile grep"] = { "grep" },
-                        ["Compile make"] = { "make" },
-                        ["Compile task"] = { "task" },
-                        ["Compile cargo"] = { "cargo" },
                 })
 
                 vim.keymap.set("n", "<leader>w", function()
