@@ -36,7 +36,11 @@ require("utils.cabbrev")({
                 "Wqa!", "Wqa1", "WqA!", "WqA1",
                 "WQa!", "WQa1", "WQA!", "WQA1",
         },
-        ["noau"]        = { "Noau", "NOau" },
+        ["noau w"] = { "nw", "Nw", "NW" },
+        ["noau wq"] = {
+                "nwQ", "nwq", "nWQ", "nWq",
+                "NwQ", "Nwq", "NWQ", "NWq",
+        },
         -- Extras
         ["Cfilter"]     = { "cfilter" },
         ["Cfilter!"]    = { "cfilter1" },
