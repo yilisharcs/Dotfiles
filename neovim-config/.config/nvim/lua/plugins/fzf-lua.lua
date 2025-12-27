@@ -114,6 +114,7 @@ return {
                                         "~/Projects/github.com/yilisharcs/",
                                         "~/.local/share/nvim/lazy/",
                                         "~/.local/share/bob/nightly/share/nvim/runtime/",
+                                        "~/Games/.pkgs/Sonic-3-AIR/_core/Games/sonic3air_game/bonus/sonic3air_dev",
                                         "~/Documents/",
                                         "~/",
                                 }
