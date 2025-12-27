@@ -98,7 +98,7 @@ return {
                                 nowait = true,
                         },
                         ["<C-s>"] = { "actions.select", opts = { horizontal = true } },
-                        ["<C-v>"] = { "actions.select", opts = { vertical = true } },
+                        -- ["<C-v>"] = { "actions.select", opts = { vertical = true } },
                         ["ms"] = { "actions.change_sort", mode = "n" },
                         ["gf"] = {
                                 follow_symlink,
