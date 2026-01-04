@@ -192,6 +192,10 @@ return {
                                         pattern = "%f[%w]()NOTE()%f[%W]",
                                         group = "MiniHipatternsNote",
                                 },
+                                task = {
+                                        pattern = "TASK%(%d+%-%d+%.%w+%)",
+                                        group = "MiniHipatternsTodo",
+                                },
                         },
                 })
                 -- }}}
