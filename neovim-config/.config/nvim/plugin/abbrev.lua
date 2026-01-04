@@ -37,6 +37,10 @@ require("utils.cabbrev")({
                 "WQa!", "WQa1", "WQA!", "WQA1",
         },
         ["noau w"] = { "nw", "Nw", "NW" },
+        ["noau wa"] = {
+                "nwA", "nwa", "nWA", "nWa",
+                "NwA", "Nwa", "NWA", "NWa",
+        },
         ["noau wq"] = {
                 "nwQ", "nwq", "nWQ", "nWq",
                 "NwQ", "Nwq", "NWQ", "NWq",
