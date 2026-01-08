@@ -12,6 +12,16 @@ vim.keymap.set("n", "<leader>j", "`J", { desc = "File mark `J" })
 vim.keymap.set("n", "<leader>k", "`K", { desc = "File mark `K" })
 vim.keymap.set("n", "<leader>l", "`L", { desc = "File mark `L" })
 
+vim.keymap.set("n", "<leader>P", ":= P()<LEFT>", { desc = "Printf util" })
+function P(...)
+        local args = {}
+        for _, arg in ipairs({ ... }) do
+                table.insert(args, vim.inspect(arg))
+        end
+        print(unpack(args))
+        return ...
+end
+
 -- EDITOR OPTIONS
 -- Enable project-local configuration
 vim.o.exrc = true
