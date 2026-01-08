@@ -54,7 +54,7 @@ return {
                 vim.keymap.set("n", "<leader>c", ":Compile ")
                 vim.keymap.set("n", "<leader><S-c>", "<CMD>Compile<CR>")
                 vim.keymap.set("n", "<leader>r", ":Recompile ")
-                vim.keymap.set("n", "<leader>R", "<CMD>Recompile!<CR>")
+                vim.keymap.set("n", "<leader>R", ":Recompile! ")
 
                 require("utils.cabbrev")({
                         ["Compile"] = { "c", "C", "compile" },

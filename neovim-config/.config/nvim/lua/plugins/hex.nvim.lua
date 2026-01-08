@@ -12,6 +12,9 @@ return {
         },
         init = function()
                 vim.g.hex = {
+                        cmd = {
+                                dump = "xxd -g 2 -u",
+                        },
                         keymaps = false,
                         prettify = {
                                 unicode = true,
