@@ -26,6 +26,8 @@
 [rebase]
 	autoSquash = true
 	autoStash = true
+[rerere]
+	enabled = true
 [alias]
 	last    = log -1 HEAD
 	logd    = log --graph --pretty=format:'%C(yellow)%h %Cgreen[%as]%C(bold red)%d %Creset%s %Cblue<%an>%Creset'
