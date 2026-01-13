@@ -46,5 +46,18 @@ return {
                         grep_in_directory = "fzf-lua",
                         grep_in_selected_files = "fzf-lua",
                 },
+                hooks = {
+                        yazi_opened = function(_, yazi_buffer_id, _)
+                                vim.keymap.set("t", "<leader>i", function()
+                                        vim.api.nvim_buf_delete(yazi_buffer_id, { force = true })
+                                        vim.schedule(function()
+                                                vim.cmd("Neogit kind=replace")
+                                        end)
+                                end, {
+                                        buffer = yazi_buffer_id,
+                                        desc = "Replace Yazi buffer with Neogit status",
+                                })
+                        end,
+                },
         },
 }
