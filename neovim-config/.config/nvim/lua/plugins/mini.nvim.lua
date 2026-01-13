@@ -204,6 +204,10 @@ return {
                 require("mini.icons").setup({
                         filetype = {
                                 nu = { hl = "MiniIconsGreen" },
+                                c = { glyph = "" },
+                        },
+                        extension = {
+                                zc = { glyph = "", hl = "MiniIconsOrange" },
                         },
                         file = {
                                 ["init.lua"] = { glyph = "󰢱" },
