@@ -188,6 +188,10 @@ if vim.o.background == "dark" then
         hi("MiniHipatternsFixme", { fg = colors.Red2, bold = true, reverse = true })
         -- }}}
 
+        -- mini.icons {{{
+        hi("MiniIconsYellow", { fg = colors.Yellow1 })
+        -- }}}
+
         -- neogit {{{
         hi("NeogitDiffAddHighlight", { fg = "NONE", bg = colors.Green3 })
         hi("NeogitDiffAdd", { fg = "NONE", bg = colors.Green4 })
@@ -326,6 +330,10 @@ elseif vim.o.background == "light" then
         -- mini.hipatterns {{{
         hi("MiniHipatternsNote", { fg = colors.Green2, bold = true, reverse = true })
         hi("MiniHipatternsFixme", { fg = colors.Red2, bold = true, reverse = true })
+        -- }}}
+
+        -- mini.icons {{{
+        hi("MiniIconsYellow", { fg = colors.Yellow3 })
         -- }}}
 
         -- neogit {{{

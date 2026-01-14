@@ -207,6 +207,7 @@ return {
                                 c = { glyph = "" },
                         },
                         extension = {
+                                lemon = { glyph = "", hl = "MiniIconsYellow" },
                                 zc = { glyph = "", hl = "MiniIconsOrange" },
                         },
                         file = {
