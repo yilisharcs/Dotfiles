@@ -1,5 +1,5 @@
 ﻿###
-###  vlc 3.0.21
+###  vlc 3.0.22
 ###
 
 ###
@@ -1872,7 +1872,7 @@ soundfont=/usr/share/sounds/sf2/FluidR3_GM.sf2
 #sout-avi-subject=
 
 # Encoder (string)
-#sout-avi-encoder=VLC Media Player - 3.0.21 Vetinari
+#sout-avi-encoder=VLC Media Player - 3.0.22 Vetinari
 
 # Keywords (string)
 #sout-avi-keywords=
@@ -2070,7 +2070,7 @@ soundfont=/usr/share/sounds/sf2/FluidR3_GM.sf2
 # Continue playback? (integer)
 #qt-continue=1
 
-# Applies a dark palette to the style. (boolean)
+# Enable Dark Mode (boolean)
 qt-dark-palette=1
 
 # Embed the file browser in open dialog (boolean)
