@@ -43,3 +43,5 @@
 	gpgSign = true
 [remote]
 	pushDefault = origin
+[url "git@github.com:"]
+	insteadOf = https://github.com/
