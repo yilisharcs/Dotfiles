@@ -1,0 +1,7 @@
+#!/usr/bin/env nu
+
+$env.config.display_errors.termination_signal = false
+
+def --wrapped main [...rest] {
+        ^/usr/bin/grep --color=auto --exclude-dir=.git ...$rest
+}
