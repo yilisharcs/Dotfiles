@@ -2,7 +2,6 @@ vim.lsp.enable({
         "luals",
         "nuls", -- External
         "rust-analyzer", -- External
-        "vimls",
 })
 
 vim.lsp.log.set_level("off")
