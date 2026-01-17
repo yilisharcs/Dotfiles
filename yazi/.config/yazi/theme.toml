@@ -18,6 +18,7 @@ unset_alt   = { fg = "red",  bg = "black" }
 [icon]
 prepend_dirs = [
         { name = ".git",      text = "", fg = "#f54d27" },
+        { name = ".jj",       text = "", fg = "#f54d27" },
         { name = "Documents", text = "", fg = "#85ea2d" },
         { name = "Dotfiles",  text = "", fg = "#85ea2d" },
         { name = "Downloads", text = "", fg = "#85ea2d" },

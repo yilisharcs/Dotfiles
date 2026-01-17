@@ -44,7 +44,7 @@ export ZK_NOTEBOOK_DIR="$HOME/notebook"                            # default pat
 export TAFSK_STORE_DIR="$HOME/notebook/tasks"                      # default path to tafsk store
 
 export FZF_DEFAULT_COMMAND="fd --color=never --ignore-case --strip-cwd-prefix \
-        --hidden --follow --type f --type l --exclude={.git,.cache,.npm}"
+        --hidden --follow --type f --type l --exclude={.git,.jj,.cache,.npm}"
 export FZF_DEFAULT_OPTS="--layout=reverse --multi \
         --preview 'bat {} --color=always --wrap=never --style=plain --line-range=:500' \
         --bind='backward-eof:abort' \
