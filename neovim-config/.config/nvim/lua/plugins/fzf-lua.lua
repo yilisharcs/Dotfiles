@@ -198,6 +198,7 @@ return {
                                 "--max-columns=4096",
                                 "--hidden",
                                 "-g=!.git",
+                                "-g=!.jj",
                                 "-e",
                         }, " "),
                 },
