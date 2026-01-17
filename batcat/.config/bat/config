@@ -1,2 +1,3 @@
 --pager="less -FR --mouse"
 --map-syntax='*.rockspec:Lua'
+--map-syntax='*.zig.zon:Zig'
