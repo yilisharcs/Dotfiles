@@ -208,7 +208,6 @@ return {
                         },
                         extension = {
                                 lemon = { glyph = "", hl = "MiniIconsYellow" },
-                                zc = { glyph = "", hl = "MiniIconsOrange" },
                         },
                         file = {
                                 ["init.lua"] = { glyph = "󰢱" },
