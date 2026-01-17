@@ -134,7 +134,7 @@ return {
                         callback = function()
                                 local name = vim.api.nvim_buf_get_name(0)
                                 -- stylua: ignore
-                                if not name:match( "^minigit://.*/git blame") then return end
+                                if not name:match("^minigit://.*/git blame") then return end
 
                                 -- stylua: ignore
                                 local line = vim.api.nvim_buf_get_lines(0, 0, 1, false)
@@ -148,8 +148,8 @@ return {
                                 local last_line = vim.api.nvim_buf_line_count(0)
                                 for lnum = 0, last_line - 1 do
                                         vim.api.nvim_buf_set_extmark(0, ns, lnum, match + 4, {
-                                                        -- stylua: ignore
-                                                        virt_text = { { ")", "Normal" } },
+                                                -- stylua: ignore
+                                                virt_text = { { ")", "Normal" } },
                                                 virt_text_pos = "overlay",
                                         })
                                 end
