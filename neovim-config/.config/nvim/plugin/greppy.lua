@@ -41,10 +41,11 @@ function Greppy(mode)
         local args = table.concat(text, "\n")
         args = vim.fn.shellescape(args)
 
+        local cmd = vim.fn.executable("rg") == 1 and "rg --vimgrep -F" or "grep -rn -F"
         if vim.g.cme then
-                vim.cmd("Compile grep -F " .. args)
+                vim.cmd(("Compile %s %s"):format(cmd, args))
         else
-                vim.cmd("silent grep -F " .. args)
+                vim.cmd(("silent %s %s"):format(cmd, args))
         end
 end
 
