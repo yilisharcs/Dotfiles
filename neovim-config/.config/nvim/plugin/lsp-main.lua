@@ -2,7 +2,6 @@ vim.lsp.enable({
         "luals",
         "nuls",
         "rust-analyzer",
-        "zls",
 })
 
 vim.lsp.log.set_level("off")
