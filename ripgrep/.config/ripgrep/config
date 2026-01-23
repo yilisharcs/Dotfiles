@@ -5,6 +5,7 @@
 --smart-case
 
 # Exclude files/folders with glob patterns
+--glob=!.bak*
 --glob=!.cache/*
 --glob=!.git/*
 --glob=!.npm/*
