@@ -36,6 +36,15 @@ local function qf_nav(direction)
 
         if label then text = label .. ": " .. text end
 
+        if vim.g.neovide then
+                -- stylua: ignore
+                local prefix = qf_cache.total > 0 and string.format("(%d of %d) ", logical_current, qf_cache.total) or ""
+                local padding = 13
+                if #prefix + #text > vim.o.columns - padding then
+                        text = text:sub(1, vim.o.columns - #prefix - padding) .. "…"
+                end
+        end
+
         local chunks = {}
         if qf_cache.total > 0 then
                 table.insert(chunks, {
