@@ -84,8 +84,14 @@ return {
                         "<leader>fs",
                         function()
                                 local function tabedit(selected)
-                                        local is_empty = vim.api.nvim_buf_get_name(0) == ""
-                                                and not vim.bo.modified
+                                        local is_empty = false
+                                        local buf = vim.api.nvim_buf_get_name(0)
+                                        if
+                                                (buf == "" and not vim.bo.modified) -- Empty buffer
+                                                or vim.fn.isdirectory(buf) == 1 -- Empty *directory* buffer, completely different thing
+                                        then
+                                                is_empty = true
+                                        end
 
                                         if is_empty then
                                                 vim.cmd("edit " .. selected[1])
