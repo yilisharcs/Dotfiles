@@ -2,7 +2,8 @@ return {
         "lambdalisue/suda.vim",
         init = function()
                 require("utils.cabbrev")({
-                        ["SudaWrite"] = { "sudo" },
+                        ["SudaRead"] = { "sudor" },
+                        ["SudaWrite"] = { "sudow" },
                 })
         end,
 }
