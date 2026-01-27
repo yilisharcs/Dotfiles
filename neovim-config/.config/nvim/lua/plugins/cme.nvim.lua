@@ -44,6 +44,7 @@ return {
         init = function()
                 vim.g.cme = {
                         shell = "nu",
+                        sudo_prompt = true,
                         efm_rules = {
                                 ["buffer"] = { "mask" },
                                 [efm.rust] = { "cargo", "mask" },
@@ -60,6 +61,7 @@ return {
                         ["Compile"] = { "c", "C", "compile" },
                         ["Recompile"] = { "r", "R", "recompile" },
                         ["Compile fd --strip-cwd-prefix=never"] = { "find" },
+                        ["Compile make"] = { "make" },
                         ["Compile rg --vimgrep"] = { "grep" },
                 })
 
