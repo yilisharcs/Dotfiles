@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# This is probably unsafe
+/usr/bin/zenity --password --title="[sudo] password for $USER"

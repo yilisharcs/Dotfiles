@@ -58,6 +58,7 @@ export FZF_CTRL_R_OPTS="--preview-window=hidden \
 export SUDO_EDITOR=nvim
 export EDITOR=nvim
 export MANPAGER="nvim +Man!"
+export SUDO_ASKPASS="/home/$USER/.local/bin/zenity-askpass"
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
