@@ -145,7 +145,7 @@ if vim.o.background == "dark" then
         hi("ExTUIArea", { link = "MsgArea" })
 
         -- Keywords
-        hi("Constant", { fg = colors.Yellow1, bold = true })
+        hi("Statement", { fg = colors.Yellow1, bold = true })
         hi("String", { fg = colors.Green1 })
         hi("PreProc", { fg = colors.Red1 })
         hi("Delimiter", { fg = colors.Silver3 })
@@ -291,7 +291,7 @@ elseif vim.o.background == "light" then
         hi("ExTUIArea", { link = "MsgArea" })
 
         -- Keywords
-        hi("Constant", { fg = colors.Yellow3, bold = true })
+        hi("Statement", { fg = colors.Yellow3, bold = true })
         hi("String", { fg = colors.Green3 })
         hi("PreProc", { fg = colors.Red1 })
         hi("Delimiter", { fg = colors.Wine1 })
