@@ -1,3 +1,6 @@
+[Activities][LastVirtualDesktop]
+8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289=40a76234-06bc-43d4-bf92-69dec91b14df
+
 [Desktops]
 Id_1=40a76234-06bc-43d4-bf92-69dec91b14df
 Number=1
@@ -5,6 +8,12 @@ Rows=1
 
 [Input]
 TabletMode=off
+
+[TabBox]
+HighlightWindows=false
+
+[TabBoxAlternative]
+ShowTabBox=false
 
 [Tiling]
 padding=4
