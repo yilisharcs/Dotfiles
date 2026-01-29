@@ -150,6 +150,7 @@ smallestReadableFont=Iosevka Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 toolBarFont=Iosevka Nerd Font,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 
 [KDE]
+AnimationDurationFactor=0.7071067811865475
 LookAndFeelPackage=org.kde.breezedark.desktop
 widgetStyle=Windows
 
