@@ -15,6 +15,10 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
+[Containments][1][ConfigDialog]
+DialogHeight=540
+DialogWidth=720
+
 [Containments][1][General]
 positions={"1242x698":[],"1301x731":[],"1366x768":[]}
 
@@ -204,6 +208,16 @@ totalSensors=["disk/all/free"]
 immutability=1
 plugin=org.kde.plasma.pager
 
+[Containments][2][Applets][4][Configuration][ConfigDialog]
+DialogHeight=540
+DialogWidth=720
+
+[Containments][2][Applets][4][Configuration][General]
+showWindowIcons=true
+
+[Containments][2][Applets][4][Shortcuts]
+global=
+
 [Containments][2][Applets][5]
 immutability=1
 plugin=org.kde.plasma.icontasks
@@ -298,14 +312,14 @@ immutability=1
 plugin=org.kde.plasma.brightness
 
 [Containments][8][Applets][23][Configuration]
-PreloadWeight=52
+PreloadWeight=28
 
 [Containments][8][Applets][24]
 immutability=1
 plugin=org.kde.plasma.battery
 
 [Containments][8][Applets][24][Configuration]
-PreloadWeight=47
+PreloadWeight=23
 
 [Containments][8][Applets][25]
 immutability=1
@@ -344,4 +358,4 @@ shownItems=org.kde.plasma.clipboard
 
 [ScreenMapping]
 itemsOnDisabledScreens=
-screenMapping=desktop:/Music,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Library,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Extern-Media,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/vault,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Memes,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Trash,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Dotfiles,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Games,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Projects,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Downloads,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Pictures,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Videos,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Extern-GVFS,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/notebook,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/opt,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Documents,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289
+screenMapping=desktop:/Dotfiles,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Library,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/notebook,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Downloads,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/opt,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Videos,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Music,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Documents,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Memes,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Extern-Media,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/vault,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Games,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Trash,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Projects,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Extern-GVFS,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Pictures,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289
