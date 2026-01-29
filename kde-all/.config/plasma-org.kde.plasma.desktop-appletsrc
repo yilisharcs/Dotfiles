@@ -212,6 +212,9 @@ plugin=org.kde.plasma.icontasks
 DialogHeight=540
 DialogWidth=720
 
+[Containments][2][Applets][5][Configuration][General]
+launchers=applications:systemsettings.desktop,applications:org.kde.discover.desktop,preferred://filemanager,preferred://browser,applications:neovide.desktop
+
 [Containments][2][Applets][6]
 immutability=1
 plugin=org.kde.plasma.marginsseparator
