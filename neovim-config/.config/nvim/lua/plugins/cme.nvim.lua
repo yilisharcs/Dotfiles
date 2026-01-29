@@ -42,6 +42,11 @@ return {
         "https://github.com/yilisharcs/cme.nvim",
         dev = true,
         init = function()
+                -- Ensure CME can find tools installed via fnm -> npm
+                vim.env.PATH = vim.fs.abspath(".local/share/fnm/aliases/default/bin")
+                        .. ":"
+                        .. os.getenv("PATH")
+
                 vim.g.cme = {
                         shell = "nu",
                         sudo_prompt = true,
