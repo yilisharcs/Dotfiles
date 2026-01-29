@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Proton VPN
-Exec=env GTK_THEME=Adwaita:dark protonvpn-app
+Exec=protonvpn-app
 Terminal=false
 Type=Application
 Icon=proton-vpn-logo

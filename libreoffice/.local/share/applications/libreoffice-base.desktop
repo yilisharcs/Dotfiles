@@ -21,7 +21,7 @@ Terminal=false
 Icon=libreoffice-base
 Type=Application
 Categories=Office;Database;
-Exec=env GTK_THEME=Adwaita:dark libreoffice --base %U
+Exec=libreoffice --base %U
 MimeType=application/vnd.oasis.opendocument.base;application/vnd.sun.xml.base;
 Name=LibreOffice Base
 GenericName=Database Development
@@ -37,4 +37,4 @@ Actions=NewDocument;
 [Desktop Action NewDocument]
 Name=New Database
 Icon=document-new
-Exec=env GTK_THEME=Adwaita:dark libreoffice --base
+Exec=libreoffice --base

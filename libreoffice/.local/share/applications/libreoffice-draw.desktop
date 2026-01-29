@@ -21,7 +21,7 @@ Terminal=false
 Icon=libreoffice-draw
 Type=Application
 Categories=Office;FlowChart;Graphics;2DGraphics;VectorGraphics;
-Exec=env GTK_THEME=Adwaita:dark libreoffice --draw %U
+Exec=libreoffice --draw %U
 MimeType=application/clarisworks;application/pdf;application/vnd.corel-draw;application/vnd.ms-publisher;application/vnd.oasis.opendocument.graphics;application/vnd.oasis.opendocument.graphics-flat-xml;application/vnd.oasis.opendocument.graphics-template;application/vnd.quark.quarkxpress;application/vnd.stardivision.draw;application/vnd.sun.xml.draw;application/vnd.sun.xml.draw.template;application/vnd.visio;application/x-pagemaker;application/x-stardraw;application/x-wpg;image/x-emf;image/x-freehand;image/x-wmf;
 Name=LibreOffice Draw
 GenericName=Drawing Program
@@ -37,4 +37,4 @@ Actions=NewDocument;
 [Desktop Action NewDocument]
 Name=New Drawing
 Icon=document-new
-Exec=env GTK_THEME=Adwaita:dark libreoffice --draw
+Exec=libreoffice --draw

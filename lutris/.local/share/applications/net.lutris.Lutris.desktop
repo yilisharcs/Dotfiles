@@ -4,7 +4,7 @@ StartupWMClass=Lutris
 Comment=Video Game Preservation Platform
 Categories=Game;
 Keywords=gaming;wine;emulator;
-Exec=env GTK_THEME=Adwaita:dark lutris %U
+Exec=lutris %U
 Icon=net.lutris.Lutris
 Terminal=false
 Type=Application

@@ -22,7 +22,7 @@ NoDisplay=false
 Icon=libreoffice-math
 Type=Application
 Categories=Office;Math;
-Exec=env GTK_THEME=Adwaita:dark libreoffice --math %U
+Exec=libreoffice --math %U
 MimeType=application/mathml+xml;application/vnd.oasis.opendocument.formula;application/vnd.oasis.opendocument.formula-template;application/vnd.stardivision.math;application/vnd.sun.xml.math;application/x-starmath;text/mathml;
 Name=LibreOffice Math
 GenericName=Formula Editor
@@ -39,4 +39,4 @@ Actions=NewDocument;
 [Desktop Action NewDocument]
 Name=New Formula
 Icon=document-new
-Exec=env GTK_THEME=Adwaita:dark libreoffice --math
+Exec=libreoffice --math

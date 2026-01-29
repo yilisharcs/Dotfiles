@@ -22,7 +22,7 @@ NoDisplay=false
 Icon=libreoffice-startcenter
 Type=Application
 Categories=Office;X-Red-Hat-Base;X-SuSE-Core-Office;
-Exec=env GTK_THEME=Adwaita:dark libreoffice %F
+Exec=libreoffice %F
 MimeType=application/vnd.openofficeorg.extension;x-scheme-handler/vnd.libreoffice.cmis;x-scheme-handler/vnd.sun.star.webdav;x-scheme-handler/vnd.sun.star.webdavs;x-scheme-handler/vnd.libreoffice.command;x-scheme-handler/ms-word;x-scheme-handler/ms-powerpoint;x-scheme-handler/ms-excel;x-scheme-handler/ms-visio;x-scheme-handler/ms-access;
 Name=LibreOffice
 GenericName=Office
@@ -38,26 +38,26 @@ Actions=Writer;Calc;Impress;Draw;Base;Math;
 
 [Desktop Action Writer]
 Name=Writer
-Exec=env GTK_THEME=Adwaita:dark libreoffice --writer
+Exec=libreoffice --writer
 
 [Desktop Action Calc]
 Name=Calc
-Exec=env GTK_THEME=Adwaita:dark libreoffice --calc
+Exec=libreoffice --calc
 
 [Desktop Action Impress]
 Name=Impress
-Exec=env GTK_THEME=Adwaita:dark libreoffice --impress
+Exec=libreoffice --impress
 
 [Desktop Action Draw]
 Name=Draw
-Exec=env GTK_THEME=Adwaita:dark libreoffice --draw
+Exec=libreoffice --draw
 
 [Desktop Action Base]
 Name=Base
-Exec=env GTK_THEME=Adwaita:dark libreoffice --base
+Exec=libreoffice --base
 
 [Desktop Action Math]
 Name=Math
-Exec=env GTK_THEME=Adwaita:dark libreoffice --math
+Exec=libreoffice --math
 
 ##End of actions menu
