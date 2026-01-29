@@ -40,6 +40,8 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"       # create ripg
 export SQLITE_HISTORY="$HOME/.local/state/sqlite3/sqlite_history"  # set sqlite histfile location
 export STARSHIP_LOG="error"                                        # disable "command timed-out" errors
 export XCOMPOSEFILE="/usr/share/keyd/keyd.compose"                 # keyd compat file for non-ASCII characters
+export GTK_IM_MODULE=xim                                           # keyd compat on KDE for some reason...
+export QT_IM_MODULE=xim                                            # keyd compat on KDE ditto
 export ZK_NOTEBOOK_DIR="$HOME/notebook"                            # default path to zk files
 export TAFSK_STORE_DIR="$HOME/notebook/tasks"                      # default path to tafsk store
 
