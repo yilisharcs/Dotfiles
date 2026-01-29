@@ -32,7 +32,6 @@ vim.api.nvim_create_autocmd("UIEnter", {
                 vim.o.clipboard = "unnamedplus"
         end,
 })
-vim.g.clipboard = "xclip"
 
 vim.cmd("aunmenu PopUp.How-to\\ disable\\ mouse")
 vim.cmd("aunmenu PopUp.-2-")
