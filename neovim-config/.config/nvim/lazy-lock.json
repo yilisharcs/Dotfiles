@@ -19,6 +19,7 @@
   "toggleterm.nvim": { "branch": "main", "commit": "50ea089fc548917cc3cc16b46a8211833b9e3c7c" },
   "vim-repeat": { "branch": "maparg", "commit": "711fe37dd34dd53d22742044817e180740868e20" },
   "vim-sneak": { "branch": "master", "commit": "feea86adcfbf8e6b5e71fdd5f4f5736fd8819fdb" },
+  "vim-symlink": { "branch": "master", "commit": "fec2d1a72c6875557109ce6113f26d3140b64374" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
   "zk": { "branch": "main", "commit": "8df80d0dc2d66e53b08740361a600746a6e4edcf" }
 }
