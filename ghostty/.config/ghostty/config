@@ -5,6 +5,7 @@ custom-shader           = ./shaders/cursor_warp.glsl
 
 copy-on-select          = true
 cursor-style            = block
+mouse-hide-while-typing = true
 command                 = nu
 shell-integration       = nushell
 
