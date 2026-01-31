@@ -1,5 +1,8 @@
 theme                   = ghostty-wine
 
+custom-shader-animation = always
+custom-shader           = ./shaders/cursor_warp.glsl
+
 copy-on-select          = true
 cursor-style            = block
 command                 = nu
