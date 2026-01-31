@@ -38,6 +38,11 @@
                         "git rebase*"                   : "deny",
                         "git reset*"                    : "deny",
                         "git restore*"                  : "deny",
+                        "git check-ignore*"             : "allow",
+                        "git diff*"                     : "allow",
+                        "git log*"                      : "allow",
+                        "git show*"                     : "allow",
+                        "git status*"                   : "allow",
 
                         "sed *"                         : "allow",
                         "sed *--in-place*"              : "deny",
