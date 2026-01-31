@@ -228,7 +228,7 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][2][Applets][5][Configuration][General]
-launchers=applications:neovide.desktop,preferred://browser,applications:org.kde.kmail2.desktop,preferred://filemanager,applications:systemsettings.desktop,applications:Fightcade.desktop,applications:com.mitchellh.ghostty.desktop,applications:org.kde.discover.desktop
+launchers=applications:com.mitchellh.ghostty.desktop,preferred://browser,applications:org.kde.kmail2.desktop,preferred://filemanager,applications:systemsettings.desktop,applications:Fightcade.desktop,applications:neovide.desktop,applications:org.kde.discover.desktop
 
 [Containments][2][Applets][6]
 immutability=1
@@ -334,7 +334,7 @@ immutability=1
 plugin=org.kde.plasma.mediacontroller
 
 [Containments][8][Applets][26][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][8][Applets][36]
 immutability=1

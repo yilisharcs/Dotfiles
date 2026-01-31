@@ -140,8 +140,8 @@ Splitter State=\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\xa5\
 AccentColor=61,212,37
 ColorSchemeHash=7b61368c55eaab4075e7b1ae9501f3675b0f830f
 LastUsedCustomAccentColor=61,212,37
-TerminalApplication=kitty
-TerminalService=kitty.desktop
+TerminalApplication=ghostty --gtk-single-instance=true
+TerminalService=com.mitchellh.ghostty.desktop
 XftSubPixel=none
 fixed=Hack,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 font=Iosevka Nerd Font,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
