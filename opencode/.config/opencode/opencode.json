@@ -31,10 +31,13 @@
                         "find *-delete*"                : "ask",
                         "find *-exec*"                  : "ask",
 
-                        "git *"                         : "deny",
-                        "git diff*"                     : "allow",
-                        "git log*"                      : "allow",
-                        "git status*"                   : "allow",
+                        "git *"                         : "ask",
+                        "git clean*"                    : "deny",
+                        "git commit*"                   : "deny",
+                        "git push*"                     : "deny",
+                        "git rebase*"                   : "deny",
+                        "git reset*"                    : "deny",
+                        "git restore*"                  : "deny",
 
                         "sed *"                         : "allow",
                         "sed *--in-place*"              : "deny",
