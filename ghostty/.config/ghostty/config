@@ -5,7 +5,11 @@ custom-shader           = ./shaders/cursor_warp.glsl
 
 copy-on-select          = true
 cursor-style            = block
+# osc8 popups are annoying
+link-url                = false
+link-previews           = false
 mouse-hide-while-typing = true
+# command goes with shell-integration
 command                 = nu
 shell-integration       = nushell
 
