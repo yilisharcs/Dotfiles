@@ -71,3 +71,9 @@ ls
 
 print $"(ansi green_bold)Stow \"(pwd)\" complete.(ansi reset)"
 ```
+
+## watch
+
+```nu
+inotifywait -mr ~/.config -e modify -e move -e create --exclude "BraveSoftware"
+```
