@@ -33,9 +33,11 @@ working-directory       = inherit
 #keybind = ctrl+shift+q=quit
 #keybind = page_up=shift+scroll_page_up
 #keybind = page_down=shift+scroll_page_down
+keybind = ctrl+,=unbind
 
 # extra
 keybind = f5=reload_config
+keybind = ctrl+f5=open_config
 keybind = ctrl+shift+period=move_tab:1
 keybind = ctrl+shift+comma=move_tab:-1
 keybind = f11=toggle_fullscreen
