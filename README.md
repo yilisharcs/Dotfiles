@@ -2,12 +2,6 @@
 
 This repo houses my dotfiles. The nix pill sucks.
 
-# TODO
-
-- [ ] Figure out where to put these:
-    * [ ] `gnome-keyring-daemon --replace --components=ssh,secrets,pkcs11`. If ssh isn't included, the agent will ask for the password every login.
-    * [ ] `sudo -u Debian-gdm dbus-run-session gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic'; sudo -u Debian-gdm dbus-run-session gsettings set org.gnome.desktop.interface cursor-size 32`
-
 # MASKFILE RULES
 
 This section contains commands for the task runner **mask**.
