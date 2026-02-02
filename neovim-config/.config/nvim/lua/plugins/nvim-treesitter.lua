@@ -28,6 +28,7 @@ return {
                         "ini",
                         "javascript",
                         "json",
+                        "just",
                         "lua",
                         "markdown",
                         "markdown_inline",

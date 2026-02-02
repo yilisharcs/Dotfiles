@@ -51,8 +51,8 @@ return {
                         shell = "nu",
                         sudo_prompt = true,
                         efm_rules = {
-                                ["buffer"] = { "mask" },
-                                [efm.rust] = { "cargo", "mask" },
+                                ["buffer"] = { "just" },
+                                [efm.rust] = { "cargo", "just" },
                                 [vim.o.grepformat] = { "task" },
                         },
                 }
