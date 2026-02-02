@@ -35,6 +35,7 @@ prepend_files = [
         { name = "maskfile.md", text = "", fg = "#6d8086" },
 ]
 prepend_exts = [
+        { name = "just",      text = "", fg = "#6d8086" },
         { name = "lemon",     text = "", fg = "#ddd06a" },
         { name = "love",      text = "󰋑", fg = "#ff5faf" },
         { name = "msgpack",   text = "", fg = "#eca517" },
