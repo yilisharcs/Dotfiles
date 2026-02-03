@@ -40,6 +40,7 @@ export XDG_CONFIG_HOME="$HOME/.config"                             # set user co
 export GTK_IM_MODULE=xim                                           # keyd compat on KDE for some reason...
 export QT_IM_MODULE=xim                                            # keyd compat on KDE ditto
 
+export JUST_COMMAND_COLOR=yellow                                   # bold white is not clear enough
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"       # create ripgrep config pointer
 export SQLITE_HISTORY="$HOME/.local/state/sqlite3/sqlite_history"  # set sqlite histfile location
 export STARSHIP_LOG="error"                                        # disable "command timed-out" errors
