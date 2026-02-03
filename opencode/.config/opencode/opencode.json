@@ -41,6 +41,7 @@
                         "git check-ignore*"             : "allow",
                         "git diff*"                     : "allow",
                         "git log*"                      : "allow",
+                        "git ls-files*"                 : "allow",
                         "git show*"                     : "allow",
                         "git status*"                   : "allow",
 
