@@ -223,7 +223,7 @@ SystrayContainmentId=8
 [Containments][2][General]
 AppletOrder=3;4;5;6;27;35;26;28;7;31;21;22
 
-[Containments][37]
+[Containments][39]
 ItemGeometries-1366x768=
 ItemGeometriesHorizontal=
 activityId=d2219f60-5be7-48bf-8a6e-2b45dff3d4b4
@@ -234,14 +234,15 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
-[Containments][37][ConfigDialog]
+[Containments][39][ConfigDialog]
 DialogHeight=540
 DialogWidth=720
 
-[Containments][37][General]
+[Containments][39][General]
 positions={"1366x768":[]}
+url=file:///home/yilisharcs
 
-[Containments][37][Wallpaper][org.kde.image][General]
+[Containments][39][Wallpaper][org.kde.image][General]
 Image=/home/yilisharcs/Dotfiles/ext-images/Pictures/__sonic_shadow_silver__drawn_by_spacedawgspace__f1a3efe29ed4f46805efd19a67210dc7.jpg
 SlidePaths=/usr/share/wallpapers/
 
@@ -362,4 +363,4 @@ shownItems=org.kde.plasma.clipboard
 
 [ScreenMapping]
 itemsOnDisabledScreens=
-screenMapping=desktop:/bin,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/share,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/lib,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Music,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Trash,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Games,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Extern-Media,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/vault,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Pictures,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Projects,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Memes,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Videos,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/notebook,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Extern-GVFS,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Dotfiles,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Downloads,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Library,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Documents,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/opt,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/include,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289
+screenMapping=desktop:/bin,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/share,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/lib,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,file:///home/yilisharcs/Dotfiles,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,file:///home/yilisharcs/Trash,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,file:///home/yilisharcs/notebook,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,desktop:/Music,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,file:///home/yilisharcs/Public,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,desktop:/Trash,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Games,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Extern-Media,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/vault,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Pictures,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,file:///home/yilisharcs/Desktop,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,desktop:/Projects,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Memes,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Videos,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,file:///home/yilisharcs/Documents,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,desktop:/notebook,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Extern-GVFS,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Dotfiles,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,file:///home/yilisharcs/opt,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,file:///home/yilisharcs/vault,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,desktop:/Downloads,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,file:///home/yilisharcs/foo.md,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,desktop:/Library,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,file:///home/yilisharcs/Videos,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,file:///home/yilisharcs/Downloads,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,file:///home/yilisharcs/Projects,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,desktop:/Documents,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/opt,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,file:///home/yilisharcs/Pictures,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,desktop:/include,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,file:///home/yilisharcs/Extern-Media,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4,file:///home/yilisharcs/Music,0,d2219f60-5be7-48bf-8a6e-2b45dff3d4b4
