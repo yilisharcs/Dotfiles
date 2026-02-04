@@ -138,6 +138,7 @@ Splitter State=\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\xa5\
 
 [General]
 AccentColor=61,212,37
+BrowserApplication=brave-browser.desktop
 ColorSchemeHash=7b61368c55eaab4075e7b1ae9501f3675b0f830f
 LastUsedCustomAccentColor=61,212,37
 TerminalApplication=ghostty --gtk-single-instance=true
