@@ -38,12 +38,19 @@ stow arg="":
 
 # Create system-wide symlinks
 [script]
-sudo:
+[arg("arg", pattern="|adopt|delete")]
+sudo arg="":
         ls
         | where type == dir
         | where name =~ "^_"
         | get name
-        | each { sudo stow -R --target=/ $in }
+        | if "{{arg}}" == "delete" {
+                each { sudo stow -D $in }
+        } else if "{{arg}}" == "adopt" {
+                each { sudo stow -R --target=/ --{{arg}} $in }
+        } else {
+                each { sudo stow -R --target=/ $in }
+        }
 
         print $"(ansi green_bold)Stow \"(pwd)\" complete.(ansi reset)"
 
