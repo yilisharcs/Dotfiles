@@ -60,4 +60,4 @@ sudo arg="":
 #
 # Watch $XDG_CONFIG_HOME for file changes
 watch:
-        inotifywait -mr ~/.config -e modify -e move -e create --exclude "BraveSoftware"
+        inotifywait -mr ~/.config -e modify -e move -e create --exclude "BraveSoftware" o>> watch.log
