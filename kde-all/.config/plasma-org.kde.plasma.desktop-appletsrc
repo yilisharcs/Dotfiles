@@ -242,8 +242,7 @@ DialogWidth=720
 positions={"1366x768":[]}
 
 [Containments][37][Wallpaper][org.kde.image][General]
-Image=/home/yilisharcs/Dotfiles/wallpaper/Pictures/__sonic_shadow_silver__drawn_by_spacedawgspace__f1a3efe29ed4f46805efd19a67210dc7.jpg
-PreviewImage=/home/yilisharcs/Dotfiles/wallpaper/Pictures/__sonic_shadow_silver__drawn_by_spacedawgspace__f1a3efe29ed4f46805efd19a67210dc7.jpg
+Image=/home/yilisharcs/Dotfiles/ext-images/Pictures/__sonic_shadow_silver__drawn_by_spacedawgspace__f1a3efe29ed4f46805efd19a67210dc7.jpg
 SlidePaths=/usr/share/wallpapers/
 
 [Containments][8]
@@ -317,14 +316,14 @@ immutability=1
 plugin=org.kde.plasma.brightness
 
 [Containments][8][Applets][23][Configuration]
-PreloadWeight=17
+PreloadWeight=0
 
 [Containments][8][Applets][24]
 immutability=1
 plugin=org.kde.plasma.battery
 
 [Containments][8][Applets][24][Configuration]
-PreloadWeight=12
+PreloadWeight=0
 
 [Containments][8][Applets][25]
 immutability=1
@@ -363,4 +362,4 @@ shownItems=org.kde.plasma.clipboard
 
 [ScreenMapping]
 itemsOnDisabledScreens=
-screenMapping=desktop:/Music,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/share,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Memes,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Games,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/bin,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/lib,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Extern-Media,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/vault,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Pictures,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Trash,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Extern-GVFS,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/include,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Projects,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Dotfiles,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Videos,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Library,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Downloads,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/opt,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Documents,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/notebook,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289
+screenMapping=desktop:/bin,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/share,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/lib,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Music,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Trash,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Games,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Extern-Media,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/vault,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Pictures,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Projects,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Memes,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Videos,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/notebook,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Extern-GVFS,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Dotfiles,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Downloads,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Library,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/Documents,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/opt,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289,desktop:/include,0,8d5f62b0-1e89-4fd5-a4a7-b6a3e742b289
