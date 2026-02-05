@@ -1,10 +1,13 @@
 set shell               := ["nu", "-c"] # For single-line execution
 set script-interpreter  := ["nu"]       # For bundled execution
 
+# NOTE: Until Debian ships with `just 1.46.0`, it's wise to keep any of the
+# attributes below commented out so the bootstrap script can work smoothly.
+#       [default]
+#       [arg("arg", pattern="|adopt|delete")]
+#
 # Create home-wide symlinks
-[default]
 [script]
-[arg("arg", pattern="|adopt|delete")]
 stow arg="":
         let fold_dir = [
                 "git"
@@ -36,9 +39,10 @@ stow arg="":
         print $"(ansi green_bold)Stow \"(pwd)\" complete.(ansi reset)"
 
 
+# [arg("arg", pattern="|adopt|delete")]
+#
 # Create system-wide symlinks
 [script]
-[arg("arg", pattern="|adopt|delete")]
 sudo arg="":
         ls
         | where type == dir
