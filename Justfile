@@ -64,5 +64,5 @@ sudo arg="":
 #
 # Watch $XDG_CONFIG_HOME for file changes
 watch:
-        rm watch.log # No copies
+        if ("watch.log" | path exists) { rm watch.log } # No copies
         inotifywait -mr ~/.config -e modify -e move -e create --exclude "BraveSoftware" o>> watch.log
