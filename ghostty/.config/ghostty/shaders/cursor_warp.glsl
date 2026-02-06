@@ -8,7 +8,7 @@ const float TRAIL_SIZE = 0.8;                   // 0.0 = all corners move togeth
 const float THRESHOLD_MIN_DISTANCE = 1.5;       // min distance to show trail (units of cursor height)
 const float BLUR = 1.0;                         // blur size in pixels (for antialiasing)
 const float TRAIL_THICKNESS = 1.0;              // 1.0 = full cursor height, 0.0 = zero height, >1.0 = funky aah
-const float TRAIL_THICKNESS_X = 0.9;
+const float TRAIL_THICKNESS_X = 1.0;
 
 const float FADE_ENABLED = 0.0;                 // 1.0 to enable fade gradient along the trail, 0.0 to disable
 const float FADE_EXPONENT = 5.0;                // exponent for fade gradient along the trail
@@ -279,7 +279,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord){
                 if (BLUR < 2.5) {
                         // no antialising on horizontal/vertical movement, fixes 'pulse' like thing on end cursor
                         float isDiagonal = abs(s.x) * abs(s.y); // 1.0 if diagonal, 0.0 if H/V
-                        float effectiveBlur = mix(0.0, BLUR, isDiagonal);
+                        effectiveBlur = mix(0.0, BLUR, isDiagonal);
                 }
                 float shapeAlpha = antialising(sdfTrail, effectiveBlur); // shape mask
 
@@ -294,12 +294,12 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord){
 
                 float finalAlpha = trail.a * shapeAlpha;
 
+                // Create a smooth mask for the current cursor to prevent the trail from leaking
+                float cursorMask = antialising(sdfCurrentCursor, effectiveBlur);
+                finalAlpha *= (1.0 - cursorMask);
+
                 // newColor.a to preserve the background alpha.
                 newColor = mix(newColor, vec4(trail.rgb, newColor.a), finalAlpha);
-
-                // punch hole on the trail, so current cursor is drawn on top
-                newColor = mix(newColor, fragColor, step(sdfCurrentCursor, 0.));
-
         }
 
         fragColor = newColor;
