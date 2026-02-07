@@ -369,9 +369,6 @@
             <device id="FE6QSIY-SG2M236-OQQX63K-73JCP5K-Q24OAIM-LYJE2IG-FCWWFYV-D6U3XAS" introducedBy="">
                 <encryptionPassword></encryptionPassword>
             </device>
-            <device id="TKFSMBS-54KHM2L-I46V65Z-ZMH7LJZ-DJ6KFBI-DPAFE6K-DAY64DD-MBW5EAY" introducedBy="">
-                <encryptionPassword></encryptionPassword>
-            </device>
             <minDiskFree unit="%">1</minDiskFree>
             <versioning>
                 <cleanupIntervalS>3600</cleanupIntervalS>
