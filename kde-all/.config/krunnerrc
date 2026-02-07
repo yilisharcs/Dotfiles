@@ -1,4 +1,5 @@
 [Plugins]
+baloosearchEnabled=true
 browserhistoryEnabled=false
 
 [Plugins][Favorites]
