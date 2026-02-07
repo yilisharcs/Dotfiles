@@ -68,3 +68,7 @@ sudo arg="":
 watch:
         if ("watch.log" | path exists) { rm watch.log } # No copies
         inotifywait -mr ~/.config -e modify -e move -e create --exclude "BraveSoftware" o>> watch.log
+
+# Install and remove packages defined within the script
+pack:
+        ./boot.lua
