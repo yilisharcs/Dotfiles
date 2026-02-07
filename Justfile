@@ -31,6 +31,7 @@ stow arg="":
                 #       qBittorrent/.config/qBittorrent/qBittorrent.conf
                 #       syncthing/.local/state/syncthing/config.xml
                 each { stow -R --no-folding --{{arg}} $in }
+                each { stow -R --no-folding $in } # `stow adopt` never seems to stow correctly!
         } else if "{{arg}}" == "" {
                 each { stow -R --no-folding $in }
                 stow -R ...$fold_dir
@@ -52,6 +53,7 @@ sudo arg="":
                 each { sudo stow -D $in }
         } else if "{{arg}}" == "adopt" {
                 each { sudo stow -R --target=/ --{{arg}} $in }
+                each { sudo stow -R --target=/ $in } # `stow adopt` never seems to stow correctly!
         } else {
                 each { sudo stow -R --target=/ $in }
         }
