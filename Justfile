@@ -9,6 +9,10 @@ set script-interpreter  := ["nu"]       # For bundled execution
 # Create home-wide symlinks
 [script]
 stow arg="":
+        # This specific file is stateful. Odd for a config file, but whatever.
+        # We copy a template and overwrite the target, which is gitignored.
+        cp kde-all/.config/plasma-org.kde.plasma.desktop-appletsrc.orig kde-all/.config/plasma-org.kde.plasma.desktop-appletsrc
+
         let fold_dir = [
                 "git"
                 "neovim-config"
