@@ -212,7 +212,7 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][2][Applets][5][Configuration][General]
-launchers=applications:com.mitchellh.ghostty.desktop,preferred://browser,applications:org.kde.kmail2.desktop,preferred://filemanager,applications:systemsettings.desktop,applications:Fightcade.desktop,applications:neovide.desktop,applications:org.kde.discover.desktop
+launchers=applications:com.mitchellh.ghostty.desktop,preferred://browser,applications:org.kde.kmail2.desktop,preferred://filemanager,applications:systemsettings.desktop,applications:Fightcade.desktop
 
 [Containments][2][Applets][6]
 immutability=1
