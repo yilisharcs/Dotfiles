@@ -262,20 +262,6 @@ sys.state = {
                                                 ["xxd"] = {}, -- Hex dump utility
                                         },
                                         cargo = {
-                                                ["neovide"] = {
-                                                        deps = {
-                                                                apt = {
-                                                                        ["cmake"] = {},
-                                                                        ["git"] = {},
-                                                                        ["libasound2-dev"] = {},
-                                                                        ["libfontconfig1-dev"] = {},
-                                                                        ["libfreetype-dev"] = {},
-                                                                        ["libssl-dev"] = {},
-                                                                        ["libxcursor-dev"] = {},
-                                                                        ["pkg-config"] = {},
-                                                                },
-                                                        },
-                                                },
                                                 ["tree-sitter-cli"] = { bin = "tree-sitter", flags = "--locked" },
                                         },
                                 },

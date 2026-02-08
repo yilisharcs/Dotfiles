@@ -89,7 +89,6 @@ return {
                 },
                 gitbrowse = {},
                 image = {
-                        enabled = not vim.g.neovide,
                         doc = {
                                 inline = false,
                                 max_width = 20,
