@@ -76,3 +76,13 @@ watch:
 # Install and remove packages defined within the script
 pack:
         ./boot.lua
+
+# Change ownership recursively to allow git operations. Recommended to pass "root".
+[script]
+chown owner=env("USER"):
+        ls
+        | where type == dir
+        | where name starts-with _
+        | get name
+        | each { sudo chown -R {{owner}}:{{owner}} $in }
+        | ignore
