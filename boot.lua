@@ -341,6 +341,7 @@ sys.state = {
                         -- ["cargo-nextest"]          = {},                                                          -- A next-generation test runner for Rust
                         -- ["cargo-sweep"]            = {},                                                          -- Clean up unused `cargo` build files
                         ["cargo-update"]              = { bin = "cargo-install-update"                            }, -- Check and apply updates to installed executables
+                        ["difftastic"]                = { bin = "difft",       flags = "--locked"                 }, -- Structural diff that understands syntax
                         -- ["dioxus-cli"]             = {},                                                          -- Dioxus CLI
                         ["fnm"]                       = {},                                                          -- Fast Node Manager
                         ["jj-cli"]                    = { bin = "jj",          flags = "--locked"                 }, -- Modern version control system
