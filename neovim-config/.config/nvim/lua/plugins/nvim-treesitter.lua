@@ -35,6 +35,7 @@ return {
                         "meson",
                         -- "muttrc",
                         "ninja",
+                        "nix",
                         "nu",
                         "objdump",
                         -- "php",
