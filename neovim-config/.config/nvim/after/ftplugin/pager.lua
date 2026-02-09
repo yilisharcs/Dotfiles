@@ -1,1 +1,0 @@
-/home/yilisharcs/Dotfiles/neovim-config/.config/nvim/after/ftplugin/cmd.lua

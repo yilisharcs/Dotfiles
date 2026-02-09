@@ -1,0 +1,170 @@
+From 3d43662588582be23e59e6a9e06cec5650acff62 Mon Sep 17 00:00:00 2001
+From: yilisharcs <yilisharcs@gmail.com>
+Date: Sat, 7 Feb 2026 21:29:44 -0300
+Subject: [PATCH] patch(input): parse XCompose file to support keyd unicode
+ characters
+
+Written with heavy LLM assistance
+---------------------------------
+
+The previous commit relied on a shoddy mathematical formula to find the
+unicode character, under the mistaken assumption that there were no gaps
+in the list. Well, there were. This meant my mappings AltGr+t and +m did
+not work.
+
+My solution is to read the XCompose file (or $XCOMPOSEFILE) if it exists
+and get the correct char, otherwise fall back to normal behavior.
+
+It works for me. But it needs expert eyes to comb through it.
+---
+ src/apprt/gtk/class/surface.zig | 95 +++++++++++++++++++++++++++++----
+ 1 file changed, 85 insertions(+), 10 deletions(-)
+
+diff --git a/src/apprt/gtk/class/surface.zig b/src/apprt/gtk/class/surface.zig
+index ff26aa8f48..95e89d902d 100644
+--- a/src/apprt/gtk/class/surface.zig
++++ b/src/apprt/gtk/class/surface.zig
+@@ -37,6 +37,79 @@ const i18n = @import("../../../os/i18n.zig");
+ 
+ const log = std.log.scoped(.gtk_ghostty_surface);
+ 
++var global_compose_table: ?[]u32 = null;
++var global_compose_table_mutex: std.Thread.Mutex = .{};
++
++fn getComposeTable() ?[]u32 {
++    global_compose_table_mutex.lock();
++    defer global_compose_table_mutex.unlock();
++
++    if (global_compose_table) |table| return table;
++
++    const allocator = std.heap.c_allocator;
++    var file_opt: ?std.fs.File = null;
++
++    // Priority 1: XCOMPOSEFILE
++    if (std.posix.getenv("XCOMPOSEFILE")) |path| {
++        if (std.fs.openFileAbsolute(path, .{})) |f| {
++            file_opt = f;
++        } else |_| {}
++    }
++
++    // Priority 2: ~/.XCompose
++    if (file_opt == null) {
++        if (std.posix.getenv("HOME")) |home| {
++            if (std.fs.path.join(allocator, &.{ home, ".XCompose" })) |path| {
++                defer allocator.free(path);
++                if (std.fs.openFileAbsolute(path, .{})) |f| {
++                    file_opt = f;
++                } else |_| {}
++            } else |_| {}
++        }
++    }
++
++    const file = file_opt orelse return null;
++    defer file.close();
++
++    // qm4 is the max index in keyd.compose
++    const table_size = 35000;
++
++    // Read the whole file.
++    const data = file.readToEndAlloc(allocator, 10 * 1024 * 1024) catch return null;
++    defer allocator.free(data);
++
++    var table = allocator.alloc(u32, table_size) catch return null;
++    @memset(table, 0);
++
++    var line_idx: usize = 0;
++    var line_iter = std.mem.tokenizeScalar(u8, data, '\n');
++    while (line_iter.next()) |line| {
++        if (line_idx >= table.len) break;
++
++        const quote_start = std.mem.indexOf(u8, line, "\"") orelse {
++            line_idx += 1;
++            continue;
++        };
++        const quote_end = std.mem.lastIndexOf(u8, line, "\"") orelse {
++            line_idx += 1;
++            continue;
++        };
++        if (quote_end <= quote_start + 1) {
++            line_idx += 1;
++            continue;
++        }
++
++        const char_bytes = line[quote_start + 1 .. quote_end];
++        if (std.unicode.utf8Decode(char_bytes)) |cp| {
++            table[line_idx] = cp;
++        } else |_| {}
++        line_idx += 1;
++    }
++
++    global_compose_table = table;
++    return table;
++}
++
+ pub const Surface = extern struct {
+     const Self = @This();
+     parent_instance: Parent,
+@@ -642,6 +715,7 @@ pub const Surface = extern struct {
+         keyd_state: enum { idle, collecting } = .idle,
+         keyd_index: usize = 0,
+         keyd_buf: [3]u8 = undefined,
++        compose_table: ?[]u32 = null,
+ 
+         /// True when we have a precision scroll in progress
+         precision_scroll: bool = false,
+@@ -1190,7 +1264,7 @@ pub const Surface = extern struct {
+         const priv = self.private();
+ 
+         // keyd-specific composition handling
+-        if (keyval == 0xff69) {
++        if (keyval == 0xff69 and priv.compose_table != null) {
+             if (action == .press) {
+                 priv.im_composing = true;
+                 priv.keyd_state = .collecting;
+@@ -1331,7 +1405,7 @@ pub const Surface = extern struct {
+             break :keycode w3c_key;
+         };
+ 
+-        if (physical_key == .compose) {
++        if (physical_key == .compose and priv.compose_table != null) {
+             priv.im_composing = true;
+             priv.keyd_index = 0;
+             return true;
+@@ -1349,10 +1423,10 @@ pub const Surface = extern struct {
+                 priv.keyd_index += 1;
+                 if (priv.keyd_index == 3) {
+                     priv.im_composing = false;
+-                    const cp: u21 = 128 +
+-                        @as(u21, priv.keyd_buf[0]) * 1296 +
+-                        @as(u21, priv.keyd_buf[1]) * 36 +
+-                        @as(u21, priv.keyd_buf[2]);
++                    const idx = @as(usize, priv.keyd_buf[0]) * 1296 +
++                        @as(usize, priv.keyd_buf[1]) * 36 +
++                        @as(usize, priv.keyd_buf[2]);
++                    const cp: u21 = @intCast(priv.compose_table.?[idx]);
+                     var buf: [4]u8 = undefined;
+                     const len = std.unicode.utf8Encode(cp, &buf) catch 0;
+                     if (priv.core_surface) |surf| {
+@@ -1863,6 +1937,7 @@ pub const Surface = extern struct {
+         priv.in_keyevent = .false;
+         priv.im_composing = false;
+         priv.im_len = 0;
++        priv.compose_table = getComposeTable();
+ 
+         // Read GTK primary paste setting
+         priv.gtk_enable_primary_paste = gsettings.get(.@"gtk-enable-primary-paste") orelse true;
+@@ -3137,10 +3212,10 @@ pub const Surface = extern struct {
+                     priv.keyd_buf[priv.keyd_index] = v;
+                     priv.keyd_index += 1;
+                     if (priv.keyd_index == 3) {
+-                        const cp: u21 = 128 +
+-                            @as(u21, priv.keyd_buf[0]) * 1296 +
+-                            @as(u21, priv.keyd_buf[1]) * 36 +
+-                            @as(u21, priv.keyd_buf[2]);
++                        const idx = @as(usize, priv.keyd_buf[0]) * 1296 +
++                            @as(usize, priv.keyd_buf[1]) * 36 +
++                            @as(usize, priv.keyd_buf[2]);
++                        const cp: u21 = @intCast(priv.compose_table.?[idx]);
+ 
+                         if (std.unicode.utf8Encode(cp, &priv.im_buf)) |len| {
+                             const decoded = priv.im_buf[0..len];

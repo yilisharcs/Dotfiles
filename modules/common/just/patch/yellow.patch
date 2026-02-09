@@ -1,0 +1,38 @@
+From 53867d5bc418702d18b4eafd7b0d088b0df7132f Mon Sep 17 00:00:00 2001
+From: yilisharcs <yilisharcs@gmail.com>
+Date: Sun, 22 Feb 2026 17:34:11 -0300
+Subject: [PATCH] Make doc and command strings yellow
+
+---
+ src/color.rs  | 2 +-
+ src/config.rs | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/color.rs b/src/color.rs
+index 7194d729..5cfc47c1 100644
+--- a/src/color.rs
++++ b/src/color.rs
+@@ -64,7 +64,7 @@ impl Color {
+   }
+ 
+   pub(crate) fn doc(self) -> Self {
+-    self.restyle(Style::new().fg(Blue))
++    self.restyle(Style::new().fg(Yellow))
+   }
+ 
+   pub(crate) fn doc_backtick(self) -> Self {
+diff --git a/src/config.rs b/src/config.rs
+index b2a49d4e..abe7e48b 100644
+--- a/src/config.rs
++++ b/src/config.rs
+@@ -212,6 +212,7 @@ impl Config {
+           .env("JUST_COMMAND_COLOR")
+           .action(ArgAction::Set)
+           .value_parser(clap::value_parser!(CommandColor))
++          .default_value("yellow")
+           .help("Echo recipe lines in <COMMAND-COLOR>"),
+       )
+       .arg(
+-- 
+2.52.0
+
