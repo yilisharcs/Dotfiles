@@ -15,7 +15,7 @@ trim_trailing_whitespace = false
 indent_style = space
 max_line_length = 100
 
-[*.{md,rs}]
+[*.{md,nix,rs}]
 indent_style = space
 indent_size = 4
 

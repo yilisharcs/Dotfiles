@@ -9,63 +9,32 @@ set script-interpreter  := ["nu"]       # For bundled execution
 # Create home-wide symlinks
 [script]
 stow arg="":
-        # This specific file is stateful. Odd for a config file, but whatever.
-        # We copy a template and overwrite the target, which is gitignored.
-        cp kde-all/.config/plasma-org.kde.plasma.desktop-appletsrc.orig kde-all/.config/plasma-org.kde.plasma.desktop-appletsrc
-
-        let fold_dir = [
-                "git"
-                "neovim-config"
-        ]
-
         ls
         | where type == dir
-        | where name !~ "^_"
-        | where not ($fold_dir | any {|pat| $it.name == $pat })
+        | where name =~ "^_"
+        | where name != "_nvim"
         | get name
         | if "{{arg}}" == "delete" {
                 each { stow -D $in }
-                stow -D ...$fold_dir
+                stow -D "_nvim"
         } else if "{{arg}}" == "adopt" {
                 # Some programs do not take kindly to writing to symlinked files and, to my eternal
                 # chagrin, back them up and generate new files. These files then need to be adopted
                 # by stow lest fall out of sync. Below is a non-comprehensive list of culprits:
                 #
-                #       mimetype/.config/mimeapps.list
-                #       qBittorrent/.config/qBittorrent/qBittorrent.conf
-                #       syncthing/.local/state/syncthing/config.xml
+                #       _mimetype/.config/mimeapps.list
+                #       _qBittorrent/.config/qBittorrent/qBittorrent.conf
                 each { stow -R --no-folding --{{arg}} $in }
                 each { stow -R --no-folding $in } # `stow adopt` never seems to stow correctly!
+                stow -R _nvim
         } else if "{{arg}}" == "" {
                 each { stow -R --no-folding $in }
-                stow -R ...$fold_dir
+                stow -R _nvim
         }
 
         print $"(ansi green_bold)Stow \"(pwd)\" complete.(ansi reset)"
 
-
-# [arg("arg", pattern="|adopt|delete")]
-#
-# Create system-wide symlinks
-[script]
-sudo arg="":
-        ls
-        | where type == dir
-        | where name =~ "^_"
-        | get name
-        | if "{{arg}}" == "delete" {
-                each { sudo stow -D $in }
-        } else if "{{arg}}" == "adopt" {
-                each { sudo stow -R --target=/ --{{arg}} $in }
-                each { sudo stow -R --target=/ $in } # `stow adopt` never seems to stow correctly!
-        } else {
-                each { sudo stow -R --target=/ $in }
-        }
-
-        print $"(ansi green_bold)Stow \"(pwd)\" complete.(ansi reset)"
-
-# It's not immediately obvious which files ought to be under version control. KDE is particularly
-# annoying about this, putting configuration files everywhere... nothing inotifywait can't fix.
+# It's not immediately obvious which files ought to be under version control.
 # NOTE: Brave dumps a lot of stuff in the .config folder, stuff that doesn't need to be there.
 #
 # Watch $XDG_CONFIG_HOME for file changes
@@ -73,16 +42,11 @@ watch:
         if ("watch.log" | path exists) { rm watch.log } # No copies
         inotifywait -mr ~/.config -e modify -e move -e create --exclude "BraveSoftware" o>> watch.log
 
-# Install and remove packages defined within the script
-pack:
-        ./boot.lua
+# Build a package from the custom-packages
+HOST := `hostname`
 
-# Change ownership recursively to allow git operations. Recommended to pass "root".
-[script]
-chown owner=env("USER"):
-        ls
-        | where type == dir
-        | where name starts-with _
-        | get name
-        | each { sudo chown -R {{owner}}:{{owner}} $in }
-        | ignore
+build name:
+        nix build .#nixosConfigurations.{{HOST}}.pkgs.{{name}}
+
+run name:
+        ./result/bin/{{name}}

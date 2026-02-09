@@ -1,0 +1,10 @@
+#!/usr/bin/env nu
+
+# Get a git repo's contributor list, sorted by commit count
+git log --pretty=%h»¦«%aN»¦«%s»¦«%aD
+| lines
+| split column "»¦«" sha1 committer desc merged_at
+| histogram committer merger
+| reject quantile
+| sort-by count
+| reverse

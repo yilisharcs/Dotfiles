@@ -1,9 +1,0 @@
-#!/usr/bin/env nu
-
-def --wrapped main [...rest] {
-        if ($rest | is-empty) {
-                systemctl reboot --when=+1min
-        } else {
-                systemctl reboot ...$rest
-        }
-}

@@ -1,3 +1,0 @@
-enable_release_build = true
-version_sync_file_location = "/home/yilisharcs/.local/share/bob/nvim.version"
-add_neovim_binary_to_path = false
