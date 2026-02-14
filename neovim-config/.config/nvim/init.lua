@@ -155,6 +155,10 @@ require("lazy").setup({ import = "plugins" }, {
                 border = "rounded",
                 backdrop = 100,
         },
+        performance = {
+                -- Gonna be real with ya, I kinda need pack/ sometimes
+                rtp = { reset = false },
+        },
 })
 vim.keymap.set("n", "<leader>ql", "<CMD>Lazy<CR>")
 
