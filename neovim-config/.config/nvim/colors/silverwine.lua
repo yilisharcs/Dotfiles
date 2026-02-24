@@ -96,97 +96,132 @@ if vim.o.background == "dark" then
         hi("QuickFixBg", { bg = colors.Wine3 })
 
         -- General
-        hi("Normal", { fg = colors.Silver1, bg = colors.Ink2 })
+        hi("Normal", { fg = colors.Silver1, bg = colors.Ink2, ctermfg = "white" })
         hi("NormalNC", { bg = colors.Ink3 })
-        hi("StatusLine", { fg = "fg", bg = colors.Gray2, bold = true })
+        hi("StatusLine", {
+                fg = "fg",
+                bg = colors.Gray2,
+                bold = true,
+                ctermfg = "black",
+                ctermbg = "grey",
+        })
         hi("StatusLineNC", { fg = "fg", bg = colors.Wine2, bold = true })
-        hi("TabLineSel", { fg = colors.Yellow1, bg = colors.Ink1, bold = true })
+        hi("TabLineSel", {
+                fg = colors.Yellow1,
+                bg = colors.Ink1,
+                bold = true,
+                ctermfg = "yellow",
+                ctermbg = "yellow",
+        })
         hi("Title", { fg = "NONE", bold = true })
 
         -- Color lines
-        hi("ColorColumn", { bg = colors.Wine2 })
+        hi("ColorColumn", { bg = colors.Wine2, ctermbg = "magenta" })
         hi("CursorColumn", { bg = colors.Gray2 })
         hi("CursorLine", { bg = colors.Gray2 })
         hi("CursorLineFold", { fg = "fg" })
-        hi("FoldColumn", { fg = colors.Cyan2 })
-        hi("Folded", { fg = colors.Cyan2, bg = colors.Ink4 })
-        hi("LineNr", { fg = colors.Gray1 })
-        hi("QuickFixLine", { fg = colors.Cyan1, bg = "bg", bold = true, reverse = true })
+        hi("FoldColumn", { fg = colors.Cyan2, ctermfg = "cyan" })
+        hi("Folded", { fg = colors.Cyan2, bg = colors.Ink4, ctermfg = "cyan" })
+        hi("LineNr", { fg = colors.Gray1, ctermfg = "blue" })
+        hi("QuickFixLine", {
+                fg = colors.Cyan1,
+                bg = "bg",
+                bold = true,
+                reverse = true,
+                ctermfg = "black",
+                ctermbg = "cyan",
+        })
 
         -- Comment toggle
         hi("CommentHide", { fg = "bg" })
-        hi("CommentShow", { fg = colors.Silver3 })
+        hi("CommentShow", { fg = colors.Silver3, ctermfg = "grey" })
         hi("Comment", { link = "CommentShow" })
 
         -- Completion menu
-        hi("Pmenu", { bg = colors.Ink4 })
-        hi("PmenuSel", { fg = "bg", bg = colors.Silver3 })
-        hi("PmenuThumb", { bg = colors.Silver2 })
+        hi("Pmenu", { bg = colors.Ink4, ctermfg = "black", ctermbg = "grey" })
+        hi("PmenuSel", { fg = "bg", bg = colors.Silver3, ctermfg = "yellow", ctermbg = "black" })
+        hi("PmenuThumb", { bg = colors.Silver2, ctermbg = "black" })
         hi("PmenuExtra", { fg = colors.Gray1, bg = colors.Ink4 })
         hi("PmenuKind", { fg = colors.Yellow2, bg = colors.Ink4 })
-        hi("PmenuMatch", { fg = colors.Red1, bg = "bg" })
+        hi("PmenuMatch", { fg = colors.Red1, bg = "bg", ctermfg = "red" })
         hi("PmenuMatchSel", { fg = colors.Red2, bg = colors.Silver3 })
         hi("PmenuSbar", { link = "Pmenu" })
         hi("PmenuKindSel", { link = "PmenuSel" })
 
         -- Diff Mode
-        hi("Added", { fg = colors.Green2 })
-        hi("Changed", { fg = colors.Silver3 })
-        hi("Removed", { fg = colors.Red2 })
-        hi("DiffAdd", { fg = colors.Green2, bg = colors.Gray2, bold = true })
-        hi("DiffChange", { fg = colors.Silver3, bg = colors.Gray2, bold = true })
-        hi("DiffText", { fg = colors.Yellow2, bg = colors.Gray2, bold = true })
-        hi("DiffDelete", { fg = colors.Red1, bg = colors.Gray2, bold = true })
+        hi("Added", { fg = colors.Green2, ctermfg = "green" })
+        hi("Changed", { fg = colors.Silver3, ctermfg = "grey" })
+        hi("Removed", { fg = colors.Red2, ctermfg = "red" })
+        hi("DiffAdd", { fg = colors.Green2, bg = colors.Gray2, bold = true, ctermfg = "green" })
+        hi("DiffChange", { fg = colors.Silver3, bg = colors.Gray2, bold = true, ctermfg = "grey" })
+        hi("DiffText", { fg = colors.Yellow2, bg = colors.Gray2, bold = true, ctermfg = "yellow" })
+        hi("DiffDelete", { fg = colors.Red1, bg = colors.Gray2, bold = true, ctermfg = "red" })
 
         -- Command-line
-        hi("ErrorMsg", { fg = colors.Red1 })
-        hi("ModeMsg", { fg = colors.Green2, bg = "bg" })
-        hi("MsgArea", { fg = colors.Yellow1, bg = "bg" })
+        hi("ErrorMsg", { fg = colors.Red1, ctermfg = "red" })
+        hi("ModeMsg", { fg = colors.Green2, bg = "bg", ctermfg = "green" })
+        hi("MsgArea", { fg = colors.Yellow1, bg = "bg", ctermfg = "yellow" })
         hi("ExTUIArea", { link = "MsgArea" })
 
         -- Keywords
-        hi("Statement", { fg = colors.Yellow1, bold = true })
-        hi("String", { fg = colors.Green1 })
-        hi("PreProc", { fg = colors.Red1 })
-        hi("Delimiter", { fg = colors.Silver3 })
+        hi("Statement", { fg = colors.Yellow1, bold = true, ctermfg = "yellow" })
+        hi("String", { fg = colors.Green1, ctermfg = "green" })
+        hi("PreProc", { fg = colors.Red1, ctermfg = "red" })
+        hi("Delimiter", { fg = colors.Silver3, ctermfg = "grey" })
         hi("Type", { bold = true })
 
         -- Treesitter
         hi("@markup.raw.markdown_inline", { fg = colors.Green1, bg = colors.Gray3 })
-        hi("markdownCodeBlock", { bg = colors.Gray3 })
-        hi("@markup.link.vimdoc", { fg = colors.Yellow2, bold = true })
-        hi("@label.vimdoc", { fg = colors.Green2, bold = true })
+        hi("markdownCodeBlock", { bg = colors.Gray3, ctermbg = "grey" })
+        hi("@markup.link.vimdoc", { fg = colors.Yellow2, bold = true, ctermfg = "yellow" })
+        hi("@label.vimdoc", { fg = colors.Green2, bold = true, ctermfg = "green" })
         hi("gitcommitSummary", { link = "Identifier" })
         hi("@markup.link.label.markdown_inline", { link = "Identifier" })
         hi("@markup.heading.gitcommit", { link = "gitcommitSummary" })
-        hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false })
+        hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false, ctermfg = "red" })
         hi("@character.rust", { link = "String", bold = false })
 
         -- LSP
-        hi("DiagnosticError", { fg = colors.Red2 })
-        hi("DiagnosticWarn", { fg = colors.Yellow3 })
-        hi("DiagnosticInfo", { fg = colors.Cyan2 })
-        hi("DiagnosticHint", { fg = colors.Blue2 })
-        hi("DiagnosticOk", { fg = colors.Green2 })
+        hi("DiagnosticError", { fg = colors.Red2, ctermfg = "red" })
+        hi("DiagnosticWarn", { fg = colors.Yellow3, ctermfg = "yellow" })
+        hi("DiagnosticInfo", { fg = colors.Cyan2, ctermfg = "cyan" })
+        hi("DiagnosticHint", { fg = colors.Blue2, ctermfg = "blue" })
+        hi("DiagnosticOk", { fg = colors.Green2, ctermfg = "green" })
 
         -- Miscellaneous
-        hi("Visual", { fg = "fg", bg = colors.Cyan3 })
-        hi("LspInlayHint", { fg = colors.Cyan2, bg = colors.Ink3 })
-        hi("Search", { fg = colors.Cyan1, bg = "bg", reverse = true })
-        hi("IncSearch", { fg = colors.Yellow2, bg = "bg", reverse = true })
+        hi("Visual", { fg = "fg", bg = colors.Cyan3, ctermbg = "cyan" })
+        hi("LspInlayHint", { fg = colors.Cyan2, bg = colors.Ink3, ctermfg = "cyan" })
+        hi("Search", { fg = colors.Cyan1, bg = "bg", reverse = true, ctermfg = "cyan" })
+        hi("IncSearch", {
+                fg = colors.Yellow2,
+                bg = "bg",
+                reverse = true,
+                ctermfg = "black",
+                ctermbg = "yellow",
+        })
         hi("CurSearch", { link = "IncSearch" })
 
         -- diffview.nvim {{{
-        hi("DiffviewFilePanelSelected", { fg = colors.Yellow1, bold = true })
+        hi("DiffviewFilePanelSelected", { fg = colors.Yellow1, bold = true, ctermfg = "yellow" })
         -- }}}
 
         -- fzf-lua {{{
-        hi("FzfLuaCustomMarks", { fg = colors.Yellow2 })
+        hi("FzfLuaCustomMarks", { fg = colors.Yellow2, ctermfg = "yellow" })
         -- }}}
 
         -- mini.hipatterns {{{
-        hi("MiniHipatternsNote", { fg = colors.Green2, bold = true, reverse = true })
-        hi("MiniHipatternsFixme", { fg = colors.Red2, bold = true, reverse = true })
+        hi("MiniHipatternsNote", {
+                fg = colors.Green2,
+                bold = true,
+                reverse = true,
+                ctermbg = "green",
+        })
+        hi("MiniHipatternsFixme", {
+                fg = colors.Red2,
+                bold = true,
+                reverse = true,
+                ctermbg = "red",
+        })
         -- }}}
 
         -- mini.icons {{{
@@ -194,19 +229,39 @@ if vim.o.background == "dark" then
         -- }}}
 
         -- neogit {{{
-        hi("NeogitDiffAddHighlight", { fg = "NONE", bg = colors.Green3 })
-        hi("NeogitDiffAdd", { fg = "NONE", bg = colors.Green4 })
-        hi("NeogitDiffDelete", { fg = colors.Red2, bg = colors.Ink1 })
-        hi("NeogitDiffDeleteHighlight", { fg = colors.Red1, bg = colors.Gray3 })
+        hi("NeogitDiffAddHighlight", { fg = "NONE", bg = colors.Green3, ctermbg = "green" })
+        hi("NeogitDiffAdd", { fg = "NONE", bg = colors.Green4, ctermbg = "green" })
+        hi("NeogitDiffDelete", { fg = colors.Red2, bg = colors.Ink1, ctermfg = "red" })
+        hi(
+                "NeogitDiffDeleteHighlight",
+                { fg = colors.Red1, bg = colors.Gray3, ctermfg = "red", ctermbg = "grey" }
+        )
         hi("NeogitDiffContextHighlight", { bg = colors.Gray3 })
-        hi("NeogitStagedchanges", { fg = colors.Green2, bold = true })
-        hi("NeogitUnstagedchanges", { fg = colors.Yellow2, bold = true })
-        hi("NeogitUntrackedfiles", { fg = colors.Red2, bold = true })
-        hi("NeogitUnmergedchanges", { fg = colors.Magenta1, bold = true })
-        hi("NeogitGraphPurple", { fg = colors.Yellow2 })
-        hi("NeogitChangeModified", { fg = colors.Cyan2, bold = true, italic = true })
-        hi("NeogitHunkHeaderHighlight", { fg = colors.Ink2, bg = colors.Gray1, bold = true })
-        hi("NeogitHunkHeaderCursor", { fg = colors.Ink2, bg = colors.Silver3, bold = true })
+        hi("NeogitStagedchanges", { fg = colors.Green2, bold = true, ctermfg = "green" })
+        hi("NeogitUnstagedchanges", { fg = colors.Yellow2, bold = true, ctermfg = "yellow" })
+        hi("NeogitUntrackedfiles", { fg = colors.Red2, bold = true, ctermfg = "red" })
+        hi("NeogitUnmergedchanges", { fg = colors.Magenta1, bold = true, ctermfg = "magenta" })
+        hi("NeogitGraphPurple", { fg = colors.Yellow2, ctermfg = "yellow" })
+        hi("NeogitChangeModified", {
+                fg = colors.Cyan2,
+                bold = true,
+                italic = true,
+                ctermfg = "cyan",
+        })
+        hi("NeogitHunkHeaderHighlight", {
+                fg = colors.Ink2,
+                bg = colors.Gray1,
+                bold = true,
+                ctermfg = "black",
+                ctermbg = "grey",
+        })
+        hi("NeogitHunkHeaderCursor", {
+                fg = colors.Ink2,
+                bg = colors.Silver3,
+                bold = true,
+                ctermfg = "black",
+                ctermbg = "white",
+        })
         -- }}}
 
         -- vim-sneak {{{
