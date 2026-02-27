@@ -34,7 +34,16 @@ in {
             immutableByDefault = true;
             # overrideConfig = true; # NOTE: occasionally breaks
             configFile = {
-                # TODO: configure kde automount
+                kded_device_automounterrc."Devices/\\/org\\/freedesktop\\/UDisks2\\/block_devices\\/sdb1" = {
+                    EverMounted = true;
+                    ForceLoginAutomount = true;
+                    Icon = "drive-removable-media-usb";
+                    LastNameSeen = "Saturn";
+                };
+                kded_device_automounterrc."General" = {
+                    AutomountEnabled = true;
+                    AutomountOnPlugin = true;
+                };
                 kdeglobals.General.AccentColor = "61,212,37";
                 kdeglobals.KDE.widgetStyle = "Windows"; # MS Windows 9x style
                 # kdeglobals."KFileDialog Settings"."Show hidden files" = true;
