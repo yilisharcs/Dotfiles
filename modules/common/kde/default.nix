@@ -4,7 +4,6 @@ in {
     imports = [ ../fonts.nix ];
 
     services.displayManager.sddm = enabled {
-        wayland = enabled;
         settings.Theme = {
             Current = "breeze";
             CursorSize = 42;
