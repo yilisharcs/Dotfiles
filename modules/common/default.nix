@@ -20,6 +20,7 @@
             })
 
             ## MISC
+            pkgs.bsdiff             # Efficient binary diff/patch tool
             # pkgs.entr               # Run arbitrary commands when files change
             pkgs.ffmpeg             # Complete, cross-platform solution to record, convert and stream audio and video
             # pkgs.hyperfine          # Benchmarking cli tool
