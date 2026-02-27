@@ -80,7 +80,7 @@ stdenv.mkDerivation (finalAttrs: {
         name = pname;
         desktopName = desktopName;
         exec = "@out@/bin/${pname}";
-        icon = "sonic3air";
+        icon = icon;
         categories = [ "Game" ];
         terminal = false;
         extraConfig = {
@@ -106,9 +106,6 @@ stdenv.mkDerivation (finalAttrs: {
             --prefix PATH : ${lib.makeBinPath [ zenity ]}                   \
             --set LD_PRELOAD "$out/lib/xdg-redirect.so"                     \
             --run "@GEN_CONFIG@"
-
-        mkdir -p $out/share/icons/hicolor/64x64/apps
-        cp ${icon} $out/share/icons/hicolor/64x64/apps/sonic3air.png
 
         runHook postInstall # Needed to insert the desktop file
 
