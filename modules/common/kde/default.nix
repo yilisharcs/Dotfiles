@@ -33,7 +33,7 @@ in {
 
         programs.plasma = enabled {
             immutableByDefault = true;
-            overrideConfig = true;
+            # overrideConfig = true; # NOTE: occasionally breaks
             configFile = {
                 # TODO: configure kde automount
                 kdeglobals.General.AccentColor = "61,212,37";
