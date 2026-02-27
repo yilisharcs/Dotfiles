@@ -86,9 +86,9 @@ in {
                 # Restore trashed files
                 {
                     on = "u";
-                    run = ''shell 'file=$(${getExe' pkgs.trash-cli "trash-list"} | grep "$(pwd)"
-                    | ${getExe pkgs.fzf} --preview-window hidden | cut -b21-) && [ -n "$file" ] && yes 0
-                    | ${getExe' pkgs.trash-cli "trash-restore"} "$file"' --block'';
+                    run = ''shell 'file=$(${getExe' pkgs.trash-cli "trash-list"} | grep "$(pwd)"''
+                        + '' | ${getExe pkgs.fzf} --preview-window hidden | cut -b21-) && [ -n "$file" ] && yes 0''
+                        + '' | ${getExe' pkgs.trash-cli "trash-restore"} "$file"' --block'';
                     desc = "Restore trashed file";
                 }
 
