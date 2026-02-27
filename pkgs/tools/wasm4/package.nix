@@ -7,10 +7,10 @@ let
         pname = "wasm4-unwrapped";
         version = "2.7.1";
 
-            src = pkgs.fetchzip {
-                url = "https://github.com/aduros/wasm4/releases/download/v${finalAttrs.version}/w4-linux.zip";
-                hash = "sha256-t8j11soQKaEJWrO7RglRZd/fuxTtaj/WuFPbF6RrSco=";
-            };
+        src = pkgs.fetchzip {
+            url = "https://github.com/aduros/wasm4/releases/download/v${finalAttrs.version}/w4-linux.zip";
+            hash = "sha256-t8j11soQKaEJWrO7RglRZd/fuxTtaj/WuFPbF6RrSco=";
+        };
 
         dontPatchELF = true;
         dontStrip = true;
