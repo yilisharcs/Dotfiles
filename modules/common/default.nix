@@ -38,6 +38,7 @@
             pkgs.tokei              # Count your code, quickly
 
             ## CUSTOM
+            pkgs.super-mario-63
             pkgs.wasm4              # Build retro games using WebAssembly for a fantasy console
         ];
 
