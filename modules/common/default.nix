@@ -38,7 +38,6 @@
             pkgs.tokei              # Count your code, quickly
 
             ## CUSTOM
-            pkgs.tafsk              # Organize tasks like a file system
             pkgs.wasm4              # Build retro games using WebAssembly for a fantasy console
         ];
 
