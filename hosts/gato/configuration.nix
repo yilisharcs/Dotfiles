@@ -43,10 +43,6 @@ in {
             # internet
             "networkmanager"
         ];
-        packages = [
-            pkgs.sonic3air
-            pkgs.sonic3air-beta
-        ];
     };
 
     # Allow unfree packages
