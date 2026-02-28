@@ -1,0 +1,61 @@
+diff --git c/Fightcade2.sh i/Fightcade2.sh
+index 2a23f66..114aaa2 100755
+--- c/Fightcade2.sh
++++ i/Fightcade2.sh
+@@ -38,26 +38,5 @@ fi
+ # always use modeless menu
+ sed -i "s/bModelessMenu 0/bModelessMenu 1/g" ./emulator/fbneo/config/fcadefbneo.ini
+ 
+-# register fcade:// url handlers
+-if [ -x /usr/bin/xdg-mime ]; then
+-	mkdir -p ~/.local/share/applications/
+-	echo "[Desktop Entry]
+-Type=Application
+-Encoding=UTF-8
+-Name=Fightcade Replay
+-Exec=${THIS_SCRIPT_DIR}/emulator/fcade.sh %U
+-Terminal=false
+-MimeType=x-scheme-handler/fcade
+-" > ~/.local/share/applications/fcade-quark.desktop
+-	xdg-mime default fcade-quark.desktop x-scheme-handler/fcade
+-	sed -i "s:Icon=.*:Icon=${THIS_SCRIPT_DIR}/fc2-electron/resources/app/icon.png:" ./Fightcade.desktop
+-	cat ./Fightcade.desktop |sed -e "s:Exec=.*:Exec=${THIS_SCRIPT_DIR}/Fightcade2.sh:" > ~/.local/share/applications/Fightcade.desktop
+-fi
+-if [ -x /usr/bin/gconftool-2 ]; then
+-	gconftool-2 -t string -s /desktop/gnome/url-handlers/fcade/command "${THIS_SCRIPT_DIR}/emulator/fcade.sh %s"
+-	gconftool-2 -s /desktop/gnome/url-handlers/fcade/needs_terminal false -t bool
+-	gconftool-2 -t bool -s /desktop/gnome/url-handlers/fcade/enabled true
+-fi
+-
+ #start fc2-electron
+ ${FC2} --no-sandbox ${PARAM} 
+diff --git c/emulator/fcade.sh i/emulator/fcade.sh
+index dd3128d..deeea33 100755
+--- c/emulator/fcade.sh
++++ i/emulator/fcade.sh
+@@ -24,25 +24,6 @@ if [ -f fcade.log.2 ]; then mv fcade.log.2 fcade.log.3 ; fi
+ if [ -f fcade.log.1 ]; then mv fcade.log.1 fcade.log.2 ; fi
+ if [ -f fcade.log ]; then mv fcade.log fcade.log.1 ; fi
+ 
+-if [ -x /usr/bin/xdg-mime ]; then
+-	# register fcade:// url handler
+-	mkdir -p ~/.local/share/applications/
+-	echo "[Desktop Entry]
+-Type=Application
+-Encoding=UTF-8
+-Name=Fightcade Replay
+-Exec=${THIS_SCRIPT_DIR}/fcade.sh %U
+-Terminal=false
+-MimeType=x-scheme-handler/fcade
+-" > ~/.local/share/applications/fcade-quark.desktop
+-	xdg-mime default fcade-quark.desktop x-scheme-handler/fcade
+-fi
+-if [ -x /usr/bin/gconftool-2 ]; then
+-	gconftool-2 -t string -s /desktop/gnome/url-handlers/fcade/command "${THIS_SCRIPT_DIR}/fcade.sh %s"
+-	gconftool-2 -s /desktop/gnome/url-handlers/fcade/needs_terminal false -t bool
+-	gconftool-2 -t bool -s /desktop/gnome/url-handlers/fcade/enabled true
+-fi
+-
+ os=$(uname)
+ if [ "$os" == "Linux" ]; then
+ 	wineok=0

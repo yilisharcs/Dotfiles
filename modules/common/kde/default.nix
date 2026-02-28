@@ -183,7 +183,7 @@ in {
                             "applications:org.kde.kmail2.desktop"
                             "preferred://filemanager"
                             "applications:systemsettings.desktop"
-                            "applications:Fightcade.desktop"
+                            "applications:fightcade.desktop"
                         ];
                     }
                     "org.kde.plasma.marginsseparator"
