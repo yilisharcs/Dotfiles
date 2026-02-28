@@ -92,19 +92,19 @@ stdenv.mkDerivation (finalAttrs: {
     dontConfigure = true;
 
     installPhase = ''
-        mkdir -p $out/share/sonic3air
-        cp -r . $out/share/sonic3air/
-        rm $out/share/sonic3air/setup_linux.sh
+        mkdir -p $out/share/${pname}
+        cp -r . $out/share/${pname}/
+        rm $out/share/${pname}/setup_linux.sh
 
         # Redirection shim because I didn't want to run the build
-        mkdir -p $out/lib
+        mkdir -p $out/lib/${pname}
         gcc -shared -fPIC -ldl -O2 -std=c11 -DNDEBUG \
-            -o $out/lib/xdg-redirect.so ${./xdg-redirect.c}
+            -o $out/lib/${pname}/xdg-redirect.so ${./xdg-redirect.c}
 
         mkdir -p $out/bin
-        makeWrapper $out/share/sonic3air/sonic3air_linux $out/bin/${pname}  \
+        makeWrapper $out/share/${pname}/sonic3air_linux $out/bin/${pname}   \
             --prefix PATH : ${lib.makeBinPath [ zenity ]}                   \
-            --set LD_PRELOAD "$out/lib/xdg-redirect.so"                     \
+            --set LD_PRELOAD "$out/lib/${pname}/xdg-redirect.so"            \
             --run "@GEN_CONFIG@"
 
         runHook postInstall # Needed to insert the desktop file
@@ -114,7 +114,7 @@ stdenv.mkDerivation (finalAttrs: {
         substituteInPlace $out/bin/${pname}                                        \
             --replace-warn "@GEN_CONFIG@"                                          \
             'dir="''${XDG_CONFIG_HOME:-$HOME/.config}/Sonic3AIR"; mkdir -p "$dir"; \
-                [ -f "$dir/config.json" ] || LD_PRELOAD= cp "'$out'/share/sonic3air/config.json" "$dir/config.json"'
+                [ -f "$dir/config.json" ] || LD_PRELOAD= cp "'$out'/share/${pname}/config.json" "$dir/config.json"'
 
         substituteInPlace $out/share/applications/${pname}.desktop \
             --replace-warn "@out@" "$out"
