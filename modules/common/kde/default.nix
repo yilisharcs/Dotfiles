@@ -32,7 +32,7 @@ in {
 
         programs.plasma = enabled {
             immutableByDefault = true;
-            # overrideConfig = true; # NOTE: occasionally breaks
+            overrideConfig = true; # NOTE: occasionally breaks
             configFile = {
                 kded_device_automounterrc."Devices/\\/org\\/freedesktop\\/UDisks2\\/block_devices\\/sdb1" = {
                     EverMounted = true;
