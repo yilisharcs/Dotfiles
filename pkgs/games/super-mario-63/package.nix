@@ -45,8 +45,9 @@ stdenv.mkDerivation (finalAttrs: {
         cp $src $out/share/${finalAttrs.pname}/sm63game.exe
 
         mkdir -p $out/bin
+        # TODO: make wine a proper dependency
         makeWrapper ${stdenv.shell} $out/bin/${finalAttrs.meta.mainProgram} \
-            --add-flags "-c 'exec wine \"$out/share/${finalAttrs.pname}/sm63game.exe\" \"\$@\"'"
+            --add-flags "-c 'exec wine $out/share/${finalAttrs.pname}/sm63game.exe'"
 
         runHook postInstall # Needed to insert the desktop file
 
