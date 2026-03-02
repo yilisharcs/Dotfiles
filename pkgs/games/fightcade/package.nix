@@ -45,6 +45,10 @@
 
 # error dialog boxes
 , zenity # TODO: check why it says "install wine32bit" twice
+
+# plugins
+, plugins ? []
+, dataDir ? "~/.local/share/Fightcade"
 }:
 
 let
@@ -62,7 +66,6 @@ stdenv.mkDerivation (finalAttrs: {
     pname = "fightcade";
     version = "2.1.45";
 
-    # TODO: would be mighty nice if I could download the json downloader alongside this...
     src = fetchzip {
         # unversioned; hash may change later
         url = "https://www.fightcade.com/download/linux";
@@ -157,25 +160,22 @@ stdenv.mkDerivation (finalAttrs: {
         rm $out/share/${finalAttrs.pname}/fcade-upd $out/share/${finalAttrs.pname}/fcade-upd.sh
         # we make our own desktop file
         rm $out/share/${finalAttrs.pname}/Fightcade.desktop
-        # clean up ROM symlinks to nix store and recreate them elsewhere
-        rm $out/share/${finalAttrs.pname}/ROMs/FBNeo\ ROMs
-        rm $out/share/${finalAttrs.pname}/ROMs/FC1\ ROMs
-        rm $out/share/${finalAttrs.pname}/ROMs/Flycast\ ROMs
-        rm $out/share/${finalAttrs.pname}/ROMs/SNES9x\ ROMs
+
+        # Rename the generic training mode to .default so plugins can safely replace it
+        mv $out/share/${finalAttrs.pname}/emulator/fbneo/fbneo-training-mode \
+           $out/share/${finalAttrs.pname}/emulator/fbneo/fbneo-training-mode.default
+
+        # Merge plugins
+        ${lib.concatMapStringsSep "\n" (plugin: ''
+            cp -r ${plugin}/* $out/share/${finalAttrs.pname}/
+        '') plugins}
 
         mkdir -p $out/bin
-        ## FIXME: these always point to the nix store
-        # --run "ln -srnf ~/Games/Fightcade/emulator/fbneo/ROMs   ~/Games/Fightcade/ROMs/FBNeo\ ROMs"     \
-        # --run "ln -srnf ~/Games/Fightcade/emulator/ggpofba/ROMs ~/Games/Fightcade/ROMs/FC1\ ROMs"       \
-        # --run "ln -srnf ~/Games/Fightcade/emulator/flycast/ROMs ~/Games/Fightcade/ROMs/Flycast\ ROMs"   \
-        # --run "ln -srnf ~/Games/Fightcade/emulator/snes9x/ROMs  ~/Games/Fightcade/ROMs/SNES9x\ ROMs"    \
-        makeWrapper ${fhsEnv}/bin/fightcade-fhs $out/bin/${finalAttrs.pname}                                \
-            --run "mkdir -p ~/Games/Fightcade"                                                              \
-            --run "cp -rsf --no-preserve=mode $out/share/${finalAttrs.pname}/. ~/Games/Fightcade/"          \
-            --add-flags "-c 'cd ~/Games/Fightcade && exec ./Fightcade2.sh \"\$@\"' _"
+        makeWrapper ${fhsEnv}/bin/fightcade-fhs $out/bin/${finalAttrs.pname} \
+            --add-flags "-c 'exec \"${dataDir}/Fightcade2.sh\" \"\$@\"' _"
 
         makeWrapper ${fhsEnv}/bin/fightcade-fhs $out/bin/fcade-quark \
-            --add-flags "-c 'cd ~/Games/Fightcade && exec ./emulator/fcade.sh \"\$@\"' _"
+            --add-flags "-c 'exec \"${dataDir}/emulator/fcade.sh\" \"\$@\"' _"
 
         mkdir -p $out/share/icons/hicolor/256x256/apps
         cp $out/share/${finalAttrs.pname}/fc2-electron/resources/app/icon.png $out/share/icons/hicolor/256x256/apps/${finalAttrs.pname}.png
@@ -187,6 +187,8 @@ stdenv.mkDerivation (finalAttrs: {
         substituteInPlace $out/share/applications/fcade-quark.desktop \
             --replace-warn "@out@" "$out"
     '';
+
+    passthru = import ./plugins { inherit stdenv fetchzip; };
 
     meta = {
         # TODO: where should the author key go?

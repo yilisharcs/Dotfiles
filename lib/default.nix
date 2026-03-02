@@ -3,4 +3,7 @@ inputs: self: super: let
     system     = import ./system.nix     inputs self super;
     values     = import ./values.nix     inputs self super;
     keys       = import ./keys.nix;
-in filesystem // system // values // { inherit keys; }
+in filesystem // system // values // { inherit keys; } // {
+    # integrate modules from /pkgs
+    inherit (inputs) nixpkgs;
+}
