@@ -24,6 +24,7 @@ in {
                     bash = {
                         "*" = "ask";
 
+                        "echo"  = "allow";
                         "file"  = "allow";
                         "which" = "allow";
 
@@ -70,7 +71,9 @@ in {
                         "sed *--in-place*" = "deny";
                         "sed *-i*"         = "deny";
 
-                        "gh *"   = "deny";
+                        "gh *"          = "deny";
+                        "gh issue view" = "allow";
+
                         "sudo *" = "deny";
                     };
                     read = {
