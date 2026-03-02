@@ -24,12 +24,17 @@ in {
                     bash = {
                         "*" = "ask";
 
+                        "file"  = "allow";
+                        "which" = "allow";
+
                         "awk *" = "ask";
                         "cp *"  = "ask";
                         "mv *"  = "ask";
                         "rm *"  = "ask";
 
-                        "cat *"     = "allow";
+                        "cat *"       = "allow";
+                        "cat << *EOF" = "deny";
+
                         "df*"       = "allow";
                         "du*"       = "allow";
                         "fd*"       = "allow";
