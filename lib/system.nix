@@ -5,6 +5,11 @@ inputs: self: super: let
     commonModules = collectNix ../modules/common;
     horseModules = collectNix ../modules/horse;
 
+    ourPkgs = import ../pkgs {
+        pkgs = super;
+        lib = self.nixpkgs.lib;
+    };
+
     collectInputs = let
         inputs' = attrValues inputs;
     in path: inputs'
@@ -34,9 +39,12 @@ in {
             {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.sharedModules = inputHomeModules ++ [
-                    inputs.plasma-manager.homeModules.plasma-manager
-                ];
+                home-manager.sharedModules =
+                    attrValues ourPkgs.homeModules
+                    ++ inputHomeModules
+                    ++ [
+                        inputs.plasma-manager.homeModules.plasma-manager
+                    ];
             }
         ] ++ commonModules
             ++ (self.optionals isHorse horseModules)

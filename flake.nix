@@ -46,5 +46,9 @@
                 |> mapAttrs (name: type: import ./hosts/${name} lib);
     in hosts // {
         inherit lib inputs;
+
+        overlays = {
+            default = final: prev: import ./pkgs { pkgs = final; lib = prev.lib; };
+        };
     };
 }
