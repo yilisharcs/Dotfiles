@@ -3,6 +3,7 @@
         home.packages = [
             ## CORE
             pkgs.bc                 # GNU arbitrary-precision calculator
+            pkgs.binutils           # Tools for manipulating binaries. Provides `strings`, etc.
             pkgs.curl               # Command line tool for transferring files with URL syntax
             pkgs.file               # Determine file type
             pkgs.gnumake            # A program for directing recompilation
