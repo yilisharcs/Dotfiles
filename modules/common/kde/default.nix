@@ -248,6 +248,7 @@ in {
                 # lookAndFeel = "org.kde.breezedark.desktop"; # NOTE: overrides widgetStyle
                 theme = "breeze-dark";
                 wallpaper = ./__sonic_shadow_silver__drawn_by_spacedawgspace.jpg;
+                wallpaperBackground.color = "3,0,0";
                 wallpaperFillMode = "preserveAspectFit";
             };
         };
