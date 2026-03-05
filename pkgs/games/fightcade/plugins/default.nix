@@ -1,6 +1,14 @@
-{ stdenv, fetchzip }:
+{ lib, stdenv, fetchzip }:
 
-{
-    fc2json = import ./fc2json.nix { inherit stdenv fetchzip; };
-    sf3-training-grouflon = import ./sf3-training-grouflon.nix { inherit stdenv fetchzip; };
-}
+let
+    dir = ./.;
+    allFiles = builtins.readDir dir;
+    pluginFiles = lib.filterAttrs (name: type: 
+        type == "regular" && lib.hasSuffix ".nix" name && name != "default.nix"
+    ) allFiles;
+in
+    lib.mapAttrs' (name: _: 
+        lib.nameValuePair 
+            (lib.removeSuffix ".nix" name) 
+            (import (dir + "/${name}") { inherit stdenv fetchzip; })
+    ) pluginFiles

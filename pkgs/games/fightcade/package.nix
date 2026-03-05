@@ -37,6 +37,9 @@
 , pango
 , systemd
 
+# flycast
+, appimage-run
+
 # runtime
 , udev
 , libxshmfence
@@ -99,6 +102,7 @@ stdenv.mkDerivation (finalAttrs: {
         copyDesktopItems
         makeWrapper
         autoPatchelfHook
+        appimage-run
     ];
 
     buildInputs = [
@@ -160,6 +164,16 @@ stdenv.mkDerivation (finalAttrs: {
         rm $out/share/${finalAttrs.pname}/fcade-upd $out/share/${finalAttrs.pname}/fcade-upd.sh
         # we make our own desktop file
         rm $out/share/${finalAttrs.pname}/Fightcade.desktop
+        # clean up ROM symlinks to nix store and recreate them elsewhere
+        rm $out/share/${finalAttrs.pname}/ROMs/FBNeo\ ROMs
+        rm $out/share/${finalAttrs.pname}/ROMs/FC1\ ROMs
+        rm $out/share/${finalAttrs.pname}/ROMs/Flycast\ ROMs
+        rm $out/share/${finalAttrs.pname}/ROMs/SNES9x\ ROMs
+
+        mv $out/share/${finalAttrs.pname}/emulator/flycast/flycast.elf \
+           $out/share/${finalAttrs.pname}/emulator/flycast/flycast.appimage
+        makeWrapper ${appimage-run}/bin/appimage-run $out/share/${finalAttrs.pname}/emulator/flycast/flycast.elf \
+            --add-flags $out/share/${finalAttrs.pname}/emulator/flycast/flycast.appimage
 
         # Rename the generic training mode to .default so plugins can safely replace it
         mv $out/share/${finalAttrs.pname}/emulator/fbneo/fbneo-training-mode \
@@ -188,7 +202,7 @@ stdenv.mkDerivation (finalAttrs: {
             --replace-warn "@out@" "$out"
     '';
 
-    passthru = import ./plugins { inherit stdenv fetchzip; };
+    passthru = import ./plugins { inherit lib stdenv fetchzip; };
 
     meta = {
         # TODO: where should the author key go?
