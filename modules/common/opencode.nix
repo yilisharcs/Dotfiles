@@ -46,7 +46,9 @@ in {
                         "objdump *" = "allow";
                         "pwd*"      = "allow";
                         "rg *"      = "allow";
+                        "sort *"    = "allow";
                         "tail *"    = "allow";
+                        "uniq *"    = "allow";
                         "xxd *"     = "allow";
 
                         "find *"         = "allow";
