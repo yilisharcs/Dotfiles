@@ -1,17 +1,16 @@
 { lib, pkgs, ... }: let
-    inherit (lib) enabled getExe getExe';
+    inherit (lib) enabled filterAttrs getExe getExe' mapAttrsToList elem filter optional;
 in {
-    # TODO: perhaps dependent keys should be in their own respective files??
-    #           gimp     = [{ desc = "Open with GIMP";     run = ''gimp "$@"'';     orphan = true; }];
-    #
-    #           inkscape = [{ desc = "Open with Inkscape"; run = ''inkscape "$@"''; orphan = true; }];
-    #
-    #           vlc: play = [
-    #               { desc = "Open with VLC";   run = ''vlc "$@"'';            orphan = true; for = "unix"; }
-    #               { desc = "Show media info"; run = ''mediainfo "$1" | bat''; block = true; for = "unix"; }
-    #           ];
-    #
-    home-manager.sharedModules = [{
+    home-manager.sharedModules = [({ config, ... }: {
+        yaziPrependOpenRules = {
+            text    = { mime = "text/*";                                    use = [ "edit" "reveal" ]; };
+            empty   = { mime = "inode/x-empty";                             use = [ "edit" ]; };
+            html    = { name = "*.html";                                    use = [ "open" "edit" ]; };
+            image   = { mime = "image/*";                                   use = [ "open" "reveal" ]; };
+            archive = { mime = "application/{gzip,x-xz,zip,zstd}";          use = [ "edit" "reveal" ]; };
+            exec    = { mime = "application/{pie-executable,executable}";   use = [ "xbin" ]; };
+        };
+
         # Blazing fast terminal file manager written in Rust, based on async I/O
         programs.yazi = enabled {
             # HACK: https://github.com/sxyazi/yazi/issues/3671
@@ -39,29 +38,14 @@ in {
                 };
                 preview.wrap = "yes";
                 opener = {
-                    # play = [
-                    #     { desc = "Open with VLC";   run = ''vlc "$@"'';            orphan = true; for = "unix"; }
-                    #     { desc = "Show media info"; run = ''mediainfo "$1" | bat''; block = true; for = "unix"; }
-                    # ];
-                    # gimp     = [{ desc = "Open with GIMP";     run = ''gimp "$@"'';     orphan = true; }];
-                    # inkscape = [{ desc = "Open with Inkscape"; run = ''inkscape "$@"''; orphan = true; }];
-                    xbin     = [{ desc = "Execute binary";     run = ''"$@"'';          orphan = true; }];
-                    # calibre  = [{ desc = "Read with Calibre";  run = ''ebook-viewer "$@"'';  orphan = true; }];
-                    # wine     = [{ desc = "Execute with Wine";  run = ''firejail wine "$@"''; orphan = true; }];
+                    xbin = [{ desc = "Execute binary"; run = ''"$@"''; orphan = true; }];
                 };
-                open = {
-                    prepend_rules = [
-                        { mime = "text/*";                            use = [ "edit" "reveal" ]; }
-                        { mime = "inode/x-empty";                     use = "edit"; }
-                        { name = "*.html";                            use = [ "open" "edit" ]; }
-                        #         { mime = "image/*";                           use = [ "open" "gimp" "inkscape" "reveal" ]; }
-                        #opt2     { mime = "image/*",                           use = [ "open", "gimp", "reveal" ] },
-                        #         { mime = "application/{epub+zip, zip}",       use = "calibre" },
-                        { mime = "application/{gzip,x-xz,zip,zstd}";  use = [ "edit" "reveal" ]; }
-                        { mime = "application/{pie-executable,executable}";         use = "xbin"; }
-                        # { mime = "application/{microsoft.portable-executable,msi}"; use = "wine"; }
-                    ];
-                };
+                open.prepend_rules = mapAttrsToList (k: v:
+                    filterAttrs (name: val: val != null && val != []) (v // {
+                        use = (optional (elem "open" v.use) "open")
+                            ++ (filter (x: x != "open" && x != "reveal") v.use)
+                            ++ (optional (elem "reveal" v.use) "reveal");
+                })) config.yaziPrependOpenRules;
                 confirm = {
                     trash = true;
                     delete = true;
@@ -178,5 +162,5 @@ in {
                 };
             };
         };
-    }];
+    })];
 }
