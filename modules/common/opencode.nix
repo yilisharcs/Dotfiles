@@ -56,6 +56,7 @@ in {
                         "find *-exec*"   = "ask";
 
                         "git *"             = "ask";
+                        "git checkout *"    = "deny";
                         "git clean*"        = "deny";
                         "git commit*"       = "deny";
                         "git push*"         = "deny";
@@ -66,6 +67,7 @@ in {
                         "git diff*"         = "allow";
                         "git log*"          = "allow";
                         "git ls-files*"     = "allow";
+                        "git merge-tree *"  = "allow";
                         "git show*"         = "allow";
                         "git status*"       = "allow";
 
