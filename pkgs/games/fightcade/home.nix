@@ -15,8 +15,8 @@ in {
 
         dataDir = lib.mkOption {
             type = lib.types.str;
-            default = "${config.xdg.dataHome}/fightcade";
-            defaultText = lib.literalExpression ''"''${config.xdg.dataHome}/fightcade"'';
+            default = "${config.xdg.dataHome}/Fightcade";
+            defaultText = lib.literalExpression ''"''${config.xdg.dataHome}/Fightcade"'';
             description = "The absolute path or path relative to the user's home directory where Fightcade will be installed and ROMs will be stored.";
         };
 
