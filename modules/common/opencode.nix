@@ -20,13 +20,14 @@ in {
                 permission = {
                     external_directory = {
                         "*" = "ask";
+                        "/nix/store/*" = "allow";
                     };
                     bash = {
                         "*" = "ask";
 
-                        "echo"  = "allow";
-                        "file"  = "allow";
-                        "which" = "allow";
+                        "echo *"  = "allow";
+                        "file *"  = "allow";
+                        "which *" = "allow";
 
                         "awk *" = "ask";
                         "cp *"  = "ask";
