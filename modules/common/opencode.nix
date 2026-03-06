@@ -5,7 +5,7 @@ in {
         # HACK: Impure bc the upstream packages crashes on launch with SIGILL...
         home.packages = [ pkgs.fnm ];
         #           fnm install --latest
-        #           npm install -g opencode-ai@1.1.51
+        #           npm install -g opencode-ai@1.2.18
         #           opencode auth login
         #       Add fnm-managed binaries to PATH
         home.sessionPath = [
@@ -13,10 +13,10 @@ in {
         ];
 
         programs.opencode = enabled {
+            package = null; # TODO: wait for v1.2.18
             settings = {
                 autoupdate = false;
-                # HACK: https://github.com/jenslys/opencode-gemini-auth/issues/55
-                plugin = [ "opencode-gemini-auth@1.4.0" ];
+                plugin = [ "opencode-gemini-auth@latest" ];
                 permission = {
                     external_directory = {
                         "*" = "ask";
