@@ -14,15 +14,19 @@ in {
     services.desktopManager.plasma6 = enabled;
 
     environment.systemPackages = [
-        pkgs.kdePackages.kmail            # email client
+        pkgs.kdePackages.kcharselect            # character map
+        pkgs.kdePackages.kclock
+        pkgs.kdePackages.kmail                  # email client
         pkgs.kdePackages.kmail-account-wizard
-        pkgs.kdePackages.isoimagewriter   # Optional: Program to write hybrid ISO files onto USB disks
-        pkgs.kdePackages.partitionmanager # Optional: Manage the disk devices, partitions and file systems on your computer
+        pkgs.kdePackages.kolourpaint
+        pkgs.kdePackages.isoimagewriter         # Write hybrid ISO files onto USB disks
+        pkgs.kdePackages.partitionmanager       # Manage disk devices, partitions and file systems
     ];
 
     environment.plasma6.excludePackages = [
-        pkgs.kdePackages.kate    # GUI text editor? Ew
-        pkgs.kdePackages.konsole # Already have xterm for secondary terminal
+        pkgs.kdePackages.discover   # All package management is done through nix
+        pkgs.kdePackages.kate       # GUI text editor? Ew
+        pkgs.kdePackages.konsole    # Already have xterm for secondary terminal
     ];
 
     # <https://nix-community.github.io/plasma-manager/options.xhtml>
