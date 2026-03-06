@@ -1,5 +1,5 @@
 { config, lib, modulesPath, ... }: let
-    inherit (lib) enabled;
+    inherit (lib) enabled mkDefault;
 in {
     imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
@@ -42,5 +42,5 @@ in {
     }];
 
     nixpkgs.hostPlatform = "x86_64-linux";
-    hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    hardware.cpu.intel.updateMicrocode = mkDefault config.hardware.enableRedistributableFirmware;
 }
