@@ -18,8 +18,6 @@
     });
 in {
     home-manager.sharedModules = [{
-        xdg.configFile."ghostty/shaders/cursor_warp.glsl".source = ./shaders/cursor_warp.glsl;
-
         # Neovim doesn't pick ghostty's syntax otherwise sadge
         programs.neovim.plugins = [ ghostty.vim ];
 
@@ -59,9 +57,6 @@ in {
 
             settings = {
                 theme = "silverwine";
-                custom-shader-animation = "always";
-                custom-shader = "cursor_warp.glsl";
-
                 copy-on-select = true;
                 cursor-style = "block";
                 link-url = false; # osc8 popups are annoying
