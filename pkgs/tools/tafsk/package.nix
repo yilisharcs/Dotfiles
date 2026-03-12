@@ -9,7 +9,7 @@ pkgs.rustPlatform.buildRustPackage (finalAttrs: {
     src = pkgs.fetchFromGitHub {
         owner = "yilisharcs";
         repo = finalAttrs.pname;
-        tag = finalAttrs.version;
+        tag = "v${finalAttrs.version}";
         hash = "sha256-0mS1LV5sggtQxvPrmkSIQ/Gn36NohlARqKn5yKkynwE=";
     };
 
