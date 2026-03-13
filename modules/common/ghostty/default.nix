@@ -3,8 +3,9 @@
 
     ghostty = pkgs.ghostty.overrideAttrs (old: {
         patches = (old.patches or []) ++ [
-            ./patch/keyd_1.patch # Consume the...
-            ./patch/keyd_2.patch # ... XCOMPOSE file
+            # Consume the XCOMPOSE file
+            ./patch/keyd_1.patch
+            ./patch/keyd_2.patch
         ];
 
         nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ pkgs.makeWrapper ];
@@ -62,9 +63,11 @@ in {
                 link-url = false; # osc8 popups are annoying
                 link-previews = false;
                 mouse-hide-while-typing = true;
+                palette-generate = true;
+                palette-harmonious = false; # TODO: test this out
 
                 command = "${getExe pkgs.nushell}"; # command goes with shell-integration
-                # shell-integration = "nushell"; # TODO: enable on v1.3.0
+                shell-integration = "nushell";
                 font-family = "IosevkaTermSlab Nerd Font";
                 font-size = if config.networking.hostName == "gato" then 15 else 14;
                 font-feature = "-calt,-liga,-dlig"; # disable ligatures
