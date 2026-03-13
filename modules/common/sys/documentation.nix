@@ -6,7 +6,7 @@ in {
         doc  = enabled;
         info = disabled;
         man  = enabled {
-            generateCaches = true;
+            cache = enabled;
         };
     };
 
