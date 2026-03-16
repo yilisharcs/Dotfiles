@@ -28,6 +28,7 @@
             pkgs.imagemagick        # Software suite to create, edit, compose, or convert bitmap images
             pkgs.inotify-tools      # Inotify toolbox. Provides `inotifywait`.
             pkgs.jq                 # Lightweight json processor. TODO: wrap for opencode
+            pkgs.libreoffice        # Office productivity suite
             # pkgs.mprocs
             # pkgs.ocrmypdf
             pkgs.pastel             # Command-line tool to generate, analyze, convert and manipulate colors
