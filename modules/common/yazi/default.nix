@@ -1,5 +1,7 @@
 { lib, pkgs, ... }: let
     inherit (lib) enabled filterAttrs getExe getExe' mapAttrsToList elem filter optional;
+
+    mkKeymap = v: v // { desc = v.desc or v.run; };
 in {
     home-manager.sharedModules = [({ config, ... }: {
         yaziPrependOpenRules = {
@@ -52,7 +54,7 @@ in {
                     overwrite = true;
                 };
             };
-            keymap.mgr.prepend_keymap = [
+            keymap.mgr.prepend_keymap = map mkKeymap [
                 { on = ":"; run = "shell '${getExe pkgs.nushell}' --block"; desc = "Launch a shell"; }
 
                 # Smart enter
@@ -84,31 +86,31 @@ in {
                 { on = "<C-A-->"; run = "hardlink";    desc = "Hardlink yanked files"; }
 
                 # Goto
-                { on = [ "g" "/" ]; run = "cd /";                                          desc = "Go to root"; }
-                { on = [ "g" "a" ]; run = "cd ~/Projects/github.com/yilisharcs/";          desc = "Go to local github.com/yilisharcs"; }
-                { on = [ "g" "A" ]; run = "cd ~/Projects/github.com/sonicretro/skdisasm/"; desc = "Go to S3K Disassembly"; }
-                { on = [ "g" "b" ]; run = "cd ~/Shared/notebook";                          desc = "Go to notebook"; }
-                { on = [ "g" "B" ]; run = "cd ~/Shared/notebook/vault";                    desc = "Go to vault"; }
-                { on = [ "g" "c" ]; run = "cd ~/.config";                                  desc = "Go ~/.config"; }
-                { on = [ "g" "d" ]; run = "cd ~/Downloads";                                desc = "Go ~/Downloads"; }
-                { on = [ "g" "e" ]; run = "cd ~/Documents";                                desc = "Go ~/Documents"; }
-                { on = [ "g" "E" ]; run = "cd ~/Documents/Archivum";                       desc = "Go to the creative archive"; }
-                { on = [ "g" "f" ]; run = "follow";                                        desc = "Follow hovered symlink"; }
-                { on = [ "g" "i" ]; run = "cd ~/Pictures";                                 desc = "Go ~/Pictures"; }
-                # { on = [ "g" "k" ]; run = "cd ~/Nixcfg";                                   desc = "Go ~/Nixcfg"; }
-                { on = [ "g" "l" ]; run = "cd ~/Dotfiles";                                 desc = "Go ~/Dotfiles"; }
-                { on = [ "g" "m" ]; run = "cd ~/Music";                                    desc = "Go ~/Music"; }
-                { on = [ "g" "n" ]; run = "cd ~/.config/nvim";                             desc = "Go to nvim/init.lua"; }
-                { on = [ "g" "o" ]; run = "cd ~/opt";                                      desc = "Go to private /opt"; }
-                { on = [ "g" "p" ]; run = "cd ~/Projects";                                 desc = "Go ~/Projects"; }
-                # { on = [ "g" "r" ]; run = "cd ~/.cargo/registry/src";                      desc = "Go to cargo registry"; }
-                { on = [ "g" "s" ]; run = "cd ~/.local/bin";                               desc = "Go to private /bin"; }
-                { on = [ "g" "u" ]; run = "cd ~/Library";                                  desc = "Go ~/Library"; }
-                { on = [ "g" "v" ]; run = "cd ~/Videos";                                   desc = "Go ~/Videos"; }
-                { on = [ "g" "w" ]; run = "cd ~/.wine/drive_c";                            desc = "Go to Wine C:"; }
-                { on = [ "g" "y" ]; run = "cd ~/Games";                                    desc = "Go ~/Games"; }
-                { on = [ "g" "x" ]; run = "cd ~/.local/state/nvim";                        desc = "Go to state/nvim"; }
-                { on = [ "g" "z" ]; run = "cd ~/.local/share/nvim/lazy";                   desc = "Go to lazydir"; }
+                { on = [ "g" "/" ]; run = "cd /"; desc = "Go to root directory"; }
+                { on = [ "g" "a" ]; run = "cd ~/Projects/github.com/yilisharcs/"; }
+                { on = [ "g" "A" ]; run = "cd ~/Projects/github.com/sonicretro/skdisasm/"; desc = "Go to S3K disassembly"; }
+                { on = [ "g" "b" ]; run = "cd ~/Shared/notebook"; }
+                { on = [ "g" "B" ]; run = "cd ~/Shared/notebook/vault"; }
+                { on = [ "g" "c" ]; run = "cd ~/.config"; }
+                { on = [ "g" "d" ]; run = "cd ~/Downloads"; }
+                { on = [ "g" "e" ]; run = "cd ~/Documents"; }
+                { on = [ "g" "E" ]; run = "cd ~/Documents/Archivum"; }
+                { on = [ "g" "f" ]; run = "follow"; desc = "Follow hovered symlink"; }
+                { on = [ "g" "i" ]; run = "cd ~/Pictures"; }
+                { on = [ "g" "k" ]; run = "cd /nix/store"; }
+                { on = [ "g" "l" ]; run = "cd ~/Dotfiles"; }
+                { on = [ "g" "m" ]; run = "cd ~/Music"; }
+                { on = [ "g" "n" ]; run = "cd ~/.config/nvim"; desc = "Go to nvim init.lua"; }
+                { on = [ "g" "o" ]; run = "cd ~/opt"; }
+                { on = [ "g" "p" ]; run = "cd ~/Projects"; }
+                { on = [ "g" "r" ]; run = "cd ~/.local/share/fnm/aliases/default/lib/node_modules"; desc = "Go to npm registry"; }
+                { on = [ "g" "s" ]; run = "cd ~/.local/bin"; }
+                { on = [ "g" "u" ]; run = "cd ~/Library"; }
+                { on = [ "g" "v" ]; run = "cd ~/Videos"; }
+                { on = [ "g" "w" ]; run = "cd ~/.wine/drive_c"; desc = "Go to Wine C: drive"; }
+                { on = [ "g" "y" ]; run = "cd ~/Games"; }
+                { on = [ "g" "x" ]; run = "cd ~/.local/state/nvim"; }
+                { on = [ "g" "z" ]; run = "cd ~/.local/share/nvim/lazy"; desc = "Go to lazydir"; }
             ];
             theme = {
                 mgr = {
