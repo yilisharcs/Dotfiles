@@ -1,19 +1,23 @@
 { lib, pkgs, ... }: let
-    inherit (lib) enabled;
+    inherit (lib) enabled filter;
+
+    # SIGILL on Ivy Bridge due to standard Bun targeting x86-64-v3; force bun-baseline binary instead
+    bun-baseline = pkgs.bun.overrideAttrs (old: {
+        src = pkgs.fetchurl {
+            url = "https://github.com/oven-sh/bun/releases/download/bun-v${old.version}/bun-linux-x64-baseline.zip";
+            hash = "sha256-QSAajF7nSp3Lsc4loRBPH5KYOLV6hFqnjZg3mwznzeI=";
+        };
+    });
+
+    opencode-patched = pkgs.opencode.overrideAttrs (old: {
+        nativeBuildInputs = [ bun-baseline ]
+            ++ (filter (p: (p.pname or "") != "bun") (old.nativeBuildInputs or []));
+    });
 in {
     home-manager.sharedModules = [{
-        # HACK: Impure bc the upstream packages crashes on launch with SIGILL...
-        home.packages = [ pkgs.fnm ];
-        #           fnm install --latest
-        #           npm install -g opencode-ai@1.2.18
-        #           opencode auth login
-        #       Add fnm-managed binaries to PATH
-        home.sessionPath = [
-            "$HOME/.local/share/fnm/aliases/default/bin"
-        ];
-
+        # NOTE: don't forget to run `opencode auth login`
         programs.opencode = enabled {
-            package = null; # TODO: wait for v1.2.18
+            package = opencode-patched;
             settings = {
                 autoupdate = false;
                 plugin = [ "opencode-gemini-auth@latest" ];
