@@ -34,7 +34,7 @@
             pkgs.pastel             # Command-line tool to generate, analyze, convert and manipulate colors
             pkgs.pciutils           # Provides `lspci`
             pkgs.porsmo             # Pomodoro cli app in Rust with timer and countdown
-            pkgs.protonvpn-gui
+            pkgs.proton-vpn
             # pkgs.reuse              # Tool for compliance with the REUSE Initiative recommendations
             # pkgs.speedtest-rs       # Check your internet speed
             # pkgs.testdisk           # Data recovery utilities
