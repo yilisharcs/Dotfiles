@@ -1,7 +1,7 @@
 { pkgs, ... }: let
     just-patched = pkgs.just.overrideAttrs (old: {
         patches = (old.patches or []) ++ [
-            ./patch/yellow.patch
+            ./patch/make_doc_and_command_strings_yellow.patch
         ];
         doCheck = false;
     });
