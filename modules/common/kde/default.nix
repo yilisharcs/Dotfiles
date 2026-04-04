@@ -248,7 +248,7 @@ in {
             windows.allowWindowsToRememberPositions = true;
             workspace = {
                 enableMiddleClickPaste = false;
-                clickItemTo = "open";
+                clickItemTo = "select";
                 colorScheme = "BreezeDark";
                 cursor = {
                     size = 42;
