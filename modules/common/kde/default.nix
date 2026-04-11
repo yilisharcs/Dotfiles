@@ -35,8 +35,8 @@ in {
         programs.okular = enabled {}; # TODO: configure?
 
         programs.plasma = enabled {
-            immutableByDefault = true;
-            # overrideConfig = true; # NOTE: occasionally breaks
+            immutableByDefault = false; # NOTE: breaks desktop icons for some reason
+            overrideConfig = false; # NOTE: occasionally breaks
             configFile = {
                 kded_device_automounterrc."Devices/\\/org\\/freedesktop\\/UDisks2\\/block_devices\\/sdb1" = {
                     EverMounted = true;
@@ -49,7 +49,7 @@ in {
                     AutomountOnPlugin = true;
                 };
                 kdeglobals.General.AccentColor = "61,212,37";
-                kdeglobals.KDE.widgetStyle = "Windows"; # MS Windows 9x style
+                kdeglobals.KDE.widgetStyle = "Fusion"; # Breeze, Fusion, Windows
                 # kdeglobals."KFileDialog Settings"."Show hidden files" = true;
                 # kdeglobals."KFileDialog Settings"."Sort directories first" = true;
                 # kdeglobals."KFileDialog Settings"."Sort hidden files last" = false;
