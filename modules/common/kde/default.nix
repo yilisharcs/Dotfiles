@@ -193,6 +193,7 @@ in {
                             "preferred://filemanager"
                             "applications:systemsettings.desktop"
                             "applications:fightcade.desktop"
+                            "applications:steam.desktop"
                         ];
                     }
                     "org.kde.plasma.marginsseparator"
