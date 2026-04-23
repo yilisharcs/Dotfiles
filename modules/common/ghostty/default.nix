@@ -64,7 +64,7 @@ in {
                 link-previews = false;
                 mouse-hide-while-typing = true;
                 palette-generate = true;
-                palette-harmonious = false; # TODO: test this out
+                palette-harmonious = false;
 
                 command = "${getExe pkgs.nushell}"; # command goes with shell-integration
                 shell-integration = "nushell";

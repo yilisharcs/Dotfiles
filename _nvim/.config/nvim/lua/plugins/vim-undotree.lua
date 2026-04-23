@@ -1,5 +1,4 @@
 return {
-        -- TODO: This plugin will be unnecessary in 0.12
         "https://github.com/yilisharcs/undotree",
         branch = "u-redo",
         dev = true,
