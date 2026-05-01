@@ -60,8 +60,8 @@ in {
                 theme = "silverwine";
                 copy-on-select = true;
                 cursor-style = "block";
-                link-url = false; # osc8 popups are annoying
-                link-previews = false;
+                link-url = true;
+                link-previews = true;
                 mouse-hide-while-typing = true;
                 palette-generate = true;
                 palette-harmonious = false;
