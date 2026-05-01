@@ -6,9 +6,10 @@
             pkgs.stylua # opinionated Lua code formatter
         ];
 
-        home.sessionVariables = {
-            LUA_PATH  = ";./src/?.lua;./src/?/init.lua;;";
-            LUA_CPATH = ";./lib/?.so;;";
-        };
+        ## TODO: review necessity of this
+        # home.sessionVariables = {
+        #     LUA_PATH  = ";./src/?.lua;./src/?/init.lua;;";
+        #     LUA_CPATH = ";./lib/?.so;;";
+        # };
     }];
 }
