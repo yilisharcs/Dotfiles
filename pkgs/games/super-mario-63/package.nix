@@ -40,6 +40,8 @@ stdenv.mkDerivation (finalAttrs: {
     dontBuild = true;
     dontConfigure = true;
 
+    # FIXME: every time i update the flake, it changes the hash of the final product, so the save
+    #        files are stored elsewhere. annoying!
     installPhase = ''
         mkdir -p $out/share/${finalAttrs.pname}
         cp $src $out/share/${finalAttrs.pname}/sm63game.exe
