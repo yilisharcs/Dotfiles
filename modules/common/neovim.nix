@@ -12,6 +12,8 @@ in {
             viAlias = true;
             vimAlias = true;
             vimdiffAlias = true;
+            withPython3 = false;
+            withRuby = false;
             extraPackages = [
                 pkgs.curl               # Command-line tool for transferring files with URL syntax
                 pkgs.gcc                # Needed to compile treesitter parsers
