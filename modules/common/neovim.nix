@@ -7,6 +7,7 @@ in {
 
         # Terminal text editor
         programs.neovim = enabled {
+            sideloadInitLua = true;     # Don't overwrite $XDG_CONFIG_HOME/nvim/init.lua stow symlink
             defaultEditor = true;
             viAlias = true;
             vimAlias = true;
