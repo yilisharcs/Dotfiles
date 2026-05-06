@@ -40,6 +40,7 @@
             # pkgs.speedtest-rs       # Check your internet speed
             # pkgs.testdisk           # Data recovery utilities
             pkgs.tokei              # Count your code, quickly
+            pkgs.wl-clipboard       # Command-line copy/paste utilities for Wayland
 
             ## CUSTOM
             pkgs.wasm4              # Build retro games using WebAssembly for a fantasy console
