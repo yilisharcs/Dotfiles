@@ -39,7 +39,7 @@ in {
                         "rm *"  = "ask";
 
                         "cat *"       = "allow";
-                        "cat << *EOF" = "deny";
+                        "cat <<*EOF"  = "deny";
 
                         "df*"       = "allow";
                         "du*"       = "allow";
