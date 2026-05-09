@@ -29,7 +29,6 @@
             pkgs.inotify-tools      # Inotify toolbox. Provides `inotifywait`.
             pkgs.jq                 # Lightweight json processor. TODO: wrap for opencode
             pkgs.libreoffice        # Office productivity suite
-            pkgs.love               # Lua-based 2D game engine/scripting language
             # pkgs.mprocs
             # pkgs.ocrmypdf
             pkgs.pastel             # Command-line tool to generate, analyze, convert and manipulate colors
