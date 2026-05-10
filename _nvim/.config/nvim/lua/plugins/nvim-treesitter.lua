@@ -73,12 +73,6 @@ return {
 
                 vim.keymap.set(
                         "n",
-                        "<M-u>",
-                        "<CMD>TSBufToggle highlight<CR>",
-                        { desc = "Toggle treesitter highlights" }
-                )
-                vim.keymap.set(
-                        "n",
                         "<leader><F9>",
                         "<CMD>InspectTree<CR>",
                         { desc = "Inspect treesitter AST" }
