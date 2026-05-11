@@ -1,0 +1,61 @@
+diff --git c/crates/builtin/build.rs i/crates/builtin/build.rs
+index 6621709..b32f0eb 100644
+--- c/crates/builtin/build.rs
++++ i/crates/builtin/build.rs
+@@ -12,7 +12,7 @@ fn main() {
+         .args([
+             "eval",
+             "--experimental-features",
+-            "nix-command flakes",
++            "nix-command flakes pipe-operators",
+             "--store",
+             "dummy://",
+             "--impure",
+@@ -34,7 +34,7 @@ fn main() {
+                     .args([
+                         "eval",
+                         "--experimental-features",
+-                        "nix-command flakes",
++                        "nix-command flakes pipe-operators",
+                         "--store",
+                         "dummy://",
+                         "--impure",
+diff --git c/crates/nix-interop/src/flake_lock.rs i/crates/nix-interop/src/flake_lock.rs
+index 5f6cc54..5e4b5be 100644
+--- c/crates/nix-interop/src/flake_lock.rs
++++ i/crates/nix-interop/src/flake_lock.rs
+@@ -214,7 +214,7 @@ pub async fn archive(nix_command: &Path, flake_url: &FlakeUrl) -> Result<()> {
+             "flake",
+             "archive",
+             "--experimental-features",
+-            "nix-command flakes",
++            "nix-command flakes pipe-operators",
+             "--json",
+         ])
+         .arg(flake_url)
+diff --git c/crates/nix-interop/src/flake_output.rs i/crates/nix-interop/src/flake_output.rs
+index eab423b..3d16649 100644
+--- c/crates/nix-interop/src/flake_output.rs
++++ i/crates/nix-interop/src/flake_output.rs
+@@ -24,7 +24,7 @@ pub async fn eval_flake_output(
+             "flake",
+             "show",
+             "--experimental-features",
+-            "nix-command flakes",
++            "nix-command flakes pipe-operators",
+             "--json",
+         ])
+         .args(watcher_tx.is_some().then_some("-v"))
+diff --git c/crates/nix-interop/src/nixos_options.rs i/crates/nix-interop/src/nixos_options.rs
+index 58002ed..fd57e32 100644
+--- c/crates/nix-interop/src/nixos_options.rs
++++ i/crates/nix-interop/src/nixos_options.rs
+@@ -174,7 +174,7 @@ mod tests {
+                         "flake",
+                         "archive",
+                         "--experimental-features",
+-                        "nix-command flakes",
++                        "nix-command flakes pipe-operators",
+                         "--json",
+                     ])
+                     .arg(FlakeUrl::new_path("./tests/nixpkgs_revs"))
