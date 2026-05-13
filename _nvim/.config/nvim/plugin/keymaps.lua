@@ -112,7 +112,7 @@ vim.keymap.set("n", "<leader><C-n>", "<CMD>cbelow<CR>", { desc = "Quickfix error
 vim.keymap.set("n", "<M-p>", "<CMD>lprev<CR>zz", { desc = "Loclist previous error" })
 vim.keymap.set("n", "<M-n>", "<CMD>lnext<CR>zz", { desc = "Loclist next error" })
 
-vim.keymap.set("n", "Z", "jmzk<CMD>m .+1<CR>==`z", { desc = "Swap lines" })
+vim.keymap.set("n", "gz", "jmzk<CMD>m .+1<CR>==`z", { desc = "Swap lines" })
 vim.keymap.set("n", "gj", "i<CR><ESC>k$", { desc = "Split current line at the cursor position" })
 
 vim.keymap.set("n", "gcap", "gcip", { remap = true })
