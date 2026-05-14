@@ -1,7 +1,11 @@
-{ self, lib, pkgs, ... }: let
-    inherit (lib) disabled;
+{ self, inputs, lib, pkgs, ... }: let
+    inherit (lib) disabled filterAttrs isType mapAttrs;
+    registryMap = filterAttrs (_: isType "flake") inputs;
 in {
     nix.channel = disabled;
+
+    nix.registry = registryMap // { default = inputs.nixpkgs; }
+        |> mapAttrs (_: flake: { inherit flake; });
 
     nix.gc = {
         automatic  = true;

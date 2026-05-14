@@ -50,7 +50,7 @@ in {
                     if ($program | str contains "#") or ($program | str contains ":") {
                         nix run $program -- ...$arguments
                     } else {
-                        nix run ("nixpkgs#" + $program) -- ...$arguments
+                        nix run ("default#" + $program) -- ...$arguments
                     }
                 }
 
@@ -59,7 +59,7 @@ in {
                         if ($in | str contains "#") or ($in | str contains ":") {
                             $in
                         } else {
-                            "nixpkgs#" + $in
+                            "default#" + $in
                         }
                     })
                 }
