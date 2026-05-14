@@ -39,6 +39,10 @@ CompilerSet errorformat+=
             \%W%f:%l:%c:\ warning:\ %m,
             \%-G%*\\d\ warnings\ generated.
 
+" runtime errors
+CompilerSet errorformat+=
+            \%f:%l:%c:\ %m
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
 " vim: tabstop=8 shiftwidth=4 softtabstop=4 expandtab
