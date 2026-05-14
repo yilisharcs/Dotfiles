@@ -1,7 +1,7 @@
 { lib, pkgs, ... }: let
     inherit (lib) enabled getExe keys;
 
-    jj-help-k = pkgs.writeScriptBin "jjk" ''
+    jj-help-k = pkgs.writeScriptBin "jjk" /* nu */ ''
         #!${getExe pkgs.nushell}
         $env.config.display_errors.termination_signal = false
 

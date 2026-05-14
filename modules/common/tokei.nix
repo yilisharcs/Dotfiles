@@ -1,7 +1,7 @@
 { lib, pkgs, ... }: let
     inherit (lib) getExe;
 
-    tokeicon = pkgs.writeScriptBin "tokeicon" ''
+    tokeicon = pkgs.writeScriptBin "tokeicon" /* nu */ ''
         #!${getExe pkgs.nushell}
 
         def main [ --exclude (-e): string = "" ] {

@@ -5,14 +5,14 @@ in {
         inherit (lib.hm.dag) entryAfter;
         inherit (lib.hm.nushell) mkNushellInline;
     in {
-        home.activation.symlinkNuHist = entryAfter ["writeBoundary"] ''
+        home.activation.symlinkNuHist = entryAfter ["writeBoundary"] /* bash */ ''
             run ln -sf "$HOME/.config/nushell/history.txt" "$HOME/.nu_history"
         '';
 
         home.activation.nuMutableScratchFile = let
             scratch = "${config.home.homeDirectory}/.local/bin/scratch";
         in
-            entryAfter ["writeBoundary"] ''
+            entryAfter ["writeBoundary"] /* nu */ ''
                 run mkdir -p ${config.home.homeDirectory}/.local/bin
                 run touch ${scratch}
                 run chmod 755 ${scratch}
@@ -45,7 +45,7 @@ in {
                 SUDO_PROMPT = mkNushellInline "$'(ansi red_bold)[sudo](ansi reset) password for %u: '";
             };
             # courtesy of HSVSphere
-            extraConfig = ''
+            extraConfig = /* nu */ ''
                 def --wrapped * [program: string = "", ...arguments] {
                     if ($program | str contains "#") or ($program | str contains ":") {
                         nix run $program -- ...$arguments
@@ -104,7 +104,7 @@ in {
                     mode = [ "emacs" "vi_normal" "vi_insert" ];
                     event = {
                         send = "executehostcommand";
-                        cmd = ''commandline edit --replace (
+                        cmd = /* nu */ ''commandline edit --replace (
                                     history
                                     | reverse
                                     | group-by command

@@ -3,7 +3,7 @@
 in {
     home-manager.sharedModules = [({ options, ... }: {
         programs.bash = enabled {
-            initExtra = ''
+            initExtra = /* bash */ ''
                 # Use nushell in place of bash, unless calling bash from nushell.
                 # `nvim -c term` needs an exception to ensure nushell is called.
                 # https://wiki.gentoo.org/wiki/Nushell#Caveats
