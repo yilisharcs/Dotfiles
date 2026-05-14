@@ -30,10 +30,12 @@ in {
             plugins = [
                 pkgs.nushellPlugins.gstat
                 pkgs.nushellPlugins.query
+                ## TODO: look into inc and semver plugins again
                 # inc
                 # semver
             ];
             shellAliases = {
+                ## TODO: need to stop being aliases huh
                 # wut = "helpless.nu";
                 #
                 # def h [str: string] { nu -c $"($str) --help" | ${getExe pkgs.less} -FRX }
@@ -42,16 +44,37 @@ in {
             environmentVariables = {
                 SUDO_PROMPT = mkNushellInline "$'(ansi red_bold)[sudo](ansi reset) password for %u: '";
             };
+            # courtesy of HSVSphere
+            extraConfig = ''
+                def --wrapped * [program: string = "", ...arguments] {
+                    if ($program | str contains "#") or ($program | str contains ":") {
+                        nix run $program -- ...$arguments
+                    } else {
+                        nix run ("nixpkgs#" + $program) -- ...$arguments
+                    }
+                }
+
+                def --wrapped > [...programs] {
+                    nix shell ...($programs | each {
+                        if ($in | str contains "#") or ($in | str contains ":") {
+                            $in
+                        } else {
+                            "nixpkgs#" + $in
+                        }
+                    })
+                }
+            '';
             settings = {
                 buffer_editor = "nvim";
                 display_errors.termination_signal= false;
+                show_banner = false;
+                use_kitty_protocol = true;
                 history = {
                     file_format = "plaintext";
                     max_size = 10000000;
                     sync_on_enter = true;
                     isolation = false;
                 };
-                show_banner = false;
                 plugin_gc = {
                     default = {
                         enabled = true;
@@ -59,6 +82,7 @@ in {
                     };
                     plugins = {
                         gstat.stop_after = mkNushellInline "1min";
+                        ## TODO: if inc is found, enable this
                         # inc.stop_after = mkNushellInline "0sec";
                     };
                 };
