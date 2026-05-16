@@ -25,7 +25,7 @@ in {
                 ui = {
                     default-command = [ "ls" ];
                     # pager          = [ (getExe pkgs.bash) "-c" "exec \${PAGER:-${config.environment.variables.PAGER}}" ];
-                    # diff-editor    = ":builtin";
+                    diff-editor    = ":builtin";
                     # conflict-marker-style = "snapshot";
                 };
                 git = {
