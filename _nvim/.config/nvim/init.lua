@@ -104,7 +104,7 @@ vim.o.winborder = "rounded"
 vim.o.winwidth = 15
 
 -- Nushell doesn't grok vi
-vim.o.shell = vim.fn.exepath("bash")
+vim.o.shell = "/run/current-system/sw/bin/bash"
 
 -- Display vs TTY
 vim.o.list = true
