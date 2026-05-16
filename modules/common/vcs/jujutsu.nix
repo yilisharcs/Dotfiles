@@ -24,7 +24,6 @@ in {
                 };
                 ui = {
                     default-command = [ "ls" ];
-                    diff-formatter  = [ "difft" "--color=always" "$left" "$right" ];
                     # pager          = [ (getExe pkgs.bash) "-c" "exec \${PAGER:-${config.environment.variables.PAGER}}" ];
                     # diff-editor    = ":builtin";
                     # conflict-marker-style = "snapshot";
