@@ -5,6 +5,7 @@ return {
                 formatters_by_ft = {
                         lua = { "stylua" },
                         rust = { "rustfmt" },
+                        zig = { "zigfmt" },
                 },
                 format_after_save = function(bufnr)
                         local name = vim.api.nvim_buf_get_name(bufnr)
