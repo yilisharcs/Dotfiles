@@ -2,7 +2,6 @@ return {
         "https://github.com/NeogitOrg/neogit",
         dependencies = {
                 "https://github.com/ibhagwan/fzf-lua",
-                "https://github.com/nvim-lua/plenary.nvim",
                 "https://github.com/sindrets/diffview.nvim",
         },
         cmd = "Neogit",
