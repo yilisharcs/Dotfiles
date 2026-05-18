@@ -22,20 +22,14 @@
 
             ## MISC
             pkgs.bsdiff             # Efficient binary diff/patch tool
-            # pkgs.entr               # Run arbitrary commands when files change
             pkgs.ffmpeg             # Complete, cross-platform solution to record, convert and stream audio and video
             # pkgs.hyperfine          # Benchmarking cli tool
             pkgs.imagemagick        # Software suite to create, edit, compose, or convert bitmap images
             pkgs.inotify-tools      # Inotify toolbox. Provides `inotifywait`.
             pkgs.libreoffice        # Office productivity suite
-            # pkgs.mprocs
-            # pkgs.ocrmypdf
             pkgs.pastel             # Command-line tool to generate, analyze, convert and manipulate colors
             pkgs.pciutils           # Provides `lspci`
-            pkgs.porsmo             # Pomodoro cli app in Rust with timer and countdown
             pkgs.proton-vpn
-            # pkgs.reuse              # Tool for compliance with the REUSE Initiative recommendations
-            # pkgs.speedtest-rs       # Check your internet speed
             # pkgs.testdisk           # Data recovery utilities
             pkgs.tokei              # Count your code, quickly
             pkgs.wl-clipboard       # Command-line copy/paste utilities for Wayland
