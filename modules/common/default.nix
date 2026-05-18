@@ -23,14 +23,14 @@
             ## MISC
             pkgs.bsdiff             # Efficient binary diff/patch tool
             pkgs.ffmpeg             # Complete, cross-platform solution to record, convert and stream audio and video
-            # pkgs.hyperfine          # Benchmarking cli tool
+            pkgs.hyperfine          # Benchmarking cli tool
             pkgs.imagemagick        # Software suite to create, edit, compose, or convert bitmap images
             pkgs.inotify-tools      # Inotify toolbox. Provides `inotifywait`.
             pkgs.libreoffice        # Office productivity suite
             pkgs.pastel             # Command-line tool to generate, analyze, convert and manipulate colors
             pkgs.pciutils           # Provides `lspci`
             pkgs.proton-vpn
-            # pkgs.testdisk           # Data recovery utilities
+            pkgs.testdisk           # Data recovery utilities
             pkgs.tokei              # Count your code, quickly
             pkgs.wl-clipboard       # Command-line copy/paste utilities for Wayland
 
