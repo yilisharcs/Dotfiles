@@ -30,9 +30,7 @@ in {
             plugins = [
                 pkgs.nushellPlugins.gstat
                 pkgs.nushellPlugins.query
-                ## TODO: look into inc and semver plugins again
-                # inc
-                # semver
+                pkgs.nushellPlugins.semver
             ];
             shellAliases = {
                 fg = "job unfreeze";
@@ -78,8 +76,6 @@ in {
                     };
                     plugins = {
                         gstat.stop_after = mkNushellInline "1min";
-                        ## TODO: if inc is found, enable this
-                        # inc.stop_after = mkNushellInline "0sec";
                     };
                 };
                 keybindings = [

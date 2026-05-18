@@ -5,7 +5,7 @@
     bun-baseline = pkgs.bun.overrideAttrs (old: {
         src = pkgs.fetchurl {
             url = "https://github.com/oven-sh/bun/releases/download/bun-v${old.version}/bun-linux-x64-baseline.zip";
-            hash = "sha256-q+NG9jQUVHzfazW3pkmkkMcouT0AYiYVaSORioTA5Zs=";
+            hash = "sha256-nYokKSpwaAkCBdqsCloiP19pc29Sh+N7+I07QDHtx1A=";
         };
     });
 
