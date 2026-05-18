@@ -31,7 +31,14 @@ in {
 
     # <https://nix-community.github.io/plasma-manager/options.xhtml>
     home-manager.sharedModules = [{
-        programs.elisa  = enabled {}; # TODO: configure?
+        programs.elisa  = enabled {
+            appearance = {
+                defaultView = "allAlbums";
+                showNowPlayingBackground = true;
+                showProgressOnTaskBar = true;
+            };
+            indexer.scanAtStartup = true;
+        };
         programs.okular = enabled {}; # TODO: configure?
 
         programs.plasma = enabled {
