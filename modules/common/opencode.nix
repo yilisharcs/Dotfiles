@@ -18,6 +18,9 @@ in {
         # NOTE: don't forget to run `opencode auth login`
         programs.opencode = enabled {
             package = opencode-patched;
+            extraPackages = [
+                pkgs.jq                 # Lightweight JSON processor
+            ];
             context = /* markdown */ ''
                 Adhere strictly to the following directives:
 

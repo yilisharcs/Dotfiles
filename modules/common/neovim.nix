@@ -17,7 +17,7 @@ in {
             extraPackages = [
                 pkgs.curl               # Command-line tool for transferring files with URL syntax
                 pkgs.gcc                # Needed to compile treesitter parsers
-                pkgs.jq                 # Command-line JSON processor
+                pkgs.jq                 # Lightweight JSON processor
                 pkgs.tree-sitter
                 (pkgs.symlinkJoin {     # lazy.nvim dependency for dealing with rockspecs
                     name = "luarocks_lua51";
