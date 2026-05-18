@@ -8,9 +8,9 @@ in {
                 # `nvim -c term` needs an exception to ensure nushell is called.
                 # https://wiki.gentoo.org/wiki/Nushell#Caveats
                 if [ -x "${getExe pkgs.nushell}" ] &&
-                        { [ "$SHLVL" -eq 1 ] || { [ "$SHLVL" -eq 2 ] && [ -n "$NVIM" ]; }; }; then
-                                export SHELL="${getExe pkgs.nushell}"
-                                exec "${getExe pkgs.nushell}"
+                    { [ "$SHLVL" -eq 1 ] || { [ "$SHLVL" -eq 2 ] && [ -n "$NVIM" ]; }; }; then
+                        export SHELL="${getExe pkgs.nushell}"
+                        exec "${getExe pkgs.nushell}"
                 fi
 
                 PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "

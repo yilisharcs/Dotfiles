@@ -16,7 +16,7 @@ in {
             withRuby = false;
             extraPackages = [
                 pkgs.curl               # Command-line tool for transferring files with URL syntax
-                pkgs.gcc                # Needed to compile treesitter parsers
+                pkgs.gcc                # NOTE: Needed to compile treesitter parsers
                 pkgs.jq                 # Lightweight JSON processor
                 pkgs.tree-sitter
                 (pkgs.symlinkJoin {     # lazy.nvim dependency for dealing with rockspecs

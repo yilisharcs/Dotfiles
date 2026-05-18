@@ -35,10 +35,6 @@ in {
                 # semver
             ];
             shellAliases = {
-                ## TODO: need to stop being aliases huh
-                # wut = "helpless.nu";
-                #
-                # def h [str: string] { nu -c $"($str) --help" | ${getExe pkgs.less} -FRX }
                 fg = "job unfreeze";
             };
             environmentVariables = {
