@@ -205,11 +205,11 @@ stdenv.mkDerivation (finalAttrs: {
     passthru = import ./plugins { inherit lib stdenv fetchzip; };
 
     meta = {
-        # TODO: where should the author key go?
         description = "Fightcade";
         homepage = "https://www.fightcade.com";
-        # license = lib.licenses.gpl3Only; # TODO: what license??
-        # maintainers = with lib.maintainers; [ ];
+        license = lib.licenses.unfree;
+        sourceProvenance = lib.sourceTypes.binaryNativeCode;
         mainProgram = "fightcade";
+        platforms = lib.platforms.linux;
     };
 })

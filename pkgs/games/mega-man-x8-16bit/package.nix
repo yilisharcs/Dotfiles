@@ -1,4 +1,5 @@
-{ fetchurl
+{ lib
+, fetchurl
 , fetchzip
 , stdenv
 , makeWrapper
@@ -40,6 +41,7 @@ stdenv.mkDerivation (finalAttrs: {
     dontBuild = true;
     dontConfigure = true;
 
+    # TODO: try to export files with godot to produce a native linux binary
     installPhase = ''
         mkdir -p $out/share/${finalAttrs.pname}
         cp "Mega Man X8 16-bit 1.0.0.9.exe" $out/share/${finalAttrs.pname}/mega-man-x8-16bit.exe
@@ -56,11 +58,16 @@ stdenv.mkDerivation (finalAttrs: {
     '';
 
     meta = {
-        # TODO: where should the author key go?
         description = "Mega Man X8 16bit";
         homepage = "https://sonicfangameshq.com/forums/showcase/mega-man-x8-16-bit.2184/";
-        # license = lib.licenses.gpl3Only; # TODO: what license??
-        # maintainers = with lib.maintainers; [ ];
+        license = {
+            fullName = "Mega Man X8 16-bit License";
+            url = "https://raw.githubusercontent.com/AlyssonDaPaz/Mega-Man-X8-16-bit/main/LICENSE.md";
+            free = false;
+            redistributable = true;
+        };
+        sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
         mainProgram = "mmx8-16bit";
+        platforms = lib.platforms.linux;
     };
 })

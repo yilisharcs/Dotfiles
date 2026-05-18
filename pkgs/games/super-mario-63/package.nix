@@ -1,4 +1,5 @@
-{ fetchurl
+{ lib
+, fetchurl
 , stdenv
 , makeWrapper
 , makeDesktopItem
@@ -58,11 +59,10 @@ stdenv.mkDerivation (finalAttrs: {
     '';
 
     meta = {
-        # TODO: where should the author key go?
         description = "Super Mario 63";
         homepage = "https://runouw.com/games/detail/sm63.html";
-        # license = lib.licenses.gpl3Only; # TODO: what license??
-        # maintainers = with lib.maintainers; [ ];
+        sourceProvenance = lib.sourceTypes.binaryNativeCode;
         mainProgram = "sm63";
+        platforms = lib.platforms.linux;
     };
 })

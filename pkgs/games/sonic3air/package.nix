@@ -77,6 +77,7 @@ stdenv.mkDerivation (finalAttrs: {
     dontBuild = true;
     dontConfigure = true;
 
+    # TODO: try to compile from source instead
     installPhase = ''
         mkdir -p $out/share/${finalAttrs.pname}
         cp -r . $out/share/${finalAttrs.pname}/
@@ -112,9 +113,8 @@ stdenv.mkDerivation (finalAttrs: {
         description = "Sonic 3 A.I.R. - A fan-made widescreen remaster of Sonic 3 & Knuckles";
         homepage = "https://sonic3air.org/";
         license = lib.licenses.gpl3Only;
-        # maintainers = with lib.maintainers; [ ];
-        platforms = [ "x86_64-linux" ];
-        mainProgram = finalAttrs.pname;
         sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
+        mainProgram = finalAttrs.pname;
+        platforms = lib.platforms.linux;
     };
 })
