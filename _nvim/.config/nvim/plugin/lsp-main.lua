@@ -2,7 +2,6 @@ vim.lsp.enable({
         "luals",
         "nil-nix",
         "nuls",
-        -- "rust-analyzer",
         "zls",
 })
 

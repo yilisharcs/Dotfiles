@@ -1,39 +1,3 @@
-local efm = {}
-
--- rust {{{
-efm.rust = table.concat({
-        "%-G",
-        "%-Gerror: aborting %.%#",
-        "%-Gerror: Could not compile %.%#",
-        "%Eerror: %m",
-        "%Eerror[E%n]: %m",
-        "%Wwarning: %m",
-        "%Inote: %m",
-        "%C %#--> %f:%l:%c",
-        "%E  left:%m",
-        "%C right:%m %f:%l:%c",
-        "%Z",
-        "%f:%l:%c: %t%*[^:]: %m",
-        "%f:%l:%c: %*\\d:%*\\d %t%*[^:]: %m",
-        "%-G%f:%l %s",
-        "%-G%*[ ]^",
-        "%-G%*[ ]^%*[~]",
-        "%-G%*[ ]...",
-        -- "%-G%\\s%#Downloading%.%#",
-        -- "%-G%\\s%#Checking%.%#",
-        -- "%-G%\\s%#Compiling%.%#",
-        -- "%-G%\\s%#Finished%.%#",
-        "%-G%\\s%#error: Could not compile %.%#",
-        "%-G%\\s%#To learn more\\",
-        "%.%#",
-        "%-G%\\s%#For more information about this error\\",
-        "%.%#",
-        "%-Gnote: Run with `RUST_BACKTRACE=%.%#",
-        "%.%#panicked at \\'%m\\'\\",
-        "%f:%l:%c",
-}, ",")
--- }}}
-
 return {
         "https://github.com/yilisharcs/cme.nvim",
         dev = true,
@@ -43,7 +7,6 @@ return {
                         sudo_prompt = true,
                         efm_rules = {
                                 ["buffer"] = { "just" },
-                                [efm.rust] = { "cargo", "just" },
                                 [vim.o.grepformat] = { "task" },
                         },
                 }
