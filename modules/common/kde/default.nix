@@ -167,11 +167,6 @@ in {
                 "services/com.mitchellh.ghostty.desktop"._launch  = "Meta+Return"; # Launch terminal
                 "services/org.kde.plasma.emojier.desktop"._launch = "Meta+/";      # Launch emoji thing
             };
-            # TODO: what is spectacle?
-            # spectacle.shortcuts = {
-            #     captureRectangularRegion = "Meta+Shift+S";
-            #     captureWindowUnderCursor = "Meta+Shift+S";
-            # };
 
             # TODO: figure out how to control this seemingly unexposed option:
             #              right-click
