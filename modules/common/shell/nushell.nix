@@ -62,6 +62,7 @@ in {
                 buffer_editor = "nvim";
                 display_errors.termination_signal= false;
                 show_banner = false;
+                table.mode = "psql";
                 use_kitty_protocol = true;
                 history = {
                     file_format = "plaintext";
