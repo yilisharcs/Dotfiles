@@ -1,5 +1,14 @@
 { lib, pkgs, ... }: let
     inherit (lib) enabled;
+
+    # TODO: remove once `https://github.com/neovim/neovim/pull/36262` is merged
+    neovim = pkgs.neovim-unwrapped.overrideAttrs (old: {
+        patches = (old.patches or []) ++ [
+            ./patch/0001-feat-undo-re-sync-undo-files-on-external-change.patch
+            ./patch/0002-feat-undo-add-check-for-large-undo-files.patch
+            ./patch/0003-docs-new-backup-behavior.patch
+        ];
+    });
 in {
     home-manager.sharedModules = [{
         # Multilanguage implementation of ctags
@@ -7,6 +16,7 @@ in {
 
         # Terminal text editor
         programs.neovim = enabled {
+            package = neovim;
             sideloadInitLua = true;     # Don't overwrite $XDG_CONFIG_HOME/nvim/init.lua stow symlink
             defaultEditor = true;
             viAlias = true;

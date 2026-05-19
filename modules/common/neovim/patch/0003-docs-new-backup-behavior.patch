@@ -1,0 +1,187 @@
+From bbf868ec7a91faa9a7470f53546673fae9ffdb28 Mon Sep 17 00:00:00 2001
+From: yilisharcs <yilisharcs@gmail.com>
+Date: Wed, 13 May 2026 17:00:25 -0300
+Subject: [PATCH 3/3] docs: new "backup" behavior
+
+---
+ runtime/doc/editing.txt               | 32 +++++++++++++--------------
+ runtime/doc/options.txt               | 20 ++++++++---------
+ runtime/lua/vim/_meta/options.gen.lua | 18 +++++++--------
+ src/nvim/options.lua                  | 16 ++++++--------
+ 4 files changed, 39 insertions(+), 47 deletions(-)
+
+diff --git a/runtime/doc/editing.txt b/runtime/doc/editing.txt
+index 46f14e9afd..d5c3f5af71 100644
+--- a/runtime/doc/editing.txt
++++ b/runtime/doc/editing.txt
+@@ -122,10 +122,10 @@ file by giving a file name argument to the ":write" command.  For example: >
+ 	:q
+ 
+ This will create a file "newfile", that is a modified copy of "testfile".
+-The file "testfile" will remain unchanged.  Anyway, if the 'backup' option is
+-set, Vim renames or copies the original file before it will be overwritten.
+-You can use this file if you discover that you need the original file.  See
+-also the 'patchmode' option.  The name of the backup file is normally the same
++The file "testfile" will remain unchanged.  Anyway, if the 'writebackup'
++option is set, Vim renames or copies the original file before it will be
++overwritten, but quickly discards it. If you expect to need the original file,
++see the 'patchmode' option.  The name of the backup file is normally the same
+ as the original file with 'backupext' appended.  The default "~" is a bit
+ strange to avoid accidentally overwriting existing files.  If you prefer
+ ".bak" change the 'backupext' option.  The backup file can be placed in
+@@ -1014,28 +1014,26 @@ Vim will warn you if you try to overwrite a file that has been changed
+ elsewhere (unless "!" was used).  See |timestamp|.
+ 
+ 			    *backup* *E207* *E506* *E507* *E508* *E509* *E510*
+-If you write to an existing file (but do not append) while the 'backup',
+-'writebackup' or 'patchmode' option is on, a backup of the original file is
+-made.  The file is either copied or renamed (see 'backupcopy').  After the
+-file has been successfully written and when the 'writebackup' option is on and
+-the 'backup' option is off, the backup file is deleted.  When the 'patchmode'
+-option is on the backup file may be renamed.
++If you write to an existing file (but do not append) while the 'writebackup'
++or 'patchmode' option is on, a backup of the original file is made.  The file
++is either copied or renamed (see 'backupcopy').  After the file has been
++successfully written and when the 'writebackup' option is on, the backup file
++is deleted.  When the 'patchmode' option is on the backup file may be renamed.
+ 
+ 							*backup-table*
+ 'backup' 'writebackup'	action	~
+    off	     off	no backup made
+-   off	     on		backup current file, deleted afterwards (default)
+-   on	     off	delete old backup, backup current file
+-   on	     on		delete old backup, backup current file
++   off	     on		backup current file, deleted afterwards
++   on	     off	delete old backup, backup new file
++   on	     on		delete old, backup current, and overwrite (default)
+ 
+ When the 'backupskip' pattern matches with the name of the file which is
+ written, no backup file is made.  The values of 'backup' and 'writebackup' are
+ ignored then.
+ 
+-When the 'backup' option is on, an old backup file (with the same name as the
+-new backup file) will be deleted.  If 'backup' is not set, but 'writebackup'
+-is set, an existing backup file will not be deleted.  The backup file that is
+-made while the file is being written will have a different name.
++If 'backup' is not set, but 'writebackup' is set, an existing backup file will
++not be deleted.  The backup file that is made while the file is being written
++will have a different name.
+ 
+ On some filesystems it's possible that in a crash you lose both the backup and
+ the newly written file (it might be there but contain bogus data).  In that
+diff --git a/runtime/doc/options.txt b/runtime/doc/options.txt
+index 4469c88499..e4bf9fdbff 100644
+--- a/runtime/doc/options.txt
++++ b/runtime/doc/options.txt
+@@ -890,15 +890,14 @@ A jump table for the options with a short description can be found at |Q_op|.
+ 	the ways mentioned for the items above are possible.
+ 
+ 				*'backup'* *'bk'* *'nobackup'* *'nobk'*
+-'backup' 'bk'		boolean	(default off)
+-			global
+-	Make a backup before overwriting a file.  Leave it around after the
+-	file has been successfully written.  If you do not want to keep the
+-	backup file, but you do want a backup while the file is being
+-	written, reset this option and set the 'writebackup' option (this is
+-	the default).  If you do not want a backup file at all reset both
+-	options (use this if your file system is almost full).  See the
+-	|backup-table| for more explanations.
++'backup' 'bk'		boolean	(default on)
++			global
++	After overwriting a file, make a backup to be used as an anchor for
++	undo data retrieval if the file is then changed externally. Despite
++	similar names, this option behaves differently from 'writebackup'.
++	See the |backup-table| for more explanations.  If your file system
++	is almost full, consider disabling both options.
++
+ 	When the 'backupskip' pattern matches, a backup is not made anyway.
+ 	When 'patchmode' is set, the backup may be renamed to become the
+ 	oldest version of a file.
+@@ -7753,8 +7752,7 @@ A jump table for the options with a short description can be found at |Q_op|.
+ 'writebackup' 'wb'	boolean	(default on)
+ 			global
+ 	Make a backup before overwriting a file.  The backup is removed after
+-	the file was successfully written, unless the 'backup' option is
+-	also on.
++	the file was successfully written.
+ 	WARNING: Switching this option off means that when Vim fails to write
+ 	your buffer correctly and then, for whatever reason, Vim exits, you
+ 	lose both the original file and what you were writing.  Only reset
+diff --git a/runtime/lua/vim/_meta/options.gen.lua b/runtime/lua/vim/_meta/options.gen.lua
+index e30178d579..de69977242 100644
+--- a/runtime/lua/vim/_meta/options.gen.lua
++++ b/runtime/lua/vim/_meta/options.gen.lua
+@@ -274,19 +274,18 @@ vim.o.bs = vim.o.backspace
+ vim.go.backspace = vim.o.backspace
+ vim.go.bs = vim.go.backspace
+ 
+---- Make a backup before overwriting a file.  Leave it around after the
+---- file has been successfully written.  If you do not want to keep the
+---- backup file, but you do want a backup while the file is being
+---- written, reset this option and set the 'writebackup' option (this is
+---- the default).  If you do not want a backup file at all reset both
+---- options (use this if your file system is almost full).  See the
+---- `backup-table` for more explanations.
++--- After overwriting a file, make a backup to be used as an anchor for
++--- undo data retrieval if the file is then changed externally. Despite
++--- similar names, this option behaves differently from 'writebackup'.
++--- See the `backup-table` for more explanations.  If your file system
++--- is almost full, consider disabling both options.
++---
+ --- When the 'backupskip' pattern matches, a backup is not made anyway.
+ --- When 'patchmode' is set, the backup may be renamed to become the
+ --- oldest version of a file.
+ ---
+ --- @type boolean
+-vim.o.backup = false
++vim.o.backup = true
+ vim.o.bk = vim.o.backup
+ vim.go.backup = vim.o.backup
+ vim.go.bk = vim.go.backup
+@@ -8481,8 +8480,7 @@ vim.go.writeany = vim.o.writeany
+ vim.go.wa = vim.go.writeany
+ 
+ --- Make a backup before overwriting a file.  The backup is removed after
+---- the file was successfully written, unless the 'backup' option is
+---- also on.
++--- the file was successfully written.
+ --- WARNING: Switching this option off means that when Vim fails to write
+ --- your buffer correctly and then, for whatever reason, Vim exits, you
+ --- lose both the original file and what you were writing.  Only reset
+diff --git a/src/nvim/options.lua b/src/nvim/options.lua
+index 46d18430fa..22222baef9 100644
+--- a/src/nvim/options.lua
++++ b/src/nvim/options.lua
+@@ -425,13 +425,12 @@ local options = {
+       abbreviation = 'bk',
+       defaults = true,
+       desc = [=[
+-        Make a backup before overwriting a file.  Leave it around after the
+-        file has been successfully written.  If you do not want to keep the
+-        backup file, but you do want a backup while the file is being
+-        written, reset this option and set the 'writebackup' option (this is
+-        the default).  If you do not want a backup file at all reset both
+-        options (use this if your file system is almost full).  See the
+-        |backup-table| for more explanations.
++        After overwriting a file, make a backup to be used as an anchor for
++        undo data retrieval if the file is then changed externally. Despite
++        similar names, this option behaves differently from 'writebackup'.
++        See the |backup-table| for more explanations.  If your file system
++        is almost full, consider disabling both options.
++
+         When the 'backupskip' pattern matches, a backup is not made anyway.
+         When 'patchmode' is set, the backup may be renamed to become the
+         oldest version of a file.
+@@ -10900,8 +10899,7 @@ local options = {
+       defaults = true,
+       desc = [=[
+         Make a backup before overwriting a file.  The backup is removed after
+-        the file was successfully written, unless the 'backup' option is
+-        also on.
++        the file was successfully written.
+         WARNING: Switching this option off means that when Vim fails to write
+         your buffer correctly and then, for whatever reason, Vim exits, you
+         lose both the original file and what you were writing.  Only reset
+-- 
+2.53.0
+
