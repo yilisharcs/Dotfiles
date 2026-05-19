@@ -44,7 +44,6 @@ return {
                         "rust",
                         "strace",
                         "toml",
-                        "typst",
                         "udev",
                         "vim",
                         "vimdoc",
