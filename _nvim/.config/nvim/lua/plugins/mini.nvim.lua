@@ -128,7 +128,7 @@ return {
                         vim.keymap.set(
                                 "n",
                                 "<leader>gb",
-                                "mzgg<CMD>vert Git blame -- %<CR><C-w>W<CMD>set cursorbind<CR><CMD>set scrollbind<CR>`z",
+                                "mzgg<CMD>vert Git blame -- %<CR><C-w>W<CMD>set cursorbind scrollbind<CR>`z",
                                 { desc = "Git blame" }
                         )
 
@@ -170,6 +170,7 @@ return {
                                         vim.api.nvim_set_option_value("relativenumber", false, opts)
                                         vim.api.nvim_set_option_value("signcolumn", "no", opts)
                                         vim.api.nvim_set_option_value("foldcolumn", "0", opts)
+                                        vim.api.nvim_set_option_value("foldenable", false, opts)
                                         vim.api.nvim_set_option_value("statuscolumn", "", opts)
                                         -- stylua: ignore end
                                 end,
