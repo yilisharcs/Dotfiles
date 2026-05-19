@@ -4,6 +4,7 @@ return {
         init = function()
                 vim.g.cme = {
                         shell = "nu",
+                        shell_flags = { "-m", "psql" },
                         sudo_prompt = true,
                         efm_rules = {
                                 ["buffer"] = { "just" },
