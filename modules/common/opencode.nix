@@ -86,6 +86,7 @@ in {
                         "git clean*"        = "deny";
                         "git commit*"       = "deny";
                         "git push*"         = "deny";
+                        "git lfs*"          = "deny";
                         "git rebase*"       = "deny";
                         "git reset*"        = "deny";
                         "git restore*"      = "deny";
