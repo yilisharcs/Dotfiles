@@ -84,6 +84,38 @@ return {
                 })
         end,
         opts = {
+                picker = {
+                        on_show = function(picker)
+                                vim.keymap.set("i", "<C-n>", function()
+                                        picker.list:move(vim.v.count1)
+                                end, {
+                                        buffer = picker.input.win.buf,
+                                })
+                                vim.keymap.set("i", "<C-p>", function()
+                                        picker.list:move(-vim.v.count1)
+                                end, {
+                                        buffer = picker.input.win.buf,
+                                })
+                                vim.keymap.set("i", "<C-h>", function()
+                                        if picker.input:get() == "" then
+                                                picker:close()
+                                        else
+                                                vim.api.nvim_feedkeys(
+                                                        vim.api.nvim_replace_termcodes(
+                                                                "<BS>",
+                                                                true,
+                                                                false,
+                                                                true
+                                                        ),
+                                                        "n",
+                                                        false
+                                                )
+                                        end
+                                end, {
+                                        buffer = picker.input.win.buf,
+                                })
+                        end,
+                },
                 bigfile = {
                         size = 1.5 * 1024 * 1024, -- 1.5MB
                 },
