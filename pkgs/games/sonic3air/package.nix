@@ -34,7 +34,7 @@ stdenv.mkDerivation (finalAttrs: {
     version = "26.03.28.0";
 
     src = fetchzip {
-        url = "https://github.com/Eukaryot/sonic3air/releases/download/v26.03.28.0-stable/sonic3air_game.tar.gz";
+        url = "https://github.com/Eukaryot/sonic3air/releases/download/v${finalAttrs.version}-stable/sonic3air_game.tar.gz";
         hash = "sha256-yJAo7Bb54DBieb0HzOP0II95njzBSFdGpv7el/5izUE=";
     };
 
