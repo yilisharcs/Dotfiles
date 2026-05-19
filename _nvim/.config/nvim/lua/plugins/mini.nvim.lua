@@ -95,6 +95,7 @@ return {
                         job = { git_executable = "git" },
                 })
 
+                ---@diagnostic disable-next-line: undefined-global
                 local vcs_bin = MiniGit.config.job.git_executable
 
                 local group = vim.api.nvim_create_augroup("MyMiniGit", { clear = true })
