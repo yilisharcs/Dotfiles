@@ -14,6 +14,7 @@ in {
     services.desktopManager.plasma6 = enabled;
 
     environment.systemPackages = [
+        pkgs.kdePackages.ksshaskpass
         pkgs.kdePackages.kcharselect            # character map
         pkgs.kdePackages.kclock
         pkgs.kdePackages.kmail                  # email client
