@@ -11,8 +11,9 @@
 in {
     home-manager.sharedModules = [{
         home.packages = [
-            pkgs.git-doc # Additional documentation for Git (DEPS: git)
-            pkgs.git-filter-repo # Quickly rewrite git repository history
+            pkgs.git-doc            # Additional documentation for git
+            pkgs.git-filter-repo    # Quickly rewrite git repository history
+            pkgs.git-lfs            # Git extension for versioning large files
             git-scripts
         ];
 
