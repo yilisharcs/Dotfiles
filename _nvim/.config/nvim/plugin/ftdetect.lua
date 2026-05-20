@@ -1,7 +1,6 @@
 vim.filetype.add({
         extension = {
                 xxd = "xxd",
-                zc = "zc",
         },
         pattern = {
                 ["/nix/store/.*%-bash_profile"] = "bash",
