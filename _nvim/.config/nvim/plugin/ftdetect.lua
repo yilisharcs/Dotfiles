@@ -1,6 +1,5 @@
 vim.filetype.add({
         extension = {
-                lemon = "lemon",
                 xxd = "xxd",
                 zc = "zc",
         },

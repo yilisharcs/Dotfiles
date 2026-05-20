@@ -1,5 +1,3 @@
-vim.bo.expandtab = false
-vim.wo[0][0].colorcolumn = "100"
+vim.g.lemon_recommended_style = false
 
-vim.treesitter.language.register("c", "lemon")
-vim.treesitter.start()
+vim.wo[0][0].colorcolumn = "100"
