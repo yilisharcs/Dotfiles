@@ -8,7 +8,7 @@ in {
         keyboards.default.settings = {
             "main" = {
                 "`" = "~";
-                "102nd" = "leftshift";
+                "102nd" = "layer(shift)";
                 capslock = "layer(control)";
             };
             "shift:S" = {
