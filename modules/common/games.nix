@@ -9,7 +9,7 @@ in {
         };
 
         home.packages = [
-            pkgs.mega-man-x8-16bit
+            pkgs.mega-man-x8-16-bit
             pkgs.sonic3air
             pkgs.super-mario-63
         ];
