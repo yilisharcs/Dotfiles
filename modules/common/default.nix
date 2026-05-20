@@ -30,6 +30,7 @@
             pkgs.pastel             # Command-line tool to generate, analyze, convert and manipulate colors
             pkgs.pciutils           # Provides `lspci`
             pkgs.proton-vpn
+            pkgs.reuse              # Tool for compliance with the REUSE Initiative recommendations
             pkgs.testdisk           # Data recovery utilities
             pkgs.tokei              # Count your code, quickly
             pkgs.wl-clipboard       # Command-line copy/paste utilities for Wayland
