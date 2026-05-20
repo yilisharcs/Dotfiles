@@ -100,10 +100,12 @@ stdenv.mkDerivation (finalAttrs: {
 
         # Inject the literal bootstrap logic into the wrapper, bypassing build-time expansion.
         # We don't want any cheeky `/homeless-shelter` getting in the way.
-        substituteInPlace $out/bin/${finalAttrs.pname}                             \
-            --replace-warn "@GEN_CONFIG@"                                          \
-            'dir="''${XDG_CONFIG_HOME:-$HOME/.config}/Sonic3AIR"; mkdir -p "$dir"; \
-                [ -f "$dir/config.json" ] || LD_PRELOAD= cp "'$out'/share/${finalAttrs.pname}/config.json" "$dir/config.json"'
+        substituteInPlace $out/bin/${finalAttrs.pname} \
+            --replace-warn "@GEN_CONFIG@" \
+            'dir="''${XDG_CONFIG_HOME:-$HOME/.config}/Sonic3AIR"; \
+             mkdir -p "$dir"; \
+             [ -f "$dir/config.json" ] || \
+                LD_PRELOAD= cp "'$out'/share/${finalAttrs.pname}/config.json" "$dir/config.json"'
 
         substituteInPlace $out/share/applications/${finalAttrs.pname}.desktop \
             --replace-warn "@out@" "$out"
