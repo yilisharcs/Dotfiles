@@ -4,13 +4,14 @@
 , makeWrapper
 , makeDesktopItem
 , copyDesktopItems
+, coreutils
+, wineWow64Packages
 }:
 
 let
     icon = fetchurl {
-        # FIXME: this icon sucks
-        url = "https://runouw.com/include/style/images/W_G_63_Preview.png";
-        hash = "sha256-BL/PGFNBG/DEjeX7GIk1PlJu/81UAnAPWxpyDeL1uKw=";
+        url = "https://static.wikia.nocookie.net/runouw/images/e/e1/SM63Infobox.png/revision/latest?cb=20141211151353";
+        hash = "sha256-81ZUuMEdQbE2UzmpWLiigstU1g8AANrucvSV8cRtxXc=";
     };
 in
 
@@ -41,18 +42,26 @@ stdenv.mkDerivation (finalAttrs: {
     dontBuild = true;
     dontConfigure = true;
 
-    # FIXME: every time i update the flake, it changes the hash of the final product, so the save
-    #        files are stored elsewhere. annoying!
     installPhase = ''
         mkdir -p $out/share/${finalAttrs.pname}
         cp $src $out/share/${finalAttrs.pname}/sm63game.exe
 
         mkdir -p $out/bin
-        # TODO: make wine a proper dependency
-        makeWrapper ${stdenv.shell} $out/bin/${finalAttrs.meta.mainProgram} \
-            --add-flags "-c 'exec wine $out/share/${finalAttrs.pname}/sm63game.exe'"
+        makeWrapper ${wineWow64Packages.stable}/bin/wine $out/bin/${finalAttrs.meta.mainProgram} \
+            --prefix PATH : ${lib.makeBinPath [ coreutils ]} \
+            --run "@BOOTSTRAP@"
 
         runHook postInstall # Needed to insert the desktop file
+
+        # NOTE: wherever the game is launched from is the path where the save
+        #       files will live. use home-based dir instead of nix store hash
+        substituteInPlace $out/bin/${finalAttrs.meta.mainProgram} \
+            --replace-warn "@BOOTSTRAP@" \
+            'dir="$HOME/Games/${finalAttrs.pname}"; \
+             exe="$dir/sm63game.exe"; \
+             mkdir -p "$dir"; \
+             ln -sf "'$out'/share/${finalAttrs.pname}/sm63game.exe" "$exe"; \
+             set -- "$exe" "$@"'
 
         substituteInPlace $out/share/applications/${finalAttrs.pname}.desktop \
             --replace-warn "@out@" "$out"
