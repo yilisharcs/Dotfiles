@@ -8,9 +8,9 @@ in {
         "LC_MEASUREMENT"
         "LC_MONETARY"
         "LC_NAME"
-        "LC_NUMERIC"
+        # "LC_NUMERIC"
         "LC_PAPER"
         "LC_TELEPHONE"
-        "LC_TIME"
+        # "LC_TIME"
     ] <| const "pt_BR.UTF-8";
 }
