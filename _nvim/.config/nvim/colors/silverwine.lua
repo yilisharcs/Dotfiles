@@ -166,7 +166,7 @@ if vim.o.background == "dark" then
         -- Keywords
         hi("Statement", { fg = colors.Yellow1, bold = true, ctermfg = "yellow" })
         hi("String", { fg = colors.Green1, ctermfg = "green" })
-        hi("PreProc", { fg = colors.Red1, ctermfg = "red" })
+        hi("PreProc", { fg = colors.Red1, bold = true, ctermfg = "red" })
         hi("Delimiter", { fg = colors.Silver3, ctermfg = "grey" })
         hi("Type", { bold = true })
 
@@ -349,7 +349,7 @@ elseif vim.o.background == "light" then
         -- Keywords
         hi("Statement", { fg = colors.Yellow3, bold = true })
         hi("String", { fg = colors.Green3 })
-        hi("PreProc", { fg = colors.Red1 })
+        hi("PreProc", { fg = colors.Red1, bold = true })
         hi("Delimiter", { fg = colors.Wine1 })
         hi("Type", { bold = true })
 
