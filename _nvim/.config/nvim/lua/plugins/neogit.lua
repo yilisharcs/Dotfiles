@@ -43,5 +43,23 @@ return {
                         kind = "split",
                         show_staged_diff = false,
                 },
+                mappings = {
+                        commit_editor = {
+                                ["<c-c><c-c>"] = false,
+                                ["<c-c><c-k>"] = false,
+                        },
+                        commit_editor_I = {
+                                ["<c-c><c-c>"] = false,
+                                ["<c-c><c-k>"] = false,
+                        },
+                        rebase_editor = {
+                                ["<c-c><c-c>"] = false,
+                                ["<c-c><c-k>"] = false,
+                        },
+                        rebase_editor_I = {
+                                ["<c-c><c-c>"] = false,
+                                ["<c-c><c-k>"] = false,
+                        },
+                },
         },
 }
