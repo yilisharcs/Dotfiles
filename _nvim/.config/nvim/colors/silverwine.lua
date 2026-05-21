@@ -169,6 +169,7 @@ if vim.o.background == "dark" then
         hi("PreProc", { fg = colors.Red1, bold = true, ctermfg = "red" })
         hi("Delimiter", { fg = colors.Silver3, ctermfg = "grey" })
         hi("Type", { bold = true })
+        hi("Label", { fg = colors.Magenta1, ctermfg = "magenta" })
 
         -- Treesitter
         hi("@markup.raw.markdown_inline", { fg = colors.Green1, bg = colors.Gray3 })
@@ -352,6 +353,7 @@ elseif vim.o.background == "light" then
         hi("PreProc", { fg = colors.Red1, bold = true })
         hi("Delimiter", { fg = colors.Wine1 })
         hi("Type", { bold = true })
+        hi("Label", { fg = colors.Magenta2, ctermfg = "magenta" })
 
         -- Spelling
         hi("SpellBad", { sp = colors.Red2, undercurl = true })
