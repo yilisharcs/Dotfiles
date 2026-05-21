@@ -105,6 +105,7 @@ in {
                         "sed *--in-place*" = "deny";
                         "sed *-i*"         = "deny";
 
+                        "nix-env*" = "deny";
 
                         "sudo *" = "deny";
                     };
