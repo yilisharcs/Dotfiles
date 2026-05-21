@@ -81,6 +81,9 @@ in {
                         "find *-delete*" = "ask";
                         "find *-exec*"   = "ask";
 
+                        "gh *"          = "deny";
+                        "gh issue view" = "allow";
+
                         "git *"             = "ask";
                         "git checkout *"    = "deny";
                         "git clean*"        = "deny";
@@ -102,8 +105,6 @@ in {
                         "sed *--in-place*" = "deny";
                         "sed *-i*"         = "deny";
 
-                        "gh *"          = "deny";
-                        "gh issue view" = "allow";
 
                         "sudo *" = "deny";
                     };
