@@ -55,7 +55,7 @@ in {
                         } else {
                             "default#" + $in
                         }
-                    })
+                    } | append "default#bashInteractive") --command bash
                 }
             '';
             settings = {
