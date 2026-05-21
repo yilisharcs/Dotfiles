@@ -103,7 +103,7 @@ in {
                 { on = [ "g" "n" ]; run = "cd ~/.config/nvim"; desc = "Go to nvim init.lua"; }
                 { on = [ "g" "o" ]; run = "cd ~/opt"; }
                 { on = [ "g" "p" ]; run = "cd ~/Projects"; }
-                { on = [ "g" "r" ]; run = "cd ~/.local/share/fnm/aliases/default/lib/node_modules"; desc = "Go to npm registry"; }
+                { on = [ "g" "r" ]; run = "cd ~/.local/share"; desc = "Go to npm registry"; }
                 { on = [ "g" "s" ]; run = "cd ~/.local/bin"; }
                 { on = [ "g" "u" ]; run = "cd ~/Library"; }
                 { on = [ "g" "v" ]; run = "cd ~/Videos"; }
