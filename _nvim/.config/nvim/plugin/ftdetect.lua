@@ -1,5 +1,6 @@
 vim.filetype.add({
         extension = {
+                log = "log",
                 xxd = "xxd",
         },
         pattern = {
