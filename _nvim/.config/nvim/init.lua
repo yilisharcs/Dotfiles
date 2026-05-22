@@ -76,6 +76,7 @@ vim.o.foldlevel = 0
 vim.o.numberwidth = 3
 vim.o.signcolumn = "yes:1"
 vim.o.statuscolumn = "%C%l%s"
+vim.o.cmdheight = 1
 
 vim.opt.isfname:append({ "@-@" })
 
