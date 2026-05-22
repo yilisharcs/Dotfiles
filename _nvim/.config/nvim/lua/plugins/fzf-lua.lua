@@ -73,7 +73,7 @@ return {
                                                 "--color=never",
                                                 "--hidden",
                                                 "--follow",
-                                                "--no-ignore",
+                                                "--no-ignore-vcs",
                                         }, " "),
                                 })
                         end,
@@ -189,7 +189,7 @@ return {
                         fd_opts = table.concat({
                                 "--color=never",
                                 "--hidden",
-                                "--no-ignore",
+                                "--no-ignore-vcs",
                                 "--type f",
                                 "--type l",
                         }, " "),
