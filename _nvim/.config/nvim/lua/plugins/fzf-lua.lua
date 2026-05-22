@@ -142,7 +142,13 @@ return {
                 },
         },
         init = function()
-                require("fzf-lua").register_ui_select()
+                -- NOTE: silly shim to increase startup time. i will never get
+                --       the hour i spent on profiling this back...
+                ---@diagnostic disable-next-line: duplicate-set-field
+                vim.ui.select = function(...)
+                        require("fzf-lua").register_ui_select()
+                        return vim.ui.select(...)
+                end
         end,
         opts = {
                 "ivy",

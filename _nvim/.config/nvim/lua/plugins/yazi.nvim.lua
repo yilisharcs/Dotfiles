@@ -5,7 +5,6 @@ return {
         dependencies = {
                 "https://github.com/ibhagwan/fzf-lua",
         },
-        lazy = false,
         keys = {
                 {
                         "-",
