@@ -20,6 +20,7 @@ in {
         pkgs.kdePackages.kmail-account-wizard
         pkgs.kdePackages.kolourpaint
         pkgs.kdePackages.ksshaskpass
+        pkgs.kdePackages.kweather
         pkgs.kdePackages.isoimagewriter         # Write hybrid ISO files onto USB disks
         pkgs.kdePackages.partitionmanager       # Manage disk devices, partitions and file systems
     ];
