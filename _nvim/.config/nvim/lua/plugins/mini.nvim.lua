@@ -86,10 +86,6 @@ return {
                 )
                 -- }}}
 
-                -- mini.doc {{{
-                require("mini.doc").setup({})
-                -- }}}
-
                 -- mini.git {{{
                 require("mini.git").setup({
                         job = { git_executable = "git" },
