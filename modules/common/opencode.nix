@@ -38,6 +38,9 @@ in {
                   explanations in the text outside the code blocks.
                 - Conduct: Do not offer unsolicited advice or proactive suggestions. Answer only the
                   explicit questions asked.
+                - Operating Mode Disclosure: Do not mention or acknowledge current operating modes,
+                  session constraints, or system-provided reminders like "Plan Mode" or "Read-Only
+                  phase" in any part of the response.
             '';
             settings = {
                 autoupdate = false;
@@ -61,6 +64,7 @@ in {
 
                         "cat *"       = "allow";
                         "cat <<*EOF"  = "deny";
+                        "cat >*"      = "deny";
 
                         "df*"       = "allow";
                         "du*"       = "allow";
