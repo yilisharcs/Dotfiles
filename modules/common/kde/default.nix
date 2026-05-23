@@ -14,12 +14,12 @@ in {
     services.desktopManager.plasma6 = enabled;
 
     environment.systemPackages = [
-        pkgs.kdePackages.ksshaskpass
         pkgs.kdePackages.kcharselect            # character map
         pkgs.kdePackages.kclock
         pkgs.kdePackages.kmail                  # email client
         pkgs.kdePackages.kmail-account-wizard
         pkgs.kdePackages.kolourpaint
+        pkgs.kdePackages.ksshaskpass
         pkgs.kdePackages.isoimagewriter         # Write hybrid ISO files onto USB disks
         pkgs.kdePackages.partitionmanager       # Manage disk devices, partitions and file systems
     ];
