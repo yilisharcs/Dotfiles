@@ -5,7 +5,9 @@ function _G.tafsk_resolve(pattern, flags, _)
         local id = vim.fn.expand("<cWORD>"):match("TASK%((%d+%-%d+%.%w+)%)")
         if not id then
                 local clients = vim.lsp.get_clients({ bufnr = 0 })
-                if #clients > 0 then return vim.lsp.tagfunc(pattern, flags) end
+                if #clients > 0 then
+                        return vim.lsp.tagfunc(pattern, flags)
+                end
                 return nil
         end
 

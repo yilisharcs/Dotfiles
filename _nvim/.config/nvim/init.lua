@@ -111,7 +111,9 @@ vim.o.list = true
 vim.o.termguicolors = true
 vim.opt_global.listchars = { nbsp = "␣", tab = "▹ ", trail = "•" }
 
-if os.getenv("DISPLAY") == nil then vim.o.termguicolors = false end
+if os.getenv("DISPLAY") == nil then
+        vim.o.termguicolors = false
+end
 
 vim.o.background = "dark"
 vim.cmd.colorscheme("silverwine")

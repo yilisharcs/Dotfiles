@@ -23,7 +23,9 @@ local function qf_nav(direction)
                 qf_cache.total = 0
 
                 for i, item in ipairs(list) do
-                        if item.valid == 1 then qf_cache.total = qf_cache.total + 1 end
+                        if item.valid == 1 then
+                                qf_cache.total = qf_cache.total + 1
+                        end
                         qf_cache.map[i] = qf_cache.total
                 end
         end
@@ -34,7 +36,9 @@ local function qf_nav(direction)
         local type_map = { E = "error", W = "warning", I = "info", N = "note" }
         local label = type_map[item.type]
 
-        if label then text = label .. ": " .. text end
+        if label then
+                text = label .. ": " .. text
+        end
 
         -- stylua: ignore
         local prefix = qf_cache.total > 0 and string.format("(%d of %d) ", logical_current, qf_cache.total) or ""
@@ -68,9 +72,13 @@ vim.keymap.set("n", "<C-p>", function()
                 center = qf_nav(PREV)
         else
                 local _, err = pcall(vim.cmd.lprev)
-                if err == "" then center = true end
+                if err == "" then
+                        center = true
+                end
         end
-        if center then vim.cmd("norm! zz") end
+        if center then
+                vim.cmd("norm! zz")
+        end
 end, { desc = "Previous error" })
 
 vim.keymap.set("n", "<C-n>", function()
@@ -79,7 +87,11 @@ vim.keymap.set("n", "<C-n>", function()
                 center = qf_nav(NEXT)
         else
                 local _, err = pcall(vim.cmd.lnext)
-                if err == "" then center = true end
+                if err == "" then
+                        center = true
+                end
         end
-        if center then vim.cmd("norm! zz") end
+        if center then
+                vim.cmd("norm! zz")
+        end
 end, { desc = "Next error" })

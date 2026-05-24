@@ -18,7 +18,9 @@ vim.api.nvim_create_autocmd({
         desc = "Check for external changes",
         group = group,
         callback = function()
-                if vim.bo.buftype ~= "nofile" then vim.cmd.checktime() end
+                if vim.bo.buftype ~= "nofile" then
+                        vim.cmd.checktime()
+                end
         end,
 })
 
@@ -28,7 +30,9 @@ vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter", "WinEnter" }, {
         pattern = "term://*",
         callback = function()
                 local buf = vim.api.nvim_buf_get_name(0)
-                if not buf:match("compilation://*") then vim.cmd.startinsert() end
+                if not buf:match("compilation://*") then
+                        vim.cmd.startinsert()
+                end
         end,
 })
 

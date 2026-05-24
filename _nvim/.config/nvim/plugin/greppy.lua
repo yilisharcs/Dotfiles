@@ -11,7 +11,9 @@ function Greppy(mode)
         start.pos = vim.api.nvim_buf_get_mark(0, start.mark)
         limit.pos = vim.api.nvim_buf_get_mark(0, limit.mark)
 
-        if not start.pos or not limit.pos then return end
+        if not start.pos or not limit.pos then
+                return
+        end
 
         local text = {}
         start.row, start.col = start.pos[1], start.pos[2]
