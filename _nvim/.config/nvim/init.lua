@@ -1,7 +1,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-if string.match(vim.v.argv[#vim.v.argv], "^/tmp/%S+%.nu$") ~= nil then vim.g.shell_editor = true end
+if #vim.v.argf ~= 0 and string.match(vim.v.argf[1], "^/tmp/%S+%.nu$") ~= nil then
+        vim.g.shell_editor = true
+end
 
 vim.keymap.set("n", "-", "<CMD>Ex<CR>", { desc = "Fallback file explorer " })
 vim.keymap.set("n", "<leader>h", "`H", { desc = "File mark `H" })
