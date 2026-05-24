@@ -27,6 +27,23 @@ return {
                                 unusedLocalExclude = {
                                         "_*",
                                 },
+                                neededFileStatus = {
+                                        ["codestyle-check"] = "Opened",
+                                        ["doc-check"] = "Opened",
+                                        ["type-check"] = "Opened",
+                                },
+                                groupFileStatus = {
+                                        ambiguity = "Any",
+                                        duplicate = "Any",
+                                        global = "Any",
+                                        luadoc = "Any",
+                                        redefined = "Any",
+                                        strict = "Any",
+                                        strong = "Any",
+                                        type = "Any",
+                                        unbalanced = "Any",
+                                        unused = "Any",
+                                },
                         },
                         workspace = {
                                 library = {
@@ -35,6 +52,12 @@ return {
                                         "${3rd}/luv/library",
                                 },
                                 checkThirdParty = false,
+                        },
+                        hint = {
+                                enable = true,
+                                setType = true,
+                                paramType = true,
+                                paramName = "All",
                         },
                         telemetry = { enable = false },
                 },
