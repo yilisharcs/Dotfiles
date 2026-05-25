@@ -89,6 +89,7 @@ in {
                         "gh issue view" = "allow";
 
                         "git *"             = "ask";
+                        "git add *"         = "deny";
                         "git checkout *"    = "deny";
                         "git clean*"        = "deny";
                         "git commit*"       = "deny";
