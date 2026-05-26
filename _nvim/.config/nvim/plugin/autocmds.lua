@@ -57,7 +57,7 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "OptionSet" }, {
                                 "Makefile",
                         }, vim.bo.filetype)
                 then
-                        local append = "leadmultispace:│" .. string.rep(" ", vim.o.shiftwidth - 1)
+                        local append = "leadmultispace:▹" .. string.rep(" ", vim.o.shiftwidth - 1)
                         vim.wo[0][0].listchars = vim.go.listchars .. "," .. append
                 end
         end,
