@@ -149,6 +149,10 @@ require("lazy").setup({ import = "plugins" }, {
         dev = {
                 path = vim.fs.joinpath(vim.fn.stdpath("config"), "pack/dev/opt"),
         },
+        -- stop pestering me about luarocks!!
+        rocks = {
+                enabled = false,
+        },
         ui = {
                 size = {
                         height = 0.93,
