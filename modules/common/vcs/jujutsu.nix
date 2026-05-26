@@ -24,6 +24,11 @@ in {
     {
       programs.difftastic.jujutsu = enabled;
 
+      programs.mergiraf = enabled {
+        enableGitIntegration = true;
+        enableJujutsuIntegration = false;
+      };
+
       # git-compatible modern version control system
       home.packages = [jj-help-k];
       programs.jujutsu = enabled {
@@ -37,6 +42,7 @@ in {
             # pager          = [ (getExe pkgs.bash) "-c" "exec \${PAGER:-${config.environment.variables.PAGER}}" ];
             diff-editor = ":builtin";
             # conflict-marker-style = "snapshot";
+            merge-editor = ":builtin";
           };
           git = {
             colocate = true;
@@ -51,7 +57,6 @@ in {
             sign-on-push = true;
           };
 
-          # Shamelessly taken from HSVSphere
           aliases = {
             a = ["abandon"];
             c = ["commit"];
@@ -70,8 +75,8 @@ in {
             r = ["rebase"];
             push = ["git" "push"];
             # res         = [ "resolve" ];
-            # resolve-ast = [ "resolve" "--tool" "mergiraf" ];
-            # resa        = [ "resolve-ast" ];
+            resa = ["resolve-ast"];
+            resolve-ast = ["resolve" "--tool" "mergiraf"];
             s = ["squash"];
             si = ["squash" "--interactive"];
             # sh          = [ "show" ];
