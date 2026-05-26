@@ -108,6 +108,7 @@ in {
               "git rebase*" = "deny";
               "git reset*" = "deny";
               "git restore*" = "deny";
+              #
               "git check-ignore*" = "allow";
               "git diff*" = "allow";
               "git log*" = "allow";
@@ -115,6 +116,72 @@ in {
               "git merge-tree *" = "allow";
               "git show*" = "allow";
               "git status*" = "allow";
+
+              "jj *" = "ask";
+              "jj help*" = "allow";
+              "jj * --help*" = "allow";
+              "jj * -h*" = "allow";
+              "jj abandon*" = "deny";
+              "jj absorb*" = "deny";
+              "jj arrange*" = "deny";
+              "jj commit*" = "deny";
+              "jj diffedit*" = "deny";
+              "jj duplicate*" = "deny";
+              "jj fix*" = "deny";
+              "jj metaedit*" = "deny";
+              "jj new*" = "deny";
+              "jj parallelize*" = "deny";
+              "jj rebase*" = "deny";
+              "jj simplify-parents*" = "deny";
+              "jj squash*" = "deny";
+              #
+              "jj diff*" = "allow";
+              "jj edit*" = "allow";
+              "jj evolog*" = "allow";
+              "jj interdiff*" = "allow";
+              "jj log*" = "allow";
+              "jj next*" = "allow";
+              "jj prev*" = "allow";
+              "jj root*" = "allow";
+              "jj show*" = "allow";
+              "jj status*" = "allow";
+              "jj version*" = "allow";
+              # subcommands
+              "jj bookmark*" = "deny";
+              "jj bookmark list*" = "allow";
+              #
+              "jj config*" = "deny";
+              "jj config get*" = "allow";
+              "jj config list*" = "allow";
+              "jj config path*" = "allow";
+              #
+              "jj describe*" = "deny";
+              "jj describe @*" = "allow";
+              #
+              "jj file*" = "deny";
+              "jj file annotate*" = "allow";
+              "jj file list*" = "allow";
+              "jj file search*" = "allow";
+              "jj file show*" = "allow";
+              #
+              "jj git*" = "deny";
+              "jj git remote list*" = "allow";
+              #
+              "jj op*" = "deny";
+              "jj op log*" = "allow";
+              "jj op show*" = "allow";
+              "jj op diff*" = "allow";
+              "jj operation*" = "deny";
+              "jj operation log*" = "allow";
+              "jj operation show*" = "allow";
+              "jj operation diff*" = "allow";
+              #
+              "jj tag*" = "deny";
+              "jj tag list*" = "allow";
+              #
+              "jj workspace*" = "deny";
+              "jj workspace list*" = "allow";
+              "jj workspace root*" = "allow";
 
               "sed *" = "allow";
               "sed *--in-place*" = "deny";
