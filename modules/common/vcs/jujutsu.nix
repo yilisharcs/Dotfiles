@@ -57,31 +57,48 @@ in {
             sign-on-push = true;
           };
 
+          # shamelessly taken from HSVSphere
           aliases = {
             a = ["abandon"];
+
             c = ["commit"];
             ci = ["commit" "--interactive"];
+
             clone = ["git" "clone"]; # "--colocate"];
+
             d = ["diff"];
+
             e = ["edit"];
+
             fetch = ["git" "fetch"];
+
             init = ["git" "init"]; # "--colocate"];
+
             l = ["log"];
             # la          = [ "log" "--revisions" "::" ];
             ls = ["log" "--summary"];
             # lsa         = [ "log" "--summary" "--revisions" "::" ];
             # lp          = [ "log" "--patch" ];
             # lpa         = [ "log" "--patch" "--revisions" "::" ];
-            r = ["rebase"];
+
             push = ["git" "push"];
-            # res         = [ "resolve" ];
+
+            r = ["rebase"];
+
+            res = ["resolve"];
+
             resa = ["resolve-ast"];
             resolve-ast = ["resolve" "--tool" "mergiraf"];
+
             s = ["squash"];
             si = ["squash" "--interactive"];
-            # sh          = [ "show" ];
+
+            sh = ["show"];
+
             t = ["tug"];
+
             # tug         = [ "bookmark" "move" "--from" "closest(@-)" "--to" "closest_pushable(@)" ];
+
             u = ["undo"];
           };
           # revset-aliases."closest(to)" = "heads(::to & bookmarks())";
