@@ -41,6 +41,7 @@ in {
         # HACK: https://github.com/sxyazi/yazi/issues/3671
         package = pkgs.yazi.override {chafa = null;};
         extraPackages = [
+          pkgs.bat
           pkgs.exiftool # Read/write metadata in files
           pkgs.file
         ];
@@ -48,6 +49,7 @@ in {
         plugins = {
           chmod = pkgs.yaziPlugins.chmod;
           smart-enter = pkgs.yaziPlugins.smart-enter;
+          bat = ./plugins/bat.yazi;
         };
         # https://github.com/sxyazi/yazi/tree/main/yazi-config/preset
         settings = {
@@ -65,8 +67,12 @@ in {
           plugin = {
             prepend_previewers = [
               {
-                mime = "application/x-jsonc";
-                run = "json";
+                mime = "application/{json,ndjson,javascript,x-javascript,mbox,wine-extension-ini,x-jsonc}";
+                run = "bat";
+              }
+              {
+                mime = "text/*";
+                run = "bat";
               }
             ];
           };
