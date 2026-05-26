@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
-    #                     pkgs.linuxPackages_latest;
-    boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+{pkgs, ...}: {
+  #                     pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 }

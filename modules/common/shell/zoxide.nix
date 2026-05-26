@@ -1,8 +1,10 @@
-{ lib, ... }: let
-    inherit (lib) enabled;
+{lib, ...}: let
+  inherit (lib) enabled;
 in {
-    home-manager.sharedModules = [{
-        # Better cd
-        programs.zoxide = enabled;
-    }];
+  home-manager.sharedModules = [
+    {
+      # Better cd
+      programs.zoxide = enabled;
+    }
+  ];
 }

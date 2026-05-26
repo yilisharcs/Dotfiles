@@ -1,5 +1,5 @@
-{ lib, ... }: let
-    inherit (lib) enabled;
+{lib, ...}: let
+  inherit (lib) enabled;
 in {
-    programs.steam = enabled;
+  programs.steam = enabled;
 }

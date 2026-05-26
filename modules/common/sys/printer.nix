@@ -1,5 +1,5 @@
-{ lib, ... }: let
-    inherit (lib) disabled;
+{lib, ...}: let
+  inherit (lib) disabled;
 in {
-    services.printing = disabled;
+  services.printing = disabled;
 }

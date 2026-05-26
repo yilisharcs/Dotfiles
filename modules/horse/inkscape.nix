@@ -1,12 +1,20 @@
-{ pkgs, ... }: {
-    home-manager.sharedModules = [{
-        # Vector graphics editor
-        home.packages = [ pkgs.inkscape ];
+{pkgs, ...}: {
+  home-manager.sharedModules = [
+    {
+      # Vector graphics editor
+      home.packages = [pkgs.inkscape];
 
-        programs.yazi.settings.opener = {
-            inkscape = [{ desc = "Open with Inkscape"; run = ''inkscape "$@"''; orphan = true; }];
-        };
+      programs.yazi.settings.opener = {
+        inkscape = [
+          {
+            desc = "Open with Inkscape";
+            run = ''inkscape "$@"'';
+            orphan = true;
+          }
+        ];
+      };
 
-        yaziPrependOpenRules.image.use = [ "inkscape" ];
-    }];
+      yaziPrependOpenRules.image.use = ["inkscape"];
+    }
+  ];
 }

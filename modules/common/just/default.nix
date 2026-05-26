@@ -1,12 +1,16 @@
-{ pkgs, ... }: let
-    just-patched = pkgs.just.overrideAttrs (old: {
-        patches = (old.patches or []) ++ [
-            ./patch/make_doc_and_command_strings_yellow.patch
-        ];
-        doCheck = false;
-    });
+{pkgs, ...}: let
+  just-patched = pkgs.just.overrideAttrs (old: {
+    patches =
+      (old.patches or [])
+      ++ [
+        ./patch/make_doc_and_command_strings_yellow.patch
+      ];
+    doCheck = false;
+  });
 in {
-    home-manager.sharedModules = [{
-        home.packages = [ just-patched ];
-    }];
+  home-manager.sharedModules = [
+    {
+      home.packages = [just-patched];
+    }
+  ];
 }
