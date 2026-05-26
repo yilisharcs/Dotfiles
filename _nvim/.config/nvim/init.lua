@@ -5,7 +5,9 @@ if #vim.v.argf ~= 0 and string.match(vim.v.argf[1], "^/tmp/%S+%.nu$") ~= nil the
         vim.g.shell_editor = true
 end
 
+vim.g.netrw_banner = 0
 vim.keymap.set("n", "-", "<CMD>Ex<CR>", { desc = "Fallback file explorer " })
+
 vim.keymap.set("n", "<leader>h", "`H", { desc = "File mark `H" })
 vim.keymap.set("n", "<leader>j", "`J", { desc = "File mark `J" })
 vim.keymap.set("n", "<leader>k", "`K", { desc = "File mark `K" })
