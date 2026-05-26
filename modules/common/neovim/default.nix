@@ -68,14 +68,6 @@ in {
           pkgs.gcc # NOTE: Needed to compile treesitter parsers
           pkgs.jq # Lightweight JSON processor
           pkgs.tree-sitter
-          (pkgs.symlinkJoin {
-            # lazy.nvim dependency for dealing with rockspecs
-            name = "luarocks_lua51";
-            paths = [
-              pkgs.lua51Packages.luarocks
-              pkgs.lua5_1
-            ];
-          })
         ];
       };
 
