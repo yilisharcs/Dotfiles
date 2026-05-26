@@ -44,10 +44,6 @@
       home.sessionPath = [
         "$HOME/.local/bin"
       ];
-
-      home.sessionVariables = {
-        XDG_CONFIG_HOME = "$HOME/.config";
-      };
     }
   ];
 }
