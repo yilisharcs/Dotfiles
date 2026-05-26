@@ -39,8 +39,12 @@ in {
         };
       };
 
+      home.packages = [
+        jj-help-k
+        # pkgs.radicle-node
+      ];
+
       # git-compatible modern version control system
-      home.packages = [jj-help-k];
       programs.jujutsu = enabled {
         settings = {
           user = {
@@ -49,14 +53,13 @@ in {
           };
           ui = {
             default-command = ["ls"];
-            # pager          = [ (getExe pkgs.bash) "-c" "exec \${PAGER:-${config.environment.variables.PAGER}}" ];
             diff-editor = ":builtin";
-            # conflict-marker-style = "snapshot";
+            conflict-marker-style = "snapshot";
             merge-editor = ":builtin";
           };
           git = {
             colocate = true;
-            fetch = ["origin" "upstream"];
+            fetch = ["origin" "upstream"]; # "rad"];
             push = "origin";
             private-commits = "description('wip:*') | description('private:*')";
           };
@@ -66,15 +69,33 @@ in {
             key = keys.gpgKeyId;
             sign-on-push = true;
           };
-
           # shamelessly taken from HSVSphere
+          remotes."*" = {
+            auto-track-bookmarks = "glob:*";
+            push-new-bookmarks = true;
+          };
+          templates.draft_commit_description =
+            /*
+            python
+            */
+            ''
+              concat(
+                coalesce(description, "\n"),
+                surround(
+                  "\nJJ: This commit contains the following changes:\n", "",
+                  indent("JJ:     ", diff.stat(72)),
+                ),
+                "\nJJ: ignore-rest\n",
+                diff.git(),
+              )
+            '';
           aliases = {
             a = ["abandon"];
 
             c = ["commit"];
             ci = ["commit" "--interactive"];
 
-            clone = ["git" "clone"]; # "--colocate"];
+            clone = ["git" "clone"];
 
             d = ["diff"];
 
@@ -82,38 +103,39 @@ in {
 
             fetch = ["git" "fetch"];
 
-            init = ["git" "init"]; # "--colocate"];
+            init = ["git" "init"];
 
             l = ["log"];
-            # la          = [ "log" "--revisions" "::" ];
+            la = ["log" "--revisions" "::"];
             ls = ["log" "--summary"];
-            # lsa         = [ "log" "--summary" "--revisions" "::" ];
-            # lp          = [ "log" "--patch" ];
-            # lpa         = [ "log" "--patch" "--revisions" "::" ];
+            lsa = ["log" "--summary" "--revisions" "::"];
+            lp = ["log" "--patch"];
+            lpa = ["log" "--patch" "--revisions" "::"];
 
             push = ["git" "push"];
 
             r = ["rebase"];
 
             res = ["resolve"];
-
             resa = ["resolve-ast"];
-            resolve-ast = ["resolve" "--tool" "mergiraf"];
+            resolve-ast = ["resolve" "--tool" "${getExe pkgs.mergiraf}"];
 
             s = ["squash"];
             si = ["squash" "--interactive"];
 
             sh = ["show"];
 
-            t = ["tug"];
-
-            # tug         = [ "bookmark" "move" "--from" "closest(@-)" "--to" "closest_pushable(@)" ];
+            t = ["tug-bookmark-here"];
+            tug = ["tug-bookmark-here"];
+            tug-bookmark-here = ["bookmark" "move" "--from" "closest(@-)" "--to" "closest_pushable(@)"];
 
             u = ["undo"];
           };
-          # revset-aliases."closest(to)" = "heads(::to & bookmarks())";
-          # revset-aliases."closest_pushable(to)" = "heads(::to & ~description(exact:\"\") & (~empty() | merges()))";
-          # revsets.log = "present(@) | present(trunk()) | ancestors(remote_bookmarks().. | @.., 8)";
+          # aliases to support tug logic
+          revset-aliases."closest(to)" = "heads(::to & bookmarks())";
+          revset-aliases."closest_pushable(to)" = "heads(::to & ~description(exact:\"\") & (~empty() | merges()))";
+          # add +6 to default: 2
+          revsets.log = "present(@) | present(trunk()) | ancestors(remote_bookmarks().. | @.., 8)";
         };
       };
     }
