@@ -109,17 +109,35 @@ vim.api.nvim_create_autocmd({ "ModeChanged" }, {
         desc = "Suppress ModeMsg in any visual mode so *v_g_CTRL-G* is visible",
         group = group,
         callback = function(opts)
-                local is_visual = vim.iter({
-                        "*:v",
-                        "*:vs",
-                        "*:V",
-                        "*:Vs",
-                        "*:",
-                        "*:s",
-                }):any(function(pattern)
-                        return vim.endswith(opts.match, pattern:sub(2))
-                end)
+                local function check_visual(m)
+                        return vim.iter({
+                                "v",
+                                "vs",
+                                "V",
+                                "Vs",
+                                "",
+                                "s",
+                        }):any(function(p)
+                                return m == p
+                        end)
+                end
 
-                vim.o.showmode = not is_visual
+                local modes = vim.split(opts.match, ":")
+                local is_visual = check_visual(modes[2])
+                local was_visual = check_visual(modes[1])
+
+                if is_visual and not was_visual and vim.o.showmode then
+                        vim.o.showmode = false
+                        vim.api.nvim_create_autocmd("ModeChanged", {
+                                group = group,
+                                callback = function(inner_opts)
+                                        local inner_modes = vim.split(inner_opts.match, ":")
+                                        if not check_visual(inner_modes[2]) then
+                                                vim.o.showmode = true
+                                                return true
+                                        end
+                                end,
+                        })
+                end
         end,
 })
