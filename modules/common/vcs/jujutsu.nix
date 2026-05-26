@@ -29,6 +29,16 @@ in {
         enableJujutsuIntegration = false;
       };
 
+      programs.jjui = enabled {
+        settings = {
+          ui.colors.selected = {
+            bg = "#1e1829";
+            fg = "#8cf8f7";
+            bold = true;
+          };
+        };
+      };
+
       # git-compatible modern version control system
       home.packages = [jj-help-k];
       programs.jujutsu = enabled {
