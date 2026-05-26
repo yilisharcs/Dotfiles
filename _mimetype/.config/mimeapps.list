@@ -1,5 +1,6 @@
 [Added Associations]
 application/json=nvim.desktop;vim.desktop;
+application/x-jsonc=nvim.desktop;vim.desktop;
 application/octet-stream=nvim.desktop;
 application/x-docbook+xml=nvim.desktop;vim.desktop;
 application/x-yaml=nvim.desktop;vim.desktop;

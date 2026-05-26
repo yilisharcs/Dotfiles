@@ -62,6 +62,14 @@ in {
             scrolloff = 2;
           };
           preview.wrap = "yes";
+          plugin = {
+            prepend_previewers = [
+              {
+                mime = "application/x-jsonc";
+                run = "json";
+              }
+            ];
+          };
           opener = {
             xbin = [
               {
