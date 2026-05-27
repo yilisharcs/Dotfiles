@@ -13,6 +13,7 @@
         ./patch/0001-feat-undo-re-sync-undo-files-on-external-change.patch
         ./patch/0002-feat-undo-add-check-for-large-undo-files.patch
         ./patch/0003-docs-new-backup-behavior.patch
+        ./patch/0004-fix-undo-abort-buffer-replace-if-file-is-readonly.patch
       ];
   });
 
