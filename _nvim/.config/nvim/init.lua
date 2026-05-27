@@ -129,6 +129,19 @@ end
 vim.o.background = "dark"
 vim.cmd.colorscheme("silverwine")
 
+vim.filetype.add({
+        extension = {
+                log = "log",
+                xxd = "xxd",
+        },
+        pattern = {
+                ["/nix/store/.*%-bash_profile"] = "bash",
+                ["/nix/store/.*%-bashrc"] = "bash",
+                ["/nix/store/.*%-profile"] = "bash",
+                ["/nix/store/.*.Xresources"] = "xdefaults",
+        },
+})
+
 -- PACKAGE MANAGER
 vim.g.loaded_tutor_mode_plugin = 1
 
