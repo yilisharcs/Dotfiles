@@ -1,5 +1,6 @@
 return {
         "https://github.com/nvimtools/hydra.nvim",
+        lazy = false,
         keys = {
                 "z",
                 "<C-w>",
