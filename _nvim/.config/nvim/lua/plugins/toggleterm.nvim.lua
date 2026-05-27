@@ -25,4 +25,18 @@ return {
                         end
                 end,
         },
+        config = function(_, opts)
+                require("toggleterm").setup(opts)
+                local Terminal = require("toggleterm.terminal").Terminal
+
+                local jjui = Terminal:new({
+                        cmd = "jjui",
+                        direction = "tab",
+                        display_name = "JJUI",
+                        count = 2,
+                })
+                vim.keymap.set("n", "<leader>i", function()
+                        jjui:toggle()
+                end, { desc = "Toggleterm Jujutsu UI" })
+        end,
 }
