@@ -5,6 +5,12 @@ vim.lsp.enable({
         "zls",
 })
 
+vim.diagnostic.config({
+        virtual_text = true,
+        float = { border = "rounded" },
+        signs = { priority = 200 },
+})
+
 vim.lsp.log.set_level("off")
 
 -- HACK: The docs floating window does not respect `vim.o.winborder`. Does not respect
@@ -24,12 +30,6 @@ vim.api.nvim_create_autocmd("CompleteChanged", {
                         })
                 end)
         end,
-})
-
-vim.diagnostic.config({
-        virtual_text = true,
-        float = { border = "rounded" },
-        signs = { priority = 200 },
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
