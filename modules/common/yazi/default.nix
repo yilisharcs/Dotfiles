@@ -38,8 +38,6 @@ in {
 
       # Blazing fast terminal file manager written in Rust, based on async I/O
       programs.yazi = enabled {
-        # HACK: https://github.com/sxyazi/yazi/issues/3671
-        package = pkgs.yazi.override {chafa = null;};
         extraPackages = [
           pkgs.bat
           pkgs.exiftool # Read/write metadata in files
