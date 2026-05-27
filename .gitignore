@@ -2,6 +2,9 @@
 /_nvim/.config/nvim/spell/en.utf-8.add.spl
 /_nvim/.config/nvim/spell/pt.utf-8.add.spl
 
+# local plugin symlinks
+/_nvim/.config/nvim/pack/dev/
+
 # inotify watcher
 /watch.log
 
