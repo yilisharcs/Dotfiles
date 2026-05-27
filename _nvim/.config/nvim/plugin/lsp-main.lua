@@ -71,6 +71,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
                 -- stylua: ignore start
                 map("n", "K", function() vim.lsp.buf.hover() end, "Help") -- required if keywordprg is set
+                map("i", "<C-s>", function() vim.lsp.buf.signature_help() end, "Show signature help")
                 map("n", "grd", function() vim.lsp.buf.declaration() end, "Go to declaration")
                 map("n", "grt", function() vim.lsp.buf.type_definition() end, "Go to type definition")
                 map("n", "grw", function() vim.lsp.buf.workspace_symbol() end, "List workspace symbols")
