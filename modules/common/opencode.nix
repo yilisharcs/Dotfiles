@@ -202,6 +202,8 @@ in {
               "*" = "ask";
               "~/.gnupg/**" = "deny";
               "~/.ssh/**" = "deny";
+              "~/Documents/**" = "deny";
+              "~/Downloads/**" = "deny";
               "~/Shared/**" = "deny";
             };
           };
