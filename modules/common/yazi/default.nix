@@ -19,8 +19,8 @@ in {
           use = ["edit"];
         };
         html = {
-          name = "*.html";
-          use = ["open" "edit"];
+          mime = "{text/html,application/xhtml+xml}";
+          use = ["edit" "open"];
         };
         image = {
           mime = "image/*";
