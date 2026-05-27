@@ -78,22 +78,22 @@ in {
 
               "df*" = "allow";
               "du*" = "allow";
-              "fd*" = "allow";
-              "grep *" = "allow";
               "head *" = "allow";
               "jq *" = "allow";
               "ls*" = "allow";
               "objdump *" = "allow";
               "pwd*" = "allow";
-              "rg *" = "allow";
               "sort *" = "allow";
               "tail *" = "allow";
               "uniq *" = "allow";
               "xxd *" = "allow";
 
-              "find *" = "allow";
-              "find *-delete*" = "ask";
-              "find *-exec*" = "ask";
+              # the slow and fast brothers
+              "find *" = "deny";
+              "fd*" = "allow";
+              #
+              "grep *" = "deny";
+              "rg *" = "allow";
 
               "gh *" = "deny";
               "gh issue view" = "allow";
