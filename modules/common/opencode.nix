@@ -147,6 +147,7 @@ in {
               "jj status*" = "allow";
               "jj version*" = "allow";
               # subcommands
+              # TODO: the subcommand patterns may not be correct!! the clanker just failed to run jj file show!
               "jj bookmark*" = "deny";
               "jj bookmark list*" = "allow";
               #

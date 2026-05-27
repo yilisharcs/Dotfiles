@@ -34,6 +34,8 @@
                     done
                     echo "$new_dirs"
                 )
+                export _OLD_XDG_DATA_DIRS="$XDG_DATA_DIRS"
+                export _OLD_XDG_CONFIG_DIRS="$XDG_CONFIG_DIRS"
                 export XDG_DATA_DIRS=$(filter_xdg "$XDG_DATA_DIRS")
                 export XDG_CONFIG_DIRS=$(filter_xdg "$XDG_CONFIG_DIRS")
             '
