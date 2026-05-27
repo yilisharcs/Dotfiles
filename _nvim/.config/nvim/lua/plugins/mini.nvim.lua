@@ -263,6 +263,19 @@ return {
                         remap = true,
                         desc = "Duplicate and comment selection",
                 })
+
+                vim.keymap.set(
+                        "n",
+                        "csgn",
+                        "*``<CMD>lua MiniOperators.replace()<CR>g@gn",
+                        { desc = "Match word and replace ahead" }
+                )
+                vim.keymap.set(
+                        "n",
+                        "csgN",
+                        "*``<CMD>lua MiniOperators.replace()<CR>g@gN",
+                        { desc = "Match word and replace behind" }
+                )
                 -- }}}
 
                 -- mini.pairs {{{
