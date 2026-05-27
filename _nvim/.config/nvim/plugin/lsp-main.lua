@@ -13,24 +13,16 @@ vim.diagnostic.config({
 
 vim.lsp.log.set_level("off")
 
--- HACK: The docs floating window does not respect `vim.o.winborder`. Does not respect
--- `vim.lsp.handlers["textDocument/signatureHelp"]` either. We must force it to obey.
-vim.api.nvim_create_autocmd("CompleteChanged", {
-        callback = function()
-                vim.schedule(function()
-                        local winid = vim.fn.complete_info().preview_winid
-                        if not winid or not vim.api.nvim_win_is_valid(winid) then
-                                return
-                        end
-
-                        vim.api.nvim_win_set_config(winid, { border = "rounded" })
-                        -- We like treesitter highlighting
-                        pcall(vim.api.nvim_set_option_value, "filetype", "markdown", {
-                                win = vim.api.nvim_win_get_buf(winid),
-                        })
-                end)
-        end,
-})
+-- HACK: the docs floating window does not respect `vim.o.winborder`. we must force it to obey.
+local _complete_set = vim.api.nvim__complete_set
+---@diagnostic disable-next-line: duplicate-set-field
+vim.api.nvim__complete_set = function(index, opts)
+        local info = _complete_set(index, opts)
+        if info.winid and vim.api.nvim_win_is_valid(info.winid) then
+                vim.api.nvim_win_set_config(info.winid, { border = "rounded" })
+        end
+        return info
+end
 
 vim.api.nvim_create_autocmd("LspAttach", {
         desc = "LSP Actions",
