@@ -58,7 +58,12 @@ return {
                         pattern = filetypes,
                         callback = function()
                                 vim.treesitter.start()
-                                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                                --  FIXME: treesitter indentation for .vim is buggy;
+                                --         fallback to built-in.
+                                if vim.bo.filetype ~= "vim" then
+                                        vim.bo.indentexpr =
+                                                "v:lua.require'nvim-treesitter'.indentexpr()"
+                                end
                                 if
                                         vim.tbl_contains({
                                                 "markdown",
