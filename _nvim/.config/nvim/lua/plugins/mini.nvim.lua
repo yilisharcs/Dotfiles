@@ -66,6 +66,19 @@ return {
                 require("mini.align").setup({})
                 -- }}}
 
+                -- mini.bufremove {{{
+                require("mini.bufremove").setup({})
+                _G.MiniBufremove = MiniBufremove
+
+                vim.keymap.set("n", "<M-q>", function()
+                        if vim.bo.filetype == "help" then
+                                vim.cmd.bdelete()
+                        else
+                                MiniBufremove.delete()
+                        end
+                end, { desc = "Delete buffer" })
+                -- }}}
+
                 -- mini.diff {{{
                 require("mini.diff").setup({
                         view = {
@@ -225,6 +238,15 @@ return {
                 -- mini.misc {{{
                 require("mini.misc").setup_auto_root({ ".git", ".jj" })
                 require("mini.misc").setup_restore_cursor({ center = false })
+                -- }}}
+
+                -- mini.notify {{{
+                require("mini.notify").setup({})
+                _G.MiniNotify = MiniNotify
+
+                vim.keymap.set("n", "<leader>n", function()
+                        MiniNotify.show_history()
+                end, { desc = "Notification history" })
                 -- }}}
 
                 -- mini.operators {{{

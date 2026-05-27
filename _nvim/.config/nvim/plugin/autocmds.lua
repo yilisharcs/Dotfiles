@@ -53,7 +53,6 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "OptionSet" }, {
         callback = function()
                 if
                         not vim.tbl_contains({
-                                "snacks_notif",
                                 "Makefile",
                         }, vim.bo.filetype)
                 then

@@ -21,7 +21,6 @@ return {
                         diagnostics = {
                                 globals = {
                                         "vim",
-                                        "Snacks",
                                         "P",
                                 },
                                 unusedLocalExclude = {
