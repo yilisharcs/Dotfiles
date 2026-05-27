@@ -121,6 +121,8 @@ vim.o.background = "dark"
 vim.cmd.colorscheme("silverwine")
 
 -- PACKAGE MANAGER
+vim.g.loaded_tutor_mode_plugin = 1
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
         local lazyrepo = "https://github.com/folke/lazy.nvim.git"
