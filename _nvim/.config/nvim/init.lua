@@ -24,10 +24,10 @@ function P(...)
 end
 
 -- EDITOR OPTIONS
--- Enable project-local configuration
+-- enable project-local configuration
 vim.o.exrc = true
 
--- Sync clipboard between OS and Neovim
+-- sync clipboard between OS and Nvim
 vim.api.nvim_create_autocmd("UIEnter", {
         callback = function()
                 vim.o.clipboard = "unnamedplus"
@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("UIEnter", {
 vim.cmd("aunmenu PopUp.How-to\\ disable\\ mouse")
 vim.cmd("aunmenu PopUp.-2-")
 
--- Long-running undo trees
+-- long-running undo trees
 vim.o.swapfile = false
 vim.o.undofile = true
 vim.o.backup = true
@@ -52,7 +52,7 @@ vim.o.linebreak = true
 vim.o.scrolloff = 4
 vim.o.sidescrolloff = 4
 
--- Indenting
+-- indenting
 vim.o.tabstop = 8
 vim.o.softtabstop = 8
 vim.o.shiftwidth = 8
@@ -64,10 +64,10 @@ vim.o.relativenumber = true
 vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
 
--- Hide search finish warning
+-- hide search finish warning
 vim.opt.shortmess:append({ s = true })
 
--- Proper splits
+-- proper splits
 vim.o.splitright = true
 vim.o.splitbelow = true
 
@@ -87,17 +87,17 @@ vim.opt.isfname:append({ "@-@" })
 vim.o.pumheight = math.floor(vim.o.lines * 0.25 + 0.5)
 vim.o.completeopt = "noselect,menuone,popup,fuzzy"
 
--- Ctrl-a/x doesn't recognize signed numbers
+-- <C-a> and <C-x> don't recognize signed numbers
 vim.opt.nrformats:append({ "unsigned" })
 
--- No more ~ on empty buffer space
+-- no more ~ on empty buffer space
 vim.o.fillchars = "eob: "
 
 vim.o.guicursor = "a:block,c-ci-i-r:blinkwait700-blinkoff700-blinkon700"
 
 vim.opt.diffopt:prepend({ "algorithm:patience", "hiddenoff" })
 
--- Terminal scrollback
+-- terminal scrollback
 vim.o.scrollback = 100000
 
 vim.o.updatetime = 1500
@@ -105,10 +105,10 @@ vim.o.virtualedit = "block"
 vim.o.winborder = "rounded"
 vim.o.winwidth = 15
 
--- Nushell doesn't grok vi
+-- nushell doesn't grok vi
 vim.o.shell = "/run/current-system/sw/bin/bash"
 
--- Display vs TTY
+-- display vs TTY
 vim.o.list = true
 vim.o.termguicolors = true
 vim.opt_global.listchars = { nbsp = "␣", tab = "│ ", trail = "•" }
@@ -164,7 +164,7 @@ require("lazy").setup({ import = "plugins" }, {
                 backdrop = 100,
         },
         performance = {
-                -- Gonna be real with ya, I kinda need pack/ sometimes
+                -- gonna be real with ya, i kinda need pack/ sometimes
                 rtp = { reset = false },
         },
 })

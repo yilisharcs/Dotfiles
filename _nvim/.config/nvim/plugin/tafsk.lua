@@ -1,7 +1,7 @@
 vim.o.tagfunc = "v:lua.tafsk_resolve"
 
 function _G.tafsk_resolve(pattern, flags, _)
-        -- Extract: TASK((date)-(time).(hash))
+        -- extract: TASK((date)-(time).(hash))
         local id = vim.fn.expand("<cWORD>"):match("TASK%((%d+%-%d+%.%w+)%)")
         if not id then
                 local clients = vim.lsp.get_clients({ bufnr = 0 })

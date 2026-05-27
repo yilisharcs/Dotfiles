@@ -45,7 +45,7 @@ return {
                 },
         },
         init = function()
-                -- Debugging globals
+                -- debugging globals
                 _G.bt = function()
                         Snacks.debug.backtrace()
                 end

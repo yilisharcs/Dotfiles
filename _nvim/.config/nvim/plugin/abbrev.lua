@@ -45,7 +45,7 @@ require("utils.cabbrev")({
                 "nwQ", "nwq", "nWQ", "nWq",
                 "NwQ", "Nwq", "NWQ", "NWq",
         },
-        -- Extras
+        -- extras
         ["Cfilter"]     = { "cfilter" },
         ["Cfilter!"]    = { "cfilter1" },
         ["Man"]         = { "man" },

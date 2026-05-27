@@ -87,8 +87,8 @@ return {
                                         local is_empty = false
                                         local buf = vim.api.nvim_buf_get_name(0)
                                         if
-                                                (buf == "" and not vim.bo.modified) -- Empty buffer
-                                                or vim.fn.isdirectory(buf) == 1 -- Empty *directory* buffer, completely different thing
+                                                (buf == "" and not vim.bo.modified) -- empty buffer
+                                                or vim.fn.isdirectory(buf) == 1 -- empty *directory* buffer, completely different thing
                                         then
                                                 is_empty = true
                                         end

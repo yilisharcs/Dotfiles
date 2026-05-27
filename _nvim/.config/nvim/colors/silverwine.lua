@@ -63,11 +63,11 @@ local colors = {
 }
 
 local function hi(name, val)
-        -- Force links
+        -- force links
         val.force = true
-        -- Make sure that `cterm` attribute is not populated from `gui`
+        -- make sure that `cterm` attribute is not populated from `gui`
         val.cterm = val.cterm or {} ---@type vim.api.keyset.highlight
-        -- Define global highlight
+        -- define global highlight
         vim.api.nvim_set_hl(0, name, val)
 end
 
@@ -96,10 +96,10 @@ if vim.o.background == "dark" then
                 vim.g[num] = v
         end
 
-        -- Custom
+        -- custom
         hi("QuickFixBg", { bg = colors.Wine3 })
 
-        -- General
+        -- general
         hi("Normal", { fg = colors.Silver1, bg = colors.Ink2, ctermfg = "white" })
         hi("NormalNC", { bg = colors.Ink3 })
         hi("StatusLine", {
@@ -119,7 +119,7 @@ if vim.o.background == "dark" then
         })
         hi("Title", { fg = "NONE", bold = true })
 
-        -- Color lines
+        -- color lines
         hi("ColorColumn", { bg = colors.Wine2, ctermbg = "magenta" })
         hi("CursorColumn", { bg = colors.Gray2 })
         hi("CursorLine", { bg = colors.Gray2 })
@@ -136,12 +136,12 @@ if vim.o.background == "dark" then
                 ctermbg = "cyan",
         })
 
-        -- Comment toggle
+        -- comment toggle
         hi("CommentHide", { fg = "bg" })
         hi("CommentShow", { fg = colors.Silver3, ctermfg = "grey" })
         hi("Comment", { link = "CommentShow" })
 
-        -- Completion menu
+        -- completion menu
         hi("Pmenu", { bg = colors.Ink4, ctermfg = "black", ctermbg = "grey" })
         hi("PmenuSel", { fg = "bg", bg = colors.Silver3, ctermfg = "yellow", ctermbg = "black" })
         hi("PmenuThumb", { bg = colors.Silver2, ctermbg = "black" })
@@ -152,7 +152,7 @@ if vim.o.background == "dark" then
         hi("PmenuSbar", { link = "Pmenu" })
         hi("PmenuKindSel", { link = "PmenuSel" })
 
-        -- Diff Mode
+        -- diff mode
         hi("Added", { fg = colors.Green2, ctermfg = "green" })
         hi("Changed", { fg = colors.Silver3, ctermfg = "grey" })
         hi("Removed", { fg = colors.Red2, ctermfg = "red" })
@@ -161,13 +161,13 @@ if vim.o.background == "dark" then
         hi("DiffText", { fg = colors.Yellow2, bg = colors.Gray2, bold = true, ctermfg = "yellow" })
         hi("DiffDelete", { fg = colors.Red1, bg = colors.Gray2, bold = true, ctermfg = "red" })
 
-        -- Command-line
+        -- command-line
         hi("ErrorMsg", { fg = colors.Red1, ctermfg = "red" })
         hi("ModeMsg", { fg = colors.Green2, bg = "bg", ctermfg = "green" })
         hi("MsgArea", { fg = colors.Yellow1, bg = "bg", ctermfg = "yellow" })
         hi("ExTUIArea", { link = "MsgArea" })
 
-        -- Keywords
+        -- keywords
         hi("Statement", { fg = colors.Yellow1, bold = true, ctermfg = "yellow" })
         hi("String", { fg = colors.Green1, ctermfg = "green" })
         hi("PreProc", { fg = colors.Red1, bold = true, ctermfg = "red" })
@@ -175,7 +175,7 @@ if vim.o.background == "dark" then
         hi("Type", { bold = true })
         hi("Label", { fg = colors.Magenta1, ctermfg = "magenta" })
 
-        -- Treesitter
+        -- treesitter
         hi("@markup.raw.markdown_inline", { fg = colors.Green1, bg = colors.Gray3 })
         hi("markdownCodeBlock", { bg = colors.Gray3, ctermbg = "grey" })
         hi("@markup.link.vimdoc", { fg = colors.Yellow2, bold = true, ctermfg = "yellow" })
@@ -193,7 +193,7 @@ if vim.o.background == "dark" then
         hi("DiagnosticHint", { fg = colors.Blue2, ctermfg = "blue" })
         hi("DiagnosticOk", { fg = colors.Green2, ctermfg = "green" })
 
-        -- Miscellaneous
+        -- misc
         hi("Visual", { fg = "fg", bg = colors.Cyan3, ctermbg = "cyan" })
         hi("LspInlayHint", { fg = colors.Cyan2, bg = colors.Ink3, ctermfg = "cyan" })
         hi("Search", { fg = colors.Cyan1, bg = "bg", reverse = true, ctermfg = "cyan" })
@@ -298,10 +298,10 @@ elseif vim.o.background == "light" then
                 vim.g[num] = v
         end
 
-        -- Custom
+        -- custom
         hi("QuickFixBg", { bg = colors.Silver3 })
 
-        -- General
+        -- general
         hi("Normal", { fg = colors.Ink2, bg = colors.Silver1 })
         hi("NormalNC", { bg = colors.Silver2 })
         hi("NormalFloat", { link = "NormalNC" })
@@ -310,7 +310,7 @@ elseif vim.o.background == "light" then
         hi("TabLineSel", { fg = colors.Yellow1, bg = colors.Ink1, bold = true })
         hi("Title", { fg = "NONE", bold = true })
 
-        -- Color lines
+        -- color lines
         hi("ColorColumn", { bg = colors.Silver3 })
         hi("CursorColumn", { bg = colors.Gray1 })
         hi("CursorLine", { bg = colors.Gray1 })
@@ -320,12 +320,12 @@ elseif vim.o.background == "light" then
         hi("LineNr", { fg = colors.Gray2 })
         hi("QuickFixLine", { fg = colors.Cyan3, bg = "bg", bold = true, reverse = true })
 
-        -- Comment toggle
+        -- comment toggle
         hi("CommentHide", { fg = "bg" })
         hi("CommentShow", { fg = colors.Gray2 })
         hi("Comment", { link = "CommentShow" })
 
-        -- Completion menu
+        -- completion menu
         hi("Pmenu", { fg = colors.Silver1, bg = colors.Gray2 })
         hi("PmenuSel", { fg = "fg", bg = colors.Silver3 })
         hi("PmenuThumb", { bg = colors.Silver2 })
@@ -336,7 +336,7 @@ elseif vim.o.background == "light" then
         hi("PmenuSbar", { link = "Pmenu" })
         hi("PmenuKindSel", { link = "PmenuSel" })
 
-        -- Diff Mode
+        -- diff mode
         -- hi("Added", { fg = colors.Green2 })
         -- hi("Changed", { fg = colors.Green1 })
         -- hi("Removed", { fg = colors.Red2 })
@@ -345,13 +345,13 @@ elseif vim.o.background == "light" then
         hi("DiffText", { fg = colors.Yellow1, bg = colors.Silver3, bold = true })
         hi("DiffDelete", { fg = colors.Red2, bold = true })
 
-        -- Command-line
+        -- command-line
         hi("ErrorMsg", { fg = colors.Silver1, bg = colors.Red2 })
         hi("ModeMsg", { fg = colors.Green2, bg = "bg" })
         hi("MsgArea", { fg = colors.Wine1, bg = "bg" })
         hi("ExTUIArea", { link = "MsgArea" })
 
-        -- Keywords
+        -- keywords
         hi("Statement", { fg = colors.Yellow3, bold = true })
         hi("String", { fg = colors.Green3 })
         hi("PreProc", { fg = colors.Red1, bold = true })
@@ -359,10 +359,10 @@ elseif vim.o.background == "light" then
         hi("Type", { bold = true })
         hi("Label", { fg = colors.Magenta2, ctermfg = "magenta" })
 
-        -- Spelling
+        -- spelling
         hi("SpellBad", { sp = colors.Red2, undercurl = true })
 
-        -- Treesitter
+        -- treesitter
         hi("markdownCodeBlock", { bg = colors.Silver3 })
         hi("@markup.raw.markdown_inline", { fg = colors.Cyan3, bg = colors.Silver3 })
         hi("@markup.link.vimdoc", { fg = colors.Cyan3, bold = true })
@@ -380,7 +380,7 @@ elseif vim.o.background == "light" then
         hi("DiagnosticHint", { fg = colors.Blue2 })
         hi("DiagnosticOk", { fg = colors.Green2 })
 
-        -- Miscellaneous
+        -- misc
         hi("Visual", { fg = "bg", bg = colors.Cyan3 })
         hi("LspInlayHint", { fg = colors.Cyan3, bg = colors.Silver3 })
         hi("IncSearch", { fg = colors.Yellow2, bg = "fg", reverse = true })
@@ -420,7 +420,7 @@ elseif vim.o.background == "light" then
         -- }}}
 end
 
--- MatchParen
+-- matchparen
 local matchparen = vim.api.nvim_create_augroup("MatchParenInsertMode", { clear = true })
 vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
         group = matchparen,

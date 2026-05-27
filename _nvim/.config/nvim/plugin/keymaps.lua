@@ -173,10 +173,10 @@ vim.keymap.set(
         { expr = true, desc = "Paste from register $@" }
 )
 
--- Lots of terminal programs don't register C-4 as C-\
+-- lots of terminal programs don't register C-4 as C-\
 vim.keymap.set("t", "<C-4><C-n>", [[<C-\><C-n>]])
 
--- Tmux-like workflow
+-- tmux-like workflow
 vim.keymap.set("n", "<C-Space><C-^>", "<CMD>wincmd g<TAB><CR>")
 -- C-^ registers as <TAB> for reasons unknown
 vim.keymap.set("t", "<C-Space><C-6>", "<CMD>wincmd g<TAB><CR>")

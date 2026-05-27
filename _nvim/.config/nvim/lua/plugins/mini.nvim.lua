@@ -323,11 +323,11 @@ return {
                         respect_selection_type = true,
                         search_method = "cover_or_next",
                         custom_surroundings = {
-                                ["B"] = { -- Bold
+                                ["B"] = { -- bold
                                         input = { "%*%*().-()%*%*" },
                                         output = { left = "**", right = "**" },
                                 },
-                                ["G"] = { -- Code block
+                                ["G"] = { -- code block
                                         input = { "%```().-()%```" },
                                         output = {
                                                 left = "```",

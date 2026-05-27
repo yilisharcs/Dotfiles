@@ -18,15 +18,15 @@ for k, v in ipairs(vim.g.terminal_ansi_colors) do
 end
 
 local function hi(name, val)
-        -- Force links
+        -- force links
         val.force = true
-        -- Make sure that `cterm` attribute is not populated from `gui`
+        -- make sure that `cterm` attribute is not populated from `gui`
         val.cterm = val.cterm or {} ---@type vim.api.keyset.highlight
-        -- Define global highlight
+        -- define global highlight
         vim.api.nvim_set_hl(0, name, val)
 end
 
--- General
+-- general
 hi("Normal",       { fg = "#cdd6f4", bg = main_bg,              ctermfg = "white",    ctermbg = "black" })
 hi("NormalNC",     {                 bg = main_bg_nc })
 hi("NonText",      { fg = "#878092",                              ctermfg = "darkgray", ctermbg = "black" })
@@ -37,7 +37,7 @@ hi("NormalFloat",  { link = "Normal" })
 hi("FloatBorder",  { link = "Normal" })
 hi("ExTUIArea",    { fg = "#87ff00", bg = main_bg })
 
--- Color lines
+-- color lines
 hi("ColorColumn",    {                 bg = wine_light,                             ctermfg = "white",      ctermbg = "darkred" })
 hi("CursorLine",     {                                                                                                           cterm = { underline = true } })
 hi("CursorLineFold", { fg = "#edf6f4" })
@@ -49,12 +49,12 @@ hi("QuickFixLine",   { fg = "#ffafff", bg = main_bg, bold = true, reverse = true
 hi("SignColumn",     { fg = "#00afff",                                                                      ctermfg = "darkcyan" })
 hi("VertSplit",      { fg = "#afafff",                                              ctermfg = "blue" })
 
--- Comment toggle
+-- comment toggle
 hi("CommentHide",  { fg = "bg",      ctermfg = "black" })
 hi("CommentShow",  { fg = "#afafff", ctermfg = "darkgray" })
 hi("Comment",      { link = "CommentShow" })
 
--- Completion menu
+-- completion menu
 hi("Pmenu",         {                 bg = black_gui,     ctermfg = "black",    ctermbg = "white" })
 hi("PmenuSel",      { fg = main_bg,   bg = "#afafff", ctermfg = "white",    ctermbg = "blue" })
 hi("PmenuThumb",    { fg = "#878092", bg = "#afafff", ctermfg = "darkgray", ctermbg = "darkgray" })
@@ -66,7 +66,7 @@ hi("PmenuSbar",     { link = "Pmenu" })
 hi("PmenuExtraSel", { link = "PmenuSel" })
 hi("PmenuKindSel",  { link = "PmenuSel" })
 
--- Diff mode
+-- diff mode
 hi("Added",      { fg = "#87ff00",                              ctermfg = 1 })
 hi("Changed",    { fg = "#afafff",                              ctermfg = 2 })
 hi("Removed",    { fg = "#ff5faf",                              ctermfg = 3 })
@@ -75,7 +75,7 @@ hi("DiffChange", { fg = "#afafff", bg = "#362b49", bold = true, ctermfg = "darkb
 hi("DiffText",   { fg = "#ffaf00", bg = "#362b49", bold = true, ctermfg = "grey",        ctermbg = "black", cterm = { reverse = true } })
 hi("DiffDelete", { fg = "#ff5faf", bg = "#362b49", bold = true, ctermfg = "darkmagenta", ctermbg = "white", cterm = { reverse = true } })
 
--- Command-line
+-- command-line
 hi("Error",      { fg = "#d70000", bg = "#ffffff", reverse = true, ctermfg = "red",   ctermbg = "white", cterm = { reverse = true } })
 hi("ErrorMsg",   { fg = "#ffffff", bg = "#d70000",                 ctermfg = "white", ctermbg = "red" })
 hi("ModeMsg",    { fg = "#87ff00", bg = main_bg,                   ctermfg = "black", ctermbg = "green" })
@@ -83,7 +83,7 @@ hi("MoreMsg",    { fg = "#87ffff",                                 ctermfg = "cy
 hi("WarningMsg", { fg = "#ffafff",                                 ctermfg = "magenta" })
 hi("MsgArea",    { link = "Special" })
 
--- Keywords
+-- keywords
 hi("Boolean",    {                                 bold = true,                                        cterm = { bold = true } })
 hi("Constant",   { fg = "#ffff5f",                 bold = true,                   ctermfg = "yellow" })
 hi("String",     { fg = "#ffff5f",                                                ctermfg = "yellow" })
@@ -96,7 +96,7 @@ hi("Todo",       {                 reverse = true,                              
 hi("Type",       { fg = "#ff5faf",                                                ctermfg = "red" })
 hi("Underlined", {                                              underline = true,                      cterm = { underline = true } })
 
--- MatchParen
+-- matchparen
 local matchparen = vim.api.nvim_create_augroup("MatchParenInsertMode", { clear = true })
 vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
         group = matchparen,
@@ -111,13 +111,13 @@ vim.api.nvim_create_autocmd({ "ColorScheme", "InsertLeave", "CmdlineLeave" }, {
         end,
 })
 
--- Spelling
+-- spelling
 hi("SpellBad",   { sp = "#ff5faf", undercurl = true, ctermfg = "red",     cterm = { undercurl = true } })
 hi("SpellCap",   { sp = "#87ff00", undercurl = true, ctermfg = "green",   cterm = { undercurl = true } })
 hi("SpellLocal", { sp = "#ffffff", undercurl = true, ctermfg = "white",   cterm = { undercurl = true } })
 hi("SpellRare",  { sp = "#ffafff", undercurl = true, ctermfg = "magenta", cterm = { undercurl = true } })
 
--- Treesitter
+-- treesitter
 hi("markdownBlockQuote",                 {                 bold = true })
 hi("@markup.link.vimdoc",                { fg = "#ffaf00", bold = true })
 hi("@label.vimdoc",                      { fg = "#00af5f", bold = true })
@@ -126,7 +126,7 @@ hi("@markup.link.label.markdown_inline", { link = "Identifier" })
 hi("@markup.heading.gitcommit",          { link = "gitcommitSummary" })
 hi("@markup.raw.markdown_inline",        { fg = "#87ff00", bg = "#1e1829", ctermfg = "green" })
 
--- Miscellaneous
+-- misc
 hi("IncSearch",         { fg = "#ffaf00", bg = main_bg,                reverse = true, ctermfg = "darkyellow", ctermbg = "black",   cterm = { reverse = true } })
 hi("Search",            { fg = "#87ffff", bg = main_bg,                reverse = true,                                              cterm = { reverse = true } })
 hi("WildMenu",          { fg = main_bg,   bg = "#afafff",                              ctermfg = "white",      ctermbg = "blue" })
