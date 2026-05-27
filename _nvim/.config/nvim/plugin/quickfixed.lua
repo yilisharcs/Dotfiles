@@ -9,8 +9,9 @@ local function qf_nav(direction)
 
         local ok, err = pcall(vim.api.nvim_command, cmd)
         if not ok then
-                ---@diagnostic disable-next-line: param-type-mismatch
-                vim.api.nvim_echo({ { string.match(err, "E%d+:.*"), "ErrorMsg" } }, false, {})
+                ---@cast err string
+                local msg = err:match("E%d+:.*")
+                vim.api.nvim_echo({ { msg, "ErrorMsg" } }, false, {})
                 return false
         end
 
