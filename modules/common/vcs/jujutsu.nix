@@ -65,8 +65,8 @@ in {
           };
           signing = {
             behavior = "own";
-            backend = "gpg";
-            key = keys.gpgKeyId;
+            backend = "ssh";
+            key = keys.sshKey.id;
             sign-on-push = true;
           };
           # shamelessly taken from HSVSphere

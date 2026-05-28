@@ -25,6 +25,10 @@ in {
 
       programs.difftastic.git = enabled;
 
+      home.file.".ssh/allowed_signers".text = ''
+        yilisharcs@gmail.com namespaces="git" ${keys.sshKey.pub}
+      '';
+
       # Distributed version control system
       programs.git = enabled {
         hooks.post-checkout = ./hooks/post-checkout;
@@ -38,9 +42,13 @@ in {
           user = {
             name = "yilisharcs";
             email = "yilisharcs@gmail.com";
-            signingKey = keys.gpgKeyId;
+            signingKey = keys.sshKey.id;
           };
           init.defaultBranch = "main";
+          gpg = {
+            format = "ssh";
+            ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+          };
           alias = {
             last = "log -1 HEAD";
             logr = "log --graph --pretty=format:'%C(yellow)%h %Cgreen[%as]%C(bold red)%d %Creset%s %Cblue<%an>%Creset'";

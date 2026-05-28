@@ -17,7 +17,6 @@ in {
         SSH_ASKPASS_REQUIRE = "prefer";
       };
 
-      # TODO: make my ssh keys subkeys of the master gpg key
       services.ssh-agent = enabled;
     }
   ];
