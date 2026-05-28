@@ -24,8 +24,8 @@ in {
     cache32Bit = true;
     defaultFonts = {
       emoji = ["Noto Color Emoji"];
-      sansSerif = ["Iosevka Nerd Font"];
-      serif = ["IosevkaTermSlab Nerd Font"];
+      sansSerif = ["Iosevka Nerd Font" "Noto Color Emoji"];
+      serif = ["IosevkaTermSlab Nerd Font" "Noto Color Emoji"];
     };
   };
 }
