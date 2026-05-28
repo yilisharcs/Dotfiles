@@ -48,6 +48,7 @@ in {
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "hm-bak";
             home-manager.sharedModules =
               attrValues ourPkgs.homeModules
               ++ inputHomeModules
