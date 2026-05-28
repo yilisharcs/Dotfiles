@@ -10,8 +10,8 @@ in {
         subvolume.".".target = "/run/media/yilisharcs/Saturn/" + backup;
       };
       stream_compress = "zstd";
-      snapshot_preserve_min = "2d";
-      snapshot_preserve = "14d";
+      snapshot_preserve_min = "1d";
+      snapshot_preserve = "1d";
       target_preserve_min = "no";
       target_preserve = "20d 10w 6m";
     };
