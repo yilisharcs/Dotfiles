@@ -49,6 +49,14 @@ in {
             format = "ssh";
             ssh.allowedSignersFile = "~/.ssh/allowed_signers";
           };
+          url = {
+            "git@codeberg.org:" = {
+              insteadOf = "https://codeberg.org/";
+            };
+            "git@github.com:" = {
+              insteadOf = "https://github.com/";
+            };
+          };
           alias = {
             last = "log -1 HEAD";
             logr = "log --graph --pretty=format:'%C(yellow)%h %Cgreen[%as]%C(bold red)%d %Creset%s %Cblue<%an>%Creset'";

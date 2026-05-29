@@ -9,7 +9,14 @@ in {
     {
       programs.ssh = enabled {
         enableDefaultConfig = false; # NOTE: will be deprecated soon
-        matchBlocks."*".addKeysToAgent = "yes";
+        settings = {
+          "*".addKeysToAgent = "yes";
+          "github.com" = {
+            user = "git";
+            identityFile = "~/.ssh/id_ed25519_personal";
+            identitiesOnly = true;
+          };
+        };
       };
 
       home.sessionVariables = {
