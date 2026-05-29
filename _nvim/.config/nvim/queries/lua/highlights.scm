@@ -1,7 +1,6 @@
 ;; extends
 
 ; FIXME: How to change the priority of a query without redefining it?
-; There's always a chance that "#any-of?" will change in the future.
 
 (function_call
   (identifier) @function.builtin
@@ -18,3 +17,8 @@
 ((identifier) @module.builtin
   (#any-of? @module.builtin "_G" "debug" "io" "jit" "math" "os" "package" "string" "table" "utf8")
   (#set! priority 130))
+
+((number) @number.hex
+  (#match? @number.hex "^0x"))
+((number) @number.decimal
+  (#not-match? @number.decimal "^0x"))

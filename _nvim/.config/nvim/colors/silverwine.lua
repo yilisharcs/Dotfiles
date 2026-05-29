@@ -185,6 +185,7 @@ if vim.o.background == "dark" then
         hi("@markup.heading.gitcommit", { link = "gitcommitSummary" })
         hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false, ctermfg = "red" })
         hi("@character.rust", { link = "String", bold = false })
+        hi("@number.hex", { link = "Statement" })
 
         -- LSP
         hi("DiagnosticError", { fg = colors.Red2, ctermfg = "red" })
@@ -372,6 +373,7 @@ elseif vim.o.background == "light" then
         hi("@markup.heading.gitcommit", { link = "gitcommitSummary" })
         hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false })
         hi("@character.rust", { link = "String", bold = false })
+        hi("@number.hex", { link = "Statement" })
 
         -- LSP
         hi("DiagnosticError", { fg = colors.Red2 })
