@@ -95,8 +95,8 @@ in {
               "grep *" = "deny";
               "rg *" = "allow";
 
-              "gh *" = "deny";
-              "gh issue view" = "allow";
+              "gh *" = "ask";
+              "gh issue view *" = "allow";
 
               "git *" = "ask";
               "git add *" = "deny";
@@ -147,40 +147,40 @@ in {
               "jj status*" = "allow";
               "jj version*" = "allow";
               # subcommands
-              # TODO: the subcommand patterns may not be correct!! the clanker just failed to run jj file show!
-              "jj bookmark*" = "deny";
+              "jj bookmark *" = "ask";
               "jj bookmark list*" = "allow";
               #
-              "jj config*" = "deny";
+              "jj config *" = "ask";
               "jj config get*" = "allow";
               "jj config list*" = "allow";
               "jj config path*" = "allow";
               #
-              "jj describe*" = "deny";
-              "jj describe @*" = "allow";
+              "jj describe *" = "ask";
+              "jj describe -m *" = "allow";
+              "jj describe @ -m *" = "allow";
               #
-              "jj file*" = "deny";
+              "jj file *" = "ask";
               "jj file annotate*" = "allow";
               "jj file list*" = "allow";
               "jj file search*" = "allow";
               "jj file show*" = "allow";
               #
-              "jj git*" = "deny";
+              "jj git *" = "ask";
               "jj git remote list*" = "allow";
               #
-              "jj op*" = "deny";
+              "jj op *" = "ask";
+              "jj operation *" = "ask";
               "jj op log*" = "allow";
-              "jj op show*" = "allow";
-              "jj op diff*" = "allow";
-              "jj operation*" = "deny";
               "jj operation log*" = "allow";
+              "jj op show*" = "allow";
               "jj operation show*" = "allow";
+              "jj op diff*" = "allow";
               "jj operation diff*" = "allow";
               #
-              "jj tag*" = "deny";
+              "jj tag *" = "ask";
               "jj tag list*" = "allow";
               #
-              "jj workspace*" = "deny";
+              "jj workspace *" = "ask";
               "jj workspace list*" = "allow";
               "jj workspace root*" = "allow";
 
