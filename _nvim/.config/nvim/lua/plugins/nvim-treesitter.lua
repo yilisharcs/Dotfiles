@@ -80,12 +80,5 @@ return {
                                 end
                         end,
                 })
-
-                vim.keymap.set(
-                        "n",
-                        "<leader><F9>",
-                        "<CMD>InspectTree<CR>",
-                        { desc = "Inspect treesitter AST" }
-                )
         end,
 }

@@ -197,6 +197,7 @@ for i = 1, 9 do
 end
 
 vim.keymap.set("n", "<F9>", "<CMD>Inspect<CR>", { desc = "Inspect element under cursor" })
+vim.keymap.set("n", "<leader><F9>", "<CMD>InspectTree<CR>", { desc = "Inspect treesitter AST" })
 vim.keymap.set(
         "n",
         "<F10>",
