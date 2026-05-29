@@ -60,7 +60,12 @@ return {
                                 vim.treesitter.start()
                                 --  FIXME: treesitter indentation for .vim is buggy;
                                 --         fallback to built-in.
-                                if vim.bo.filetype ~= "vim" then
+                                if
+                                        not vim.tbl_contains({
+                                                "nix",
+                                                "vim",
+                                        }, vim.bo.filetype)
+                                then
                                         vim.bo.indentexpr =
                                                 "v:lua.require'nvim-treesitter'.indentexpr()"
                                 end
