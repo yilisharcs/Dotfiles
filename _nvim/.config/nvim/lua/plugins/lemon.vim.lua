@@ -1,4 +1,4 @@
 return {
-        "https://github.com/yilisharcs/lemon.vim",
+        "https://codeberg.org/yilisharcs/lemon.vim",
         dev = true,
 }

@@ -168,11 +168,16 @@ in {
             desc = "Go to root directory";
           }
           {
+            on = ["g" "q"];
+            run = "cd ~/Projects/codeberg.org/yilisharcs/";
+          }
+          {
             on = ["g" "a"];
             run = "cd ~/Projects/github.com/yilisharcs/";
           }
+          # TODO: remove this
           {
-            on = ["g" "A"];
+            on = ["g" "r"];
             run = "cd ~/Projects/github.com/sonicretro/skdisasm/";
             desc = "Go to S3K disassembly";
           }
@@ -180,6 +185,7 @@ in {
             on = ["g" "b"];
             run = "cd ~/Shared/notebook";
           }
+          # TODO: delete this
           {
             on = ["g" "B"];
             run = "cd ~/Shared/notebook/vault";
