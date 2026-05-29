@@ -19,6 +19,15 @@ return {
                         desc = "[FZF] List tracked files",
                 },
                 {
+                        "<leader>fL",
+                        function()
+                                require("fzf-lua").git_files({
+                                        cmd = "git ls-files -m -o --exclude-standard",
+                                })
+                        end,
+                        desc = "[FZF] List modified files",
+                },
+                {
                         "<leader>fh",
                         "<CMD>FzfLua oldfiles<CR>",
                         desc = "[FZF] File history",
