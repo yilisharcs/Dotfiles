@@ -19,6 +19,12 @@ in {
           ];
         };
       };
+
+      home.sessionVariables = {
+        # suppress escape sequences
+        MANPAGER = ''sh -c 'sed -E \"s/.\\x08//g\" | bat -l man -p' '';
+        MANROFFOPT = "-c -rHY=0";
+      };
     }
   ];
 }
