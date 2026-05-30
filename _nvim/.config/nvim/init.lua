@@ -147,57 +147,113 @@ vim.filetype.add({
 -- PACKAGE MANAGER
 vim.g.loaded_tutor_mode_plugin = 1
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
-        local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-        local out = vim.fn.system({
-                "git",
-                "clone",
-                "--filter=blob:none",
-                "--branch=stable",
-                lazyrepo,
-                lazypath,
-        })
-        if vim.v.shell_error ~= 0 then
-                vim.api.nvim_echo({
-                        { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-                        { out, "WarningMsg" },
-                        { "\nPress any key to exit..." },
-                }, true, {})
-                vim.fn.getchar()
-                os.exit(1)
-        end
-end
-vim.opt.rtp:prepend(lazypath)
+vim.pack.add({
+        -- [dev] cme.nvim
+        -- {
+        --         src = "https://github.com/yilisharcs/cme.nvim",
+        -- },
+        -- conform.nvim
+        {
+                src = "https://github.com/stevearc/conform.nvim",
+        },
+        -- diffview.nvim
+        {
+                src = "https://github.com/sindrets/diffview.nvim",
+        },
+        -- direnv.vim
+        {
+                src = "https://github.com/direnv/direnv.vim",
+        },
+        -- fzf-lua
+        {
+                src = "https://github.com/ibhagwan/fzf-lua",
+        },
+        -- [dev] hex.nvim (lazy: false)
+        -- {
+        --         src = "https://github.com/yilisharcs/hex.nvim",
+        --         version = "undolevel"
+        -- },
+        -- hydra.nvim (lazy: false)
+        {
+                src = "https://github.com/nvimtools/hydra.nvim",
+        },
+        -- [dev] lemon.vim
+        -- {
+        --         src = "https://codeberg.org/yilisharcs/lemon.vim",
+        -- },
+        -- mini.nvim
+        {
+                src = "https://github.com/echasnovski/mini.nvim",
+        },
+        {
+                src = "https://github.com/nvim-treesitter/nvim-treesitter",
+                version = "main",
+                data = { build = "TSUpdate" },
+        },
+        {
+                src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+                version = "main",
+        },
+        -- [dev] quarrel.nvim
+        -- {
+        --         src = "https://codeberg.org/yilisharcs/quarrel.nvim",
+        -- },
+        -- toggleterm.nvim
+        {
+                src = "https://github.com/akinsho/toggleterm.nvim",
+        },
+        -- vim-sneak
+        {
+                src = "https://github.com/justinmk/vim-sneak",
+        },
+        {
+                src = "https://github.com/yilisharcs/vim-repeat",
+                version = "maparg",
+        },
+        -- [dev] undotree
+        -- {
+        --         src = "https://github.com/yilisharcs/undotree",
+        --         version = "u-redo",
+        -- }
+        -- suda.vim
+        {
+                src = "https://github.com/lambdalisue/suda.vim",
+        },
+        -- nvim-treesitter
+        {
+                src = "https://github.com/nvim-treesitter/nvim-treesitter",
+                version = "main",
+                data = { build = "TSUpdate" },
+        },
+        {
+                src = "https://github.com/RRethy/nvim-treesitter-endwise",
+        },
+        -- vim-symlink
+        {
+                src = "https://github.com/aymericbeaumet/vim-symlink",
+        },
+        -- [dev] yazi.nvim
+        -- {
+        --         src = "https://github.com/mikavilpas/yazi.nvim",
+        -- },
+        {
+                src = "https://github.com/nvim-lua/plenary.nvim",
+        },
+        {
+                src = "https://github.com/ibhagwan/fzf-lua",
+        },
+        -- which-key.nvim (lazy: false)
+        {
+                src = "https://github.com/folke/which-key.nvim",
+        },
+}, { load = true })
 
-require("lazy").setup({ import = "plugins" }, {
-        change_detection = {
-                notify = false,
-        },
-        dev = {
-                path = vim.fs.joinpath(vim.fn.stdpath("config"), "pack/dev/opt"),
-        },
-        -- stop pestering me about luarocks!!
-        rocks = {
-                enabled = false,
-        },
-        ui = {
-                size = {
-                        height = 0.93,
-                        width = 0.99,
-                },
-                border = "rounded",
-                backdrop = 100,
-        },
-        performance = {
-                -- gonna be real with ya, i kinda need pack/ sometimes
-                rtp = { reset = false },
-        },
-})
-vim.keymap.set("n", "<leader>ql", "<CMD>Lazy<CR>")
-
-vim.api.nvim_create_autocmd("User", {
-        desc = "Useful for plugin devs? I don't think so!",
-        pattern = "VeryLazy",
-        command = "autocmd! BufWritePost *.rockspec",
+-- TODO: test this
+vim.api.nvim_create_autocmd("PackChanged", {
+        callback = function(ev)
+                local hook = ev.data.spec.data and ev.data.spec.data.build
+                if hook then
+                        vim.cmd(hook)
+                end
+        end,
 })

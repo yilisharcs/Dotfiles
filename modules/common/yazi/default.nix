@@ -241,11 +241,6 @@ in {
             run = "cd ~/Projects";
           }
           {
-            on = ["g" "r"];
-            run = "cd ~/.local/share";
-            desc = "Go to npm registry";
-          }
-          {
             on = ["g" "s"];
             run = "cd ~/.local/bin";
           }
@@ -272,8 +267,8 @@ in {
           }
           {
             on = ["g" "z"];
-            run = "cd ~/.local/share/nvim/lazy";
-            desc = "Go to lazydir";
+            run = "cd ~/.local/share/nvim/site/pack/core/opt";
+            desc = "Go to nvim packdir";
           }
         ];
         theme = {
