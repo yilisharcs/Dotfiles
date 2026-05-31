@@ -118,7 +118,7 @@ in {
 
             res = ["resolve"];
             resa = ["resolve-ast"];
-            resolve-ast = ["resolve" "--tool" "${getExe pkgs.mergiraf}"];
+            resolve-ast = ["resolve" "--tool" "mergiraf"];
 
             s = ["squash"];
             si = ["squash" "--interactive"];
