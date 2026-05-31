@@ -21,6 +21,7 @@ local filetypes = {
         "html",
         "ini",
         "javascript",
+        "jjdescription",
         "json",
         "just",
         "lua",
