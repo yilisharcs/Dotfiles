@@ -11,7 +11,7 @@ vim.diagnostic.config({
         signs = { priority = 200 },
 })
 
-vim.lsp.log.set_level("off")
+vim.lsp.log.set_level(vim.log.levels.OFF)
 
 -- HACK: the docs floating window does not respect `vim.o.winborder`. we must force it to obey.
 local _complete_set = vim.api.nvim__complete_set
