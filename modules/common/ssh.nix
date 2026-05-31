@@ -11,6 +11,11 @@ in {
         enableDefaultConfig = false; # NOTE: will be deprecated soon
         settings = {
           "*".addKeysToAgent = "yes";
+          "codeberg.org" = {
+            user = "git";
+            identityFile = "~/.ssh/id_ed25519_personal";
+            identitiesOnly = true;
+          };
           "github.com" = {
             user = "git";
             identityFile = "~/.ssh/id_ed25519_personal";
