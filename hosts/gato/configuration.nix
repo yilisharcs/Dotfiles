@@ -34,8 +34,8 @@ in {
     };
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput = disabled;
+  # Enable touchpad support
+  services.libinput = enabled;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.yilisharcs = {
