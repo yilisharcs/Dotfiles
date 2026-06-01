@@ -1,5 +1,3 @@
-vim.cmd.packadd("cme.nvim")
-
 vim.g.cme = {
         shell = "nu",
         shell_flags = { "-m", "psql" },
@@ -9,6 +7,8 @@ vim.g.cme = {
                 [vim.o.grepformat] = { "task" },
         },
 }
+
+vim.cmd.packadd("cme.nvim")
 
 require("utils.cabbrev")({
         ["Compile"] = { "c", "C", "compile" },

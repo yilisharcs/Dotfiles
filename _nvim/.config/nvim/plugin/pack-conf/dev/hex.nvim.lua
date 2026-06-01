@@ -1,5 +1,3 @@
-vim.cmd.packadd("hex.nvim")
-
 vim.g.hex = {
         cmd = {
                 dump = "xxd -g 2 -u",
@@ -15,6 +13,8 @@ vim.g.hex = {
                 "tess",
         },
 }
+
+vim.cmd.packadd("hex.nvim")
 
 require("utils.cabbrev")({
         ["Hex"] = { "hex" },
