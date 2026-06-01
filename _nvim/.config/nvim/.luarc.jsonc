@@ -10,7 +10,7 @@
         "workspace": {
                 "library": [
                         "lua",
-                        "$VIMRUNTIME",
+                        "$VIMRUNTIME/lua",
                         "${3rd}/luv/library"
                 ],
                 "checkThirdParty": false,
@@ -19,9 +19,6 @@
                 ]
         },
         "diagnostics": {
-                "globals": [
-                        "vim",
-                ],
                 "unusedLocalExclude": [
                         "_*"
                 ],
