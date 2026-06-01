@@ -134,8 +134,7 @@ in {
           # aliases to support tug logic
           revset-aliases."closest(to)" = "heads(::to & bookmarks())";
           revset-aliases."closest_pushable(to)" = "heads(::to & ~description(exact:\"\") & (~empty() | merges()))";
-          # add +6 to default: 2
-          revsets.log = "present(@) | present(trunk()) | ancestors(remote_bookmarks().. | @.., 8)";
+          revsets.log = "present(@) | present(trunk()) | ancestors(remote_bookmarks().. | @.., 4)";
         };
       };
     }
