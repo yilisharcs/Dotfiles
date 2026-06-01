@@ -8,6 +8,7 @@ in {
   home-manager.sharedModules = [
     {
       programs.ssh = enabled {
+        enableDefaultConfig = false; # NOTE: will be deprecated soon
         settings = {
           "*" = {
             AddKeysToAgent = "yes";
