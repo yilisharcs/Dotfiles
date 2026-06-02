@@ -114,6 +114,8 @@ in {
 
             push = ["git" "push"];
 
+            n = ["new"];
+
             r = ["rebase"];
 
             res = ["resolve"];
@@ -130,6 +132,7 @@ in {
             tug-bookmark-here = ["bookmark" "move" "--from" "closest(@-)" "--to" "closest_pushable(@)"];
 
             u = ["undo"];
+            ui = ["util" "exec" "--" "jjui"];
           };
           # aliases to support tug logic
           revset-aliases."closest(to)" = "heads(::to & bookmarks())";
