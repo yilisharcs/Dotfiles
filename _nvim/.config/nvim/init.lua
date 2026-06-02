@@ -150,7 +150,7 @@ vim.g.loaded_tutor_mode_plugin = 1
 vim.pack.add({
         -- [dev] cme.nvim
         -- {
-        --         src = "https://github.com/yilisharcs/cme.nvim",
+        --         src = "https://codeberg.org/yilisharcs/cme.nvim",
         -- },
         -- conform.nvim
         {

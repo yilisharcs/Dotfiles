@@ -5,6 +5,7 @@ end
 ---@type quarrel.Opts
 vim.g.quarrel = {
         notify = true,
+        use_vcs = true,
 }
 
 vim.cmd.packadd("quarrel.nvim")
