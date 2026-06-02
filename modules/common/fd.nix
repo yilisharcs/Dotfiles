@@ -5,7 +5,8 @@ in {
     {
       # Better find
       programs.fd = enabled {
-        hidden = true;
+        # NEVER. EVER. CHANGE BEHAVIOR IMPLICITLY.
+        hidden = false;
         ignores = [
           ".git/"
           ".jj/"
