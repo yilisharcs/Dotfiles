@@ -12,6 +12,7 @@ in {
           ".cache/"
           "Trash/" # .local/share/Trash symlink
           "state/undo/" # Neovim undodir
+          "state/backup/" # Neovim backupdir
           "target/" # Rust target dir
           ".zig-cache/" # Zig
         ];
