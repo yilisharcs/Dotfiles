@@ -44,7 +44,7 @@ function Greppy(mode)
         args = vim.fn.shellescape(args)
 
         if vim.g.cme then
-                vim.cmd(("Compile rg --vimgrep -F %s"):format(args))
+                vim.cmd(("MXCompile rg -F %s"):format(args))
         else
                 vim.cmd(("silent grep -F %s"):format(args))
         end
