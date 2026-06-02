@@ -1,3 +1,5 @@
+vim.wo[0][0].foldenable = false
+
 local first = (vim.api.nvim_buf_get_lines(0, 0, 1, false) or {})[1]
 if first and first:match("^JJ: Enter a description for the ") then
         vim.api.nvim_buf_set_lines(0, 0, 0, false, { "" })
