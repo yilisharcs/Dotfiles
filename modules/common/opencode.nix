@@ -125,6 +125,7 @@ in {
               "jj absorb*" = "deny";
               "jj arrange*" = "deny";
               "jj commit*" = "deny";
+              "jj describe*" = "deny";
               "jj diffedit*" = "deny";
               "jj duplicate*" = "deny";
               "jj fix*" = "deny";
@@ -154,10 +155,6 @@ in {
               "jj config get*" = "allow";
               "jj config list*" = "allow";
               "jj config path*" = "allow";
-              #
-              "jj describe *" = "ask";
-              "jj describe -m *" = "allow";
-              "jj describe @ -m *" = "allow";
               #
               "jj file *" = "ask";
               "jj file annotate*" = "allow";
