@@ -92,8 +92,19 @@ in {
               "find *" = "deny";
               "fd*" = "allow";
               #
-              "grep *" = "deny";
               "rg *" = "allow";
+              "grep *" = "allow";
+              # deny recursive flags
+              "grep * -r *" = "deny";
+              "grep -r *" = "deny";
+              "grep * -rn *" = "deny";
+              "grep -rn *" = "deny";
+              "grep * -rl *" = "deny";
+              "grep -rl *" = "deny";
+              "grep * -ri *" = "deny";
+              "grep -ri *" = "deny";
+              "grep * -rnw *" = "deny";
+              "grep -rnw *" = "deny";
 
               "gh *" = "ask";
               "gh issue view *" = "allow";
