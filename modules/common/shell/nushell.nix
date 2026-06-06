@@ -70,7 +70,7 @@ in {
               }
             }
 
-            def --wrapped > [...programs] {
+            def --wrapped > [...programs: string] {
               nix shell ...($programs | each {
                 if ($in | str contains "#") or ($in | str contains ":") {
                   $in
