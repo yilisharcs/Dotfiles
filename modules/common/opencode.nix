@@ -63,7 +63,6 @@ in {
             bash = {
               "*" = "ask";
 
-              "echo *" = "allow";
               "file *" = "allow";
               "which *" = "allow";
 
@@ -72,25 +71,36 @@ in {
               "mv *" = "ask";
               "rm *" = "ask";
 
-              "cat *" = "allow";
-              "cat <<*EOF" = "deny";
-              "cat >*" = "deny";
-
-              "df*" = "allow";
-              "du*" = "allow";
+              "df*" = "allow"; # report file system space usage
+              "du*" = "allow"; # estimate file space usage
               "head *" = "allow";
-              "jq *" = "allow";
+              "jq *" = "allow"; # CLI JSON processor
               "ls*" = "allow";
-              "objdump *" = "allow";
+              "nm *" = "allow"; # list symbols from object files
+              "objdump *" = "allow"; # display information from object files
               "pwd*" = "allow";
+              "readelf *" = "allow"; # display information about ELF files
               "sort *" = "allow";
               "tail *" = "allow";
               "uniq *" = "allow";
-              "xxd *" = "allow";
+              "xxd *" = "allow"; # hex and binary dump utility
+
+              "cat *" = "allow";
+              # block shell redirection and heredocs
+              "cat <<*EOF" = "deny";
+              "cat >*" = "deny";
+
+              # same as `cat` rules
+              "echo *" = "allow";
+              "echo >*" = "deny";
 
               # the slow and fast brothers
               "find *" = "deny";
               "fd*" = "allow";
+              "fd *-x*" = "deny";
+              "fd *--exec*" = "deny";
+              "fd *-X*" = "deny";
+              "fd *--exec-batch*" = "deny";
               #
               "rg *" = "allow";
               "grep *" = "allow";
@@ -148,7 +158,6 @@ in {
               "jj squash*" = "deny";
               #
               "jj diff*" = "allow";
-              "jj edit*" = "allow";
               "jj evolog*" = "allow";
               "jj interdiff*" = "allow";
               "jj log*" = "allow";
@@ -192,11 +201,12 @@ in {
               "jj workspace list*" = "allow";
               "jj workspace root*" = "allow";
 
+              "nix eval*" = "deny";
+              "nix-env*" = "deny";
+
               "sed *" = "allow";
               "sed *--in-place*" = "deny";
               "sed *-i*" = "deny";
-
-              "nix-env*" = "deny";
 
               "sudo *" = "deny";
             };
