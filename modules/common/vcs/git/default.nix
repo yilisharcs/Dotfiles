@@ -31,7 +31,6 @@ in {
 
       # Distributed version control system
       programs.git = enabled {
-        hooks.post-checkout = ./hooks/post-checkout;
         ignores = [
           ".env"
           "tags"
