@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) enabled getExe;
+  inherit (lib) enabled getExe getExe';
 in {
   home-manager.sharedModules = [
     ({
@@ -138,7 +138,7 @@ in {
                     --query (commandline)
                     --scheme history
                     --preview-window hidden
-                    --bind='ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'
+                    --bind='ctrl-y:execute-silent(echo -n {2..} | ${getExe' pkgs.wl-clipboard "wl-copy"})+abort'
                     --header 'Press CTRL-Y to copy command into clipboard'
                     | decode utf-8
                     | str trim
