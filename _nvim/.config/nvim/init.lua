@@ -1,5 +1,7 @@
 vim.loader.enable()
 
+require("utils.snacks.bigfile")
+
 -- restore system XDG paths for child processes (xdg-open, etc.)
 -- this doesn't affect RTP because it's already been calculated.
 if vim.env._OLD_XDG_DATA_DIRS then

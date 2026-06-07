@@ -1,5 +1,6 @@
 -- https://github.com/folke/snacks.nvim/blob/ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e/lua/snacks/bigfile.lua
 
+-- TODO: must not short circuit on git commit or jj desc
 vim.filetype.add({
         pattern = {
                 [".*"] = {
@@ -45,10 +46,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
                         vim.b.minianimate_disable = true
                         vim.b.minihipatterns_disable = true
                         vim.schedule(function()
-                                if vim.api.nvim_buf_is_valid(ev.buf) then
-                                        vim.bo[ev.buf].syntax = vim.filetype.match({ buf = ev.buf })
-                                                or ""
+                                if not vim.api.nvim_buf_is_valid(ev.buf) then
+                                        return
                                 end
+                                vim.bo[ev.buf].syntax = vim.filetype.match({ buf = ev.buf }) or ""
                         end)
                 end)
         end,

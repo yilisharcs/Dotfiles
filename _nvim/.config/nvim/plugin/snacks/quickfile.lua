@@ -1,4 +1,4 @@
--- -- https://github.com/folke/snacks.nvim/blob/ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e/lua/snacks/quickfile.lua
+-- https://github.com/folke/snacks.nvim/blob/ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e/lua/snacks/quickfile.lua
 
 -- Skip if we already entered vim
 if vim.v.vim_did_enter == 1 then
