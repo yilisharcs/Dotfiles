@@ -23,8 +23,3 @@ vim.keymap.set("n", "<leader>c", ":MXCompile ")
 vim.keymap.set("n", "<leader>C", "<CMD>MXCompile<CR>")
 vim.keymap.set("n", "<leader>r", ":MXRecompile ")
 vim.keymap.set("n", "<leader>R", ":MXRecompile! ")
-
--- vim.keymap.set("n", "<leader>w", function()
---         package.loaded["cme"] = nil
---         print()
--- end)
