@@ -63,6 +63,15 @@ in {
             bash = {
               "*" = "ask";
 
+              # I HATE HEREDOCS. HATE. HATE. HATE. HATE.
+              # WHOEVER INVENTED THIS, DISHONOR ON YOU!!
+              "*<<EOF*" = "deny";
+              "*<< *" = "deny";
+              "*<<'*" = "deny";
+              "*<<\"*" = "deny";
+              "*<<-*" = "deny";
+              "*<<<*" = "deny";
+
               "file *" = "allow";
               "which *" = "allow";
 
@@ -70,6 +79,7 @@ in {
               "cp *" = "ask";
               "mv *" = "ask";
               "rm *" = "ask";
+              "tee *" = "ask";
 
               "df*" = "allow"; # report file system space usage
               "du*" = "allow"; # estimate file space usage
@@ -86,13 +96,14 @@ in {
               "xxd *" = "allow"; # hex and binary dump utility
 
               "cat *" = "allow";
-              # block shell redirection and heredocs
-              "cat <<*EOF" = "deny";
-              "cat >*" = "deny";
+              # block shell redirection
+              "cat * >*" = "deny";
+              "cat * >>*" = "deny";
 
-              # same as `cat` rules
               "echo *" = "allow";
-              "echo >*" = "deny";
+              # block shell redirection here too
+              "echo * >*" = "deny";
+              "echo * >>*" = "deny";
 
               # the slow and fast brothers
               "find *" = "deny";
