@@ -4,9 +4,24 @@
   ...
 }: let
   inherit (lib) enabled getExe;
+
+  tmo =
+    pkgs.writeScriptBin "tmug"
+    /*
+    nu
+    */
+    ''
+      #!${getExe pkgs.nushell}
+
+      def main [session: string] {
+          tmux new -A -s $session 'opencode'
+      }
+    '';
 in {
   home-manager.sharedModules = [
     {
+      home.packages = [tmo];
+
       # Terminal multiplexer
       programs.tmux = enabled {
         prefix = "C-t";
