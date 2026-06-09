@@ -23,7 +23,6 @@ pkgs.rustPlatform.buildRustPackage (finalAttrs: {
     description = "Organize tasks like a file system";
     homepage = "https://github.com/yilisharcs/tafsk";
     license = lib.licenses.gpl3Only;
-    # maintainers = with lib.maintainers; [ ];
     mainProgram = finalAttrs.pname;
   };
 })

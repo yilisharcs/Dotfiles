@@ -1,6 +1,5 @@
 -- https://github.com/folke/snacks.nvim/blob/ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e/lua/snacks/bigfile.lua
 
--- TODO: must not short circuit on git commit or jj desc
 vim.filetype.add({
         pattern = {
                 [".*"] = {

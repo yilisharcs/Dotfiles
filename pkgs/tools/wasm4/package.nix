@@ -35,7 +35,6 @@ in
       description = "Build retro games using WebAssembly for a fantasy console";
       homepage = "https://wasm4.org";
       license = lib.licenses.isc;
-      # maintainers = with lib.maintainers; [ ];
       mainProgram = "w4";
     };
   }

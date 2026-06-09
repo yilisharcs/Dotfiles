@@ -86,7 +86,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                         vim.diagnostic.setqflist({
                                 namespace = ns,
                                 -- multiline diagnostic messages contain \n which nvim internally
-                                -- converts to \0 when storing in quickfix items. the vimscript→lua
+                                -- converts to \0 when storing in quickfix items. the vimscript->lua
                                 -- bridge truncates strings at \0, making the full text invisible to
                                 -- the lua-based quickfixtextfunc, but NOT invisible to ME!
                                 -- stripping \n here prevents that entirely.
