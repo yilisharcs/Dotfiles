@@ -26,6 +26,7 @@ in
       (makeDesktopItem {
         name = finalAttrs.pname;
         desktopName = "Super Mario 63";
+        comment = finalAttrs.meta.description;
         exec = "@out@/bin/${finalAttrs.meta.mainProgram}";
         icon = icon;
         categories = ["Game"];
@@ -68,7 +69,7 @@ in
     '';
 
     meta = {
-      description = "Super Mario 63";
+      description = "Fan-game inspired by Super Mario 64, Super Mario Sunshine, and Super Mario Galaxy";
       homepage = "https://runouw.com/games/detail/sm63.html";
       sourceProvenance = lib.sourceTypes.binaryNativeCode;
       mainProgram = "sm63";

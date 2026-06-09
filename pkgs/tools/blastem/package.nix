@@ -19,6 +19,7 @@ stdenv.mkDerivation (finalAttrs: {
     (makeDesktopItem {
       name = finalAttrs.pname;
       desktopName = "BlastEm";
+      comment = finalAttrs.meta.description;
       exec = "blastem";
       categories = ["Game" "Emulator"];
       terminal = false;

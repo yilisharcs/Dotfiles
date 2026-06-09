@@ -112,6 +112,7 @@ in
       (makeDesktopItem {
         name = finalAttrs.pname;
         desktopName = "Mega Man X8 16-bit";
+        comment = finalAttrs.meta.description;
         exec = "@out@/bin/${finalAttrs.meta.mainProgram}";
         icon = icon;
         categories = ["Game"];
@@ -120,7 +121,7 @@ in
     ];
 
     meta = {
-      description = "Mega Man X8 16-bit";
+      description = "Fan-made 16-bit remaster of Mega Man X8";
       homepage = "https://sonicfangameshq.com/forums/showcase/mega-man-x8-16-bit.2184/";
       license = {
         fullName = "Mega Man X8 16-bit License";

@@ -22,6 +22,7 @@ stdenv.mkDerivation (finalAttrs: {
     (makeDesktopItem {
       name = finalAttrs.pname;
       desktopName = "HivePal";
+      comment = finalAttrs.meta.description;
       exec = "@out@/bin/${finalAttrs.pname}";
       icon = finalAttrs.pname;
       categories = ["Graphics" "Development"];

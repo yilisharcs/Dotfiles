@@ -73,6 +73,7 @@ in
       (makeDesktopItem {
         name = finalAttrs.pname;
         desktopName = "Fightcade";
+        comment = finalAttrs.meta.description;
         exec = "@out@/bin/${finalAttrs.pname}";
         icon = finalAttrs.pname;
         categories = [
@@ -85,6 +86,7 @@ in
       (makeDesktopItem {
         name = "fcade-quark";
         desktopName = "Fightcade Replay";
+        comment = "Fightcade Replay Player";
         exec = "@out@/bin/fcade-quark %U";
         mimeTypes = ["x-scheme-handler/fcade"];
         terminal = false;
@@ -199,7 +201,7 @@ in
     passthru = import ./plugins {inherit lib stdenv fetchzip;};
 
     meta = {
-      description = "Fightcade";
+      description = "Online retro gaming platform";
       homepage = "https://www.fightcade.com";
       license = lib.licenses.unfree;
       sourceProvenance = lib.sourceTypes.binaryNativeCode;

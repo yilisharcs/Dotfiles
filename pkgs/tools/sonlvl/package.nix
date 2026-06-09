@@ -37,6 +37,7 @@ in
       (makeDesktopItem {
         name = finalAttrs.pname;
         desktopName = "SonLVL";
+        comment = finalAttrs.meta.description;
         exec = "@out@/bin/${finalAttrs.pname}";
         icon = finalAttrs.pname;
         categories = ["Graphics" "Development"];

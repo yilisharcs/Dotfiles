@@ -66,6 +66,7 @@ stdenv.mkDerivation (finalAttrs: {
     (makeDesktopItem {
       name = finalAttrs.pname;
       desktopName = "Sonic 3 A.I.R.";
+      comment = finalAttrs.meta.description;
       exec = "@out@/bin/${finalAttrs.pname}";
       icon = finalAttrs.pname;
       categories = ["Game"];
@@ -111,7 +112,7 @@ stdenv.mkDerivation (finalAttrs: {
   '';
 
   meta = {
-    description = "Sonic 3 A.I.R. - A fan-made widescreen remaster of Sonic 3 & Knuckles";
+    description = "A fan-made widescreen remaster of Sonic 3 & Knuckles";
     homepage = "https://sonic3air.org/";
     license = lib.licenses.gpl3Only;
     sourceProvenance = [lib.sourceTypes.binaryNativeCode];
