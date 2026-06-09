@@ -1,53 +1,58 @@
+local root_markers = {
+        {
+                ".luarc.json",
+                ".luarc.jsonc",
+                "luarc.json",
+                "luarc.jsonc",
+        },
+        "lua",
+        ".nvim.lua",
+}
+
 return {
         cmd = { "lua-language-server" },
         filetypes = { "lua" },
-        root_markers = {
-                "lua",
-                {
-                        ".luarc.json",
-                        ".luarc.jsonc",
-                },
-                ".nvim.lua",
-        },
+        root_markers = root_markers,
+        before_init = function(params, config)
+                local root = params.rootPath
+                if not root then
+                        return
+                end
+
+                for _, file in ipairs(root_markers[1]) do
+                        if vim.uv.fs_stat(root .. "/" .. file) then
+                                config.settings.Lua = nil
+                                return
+                        end
+                end
+        end,
         settings = {
                 Lua = {
                         runtime = {
-                                version = "LuaJIT",
-                                path = {
-                                        "./lua/?.lua",
-                                        "./lua/?/init.lua",
+                                version = "Lua 5.5",
+                        },
+                        workspace = {
+                                library = {
+                                        "${3rd}/busted/library",
                                 },
+                                checkThirdParty = false,
                         },
                         diagnostics = {
-                                globals = {
-                                        "P",
-                                },
                                 unusedLocalExclude = {
                                         "_*",
-                                },
-                                neededFileStatus = {
-                                        ["codestyle-check"] = "Opened",
-                                        ["doc-check"] = "Opened",
-                                        ["type-check"] = "Opened",
                                 },
                                 groupFileStatus = {
                                         ambiguity = "Any",
                                         duplicate = "Any",
                                         global = "Any",
-                                        luadoc = "Any",
+                                        luadoc = "None",
                                         redefined = "Any",
                                         strict = "Any",
-                                        strong = "Any",
-                                        type = "Any",
+                                        strong = "None",
+                                        ["type-check"] = "Any",
                                         unbalanced = "Any",
                                         unused = "Any",
                                 },
-                        },
-                        workspace = {
-                                library = {
-                                        "lua",
-                                },
-                                checkThirdParty = false,
                         },
                         hint = {
                                 enable = true,
@@ -55,7 +60,6 @@ return {
                                 paramType = true,
                                 paramName = "All",
                         },
-                        telemetry = { enable = false },
                 },
         },
 }
