@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (lib) concatStringsSep disabled enabled mkIf;
+  nixosConfig = config;
 in {
   imports = [../fonts.nix];
 
@@ -114,17 +115,12 @@ in {
         };
         input = {
           keyboard.repeatDelay = 300;
-          # touchpads."*" =
-          # mkIf (config.networking.hostName != "ouro") (enabled {
-          #     disableWhileTyping = true;
-          #     rightClickMethod = "twoFingers";
-          # });
-          # touchpads = mkIf (config.networking.hostName != "ouro") [
-          #     (enabled {
-          #         disableWhileTyping = true;
-          #         rightClickMethod = "twoFingers";
-          #     })
-          # ];
+          touchpads = mkIf (nixosConfig.networking.hostName != "ouro") [
+            (enabled {
+              disableWhileTyping = true;
+              rightClickMethod = "twoFingers";
+            })
+          ];
         };
         krunner = {
           activateWhenTypingOnDesktop = true;
