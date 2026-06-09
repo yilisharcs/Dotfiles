@@ -41,6 +41,7 @@
         ## CUSTOM
         pkgs.blastem # The fast and accurate Genesis emulator
         pkgs.hivepal # Sega Mega Drive palette editor
+        pkgs.sonlvl # Level editor for 16-bit Sonic games
         pkgs.wasm4 # Build retro games using WebAssembly for a fantasy console
       ];
 
