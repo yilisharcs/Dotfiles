@@ -39,6 +39,7 @@
         pkgs.wl-clipboard # Command-line copy/paste utilities for Wayland
 
         ## CUSTOM
+        pkgs.hivepal # Sega Mega Drive palette editor
         pkgs.wasm4 # Build retro games using WebAssembly for a fantasy console
       ];
 
