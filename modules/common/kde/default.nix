@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) disabled enabled mkIf;
+  inherit (lib) concatStringsSep disabled enabled mkIf;
 in {
   imports = [../fonts.nix];
 
@@ -38,7 +38,7 @@ in {
 
   # <https://nix-community.github.io/plasma-manager/options.xhtml>
   home-manager.sharedModules = [
-    {
+    ({config, ...}: {
       programs.elisa = enabled {
         appearance = {
           defaultView = "allAlbums";
@@ -72,6 +72,13 @@ in {
           krunnerrc.Plugins.baloosearchEnabled = true;
           krunnerrc.Plugins.browserhistoryEnabled = false;
           plasmaparc.General.RaiseMaximumVolume = true;
+          baloofilerc."General" = {
+            "only basic indexing" = true;
+            "folders" = concatStringsSep "," [
+              "${config.home.homeDirectory}/"
+              "${config.home.homeDirectory}/Games/.plugin/"
+            ];
+          };
         };
         fonts = {
           fixedWidth = {
@@ -274,6 +281,6 @@ in {
           wallpaperFillMode = "preserveAspectFit";
         };
       };
-    }
+    })
   ];
 }
