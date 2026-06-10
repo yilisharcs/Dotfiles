@@ -175,12 +175,6 @@ in {
             on = ["g" "a"];
             run = "cd ~/Projects/github.com/yilisharcs/";
           }
-          # TODO: remove this
-          {
-            on = ["g" "r"];
-            run = "cd ~/Projects/github.com/sonicretro/skdisasm/";
-            desc = "Go to S3K disassembly";
-          }
           {
             on = ["g" "b"];
             run = "cd ~/Shared/notebook";
@@ -242,7 +236,8 @@ in {
           }
           {
             on = ["g" "s"];
-            run = "cd ~/.local/bin";
+            run = "cd ~/Projects/github.com/sonicretro/skdisasm/";
+            desc = "Go to S3K disassembly";
           }
           {
             on = ["g" "u"];
