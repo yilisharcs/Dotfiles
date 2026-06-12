@@ -34,6 +34,7 @@
         pkgs.proton-vpn
         pkgs.reuse # Tool for compliance with the REUSE Initiative recommendations
         pkgs.testdisk # Data recovery utilities
+        pkgs.tinycc # Small, fast, and embeddable C compiler and interpreter
         pkgs.tokei # Count your code, quickly
         pkgs.tree # Command to produce a depth indented directory listing
         pkgs.wl-clipboard # Command-line copy/paste utilities for Wayland
