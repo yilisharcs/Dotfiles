@@ -14,11 +14,12 @@ return {
         filetypes = { "lua" },
         root_markers = root_markers,
         before_init = function(params, config)
-                local root = params.rootPath
-                if not root then
+                if not params.workspaceFolders or #params.workspaceFolders == 0 then
                         return
                 end
 
+                -- NOTE: rootPath can return vim.NIL userdata, which is truthy, which is not fun
+                local root = params.workspaceFolders[1].name
                 for _, file in ipairs(root_markers[1]) do
                         if vim.uv.fs_stat(root .. "/" .. file) then
                                 config.settings.Lua = nil
