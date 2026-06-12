@@ -63,8 +63,7 @@ local function qf_nav(direction)
 end
 
 local function loclist_open()
-        return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")) == 1 and true
-                or false
+        return vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")) == 1 and true or false
 end
 
 vim.keymap.set("n", "<C-p>", function()

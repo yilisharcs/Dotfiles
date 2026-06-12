@@ -39,18 +39,8 @@ vim.keymap.set("x", "gy", "gmmzgvgc`z", {
         desc = "Duplicate and comment selection",
 })
 
-vim.keymap.set(
-        "n",
-        "csgn",
-        "*``<CMD>lua MiniOperators.replace()<CR>g@gn",
-        { desc = "Match word and replace ahead" }
-)
-vim.keymap.set(
-        "n",
-        "csgN",
-        "*``<CMD>lua MiniOperators.replace()<CR>g@gN",
-        { desc = "Match word and replace behind" }
-)
+vim.keymap.set("n", "csgn", "*``<CMD>lua MiniOperators.replace()<CR>g@gn", { desc = "Match word and replace ahead" })
+vim.keymap.set("n", "csgN", "*``<CMD>lua MiniOperators.replace()<CR>g@gN", { desc = "Match word and replace behind" })
 -- }}}
 
 -- mini.pairs {{{
@@ -166,12 +156,7 @@ require("mini.diff").setup({
         },
 })
 
-vim.keymap.set(
-        "n",
-        "<leader>gh",
-        "<CMD>lua MiniDiff.toggle_overlay()<CR>",
-        { desc = "[Git] Diff overlay" }
-)
+vim.keymap.set("n", "<leader>gh", "<CMD>lua MiniDiff.toggle_overlay()<CR>", { desc = "[Git] Diff overlay" })
 -- }}}
 
 -- mini.git {{{

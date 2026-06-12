@@ -51,11 +51,9 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "OptionSet" }, {
         desc = "Set listchars like indent-blankline",
         group = group,
         callback = function()
-                if
-                        not vim.tbl_contains({
-                                "Makefile",
-                        }, vim.bo.filetype)
-                then
+                if not vim.tbl_contains({
+                        "Makefile",
+                }, vim.bo.filetype) then
                         local append = "leadmultispace:▹" .. string.rep(" ", vim.o.shiftwidth - 1)
                         vim.wo[0][0].listchars = vim.go.listchars .. "," .. append
                 end

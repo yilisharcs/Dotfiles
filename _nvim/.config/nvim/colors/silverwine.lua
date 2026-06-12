@@ -238,10 +238,7 @@ if vim.o.background == "dark" then
         hi("NeogitDiffAddHighlight", { fg = "NONE", bg = colors.Green3, ctermbg = "green" })
         hi("NeogitDiffAdd", { fg = "NONE", bg = colors.Green4, ctermbg = "green" })
         hi("NeogitDiffDelete", { fg = colors.Red2, bg = colors.Ink1, ctermfg = "red" })
-        hi(
-                "NeogitDiffDeleteHighlight",
-                { fg = colors.Red1, bg = colors.Gray3, ctermfg = "red", ctermbg = "grey" }
-        )
+        hi("NeogitDiffDeleteHighlight", { fg = colors.Red1, bg = colors.Gray3, ctermfg = "red", ctermbg = "grey" })
         hi("NeogitDiffContextHighlight", { bg = colors.Gray3 })
         hi("NeogitStagedchanges", { fg = colors.Green2, bold = true, ctermfg = "green" })
         hi("NeogitUnstagedchanges", { fg = colors.Yellow2, bold = true, ctermfg = "yellow" })
