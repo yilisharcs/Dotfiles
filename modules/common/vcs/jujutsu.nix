@@ -107,10 +107,13 @@ in {
 
             l = ["log"];
             la = ["log" "--revisions" "::"];
+            lh = ["log" "--revisions" "::@"];
             ls = ["log" "--summary"];
             lsa = ["log" "--summary" "--revisions" "::"];
+            lsh = ["log" "--summary" "--revisions" "::@"];
             lp = ["log" "--patch"];
             lpa = ["log" "--patch" "--revisions" "::"];
+            lph = ["log" "--patch" "--revisions" "::@"];
 
             push = ["git" "push"];
 
