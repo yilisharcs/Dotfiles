@@ -307,23 +307,29 @@ end, { desc = "Notification history" })
 -- }}}
 
 -- mini.sessions {{{
--- -- TODO: check if i still need this
--- require("mini.sessions").setup({
---         force = {
---                 read = false,
---                 write = true,
---                 delete = true,
---         },
--- })
---
--- vim.keymap.set("n", "<leader>dn", function()
---         local cwd = vim.fs.basename(vim.uv.cwd())
---         require("mini.sessions").write(cwd .. ".vim")
--- end, { desc = "Make session" })
--- vim.keymap.set("n", "<leader>dl", function()
---         require("mini.sessions").select()
--- end, { desc = "List sessions" })
--- vim.keymap.set("n", "<leader>dd", function()
---         require("mini.sessions").delete()
--- end, { desc = "Delete session" })
+require("mini.sessions").setup({
+        autoread = true,
+        file = "",
+        force = {
+                read = false,
+                write = true,
+                delete = true,
+        },
+})
+
+-- Save current session (or create one named after the directory)
+vim.keymap.set("n", "<leader>ds", function()
+        local name = vim.v.this_session ~= "" and vim.fs.basename(vim.v.this_session)
+                or (vim.fs.basename(vim.uv.cwd()) .. ".vim")
+        require("mini.sessions").write(name)
+end, { desc = "Save current session" })
+vim.keymap.set("n", "<leader>dl", function()
+        require("mini.sessions").select()
+end, { desc = "List sessions" })
+vim.keymap.set("n", "<leader>dd", function()
+        require("mini.sessions").select("delete")
+end, { desc = "Delete session" })
+vim.keymap.set("n", "<leader>dr", function()
+        require("mini.sessions").restart()
+end, { desc = "Restart with session" })
 -- }}}
