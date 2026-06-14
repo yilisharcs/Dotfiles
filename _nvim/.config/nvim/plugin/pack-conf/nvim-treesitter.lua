@@ -56,12 +56,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
                 vim.treesitter.start()
                 -- FIXME: treesitter indentation for these filetypes is buggy;
                 --        fallback to built-in.
-                if
-                        not vim.tbl_contains({
-                                "nix",
-                                "vim",
-                        }, vim.bo.filetype)
-                then
+                if not vim.tbl_contains({
+                        "vim",
+                }, vim.bo.filetype) then
                         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                 end
                 -- NOTE: i have custom syntax highlighting for these filetypes
