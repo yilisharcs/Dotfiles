@@ -150,10 +150,6 @@ vim.filetype.add({
 vim.g.loaded_tutor_mode_plugin = 1
 
 vim.pack.add({
-        -- [dev] cme.nvim
-        -- {
-        --         src = "https://codeberg.org/yilisharcs/cme.nvim",
-        -- },
         -- conform.nvim
         {
                 src = "https://github.com/stevearc/conform.nvim",
@@ -179,10 +175,6 @@ vim.pack.add({
         {
                 src = "https://github.com/nvimtools/hydra.nvim",
         },
-        -- [dev] lemon.vim
-        -- {
-        --         src = "https://codeberg.org/yilisharcs/lemon.vim",
-        -- },
         -- mini.nvim
         {
                 src = "https://github.com/echasnovski/mini.nvim",
@@ -196,10 +188,6 @@ vim.pack.add({
                 src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
                 version = "main",
         },
-        -- [dev] quarrel.nvim
-        -- {
-        --         src = "https://codeberg.org/yilisharcs/quarrel.nvim",
-        -- },
         -- toggleterm.nvim
         {
                 src = "https://github.com/akinsho/toggleterm.nvim",
