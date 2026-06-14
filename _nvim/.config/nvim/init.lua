@@ -228,6 +228,9 @@ vim.pack.add({
                 data = { build = "TSUpdate" },
         },
         {
+                src = "https://github.com/HiPhish/rainbow-delimiters.nvim",
+        },
+        {
                 src = "https://github.com/RRethy/nvim-treesitter-endwise",
         },
         -- vim-symlink

@@ -209,6 +209,16 @@ hi("NeogitPopupOptionEnabled",  { link = "Special" })
 hi("NeogitPopupSwitchEnabled",  { link = "Special" })
 -- }}}
 
+-- rainbow-delimiters {{{
+hi("RainbowDelimiterRed",    { fg = "#87ff00", ctermfg = "black" })
+hi("RainbowDelimiterYellow", { fg = "#d7005f", ctermfg = "darkyellow" })
+hi("RainbowDelimiterBlue",   { fg = "#00afff", ctermfg = "darkblue" })
+hi("RainbowDelimiterOrange", { fg = "#ffaf00", ctermfg = "lightgrey" })
+hi("RainbowDelimiterGreen",  { fg = "#00af5f", ctermfg = "darkgreen" })
+hi("RainbowDelimiterViolet", { fg = "#ff5faf", ctermfg = "darkmagenta" })
+hi("RainbowDelimiterCyan",   { fg = "#5f00d7", ctermfg = "darkcyan" })
+-- }}}
+
 -- vim-sneak {{{
 hi("SneakShow",  { fg = black_gui, bg = "#87ff00", bold = true })
 hi("Sneak",      { link = "SneakShow" })

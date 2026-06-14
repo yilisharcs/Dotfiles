@@ -267,6 +267,16 @@ if vim.o.background == "dark" then
         })
         -- }}}
 
+        -- rainbow-delimiters {{{
+        hi("RainbowDelimiterRed", { link = "Delimiter" })
+        hi("RainbowDelimiterYellow", { link = "WarningMsg" })
+        hi("RainbowDelimiterBlue", { link = "ModeMsg" })
+        hi("RainbowDelimiterOrange", { link = "Label" })
+        hi("RainbowDelimiterGreen", { link = "FoldColumn" })
+        hi("RainbowDelimiterViolet", { link = "ErrorMsg" })
+        hi("RainbowDelimiterCyan", { link = "MsgArea" })
+        -- }}}
+
         -- vim-sneak {{{
         hi("SneakShow", { fg = colors.Ink4, bg = colors.Green1, bold = true })
         hi("Sneak", { link = "SneakShow" })
@@ -411,6 +421,16 @@ elseif vim.o.background == "light" then
         hi("NeogitUnmergedchanges", { fg = colors.Magenta1, bold = true })
         hi("NeogitGraphPurple", { fg = colors.Yellow2 })
         hi("NeogitChangeModified", { fg = colors.Cyan3, bold = true, italic = true })
+        -- }}}
+
+        -- rainbow-delimiters {{{
+        hi("RainbowDelimiterRed", { link = "Delimiter" })
+        hi("RainbowDelimiterYellow", { link = "DiagnosticWarn" })
+        hi("RainbowDelimiterBlue", { link = "DiagnosticOk" })
+        hi("RainbowDelimiterOrange", { link = "Label" })
+        hi("RainbowDelimiterGreen", { link = "DiagnosticInfo" })
+        hi("RainbowDelimiterViolet", { link = "DiagnosticError" })
+        hi("RainbowDelimiterCyan", { link = "LineNr" })
         -- }}}
 
         -- vim-sneak {{{
