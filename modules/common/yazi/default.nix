@@ -403,6 +403,11 @@ in {
             ];
             prepend_exts = [
               {
+                name = "fnlm";
+                text = "";
+                fg = "#fff3d7";
+              }
+              {
                 name = "just";
                 text = "";
                 fg = "#6d8086";

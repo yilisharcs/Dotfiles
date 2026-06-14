@@ -12,6 +12,7 @@ local filetypes = {
         "desktop",
         "diff",
         "editorconfig",
+        "fennel",
         "git_config",
         "git_rebase",
         "gitattributes",

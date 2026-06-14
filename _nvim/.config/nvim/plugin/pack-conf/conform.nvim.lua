@@ -1,5 +1,6 @@
 require("conform").setup({
         formatters_by_ft = {
+                fennel = { "fnlfmt" },
                 lua = { "stylua" },
                 nix = { "alejandra" },
                 rust = { "rustfmt" },

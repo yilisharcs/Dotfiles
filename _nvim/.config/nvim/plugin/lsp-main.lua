@@ -1,4 +1,5 @@
 vim.lsp.enable({
+        "fennel-ls",
         "luals",
         "nil-nix",
         "nuls",

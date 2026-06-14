@@ -46,10 +46,10 @@ vim.keymap.set("n", "csgN", "*``<CMD>lua MiniOperators.replace()<CR>g@gN", { des
 -- mini.pairs {{{
 require("mini.pairs").setup({
         mappings = {
-                ["("] = false,
-                [")"] = false,
-                ["["] = false,
-                ["]"] = false,
+                ["("] = {},
+                [")"] = {},
+                ["["] = {},
+                ["]"] = {},
                 ["{"] = {},
                 ["'"] = false,
                 ['"'] = false,
