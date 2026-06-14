@@ -125,8 +125,9 @@ require("mini.ai").setup({
                                 "@loop.inner",
                         },
                 }, {}),
-                h = require("mini.ai").gen_spec.pair("— ", " —", { type = "non-balanced" }),
-                ["<"] = require("mini.ai").gen_spec.pair("<", ">", { type = "non-balanced" }),
+                G = { "```%S*\n?().-()\n?```" },
+                h = { "— ().-() —" },
+                ["<"] = { "<().-()>" },
         },
 })
 -- }}}
