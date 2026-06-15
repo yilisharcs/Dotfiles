@@ -201,11 +201,6 @@ vim.pack.add({
                 src = "https://github.com/yilisharcs/vim-repeat",
                 version = "maparg",
         },
-        -- [dev] undotree
-        -- {
-        --         src = "https://github.com/yilisharcs/undotree",
-        --         version = "u-redo",
-        -- }
         -- suda.vim
         {
                 src = "https://github.com/lambdalisue/suda.vim",
