@@ -272,9 +272,9 @@ if vim.o.background == "dark" then
         hi("RainbowDelimiterYellow", { link = "WarningMsg" })
         hi("RainbowDelimiterBlue", { link = "ModeMsg" })
         hi("RainbowDelimiterOrange", { link = "Label" })
-        hi("RainbowDelimiterGreen", { link = "FoldColumn" })
-        hi("RainbowDelimiterViolet", { link = "ErrorMsg" })
-        hi("RainbowDelimiterCyan", { link = "MsgArea" })
+        hi("RainbowDelimiterGreen", { link = "RainbowDelimiterRed" })
+        hi("RainbowDelimiterViolet", { link = "RainbowDelimiterYellow" })
+        hi("RainbowDelimiterCyan", { link = "RainbowDelimiterBlue" })
         -- }}}
 
         -- vim-sneak {{{
@@ -428,9 +428,9 @@ elseif vim.o.background == "light" then
         hi("RainbowDelimiterYellow", { link = "DiagnosticWarn" })
         hi("RainbowDelimiterBlue", { link = "DiagnosticOk" })
         hi("RainbowDelimiterOrange", { link = "Label" })
-        hi("RainbowDelimiterGreen", { link = "DiagnosticInfo" })
-        hi("RainbowDelimiterViolet", { link = "DiagnosticError" })
-        hi("RainbowDelimiterCyan", { link = "LineNr" })
+        hi("RainbowDelimiterGreen", { link = "RainbowDelimiterRed" })
+        hi("RainbowDelimiterViolet", { link = "RainbowDelimiterYellow" })
+        hi("RainbowDelimiterCyan", { link = "RainbowDelimiterBlue" })
         -- }}}
 
         -- vim-sneak {{{
