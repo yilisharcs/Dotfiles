@@ -9,10 +9,6 @@
       home.sessionVariables = {
         FJ_FALLBACK_HOST = "https://codeberg.org";
       };
-
-      # xdg.configFile."forgejo/cli.yml".text = ''
-      #   default_remote: origin
-      # '';
     }
   ];
 }
