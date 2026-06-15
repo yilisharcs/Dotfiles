@@ -10,11 +10,11 @@
                 ]
         },
         "workspace": {
+                "checkThirdParty": false,
                 "library": [
                         "$VIMRUNTIME/lua",
                         "${3rd}/luv/library"
                 ],
-                "checkThirdParty": false,
                 "ignoreDir": [
                         ".symlink"
                 ]

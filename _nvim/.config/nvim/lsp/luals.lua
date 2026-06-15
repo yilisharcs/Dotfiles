@@ -33,10 +33,10 @@ return {
                                 version = "Lua 5.5",
                         },
                         workspace = {
+                                checkThirdParty = false,
                                 library = {
                                         "${3rd}/busted/library",
                                 },
-                                checkThirdParty = false,
                         },
                         diagnostics = {
                                 unusedLocalExclude = {
