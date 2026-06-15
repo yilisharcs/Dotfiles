@@ -1,0 +1,224 @@
+From de97969e0d4061bb65c425574ae5cc1523206b0b Mon Sep 17 00:00:00 2001
+From: yilisharcs <yilisharcs@gmail.com>
+Date: Mon, 15 Jun 2026 21:55:13 -0300
+Subject: [PATCH 3/5] Respect manual line breaks in collections
+
+---
+ fnlfmt.1            |  7 ++++---
+ fnlfmt.fnl          | 50 +++++++++++++++++++++++++++++++++++++--------
+ format.md           |  5 +++--
+ test.fnl            |  3 ++-
+ tests/call.fnl      |  3 ++-
+ tests/multiline.fnl | 44 +++++++++++++++++++++++++++++++++++++++
+ tests/table.fnl     |  3 ++-
+ 7 files changed, 98 insertions(+), 17 deletions(-)
+ create mode 100644 tests/multiline.fnl
+
+diff --git a/fnlfmt.1 b/fnlfmt.1
+index 53e16ad..7176948 100644
+--- a/fnlfmt.1
++++ b/fnlfmt.1
+@@ -47,9 +47,10 @@ For the most part, fnlfmt follows established lisp conventions when
+ determining how to format a given piece of code. Key/value tables are
+ shown with each key/value pair on its own line, unless they are small
+ enough to all fit on one line. Sequential tables similarly have each
+-element on their own line unless they fit all on a single line. Tables
+-with string keys and symbol values will use {: foo : bar}
+-shorthand notation where possible.
++element on their own line unless they fit all on a single line. Manual
++line breaks in all collections are preserved. Tables with string keys
++and symbol values will use {: foo : bar} shorthand notation where
++possible.
+ .PP
+ Calls are formatted differently depending on whether they are calling
+ a regular function/macro or whether they're calling a special macro
+diff --git a/fnlfmt.fnl b/fnlfmt.fnl
+index 5264e93..1df36d3 100644
+--- a/fnlfmt.fnl
++++ b/fnlfmt.fnl
+@@ -237,8 +237,13 @@ number of handled arguments."
+     (table.insert out " ")
+     (set indent (+ indent 1))
+     (let [viewed (view (. t i) inspector (- indent 1))]
+-      ;; Attempt to fit as many args on a single line until it gets too long.
++      ;; Attempt to fit as many args on a single line until it gets too long,
++      ;; Wraps also occur on differing start lines to respect manual breaks and
++      ;; multi-line expressions.
+       (if (or (fennel.comment? (. t (- i 1)))
++              (let [l1 (line (. t i))
++                    l2 (line (. t (- i 1)))]
++                (and l1 l2 (not= l1 l2)))
+               (and (line-exceeded? inspector indent viewed) (not= 2 i)))
+           (set indent (view-with-newline view inspector out t i start-indent))
+           (do
+@@ -353,12 +358,35 @@ know what to do with : foo shorthand notation, and it doesn't emit comments."
+                            (table.sort sorter)))
+         pair-strs (icollect [_ k (ipairs keys)]
+                     (view-pair t view inspector indent mt k))
+-        oneline (.. "{" (table.concat pair-strs " ") "}")]
+-    (if (or (oneline:match "\n") (?. mt :comments :last 1)
++        oneline (.. "{" (table.concat pair-strs " ") "}")
++        user-break? (accumulate [brk false i k (ipairs keys)]
++                      (or brk
++                          (let [val (. t k)
++                                prev-val (if (> i 1) (. t (. keys (- i 1))))
++                                l1 (line val)
++                                l2 (if prev-val (line prev-val))]
++                            (and l1 l2 (not= l1 l2)))))]
++    (if (or user-break?
++            (oneline:match "\n") (?. mt :comments :last 1)
+             (> (+ indent (length oneline)) inspector.line-length))
+         (view-multiline-kv pair-strs indent (?. mt :comments :last))
+         oneline)))
+ 
++(fn view-seq [t view inspector start-indent]
++  (let [indent (+ start-indent 1)
++               strs (icollect [_ v (ipairs t)]
++                      (view v inspector indent))
++               oneline (.. "[" (table.concat strs " ") "]")
++               user-break? (accumulate [brk false i v (ipairs t)]
++                             (or brk (let [l1 (line v)
++                                              l2 (if (> i 1) (line (. t (- i 1))))]
++                                       (and l1 l2 (not= l1 l2)))))]
++    (if (or user-break?
++        (oneline:match "\n")
++        (> (+ start-indent (length oneline)) inspector.line-length))
++    (.. "[" (table.concat strs (.. "\n" (string.rep " " indent))) "]")
++    oneline)))
++
+ (fn walk-tree [root f custom-iterator]
+   "Walks a tree (like the AST), invoking f(node, idx, parent) on each node.
+ When f returns a truthy value, recursively walks the children."
+@@ -372,12 +400,16 @@ When f returns a truthy value, recursively walks the children."
+ 
+ (fn set-fennelview-metamethod [_idx form]
+   (when (not (scalar? form))
+-    (when (and (not (fennel.list? form)) (not (fennel.sequence? form)))
+-      ;; Fennel's parser will always set the metatable, but we could get tables
+-      ;; from other places.
+-      (case (getmetatable form)
+-        mt (set mt.__fennelview view-kv)
+-        _ (setmetatable form {:__fennelview view-kv})))
++    (if (fennel.sequence? form)
++        ;; Fennel's parser will always set the metatable, but we could get tables
++        ;; from other places.
++        (case (getmetatable form)
++          mt (set mt.__fennelview view-seq)
++          _ (setmetatable form {:__fennelview view-seq}))
++        (not (fennel.list? form))
++        (case (getmetatable form)
++          mt (set mt.__fennelview view-kv)
++          _ (setmetatable form {:__fennelview view-kv})))
+     true))
+ 
+ (fn prefer-colon? [s]
+diff --git a/format.md b/format.md
+index 54c9d38..db51172 100644
+--- a/format.md
++++ b/format.md
+@@ -10,8 +10,9 @@ canonical.
+ Key/value tables are shown with each key/value pair on its own line,
+ unless they are small enough to all fit on one line. Sequential tables
+ similarly have each element on their own line unless they fit all on a
+-single line. Tables with string keys and symbol values will use `{:
+-foo : bar}` shorthand notation where possible.
++single line, though manual line breaks in collections are preserved.
++Tables with string keys and symbol values will use `{: foo : bar}`
++shorthand notation where possible.
+ 
+ Comments that go after code on a line should have one semicolon, but
+ comments which start a line should have at least two; more can be used
+diff --git a/test.fnl b/test.fnl
+index b34049a..66376d1 100644
+--- a/test.fnl
++++ b/test.fnl
+@@ -13,7 +13,8 @@
+               :skip
+               :macro
+               :if
+-              :lambda])
++              :lambda
++              :multiline])
+ 
+ (var pass 0)
+ 
+diff --git a/tests/call.fnl b/tests/call.fnl
+index 1acad2e..e012b73 100644
+--- a/tests/call.fnl
++++ b/tests/call.fnl
+@@ -13,7 +13,8 @@
+ (fn match-same-line? [callee i out viewed]
+   (and (= :match callee) (= 0 (math.fmod i 2))
+        (<= (+ (or (string.find viewed "\n") (length viewed)) 1
+-              (last-line-length (. out (length out)))) 80)))
++              (last-line-length (. out (length out))))
++           80)))
+ 
+ (fn blood [v n c]
+   (let [pv (->view (vadd (vmul v 8) (point 4 4)))]
+diff --git a/tests/multiline.fnl b/tests/multiline.fnl
+new file mode 100644
+index 0000000..f284147
+--- /dev/null
++++ b/tests/multiline.fnl
+@@ -0,0 +1,44 @@
++[]
++{}
++
++;; inline forms stay inline
++(foo a b c)
++[:a :b :c]
++{:a 1 :b 2}
++
++;; manual line breaks are preserved in calls
++(foo a
++     b
++     c)
++
++;; manual line breaks are preserved in lists
++[:a
++ :b
++ :c]
++
++;; manual line breaks are preserved in tables
++{:a 1
++ :b 2}
++
++;; overly long single-line calls use greedy packing
++(some-call "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
++           "r" "s" "t" "u" "v" "w" "x" "y" "z" "A" "B" "C" "D" "E" "F" "G" "H"
++           "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y"
++           "Z")
++
++;; overly long collections are automatically wrapped
++{:a 1
++ :b 2
++ :c 3
++ :d 4
++ :e 5
++ :f 6
++ :g 7
++ :h 8
++ :i 9
++ :j 10
++ :k 11
++ :l 12
++ :m 13
++ :n 14
++ :o 15}
+diff --git a/tests/table.fnl b/tests/table.fnl
+index ec63bca..373aa97 100644
+--- a/tests/table.fnl
++++ b/tests/table.fnl
+@@ -36,6 +36,7 @@
+                         :1->2 162}})
+ 
+ (vim.api.nvim_create_autocmd {:callback #((. (require :mzte_nv) :compile
+-                                             :compilePath) (lol (require :packer)
++                                             :compilePath)
++                                                           (lol (require :packer)
+                                                                 :config
+                                                                 :compile_path))})
+-- 
+2.54.0
+

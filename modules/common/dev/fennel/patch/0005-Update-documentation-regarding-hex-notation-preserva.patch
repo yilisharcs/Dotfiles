@@ -1,0 +1,25 @@
+From 4c36afe541f74fa9d8981a02d850c2385369567e Mon Sep 17 00:00:00 2001
+From: yilisharcs <yilisharcs@gmail.com>
+Date: Mon, 15 Jun 2026 23:46:01 -0300
+Subject: [PATCH 5/5] Update documentation regarding hex notation preservation
+
+---
+ fnlfmt.1 | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/fnlfmt.1 b/fnlfmt.1
+index 7176948..4361fb5 100644
+--- a/fnlfmt.1
++++ b/fnlfmt.1
+@@ -95,8 +95,6 @@ all fit on one line.
+ Some of the issues are inherent to this approach, or at least cannot
+ be fixed without major changes:
+ 
+-.IP \(bu 2
+-Numbers are always emitted as decimal; hex notation is not preserved.
+ .IP \(bu 2
+ Page breaks and other whitespace will not be preserved.
+ .IP \(bu 2
+-- 
+2.54.0
+

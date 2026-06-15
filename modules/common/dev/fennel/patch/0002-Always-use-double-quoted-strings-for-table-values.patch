@@ -1,0 +1,118 @@
+From 945d29076403b54e5a2ee1178721bb5d985a40c3 Mon Sep 17 00:00:00 2001
+From: yilisharcs <yilisharcs@gmail.com>
+Date: Mon, 15 Jun 2026 16:58:51 -0300
+Subject: [PATCH 2/5] Always use double-quoted strings for table values
+
+---
+ fnlfmt.1        | 2 +-
+ fnlfmt.fnl      | 8 +++++---
+ format.md       | 3 ++-
+ tests/call.fnl  | 2 +-
+ tests/table.fnl | 8 ++++----
+ 5 files changed, 13 insertions(+), 10 deletions(-)
+
+diff --git a/fnlfmt.1 b/fnlfmt.1
+index ca44eec..53e16ad 100644
+--- a/fnlfmt.1
++++ b/fnlfmt.1
+@@ -67,7 +67,7 @@ way, provided the body doesn't nest more than two levels and fits in
+ the line length limit.
+ .PP
+ Strings are formatted using :colon-notation where possible, unless
+-they consist entirely of punctuation.
++they consist entirely of punctuation or are values in a table.
+ .PP
+ Top level forms may or may not have blank lines between them depending
+ on whether the input code spaces them out. Functions defined inside a
+diff --git a/fnlfmt.fnl b/fnlfmt.fnl
+index b48634a..5264e93 100644
+--- a/fnlfmt.fnl
++++ b/fnlfmt.fnl
+@@ -280,7 +280,7 @@ number of handled arguments."
+ 
+ (local maybe-body {:-> true :->> true :-?> true :-?>> true :doto true :if true})
+ 
+-(local renames {"#" :length "~=" :not= :lambda "λ"})
++(local renames {"#" "length" "~=" "not=" :lambda "λ"})
+ 
+ (fn body-form? [callee]
+   (or (?. syntax callee :body-form?) (callee:find "%.with-")
+@@ -324,7 +324,9 @@ number of handled arguments."
+   (let [val (. t key)
+         k (if (shorthand-pair? key val) ":"
+               (view key inspector (+ indent 1) true))
+-        v (view val inspector (+ indent (slength k) 1))]
++        v (if (string? val)
++              (view val.value inspector (+ indent (slength k) 1) false)
++              (view val inspector (+ indent (slength k) 1)))]
+     (.. (maybe-attach-comment k indent (?. mt :comments :keys key)) " "
+         (maybe-attach-comment v indent (?. mt :comments :values val)))))
+ 
+@@ -448,4 +450,4 @@ When f returns a truthy value, recursively walks the children."
+     (let [formatted (table.concat out "\n")]
+       (values formatted (not= formatted original)))))
+ 
+-{: fnlfmt : format-file :version :0.3.3-dev}
++{: fnlfmt : format-file :version "0.3.3-dev"}
+diff --git a/format.md b/format.md
+index 19d888c..54c9d38 100644
+--- a/format.md
++++ b/format.md
+@@ -84,7 +84,8 @@ choice. For example, the choice of whether to use `"this-style"`
+ string or `:this-style` is not one that can be determined
+ mechanically; it communicates human intent around whether the string
+ is used for its contents in the former case or whether it's used as an
+-opaque name the way a keyword/symbol/enum might in the latter case.
++opaque name the way a keyword/symbol/enum might in the latter case
++(except for table values, which are always double-quoted).
+ Similarly with numbers, sometimes hexadecimal notation will be more
+ appropriate for the task at hand, and sometimes underscores to
+ separate out thousands/millions/etc will improve readability. A
+diff --git a/tests/call.fnl b/tests/call.fnl
+index df5576e..1acad2e 100644
+--- a/tests/call.fnl
++++ b/tests/call.fnl
+@@ -18,7 +18,7 @@
+ (fn blood [v n c]
+   (let [pv (->view (vadd (vmul v 8) (point 4 4)))]
+     (for [i 1 n]
+-      (var c {:type :circ :pos (vadd pv (rand-point 4)) :r 1 :c (or c 6)})
++      (var c {:type ":circ" :pos (vadd pv (rand-point 4)) :r 1 :c (or c 6)})
+       (add fx c)
+       (wait (rand 5)
+             (fn []
+diff --git a/tests/table.fnl b/tests/table.fnl
+index 48b972e..ec63bca 100644
+--- a/tests/table.fnl
++++ b/tests/table.fnl
+@@ -2,15 +2,15 @@
+           :b [2 3 4 "(" 4]
+           :b.5 1.5})
+ 
+-{:this :table
++{:this ":table"
+  ;; has a comment right before
+  :a key}
+ 
+-{:this :table
++{:this ":table"
+  :has ;; a comment right before
+  "a value"}
+ 
+-{:this :table
++{:this ":table"
+  ;; has a comment at the end
+  }
+ 
+@@ -30,7 +30,7 @@
+                          :1->2 161}
+                 :woods {:0 [98 99 100]
+                         :1 greystone
+-                        :0->1 :with/out
++                        :0->1 ":with/out"
+                         :2 "/"
+                         :0->2 "..."
+                         :1->2 162}})
+-- 
+2.54.0
+

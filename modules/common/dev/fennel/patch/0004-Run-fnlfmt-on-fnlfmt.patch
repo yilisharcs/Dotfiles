@@ -1,0 +1,158 @@
+From 7fc463e7c8671e2273c9e0ccafcc93d3aeb5255e Mon Sep 17 00:00:00 2001
+From: yilisharcs <yilisharcs@gmail.com>
+Date: Mon, 15 Jun 2026 22:55:27 -0300
+Subject: [PATCH 4/5] Run fnlfmt on fnlfmt
+
+---
+ cli.fnl             |  5 ++---
+ fnlfmt.fnl          | 45 ++++++++++++++++++++++++---------------------
+ tests/multiline.fnl | 11 +++--------
+ 3 files changed, 29 insertions(+), 32 deletions(-)
+
+diff --git a/cli.fnl b/cli.fnl
+index e121967..b331aed 100644
+--- a/cli.fnl
++++ b/cli.fnl
+@@ -21,7 +21,7 @@
+ (fn check-file [filename]
+   (if (select 2 (format-file filename options))
+       (io.stderr:write (string.format "Not formatted: %s\n" filename))
+-      true  ))
++      true))
+ 
+ (fn check-files [filenames]
+   (-> (accumulate [ok? true _ filename (ipairs filenames)]
+@@ -41,6 +41,5 @@
+   [:--fix & filenames] (each [_ filename (pairs filenames)] (fix filename))
+   [:--check & filenames] (check-files filenames)
+   (where (or [:--help] ["-?"] [:-h])) (help)
+-  [filename nil] (io.stdout:write
+-                  (pick-values 1 (format-file filename options)))
++  [filename nil] (io.stdout:write (pick-values 1 (format-file filename options)))
+   _ (help))
+diff --git a/fnlfmt.fnl b/fnlfmt.fnl
+index 1df36d3..e1cc885 100644
+--- a/fnlfmt.fnl
++++ b/fnlfmt.fnl
+@@ -157,7 +157,8 @@ number of handled arguments."
+   ;; just don't even try if there's comments!
+   (and (match? callee) (= 0 (math.fmod i 2)) (not (any? t fennel.comment?))
+        (<= (+ (or (string.find viewed "\n") (length (viewed:match "[^\n]*$")))
+-              1 (last-line-length (. out (length out)))) 80)))
++              1 (last-line-length (. out (length out))))
++           80)))
+ 
+ (fn trailing-comment? [viewed body-indent]
+   (and (viewed:match "^; ") (<= body-indent 80)))
+@@ -265,7 +266,8 @@ number of handled arguments."
+       (< 80 (+ indent 1 (length (if-pair view (select i (unpack t)))))) false
+       (pairwise-if? t indent (if (fennel.comment (. t (+ i 2)))
+                                  (+ i 3)
+-                                 (+ i 2)) view)))
++                                 (+ i 2))
++                    view)))
+ 
+ (fn view-maybe-body [t view inspector indent start-indent out callee]
+   (if (pairwise-if? t indent 2 view)
+@@ -319,7 +321,8 @@ number of handled arguments."
+       (.. (table.concat (icollect [_ c (ipairs cs)]
+                           (tostring c))
+                         (.. "\n" (string.rep " " indent)))
+-          "\n" (string.rep " " indent) x)
++          "\n"
++          (string.rep " " indent) x)
+       x))
+ 
+ (fn shorthand-pair? [k v]
+@@ -366,26 +369,25 @@ know what to do with : foo shorthand notation, and it doesn't emit comments."
+                                 l1 (line val)
+                                 l2 (if prev-val (line prev-val))]
+                             (and l1 l2 (not= l1 l2)))))]
+-    (if (or user-break?
+-            (oneline:match "\n") (?. mt :comments :last 1)
++    (if (or user-break? (oneline:match "\n") (?. mt :comments :last 1)
+             (> (+ indent (length oneline)) inspector.line-length))
+         (view-multiline-kv pair-strs indent (?. mt :comments :last))
+         oneline)))
+ 
+ (fn view-seq [t view inspector start-indent]
+   (let [indent (+ start-indent 1)
+-               strs (icollect [_ v (ipairs t)]
+-                      (view v inspector indent))
+-               oneline (.. "[" (table.concat strs " ") "]")
+-               user-break? (accumulate [brk false i v (ipairs t)]
+-                             (or brk (let [l1 (line v)
+-                                              l2 (if (> i 1) (line (. t (- i 1))))]
+-                                       (and l1 l2 (not= l1 l2)))))]
+-    (if (or user-break?
+-        (oneline:match "\n")
+-        (> (+ start-indent (length oneline)) inspector.line-length))
+-    (.. "[" (table.concat strs (.. "\n" (string.rep " " indent))) "]")
+-    oneline)))
++        strs (icollect [_ v (ipairs t)]
++               (view v inspector indent))
++        oneline (.. "[" (table.concat strs " ") "]")
++        user-break? (accumulate [brk false i v (ipairs t)]
++                      (or brk
++                          (let [l1 (line v)
++                                l2 (if (> i 1) (line (. t (- i 1))))]
++                            (and l1 l2 (not= l1 l2)))))]
++    (if (or user-break? (oneline:match "\n")
++            (> (+ start-indent (length oneline)) inspector.line-length))
++        (.. "[" (table.concat strs (.. "\n" (string.rep " " indent))) "]")
++        oneline)))
+ 
+ (fn walk-tree [root f custom-iterator]
+   "Walks a tree (like the AST), invoking f(node, idx, parent) on each node.
+@@ -445,7 +447,8 @@ When f returns a truthy value, recursively walks the children."
+   (if (and raw (or (= :string (type value)) (= :number (type value))))
+       (setmetatable (doto source
+                       (tset :raw raw)
+-                      (tset :value value)) raw-mt)
++                      (tset :value value))
++                    raw-mt)
+       value))
+ 
+ (fn format-file [filename {: no-comments}]
+@@ -455,9 +458,9 @@ When f returns a truthy value, recursively walks the children."
+             _ (or (io.open filename :r) (abort filename)))
+         original (f:read :*all)
+         parser (-> (fennel.stringStream original)
+-                   (fennel.parser filename {:comments (not no-comments)
+-                                            :plugins [{: parse-form
+-                                                       :versions ["1.5.1"]}]}))
++                   (fennel.parser filename
++                                  {:comments (not no-comments)
++                                   :plugins [{: parse-form :versions ["1.5.1"]}]}))
+         out []]
+     (f:close)
+     (var (skip-next? prev-ast) false)
+diff --git a/tests/multiline.fnl b/tests/multiline.fnl
+index f284147..9592a67 100644
+--- a/tests/multiline.fnl
++++ b/tests/multiline.fnl
+@@ -7,18 +7,13 @@
+ {:a 1 :b 2}
+ 
+ ;; manual line breaks are preserved in calls
+-(foo a
+-     b
+-     c)
++(foo a b c)
+ 
+ ;; manual line breaks are preserved in lists
+-[:a
+- :b
+- :c]
++[:a :b :c]
+ 
+ ;; manual line breaks are preserved in tables
+-{:a 1
+- :b 2}
++{:a 1 :b 2}
+ 
+ ;; overly long single-line calls use greedy packing
+ (some-call "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
+-- 
+2.54.0
+
