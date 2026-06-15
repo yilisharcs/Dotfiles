@@ -9,6 +9,11 @@
       "pipe-operators"
     ];
 
+    trusted-users = [
+      "root"
+      "@wheel"
+    ];
+
     show-trace = true;
     use-cgroups = true;
     use-xdg-base-directories = true;
