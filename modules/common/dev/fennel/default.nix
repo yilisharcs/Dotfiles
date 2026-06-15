@@ -10,8 +10,9 @@
               patchelf --add-rpath "${pkgs.readline}/lib" "$out/bin/lua"
             '';
         }))
-        pkgs.lua-language-server
-        pkgs.stylua # opinionated Lua code formatter
+        pkgs.lua55Packages.fennel # A lisp that compiles to Lua
+        pkgs.fennel-ls # Fennel LSP
+        pkgs.fnlfmt # Formatter for Fennel
       ];
     }
   ];
