@@ -336,42 +336,42 @@ in {
               {
                 name = "Documents";
                 text = "";
-                fg = "#85ea2d";
+                fg = "#8af19e";
               }
               {
                 name = "Dotfiles";
                 text = "";
-                fg = "#85ea2d";
+                fg = "#8af19e";
               }
               {
                 name = "Downloads";
                 text = "";
-                fg = "#85ea2d";
+                fg = "#8af19e";
               }
               {
                 name = "Games";
                 text = "󰺶";
-                fg = "#85ea2d";
+                fg = "#8af19e";
               }
               {
                 name = "Library";
                 text = "";
-                fg = "#85ea2d";
+                fg = "#8af19e";
               }
               {
                 name = "Music";
                 text = "";
-                fg = "#85ea2d";
+                fg = "#8af19e";
               }
               {
                 name = "Pictures";
                 text = "";
-                fg = "#85ea2d";
+                fg = "#8af19e";
               }
               {
                 name = "Projects";
                 text = "";
-                fg = "#85ea2d";
+                fg = "#8af19e";
               }
               {
                 name = "Shared";
@@ -381,7 +381,7 @@ in {
               {
                 name = "Videos";
                 text = "";
-                fg = "#85ea2d";
+                fg = "#8af19e";
               }
             ];
             prepend_files = [
