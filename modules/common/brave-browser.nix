@@ -6,7 +6,8 @@
   inherit (lib) disabled enabled getExe;
 
   brave-wrapped = pkgs.symlinkJoin {
-    name = "brave";
+    inherit (pkgs.brave) meta version;
+    pname = "brave";
     paths = [pkgs.brave];
     nativeBuildInputs = [pkgs.makeWrapper];
     postBuild = ''

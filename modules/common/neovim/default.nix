@@ -19,37 +19,35 @@
 
   # NOTE: these $XDG_ vars pollute the runtimepath, which can cause a
   #       noticeable slowdown. TODO: consider upstreaming this.
-  neovim =
-    (pkgs.symlinkJoin {
-      name = "neovim";
-      paths = [neovim-unwrapped];
-      nativeBuildInputs = [pkgs.makeWrapper];
-      postBuild = ''
-        wrapProgram $out/bin/nvim \
-            --run '
-                filter_xdg() (
-                    IFS=:
-                    new_dirs=""
-                    for d in $1; do
-                        [ -d "$d/nvim" ] && new_dirs="''${new_dirs:+$new_dirs:}$d"
-                    done
-                    echo "$new_dirs"
-                )
-                export _OLD_XDG_DATA_DIRS="$XDG_DATA_DIRS"
-                export _OLD_XDG_CONFIG_DIRS="$XDG_CONFIG_DIRS"
-                export XDG_DATA_DIRS=$(filter_xdg "$XDG_DATA_DIRS")
-                export XDG_CONFIG_DIRS=$(filter_xdg "$XDG_CONFIG_DIRS")
-            '
-      '';
-    })
-    // {
-      meta =
-        (neovim-unwrapped.meta or {})
-        // {
-          mainProgram = "nvim";
-          priority = (neovim-unwrapped.meta.priority or lib.meta.defaultPriority) - 1;
-        };
-    };
+  neovim = pkgs.symlinkJoin {
+    inherit (neovim-unwrapped) version;
+    pname = "neovim";
+    paths = [neovim-unwrapped];
+    nativeBuildInputs = [pkgs.makeWrapper];
+    meta =
+      (neovim-unwrapped.meta or {})
+      // {
+        mainProgram = "nvim";
+        priority = (neovim-unwrapped.meta.priority or lib.meta.defaultPriority) - 1;
+      };
+    postBuild = ''
+      wrapProgram $out/bin/nvim \
+        --run '
+          filter_xdg() (
+            IFS=:
+            new_dirs=""
+            for d in $1; do
+                [ -d "$d/nvim" ] && new_dirs="''${new_dirs:+$new_dirs:}$d"
+            done
+            echo "$new_dirs"
+          )
+          export _OLD_XDG_DATA_DIRS="$XDG_DATA_DIRS"
+          export _OLD_XDG_CONFIG_DIRS="$XDG_CONFIG_DIRS"
+          export XDG_DATA_DIRS=$(filter_xdg "$XDG_DATA_DIRS")
+          export XDG_CONFIG_DIRS=$(filter_xdg "$XDG_CONFIG_DIRS")
+        '
+    '';
+  };
 in {
   home-manager.sharedModules = [
     {

@@ -6,7 +6,8 @@
   inherit (lib) enabled getExe;
 
   pandoc-wrapped = pkgs.symlinkJoin {
-    name = "pandoc";
+    inherit (pkgs.pandoc) meta version;
+    pname = "pandoc";
     paths = [pkgs.pandoc];
     nativeBuildInputs = [pkgs.makeWrapper];
     postBuild = ''
