@@ -122,7 +122,7 @@ in {
           # Backup
           {
             on = "b";
-            run = "shell 'for f in \"$@\"; do cp -r \"$f\" \"$f.bak.$(date +%%s)\"; done'";
+            run = "shell 'for f in \"$@\"; do cp -r \"$f\" \"$f.$(date +%%s).bak\"; done'";
             desc = "Backup current file";
           }
 
