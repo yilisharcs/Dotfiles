@@ -82,17 +82,25 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 map("n", "grf", function()
                         vim.diagnostic.open_float()
                 end, "Open error float")
+
+                -- multiline diagnostic messages contain \n which nvim internally
+                -- converts to \0 when storing in quickfix items. the vimscript->lua
+                -- bridge truncates strings at \0, making the full text invisible to
+                -- the lua-based quickfixtextfunc, but NOT invisible to ME!
+                -- stripping \n here prevents that entirely.
+                local function format(diagnostic)
+                        return (diagnostic.message:gsub("\n", ""))
+                end
                 map("n", "grq", function()
                         vim.diagnostic.setqflist({
-                                -- multiline diagnostic messages contain \n which nvim internally
-                                -- converts to \0 when storing in quickfix items. the vimscript->lua
-                                -- bridge truncates strings at \0, making the full text invisible to
-                                -- the lua-based quickfixtextfunc, but NOT invisible to ME!
-                                -- stripping \n here prevents that entirely.
-                                format = function(diag)
-                                        return (diag.message:gsub("\n", ""))
-                                end,
+                                format = format,
                         })
                 end, "Quickfix diagnostics")
+                map("n", "gre", function()
+                        vim.diagnostic.setqflist({
+                                format = format,
+                                severity = vim.diagnostic.severity.ERROR,
+                        })
+                end, "Quickfix error diagnostics")
         end,
 })
