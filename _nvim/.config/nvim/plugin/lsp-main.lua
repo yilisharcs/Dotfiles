@@ -30,7 +30,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("LSProtocol", {}),
         callback = function(args)
                 local client = vim.lsp.get_clients()[1]
-                local ns = vim.lsp.diagnostic.get_namespace(client.id)
 
                 vim.lsp.completion.enable(true, client.id, args.buf, {
                         autotrigger = true,
@@ -85,7 +84,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 end, "Open error float")
                 map("n", "grq", function()
                         vim.diagnostic.setqflist({
-                                namespace = ns,
                                 -- multiline diagnostic messages contain \n which nvim internally
                                 -- converts to \0 when storing in quickfix items. the vimscript->lua
                                 -- bridge truncates strings at \0, making the full text invisible to
