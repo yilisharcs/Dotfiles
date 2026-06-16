@@ -130,7 +130,8 @@ in {
 
             sh = ["show"];
 
-            t = ["tug-bookmark-here"];
+            t = ["tag"];
+
             tug = ["tug-bookmark-here"];
             tug-bookmark-here = ["bookmark" "move" "--from" "closest(@-)" "--to" "closest_pushable(@)"];
 
