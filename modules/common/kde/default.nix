@@ -22,6 +22,7 @@ in {
   environment.systemPackages = [
     pkgs.kdePackages.kcharselect # character map
     pkgs.kdePackages.kclock
+    pkgs.kdePackages.kdepim-addons # provides external composer plugin for kmail
     pkgs.kdePackages.kmail # email client
     pkgs.kdePackages.kmail-account-wizard
     pkgs.kdePackages.kolourpaint
