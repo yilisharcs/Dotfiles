@@ -302,7 +302,12 @@ require("mini.misc").setup_restore_cursor({ center = false })
 -- }}}
 
 -- mini.notify {{{
-require("mini.notify").setup({})
+require("mini.notify").setup({
+        window = {
+                max_width_share = vim.o.columns * 0.27 + 0.5,
+                winblend = 2,
+        },
+})
 _G.MiniNotify = MiniNotify
 
 vim.keymap.set("n", "<leader>n", function()
