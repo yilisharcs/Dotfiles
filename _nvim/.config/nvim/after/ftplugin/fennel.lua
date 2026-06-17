@@ -1,1 +1,1 @@
-vim.bo.commentstring = ";; %s"
+vim.bo.includeexpr = [[tr(substitute(v:fname, '^:', '', ''), '.', '/')]]
