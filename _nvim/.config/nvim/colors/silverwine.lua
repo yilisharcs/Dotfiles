@@ -427,7 +427,7 @@ elseif vim.o.background == "light" then
 
         -- rainbow-delimiters {{{
         hi("RainbowDelimiterRed", { link = "Delimiter" })
-        hi("RainbowDelimiterYellow", { link = "DiagnosticWarn" })
+        hi("RainbowDelimiterYellow", { link = "WarningMsg" })
         hi("RainbowDelimiterBlue", { link = "DiagnosticOk" })
         hi("RainbowDelimiterOrange", { link = "Label" })
         hi("RainbowDelimiterGreen", { link = "RainbowDelimiterRed" })
