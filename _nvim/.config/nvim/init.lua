@@ -107,6 +107,7 @@ vim.opt.nrformats:append({ "unsigned" })
 vim.o.fillchars = "eob: "
 
 vim.o.guicursor = "a:block,c-ci-i-r:blinkwait700-blinkoff700-blinkon700"
+vim.o.smoothscroll = true
 
 vim.opt.diffopt:prepend({ "algorithm:patience", "hiddenoff" })
 
