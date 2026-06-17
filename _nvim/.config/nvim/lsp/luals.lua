@@ -14,7 +14,7 @@ return {
         filetypes = { "lua" },
         root_markers = root_markers,
         before_init = function(params, config)
-                if not params.workspaceFolders or #params.workspaceFolders == 0 then
+                if type(params.workspaceFolders) ~= "table" or #params.workspaceFolders == 0 then
                         return
                 end
 
