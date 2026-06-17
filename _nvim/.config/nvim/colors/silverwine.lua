@@ -179,6 +179,8 @@ if vim.o.background == "dark" then
         hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false, ctermfg = "red" })
         --
         hi("@number.hex", { link = "Statement" })
+        --
+        hi("@keyword.conditional.fennel", { fg = colors.Silver2, bold = true, ctermfg = "blue" })
 
         -- LSP
         hi("DiagnosticError", { fg = colors.Red2, ctermfg = "red" })
@@ -379,6 +381,8 @@ elseif vim.o.background == "light" then
         hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false })
         --
         hi("@number.hex", { link = "Statement" })
+        --
+        hi("@keyword.conditional.fennel", { fg = colors.Ink1, bold = true, ctermfg = "blue" })
 
         -- LSP
         hi("DiagnosticError", { fg = colors.Red2 })
