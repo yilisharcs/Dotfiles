@@ -8,18 +8,6 @@ end
 vim.g.colors_name = "silverwine"
 
 local colors = {
-        -- NOTE
-        --      Wine1: 2
-        --      Wine3: 2
-        --      Ink1: 2
-        --      Ink2: 4
-        --      Ink3: 3
-        --      Green3: 2
-        --      Green4: 1
-        --      Yellow3: 3
-        --      Blue1: 1
-        --      Blue2: 3
-        --      Magenta1: 1
         Wine1 = "#3f006c",
         Wine2 = "#2a0048",
         Wine3 = "#12001f",
@@ -176,15 +164,20 @@ if vim.o.background == "dark" then
         hi("Label", { fg = colors.Magenta1, ctermfg = "magenta" })
 
         -- treesitter
+        hi("@markup.link.vimdoc", { fg = colors.Yellow2, bold = true, ctermfg = "yellow" })
         hi("@markup.raw.markdown_inline", { fg = colors.Green1, bg = colors.Gray3 })
         hi("markdownCodeBlock", { bg = colors.Gray3, ctermbg = "grey" })
-        hi("@markup.link.vimdoc", { fg = colors.Yellow2, bold = true, ctermfg = "yellow" })
+        --
         hi("@label.vimdoc", { fg = colors.Green2, bold = true, ctermfg = "green" })
+        --
         hi("gitcommitSummary", { link = "Identifier" })
-        hi("@markup.link.label.markdown_inline", { link = "Identifier" })
+        --
         hi("@markup.heading.gitcommit", { link = "gitcommitSummary" })
-        hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false, ctermfg = "red" })
+        hi("@markup.link.label.markdown_inline", { link = "Identifier" })
+        --
         hi("@character.rust", { link = "String", bold = false })
+        hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false, ctermfg = "red" })
+        --
         hi("@number.hex", { link = "Statement" })
 
         -- LSP
@@ -371,15 +364,20 @@ elseif vim.o.background == "light" then
         hi("SpellBad", { sp = colors.Red2, undercurl = true })
 
         -- treesitter
-        hi("markdownCodeBlock", { bg = colors.Silver3 })
-        hi("@markup.raw.markdown_inline", { fg = colors.Cyan3, bg = colors.Silver3 })
         hi("@markup.link.vimdoc", { fg = colors.Cyan3, bold = true })
+        hi("@markup.raw.markdown_inline", { fg = colors.Cyan3, bg = colors.Silver3 })
+        hi("markdownCodeBlock", { bg = colors.Silver3 })
+        --
         hi("@label.vimdoc", { fg = colors.Green2, bold = true })
+        --
         hi("gitcommitSummary", { link = "Identifier" })
-        hi("@markup.link.label.markdown_inline", { link = "Identifier" })
+        --
         hi("@markup.heading.gitcommit", { link = "gitcommitSummary" })
-        hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false })
+        hi("@markup.link.label.markdown_inline", { link = "Identifier" })
+        --
         hi("@character.rust", { link = "String", bold = false })
+        hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false })
+        --
         hi("@number.hex", { link = "Statement" })
 
         -- LSP
