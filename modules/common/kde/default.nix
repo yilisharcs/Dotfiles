@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) concatStringsSep disabled enabled mkIf;
+  inherit (lib) concatStringsSep disabled enabled mkIf optionals;
   nixosConfig = config;
 in {
   imports = [../fonts.nix];
@@ -204,15 +204,20 @@ in {
               "org.kde.plasma.kickoff"
               {
                 name = "org.kde.plasma.icontasks";
-                config.launchers = [
-                  "applications:com.mitchellh.ghostty.desktop"
-                  "applications:brave-browser.desktop"
-                  "applications:org.kde.kmail2.desktop"
-                  "preferred://filemanager"
-                  "applications:systemsettings.desktop"
-                  "applications:fightcade.desktop"
-                  "applications:steam.desktop"
-                ];
+                config.launchers =
+                  [
+                    "applications:com.mitchellh.ghostty.desktop"
+                    "applications:brave-browser.desktop"
+                    "applications:org.kde.kmail2.desktop"
+                    "preferred://filemanager"
+                    "applications:systemsettings.desktop"
+                  ]
+                  ++ optionals (config.programs.fightcade.enable or false) [
+                    "applications:fightcade.desktop"
+                  ]
+                  ++ optionals (config.programs.steam.enable or false) [
+                    "applications:steam.desktop"
+                  ];
               }
               "org.kde.plasma.marginsseparator"
               {
