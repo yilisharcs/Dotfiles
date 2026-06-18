@@ -116,8 +116,11 @@ in {
         };
         input = {
           keyboard.repeatDelay = 300;
-          touchpads = mkIf (nixosConfig.networking.hostName != "ouro") [
+          touchpads = mkIf (nixosConfig.networking.hostName == "gato") [
             (enabled {
+              name = "SynPS/2 Synaptics TouchPad";
+              vendorId = "0002";
+              productId = "0007";
               disableWhileTyping = true;
               rightClickMethod = "twoFingers";
             })
