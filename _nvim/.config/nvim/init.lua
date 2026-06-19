@@ -124,11 +124,11 @@ vim.o.shell = "/run/current-system/sw/bin/bash"
 
 -- display vs TTY
 vim.o.list = true
-vim.o.termguicolors = true
 vim.opt_global.listchars = { nbsp = "␣", tab = "│ ", trail = "•" }
-
 if os.getenv("DISPLAY") == nil then
         vim.o.termguicolors = false
+else
+        vim.o.termguicolors = true
 end
 
 vim.o.background = "dark"

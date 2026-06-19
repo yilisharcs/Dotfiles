@@ -51,6 +51,10 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "OptionSet" }, {
         desc = "Set listchars like indent-blankline",
         group = group,
         callback = function()
+                if os.getenv("DISPLAY") == nil then
+                        return
+                end
+
                 if not vim.tbl_contains({
                         "Makefile",
                 }, vim.bo.filetype) then
