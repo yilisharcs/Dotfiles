@@ -64,7 +64,7 @@ in {
             private-commits = "description('wip:*') | description('private:*')";
           };
           signing = {
-            behavior = "own";
+            behavior = "drop";
             backend = "ssh";
             key = keys.sshKey.id;
             sign-on-push = true;
