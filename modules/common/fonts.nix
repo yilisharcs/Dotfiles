@@ -7,7 +7,7 @@
 in {
   console = enabled {
     earlySetup = true;
-    font = "ter-232b";
+    font = "ter-228b";
     packages = [pkgs.terminus_font];
   };
 
