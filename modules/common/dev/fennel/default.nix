@@ -22,10 +22,11 @@
     };
     patches = [
       ./patch/0001-Fix-lint-warnings.patch
-      ./patch/0002-Always-use-double-quoted-strings-for-table-values.patch
+      # ./patch/0002-Always-use-double-quoted-strings-for-table-values.patch
       ./patch/0003-Respect-manual-line-breaks-in-collections.patch
       ./patch/0004-Run-fnlfmt-on-fnlfmt.patch
       ./patch/0005-Update-documentation-regarding-hex-notation-preserva.patch
+      ./patch/0006-Add-support-for-shebang.patch
     ];
   });
 in {
