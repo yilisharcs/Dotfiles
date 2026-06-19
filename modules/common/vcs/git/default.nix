@@ -36,7 +36,8 @@ in {
           "tags"
           "zig-pkg"
         ];
-        signing.signByDefault = true;
+        # jujutsu already handles this...
+        signing.signByDefault = false;
         settings = {
           user = {
             name = "yilisharcs";

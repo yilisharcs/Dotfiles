@@ -40,7 +40,6 @@ in {
           set -g display-time 4000    # Increase tmux messages display duration from 750ms to 4s
 
           # Status bar and border colors
-          set-option -sg terminal-features ',*:RGB' # Fix colors for nvim->tmux->nvim instance
           set -g status-style 'bg=green fg=#000000,bold'
           set-option -g window-status-current-format '[ *#I:#W#F ]'
 
