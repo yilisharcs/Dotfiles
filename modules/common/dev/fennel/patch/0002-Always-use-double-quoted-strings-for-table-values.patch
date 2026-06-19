@@ -1,7 +1,7 @@
 From 945d29076403b54e5a2ee1178721bb5d985a40c3 Mon Sep 17 00:00:00 2001
 From: yilisharcs <yilisharcs@gmail.com>
 Date: Mon, 15 Jun 2026 16:58:51 -0300
-Subject: [PATCH 2/5] Always use double-quoted strings for table values
+Subject: [PATCH 2/7] Always use double-quoted strings for table values
 
 ---
  fnlfmt.1        | 2 +-

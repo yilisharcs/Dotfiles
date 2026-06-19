@@ -1,7 +1,7 @@
 From de97969e0d4061bb65c425574ae5cc1523206b0b Mon Sep 17 00:00:00 2001
 From: yilisharcs <yilisharcs@gmail.com>
 Date: Mon, 15 Jun 2026 21:55:13 -0300
-Subject: [PATCH 3/5] Respect manual line breaks in collections
+Subject: [PATCH 3/7] Respect manual line breaks in collections
 
 ---
  fnlfmt.1            |  7 ++++---

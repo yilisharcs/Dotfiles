@@ -1,7 +1,7 @@
 From ca57e761af79c0ce08fb56c7dc2709f1f418ccab Mon Sep 17 00:00:00 2001
 From: yilisharcs <yilisharcs@gmail.com>
 Date: Mon, 15 Jun 2026 20:40:36 -0300
-Subject: [PATCH 1/5] Fix lint warnings
+Subject: [PATCH 1/7] Fix lint warnings
 
 ---
  fnlfmt.fnl | 8 ++++----

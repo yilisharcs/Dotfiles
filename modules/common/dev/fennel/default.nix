@@ -14,20 +14,12 @@
   };
 
   fnlfmt = pkgs.fnlfmt.overrideAttrs (old: {
-    src = pkgs.fetchFromSourcehut {
-      owner = "~technomancy";
+    src = pkgs.fetchFromCodeberg {
+      owner = "yilisharcs";
       repo = "fnlfmt";
-      rev = "main";
-      sha256 = "sha256-19JJugN66Xn+5GkMcaVWzCI9b9gH9x63m+hhT8AwYuc=";
+      rev = "dev";
+      sha256 = "sha256-GbPmo5OOKVXNfAAqO5tyeUPFhdHEvKrX7QKZ45kR7Ck=";
     };
-    patches = [
-      ./patch/0001-Fix-lint-warnings.patch
-      # ./patch/0002-Always-use-double-quoted-strings-for-table-values.patch
-      ./patch/0003-Respect-manual-line-breaks-in-collections.patch
-      ./patch/0004-Run-fnlfmt-on-fnlfmt.patch
-      ./patch/0005-Update-documentation-regarding-hex-notation-preserva.patch
-      ./patch/0006-Add-support-for-shebang.patch
-    ];
   });
 in {
   home-manager.sharedModules = [

@@ -1,7 +1,7 @@
 From 41e8d59394255f7f9a169ce0fbeb7b7427d633f2 Mon Sep 17 00:00:00 2001
 From: yilisharcs <yilisharcs@gmail.com>
 Date: Fri, 19 Jun 2026 09:13:54 -0300
-Subject: [PATCH 6/6] Add support for shebang
+Subject: [PATCH 6/7] Add support for shebang
 
 ---
  fnlfmt.fnl        | 14 ++++++++++++--
