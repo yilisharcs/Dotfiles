@@ -40,8 +40,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         desc = "Insert comment leader",
         group = group,
         callback = function()
-                vim.opt.formatoptions:append("r")
+                vim.bo.formatoptions = vim.o.formatoptions .. "r"
                 if not vim.tbl_contains({ "markdown", "text" }, vim.bo.filetype) then
+                        -- NOTE: vim.opt/_local/_global will be deprecated by v1.0
                         vim.opt.formatoptions:remove("o")
                 end
         end,

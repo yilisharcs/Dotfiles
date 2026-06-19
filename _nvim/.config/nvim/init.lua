@@ -78,7 +78,7 @@ vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
 
 -- hide search finish warning
-vim.opt.shortmess:append({ s = true })
+vim.o.shortmess = vim.o.shortmess .. "s"
 
 -- proper splits
 vim.o.splitright = true
@@ -95,13 +95,13 @@ vim.o.signcolumn = "yes:1"
 vim.o.statuscolumn = "%C%l%s"
 vim.o.cmdheight = 1
 
-vim.opt.isfname:append({ "@-@" })
+vim.o.isfname = vim.o.isfname .. ",@-@"
 
 vim.o.pumheight = math.floor(vim.o.lines * 0.25 + 0.5)
 vim.o.completeopt = "noselect,menuone,popup,fuzzy"
 
 -- <C-a> and <C-x> don't recognize signed numbers
-vim.opt.nrformats:append({ "unsigned" })
+vim.o.nrformats = vim.o.nrformats .. ",unsigned"
 
 -- no more ~ on empty buffer space
 vim.o.fillchars = "eob: "
@@ -109,7 +109,7 @@ vim.o.fillchars = "eob: "
 vim.o.guicursor = "a:block,c-ci-i-r:blinkwait700-blinkoff700-blinkon700"
 vim.o.smoothscroll = true
 
-vim.opt.diffopt:prepend({ "algorithm:patience", "hiddenoff" })
+vim.o.diffopt = "algorithm:patience,hiddenoff," .. vim.o.diffopt
 
 -- terminal scrollback
 vim.o.scrollback = 100000
@@ -124,7 +124,7 @@ vim.o.shell = "/run/current-system/sw/bin/bash"
 
 -- display vs TTY
 vim.o.list = true
-vim.opt_global.listchars = { nbsp = "␣", tab = "│ ", trail = "•" }
+vim.o.listchars = "nbsp:␣,tab:│ ,trail:•"
 if os.getenv("DISPLAY") == nil then
         vim.o.termguicolors = false
 else
