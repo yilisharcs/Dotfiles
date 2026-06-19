@@ -34,10 +34,7 @@ require("mini.operators").make_mappings("exchange", {
 })
 
 vim.keymap.set("n", "gyy", "mzgmmkgcc`zj", { remap = true, desc = "Duplicate and comment" })
-vim.keymap.set("x", "gy", "gmmzgvgc`z", {
-        remap = true,
-        desc = "Duplicate and comment selection",
-})
+vim.keymap.set("x", "gy", "gmmzgvgc`z", { remap = true, desc = "Duplicate and comment selection" })
 
 vim.keymap.set("n", "csgn", "*``<CMD>lua MiniOperators.replace()<CR>g@gn", { desc = "Match word and replace ahead" })
 vim.keymap.set("n", "csgN", "*``<CMD>lua MiniOperators.replace()<CR>g@gN", { desc = "Match word and replace behind" })
