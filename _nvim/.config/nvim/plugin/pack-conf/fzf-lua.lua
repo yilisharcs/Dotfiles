@@ -88,6 +88,18 @@ require("fzf-lua").setup({
 -- stylua: ignore start
 vim.keymap.set(
         "n",
+        "<leader>fa",
+        "<CMD>FzfLua marks<CR>",
+        { desc = "[FZF] Get global marks" }
+)
+vim.keymap.set(
+        "n",
+        "<C-h>",
+        "<CMD>FzfLua args<CR>",
+        { desc = "[FZF] Open arglist" }
+)
+vim.keymap.set(
+        "n",
         "<leader>fi",
         "<CMD>FzfLua files<CR>",
         { desc = "[FZF] List all files" }
@@ -141,18 +153,6 @@ vim.keymap.set(
         "<leader>fK",
         "<CMD>FzfLua keymaps<CR>",
         { desc = "[FZF] List mappings" }
-)
-vim.keymap.set(
-        "n",
-        "<C-;>",
-        "<CMD>FzfLua marks<CR>",
-        { desc = "[FZF] Get global marks" }
-)
-vim.keymap.set(
-        "n",
-        "<C-h>",
-        "<CMD>FzfLua args<CR>",
-        { desc = "[FZF] Open arglist" }
 )
 vim.keymap.set(
         { "n", "x" },
