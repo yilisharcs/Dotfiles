@@ -7,7 +7,7 @@
   inherit (lib) concatStringsSep disabled enabled mkIf optionals;
   nixosConfig = config;
 in {
-  imports = [../fonts.nix];
+  imports = [./fonts.nix];
 
   services.displayManager.sddm = enabled {
     settings.Theme = {
