@@ -32,6 +32,7 @@ require("mini.operators").make_mappings("exchange", {
         line = "cxx",
         selection = "X",
 })
+vim.keymap.set("x", "cl", "c") -- replacement for raw c, clobbered by the above
 
 vim.keymap.set("n", "gyy", "mzgmmkgcc`zj", { remap = true, desc = "Duplicate and comment" })
 vim.keymap.set("x", "gy", "gmmzgvgc`z", { remap = true, desc = "Duplicate and comment selection" })
