@@ -1,10 +1,13 @@
-vim.lsp.enable({
-        "fennel-ls",
-        "luals",
-        "nil-nix",
-        "nuls",
-        "zls",
-})
+local hostname = vim.fn.system("uname -n"):gsub("\n", "")
+if hostname ~= "gato" then
+        vim.lsp.enable({
+                "fennel-ls",
+                "luals",
+                "nil-nix",
+                "nuls",
+                "zls",
+        })
+end
 
 vim.diagnostic.config({
         virtual_text = true,
