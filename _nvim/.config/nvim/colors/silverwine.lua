@@ -167,7 +167,7 @@ if vim.o.background == "dark" then
         -- treesitter
         hi("@markup.link.vimdoc", { fg = colors.Yellow2, bold = true, ctermfg = "yellow" })
         hi("@markup.raw.markdown_inline", { fg = colors.Green1, bg = colors.Gray3 })
-        hi("markdownCodeBlock", { bg = colors.Gray3, ctermbg = "grey" })
+        hi("markdownCodeBlock", { bg = colors.Gray3 })
         --
         hi("@label.vimdoc", { fg = colors.Green2, bold = true, ctermfg = "green" })
         --
