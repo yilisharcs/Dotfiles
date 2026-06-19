@@ -47,8 +47,8 @@ vim.api.nvim_create_autocmd("UIEnter", {
         end,
 })
 
-vim.cmd("aunmenu PopUp.How-to\\ disable\\ mouse")
-vim.cmd("aunmenu PopUp.-2-")
+vim.cmd("silent! aunmenu PopUp.How-to\\ disable\\ mouse")
+vim.cmd("silent! aunmenu PopUp.-2-")
 
 -- long-running undo trees
 vim.o.swapfile = false
