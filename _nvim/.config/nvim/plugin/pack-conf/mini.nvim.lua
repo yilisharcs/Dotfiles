@@ -3,8 +3,6 @@ package.preload["nvim-web-devicons"] = function()
         return package.loaded["nvim-web-devicons"]
 end
 
-vim.cmd.packadd("mini.nvim")
-
 -- mini.align {{{
 require("mini.align").setup({})
 -- }}}
