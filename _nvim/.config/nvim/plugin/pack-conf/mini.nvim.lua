@@ -312,7 +312,7 @@ require("mini.misc").setup_restore_cursor({ center = false })
 require("mini.notify").setup({
         window = {
                 max_width_share = vim.o.columns * 0.27 + 0.5,
-                winblend = 2,
+                winblend = os.getenv("DISPLAY") and 2 or 0,
         },
 })
 _G.MiniNotify = MiniNotify
