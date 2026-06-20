@@ -107,7 +107,7 @@ hi("DiffDelete", { fg = colors.Red1, bg = colors.Gray2, bold = true, ctermfg = "
 
 -- command-line
 hi("ErrorMsg", { fg = colors.Red1, ctermfg = "red" })
-hi("ModeMsg", { fg = colors.Green2, bg = "bg", ctermfg = "green" })
+hi("ModeMsg", { fg = colors.Green2, ctermfg = "green" })
 hi("MsgArea", { fg = colors.Yellow1, bg = "bg", ctermfg = "yellow" })
 hi("ExTUIArea", { link = "MsgArea" })
 
