@@ -54,8 +54,8 @@ in
 
       runHook postInstall # Needed to insert the desktop file
 
-      # NOTE: wherever the game is launched from is the path where the save
-      #       files will live. use home-based dir instead of nix store hash
+      # wherever the game is launched from is the path where the save
+      # files will live. use home-based dir instead of nix store hash
       substituteInPlace $out/bin/${finalAttrs.meta.mainProgram} \
           --replace-warn "@BOOTSTRAP@" \
           'dir="$HOME/Games/${finalAttrs.pname}"; \

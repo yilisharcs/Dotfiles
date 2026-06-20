@@ -17,8 +17,6 @@
       ];
   });
 
-  # NOTE: these $XDG_ vars pollute the runtimepath, which can cause a
-  #       noticeable slowdown. TODO: consider upstreaming this.
   neovim = pkgs.symlinkJoin {
     inherit (neovim-unwrapped) version;
     pname = "neovim";
@@ -30,6 +28,8 @@
         mainProgram = "nvim";
         priority = (neovim-unwrapped.meta.priority or lib.meta.defaultPriority) - 1;
       };
+    # NOTE: these $XDG_ vars pollute the runtimepath, which can cause a noticeable slowdown
+    # TODO: consider upstreaming this
     postBuild = ''
       wrapProgram $out/bin/nvim \
         --run '

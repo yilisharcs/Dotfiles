@@ -129,8 +129,11 @@ require("mini.ai").setup({
                                 "@loop.inner",
                         },
                 }, {}),
+                -- code blocks
                 G = { "```%S*\n?().-()\n?```" },
+                -- em-dashed <FOO BAR>
                 h = { "— ().-() —" },
+                -- tagged
                 ["<"] = { "<().-()>" },
         },
 })

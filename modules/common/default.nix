@@ -17,7 +17,7 @@
           # Successor of GNU Wget, a file and recursive website downloader
           inherit (pkgs.wget2) meta version;
           pname = "wget";
-          # Like hell I will willingly type out wget2
+          # like hell I will willingly type out wget2
           paths = [pkgs.wget2];
           postBuild = ''ln -s $out/bin/wget2 $out/bin/wget'';
         })

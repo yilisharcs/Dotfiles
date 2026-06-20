@@ -55,14 +55,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         pattern = filetypes,
         callback = function()
                 vim.treesitter.start()
-                -- FIXME: treesitter indentation for these filetypes is buggy;
-                --        fallback to built-in.
+                -- FIXME: treesitter indentation for these filetypes is buggy; fallback to built-in
                 if not vim.tbl_contains({
                         "vim",
                 }, vim.bo.filetype) then
                         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                 end
-                -- NOTE: i have custom syntax highlighting for these filetypes
                 if
                         vim.tbl_contains({
                                 "markdown",

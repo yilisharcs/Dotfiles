@@ -3,8 +3,8 @@
     patches =
       (old.patches or [])
       ++ [
-        # NOTE: nil has support for pipe operators, but does not pass them
-        #       in the invocation flags, which seemed to be hard-coded
+        # nil has support for pipe operators, but does not pass them
+        # in the invocation flags, which seemed to be hard-coded
         ./patch/nil-pipe-operators.patch
       ];
   });

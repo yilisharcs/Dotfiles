@@ -18,7 +18,7 @@ return {
                         return
                 end
 
-                -- NOTE: rootPath can return vim.NIL userdata, which is truthy, which is not fun
+                -- rootPath can return vim.NIL userdata, which is truthy, which is not fun
                 local root = params.workspaceFolders[1].name
                 for _, file in ipairs(root_markers[1]) do
                         if vim.uv.fs_stat(root .. "/" .. file) then

@@ -27,7 +27,7 @@ in
     version = "750";
 
     src = fetchzip {
-      # NOTE: MainMemory doesn't tag releases...
+      # MainMemory doesn't tag releases...
       url = "https://mm.reimuhakurei.net/SonLVL/SonLVL.zip";
       stripRoot = false;
       hash = "sha256-tztebnnJ2u1qDH6/oAkDo//v9WtswrsS5Bf0eHdb0kw=";

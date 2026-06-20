@@ -52,8 +52,8 @@ in {
       programs.okular = enabled {}; # TODO: configure?
 
       programs.plasma = enabled {
-        immutableByDefault = false; # NOTE: breaks desktop icons for some reason
-        overrideConfig = false; # NOTE: occasionally breaks
+        immutableByDefault = false; # breaks desktop icons for some reason
+        overrideConfig = false; # occasionally breaks
         configFile = {
           kded_device_automounterrc."Devices/\\/org\\/freedesktop\\/UDisks2\\/block_devices\\/sdb1" = {
             EverMounted = true;

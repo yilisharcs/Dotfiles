@@ -22,6 +22,7 @@ in {
   home-manager.sharedModules = [
     {
       # NOTE: don't forget to run `opencode auth login`
+      # TODO: auth with agenix
       programs.opencode = enabled {
         package = opencode-patched;
         extraPackages = [
