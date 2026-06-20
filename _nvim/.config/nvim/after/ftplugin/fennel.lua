@@ -18,7 +18,7 @@ vim.bo.iskeyword = vim.o.iskeyword
 
 vim.bo.includeexpr = [[tr(substitute(v:fname, '^:', '', ''), '.', '/')]]
 
-local function split_hook(positions)
+local function kv_split(positions)
         if #positions < 3 then
                 return positions
         end
@@ -26,28 +26,16 @@ local function split_hook(positions)
         local first = positions[1]
         local bracket = vim.api.nvim_buf_get_lines(0, first.line - 1, first.line, false)[1]:sub(first.col, first.col)
 
-        local seq_tbl = bracket == "["
         local kv_tbl = bracket == "{"
-
-        if seq_tbl then
-                return positions
-        elseif kv_tbl then
-                local n = #positions
-                local result = { positions[1] }
-
-                for i = 2, n - 1 do
-                        local prev, curr = positions[i - 1], positions[i]
-                        local text = vim.api
-                                .nvim_buf_get_lines(0, prev.line - 1, prev.line, false)[1]
-                                :sub(prev.col + 1, curr.col - 1)
-                                :match("^%s*(.-)%s*$")
-                        if text ~= "" and text:sub(1, 1) ~= ":" then
-                                table.insert(result, curr)
+        if kv_tbl then
+                local res = { positions[1] }
+                for i = 2, #positions - 1 do
+                        if i % 2 == 1 then
+                                table.insert(res, positions[i])
                         end
                 end
-
-                table.insert(result, positions[n])
-                return result
+                table.insert(res, positions[#positions])
+                return res
         end
 
         return positions
@@ -59,6 +47,7 @@ vim.b.minisplitjoin_config = {
                 separator = "%s+",
         },
         split = {
-                hooks_pre = { split_hook },
+                indent = "lisp",
+                hooks_pre = { kv_split },
         },
 }
