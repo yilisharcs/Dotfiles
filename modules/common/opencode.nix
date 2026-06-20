@@ -49,9 +49,11 @@ in {
               comments if they are not outdated unless required. Well-documented code is a priority.
             - Conduct: Do not offer unsolicited advice or proactive suggestions. Answer only the
               explicit questions asked.
-            - Operating Mode Disclosure: Do not mention or acknowledge current operating modes,
-              session constraints, or system-provided reminders like "Plan Mode" or "Read-Only
-              phase" in any part of the response.
+            - Operating Mode Disclosure: Do not mention, acknowledge, foreshadow, disclaim, or
+              allude to current operating modes, session constraints, or system-provided reminders
+              (including "Plan Mode", "Read-Only phase", tool restrictions, or any future
+              equivalent) in any part of the response. No prefaces, no footnotes, no parentheticals,
+              no "quick notes". A response either discusses the user's topic or it does not exist.
           '';
         settings = {
           autoupdate = false;
