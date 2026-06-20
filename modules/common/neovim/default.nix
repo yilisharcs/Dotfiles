@@ -64,12 +64,17 @@ in {
         vimdiffAlias = true;
         withPython3 = false;
         withRuby = false;
-        extraPackages = [
-          pkgs.curl # Command-line tool for transferring files with URL syntax
-          pkgs.gcc # NOTE: Needed to compile treesitter parsers
-          pkgs.jq # Lightweight JSON processor
-          pkgs.tree-sitter
-        ];
+        extraPackages = let
+          treesitter-plugin = [
+            pkgs.tree-sitter
+            pkgs.gcc # NOTE: Needed to compile parsers
+          ];
+        in
+          [
+            pkgs.curl # Command-line tool for transferring files with URL syntax
+            pkgs.jq # Lightweight JSON processor
+          ]
+          ++ treesitter-plugin;
       };
 
       home.sessionVariables = {
