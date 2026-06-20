@@ -28,6 +28,9 @@ require("fzf-lua").setup({
         fzf_colors = {
                 ["hl"] = { "fg", "Type", "bold" },
                 ["hl+"] = { "fg", "Type", "bold" },
+                ["fg+"] = { "fg", "FzfLuaFzfCursorLine" },
+                ["bg+"] = { "bg", "FzfLuaFzfCursorLine" },
+                ["pointer"] = { "fg", "FzfLuaFzfPointer" },
         },
         command_history = {
                 fzf_colors = {

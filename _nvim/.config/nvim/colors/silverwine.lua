@@ -209,6 +209,8 @@ if vim.o.background == "dark" then
 
         -- fzf-lua {{{
         hi("FzfLuaCustomMarks", { fg = colors.Yellow2, ctermfg = "yellow" })
+        hi("FzfLuaFzfCursorLine", { ctermfg = "yellow", ctermbg = "blue" })
+        hi("FzfLuaFzfPointer", { fg = colors.Red2, ctermfg = "yellow" })
         -- }}}
 
         -- mini.hipatterns {{{
