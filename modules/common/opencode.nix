@@ -232,13 +232,11 @@ in {
             };
             read = {
               "*" = "allow";
-              "~/.gnupg/**" = "deny";
               "~/.ssh/**" = "deny";
               "~/Shared/**" = "deny";
             };
             edit = {
               "*" = "ask";
-              "~/.gnupg/**" = "deny";
               "~/.ssh/**" = "deny";
               "~/Documents/**" = "deny";
               "~/Downloads/**" = "deny";
