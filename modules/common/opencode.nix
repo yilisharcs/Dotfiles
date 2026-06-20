@@ -121,6 +121,7 @@ in {
 
               "cat *" = "allow";
               # block shell redirection
+              "cat > * <<*EOF" = "deny";
               "cat * >*" = "deny";
               "cat * >>*" = "deny";
 
