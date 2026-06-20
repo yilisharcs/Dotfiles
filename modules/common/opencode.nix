@@ -63,7 +63,6 @@ in {
           '';
         settings = {
           autoupdate = false;
-          plugin = ["opencode-gemini-auth@latest"];
           permission = {
             external_directory = {
               "*" = "ask";
