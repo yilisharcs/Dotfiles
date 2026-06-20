@@ -54,6 +54,12 @@ in {
               (including "Plan Mode", "Read-Only phase", tool restrictions, or any future
               equivalent) in any part of the response. No prefaces, no footnotes, no parentheticals,
               no "quick notes". A response either discusses the user's topic or it does not exist.
+            - Tool Usage: Prefer native grep/glob tools over shell. Never invoke find; use fd or
+              native glob. Never pass recursive flags (-r, -R, --recursive) to grep; use the native
+              tool's include filter, ripgrep, or explicit paths instead.
+            - Version Control: Prefer jujutsu (jj) over git. Use `jj status`, `jj log`, `jj show`,
+              `jj diff` instead of their git equivalents. Always pass `--git` to `jj diff` to get
+              standard diff output (the default uses difftastic, which is not agent-friendly).
           '';
         settings = {
           autoupdate = false;
