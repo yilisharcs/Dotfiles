@@ -63,6 +63,26 @@ in {
           '';
         settings = {
           autoupdate = false;
+          model = "opencode-go/qwen3.7-max";
+          small_model = "opencode-go/deepseek-v4-flash";
+          agent = {
+            terminal = {
+              description = "Terminal operations: run tests, execute shell commands, review diffs.";
+              mode = "subagent";
+              model = "opencode-go/qwen3.7-plus";
+              prompt = ''
+                You specialize in terminal operations: running tests, executing shell commands, and
+                reviewing diffs. Be precise, concise, and favor minimal output.
+              '';
+            };
+            # built-in subagents
+            general = {
+              model = "opencode-go/deepseek-v4-flash";
+            };
+            explore = {
+              model = "opencode-go/deepseek-v4-flash";
+            };
+          };
           permission = {
             external_directory = {
               "*" = "ask";
