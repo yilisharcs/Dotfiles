@@ -115,6 +115,10 @@ require("mini.ai").setup({
                         a = "@parameter.outer",
                         i = "@parameter.inner",
                 }, {}),
+                c = require("mini.ai").gen_spec.treesitter({
+                        a = "@call.outer",
+                        i = "@call.inner",
+                }, {}),
                 f = require("mini.ai").gen_spec.treesitter({
                         a = "@function.outer",
                         i = "@function.inner",
