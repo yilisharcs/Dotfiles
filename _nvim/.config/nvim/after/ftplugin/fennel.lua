@@ -18,6 +18,8 @@ vim.bo.iskeyword = vim.o.iskeyword
 
 vim.bo.includeexpr = [[tr(substitute(v:fname, '^:', '', ''), '.', '/')]]
 
+vim.bo.comments = ":;;;;,:;;;,:;;,:;"
+
 local function kv_split(positions)
         if #positions < 3 then
                 return positions
