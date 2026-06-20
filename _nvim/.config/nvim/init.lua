@@ -176,10 +176,10 @@ vim.pack.add({
         {
                 src = "https://github.com/nvimtools/hydra.nvim",
         },
-        -- mini.nvim
-        {
-                src = "https://github.com/echasnovski/mini.nvim",
-        },
+        -- [dev] mini.nvim
+        -- {
+        --         src = "https://github.com/echasnovski/mini.nvim",
+        -- },
         {
                 src = "https://github.com/nvim-treesitter/nvim-treesitter",
                 version = "main",
