@@ -159,10 +159,6 @@ vim.pack.add({
         {
                 src = "https://github.com/sindrets/diffview.nvim",
         },
-        -- direnv.vim
-        {
-                src = "https://github.com/direnv/direnv.vim",
-        },
         -- fzf-lua
         {
                 src = "https://github.com/ibhagwan/fzf-lua",
@@ -200,10 +196,6 @@ vim.pack.add({
         {
                 src = "https://github.com/yilisharcs/vim-repeat",
                 version = "maparg",
-        },
-        -- suda.vim
-        {
-                src = "https://github.com/lambdalisue/suda.vim",
         },
         -- nvim-treesitter
         {

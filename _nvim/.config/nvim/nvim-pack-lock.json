@@ -8,10 +8,6 @@
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"
     },
-    "direnv.vim": {
-      "rev": "ab2a7e08dd630060cd81d7946739ac7442a4f269",
-      "src": "https://github.com/direnv/direnv.vim"
-    },
     "fzf-lua": {
       "rev": "fea9eedc6894c44d44cbb772a5cd11c93b82d7a1",
       "src": "https://github.com/ibhagwan/fzf-lua"
@@ -45,10 +41,6 @@
     "rainbow-delimiters.nvim": {
       "rev": "a798325b7f36acc62741d1029930a7b96d4dd4bf",
       "src": "https://github.com/HiPhish/rainbow-delimiters.nvim"
-    },
-    "suda.vim": {
-      "rev": "c492741b4679b3cdd4d9e34138209784e061d916",
-      "src": "https://github.com/lambdalisue/suda.vim"
     },
     "toggleterm.nvim": {
       "rev": "9a88eae817ef395952e08650b3283726786fb5fb",
