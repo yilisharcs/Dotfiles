@@ -21,6 +21,14 @@ vim.bo.includeexpr = [[tr(substitute(v:fname, '^:', '', ''), '.', '/')]]
 vim.bo.commentstring = ";; %s"
 vim.bo.comments = ":;;;;,:;;;,:;;,:;"
 
+-- mini.pairs {{{
+-- don't smart jump over closing brackets
+vim.keymap.set("i", ")", ")", { buffer = true })
+vim.keymap.set("i", "]", "]", { buffer = true })
+vim.keymap.set("i", "}", "}", { buffer = true })
+-- }}}
+
+-- mini.splitjoin {{{
 -- cache the position of the opening bracket.
 -- `lisp_indent` needs what `lisp_split` strips out.
 local bracket_col_cache
@@ -116,3 +124,4 @@ vim.b.minisplitjoin_config = {
                 hooks_post = { lisp_pad },
         },
 }
+-- }}}
