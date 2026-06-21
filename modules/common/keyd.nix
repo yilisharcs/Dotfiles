@@ -13,6 +13,7 @@ in {
       "main" = {
         "`" = "~";
         "102nd" = "layer(shift)";
+        "ro" = "layer(shift)";
         capslock = "layer(control)";
       };
       "shift:S" = {
