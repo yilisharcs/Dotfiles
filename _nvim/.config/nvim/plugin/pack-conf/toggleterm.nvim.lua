@@ -19,19 +19,12 @@ vim.keymap.set("n", "<C-Space>g", "<CMD>ToggleTerm direction=vertical<CR>", { de
 
 local Terminal = require("toggleterm.terminal").Terminal
 
-local jjui = Terminal:new({
-        cmd = "jjui",
-        direction = "tab",
-        display_name = "JJUI",
-        count = 2,
-})
--- stylua: ignore start
-vim.keymap.set(
-        "n",
-        "<leader>i",
-        function()
-                jjui:toggle()
-        end,
-        { desc = "Toggleterm Jujutsu UI" }
-)
--- stylua: ignore end
+vim.keymap.set("n", "<leader>i", function()
+        Terminal:new({
+                cmd = "jjui",
+                direction = "tab",
+                display_name = "JJUI",
+                count = 2,
+                cwd = vim.fn.getcwd(),
+        }):open()
+end, { desc = "Toggleterm Jujutsu UI" })
