@@ -18,7 +18,7 @@
       owner = "yilisharcs";
       repo = "fnlfmt";
       rev = "dev";
-      sha256 = "sha256-GbPmo5OOKVXNfAAqO5tyeUPFhdHEvKrX7QKZ45kR7Ck=";
+      sha256 = "sha256-bcOmfRuRnrUwNSh8NnDGDw9e09f1fVIJNim82tb9gdM=";
     };
   });
 in {
