@@ -59,7 +59,7 @@ in {
         '';
         settings = {
           autoupdate = false;
-          model = "opencode-go/deepseek-v4-flash";
+          model = "opencode-go/mimo-v2.5";
           small_model = "opencode-go/deepseek-v4-flash";
           agent = {
             # built-in subagents
