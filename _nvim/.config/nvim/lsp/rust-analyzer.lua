@@ -8,7 +8,7 @@ return {
         settings = {
                 ["rust-analyzer"] = {
                         checkOnSave = false,
-                        cargo = { allFeatures = true },
+                        cargo = { features = "all" },
                         check = {
                                 command = "clippy",
                                 ignore = {
