@@ -1,9 +1,46 @@
+local efm = {}
+
+-- rust {{{
+efm.rust = table.concat({
+        "%-G",
+        "%-Gerror: aborting %.%#",
+        "%-Gerror: Could not compile %.%#",
+        "%Eerror: %m",
+        "%Eerror[E%n]: %m",
+        "%Wwarning: %m",
+        "%Inote: %m",
+        "%C %#--> %f:%l:%c",
+        "%E  left:%m",
+        "%C right:%m %f:%l:%c",
+        "%Z",
+        "%f:%l:%c: %t%*[^:]: %m",
+        "%f:%l:%c: %*\\d:%*\\d %t%*[^:]: %m",
+        "%-G%f:%l %s",
+        "%-G%*[ ]^",
+        "%-G%*[ ]^%*[~]",
+        "%-G%*[ ]...",
+        -- "%-G%\\s%#Downloading%.%#",
+        -- "%-G%\\s%#Checking%.%#",
+        -- "%-G%\\s%#Compiling%.%#",
+        -- "%-G%\\s%#Finished%.%#",
+        "%-G%\\s%#error: Could not compile %.%#",
+        "%-G%\\s%#To learn more\\",
+        "%.%#",
+        "%-G%\\s%#For more information about this error\\",
+        "%.%#",
+        "%-Gnote: Run with `RUST_BACKTRACE=%.%#",
+        "%.%#panicked at \\'%m\\'\\",
+        "%f:%l:%c",
+}, ",")
+-- }}}
+
 vim.g.cme = {
         shell = "nu",
         shell_flags = { "-m", "psql" },
         efm_rules = {
                 ["buffer"] = { "just" },
-                [vim.o.grepformat] = { "task" },
+                [efm.rust] = { "cargo", "just" },
+                [vim.o.grepformat] = { "task", "./lua/tafsk/init.lua" },
         },
         modifiers = {
                 rg = "--vimgrep",

@@ -5,6 +5,7 @@ if hostname ~= "gato" then
                 "luals",
                 "nil-nix",
                 "nuls",
+                -- "rust-analyzer",
                 "zls",
         })
 end
