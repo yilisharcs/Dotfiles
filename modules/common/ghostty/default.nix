@@ -76,6 +76,7 @@ in {
           palette-generate = true;
           palette-harmonious = false;
 
+          shell-integration-features = "no-cursor";
           font-family = "IosevkaTermSlab Nerd Font";
           font-size =
             if config.networking.hostName == "gato"
