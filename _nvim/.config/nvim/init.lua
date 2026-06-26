@@ -129,6 +129,9 @@ if os.getenv("DISPLAY") == nil then
         vim.o.termguicolors = false
 else
         vim.o.termguicolors = true
+
+        vim.o.title = true
+        vim.o.titlestring = "%t%( [%M]%) (%{expand('%:p:~:h')}) - Nvim"
 end
 
 vim.o.background = "dark"
