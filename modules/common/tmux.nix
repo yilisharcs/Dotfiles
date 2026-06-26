@@ -5,7 +5,7 @@
 }: let
   inherit (lib) enabled getExe;
 
-  tmo =
+  tmug =
     pkgs.writeScriptBin "tmug"
     /*
     nu
@@ -20,7 +20,7 @@
 in {
   home-manager.sharedModules = [
     {
-      home.packages = [tmo];
+      home.packages = [tmug];
 
       # Terminal multiplexer
       programs.tmux = enabled {
