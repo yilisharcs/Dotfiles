@@ -59,6 +59,30 @@ local function hi(name, val)
         vim.api.nvim_set_hl(0, name, val)
 end
 
+local terminal_ansi_colors = {
+        colors.Ink4,
+        colors.Red2,
+        colors.Green2,
+        colors.Yellow2,
+        colors.Blue1,
+        colors.Magenta2,
+        colors.Cyan2,
+        colors.Silver3,
+        --
+        colors.Gray1,
+        colors.Red1,
+        colors.Green2,
+        colors.Yellow1,
+        colors.Silver2,
+        colors.Magenta1,
+        colors.Cyan1,
+        colors.Silver1,
+}
+for k, v in ipairs(terminal_ansi_colors) do
+        local num = "terminal_color_" .. k - 1
+        vim.g[num] = v
+end
+
 -- custom
 hi("QuickFixBg", { bg = colors.Wine3 })
 
