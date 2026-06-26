@@ -132,8 +132,10 @@ hi("gitcommitSummary", { link = "Identifier" })
 hi("@markup.heading.gitcommit", { link = "gitcommitSummary" })
 hi("@markup.link.label.markdown_inline", { link = "Identifier" })
 --
-hi("@character.rust", { link = "String", bold = false })
+hi("@character.rust", { link = "String" })
+hi("@function.macro.rust", { link = "PreProc" })
 hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false, ctermfg = "red" })
+hi("rustAttribute", { link = "Label" })
 --
 hi("@number.hex", { link = "Statement" })
 --
