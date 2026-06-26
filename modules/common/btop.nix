@@ -1,10 +1,30 @@
-{lib, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) enabled;
+
+  btop-wrapped = pkgs.symlinkJoin {
+    inherit (pkgs.btop) version;
+    pname = "btop";
+    paths = [pkgs.btop];
+    nativeBuildInputs = [pkgs.makeWrapper];
+    postBuild = ''
+      wrapProgram $out/bin/btop \
+        --run '
+          if [ -z "$DISPLAY" ]; then
+            set -- --tty "$@"
+          fi
+        '
+    '';
+  };
 in {
   home-manager.sharedModules = [
     {
       # Colorful resource monitor. Easier to read than htop.
       programs.btop = enabled {
+        package = btop-wrapped;
         settings = {
           #? Config options for btop v. 1.4.6
           #* Name of a btop++/bpytop/bashtop formatted ".theme" file, "Default" and "TTY" for builtin themes.
