@@ -57,6 +57,15 @@ in {
             `jj diff` instead of their git equivalents. Always pass `--git` to `jj diff` to get
             standard diff output (the default uses difftastic, which is not agent-friendly).
         '';
+        tui = {
+          attention.enabled = true;
+          diff_style = "stacked";
+          keybinds = {
+            app_exit = "ctrl+d";
+            editor_open = "ctrl+o";
+            terminal_suspend = "none";
+          };
+        };
         settings = {
           autoupdate = false;
           model = "opencode-go/mimo-v2.5";
