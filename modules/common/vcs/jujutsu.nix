@@ -5,20 +5,9 @@
 }: let
   inherit (lib) enabled getExe keys;
 
-  jj-help-k =
-    pkgs.writeScriptBin "jjk"
-    /*
-    nu
-    */
-    ''
-      #!${getExe pkgs.nushell}
-      $env.config.display_errors.termination_signal = false
-
-      def main [keyword: string] {
-          ${getExe pkgs.jujutsu} help -k $keyword
-          | ${getExe pkgs.bat} --plain --language markdown
-      }
-    '';
+  jj-help-k = pkgs.writeShellScriptBin "jjk" ''
+    ${getExe pkgs.jujutsu} help -k "$1" | ${getExe pkgs.bat} --plain --language markdown
+  '';
 in {
   home-manager.sharedModules = [
     {

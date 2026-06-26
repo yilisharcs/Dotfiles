@@ -1,9 +1,12 @@
-#!/usr/bin/env nu
+#!/usr/bin/env bash
 
-# Search git history for commits that change the number of matches for a regex
-def main [
-    regexp: string,    # The regex to search for
-    ...args: string    # Optional arguments
-] {
-    ^git log --all -G $regexp -p ...$args
-}
+# Search git log for regex matches across history
+#
+# Usage: git-grex <regexp> [git-log-options...]
+#
+# Examples:
+#   git-grex "function.*error"
+#   git-grex "Todo:" --since="2024-01-01"
+#   git-grex "import.*react" --author="me"
+
+git log --all -G "$1" -p "${@:2}"
