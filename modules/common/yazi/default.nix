@@ -101,7 +101,7 @@ in {
         keymap.mgr.prepend_keymap = map mkKeymap [
           {
             on = ":";
-            run = "shell '${getExe pkgs.nushell}' --block";
+            run = "shell $SHELL --block";
             desc = "Launch a shell";
           }
 

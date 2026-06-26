@@ -34,7 +34,6 @@ in {
         keyMode = "emacs";
         mouse = true;
         newSession = true; # Automatically spawn a session if trying to attach and none are running.
-        # shell = "${get Exe pkgs.nushell}";
         terminal = "tmux-256color"; # Set $TERM colors
         extraConfig = ''
           set -g display-time 4000    # Increase tmux messages display duration from 750ms to 4s

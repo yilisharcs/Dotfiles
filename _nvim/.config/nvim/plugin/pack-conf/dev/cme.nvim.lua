@@ -34,9 +34,16 @@ efm.rust = table.concat({
 }, ",")
 -- }}}
 
+local shell_flags = {
+        bash = {},
+        nu = { "-m", "psql" },
+}
+
+local shell = "bash"
+
 vim.g.cme = {
-        shell = "nu",
-        shell_flags = { "-m", "psql" },
+        shell = shell,
+        shell_flags = shell_flags[shell],
         efm_rules = {
                 ["buffer"] = { "just" },
                 [efm.rust] = { "cargo", "just" },

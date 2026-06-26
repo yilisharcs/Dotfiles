@@ -39,7 +39,7 @@ in {
           print $\"(ansi yellow_bold)`scratch` is empty.(ansi reset)\"" > ${scratch}
         '';
 
-      # Nushell is an elegant shell for a more civilized age. It doesn't try to be a tab
+      # Nushell is an elegant shell for a more civilized age. It doesn't try to be a tad
       # bit better than bash: it treats pipes as pipelines for structured data, it breaks
       # posix. See <https://www.nushell.sh/book/configuration.html> for configuration
       # options. You can also pretty-print and page through the documentation using:

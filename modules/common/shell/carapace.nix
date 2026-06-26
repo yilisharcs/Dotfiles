@@ -8,6 +8,7 @@ in {
   home-manager.sharedModules = [
     {
       home.packages = [
+        pkgs.bash
         pkgs.fish
         pkgs.zsh
         pkgs.inshellisense
@@ -16,7 +17,7 @@ in {
       # Multishell completion engine
       programs.carapace = enabled;
 
-      programs.nushell.environmentVariables = {
+      home.sessionVariables = {
         CARAPACE_BRIDGES = "zsh,fish,bash,inshellisense";
       };
     }

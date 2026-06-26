@@ -17,7 +17,7 @@ in {
 
       # Multishell prompt engine
       programs.starship = enabled {
-        enableBashIntegration = false;
+        enableNushellIntegration = false;
         settings = recursiveUpdate (mergeAttrsList [(getPreset "nerd-font-symbols")]) {
           add_newline = false;
           command_timeout = 300;
