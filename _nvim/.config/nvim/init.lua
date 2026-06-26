@@ -14,7 +14,10 @@ end
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-if #vim.v.argf ~= 0 and string.match(vim.v.argf[1], "^/tmp/%S+%.nu$") ~= nil then
+if
+        #vim.v.argf ~= 0
+        and (string.match(vim.v.argf[1], "^/tmp/bash%-fc%.%w+$") or string.match(vim.v.argf[1], "^/tmp/%S+%.nu$"))
+then
         vim.g.shell_editor = true
 end
 
