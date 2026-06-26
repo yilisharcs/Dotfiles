@@ -9,6 +9,8 @@ in {
           bash
           */
           ''
+            export SUDO_PROMPT=$'\e[1;31m[sudo]\e[0m password for %u: '
+
             PROMPT_COMMAND="''${PROMPT_COMMAND:+$PROMPT_COMMAND;}history -a"
             HISTTIMEFORMAT="%F %T "
 

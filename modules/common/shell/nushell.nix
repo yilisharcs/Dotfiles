@@ -53,9 +53,6 @@ in {
         shellAliases = {
           fg = "job unfreeze";
         };
-        environmentVariables = {
-          SUDO_PROMPT = mkNushellInline "$'(ansi red_bold)[sudo](ansi reset) password for %u: '";
-        };
         # courtesy of HSVSphere
         extraConfig =
           /*
