@@ -1,14 +1,35 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }: let
   inherit (lib) enabled getExe;
+
+  gh-wrapped = pkgs.writeShellScriptBin "gh" ''
+    export GH_TOKEN=$(< ${config.age.secrets.github-cli.path})
+    exec ${getExe pkgs.gh} "$@"
+  '';
+
+  # gh auth commands don't play nice with GH_TOKEN being set. for days like these,
+  # bypass the wrapper to access the keyring directly, to rotate keys or whatever
+  gh-auth = pkgs.writeShellScriptBin "gha" ''
+    exec ${getExe pkgs.gh} auth "$@"
+  '';
 in {
+  age.secrets.github-cli = {
+    file = ./auth-token.age;
+    owner = "yilisharcs";
+    mode = "0400";
+  };
+
   home-manager.sharedModules = [
     {
+      home.packages = [gh-auth];
+
       # GitHub CLI tool
       programs.gh = enabled {
+        package = gh-wrapped;
         # extensions = [];
         hosts."github.com" = {
           user = "yilisharcs";

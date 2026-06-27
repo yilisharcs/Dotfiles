@@ -24,12 +24,12 @@ in {
           };
           "codeberg.org" = {
             user = "git";
-            identityFile = "~/.ssh/id_ed25519_personal";
+            identityFile = "~/.ssh/id_ed25519";
             identitiesOnly = true;
           };
           "github.com" = {
             user = "git";
-            identityFile = "~/.ssh/id_ed25519_personal";
+            identityFile = "~/.ssh/id_ed25519";
             identitiesOnly = true;
           };
         };
@@ -42,7 +42,7 @@ in {
 
       programs.keychain = enabled {
         enableBashIntegration = true;
-        keys = ["~/.ssh/id_ed25519_personal"];
+        keys = ["~/.ssh/id_ed25519"];
       };
     }
   ];

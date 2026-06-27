@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -18,6 +19,15 @@
     pkgs.cargo-nextest
   ];
 in {
+  age.secrets.crates-io = let
+    owner = "yilisharcs";
+  in {
+    file = ./crates-io-auth-toml.age;
+    inherit owner;
+    mode = "0400";
+    path = "${config.users.users.${owner}.home}/.cargo/credentials.toml";
+  };
+
   home-manager.sharedModules = [
     {
       programs.cargo = enabled {
