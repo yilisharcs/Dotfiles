@@ -18,7 +18,6 @@ in {
           '';
         historyControl = ["ignoreboth"];
         historyIgnore = [
-          "?(n)vi?(m)*"
           "cd"
           "exit"
           "ls"
