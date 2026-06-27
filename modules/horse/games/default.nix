@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) disabled enabled;
+  inherit (lib) enabled;
 in {
   home-manager.sharedModules = [
     ({config, ...}: {
