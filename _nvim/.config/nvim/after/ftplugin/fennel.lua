@@ -22,6 +22,7 @@ vim.bo.commentstring = ";; %s"
 vim.bo.comments = ":;;;;,:;;;,:;;,:;"
 
 -- mini.pairs {{{
+vim.keymap.set("i", "'", "'", { buffer = true })
 -- don't smart jump over closing brackets
 vim.keymap.set("i", ")", ")", { buffer = true })
 vim.keymap.set("i", "]", "]", { buffer = true })
