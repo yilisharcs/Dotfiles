@@ -153,7 +153,21 @@ in {
               "grep -rnw *" = "deny";
 
               "gh *" = "ask";
+              "gh gist list *" = "allow";
+              "gh gist view *" = "allow";
+              "gh issue list *" = "allow";
               "gh issue view *" = "allow";
+              "gh pr diff *" = "allow";
+              "gh pr list *" = "allow";
+              "gh pr view *" = "allow";
+              "gh repo view *" = "allow";
+              "gh run list *" = "allow";
+              "gh run view *" = "allow";
+              "gh search code *" = "allow";
+              "gh search commits *" = "allow";
+              "gh search issues *" = "allow";
+              "gh search prs *" = "allow";
+              "gh search repos *" = "allow";
 
               "git *" = "ask";
               "git add *" = "deny";
