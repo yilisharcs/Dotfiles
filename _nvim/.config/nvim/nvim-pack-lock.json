@@ -47,9 +47,8 @@
       "src": "https://github.com/akinsho/toggleterm.nvim"
     },
     "vim-repeat": {
-      "rev": "711fe37dd34dd53d22742044817e180740868e20",
-      "src": "https://github.com/yilisharcs/vim-repeat",
-      "version": "'maparg'"
+      "rev": "65846025c15494983dafe5e3b46c8f88ab2e9635",
+      "src": "https://github.com/tpope/vim-repeat"
     },
     "vim-sneak": {
       "rev": "feea86adcfbf8e6b5e71fdd5f4f5736fd8819fdb",

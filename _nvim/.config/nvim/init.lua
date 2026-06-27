@@ -197,8 +197,7 @@ vim.pack.add({
                 src = "https://github.com/justinmk/vim-sneak",
         },
         {
-                src = "https://github.com/yilisharcs/vim-repeat",
-                version = "maparg",
+                src = "https://github.com/tpope/vim-repeat",
         },
         -- nvim-treesitter
         {
