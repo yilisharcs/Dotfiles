@@ -1,9 +1,16 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib) enabled;
+in {
+  # Namespace-based sandboxing tool for Linux
+  programs.firejail = enabled;
+
   home-manager.sharedModules = [
     {
       home.packages = [
-        ## TODO: configuration.nix:programs.firejail
-        # pkgs.firejail                   # Namespace-based sandboxing tool for Linux
         pkgs.winetricks # Easy way to work around problems in Wine
         pkgs.wineWow64Packages.stable # Support for both 32-bit and 64-bit Windows applications
       ];
@@ -12,7 +19,7 @@
         wine = [
           {
             desc = "Execute with Wine";
-            run = ''wine "$@"'';
+            run = ''firejail wine "$@"'';
             orphan = true;
           }
         ];
