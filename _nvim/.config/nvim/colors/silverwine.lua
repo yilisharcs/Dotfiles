@@ -87,8 +87,8 @@ hi("QuickFixBg", { bg = colors.Wine3 })
 -- general
 hi("Normal", { fg = colors.Silver1, bg = colors.Ink2, ctermfg = "white" })
 hi("NormalNC", { bg = colors.Ink3 })
-hi("StatusLine", { fg = "fg", bg = colors.Gray2, bold = true, ctermfg = "black", ctermbg = "grey" })
-hi("StatusLineNC", { fg = "fg", bg = colors.Wine2, bold = true })
+hi("StatusLine", { fg = "fg", bg = colors.Gray2, bold = true, ctermfg = "white", ctermbg = "NONE" })
+hi("StatusLineNC", { fg = "fg", bg = colors.Wine2, bold = true, ctermfg = "grey" })
 hi("TabLineSel", { fg = colors.Yellow1, bg = colors.Ink1, bold = true, ctermfg = "yellow", ctermbg = "yellow" })
 hi("Title", { fg = "NONE", bold = true })
 
