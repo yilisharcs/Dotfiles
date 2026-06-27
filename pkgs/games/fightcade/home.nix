@@ -9,7 +9,7 @@
 
   cfg = config.programs.fightcade;
 
-  fightcadePackage = pkgs.fightcade.override {
+  fightcadePackage = cfg.package.override {
     inherit (cfg) dataDir;
     plugins = unique (
       cfg.plugins
@@ -20,6 +20,12 @@
 in {
   options.programs.fightcade = {
     enable = mkEnableOption "Fightcade";
+
+    package = mkOption {
+      type = lib.types.package;
+      default = pkgs.fightcade;
+      description = "The fightcade package to use.";
+    };
 
     dataDir = mkOption {
       type = lib.types.str;

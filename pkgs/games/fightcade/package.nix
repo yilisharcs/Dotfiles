@@ -44,10 +44,12 @@
   libGL,
   wineWow64Packages,
   # error dialog boxes
-  zenity, # TODO: check why it says "install wine32bit" twice
+  zenity,
   # plugins
   plugins ? [],
   dataDir ? "~/.local/share/Fightcade",
+  # firejail
+  firejailProfile ? null,
 }: let
   fhsEnv = buildFHSEnv {
     name = "fightcade-fhs";
@@ -181,8 +183,26 @@ in
         plugins}
 
       mkdir -p $out/bin
-      makeWrapper ${fhsEnv}/bin/fightcade-fhs $out/bin/${finalAttrs.pname} \
-          --add-flags "-c 'exec \"${dataDir}/Fightcade2.sh\" \"\$@\"' _"
+
+      # --run adds a second line, --add-flags appends to the exec line.
+      # heredocs gives a single-line wrapper. i still hate heredocs tho
+      ${
+        if firejailProfile != null
+        then ''
+          cat > $out/bin/${finalAttrs.pname} <<EOF
+          #!${stdenv.shell}
+          exec /run/wrappers/bin/firejail \
+              --profile=${firejailProfile} \
+              -- ${fhsEnv}/bin/fightcade-fhs \
+              -c 'exec "${dataDir}/Fightcade2.sh" "\$@"' _
+          EOF
+          chmod +x $out/bin/${finalAttrs.pname}
+        ''
+        else ''
+          makeWrapper ${fhsEnv}/bin/fightcade-fhs $out/bin/${finalAttrs.pname} \
+              --add-flags "-c 'exec \"${dataDir}/Fightcade2.sh\" \"\$@\"' _"
+        ''
+      }
 
       makeWrapper ${fhsEnv}/bin/fightcade-fhs $out/bin/fcade-quark \
           --add-flags "-c 'exec \"${dataDir}/emulator/fcade.sh\" \"\$@\"' _"
