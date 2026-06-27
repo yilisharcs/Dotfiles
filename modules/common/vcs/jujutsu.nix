@@ -55,7 +55,7 @@ in {
           signing = {
             behavior = "own";
             backend = "ssh";
-            key = keys.sshKey.id;
+            key = keys.ssh.id;
             sign-on-push = true;
           };
           # shamelessly taken from HSVSphere

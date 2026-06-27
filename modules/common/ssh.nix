@@ -40,7 +40,10 @@ in {
         SSH_ASKPASS_REQUIRE = "prefer";
       };
 
-      services.ssh-agent = enabled;
+      programs.keychain = enabled {
+        enableBashIntegration = true;
+        keys = ["~/.ssh/id_ed25519_personal"];
+      };
     }
   ];
 }

@@ -26,7 +26,7 @@ in {
       programs.difftastic.git = enabled;
 
       home.file.".ssh/allowed_signers".text = ''
-        yilisharcs@gmail.com namespaces="git" ${keys.sshKey.pub}
+        yilisharcs@gmail.com namespaces="git" ${keys.ssh.pub}
       '';
 
       # Distributed version control system
@@ -41,7 +41,7 @@ in {
           user = {
             name = "yilisharcs";
             email = "yilisharcs@gmail.com";
-            signingKey = keys.sshKey.id;
+            signingKey = keys.ssh.id;
           };
           init.defaultBranch = "main";
           gpg = {

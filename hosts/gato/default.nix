@@ -4,7 +4,6 @@ lib.nixosSystem' {
 
   module = {
     config,
-    keys,
     lib,
     pkgs,
     ...
