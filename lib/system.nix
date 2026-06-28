@@ -1,6 +1,5 @@
 inputs: self: super: let
   inherit (self) attrValues filter getAttrFromPath hasAttrByPath collectNix;
-  inherit (inputs) home-manager;
 
   commonModules = collectNix ../modules/common;
   horseModules = collectNix ../modules/horse;
@@ -44,7 +43,6 @@ in {
         [
           module
           overlayModule
-          home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
