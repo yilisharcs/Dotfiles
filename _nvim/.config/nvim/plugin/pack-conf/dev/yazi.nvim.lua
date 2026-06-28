@@ -25,22 +25,6 @@ require("yazi").setup({
         },
 })
 
--- stylua: ignore start
-vim.keymap.set(
-        "n",
-        "-",
-        "<CMD>Yazi<CR>",
-        { desc = "Open yazi at the current file" }
-)
-vim.keymap.set(
-        "n",
-        "<leader>-",
-        "<CMD>Yazi cwd<CR>",
-        { desc = "Open yazi in the working directory" }
-)
-vim.keymap.set(
-        "n",
-        "<leader>_",
-        "<CMD>Yazi toggle<CR>",
-        { desc = "Resume the last yazi session" }
-)
+vim.keymap.set("n", "-", "<CMD>Yazi<CR>", { desc = "Open yazi at the current file" })
+vim.keymap.set("n", "<leader>-", "<CMD>Yazi cwd<CR>", { desc = "Open yazi in the working directory" })
+vim.keymap.set("n", "<leader>_", "<CMD>Yazi toggle<CR>", { desc = "Resume the last yazi session" })

@@ -35,7 +35,7 @@ in {
           ## If blank, HTTP traffic will be handled by net/http.DefaultTransport.
           # http_unix_socket = "";
           ## What web browser gh should use when opening URLs. If blank, will
-          ##refer to environment.
+          ## refer to environment.
           # browser = "";
         };
       };

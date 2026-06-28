@@ -176,28 +176,13 @@ vim.pack.add({
                 src = "https://github.com/nvimtools/hydra.nvim",
         },
         -- mini.nvim
+        --      nvim-treesitter/nvim-treesitter
         {
                 src = "https://github.com/nvim-mini/mini.nvim",
         },
         {
-                src = "https://github.com/nvim-treesitter/nvim-treesitter",
-                version = "main",
-                data = { build = "TSUpdate" },
-        },
-        {
                 src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
                 version = "main",
-        },
-        -- toggleterm.nvim
-        {
-                src = "https://github.com/akinsho/toggleterm.nvim",
-        },
-        -- vim-sneak
-        {
-                src = "https://github.com/justinmk/vim-sneak",
-        },
-        {
-                src = "https://github.com/tpope/vim-repeat",
         },
         -- nvim-treesitter
         {
@@ -211,23 +196,32 @@ vim.pack.add({
         {
                 src = "https://github.com/RRethy/nvim-treesitter-endwise",
         },
+        -- toggleterm.nvim
+        {
+                src = "https://github.com/akinsho/toggleterm.nvim",
+        },
+        -- vim-sneak
+        {
+                src = "https://github.com/justinmk/vim-sneak",
+        },
+        {
+                src = "https://github.com/tpope/vim-repeat",
+        },
         -- vim-symlink
         {
                 src = "https://github.com/aymericbeaumet/vim-symlink",
         },
+        -- which-key.nvim (lazy: false)
+        {
+                src = "https://github.com/folke/which-key.nvim",
+        },
         -- [dev] yazi.nvim
+        --      ibhagwan/fzf-lua
         -- {
         --         src = "https://github.com/mikavilpas/yazi.nvim",
         -- },
         {
                 src = "https://github.com/nvim-lua/plenary.nvim",
-        },
-        {
-                src = "https://github.com/ibhagwan/fzf-lua",
-        },
-        -- which-key.nvim (lazy: false)
-        {
-                src = "https://github.com/folke/which-key.nvim",
         },
 }, { load = true })
 
