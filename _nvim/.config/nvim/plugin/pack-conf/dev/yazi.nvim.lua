@@ -6,7 +6,6 @@ vim.g.loaded_netrwPlugin = 1
 require("yazi").setup({
         open_for_directories = false,
         open_multiple_tabs = true,
-        log_level = vim.log.levels.WARN,
         yazi_floating_window_border = "none",
         floating_window_scaling_factor = {
                 height = 0.99,
