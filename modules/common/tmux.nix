@@ -5,18 +5,9 @@
 }: let
   inherit (lib) enabled getExe;
 
-  tmug =
-    pkgs.writeScriptBin "tmug"
-    /*
-    nu
-    */
-    ''
-      #!${getExe pkgs.nushell}
-
-      def main [session: string] {
-          tmux new -A -s $session 'opencode'
-      }
-    '';
+  tmug = pkgs.writeShellScriptBin "tmug" ''
+    tmux new -A -s "$1" 'opencode'
+  '';
 in {
   home-manager.sharedModules = [
     {
