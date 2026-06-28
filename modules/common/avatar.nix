@@ -1,12 +1,13 @@
 # https://github.com/thomX75/nixos-modules/blob/main/SDDM/sddm-avatar.nix
 # XnViewMP appimage module
 # https://github.com/thomX75/nixos-modules
-{
+{pkgs, ...}: {
   # Define systemd service to run on boot
   systemd.services."sddm-avatar" = {
     description = "Service to copy or update users Avatars at startup.";
     wantedBy = ["multi-user.target"];
     before = ["sddm.service"];
+    path = [pkgs.diffutils];
     script = ''
       for user in /home/*; do
           username=$(basename "$user")
