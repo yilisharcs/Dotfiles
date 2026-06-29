@@ -76,11 +76,11 @@ in {
           ]
           ++ treesitter-plugin;
       };
-
-      home.sessionVariables = {
-        SUDO_EDITOR = "nvim";
-        EDITOR = "nvim";
-      };
     }
   ];
+
+  environment.sessionVariables = {
+    SUDO_EDITOR = "nvim";
+    EDITOR = "nvim";
+  };
 }
