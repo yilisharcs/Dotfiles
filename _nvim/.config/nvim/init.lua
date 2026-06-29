@@ -196,6 +196,11 @@ vim.pack.add({
         {
                 src = "https://github.com/RRethy/nvim-treesitter-endwise",
         },
+        -- octo.nvim
+        --      ibhagwan/fzf-lua
+        {
+                src = "https://github.com/pwntester/octo.nvim",
+        },
         -- toggleterm.nvim
         {
                 src = "https://github.com/akinsho/toggleterm.nvim",
