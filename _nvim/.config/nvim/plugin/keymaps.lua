@@ -126,8 +126,8 @@ vim.keymap.set("n", "<C-Space><C-^>", "<CMD>wincmd g<TAB><CR>")
 -- C-^ registers as <TAB> for reasons unknown
 vim.keymap.set("t", "<C-Space><C-6>", "<CMD>wincmd g<TAB><CR>")
 vim.keymap.set("t", "<C-Space><C-^>", "<CMD>wincmd g<TAB><CR>")
-vim.keymap.set("n", "<C-Space><LEFT>", "<CMD>-tabmove<CR>")
-vim.keymap.set("n", "<C-Space><RIGHT>", "<CMD>+tabmove<CR>")
+vim.keymap.set("n", "<C-Space>-", "<CMD>-tabmove<CR>")
+vim.keymap.set("n", "<C-Space>=", "<CMD>+tabmove<CR>")
 vim.keymap.set({ "n", "t" }, "<C-Space>t", "<CMD>wincmd T<CR>", { desc = "Open buffer in new tab" })
 
 vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-Space>c", "<CMD>tabnew | term<CR>")
