@@ -81,6 +81,8 @@ in {
           aliases = {
             a = ["abandon"];
 
+            ab = ["absorb"];
+
             c = ["commit"];
             ci = ["commit" "--interactive"];
 
