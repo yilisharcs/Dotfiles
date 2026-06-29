@@ -1,9 +1,10 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }: let
-  inherit (lib) enabled filter;
+  inherit (lib) enabled filter getExe;
 
   # SIGILL on Ivy Bridge due to standard Bun targeting x86-64-v3; force bun-baseline binary instead
   bun-baseline = pkgs.bun.overrideAttrs (old: {
@@ -18,13 +19,22 @@
       [bun-baseline]
       ++ (filter (p: (p.pname or "") != "bun") (old.nativeBuildInputs or []));
   });
+
+  opencode-wrapped = pkgs.writeShellScriptBin "opencode" ''
+    export OPENCODE_AUTH_CONTENT=$(< ${config.age.secrets.opencode-auth-json.path})
+    exec ${getExe opencode-patched} "$@"
+  '';
 in {
+  age.secrets.opencode-auth-json = {
+    file = ./auth-json.age;
+    owner = "yilisharcs";
+    mode = "0400";
+  };
+
   home-manager.sharedModules = [
     {
-      # NOTE: don't forget to run `opencode auth login`
-      # TODO: auth with agenix
       programs.opencode = enabled {
-        package = opencode-patched;
+        package = opencode-wrapped;
         extraPackages = [
           pkgs.jq # Lightweight JSON processor
         ];
@@ -96,9 +106,6 @@ in {
               "*<<-*" = "deny";
               "*<<<*" = "deny";
 
-              "file *" = "allow";
-              "which *" = "allow";
-
               "awk *" = "ask";
               "cp *" = "ask";
               "mv *" = "ask";
@@ -107,6 +114,7 @@ in {
 
               "df*" = "allow"; # report file system space usage
               "du*" = "allow"; # estimate file space usage
+              "file *" = "allow";
               "head *" = "allow";
               "jq *" = "allow"; # CLI JSON processor
               "ls*" = "allow";
@@ -117,6 +125,7 @@ in {
               "sort *" = "allow";
               "tail *" = "allow";
               "uniq *" = "allow";
+              "which *" = "allow";
               "xxd *" = "allow"; # hex and binary dump utility
 
               "cat *" = "allow";
