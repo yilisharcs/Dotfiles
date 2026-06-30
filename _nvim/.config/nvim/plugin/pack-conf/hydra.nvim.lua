@@ -26,6 +26,6 @@ hydra({
                 { "L", "<C-w>L" },
                 { "J", "<C-w>J" },
                 { "K", "<C-w>K" },
-                { "c", "<C-w>c" },
+                { "c", "<CMD>tabclose<CR>" },
         },
 })

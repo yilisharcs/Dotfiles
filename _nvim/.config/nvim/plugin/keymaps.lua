@@ -38,7 +38,11 @@ vim.keymap.set({ "n", "x" }, "x", '"_x', { desc = "Delete without overwriting th
 vim.keymap.set("n", "C", '"_C', { desc = "Delete without overwriting the clipboard register" })
 vim.keymap.set("n", "U", "<C-r>", { desc = "Intuitive redo" })
 vim.keymap.set("n", "gf", "gF", { desc = "Go to file under cursor" })
-vim.keymap.set("n", "<C-w>t", "<CMD>tab split<CR>", { desc = "Open buffer in new tab" })
+
+vim.keymap.set("n", "<C-w>t", "<C-w>T", { desc = "Move buffer to new tab" })
+vim.keymap.set("n", "<C-w>c", "<CMD>tabclose<CR>", { desc = "Close current tab" })
+vim.keymap.set("n", "g-", "<CMD>-tabmove<CR>", { desc = "Move tab left" })
+vim.keymap.set("n", "g+", "<CMD>+tabmove<CR>", { desc = "Move tab right" })
 
 vim.keymap.set({ "n", "x" }, "'", "`", { desc = "Jump to mark $@" })
 vim.keymap.set("n", "cgn", '*``"_cgn', { desc = "Match word and change ahead" })
@@ -104,33 +108,14 @@ vim.keymap.set(
 vim.keymap.set({ "n", "x" }, "<C-b>", "(&wrap ? '<C-b>' : '<C-b>zz')", { expr = true, desc = "Center full-scroll up" })
 vim.keymap.set({ "n", "x" }, "<F8>", "<CMD>setlocal wrap! wrap?<CR>", { desc = "Toggle wrap" })
 
-vim.keymap.set({ "n", "i", "c" }, "<C-S-V>", "<C-r>+", { desc = "Paste from clipboard" })
-vim.keymap.set("t", "<C-S-V>", "<C-\\><C-n>pi", { desc = "Paste from clipboard" })
+-- terminal emulators don't register C-4 as C-\
+vim.keymap.set("t", "<C-4><C-n>", [[<C-\><C-n>]])
 vim.keymap.set(
         "t",
-        "<C-4><C-r>",
+        [[<C-\><C-r>]],
         [['<C-\><C-n>"'.nr2char(getchar()).'pi']],
         { expr = true, desc = "Paste from register $@" }
 )
-
--- lots of terminal programs don't register C-4 as C-\
-vim.keymap.set("t", "<C-4><C-n>", [[<C-\><C-n>]])
-
--- tmux-like workflow
-vim.keymap.set("n", "<C-Space><C-^>", "<CMD>wincmd g<TAB><CR>")
--- C-^ registers as <TAB> for reasons unknown
-vim.keymap.set("t", "<C-Space><C-6>", "<CMD>wincmd g<TAB><CR>")
-vim.keymap.set("t", "<C-Space><C-^>", "<CMD>wincmd g<TAB><CR>")
-vim.keymap.set("n", "<C-Space>-", "<CMD>-tabmove<CR>")
-vim.keymap.set("n", "<C-Space>=", "<CMD>+tabmove<CR>")
-vim.keymap.set({ "n", "t" }, "<C-Space>t", "<CMD>wincmd T<CR>", { desc = "Open buffer in new tab" })
-
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-Space>c", "<CMD>tabnew | term<CR>")
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<C-Space>x", "<CMD>tabclose<CR>")
-
-for i = 1, 9 do
-        vim.keymap.set({ "n", "x", "i", "c", "t" }, ("<C-Space>%d"):format(i), ("<CMD>%dtabnext<CR>"):format(i))
-end
 
 vim.keymap.set("n", "<F9>", "<CMD>Inspect<CR>", { desc = "Inspect element under cursor" })
 vim.keymap.set("n", "<leader><F9>", "<CMD>InspectTree<CR>", { desc = "Inspect treesitter AST" })

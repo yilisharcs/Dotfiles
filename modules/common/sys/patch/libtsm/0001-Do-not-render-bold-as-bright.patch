@@ -1,0 +1,26 @@
+From f6118e60e057537b2ac6c4aab86411f5b0ca1447 Mon Sep 17 00:00:00 2001
+From: yilisharcs <yilisharcs@gmail.com>
+Date: Fri, 3 Jul 2026 02:39:28 -0300
+Subject: [PATCH] Do not render bold as bright
+
+---
+ src/tsm/tsm-vte.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/src/tsm/tsm-vte.c b/src/tsm/tsm-vte.c
+index 120ca65..be67d14 100644
+--- a/src/tsm/tsm-vte.c
++++ b/src/tsm/tsm-vte.c
+@@ -447,9 +447,6 @@ static void to_rgb(struct tsm_vte *vte, struct tsm_screen_attr *attr)
+ 
+ 	code = attr->fccode;
+ 	if (code >= 0) {
+-		/* bold causes light colors */
+-		if (attr->bold && code < 8)
+-			code += 8;
+ 		if (code >= TSM_COLOR_NUM)
+ 			code = TSM_COLOR_FOREGROUND;
+ 
+-- 
+2.54.0
+

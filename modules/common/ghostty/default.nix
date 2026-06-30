@@ -44,26 +44,9 @@ in {
         installVimSyntax = true;
 
         themes.silverwine = {
-          background = "#0a001a";
+          background = lib.colors.silverwine.background;
           foreground = "#ffdead";
-          palette = [
-            "0=#030008"
-            "1=#d31834"
-            "2=#00af5f"
-            "3=#ffaf00"
-            "4=#8787ff"
-            "5=#b348ff"
-            "6=#00afff"
-            "7=#afafff"
-            "8=#708090"
-            "9=#ef7184"
-            "10=#00af5f"
-            "11=#ffff5f"
-            "12=#bcc8f0"
-            "13=#c87bff"
-            "14=#8cf8f7"
-            "15=#cdd6f4"
-          ];
+          palette = lib.colors.toGhosttyPalette lib.colors.silverwine;
         };
 
         settings = {

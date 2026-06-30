@@ -267,6 +267,36 @@ in {
           }
         ];
         theme = {
+          # FIXME: these are only necessary because kmscon doesn't use the
+          #        ghostty approach for box and block characters. they are
+          #        not glyphs! they shouldn't be treated the same! on that
+          #        note, TODO: patch kmscon
+          status = {
+            sep_left = {
+              open = "█";
+              close = "█";
+            };
+            sep_right = {
+              open = "█";
+              close = "█";
+            };
+          };
+          tabs = {
+            sep_inner = {
+              open = "█";
+              close = "█";
+            };
+            sep_outer = {
+              open = "█";
+              close = "█";
+            };
+          };
+          indicator = {
+            padding = {
+              open = "█";
+              close = "█";
+            };
+          };
           mgr = {
             count_copied = {
               fg = "black";

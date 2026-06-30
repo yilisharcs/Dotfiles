@@ -122,18 +122,16 @@ vim.o.virtualedit = "block"
 vim.o.winborder = "rounded"
 vim.o.winwidth = 15
 
--- display vs TTY
 vim.o.list = true
 vim.o.listchars = "nbsp:␣,tab:│ ,trail:•"
-if os.getenv("DISPLAY") == nil then
-        vim.o.termguicolors = false
-else
-        vim.o.termguicolors = true
 
+-- display vs TTY
+if os.getenv("DISPLAY") ~= nil then
         vim.o.title = true
         vim.o.titlestring = "%t%( [%M]%) (%{expand('%:p:~:h')}) - Nvim"
 end
 
+vim.o.termguicolors = true
 vim.o.background = "dark"
 vim.cmd.colorscheme("silverwine")
 

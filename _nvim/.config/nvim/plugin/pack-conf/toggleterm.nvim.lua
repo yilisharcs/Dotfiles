@@ -14,7 +14,9 @@ require("toggleterm").setup({
         end,
 })
 
-vim.keymap.set("n", "<C-Space>g", "<CMD>ToggleTerm direction=vertical<CR>", { desc = "Toggleterm plain vertical" })
+vim.keymap.set("n", "<leader>th", "<CMD>ToggleTerm direction=horizontal<CR>", { desc = "Toggleterm horizontal" })
+vim.keymap.set("n", "<leader>tv", "<CMD>ToggleTerm direction=vertical<CR>", { desc = "Toggleterm vertical" })
+vim.keymap.set("n", "<leader>tt", "<CMD>ToggleTerm direction=tab<CR>", { desc = "Toggleterm in tab" })
 
 local Terminal = require("toggleterm.terminal").Terminal
 

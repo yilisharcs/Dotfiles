@@ -62,6 +62,7 @@ in {
     {
       home.shellAliases = {
         reb = "nh os switch ~/Dotfiles --accept-flake-config";
+        reo = "nh os boot ~/Dotfiles --accept-flake-config";
         ret = "nh os test ~/Dotfiles --accept-flake-config";
       };
     }
