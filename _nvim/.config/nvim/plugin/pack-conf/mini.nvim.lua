@@ -5,6 +5,7 @@ end
 
 -- mini.align {{{
 require("mini.align").setup({})
+vim.keymap.set({ "n", "x" }, "g<leader>a", "ga", { desc = "Print ASCII value of character under cursor" })
 -- }}}
 
 -- mini.operators {{{
@@ -82,6 +83,9 @@ require("mini.surround").setup({
         respect_selection_type = true,
         search_method = "cover_or_next",
         custom_surroundings = {
+                ["q"] = { -- quote
+                        output = { left = '"', right = '"' },
+                },
                 ["B"] = { -- bold
                         input = { "%*%*().-()%*%*" },
                         output = { left = "**", right = "**" },
@@ -322,7 +326,7 @@ end, { desc = "Notification history" })
 
 -- mini.sessions {{{
 require("mini.sessions").setup({
-        autoread = true,
+        autoread = false,
         file = "",
         force = {
                 read = false,

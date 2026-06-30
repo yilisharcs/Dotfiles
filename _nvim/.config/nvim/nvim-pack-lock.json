@@ -17,7 +17,7 @@
       "src": "https://github.com/nvimtools/hydra.nvim"
     },
     "mini.nvim": {
-      "rev": "64e77a77173a23daa218ebfa2f7d59456b30326b",
+      "rev": "dc8a9918c3b1bc18a5fcd04d39b6d658074c0886",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-treesitter": {
