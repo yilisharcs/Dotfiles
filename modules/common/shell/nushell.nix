@@ -53,34 +53,6 @@ in {
         shellAliases = {
           fg = "job unfreeze";
         };
-        # courtesy of HSVSphere
-        extraConfig =
-          /*
-          nu
-          */
-          ''
-            def --wrapped * [program: string = "", ...arguments] {
-              if ($program | str contains "#") or ($program | str contains ":") {
-                nix run $program -- ...$arguments
-              } else {
-                nix run ("default#" + $program) -- ...$arguments
-              }
-            }
-
-            def --wrapped > [...programs: string] {
-              nix shell ...($programs | each {
-                if ($in | str contains "#") or ($in | str contains ":") {
-                  $in
-                } else {
-                  "default#" + $in
-                }
-              } | append "default#bashInteractive") --command bash
-            }
-
-            def at [pkg: string] {
-              nix build $"($env.HOME)/Dotfiles#inputs.nixpkgs.legacyPackages.x86_64-linux.($pkg)" --no-link --print-out-paths
-            }
-          '';
         settings = {
           buffer_editor = "nvim";
           display_errors.termination_signal = false;

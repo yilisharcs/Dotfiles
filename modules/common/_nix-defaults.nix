@@ -30,6 +30,32 @@ in {
     pkgs.nh
     pkgs.nix-index
     pkgs.nix-output-monitor
+    # courtesy of HSVSphere. i'm sure he'd scalp me
+    # for rewriting those nushell functions in bash
+    (pkgs.writeShellScriptBin "nr" ''
+      program="''${1:-}"
+      shift 2>/dev/null || true
+      if [[ "$program" == *#* ]] || [[ "$program" == *:* ]]; then
+        nix run "$program" -- "$@"
+      else
+        nix run "default#$program" -- "$@"
+      fi
+    '')
+    (pkgs.writeShellScriptBin "ns" ''
+      packages=()
+      for pkg in "$@"; do
+        if [[ "$pkg" == *#* ]] || [[ "$pkg" == *:* ]]; then
+          packages+=("$pkg")
+        else
+          packages+=("default#$pkg")
+        fi
+      done
+      packages+=("default#bashInteractive")
+      nix shell "''${packages[@]}" --command bash
+    '')
+    (pkgs.writeShellScriptBin "at" ''
+      nix build "$HOME/Dotfiles#inputs.nixpkgs.legacyPackages.x86_64-linux.$1" --no-link --print-out-paths
+    '')
   ];
 
   home-manager.sharedModules = [
