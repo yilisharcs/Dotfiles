@@ -38,6 +38,7 @@
           pkgs.tinycc # Small, fast, and embeddable C compiler and interpreter
           pkgs.tokei # Count your code, quickly
           pkgs.tree # Command to produce a depth indented directory listing
+          pkgs.w3m # Text-mode web browser
           pkgs.wl-clipboard # Command-line copy/paste utilities for Wayland
         ];
 
