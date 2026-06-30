@@ -39,33 +39,56 @@ in {
           pkgs.jq # Lightweight JSON processor
         ];
         context = ''
-          Adhere strictly to the following directives:
+          # Tone and Conduct
 
-          - Tone: Maintain a completely objective tone. Zero sycophancy. Never compliment the
+          - Maintain a completely objective tone. Zero sycophancy. Never compliment the
             user, their code, or their ideas.
-          - Code Generation: Never write code that solves the user's implementation problem.
-            Never offer or ask to write code.
-          - Examples: You may provide isolated code examples that demonstrate specific API
-            mechanisms or directly answer a targeted question, provided they do not solve the
-            user's primary task. Use your judgment to distinguish an instructional example
-            from a problem solution.
-          - Explanations: Focus entirely on mechanical implementation details. Do not use
-            analogies.
-          - Documentation: Do not comment what is self-explanatory unless required. Do not remove
-            comments if they are not outdated unless required. Well-documented code is a priority.
-          - Conduct: Do not offer unsolicited advice or proactive suggestions. Answer only the
+          - Do not offer unsolicited advice or proactive suggestions. Answer only the
             explicit questions asked.
-          - Operating Mode Disclosure: Do not mention, acknowledge, foreshadow, disclaim, or
-            allude to current operating modes, session constraints, or system-provided reminders
-            (including "Plan Mode", "Read-Only phase", tool restrictions, or any future
-            equivalent) in any part of the response. No prefaces, no footnotes, no parentheticals,
-            no "quick notes". A response either discusses the user's topic or it does not exist.
-          - Tool Usage: Prefer native grep/glob tools over shell. Never invoke find; use fd or
-            native glob. Never pass recursive flags (-r, -R, --recursive) to grep; use the native
+          - Focus entirely on mechanical implementation details. Do not use analogies.
+          - Do not comment what is self-explanatory unless required. Do not remove
+            comments if they are not outdated unless required. Well-documented code is a
+            priority.
+          - Do not mention, acknowledge, foreshadow, disclaim, or allude to current
+            operating modes, session constraints, or system-provided reminders (including
+            "Plan Mode", "Read-Only phase", tool restrictions, or any future equivalent)
+            in any part of the response. No prefaces, no footnotes, no parentheticals, no
+            "quick notes". A response either discusses the user's topic or it does not
+            exist.
+
+          # Code Generation
+
+          - Focus on explaining the approach and mechanical details. The user decides
+            when to write or delegate.
+          - You may provide isolated code examples that demonstrate specific API mechanisms
+            or directly answer a targeted question, provided they do not solve the user's
+            primary task. Use your judgment to distinguish an instructional example from a
+            problem solution.
+
+          # Tool Usage
+
+          - Prefer native grep/glob tools over shell. Never invoke find; use fd or native
+            glob.
+          - Never pass recursive flags (-r, -R, --recursive) to grep; use the native
             tool's include filter, ripgrep, or explicit paths instead.
-          - Version Control: Prefer jujutsu (jj) over git. Use `jj status`, `jj log`, `jj show`,
-            `jj diff` instead of their git equivalents. Always pass `--git` to `jj diff` to get
-            standard diff output (the default uses difftastic, which is not agent-friendly).
+
+          # Version Control
+
+          - Prefer jujutsu (jj) over git. Use `jj status`, `jj log`, `jj show`, `jj diff`
+            instead of their git equivalents. Always pass `--git` to `jj diff` to get
+            standard diff output (the default uses difftastic, which is not
+            agent-friendly).
+
+          # Project Discovery
+
+          - For one-off searches, query the github api with an appropriate `gh` command;
+            for deep searches, prefer to clone the repo under /tmp/opencode. If the user
+            intends to write a patch, clone it at ~/Projects/<forge>/<owner>/<repo> and
+            symlink it back to ~/Projects/<forge>/yilisharcs/<repo>. Pre-existing repos
+            may also be found there.
+          - A local clone of the Neovim repo and of miscellaneous plugins can be found at
+            ~/Projects/github.com/neovim/neovim and ~/.local/share/nvim/site/pack/core/opt
+            respectively.
         '';
         tui = {
           attention.enabled = true;
@@ -74,11 +97,16 @@ in {
             app_exit = "ctrl+d";
             editor_open = "ctrl+o";
             terminal_suspend = "none";
+            session_child_cycle = "l,right";
+            session_child_cycle_reverse = "h,left";
+            session_child_first = "<leader>j,<leader>down";
+            session_parent = "k,up";
           };
         };
         settings = {
           autoupdate = false;
           model = "opencode-go/mimo-v2.5";
+          lsp = false;
           small_model = "opencode-go/deepseek-v4-flash";
           agent = {
             # built-in subagents
@@ -122,9 +150,13 @@ in {
               "objdump *" = "allow"; # display information from object files
               "pwd*" = "allow";
               "readelf *" = "allow"; # display information about ELF files
+              "readlink *" = "allow";
               "sort *" = "allow";
+              "strings *" = "allow";
               "tail *" = "allow";
+              "tr *" = "allow";
               "uniq *" = "allow";
+              "wc *" = "allow";
               "which *" = "allow";
               "xxd *" = "allow"; # hex and binary dump utility
 
@@ -162,6 +194,7 @@ in {
               "grep -rnw *" = "deny";
 
               "gh *" = "ask";
+              "gh auth status" = "allow";
               "gh gist list *" = "allow";
               "gh gist view *" = "allow";
               "gh issue list *" = "allow";
@@ -172,11 +205,7 @@ in {
               "gh repo view *" = "allow";
               "gh run list *" = "allow";
               "gh run view *" = "allow";
-              "gh search code *" = "allow";
-              "gh search commits *" = "allow";
-              "gh search issues *" = "allow";
-              "gh search prs *" = "allow";
-              "gh search repos *" = "allow";
+              "gh search *" = "allow";
 
               "git *" = "ask";
               "git add *" = "deny";
@@ -260,7 +289,7 @@ in {
               "jj workspace list*" = "allow";
               "jj workspace root*" = "allow";
 
-              "nix eval*" = "deny";
+              "nix eval*" = "ask";
               "nix-env*" = "deny";
 
               "sed *" = "allow";
@@ -271,15 +300,15 @@ in {
             };
             read = {
               "*" = "allow";
-              "~/.ssh/**" = "deny";
-              "~/Shared/**" = "deny";
+              "~/.ssh/*" = "deny";
+              "~/Shared/*" = "deny";
             };
             edit = {
               "*" = "ask";
-              "~/.ssh/**" = "deny";
-              "~/Documents/**" = "deny";
-              "~/Downloads/**" = "deny";
-              "~/Shared/**" = "deny";
+              "~/.ssh/*" = "deny";
+              "~/Documents/*" = "deny";
+              "~/Downloads/*" = "deny";
+              "~/Shared/*" = "deny";
             };
           };
         };
