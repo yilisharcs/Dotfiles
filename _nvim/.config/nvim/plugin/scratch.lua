@@ -64,6 +64,7 @@ H.setup_eval = function(buf)
         vim.api.nvim_create_autocmd("BufWriteCmd", {
                 buffer = buf,
                 callback = function()
+                        pcall(require("conform").format, { bufnr = buf })
                         H.lua_pager(buf)
                         vim.api.nvim_set_option_value("modified", false, { buf = buf })
                 end,
