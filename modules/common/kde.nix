@@ -11,14 +11,14 @@
 in {
   imports = [./fonts.nix];
 
-  services.displayManager.sddm = enabled {
+  services.displayManager.sddm = mkIf (hostRole == "horse") (enabled {
     settings.Theme = {
       Current = "breeze";
       CursorSize = 42;
       CursorTheme = "Breeze_Light";
       Font = "Iosevka Nerd Font,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
     };
-  };
+  });
   services.desktopManager.plasma6 = enabled;
 
   environment.systemPackages = [
