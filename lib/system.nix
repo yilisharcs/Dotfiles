@@ -33,11 +33,11 @@ in {
   inherit horseModules;
 
   nixosSystem' = {
-    isHorse ? false,
+    hostRole,
     module,
   }:
     super.nixosSystem {
-      inherit specialArgs;
+      specialArgs = specialArgs // {inherit hostRole;};
 
       modules =
         [
@@ -56,7 +56,7 @@ in {
           }
         ]
         ++ commonModules
-        ++ (self.optionals isHorse horseModules)
+        ++ (self.optionals (hostRole == "horse") horseModules)
         ++ inputModulesLinux;
     };
 }

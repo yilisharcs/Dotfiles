@@ -1,6 +1,6 @@
 lib:
 lib.nixosSystem' {
-  isHorse = true; # Horse is not Pony.
+  hostRole = "horse"; # is not pony
 
   module = {
     config,
