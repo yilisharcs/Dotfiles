@@ -27,6 +27,14 @@ vim.keymap.set(
 )
 vim.keymap.set(
         "n",
+        "<leader>oN",
+        function()
+                require("octo.picker").notifications({ all = true })
+        end,
+        { desc = "Open all notifications" }
+)
+vim.keymap.set(
+        "n",
         "<leader>os",
         function()
                 require("octo.utils").create_base_search_command({
