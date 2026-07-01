@@ -6,286 +6,325 @@
   pkgs,
   ...
 }: let
-  inherit (lib) concatStringsSep disabled enabled mkIf optionals;
+  inherit (lib) concatStringsSep disabled enabled mkIf mkMerge optionals;
   nixosConfig = config;
 in {
   imports = [./fonts.nix];
 
-  services.displayManager.sddm = mkIf (hostRole == "horse") (enabled {
-    settings.Theme = {
-      Current = "breeze";
-      CursorSize = 42;
-      CursorTheme = "Breeze_Light";
-      Font = "Iosevka Nerd Font,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-    };
-  });
-  services.desktopManager.plasma6 = enabled;
+  config = mkMerge [
+    {
+      services.desktopManager.plasma6 = enabled;
 
-  environment.systemPackages = [
-    pkgs.kdePackages.kcharselect # character map
-    pkgs.kdePackages.kclock
-    pkgs.kdePackages.kdepim-addons # provides external composer plugin for kmail
-    pkgs.kdePackages.kmail # email client
-    pkgs.kdePackages.kmail-account-wizard
-    pkgs.kdePackages.kolourpaint
-    pkgs.kdePackages.ksshaskpass
-    pkgs.kdePackages.kweather
-    pkgs.kdePackages.isoimagewriter # Write hybrid ISO files onto USB disks
-    pkgs.kdePackages.partitionmanager # Manage disk devices, partitions and file systems
-  ];
+      environment.systemPackages = [
+        pkgs.kdePackages.kcharselect # character map
+        pkgs.kdePackages.kclock
+        pkgs.kdePackages.kdepim-addons # provides external composer plugin for kmail
+        pkgs.kdePackages.kmail # email client
+        pkgs.kdePackages.kmail-account-wizard
+        pkgs.kdePackages.kolourpaint
+        pkgs.kdePackages.ksshaskpass
+        pkgs.kdePackages.kweather
+        pkgs.kdePackages.isoimagewriter # Write hybrid ISO files onto USB disks
+        pkgs.kdePackages.partitionmanager # Manage disk devices, partitions and file systems
+      ];
 
-  environment.plasma6.excludePackages = [
-    pkgs.kdePackages.discover # All package management is done through nix
-    pkgs.kdePackages.kate # GUI text editor? Ew
-    pkgs.kdePackages.konsole # Already have xterm for secondary terminal
-  ];
+      environment.plasma6.excludePackages = [
+        pkgs.kdePackages.discover # All package management is done through nix
+        pkgs.kdePackages.kate # GUI text editor? Ew
+        pkgs.kdePackages.konsole # Already have xterm for secondary terminal
+      ];
 
-  # <https://nix-community.github.io/plasma-manager/options.xhtml>
-  home-manager.sharedModules = [
-    ({config, ...}: {
-      programs.elisa = enabled {
-        appearance = {
-          defaultView = "allAlbums";
-          showNowPlayingBackground = true;
-          showProgressOnTaskBar = true;
+      # <https://nix-community.github.io/plasma-manager/options.xhtml>
+      home-manager.sharedModules = [
+        ({config, ...}: {
+          programs.elisa = enabled {
+            appearance = {
+              defaultView = "allAlbums";
+              showNowPlayingBackground = true;
+              showProgressOnTaskBar = true;
+            };
+            indexer.scanAtStartup = true;
+          };
+          programs.okular = enabled {}; # TODO: configure?
+
+          programs.plasma = enabled {
+            immutableByDefault = false; # breaks desktop icons for some reason
+            overrideConfig = false; # occasionally breaks
+            configFile = {
+              kded_device_automounterrc."Devices/\\/org\\/freedesktop\\/UDisks2\\/block_devices\\/sdb1" = {
+                EverMounted = true;
+                ForceLoginAutomount = true;
+                Icon = "drive-removable-media-usb";
+                LastNameSeen = "Saturn";
+              };
+              kded_device_automounterrc."General" = {
+                AutomountEnabled = true;
+                AutomountOnPlugin = true;
+              };
+              kdeglobals.General.AccentColor = "61,212,37";
+              kdeglobals.KDE.widgetStyle = "Fusion"; # Breeze, Fusion, Windows
+              # kdeglobals."KFileDialog Settings"."Show hidden files" = true;
+              # kdeglobals."KFileDialog Settings"."Sort directories first" = true;
+              # kdeglobals."KFileDialog Settings"."Sort hidden files last" = false;
+              klipperrc.General.IgnoreImages = false;
+              krunnerrc.Plugins.baloosearchEnabled = true;
+              krunnerrc.Plugins.browserhistoryEnabled = false;
+              plasmaparc.General.RaiseMaximumVolume = true;
+              baloofilerc."General" = {
+                "only basic indexing" = true;
+                "folders" = concatStringsSep "," [
+                  "${config.home.homeDirectory}/"
+                  "${config.home.homeDirectory}/Games/.plugin/"
+                ];
+              };
+            };
+            fonts = {
+              fixedWidth = {
+                family = "Hack";
+                pointSize = 12;
+                styleStrategy.antialiasing = "prefer";
+              };
+              general = {
+                family = "Iosevka Nerd Font";
+                pointSize = 13;
+                styleStrategy.antialiasing = "prefer";
+              };
+              menu = {
+                family = "Iosevka Nerd Font";
+                pointSize = 13;
+                styleStrategy.antialiasing = "prefer";
+              };
+              small = {
+                family = "Iosevka Nerd Font";
+                pointSize = 11;
+                styleStrategy.antialiasing = "prefer";
+              };
+              toolbar = {
+                family = "Iosevka Nerd Font";
+                pointSize = 13;
+                styleStrategy.antialiasing = "prefer";
+              };
+              windowTitle = {
+                family = "Iosevka Nerd Font";
+                pointSize = 13;
+                styleStrategy.antialiasing = "prefer";
+              };
+            };
+            input = {
+              keyboard.repeatDelay = 300;
+              touchpads = mkIf (nixosConfig.networking.hostName == "gato") [
+                (enabled {
+                  name = "SynPS/2 Synaptics TouchPad";
+                  vendorId = "0002";
+                  productId = "0007";
+                  disableWhileTyping = true;
+                  rightClickMethod = "twoFingers";
+                })
+              ];
+            };
+            krunner = {
+              activateWhenTypingOnDesktop = true;
+              historyBehavior = "disabled";
+              position = "center";
+            };
+            kscreenlocker.appearance.alwaysShowClock = true;
+            kwin = {
+              effects = {
+                desktopSwitching.navigationWrapping = true;
+                dimAdminMode = enabled;
+                dimInactive = enabled;
+                hideCursor = enabled {
+                  hideOnTyping = true;
+                };
+                minimization.animation = "squash";
+              };
+              nightLight = disabled {
+                mode = "times";
+                temperature = {
+                  day = null;
+                  night = null;
+                };
+                time = {
+                  morning = "05:30";
+                  evening = "20:30";
+                };
+                transitionTime = 6;
+              };
+            };
+            powerdevil = {
+              AC = {
+                autoSuspend.action = "nothing";
+                dimDisplay = enabled;
+                powerButtonAction = "shutDown";
+                powerProfile = "performance";
+                turnOffDisplay.idleTimeout = "never";
+                whenLaptopLidClosed = "lockScreen";
+              };
+              # Two laptops, both batteries gone
+              battery = {};
+            };
+            shortcuts = {
+              kwin = {
+                "Switch One Desktop to the Left" = "Meta+-";
+                "Switch One Desktop to the Right" = "Meta += ";
+                "Window to Next Desktop" = "Meta++";
+                "Window to Previous Desktop" = "Meta+_";
+                "Window to Next Screen" = "Meta+Shift+Right";
+                "Window to Previous Screen" = "Meta+Shift+Left";
+                "Walk Through Windows" = "Alt+Tab";
+                "Walk Through Windows (Reverse)" = "Alt+Shift+Tab";
+                "Walk Through Windows Alternative" = "Alt+Esc";
+                "Walk Through Windows Alternative (Reverse)" = [];
+                "Walk Through Windows of Current Application" = "Alt+`";
+                "Walk Through Windows of Current Application (Reverse)" = "Alt+~";
+              };
+              plasmashell = {
+                cycleNextAction = "Meta+."; # Next clipboard item
+                cyclePrevAction = "Meta+\\"; # Prev clipboard item
+              };
+              "services/com.mitchellh.ghostty.desktop"._launch = "Meta+Return"; # Launch terminal
+              "services/org.kde.plasma.emojier.desktop"._launch = "Meta+/"; # Launch emoji thing
+            };
+
+            # TODO: figure out how to control this seemingly unexposed option:
+            #              right-click
+            #           -> desktop and wallpaper (home settings)
+            #           -> location
+            #           -> places panel item: $HOME
+            panels = [
+              {
+                location = "top";
+                floating = false;
+                height = 46;
+                widgets = [
+                  "org.kde.plasma.kickoff"
+                  {
+                    name = "org.kde.plasma.icontasks";
+                    config.launchers =
+                      [
+                        "applications:com.mitchellh.ghostty.desktop"
+                        "applications:brave-browser.desktop"
+                        "applications:org.kde.kmail2.desktop"
+                        "preferred://filemanager"
+                        "applications:systemsettings.desktop"
+                      ]
+                      ++ optionals (config.programs.fightcade.enable or false) [
+                        "applications:fightcade.desktop"
+                      ]
+                      ++ optionals (config.programs.steam.enable or false) [
+                        "applications:steam.desktop"
+                      ];
+                  }
+                  "org.kde.plasma.marginsseparator"
+                  {
+                    name = "org.kde.plasma.systemmonitor.net";
+                    config.Appearance.updateRateLimit = 2000;
+                  }
+                  {
+                    name = "org.kde.plasma.systemmonitor.diskusage";
+                    config = {
+                      Appearance = {
+                        chartFace = "org.kde.ksysguard.piechart";
+                        updateRateLimit = 2000;
+                      };
+                      Sensors = {
+                        highPrioritySensorIds = ''["disk/(?!all).*/free"]'';
+                        lowPrioritySensorIds = ''["disk/all/total"]'';
+                        totalSensors = ''["disk/all/free"]'';
+                      };
+                      SensorColors = {
+                        "disk/991c140a-3cc9-4ec9-89c5-61dbf94fd745/free" = "155,33,147"; # ouro sda2
+                        "disk/13678003-881a-434b-9072-1dd10045b7ad/free" = "155,33,147"; # gato sda3
+                      };
+                    };
+                  }
+                  {
+                    name = "org.kde.plasma.systemmonitor.cpu";
+                    config.Appearance.updateRateLimit = 2000;
+                  }
+                  {
+                    name = "org.kde.plasma.systemmonitor.memory";
+                    config.Appearance.updateRateLimit = 2000;
+                  }
+                  "org.kde.plasma.systemtray"
+                  {
+                    name = "org.kde.plasma.lock_logout";
+                    config = {
+                      show_lockScreen = false;
+                      show_requestReboot = true;
+                      show_requestShutDown = true;
+                    };
+                  }
+                  {
+                    name = "org.kde.plasma.digitalclock";
+                    config.Appearance = {
+                      showDate = true;
+                      dateDisplayFormat = "BelowTime";
+                    };
+                  }
+                  "org.kde.plasma.showdesktop"
+                ];
+              }
+            ];
+            windows.allowWindowsToRememberPositions = true;
+            workspace = {
+              enableMiddleClickPaste = false;
+              clickItemTo = "select";
+              colorScheme = "BreezeDark";
+              cursor = {
+                size = 42;
+                theme = "Breeze_Light";
+              };
+              # lookAndFeel = "org.kde.breezedark.desktop"; # NOTE: overrides widgetStyle
+              theme = "breeze-dark";
+              wallpaperBackground.color = "3,0,0";
+              wallpaperFillMode = "preserveAspectFit";
+            };
+          };
+        })
+      ];
+    }
+
+    (mkIf (hostRole == "horse") {
+      services.displayManager.sddm = enabled {
+        wayland = enabled;
+        settings.Theme = {
+          Current = "breeze";
+          CursorSize = 42;
+          CursorTheme = "Breeze_Light";
+          Font = "Iosevka Nerd Font,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
         };
-        indexer.scanAtStartup = true;
       };
-      programs.okular = enabled {}; # TODO: configure?
 
-      programs.plasma = enabled {
-        immutableByDefault = false; # breaks desktop icons for some reason
-        overrideConfig = false; # occasionally breaks
-        configFile = {
-          kded_device_automounterrc."Devices/\\/org\\/freedesktop\\/UDisks2\\/block_devices\\/sdb1" = {
-            EverMounted = true;
-            ForceLoginAutomount = true;
-            Icon = "drive-removable-media-usb";
-            LastNameSeen = "Saturn";
-          };
-          kded_device_automounterrc."General" = {
-            AutomountEnabled = true;
-            AutomountOnPlugin = true;
-          };
-          kdeglobals.General.AccentColor = "61,212,37";
-          kdeglobals.KDE.widgetStyle = "Fusion"; # Breeze, Fusion, Windows
-          # kdeglobals."KFileDialog Settings"."Show hidden files" = true;
-          # kdeglobals."KFileDialog Settings"."Sort directories first" = true;
-          # kdeglobals."KFileDialog Settings"."Sort hidden files last" = false;
-          klipperrc.General.IgnoreImages = false;
-          krunnerrc.Plugins.baloosearchEnabled = true;
-          krunnerrc.Plugins.browserhistoryEnabled = false;
-          plasmaparc.General.RaiseMaximumVolume = true;
-          baloofilerc."General" = {
-            "only basic indexing" = true;
-            "folders" = concatStringsSep "," [
-              "${config.home.homeDirectory}/"
-              "${config.home.homeDirectory}/Games/.plugin/"
-            ];
-          };
-        };
-        fonts = {
-          fixedWidth = {
-            family = "Hack";
-            pointSize = 12;
-            styleStrategy.antialiasing = "prefer";
-          };
-          general = {
-            family = "Iosevka Nerd Font";
-            pointSize = 13;
-            styleStrategy.antialiasing = "prefer";
-          };
-          menu = {
-            family = "Iosevka Nerd Font";
-            pointSize = 13;
-            styleStrategy.antialiasing = "prefer";
-          };
-          small = {
-            family = "Iosevka Nerd Font";
-            pointSize = 11;
-            styleStrategy.antialiasing = "prefer";
-          };
-          toolbar = {
-            family = "Iosevka Nerd Font";
-            pointSize = 13;
-            styleStrategy.antialiasing = "prefer";
-          };
-          windowTitle = {
-            family = "Iosevka Nerd Font";
-            pointSize = 13;
-            styleStrategy.antialiasing = "prefer";
-          };
-        };
-        input = {
-          keyboard.repeatDelay = 300;
-          touchpads = mkIf (nixosConfig.networking.hostName == "gato") [
-            (enabled {
-              name = "SynPS/2 Synaptics TouchPad";
-              vendorId = "0002";
-              productId = "0007";
-              disableWhileTyping = true;
-              rightClickMethod = "twoFingers";
-            })
-          ];
-        };
-        krunner = {
-          activateWhenTypingOnDesktop = true;
-          historyBehavior = "disabled";
-          position = "center";
-        };
-        kscreenlocker.appearance.alwaysShowClock = true;
-        kwin = {
-          effects = {
-            desktopSwitching.navigationWrapping = true;
-            dimAdminMode = enabled;
-            dimInactive = enabled;
-            hideCursor = enabled {
-              hideOnTyping = true;
-            };
-            minimization.animation = "squash";
-          };
-          nightLight = disabled {
-            mode = "times";
-            temperature = {
-              day = null;
-              night = null;
-            };
-            time = {
-              morning = "05:30";
-              evening = "20:30";
-            };
-            transitionTime = 6;
-          };
-        };
-        powerdevil = {
-          AC = {
-            autoSuspend.action = "nothing";
-            dimDisplay = enabled;
-            powerButtonAction = "shutDown";
-            powerProfile = "performance";
-            turnOffDisplay.idleTimeout = "never";
-            whenLaptopLidClosed = "lockScreen";
-          };
-          # Two laptops, both batteries gone
-          battery = {};
-        };
-        shortcuts = {
-          kwin = {
-            "Switch One Desktop to the Left" = "Meta+-";
-            "Switch One Desktop to the Right" = "Meta += ";
-            "Window to Next Desktop" = "Meta++";
-            "Window to Previous Desktop" = "Meta+_";
-            "Window to Next Screen" = "Meta+Shift+Right";
-            "Window to Previous Screen" = "Meta+Shift+Left";
-            "Walk Through Windows" = "Alt+Tab";
-            "Walk Through Windows (Reverse)" = "Alt+Shift+Tab";
-            "Walk Through Windows Alternative" = "Alt+Esc";
-            "Walk Through Windows Alternative (Reverse)" = [];
-            "Walk Through Windows of Current Application" = "Alt+`";
-            "Walk Through Windows of Current Application (Reverse)" = "Alt+~";
-          };
-          plasmashell = {
-            cycleNextAction = "Meta+."; # Next clipboard item
-            cyclePrevAction = "Meta+\\"; # Prev clipboard item
-          };
-          "services/com.mitchellh.ghostty.desktop"._launch = "Meta+Return"; # Launch terminal
-          "services/org.kde.plasma.emojier.desktop"._launch = "Meta+/"; # Launch emoji thing
-        };
+      # https://github.com/thomX75/nixos-modules/blob/main/SDDM/sddm-avatar.nix
+      systemd.services."sddm-avatar" = {
+        description = "Service to copy or update users Avatars at startup.";
+        wantedBy = ["multi-user.target"];
+        before = ["sddm.service"];
+        path = [pkgs.diffutils];
+        script = ''
+          for user in /home/*; do
+            username=$(basename "$user")
+            icon_source="$user/.face.icon"
+            icon_dest="/var/lib/AccountsService/icons/$username"
 
-        # TODO: figure out how to control this seemingly unexposed option:
-        #              right-click
-        #           -> desktop and wallpaper (home settings)
-        #           -> location
-        #           -> places panel item: $HOME
-        panels = [
-          {
-            location = "top";
-            floating = false;
-            height = 46;
-            widgets = [
-              "org.kde.plasma.kickoff"
-              {
-                name = "org.kde.plasma.icontasks";
-                config.launchers =
-                  [
-                    "applications:com.mitchellh.ghostty.desktop"
-                    "applications:brave-browser.desktop"
-                    "applications:org.kde.kmail2.desktop"
-                    "preferred://filemanager"
-                    "applications:systemsettings.desktop"
-                  ]
-                  ++ optionals (config.programs.fightcade.enable or false) [
-                    "applications:fightcade.desktop"
-                  ]
-                  ++ optionals (config.programs.steam.enable or false) [
-                    "applications:steam.desktop"
-                  ];
-              }
-              "org.kde.plasma.marginsseparator"
-              {
-                name = "org.kde.plasma.systemmonitor.net";
-                config.Appearance.updateRateLimit = 2000;
-              }
-              {
-                name = "org.kde.plasma.systemmonitor.diskusage";
-                config = {
-                  Appearance = {
-                    chartFace = "org.kde.ksysguard.piechart";
-                    updateRateLimit = 2000;
-                  };
-                  Sensors = {
-                    highPrioritySensorIds = ''["disk/(?!all).*/free"]'';
-                    lowPrioritySensorIds = ''["disk/all/total"]'';
-                    totalSensors = ''["disk/all/free"]'';
-                  };
-                  SensorColors = {
-                    "disk/991c140a-3cc9-4ec9-89c5-61dbf94fd745/free" = "155,33,147"; # ouro sda2
-                    "disk/13678003-881a-434b-9072-1dd10045b7ad/free" = "155,33,147"; # gato sda3
-                  };
-                };
-              }
-              {
-                name = "org.kde.plasma.systemmonitor.cpu";
-                config.Appearance.updateRateLimit = 2000;
-              }
-              {
-                name = "org.kde.plasma.systemmonitor.memory";
-                config.Appearance.updateRateLimit = 2000;
-              }
-              "org.kde.plasma.systemtray"
-              {
-                name = "org.kde.plasma.lock_logout";
-                config = {
-                  show_lockScreen = false;
-                  show_requestReboot = true;
-                  show_requestShutDown = true;
-                };
-              }
-              {
-                name = "org.kde.plasma.digitalclock";
-                config.Appearance = {
-                  showDate = true;
-                  dateDisplayFormat = "BelowTime";
-                };
-              }
-              "org.kde.plasma.showdesktop"
-            ];
-          }
-        ];
-        windows.allowWindowsToRememberPositions = true;
-        workspace = {
-          enableMiddleClickPaste = false;
-          clickItemTo = "select";
-          colorScheme = "BreezeDark";
-          cursor = {
-            size = 42;
-            theme = "Breeze_Light";
-          };
-          # lookAndFeel = "org.kde.breezedark.desktop"; # NOTE: overrides widgetStyle
-          theme = "breeze-dark";
-          wallpaperBackground.color = "3,0,0";
-          wallpaperFillMode = "preserveAspectFit";
+            if [ -f "$icon_source" ]; then
+              if [ ! -f "$icon_dest" ] || ! cmp -s "$icon_source" "$icon_dest"; then
+                rm -f "$icon_dest"
+                cp -L "$icon_source" "$icon_dest"
+              fi
+            fi
+          done
+        '';
+        serviceConfig = {
+          Type = "simple";
+          User = "root";
+          StandardOutput = "journal+console";
+          StandardError = "journal+console";
         };
+      };
+      systemd.services.sddm = {
+        after = ["sddm-avatar.service"];
       };
     })
   ];
