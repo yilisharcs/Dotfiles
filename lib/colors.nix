@@ -24,7 +24,8 @@
     hexToRgb = hex: let
       h = builtins.replaceStrings ["#"] [""] hex;
       p = s: (builtins.fromTOML "a = 0x${s}").a;
-    in "${toString (p (builtins.substring 0 2 h))},${toString (p (builtins.substring 2 2 h))},${toString (p (builtins.substring 4 2 h))}";
+      component = start: builtins.substring start 2 h |> p |> toString;
+    in "${component 0},${component 2},${component 4}";
   in
     scheme: {
       palette = "custom";

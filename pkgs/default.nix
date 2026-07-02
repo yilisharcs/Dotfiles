@@ -7,17 +7,18 @@
   loadPackages = type: let
     dir = ./${type};
   in
-    mapAttrs
-    (name: _: pkgs.callPackage (dir + "/${name}/package.nix") {})
-    (filterAttrs (name: value: value == "directory") (builtins.readDir dir));
+    builtins.readDir dir
+    |> filterAttrs (name: value: value == "directory")
+    |> mapAttrs (name: _: pkgs.callPackage (dir + "/${name}/package.nix") {});
 
   loadModules = type: module: let
     dir = ./${type};
     fileName = "${module}.nix";
-    dirs = filterAttrs (name: value: value == "directory") (builtins.readDir dir);
-    withModule = filterAttrs (name: _: builtins.pathExists (dir + "/${name}/${fileName}")) dirs;
   in
-    mapAttrs (name: _: import (dir + "/${name}/${fileName}")) withModule;
+    builtins.readDir dir
+    |> filterAttrs (name: value: value == "directory")
+    |> filterAttrs (name: _: builtins.pathExists (dir + "/${name}/${fileName}"))
+    |> mapAttrs (name: _: import (dir + "/${name}/${fileName}"));
 
   games = loadPackages "games";
   # Add more categories as needed:

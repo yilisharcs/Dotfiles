@@ -17,7 +17,10 @@
   opencode-patched = pkgs.opencode.overrideAttrs (old: {
     nativeBuildInputs =
       [bun-baseline]
-      ++ (filter (p: (p.pname or "") != "bun") (old.nativeBuildInputs or []));
+      ++ (
+        old.nativeBuildInputs or []
+        |> filter (p: (p.pname or "") != "bun")
+      );
   });
 
   opencode-wrapped = pkgs.writeShellScriptBin "opencode" ''
