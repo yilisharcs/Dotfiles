@@ -2,15 +2,15 @@
   home-manager.sharedModules = [
     {
       home.packages = [
-        pkgs.vlc # Cross-platform media player and streaming server
         pkgs.mediainfo # Supplies technical and tag info about a video or audio file
+        pkgs.mpv # General-purpose media player, fork of MPlayer and mplayer2
       ];
 
       programs.yazi.settings.opener = {
         play = [
           {
-            desc = "Open with VLC";
-            run = ''vlc "$@"'';
+            desc = "Open with MPV";
+            run = ''mpv "$@"'';
             orphan = true;
             for = "unix";
           }
