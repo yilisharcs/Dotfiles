@@ -54,7 +54,7 @@ vim.cmd("silent! aunmenu PopUp.How-to\\ disable\\ mouse")
 vim.cmd("silent! aunmenu PopUp.-2-")
 
 -- long-running undo trees
-vim.o.swapfile = false
+vim.o.swapfile = true
 vim.o.undofile = true
 vim.o.backup = true
 vim.o.backupext = ".backup"
