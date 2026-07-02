@@ -184,6 +184,10 @@ vim.pack.add({
                 src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
                 version = "main",
         },
+        -- Navigator.nvim
+        {
+                src = "https://github.com/numToStr/Navigator.nvim",
+        },
         -- nvim-treesitter
         {
                 src = "https://github.com/nvim-treesitter/nvim-treesitter",

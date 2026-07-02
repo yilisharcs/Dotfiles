@@ -55,11 +55,6 @@ vim.keymap.set("n", "du", "<CMD>diffoff<CR>", { desc = "Disable diff mode for th
 vim.keymap.set("x", "<C-o>", ":'<,'>diffget<CR>", { silent = true, desc = "Get diff from alt buffer" })
 vim.keymap.set("x", "<C-p>", ":'<,'>diffput<CR>", { silent = true, desc = "Change diff of alt buffer" })
 
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<M-h>", "<CMD>wincmd h<CR>")
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<M-j>", "<CMD>wincmd j<CR>")
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<M-k>", "<CMD>wincmd k<CR>")
-vim.keymap.set({ "n", "x", "i", "c", "t" }, "<M-l>", "<CMD>wincmd l<CR>")
-
 vim.keymap.set("n", "cu", function()
         if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.quickfix")) == 1 then
                 return "<CMD>botright copen | wincmd p<CR>"

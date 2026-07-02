@@ -40,6 +40,7 @@ local filetypes = {
         "rust",
         "strace",
         "toml",
+        "tmux",
         "udev",
         "vim",
         "vimdoc",
