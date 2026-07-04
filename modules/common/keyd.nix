@@ -7,6 +7,8 @@
 in {
   environment.variables.XCOMPOSEFILE = "${pkgs.keyd}/share/keyd/keyd.compose";
 
+  # Key remapping daemon for Linux
+  environment.systemPackages = [pkgs.keyd]; # NOTE: services.keyd doesn't put keyd in path
   services.keyd = enabled {
     keyboards.default.ids = ["*"];
     keyboards.default.settings = {
