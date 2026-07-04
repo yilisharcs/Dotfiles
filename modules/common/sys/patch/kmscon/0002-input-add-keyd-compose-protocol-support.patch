@@ -1,0 +1,384 @@
+From 0888e32ad6bde1a92ebb970384d1457334206039 Mon Sep 17 00:00:00 2001
+From: yilisharcs <yilisharcs@gmail.com>
+Date: Sat, 4 Jul 2026 23:41:09 -0300
+Subject: [PATCH 2/2] input: add keyd compose protocol support
+
+---
+ src/input/input.c          |  42 ++++++++
+ src/input/input.h          |   3 +
+ src/input/input_internal.h |  11 ++
+ src/input/input_uxkb.c     | 211 +++++++++++++++++++++++++++++++++++++
+ src/kmscon_seat.c          |   2 +
+ 5 files changed, 269 insertions(+)
+
+diff --git a/src/input/input.c b/src/input/input.c
+index 65c1d6f..c552e4b 100644
+--- a/src/input/input.c
++++ b/src/input/input.c
+@@ -523,6 +523,47 @@ int input_set_keymap(struct input *input, const char *model, const char *layout,
+ 			      compose_file_len);
+ }
+ 
++SHL_EXPORT
++void input_load_keyd_table(struct input *input)
++{
++	if (!input)
++		return;
++
++	uxkb_keyd_table_init(input);
++}
++
++SHL_EXPORT
++int input_update_keymap(struct input *input, const char *model, const char *layout,
++			const char *variant, const char *options)
++{
++	struct shl_dlist *iter;
++	struct input_dev *dev;
++
++	if (input->ctx) {
++		shl_dlist_for_each(iter, &input->devices)
++		{
++			dev = shl_dlist_entry(iter, struct input_dev, list);
++			if (dev->capabilities & DEVICE_HAS_KEYS) {
++				input_sleep_dev(dev);
++				input_exit_keyboard(dev);
++			}
++		}
++	}
++	uxkb_keyd_table_destroy(input);
++	uxkb_desc_destroy(input);
++	uxkb_desc_init(input, model, layout, variant, options, NULL, NULL, NULL, 0);
++	shl_dlist_for_each(iter, &input->devices)
++	{
++		dev = shl_dlist_entry(iter, struct input_dev, list);
++		if (dev->capabilities & DEVICE_HAS_KEYS) {
++			input_init_keyboard(dev);
++			if (input->awake)
++				input_wake_up_dev(dev);
++		}
++	}
++	return 0;
++}
++
+ SHL_EXPORT
+ void input_set_conf(struct input *input, unsigned int repeat_delay, unsigned int repeat_rate,
+ 		    bool mouse_enabled)
+@@ -565,6 +606,7 @@ void input_unref(struct input *input)
+ 		input_free_dev(dev);
+ 	}
+ 
++	uxkb_keyd_table_destroy(input);
+ 	uxkb_desc_destroy(input);
+ 	shl_hook_free(input->key_hook);
+ 	shl_hook_free(input->pointer_hook);
+diff --git a/src/input/input.h b/src/input/input.h
+index 8b81e00..349fe6c 100644
+--- a/src/input/input.h
++++ b/src/input/input.h
+@@ -94,6 +94,9 @@ int input_new(struct input **out, struct ev_eloop *eloop);
+ int input_set_keymap(struct input *input, const char *model, const char *layout,
+ 		     const char *variant, const char *options, const char *locale,
+ 		     const char *keymap, const char *compose_file, size_t compose_file_len);
++void input_load_keyd_table(struct input *input);
++int input_update_keymap(struct input *input, const char *model, const char *layout,
++			const char *variant, const char *options);
+ void input_set_conf(struct input *input, unsigned int repeat_delay, unsigned int repeat_rate,
+ 		    bool mouse_enabled);
+ void input_ref(struct input *input);
+diff --git a/src/input/input_internal.h b/src/input/input_internal.h
+index 559e8ec..6b89d44 100644
+--- a/src/input/input_internal.h
++++ b/src/input/input_internal.h
+@@ -106,6 +106,11 @@ struct input_dev {
+ 	bool repeating;
+ 	struct ev_timer *repeat_timer;
+ 
++	/* keyd compose protocol state */
++	bool keyd_collecting;
++	unsigned int keyd_idx;
++	uint8_t keyd_buf[3];
++
+ 	struct input_pointer pointer;
+ };
+ 
+@@ -126,6 +131,10 @@ struct input {
+ 	struct xkb_keymap *keymap;
+ 	struct xkb_compose_table *compose_table;
+ 
++	/* keyd compose lookup table */
++	uint32_t *keyd_table;
++	size_t keyd_table_size;
++
+ 	bool mouse_enabled;
+ 	struct shl_hook *pointer_hook;
+ 	int32_t pointer_max_x;
+@@ -144,6 +153,8 @@ int uxkb_desc_init(struct input *input, const char *model, const char *layout, c
+ 		   const char *options, const char *locale, const char *keymap,
+ 		   const char *compose_file, size_t compose_file_len);
+ void uxkb_desc_destroy(struct input *input);
++void uxkb_keyd_table_init(struct input *input);
++void uxkb_keyd_table_destroy(struct input *input);
+ 
+ int uxkb_dev_init(struct input_dev *dev);
+ void uxkb_dev_destroy(struct input_dev *dev);
+diff --git a/src/input/input_uxkb.c b/src/input/input_uxkb.c
+index 377e935..ac949cc 100644
+--- a/src/input/input_uxkb.c
++++ b/src/input/input_uxkb.c
+@@ -28,6 +28,7 @@
+ #include <inttypes.h>
+ #include <linux/input.h>
+ #include <stdbool.h>
++#include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <unistd.h>
+@@ -176,6 +177,164 @@ void uxkb_desc_destroy(struct input *input)
+ 	xkb_context_unref(input->ctx);
+ }
+ 
++/*
++ * keyd compose table
++ *
++ * keyd encodes Unicode codepoints as 3-digit base-36 sequences preceded by
++ * KEY_CANCEL (evdev 223). The XCompose file maps each line index to a
++ * Unicode character. We parse it at startup to build a lookup table.
++ */
++
++#define KEYD_COMPOSE_LEADER KEY_CANCEL
++#define KEYD_TABLE_SIZE 35000
++
++static int keyd_code_to_digit(unsigned int code)
++{
++	switch (code) {
++	case KEY_1: return 1;
++	case KEY_2: return 2;
++	case KEY_3: return 3;
++	case KEY_4: return 4;
++	case KEY_5: return 5;
++	case KEY_6: return 6;
++	case KEY_7: return 7;
++	case KEY_8: return 8;
++	case KEY_9: return 9;
++	case KEY_0: return 0;
++	case KEY_A: return 10;
++	case KEY_B: return 11;
++	case KEY_C: return 12;
++	case KEY_D: return 13;
++	case KEY_E: return 14;
++	case KEY_F: return 15;
++	case KEY_G: return 16;
++	case KEY_H: return 17;
++	case KEY_I: return 18;
++	case KEY_J: return 19;
++	case KEY_K: return 20;
++	case KEY_L: return 21;
++	case KEY_M: return 22;
++	case KEY_N: return 23;
++	case KEY_O: return 24;
++	case KEY_P: return 25;
++	case KEY_Q: return 26;
++	case KEY_R: return 27;
++	case KEY_S: return 28;
++	case KEY_T: return 29;
++	case KEY_U: return 30;
++	case KEY_V: return 31;
++	case KEY_W: return 32;
++	case KEY_X: return 33;
++	case KEY_Y: return 34;
++	case KEY_Z: return 35;
++	default:    return -1;
++	}
++}
++
++void uxkb_keyd_table_init(struct input *input)
++{
++	const char *path;
++	char *home;
++	FILE *f;
++	char *line;
++	size_t len;
++	size_t idx;
++	int qstart, qend;
++	uint32_t cp;
++	uint32_t *table;
++
++	path = getenv("XCOMPOSEFILE");
++	if (path && *path) {
++		f = fopen(path, "r");
++		if (f)
++			goto parsed;
++	}
++
++	home = getenv("HOME");
++	if (home && *home) {
++		char buf[4096];
++		snprintf(buf, sizeof(buf), "%s/.XCompose", home);
++		f = fopen(buf, "r");
++		if (f)
++			goto parsed;
++	}
++
++	log_debug("no XCompose file found, keyd compose disabled");
++	return;
++
++parsed:
++	table = calloc(KEYD_TABLE_SIZE, sizeof(uint32_t));
++	if (!table) {
++		fclose(f);
++		return;
++	}
++
++	line = NULL;
++	len = 0;
++	idx = 0;
++
++	while (idx < KEYD_TABLE_SIZE && getline(&line, &len, f) != -1) {
++		/* find first and last double-quote */
++		qstart = -1;
++		qend = -1;
++		for (size_t i = 0; line[i]; i++) {
++			if (line[i] == '"') {
++				if (qstart < 0)
++					qstart = i;
++				qend = i;
++			}
++		}
++
++		if (qstart >= 0 && qend > qstart + 1) {
++			/*
++			 * Decode the UTF-8 sequence between quotes into a
++			 * single Unicode codepoint. We only handle up to
++			 * 4-byte sequences (U+0000..U+10FFFF).
++			 */
++			unsigned char *s = (unsigned char *)&line[qstart + 1];
++			unsigned char *end = (unsigned char *)&line[qend];
++			cp = 0;
++
++			if (s < end) {
++				if (*s < 0x80) {
++					cp = *s++;
++				} else if ((*s & 0xE0) == 0xC0) {
++					cp = *s++ & 0x1F;
++					cp = (cp << 6) | (*s++ & 0x3F);
++				} else if ((*s & 0xF0) == 0xE0) {
++					cp = *s++ & 0x0F;
++					cp = (cp << 6) | (*s++ & 0x3F);
++					cp = (cp << 6) | (*s++ & 0x3F);
++				} else if ((*s & 0xF8) == 0xF0) {
++					cp = *s++ & 0x07;
++					cp = (cp << 6) | (*s++ & 0x3F);
++					cp = (cp << 6) | (*s++ & 0x3F);
++					cp = (cp << 6) | (*s++ & 0x3F);
++				}
++			}
++
++			if (cp)
++				table[idx] = cp;
++		}
++
++		idx++;
++	}
++
++	free(line);
++	fclose(f);
++
++	input->keyd_table = table;
++	input->keyd_table_size = idx;
++	log_debug("loaded keyd compose table: %zu entries", idx);
++}
++
++void uxkb_keyd_table_destroy(struct input *input)
++{
++	free(input->keyd_table);
++	input->keyd_table = NULL;
++	input->keyd_table_size = 0;
++}
++
+ static void timer_event(struct ev_timer *timer, uint64_t num, void *data)
+ {
+ 	struct input_dev *dev = data;
+@@ -398,8 +557,21 @@ static void uxkb_dev_repeat(struct input_dev *dev, unsigned int state)
+ 	ev_timer_update(dev->repeat_timer, &spec);
+ }
+ 
++static void emit_keyd_event(struct input_dev *dev, uint32_t cp)
++{
++	dev->event.keycode = KEYD_COMPOSE_LEADER;
++	dev->event.ascii = (cp < 128) ? cp : 0;
++	dev->event.mods = 0;
++	dev->event.num_syms = 1;
++	dev->event.keysyms[0] = xkb_utf32_to_keysym(cp);
++	dev->event.codepoints[0] = cp;
++	dev->event.handled = false;
++	shl_hook_call(dev->input->key_hook, dev->input, &dev->event);
++}
++
+ int uxkb_dev_process(struct input_dev *dev, uint16_t key_state, uint16_t code)
+ {
++	struct input *input = dev->input;
+ 	struct xkb_state *state;
+ 	struct xkb_compose_state *compose_state;
+ 	xkb_keycode_t keycode;
+@@ -412,6 +584,45 @@ int uxkb_dev_process(struct input_dev *dev, uint16_t key_state, uint16_t code)
+ 	if (key_state == KEY_REPEATED)
+ 		return -ENOKEY;
+ 
++	/*
++	 * keyd compose protocol: KEY_CANCEL (223) is the compose leader,
++	 * followed by 3 base-36 digit key presses. we intercept these at
++	 * the evdev level before xkbcommon translation.
++	 */
++	if (input->keyd_table && dev->keyd_collecting) {
++		if (key_state != KEY_PRESSED)
++			/* key release while collecting: suppress */
++			return -ENOKEY;
++
++		int d = keyd_code_to_digit(code);
++		if (d < 0) {
++			/* fall through non-digit press */
++			dev->keyd_collecting = false;
++			goto keyd_done;
++		}
++
++		dev->keyd_buf[dev->keyd_idx++] = d;
++		if (dev->keyd_idx < 3)
++			return -ENOKEY;
++
++		dev->keyd_collecting = false;
++		uint32_t idx = dev->keyd_buf[0] * 1296 + dev->keyd_buf[1] * 36 + dev->keyd_buf[2];
++		if (idx < input->keyd_table_size && input->keyd_table[idx]) {
++			uxkb_dev_resize_event(dev, 1);
++			emit_keyd_event(dev, input->keyd_table[idx]);
++			return 0;
++		}
++		return -ENOKEY;
++	}
++
++	if (input->keyd_table && key_state == KEY_PRESSED && code == KEYD_COMPOSE_LEADER) {
++		dev->keyd_collecting = true;
++		dev->keyd_idx = 0;
++		return -ENOKEY;
++	}
++
++keyd_done:
++
+ 	state = dev->state;
+ 	compose_state = dev->compose_state;
+ 	keycode = code + EVDEV_KEYCODE_OFFSET;
+diff --git a/src/kmscon_seat.c b/src/kmscon_seat.c
+index 7b6759a..c95c2fa 100644
+--- a/src/kmscon_seat.c
++++ b/src/kmscon_seat.c
+@@ -993,6 +993,8 @@ int kmscon_seat_new(struct kmscon_seat **out, struct conf_ctx *main_conf,
+ 	if (ret)
+ 		goto err_conf;
+ 
++	input_load_keyd_table(seat->input);
++
+ 	ret = uterm_monitor_new(&seat->mon, seat->eloop, &seat_monitor_cb, seat);
+ 	if (ret) {
+ 		log_error("cannot create device monitor: %d", ret);
+-- 
+2.54.0
+

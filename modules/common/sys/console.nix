@@ -13,6 +13,13 @@
         ./patch/libtsm/0001-Do-not-render-bold-as-bright.patch
       ];
   });
+  kmscon' = pkgs.kmscon.overrideAttrs (old: {
+    patches =
+      (old.patches or [])
+      ++ [
+        ./patch/kmscon/0002-input-add-keyd-compose-protocol-support.patch
+      ];
+  });
 in {
   # kernel VT
   console = enabled {
@@ -22,8 +29,10 @@ in {
   };
 
   # userspace KMS/DRM VT
+  # NOTE: overrides.conf Environment= is not set for XCOMPOSEFILE
+  systemd.services."kmsconvt@".environment.XCOMPOSEFILE = config.environment.variables.XCOMPOSEFILE;
   services.kmscon = enabled {
-    package = pkgs.kmscon.override {libtsm = libtsm';};
+    package = kmscon'.override {libtsm = libtsm';};
     useXkbConfig = true;
     config =
       {
