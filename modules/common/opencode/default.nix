@@ -99,6 +99,7 @@ in {
           keybinds = {
             app_exit = "ctrl+d";
             editor_open = "ctrl+o";
+            input_clear = false;
             terminal_suspend = "none";
             session_child_cycle = "l,right";
             session_child_cycle_reverse = "h,left";
