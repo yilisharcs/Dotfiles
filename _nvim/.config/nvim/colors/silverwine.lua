@@ -23,12 +23,6 @@ local colors = {
         Gray2 = "#362b49",
         Gray3 = "#1e1829",
 
-        White1 = "#faebd7",
-
-        Cyan1 = "#8cf8f7",
-        Cyan2 = "#00afff",
-        Cyan3 = "#004666",
-
         Red1 = "#ef7184",
         Red2 = "#d31834",
 
@@ -46,6 +40,12 @@ local colors = {
 
         Magenta1 = "#c87bff",
         Magenta2 = "#b348ff",
+
+        Cyan1 = "#8cf8f7",
+        Cyan2 = "#00afff",
+        Cyan3 = "#004666",
+
+        White1 = "#faebd7",
 }
 
 local function hi(name, val)
