@@ -176,6 +176,16 @@ hi("LspInlayHint", { fg = colors.Cyan2, bg = colors.Ink3, ctermfg = "cyan" })
 hi("Search", { fg = colors.Cyan1, bg = "bg", reverse = true, ctermfg = "cyan" })
 hi("IncSearch", { fg = colors.Yellow2, bg = "bg", reverse = true, ctermfg = "black", ctermbg = "yellow" })
 hi("CurSearch", { link = "IncSearch" })
+-- syn jj
+hi("jjGrey", { fg = colors.Silver3, ctermfg = "grey", bold = true })
+hi("jjRed", { fg = colors.Red2, ctermfg = "red", bold = true })
+hi("jjGreen", { fg = colors.Green2, ctermfg = "green", bold = true })
+hi("jjYellow", { fg = colors.Yellow2, ctermfg = "yellow" })
+hi("jjBlue", { fg = colors.Blue1, ctermfg = "blue", bold = true })
+hi("jjMagenta", { fg = colors.Magenta1, ctermfg = "magenta", bold = true })
+hi("jjCyan", { fg = colors.Cyan1, ctermfg = "cyan" })
+hi("jjCyan2", { fg = colors.Cyan2, ctermfg = "cyan" })
+hi("jjWhite", { fg = colors.Silver1, ctermfg = "white", bold = true })
 
 -- diffview.nvim {{{
 hi("DiffviewFilePanelSelected", { fg = colors.Yellow1, bold = true, ctermfg = "yellow" })

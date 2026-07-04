@@ -52,6 +52,18 @@ vim.g.cme = {
         modifiers = {
                 rg = "--vimgrep",
         },
+        syntax = {
+                git = { "git logr" },
+                jj = {
+                        "jj l",
+                        -- summary
+                        "jj",
+                        "jj log",
+                        "jj ls",
+                        "jj lsa",
+                        "jj lsh",
+                },
+        },
 }
 
 vim.cmd.packadd("cme.nvim")
