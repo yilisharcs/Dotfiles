@@ -120,7 +120,7 @@ vim.keymap.set(
 vim.keymap.set("n", "<F6>", function()
         if vim.b.toggle_comment_hl ~= nil then
                 vim.b.toggle_comment_hl = nil
-                vim.wo[0][0].winhighlight = "Comment:CommentShow"
+                vim.wo[0][0].winhighlight = ""
         else
                 vim.b.toggle_comment_hl = true
                 vim.wo[0][0].winhighlight = "Comment:CommentHide"

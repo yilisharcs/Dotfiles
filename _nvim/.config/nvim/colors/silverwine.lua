@@ -104,8 +104,7 @@ hi("QuickFixLine", { fg = colors.Cyan1, bg = "bg", bold = true, reverse = true, 
 
 -- comment toggle
 hi("CommentHide", { fg = "bg" })
-hi("CommentShow", { fg = colors.Silver3, ctermfg = "grey" })
-hi("Comment", { link = "CommentShow" })
+hi("Comment", { fg = colors.Silver3, ctermfg = "grey" })
 
 -- completion menu
 hi("Pmenu", { bg = colors.Ink4, ctermfg = "black", ctermbg = "grey" })
