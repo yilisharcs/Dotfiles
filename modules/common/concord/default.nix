@@ -28,7 +28,7 @@ in {
       # Feature-rich TUI client for Discord
       home.packages = [concord-wrapped];
 
-      home.file.".config/concord/keymap.toml".source = (pkgs.formats.toml {}).generate "keymap.toml" {
+      xdg.configFile."concord/keymap.toml".source = (pkgs.formats.toml {}).generate "keymap.toml" {
         keymap.composer = {
           OpenEditor = "<C-o>";
           MoveCursorLeft = "<C-b>";

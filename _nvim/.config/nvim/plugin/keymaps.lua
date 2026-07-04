@@ -117,6 +117,16 @@ vim.keymap.set(
         { expr = true, desc = "Paste from register $@" }
 )
 
+vim.keymap.set("n", "<F6>", function()
+        if vim.b.toggle_comment_hl ~= nil then
+                vim.b.toggle_comment_hl = nil
+                vim.wo[0][0].winhighlight = "Comment:CommentShow"
+        else
+                vim.b.toggle_comment_hl = true
+                vim.wo[0][0].winhighlight = "Comment:CommentHide"
+        end
+end)
+
 vim.keymap.set("n", "<F9>", "<CMD>Inspect<CR>", { desc = "Inspect element under cursor" })
 vim.keymap.set("n", "<leader><F9>", "<CMD>InspectTree<CR>", { desc = "Inspect treesitter AST" })
 vim.keymap.set("n", "<F10>", "<CMD>!chmod +x %<CR>", { desc = "Give executable permissions to the current file" })
@@ -126,13 +136,3 @@ vim.keymap.set(
         "<CMD>!chmod -x %<CR>",
         { desc = "Remove executable permissions of the current file" }
 )
-
-vim.keymap.set("n", "<C-.>", function()
-        if vim.b.toggle_comment_hl ~= nil then
-                vim.b.toggle_comment_hl = nil
-                vim.wo[0][0].winhighlight = "Comment:CommentShow"
-        else
-                vim.b.toggle_comment_hl = true
-                vim.wo[0][0].winhighlight = "Comment:CommentHide"
-        end
-end)

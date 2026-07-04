@@ -26,7 +26,7 @@ in {
           Install.WantedBy = ["default.target"];
         };
 
-        home.file.".config/lspmux/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
+        xdg.configFile."lspmux/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
           # time in seconds after which a rust-analyzer server instance with no clients
           # connected will get killed to save system memory.
           #

@@ -3,7 +3,7 @@
     {
       home.packages = [pkgs.tmux-sessionizer];
 
-      home.file.".config/tms/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
+      xdg.configFile."tms/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
         vcs_providers = [
           "jj"
           "git"
