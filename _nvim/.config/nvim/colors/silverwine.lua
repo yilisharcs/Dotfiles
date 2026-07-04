@@ -234,6 +234,7 @@ hi("NeogitHunkHeaderCursor", {
 -- }}}
 
 -- rainbow-delimiters {{{
+hi("RainbowHide", { fg = "bg" })
 hi("RainbowDelimiterRed", { link = "Delimiter" })
 hi("RainbowDelimiterYellow", { link = "WarningMsg" })
 hi("RainbowDelimiterBlue", { link = "ModeMsg" })

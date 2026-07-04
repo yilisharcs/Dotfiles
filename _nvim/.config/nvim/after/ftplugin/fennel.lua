@@ -21,6 +21,25 @@ vim.bo.includeexpr = [[tr(substitute(v:fname, '^:', '', ''), '.', '/')]]
 vim.bo.commentstring = ";; %s"
 vim.bo.comments = ":;;;;,:;;;,:;;,:;"
 
+vim.keymap.set("n", "<F6>", function()
+        if vim.b.toggle_parens_hl ~= nil then
+                vim.b.toggle_parens_hl = nil
+                vim.wo.winhighlight = ""
+        else
+                vim.b.toggle_parens_hl = true
+                vim.wo.winhighlight = table.concat({
+                        "Delimiter:RainbowHide",
+                        "RainbowDelimiterRed:RainbowHide",
+                        "RainbowDelimiterYellow:RainbowHide",
+                        "RainbowDelimiterBlue:RainbowHide",
+                        "RainbowDelimiterOrange:RainbowHide",
+                        "RainbowDelimiterGreen:RainbowHide",
+                        "RainbowDelimiterViolet:RainbowHide",
+                        "RainbowDelimiterCyan:RainbowHide",
+                }, ",")
+        end
+end)
+
 -- mini.pairs {{{
 vim.keymap.set("i", "'", "'", { buffer = true })
 -- don't smart jump over closing brackets
