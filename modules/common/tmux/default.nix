@@ -31,9 +31,6 @@ in {
           tmux
           */
           ''
-            # kmscon's terminfo doesn't declare italics support; render italics anyway
-            set -ga terminal-overrides ',kmscon*:sitm=\E[3m,ritm=\E[23m'
-
             set -g renumber-windows on
             set -g display-time 4000    # increase tmux messages display duration from 750ms to 4s
             # vi for copy-mode, emacs for command prompt
