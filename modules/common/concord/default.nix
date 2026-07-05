@@ -31,6 +31,7 @@ in {
       xdg.configFile."concord/keymap.toml".source = (pkgs.formats.toml {}).generate "keymap.toml" {
         keymap.composer = {
           OpenEditor = "<C-o>";
+          DeletePreviousChar = "<C-h>";
           MoveCursorLeft = "<C-b>";
           MoveCursorRight = "<C-f>";
           MoveCursorHome = "<C-a>";
