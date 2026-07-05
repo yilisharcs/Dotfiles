@@ -82,5 +82,6 @@ in {
   environment.sessionVariables = {
     SUDO_EDITOR = "nvim";
     EDITOR = "nvim";
+    MANPAGER = "nvim +Man!";
   };
 }
