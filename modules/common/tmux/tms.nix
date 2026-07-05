@@ -19,6 +19,10 @@
         ];
         search_dirs = [
           {
+            path = "~/Dotfiles/";
+            depth = 1;
+          }
+          {
             path = "~/Projects/";
             depth = 3;
           }
@@ -37,8 +41,8 @@
           # open picker
           bind 'C-o' display-popup -E "tms"
 
-          # kill session and attach to most recent
-          bind 'C-x' display-popup -E "tms kill"
+          # switch to another session interactively, then kill original
+          bind 'C-x' run-shell 'tmux display-popup -E "tms switch && tmux kill-session -t #S"'
         '';
     }
   ];
