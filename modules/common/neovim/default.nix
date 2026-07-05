@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) enabled;
+  inherit (lib) enabled getExe getExe';
 
   neovim = pkgs.symlinkJoin {
     inherit (pkgs.neovim-unwrapped) version;
@@ -40,11 +40,25 @@
         '
     '';
   };
+
+  man-orig = getExe' pkgs.man-db "man";
+  man-wrapper =
+    (pkgs.writeShellScriptBin "man" ''
+      if [ -t 1 ]; then
+        exec ${getExe neovim} -c "Man $*" -c "only"
+      else
+        exec ${man-orig} "$@"
+      fi
+    '').overrideAttrs (old: {
+      meta = (old.meta or {}) // {priority = 4;};
+    });
 in {
   home-manager.sharedModules = [
     {
-      # Multilanguage implementation of ctags
-      home.packages = [pkgs.universal-ctags];
+      home.packages = [
+        pkgs.universal-ctags # Multilanguage implementation of ctags
+        man-wrapper
+      ];
 
       # Terminal text editor
       programs.neovim = enabled {
@@ -88,6 +102,5 @@ in {
   environment.sessionVariables = {
     SUDO_EDITOR = "nvim";
     EDITOR = "nvim";
-    MANPAGER = "nvim +Man!";
   };
 }

@@ -1,6 +1,7 @@
 vim.loader.enable()
 
 require("utils.snacks.bigfile")
+require("robin") -- cached manpages
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
