@@ -28,6 +28,18 @@
           }
         ];
       };
+
+      programs.tmux.extraConfig =
+        /*
+        tmux
+        */
+        ''
+          # open picker
+          bind 'C-o' display-popup -E "tms"
+
+          # kill session and attach to most recent
+          bind 'C-x' display-popup -E "tms kill"
+        '';
     }
   ];
 }

@@ -74,9 +74,6 @@ in {
             bind -T copy-mode-vi 'M-k' if -F '#{pane_at_top}'    ''' 'select-pane -U'
             bind -T copy-mode-vi 'M-l' if -F '#{pane_at_right}'  ''' 'select-pane -R'
 
-            # run tmux-sessionizer
-            bind 'C-o' display-popup -E "tms"
-
             bind 'X' kill-session
             bind 'C-^' last-window # Vim-like pane switching
             bind 'a' choose-tree -Zs
