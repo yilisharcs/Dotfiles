@@ -8,6 +8,31 @@
   jj-help-k = pkgs.writeShellScriptBin "jjk" ''
     ${getExe pkgs.jujutsu} help -k "$1" | ${getExe pkgs.bat} --plain --language markdown
   '';
+  jj-bookmark-create-track = pkgs.writeScriptBin "jj-bookmark-create-track" (
+    /*
+    nu
+    */
+    ''
+      #!${getExe pkgs.nushell}
+      def --wrapped main [...args: string] {
+        jj bookmark create ...$args
+
+        ($args | reduce -f { skip: false, names: [] } {|arg, acc|
+          if $acc.skip {
+            { skip: false, names: $acc.names }
+          } else if $arg in ["-r" "--revision" "--to"] {
+            { skip: true, names: $acc.names }
+          } else if ($arg | str starts-with "-") {
+            { skip: false, names: $acc.names }
+          } else {
+            { skip: false, names: ($acc.names | append $arg) }
+          }
+        }).names | each {|name|
+          jj bookmark track --remote origin $name
+        } | ignore
+      }
+    ''
+  );
 in {
   home-manager.sharedModules = [
     {
@@ -30,6 +55,7 @@ in {
 
       home.packages = [
         jj-help-k
+        jj-bookmark-create-track
         # pkgs.radicle-node
       ];
 
@@ -59,10 +85,7 @@ in {
             sign-on-push = true;
           };
           # shamelessly taken from HSVSphere
-          remotes."*" = {
-            auto-track-bookmarks = "glob:*";
-            push-new-bookmarks = true;
-          };
+          remotes."*".auto-track-bookmarks = "glob:*";
           templates.draft_commit_description =
             /*
             python
@@ -82,6 +105,8 @@ in {
             a = ["abandon"];
 
             ab = ["absorb"];
+
+            bc = ["util" "exec" "--" "jj-bookmark-create-track"];
 
             c = ["commit"];
             ci = ["commit" "--interactive"];
