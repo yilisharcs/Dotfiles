@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) enabled concatStrings mergeAttrsList recursiveUpdate;
+  inherit (lib) enabled mergeAttrsList recursiveUpdate;
 
   getPreset = name: (with builtins;
     "${pkgs.starship}/share/starship/presets/${name}.toml"
@@ -19,7 +19,6 @@ in {
 
       # Multishell prompt engine
       programs.starship = enabled {
-        enableNushellIntegration = false;
         settings =
           [(getPreset "nerd-font-symbols")]
           |> mergeAttrsList
@@ -27,32 +26,17 @@ in {
             recursiveUpdate base {
               add_newline = false;
               command_timeout = 300;
-              format = concatStrings [
-                "$all"
-                "$shell"
-                "$time"
-                "$character"
-              ];
               character = {
-                success_symbol = "[\\$](bold green)";
-                error_symbol = "[\\$](bold red)";
+                success_symbol = "[λ](bold bright-blue)";
+                error_symbol = "[λ](bold red)";
               };
-              git_status = {
-                format = "([\\[$all_status$ahead_behind\\]]($style) )";
-                deleted = "[✘](italic red)";
-              };
-              package = {
-                format = "(is [󰏗 $version]($style) )";
-                symbol = "󰏗 ";
-              };
-              time = {
-                disabled = false;
-                format = "\\[[$time]($style)\\]";
-                style = "bold yellow";
-                time_format = "%H:%M";
-                use_12hr = false;
-              };
-              fill.symbol = " ";
+              directory.style = "bold blue";
+              git_branch.style = "bold white";
+              git_commit.disabled = true;
+              git_status.style = "bold white";
+              package.style = "bold white";
+              cmd_duration.style = "bold cyan";
+              shell.disabled = false;
             });
       };
     }
