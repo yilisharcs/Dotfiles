@@ -4,6 +4,14 @@
   ...
 }: let
   inherit (lib) concatStrings enabled getExe;
+
+  clip-sel = pkgs.writeShellScriptBin "clip-sel" ''
+    if [ -n "$TMUX" ]; then
+      printf '%s' "$*" | tmux set-buffer
+    else
+      printf '%s' "$*" | wl-copy
+    fi
+  '';
 in {
   home-manager.sharedModules = [
     {
@@ -31,7 +39,7 @@ in {
         ];
         historyWidgetOptions = [
           "--preview-window hidden"
-          "--bind='ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'"
+          "--bind='ctrl-y:execute-silent(${getExe clip-sel} {2..})+abort'"
           "--header 'Press CTRL-Y to copy command into clipboard'"
         ];
       };
