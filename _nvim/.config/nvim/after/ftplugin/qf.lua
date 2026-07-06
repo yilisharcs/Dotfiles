@@ -3,4 +3,4 @@ vim.wo[0][0].signcolumn = "no"
 vim.wo[0][0].statuscolumn = ""
 vim.wo[0][0].wrap = false
 
-vim.wo[0][0].winhighlight = "Normal:QuickFixBg"
+vim.wo[0][0].winhighlight = "Normal:NormalNC"

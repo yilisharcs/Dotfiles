@@ -1,8 +1,8 @@
 {
-  silverwine = {
-    background = "#0a001a";
+  moyin = {
+    background = "#070b14";
     foreground = "#cdd6f4";
-    black = "#030008";
+    black = "#020407";
     red = "#d31834";
     green = "#00af5f";
     yellow = "#ffaf00";

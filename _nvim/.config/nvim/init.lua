@@ -133,7 +133,7 @@ end
 
 vim.o.termguicolors = true
 vim.o.background = "dark"
-vim.cmd.colorscheme("silverwine")
+vim.cmd.colorscheme("moyin")
 
 vim.filetype.add({
         extension = {

@@ -43,14 +43,14 @@ in {
         installBatSyntax = true;
         installVimSyntax = true;
 
-        themes.silverwine = {
-          background = lib.colors.silverwine.background;
+        themes.moyin = {
+          background = lib.colors.moyin.background;
           foreground = "#ffdead";
-          palette = lib.colors.toGhosttyPalette lib.colors.silverwine;
+          palette = lib.colors.toGhosttyPalette lib.colors.moyin;
         };
 
         settings = {
-          theme = "silverwine";
+          theme = "moyin";
           copy-on-select = true;
           cursor-style = "block";
           link-url = false; # osc8 popups are annoying

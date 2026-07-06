@@ -25,7 +25,7 @@ in {
         mouse = true;
         terminal = "tmux-256color"; # Set $TERM colors
         extraConfig = let
-          sw = lib.colors.silverwine;
+          sw = lib.colors.moyin;
         in
           /*
           tmux

@@ -48,7 +48,7 @@ in {
         mouse = false;
         xkb-repeat-delay = 300;
       }
-      // lib.colors.toKmsconPalette lib.colors.silverwine;
+      // lib.colors.toKmsconPalette lib.colors.moyin;
   };
 
   environment.shellAliases = mkIf config.services.desktopManager.plasma6.enable {

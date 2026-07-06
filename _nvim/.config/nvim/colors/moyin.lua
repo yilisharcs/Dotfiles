@@ -3,21 +3,17 @@ if vim.g.colors_name then
 end
 vim.cmd.syntax("reset")
 
-vim.g.colors_name = "silverwine"
+vim.g.colors_name = "moyin"
 
 local colors = {
-        Wine1 = "#3f006c",
-        Wine2 = "#2a0048",
-        Wine3 = "#12001f",
-
         Silver1 = "#cdd6f4",
         Silver2 = "#bcc8f0",
         Silver3 = "#afafff",
 
-        Ink1 = "#0f051e",
-        Ink2 = "#0a001a",
-        Ink3 = "#060010",
-        Ink4 = "#030008",
+        Ink1 = "#0c1018",
+        Ink2 = "#070b14",
+        Ink3 = "#04070c",
+        Ink4 = "#020407",
 
         Gray1 = "#708090",
         Gray2 = "#362b49",
@@ -81,19 +77,16 @@ for k, v in ipairs(terminal_ansi_colors) do
         vim.g[num] = v
 end
 
--- custom
-hi("QuickFixBg", { bg = colors.Wine3 })
-
 -- general
 hi("Normal", { fg = colors.Silver1, bg = colors.Ink2, ctermfg = "white" })
 hi("NormalNC", { bg = colors.Ink3 })
 hi("StatusLine", { fg = "fg", bg = colors.Gray2, bold = true, ctermfg = "white", ctermbg = "NONE" })
-hi("StatusLineNC", { fg = "fg", bg = colors.Wine2, bold = true, ctermfg = "grey" })
+hi("StatusLineNC", { fg = "fg", bg = colors.Gray3, bold = true, ctermfg = "grey" })
 hi("TabLineSel", { fg = colors.Yellow1, bg = colors.Ink1, bold = true, ctermfg = "yellow", ctermbg = "yellow" })
 hi("Title", { fg = "NONE", bold = true })
 
 -- color lines
-hi("ColorColumn", { bg = colors.Wine2, ctermbg = "magenta" })
+hi("ColorColumn", { bg = colors.Gray3, ctermbg = "blue" })
 hi("CursorColumn", { bg = colors.Gray2 })
 hi("CursorLine", { bg = colors.Gray2 })
 hi("CursorLineFold", { fg = "fg" })
