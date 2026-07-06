@@ -17,7 +17,6 @@
     patches =
       (old.patches or [])
       ++ [
-        ./patch/kmscon/0001-terminfo-advertise-italics-capability.patch
         ./patch/kmscon/0002-input-add-keyd-compose-protocol-support.patch
       ];
   });
@@ -54,4 +53,20 @@ in {
   environment.shellAliases = mkIf config.services.desktopManager.plasma6.enable {
     kmscon-startplasma = "kmscon-launch-gui ${pkgs.kdePackages.plasma-workspace}/libexec/plasma-dbus-run-session-if-needed startplasma-wayland";
   };
+
+  home-manager.sharedModules = [
+    {
+      programs.tmux = enabled {
+        extraConfig =
+          /*
+          tmux
+          */
+          ''
+            # kmscon's terminfo doesn't declare italics support since not all font-engines can
+            # render them; we're using pango, which supports italics, so we render them anyway
+            set -ga terminal-overrides ',kmscon*:sitm=\E[3m,ritm=\E[23m'
+          '';
+      };
+    }
+  ];
 }
