@@ -50,6 +50,20 @@ in {
       programs.neovim = enabled {
         package = neovim;
         sideloadInitLua = true; # Don't overwrite $XDG_CONFIG_HOME/nvim/init.lua stow symlink
+        initLua =
+          /*
+          lua
+          */
+          ''
+            -- restore system XDG paths for child processes (xdg-open, etc.)
+            -- this doesn't affect RTP because it's already been calculated.
+            if vim.env._OLD_XDG_DATA_DIRS then
+              vim.env.XDG_DATA_DIRS = vim.env._OLD_XDG_DATA_DIRS
+            end
+            if vim.env._OLD_XDG_CONFIG_DIRS then
+              vim.env.XDG_CONFIG_DIRS = vim.env._OLD_XDG_CONFIG_DIRS
+            end
+          '';
         defaultEditor = true;
         viAlias = true;
         vimAlias = true;
