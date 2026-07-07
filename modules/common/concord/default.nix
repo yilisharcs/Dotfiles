@@ -4,17 +4,9 @@
   pkgs,
   ...
 }: let
-  concord = inputs.concord.packages.${pkgs.system}.default.overrideAttrs (old: {
-    patches =
-      (old.patches or [])
-      ++ [
-        ./patch/0001-feat-support-CONCORD_TOKEN-env-var-in-Auto-credentia.patch
-      ];
-  });
-
   concord-wrapped = pkgs.writeShellScriptBin "concord" ''
     export CONCORD_TOKEN=$(< ${config.age.secrets.discord.path})
-    exec ${concord}/bin/concord
+    exec ${inputs.concord.packages.${pkgs.system}.default}/bin/concord
   '';
 in {
   age.secrets.discord = {
@@ -31,7 +23,7 @@ in {
       xdg.configFile."concord/keymap.toml".source = (pkgs.formats.toml {}).generate "keymap.toml" {
         keymap.composer = {
           OpenEditor = "<C-o>";
-          DeletePreviousChar = "<C-h>";
+          DeletePreviousChar = {keys = ["<C-h>" "backspace"];};
           MoveCursorLeft = "<C-b>";
           MoveCursorRight = "<C-f>";
           MoveCursorHome = "<C-a>";
