@@ -194,6 +194,9 @@ vim.pack.add({
         {
                 src = "https://github.com/pwntester/octo.nvim",
         },
+        {
+                src = "https://github.com/nvim-lua/plenary.nvim",
+        },
         -- toggleterm.nvim
         {
                 src = "https://github.com/akinsho/toggleterm.nvim",
