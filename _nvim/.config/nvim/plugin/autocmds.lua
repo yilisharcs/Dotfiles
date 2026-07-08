@@ -29,10 +29,7 @@ vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter", "WinEnter" }, {
         group = group,
         pattern = "term://*",
         callback = function()
-                local buf = vim.api.nvim_buf_get_name(0)
-                if not buf:match("compilation://*") then
-                        vim.cmd.startinsert()
-                end
+                vim.cmd.startinsert()
         end,
 })
 
