@@ -1,4 +1,8 @@
-{...}: {
+{pkgs, ...}: {
+  # Set of command line tools that assist applications with a variety of desktop integration tasks
+  # provides `xdg-open`
+  environment.systemPackages = [pkgs.xdg-utils];
+
   home-manager.sharedModules = [
     {
       xdg.enable = true;
