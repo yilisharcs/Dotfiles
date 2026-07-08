@@ -79,8 +79,8 @@ in {
             bind 'a' choose-tree -Zs
 
             # pane control
-            bind 'h' split-window -v
-            bind 's' split-window -h
+            bind 's' split-window -v
+            bind 'v' split-window -h
 
             bind -r '-' resize-pane -D 4
             bind -r '+' resize-pane -U 4
