@@ -89,9 +89,11 @@ in {
             intends to write a patch, clone it at ~/Projects/<forge>/<owner>/<repo> and
             symlink it back to ~/Projects/<forge>/yilisharcs/<repo>. Pre-existing repos
             may also be found there.
-          - A local clone of the Neovim repo and of miscellaneous plugins can be found at
-            ~/Projects/github.com/neovim/neovim and ~/.local/share/nvim/site/pack/core/opt
-            respectively.
+          - If a local clone is mentioned, search for it in the following order:
+              * ~/Projects/<forge>/<owner>/<repo>/
+              * /tmp/opencode/
+              * ~/.local/share/nvim/site/pack/core/opt/
+              * ~/Projects/github.com/neovim/neovim/
         '';
         tui = {
           attention.enabled = true;
