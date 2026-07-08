@@ -143,6 +143,11 @@ vim.filetype.add({
 vim.g.loaded_tutor_mode_plugin = 1
 
 vim.pack.add({
+        -- canola.nvim
+        --      mini.icons
+        {
+                src = "https://github.com/barrettruth/canola.nvim",
+        },
         -- conform.nvim
         {
                 src = "https://github.com/stevearc/conform.nvim",
@@ -215,14 +220,6 @@ vim.pack.add({
         -- which-key.nvim (lazy: false)
         {
                 src = "https://github.com/folke/which-key.nvim",
-        },
-        -- [dev] yazi.nvim
-        --      ibhagwan/fzf-lua
-        -- {
-        --         src = "https://github.com/mikavilpas/yazi.nvim",
-        -- },
-        {
-                src = "https://github.com/nvim-lua/plenary.nvim",
         },
 }, { load = true })
 

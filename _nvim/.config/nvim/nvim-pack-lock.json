@@ -4,6 +4,10 @@
       "rev": "91d86506ac2a039504d5205d32a1d4bc7aa57072",
       "src": "git@github.com:numToStr/Navigator.nvim"
     },
+    "canola.nvim": {
+      "rev": "f97dff59bcc285e996a454858c3c185d86521ec3",
+      "src": "git@github.com:barrettruth/canola.nvim"
+    },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
