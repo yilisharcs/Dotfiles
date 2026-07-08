@@ -165,6 +165,10 @@ vim.pack.add({
         --         src = "https://github.com/yilisharcs/hex.nvim",
         --         version = "undolevel"
         -- },
+        -- guh.nvim
+        {
+                src = "https://github.com/justinmk/guh.nvim",
+        },
         -- hydra.nvim (lazy: false)
         {
                 src = "https://github.com/nvimtools/hydra.nvim",
@@ -193,14 +197,6 @@ vim.pack.add({
         },
         {
                 src = "https://github.com/RRethy/nvim-treesitter-endwise",
-        },
-        -- octo.nvim
-        --      ibhagwan/fzf-lua
-        {
-                src = "https://github.com/pwntester/octo.nvim",
-        },
-        {
-                src = "https://github.com/nvim-lua/plenary.nvim",
         },
         -- toggleterm.nvim
         {

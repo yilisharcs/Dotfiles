@@ -29,6 +29,10 @@ vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter", "WinEnter" }, {
         group = group,
         pattern = "term://*",
         callback = function()
+                if not vim.bo.buflisted then
+                        return
+                end
+
                 vim.cmd.startinsert()
         end,
 })
