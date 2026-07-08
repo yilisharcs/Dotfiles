@@ -125,6 +125,7 @@ in {
             external_directory = {
               "*" = "ask";
               "/nix/store/*" = "allow";
+              "/tmp/opencode/*" = "allow";
             };
             bash = {
               "*" = "ask";
