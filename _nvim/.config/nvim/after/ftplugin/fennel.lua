@@ -19,7 +19,6 @@ vim.bo.iskeyword = vim.o.iskeyword
 vim.bo.includeexpr = [[tr(substitute(v:fname, '^:', '', ''), '.', '/')]]
 
 vim.bo.commentstring = ";; %s"
-vim.bo.comments = ":;;;;,:;;;,:;;,:;"
 
 vim.keymap.set("n", "<F6>", function()
         if vim.b.toggle_parens_hl ~= nil then
