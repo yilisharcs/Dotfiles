@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
         desc = "Highlight text on copy",
         group = group,
         callback = function()
-                vim.hl.on_yank({ higroup = "Visual", timeout = 500 })
+                vim.hl.hl_op({ higroup = "Visual", timeout = 500 })
         end,
 })
 
