@@ -85,6 +85,9 @@ in
          if [ ! -f "$dir/SonLVL.exe" ]; then \
            cp -r "'$out'/share/${finalAttrs.pname}/." "$dir/"; \
          fi; \
+         [ -L "$dir/SonLVL.ini" ] \
+           && cp --remove-destination "$(readlink -f "$dir/SonLVL.ini")" "$dir/SonLVL.ini" \
+           && chmod +w "$dir/SonLVL.ini"; \
          if [ ! -d "$dir/.wine" ]; then \
            wine msiexec /i "${wineWow64Packages.stableFull}/share/wine/mono/wine-mono-10.0.0-x86.msi" /quiet; \
            wineserver -w; \
