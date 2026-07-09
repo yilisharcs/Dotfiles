@@ -54,7 +54,8 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "OptionSet" }, {
         group = group,
         callback = function()
                 if
-                        not vim.tbl_contains({
+                        vim.bo.buflisted
+                        and not vim.tbl_contains({
                                 "Makefile",
                                 "fennel",
                         }, vim.bo.filetype)
