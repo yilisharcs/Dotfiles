@@ -169,10 +169,6 @@ vim.pack.add({
         {
                 src = "https://github.com/justinmk/guh.nvim",
         },
-        -- hydra.nvim (lazy: false)
-        {
-                src = "https://github.com/nvimtools/hydra.nvim",
-        },
         -- mini.nvim
         --      nvim-treesitter/nvim-treesitter
         {
@@ -212,10 +208,6 @@ vim.pack.add({
         -- vim-symlink
         {
                 src = "https://github.com/aymericbeaumet/vim-symlink",
-        },
-        -- which-key.nvim (lazy: false)
-        {
-                src = "https://github.com/folke/which-key.nvim",
         },
 }, { load = true })
 

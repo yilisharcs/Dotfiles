@@ -24,10 +24,6 @@
       "rev": "943779f7cdb0acee203985ad531fb53ff95d9c8e",
       "src": "https://github.com/justinmk/guh.nvim"
     },
-    "hydra.nvim": {
-      "rev": "8c4a9f621ec7cdc30411a1f3b6d5eebb12b469dc",
-      "src": "https://github.com/nvimtools/hydra.nvim"
-    },
     "mini.nvim": {
       "rev": "dc8a9918c3b1bc18a5fcd04d39b6d658074c0886",
       "src": "https://github.com/nvim-mini/mini.nvim"
@@ -65,10 +61,6 @@
     "vim-symlink": {
       "rev": "afabc0f77e0aac5010fea45b09df62d5681c9682",
       "src": "https://github.com/aymericbeaumet/vim-symlink"
-    },
-    "which-key.nvim": {
-      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
-      "src": "https://github.com/folke/which-key.nvim"
     }
   }
 }
