@@ -55,8 +55,8 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "OptionSet" }, {
         callback = function()
                 if
                         not vim.tbl_contains({
-                                "fennel",
                                 "Makefile",
+                                "fennel",
                         }, vim.bo.filetype)
                 then
                         local append = "leadmultispace:▹" .. string.rep(" ", vim.o.shiftwidth - 1)
