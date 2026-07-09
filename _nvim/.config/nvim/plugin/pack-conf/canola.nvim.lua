@@ -107,7 +107,6 @@ require("oil").setup({
                 },
                 ["g/"] = goto_dir("/"),
                 ["gh"] = goto_dir("~/"),
-                ["gq"] = goto_dir("~/Projects/codeberg.org/yilisharcs/"),
                 ["ga"] = goto_dir("~/Projects/github.com/yilisharcs/"),
                 ["gb"] = goto_dir("~/Shared/notebook/"),
                 -- TODO: delete this

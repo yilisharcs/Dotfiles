@@ -49,11 +49,11 @@ in {
             ssh.allowedSignersFile = "~/.ssh/allowed_signers";
           };
           url = {
-            "git@codeberg.org:" = {
-              insteadOf = "https://codeberg.org/";
-            };
             "git@github.com:" = {
               insteadOf = "https://github.com/";
+            };
+            "git@codeberg.org:" = {
+              insteadOf = "https://codeberg.org/";
             };
           };
           alias = {

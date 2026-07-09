@@ -168,10 +168,6 @@ in {
             desc = "Go to root directory";
           }
           {
-            on = ["g" "q"];
-            run = "cd ~/Projects/codeberg.org/yilisharcs/";
-          }
-          {
             on = ["g" "a"];
             run = "cd ~/Projects/github.com/yilisharcs/";
           }

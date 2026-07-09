@@ -22,12 +22,12 @@ in {
             # ServerAliveCountMax = 3;
             # ControlPath = "~/.ssh/master-%r@%n:%p";
           };
-          "codeberg.org" = {
+          "github.com" = {
             user = "git";
             identityFile = "~/.ssh/id_ed25519";
             identitiesOnly = true;
           };
-          "github.com" = {
+          "codeberg.org" = {
             user = "git";
             identityFile = "~/.ssh/id_ed25519";
             identitiesOnly = true;
