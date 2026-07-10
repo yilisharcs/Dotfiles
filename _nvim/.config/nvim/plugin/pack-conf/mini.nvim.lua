@@ -191,6 +191,9 @@ require("mini.clue").setup({
         },
         window = {
                 delay = 500,
+                config = {
+                        width = math.floor(vim.o.columns * 0.27 - 0.5),
+                },
         },
 })
 -- }}}
