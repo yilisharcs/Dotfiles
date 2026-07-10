@@ -16,8 +16,8 @@ end, { desc = "Open notifications" })
 local jq_issue = '.[] | [.number, .state, .createdAt[:10], .title, (.labels | map(.name) | join(","))] | @tsv'
 local jq_prs = '.[] | [.number, .createdAt[:10], .title, (.labels | map(.name) | join(","))] | @tsv'
 local jq_repos = ".[] | . as $r"
-        .. ' | [.nameWithOwner, ((.description // "") | if length > 57 then .[:54] + "..." else . end),'
-        .. ' ([$r.visibility, if $r.isFork then "fork" else empty end, if $r.isArchived then "archived" else empty end]'
+        .. ' | [.nameWithOwner, ((.description // "") | if length > 50 then .[:47] + "..." else . end),'
+        .. ' ([$r.visibility, if $r.isFork then "fork" else empty end, if $r.isArchived then "arch" else empty end]'
         .. ' | join(", ")), .pushedAt[:10]] | @tsv'
 
 vim.keymap.set("n", "<leader>oi", function()
