@@ -128,6 +128,7 @@ in {
               "*" = "ask";
               "/nix/store/*" = "allow";
               "/tmp/opencode/*" = "allow";
+              "~/.local/share/nvim/site/pack/core/opt/*" = "allow";
             };
             bash = {
               "*" = "ask";
