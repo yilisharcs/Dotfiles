@@ -5,14 +5,6 @@ require("utils.cabbrev")({
 vim.keymap.set("n", "<leader>oz", ":Guh ", { desc = "Run Guh command" })
 vim.keymap.set("n", "<leader>os", "<CMD>Guh<CR>", { desc = "Open status" })
 
-vim.keymap.set("n", "<leader>on", function()
-        CME.compile({
-                args = "gh api 'notifications?all=true' --paginate"
-                        .. " --jq '.[] | [.repository.full_name, .subject.type, .subject.title] | @tsv'"
-                        .. " | column -t -s '\t'",
-        }, { cmd_display = "gh api notifications" })
-end, { desc = "Open notifications" })
-
 local jq_issue = '.[] | [.number, .state, .createdAt[:10], .title, (.labels | map(.name) | join(","))] | @tsv'
 local jq_prs = '.[] | [.number, .createdAt[:10], .title, (.labels | map(.name) | join(","))] | @tsv'
 local jq_repos = ".[] | . as $r"
@@ -73,3 +65,101 @@ vim.keymap.set("n", "<leader>od", function()
                 end)
         end)
 end, { desc = "List discussions" })
+
+local on_exit = function(result)
+        if result.code ~= 0 then
+                return
+        end
+
+        vim.schedule(function()
+                -- each key is a valid subject.type
+                local notif_icons = {
+                        Issue = "",
+                        PullRequest = "",
+                        Discussion = "",
+                        Commit = "",
+                        Release = "",
+                        CheckSuite = "",
+                }
+                local entries = {}
+
+                local notifications = vim.json.decode(result.stdout)
+                for _, n in ipairs(notifications) do
+                        local t = n.subject and n.subject.type
+                        -- maybe github will add more types...?
+                        if not notif_icons[t] then
+                                goto continue
+                        end
+
+                        local repo = n.repository.full_name
+                        local url = n.subject.url or ""
+                        local num, slug
+
+                        if t == "Commit" then
+                                num = url:match("/commits/([a-f0-9]+)$"):sub(1, 7)
+                                slug = url:gsub("api%.github%.com/repos/", "github.com/")
+                        elseif t == "Release" or t == "CheckSuite" then
+                                num = ""
+                                slug = url:gsub("api%.github%.com/repos/", "github.com/")
+                        else
+                                num = url:match("/(%d+)$")
+                                slug = ("%s#%s"):format(repo, num)
+                        end
+
+                        entries[#entries + 1] = {
+                                icon = notif_icons[t],
+                                num = num,
+                                repo = repo,
+                                title = n.subject.title,
+                                slug = slug,
+                                kind = t,
+                                url = url,
+                                unread = n.unread,
+                        }
+
+                        ::continue::
+                end
+                if #entries == 0 then
+                        return
+                end
+
+                local num_pad, repo_pad = 0, 0
+                for _, e in ipairs(entries) do
+                        num_pad = math.max(num_pad, #e.num)
+                        repo_pad = math.max(repo_pad, #e.repo)
+                end
+
+                local fzf = require("fzf-lua")
+                vim.ui.select(entries, {
+                        prompt = "Notifications> ",
+                        format_item = function(e)
+                                local hl = e.unread and "MiniIconsYellow" or "MiniIconsAzure"
+                                local icon = fzf.utils.ansi_from_hl(hl, e.icon)
+                                return ("%s  #%-" .. num_pad .. "s  %-" .. repo_pad .. "s  %s"):format(
+                                        icon,
+                                        e.num,
+                                        e.repo,
+                                        e.title
+                                )
+                        end,
+                }, function(e)
+                        if not e then
+                                return
+                        end
+
+                        if e.kind == "Discussion" or e.kind == "Release" or e.kind == "CheckSuite" then
+                                vim.ui.open(e.url:gsub("api%.github%.com/repos/", "github.com/"))
+                        else
+                                vim.cmd("Guh " .. e.slug)
+                        end
+                end)
+        end)
+end
+vim.keymap.set("n", "<leader>on", function()
+        vim.system({
+                "gh",
+                "api",
+                "notifications?all=true",
+                "--paginate",
+        }, { text = true }, on_exit)
+end, { desc = "Open notifications" })
