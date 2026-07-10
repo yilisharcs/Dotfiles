@@ -207,7 +207,7 @@ require("mini.diff").setup({
         },
 })
 
-vim.keymap.set("n", "<leader>gh", "<CMD>lua MiniDiff.toggle_overlay()<CR>", { desc = "[Git] Diff overlay" })
+vim.keymap.set("n", "<leader>gh", "<CMD>lua MiniDiff.toggle_overlay()<CR>", { desc = "Overlay git diff" })
 -- }}}
 
 -- mini.git {{{
@@ -249,7 +249,7 @@ if vcs_bin == "git" then
                 "n",
                 "<leader>gb",
                 "mzgg<CMD>vert Git blame -- %<CR><C-w>W<CMD>set cursorbind scrollbind<CR>`z",
-                { desc = "Git blame" }
+                { desc = "View git blame" }
         )
 
         local ns = vim.api.nvim_create_namespace("mini_git_blame")

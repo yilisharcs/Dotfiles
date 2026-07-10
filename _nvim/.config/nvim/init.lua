@@ -20,7 +20,7 @@ vim.keymap.set("n", "<leader>j", "`J", { desc = "File mark `J" })
 vim.keymap.set("n", "<leader>k", "`K", { desc = "File mark `K" })
 vim.keymap.set("n", "<leader>l", "`L", { desc = "File mark `L" })
 
-vim.keymap.set("n", "<leader>p", ":= P()<LEFT>", { desc = "Printf util" })
+vim.keymap.set("n", "<leader>p", ":= P()<LEFT>", { desc = "Eval and print" })
 function P(...)
         local args = {}
         for _, arg in ipairs({ ... }) do

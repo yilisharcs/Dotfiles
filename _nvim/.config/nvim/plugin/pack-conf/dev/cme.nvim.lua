@@ -75,11 +75,11 @@ require("utils.cabbrev")({
         ["MXCompile rg"] = { "grep" },
 })
 
-vim.keymap.set("n", "<leader>c", ":MXCompile ")
-vim.keymap.set("n", "<leader>C", "<CMD>MXCompile<CR>")
-vim.keymap.set("n", "<leader>r", ":MXRecompile ")
-vim.keymap.set("n", "<leader>R", ":MXRecompile! ")
-vim.keymap.set("n", "<leader>X", "<CMD>MXKill<CR>")
+vim.keymap.set("n", "<leader>c", ":MXCompile ", { desc = "Run compilation" })
+vim.keymap.set("n", "<leader>C", "<CMD>MXCompile<CR>", { desc = "Re-run previous compilation" })
+vim.keymap.set("n", "<leader>r", ":MXRecompile ", { desc = "Run and watch compilation" })
+vim.keymap.set("n", "<leader>R", ":MXRecompile! ", { desc = "Run, watch, notify compilation" })
+vim.keymap.set("n", "<leader>X", "<CMD>MXKill<CR>", { desc = "Kill compilation watcher" })
 
 function Greppy(mode)
         local start = {}

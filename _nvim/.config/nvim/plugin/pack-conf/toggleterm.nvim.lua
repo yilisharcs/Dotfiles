@@ -14,9 +14,9 @@ require("toggleterm").setup({
         end,
 })
 
-vim.keymap.set("n", "<leader>th", "<CMD>ToggleTerm direction=horizontal<CR>", { desc = "Toggleterm horizontal" })
-vim.keymap.set("n", "<leader>tv", "<CMD>ToggleTerm direction=vertical<CR>", { desc = "Toggleterm vertical" })
-vim.keymap.set("n", "<leader>tt", "<CMD>ToggleTerm direction=tab<CR>", { desc = "Toggleterm in tab" })
+vim.keymap.set("n", "<leader>th", "<CMD>ToggleTerm direction=horizontal<CR>", { desc = "Toggle horizontal terminal" })
+vim.keymap.set("n", "<leader>tv", "<CMD>ToggleTerm direction=vertical<CR>", { desc = "Toggle vertical terminal" })
+vim.keymap.set("n", "<leader>tt", "<CMD>ToggleTerm direction=tab<CR>", { desc = "Toggle tab terminal" })
 
 local Terminal = require("toggleterm.terminal").Terminal
 
@@ -28,4 +28,4 @@ vim.keymap.set("n", "<leader>i", function()
                 count = 2,
                 cwd = vim.fn.getcwd(),
         }):open()
-end, { desc = "Toggleterm Jujutsu UI" })
+end, { desc = "Toggle Jujutsu UI terminal" })
