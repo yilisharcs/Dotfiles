@@ -49,7 +49,7 @@ in {
             set -g status-left '[#S] #{user}@#h'
             set -g status-right '[%F %R]'
             set -g status-justify centre
-            set -g status-interval 5
+            set -g status-interval 1 # should update the bell faster...
             setw -g automatic-rename on
 
             # set copy-mode and clipboard settings
