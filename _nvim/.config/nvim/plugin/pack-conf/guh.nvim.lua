@@ -53,13 +53,14 @@ vim.keymap.set("n", "<leader>or", function()
         }, { cmd_display = "gh repo list" })
 end, { desc = "List repos" })
 
+-- stylua: ignore
+local cmd_discussion = {
+        "gh", "repo", "view",
+        "--json", "hasDiscussionsEnabled,nameWithOwner,parent",
+        "--jq", 'if .hasDiscussionsEnabled then .nameWithOwner else (.parent.nameWithOwner // "") end',
+}
 vim.keymap.set("n", "<leader>od", function()
-        -- stylua: ignore
-        vim.system({
-                "gh", "repo", "view",
-                "--json", "hasDiscussionsEnabled,nameWithOwner,parent",
-                "--jq", 'if .hasDiscussionsEnabled then .nameWithOwner else (.parent.nameWithOwner // "") end',
-        }, { text = true }, function(result)
+        vim.system(cmd_discussion, { text = true }, function(result)
                 if result.code ~= 0 then
                         return
                 end
