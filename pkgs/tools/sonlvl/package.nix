@@ -84,6 +84,8 @@ in
          cp -u "'$out'/share/${finalAttrs.pname}/"*-bridge.bat "$dir/"; \
          if [ ! -f "$dir/SonLVL.exe" ]; then \
            cp -r "'$out'/share/${finalAttrs.pname}/." "$dir/"; \
+         fi; \
+         if [ ! -d "$dir/.wine" ]; then \
            wine msiexec /i "${wineWow64Packages.stableFull}/share/wine/mono/wine-mono-10.0.0-x86.msi" /quiet; \
            wineserver -w; \
          fi; \
