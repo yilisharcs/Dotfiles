@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) enabled mkIf;
+  inherit (lib) enabled getExe mkIf;
 
   libtsm' = pkgs.libtsm.overrideAttrs (old: {
     patches =
@@ -51,6 +51,7 @@ in {
   };
 
   environment.shellAliases = mkIf config.services.desktopManager.plasma6.enable {
+    kmscon-startdwl = "kmscon-launch-gui ${getExe config.programs.dwl.package}";
     kmscon-startplasma = "kmscon-launch-gui ${pkgs.kdePackages.plasma-workspace}/libexec/plasma-dbus-run-session-if-needed startplasma-wayland";
   };
 
