@@ -81,10 +81,10 @@ in
         'dir="$HOME/.local/share/${finalAttrs.pname}"; \
          WINEPREFIX="$dir/.wine"; \
          mkdir -p "$dir"; \
-         cp -u "'$out'/share/${finalAttrs.pname}/"*-bridge.bat "$dir/"; \
          if [ ! -f "$dir/SonLVL.exe" ]; then \
            cp -r "'$out'/share/${finalAttrs.pname}/." "$dir/"; \
          fi; \
+         cp -u "'$out'/share/${finalAttrs.pname}/"*-bridge.bat "$dir/"; \
          [ -L "$dir/SonLVL.ini" ] \
            && cp --remove-destination "$(readlink -f "$dir/SonLVL.ini")" "$dir/SonLVL.ini" \
            && chmod +w "$dir/SonLVL.ini"; \
