@@ -37,7 +37,7 @@ in {
           "--bind='backward-eof:abort'"
           "--bind='F4:toggle-preview'"
         ];
-        historyWidgetOptions = [
+        historyWidget.options = [
           "--preview-window hidden"
           "--bind='ctrl-y:execute-silent(${getExe clip-sel} {2..})+abort'"
           "--header 'Press CTRL-Y to copy command into clipboard'"
