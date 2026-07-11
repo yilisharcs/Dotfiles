@@ -1,0 +1,47 @@
+From 90fb654fb8dbb1c80cd5e5fbf2f84afd2e2ce11e Mon Sep 17 00:00:00 2001
+From: yilisharcs <yilisharcs@gmail.com>
+Date: Sat, 11 Jul 2026 04:16:08 -0300
+Subject: [PATCH] chore: remove version check
+
+---
+ src/app.rs | 17 +----------------
+ 1 file changed, 1 insertion(+), 16 deletions(-)
+
+diff --git a/src/app.rs b/src/app.rs
+index 6547900..2d86bc0 100644
+--- a/src/app.rs
++++ b/src/app.rs
+@@ -15,7 +15,7 @@ mod voice_commands;
+ 
+ use tokio::sync::mpsc;
+ 
+-use crate::{DiscordClient, Result, config, discord::AppEvent, logging, tui, version_check};
++use crate::{DiscordClient, Result, config, discord::AppEvent, logging, tui};
+ 
+ use self::{
+     command_loop::start_command_loop,
+@@ -60,21 +60,6 @@ impl App {
+                 }
+             });
+ 
+-            let version_client = client.clone();
+-            tokio::spawn(async move {
+-                match version_check::check_latest_version().await {
+-                    Ok(Some(latest_version)) => {
+-                        version_client
+-                            .publish_event(AppEvent::UpdateAvailable { latest_version })
+-                            .await;
+-                    }
+-                    Ok(None) => {}
+-                    Err(error) => {
+-                        logging::debug("version", format!("latest version check failed: {error}"))
+-                    }
+-                }
+-            });
+-
+             let result = async {
+                 for warning in token_warnings {
+                     logging::error("app", &warning);
+-- 
+2.54.0
+

@@ -1,12 +1,23 @@
 {
   config,
   inputs,
+  lib,
   pkgs,
   ...
 }: let
+  inherit (lib) getExe;
+
+  concord = inputs.concord.packages.${pkgs.system}.default.overrideAttrs (old: {
+    patches =
+      (old.patches or [])
+      ++ [
+        ./patch/0001-chore-remove-version-check.patch
+      ];
+  });
+
   concord-wrapped = pkgs.writeShellScriptBin "concord" ''
     export CONCORD_TOKEN=$(< ${config.age.secrets.discord.path})
-    exec ${inputs.concord.packages.${pkgs.system}.default}/bin/concord
+    exec ${getExe concord}
   '';
 in {
   age.secrets.discord = {
