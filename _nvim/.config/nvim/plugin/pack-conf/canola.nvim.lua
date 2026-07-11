@@ -94,6 +94,7 @@ require("oil").setup({
                         nowait = true,
                 },
                 ["<C-s>"] = { "actions.select", opts = { horizontal = true } },
+                ["<C-h>"] = false,
                 -- ["<C-v>"] = { "actions.select", opts = { vertical = true } },
                 ["ms"] = { "actions.change_sort", mode = "n" },
                 -- fzf
