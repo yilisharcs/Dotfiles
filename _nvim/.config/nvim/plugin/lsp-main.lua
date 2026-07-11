@@ -2,7 +2,7 @@ local hostname = vim.fn.system("uname -n"):gsub("\n", "")
 if hostname == "gato" then
         vim.lsp.enable({
                 "fennel-ls",
-                -- "luals",
+                "luals",
                 "nil-nix",
                 "nuls",
                 -- "rust-analyzer",

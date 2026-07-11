@@ -31,12 +31,14 @@ return {
                 Lua = {
                         runtime = {
                                 version = "Lua 5.5",
+                                builtin = {
+                                        jit = "Disable",
+                                        ffi = "Disable",
+                                        bit32 = "Disable",
+                                },
                         },
                         workspace = {
                                 checkThirdParty = false,
-                                library = {
-                                        "${3rd}/busted/library",
-                                },
                         },
                         diagnostics = {
                                 unusedLocalExclude = {

@@ -13,7 +13,6 @@
                 "checkThirdParty": false,
                 "library": [
                         "$VIMRUNTIME/lua",
-                        "${3rd}/luv/library"
                 ],
                 "ignoreDir": [
                         ".direnv",
