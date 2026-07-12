@@ -154,6 +154,8 @@ _G.MiniBufremove = MiniBufremove
 vim.keymap.set("n", "<M-q>", function()
         if vim.bo.filetype == "help" then
                 vim.cmd.bdelete()
+        elseif vim.bo.filetype == "man" then
+                vim.cmd.quit()
         else
                 MiniBufremove.delete()
         end
