@@ -19,12 +19,12 @@ vim.api.nvim_buf_add_highlight = function(buf, ns, group, row, s, e)
         return orig_hl(buf, ns, group, row, s, e)
 end
 
-local function get_key(path)
+local function get_key(path, manwidth)
         local stat = vim.uv.fs_stat(path)
         if not stat then
                 return nil
         end
-        return vim.fn.sha256(path .. ":" .. tostring(stat.mtime.sec))
+        return vim.fn.sha256(path .. ":" .. tostring(stat.mtime.sec) .. ":" .. tostring(manwidth))
 end
 
 local function get_page_slow(path, silent, manwidth)
@@ -115,7 +115,7 @@ man.read_page = function(ref)
         end
 
         local _, sect1 = pp(path)
-        local key = get_key(path)
+        local key = get_key(path, gw())
 
         if key then
                 local cached = cache_load(key)
