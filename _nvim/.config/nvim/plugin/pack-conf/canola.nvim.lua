@@ -53,6 +53,80 @@ local function create_symlink(relative)
         vim.api.nvim_buf_set_lines(0, -2, -1, false, lines)
 end
 
+local function untrash()
+        local cwd = require("oil").get_current_dir()
+
+        vim.system({ "trash-list" }, { text = true }, function(out)
+                local entries = {}
+                for line in out.stdout:gmatch("[^\n]+") do
+                        if not line:find(cwd, 1, true) then
+                                goto continue
+                        end
+
+                        local path = line:sub(21)
+                        if not path then
+                                goto continue
+                        end
+
+                        table.insert(entries, { display = line, path = path })
+
+                        ::continue::
+                end
+
+                vim.schedule(function()
+                        if #entries == 0 then
+                                vim.notify("No trashed files from " .. cwd, vim.log.levels.INFO)
+                                return
+                        end
+
+                        vim.ui.select(entries, {
+                                format_item = function(e)
+                                        return e.display
+                                end,
+                        }, function(choice)
+                                if not choice then
+                                        return
+                                end
+
+                                vim.system({
+                                        "trash-restore",
+                                        choice.path,
+                                }, {
+                                        text = true,
+                                        stdin = "0\n",
+                                }, function(res)
+                                        local msg = #res.stderr > 0 and res.stderr or "Restored: " .. choice.path
+                                        local lvl = res.code ~= 0 and vim.log.levels.ERROR or vim.log.levels.INFO
+                                        vim.notify(msg, lvl)
+                                end)
+                        end)
+                end)
+        end)
+end
+
+local function ouch_cmd(fn)
+        return function()
+                local oil = require("oil")
+                local entry = oil.get_cursor_entry()
+                if not entry then
+                        return
+                end
+
+                local file = oil.get_current_dir() .. entry.name
+                vim.system(fn(file), {
+                        stdout = false,
+                        stderr = function(_, data)
+                                if not data then
+                                        return
+                                end
+                                vim.notify(data, vim.log.levels.INFO)
+                        end,
+                        -- simplify program output
+                        env = { ACCESSIBLE = "true" },
+                })
+        end
+end
+
 local function goto_dir(path, desc)
         return { "<CMD>edit " .. path .. "<CR>", nowait = true, desc = desc or ("Go to " .. path) }
 end
@@ -118,6 +192,13 @@ require("oil").setup({
                         nowait = true,
                         desc = "List tracked files from current directory",
                 },
+                -- trash
+                ["<leader>u"] = {
+                        untrash,
+                        mode = "n",
+                        nowait = true,
+                        desc = "Restore trashed file",
+                },
                 -- symlink
                 ["<leader>y"] = {
                         "actions.yank_entry",
@@ -139,6 +220,47 @@ require("oil").setup({
                         mode = "n",
                         nowait = true,
                         desc = "Create relative symlink from yanked path",
+                },
+                -- ouch
+                ["<leader>ee"] = {
+                        ouch_cmd(function(file)
+                                return { "ouch", "d", file }
+                        end),
+                        mode = "n",
+                        nowait = true,
+                        desc = "Extract archive",
+                },
+                ["<leader>eg"] = {
+                        ouch_cmd(function(file)
+                                return { "ouch", "c", "--slow", file, file .. ".tar.gz" }
+                        end),
+                        mode = "n",
+                        nowait = true,
+                        desc = "Compress as .tar.gz",
+                },
+                ["<leader>et"] = {
+                        ouch_cmd(function(file)
+                                return { "ouch", "c", "--slow", file, file .. ".tar.zst" }
+                        end),
+                        mode = "n",
+                        nowait = true,
+                        desc = "Compress as .tar.zst",
+                },
+                ["<leader>ex"] = {
+                        ouch_cmd(function(file)
+                                return { "ouch", "c", "--slow", file, file .. ".tar.xz" }
+                        end),
+                        mode = "n",
+                        nowait = true,
+                        desc = "Compress as .tar.xz",
+                },
+                ["<leader>ez"] = {
+                        ouch_cmd(function(file)
+                                return { "ouch", "c", "--slow", file, file .. ".zip" }
+                        end),
+                        mode = "n",
+                        nowait = true,
+                        desc = "Compress as .zip",
                 },
                 -- goto
                 ["gf"] = {
