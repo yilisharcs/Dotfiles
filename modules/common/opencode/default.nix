@@ -21,6 +21,13 @@
         old.nativeBuildInputs or []
         |> filter (p: (p.pname or "") != "bun")
       );
+
+    # Vite chokes on 3GB RAM building the web UI; skip it, we only use the TUI
+    buildPhase =
+      builtins.replaceStrings
+      ["--skip-install"]
+      ["--skip-install --skip-embed-web-ui"]
+      old.buildPhase;
   });
 
   opencode-wrapped = pkgs.writeShellScriptBin "opencode" ''
