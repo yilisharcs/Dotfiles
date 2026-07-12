@@ -253,13 +253,13 @@ in {
             run = "cd ~/Games/.plugin";
           }
           {
-            on = ["g" "x"];
-            run = "cd ~/.local/state/nvim";
-          }
-          {
             on = ["g" "z"];
             run = "cd ~/.local/share/nvim/site/pack/core/opt";
             desc = "Go to nvim packdir";
+          }
+          {
+            on = ["g" "Z"];
+            run = "cd ~/.local/state/nvim";
           }
         ];
         theme = {
