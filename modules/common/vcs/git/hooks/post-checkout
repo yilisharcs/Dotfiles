@@ -1,0 +1,33 @@
+#!/bin/sh
+
+if git remote get-url codeberg >/dev/null 2>&1; then
+        exit 0
+fi
+
+mirrors="
+yilisharcs/cme.nvim
+yilisharcs/lemon.vim
+yilisharcs/quarrel.nvim
+yilisharcs/robin.nvim
+"
+
+# git init doesn't add remotes
+origin_url=$(git remote get-url origin 2>/dev/null) || exit 0
+
+case "$origin_url" in
+        https://github.com/*|git@github.com:*) ;;
+        *) exit 0 ;;
+esac
+
+# strip protocol/host prefix and .git suffix to normalize both HTTPS and SSH URLs to owner/repo
+owner_repo=$(
+        echo "$origin_url" |
+                sed -E 's#^https?://github\.com/##; s#^git@github\.com:##; s#\.git$##'
+        )
+
+case "$mirrors" in
+        *"$owner_repo"*) ;;
+        *) exit 0 ;;
+esac
+
+git remote add codeberg "https://codeberg.org/$owner_repo.git"
