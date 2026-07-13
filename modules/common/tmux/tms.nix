@@ -30,6 +30,10 @@
             path = "~/.local/share/nvim/site/pack/core/opt/";
             depth = 1;
           }
+          {
+            path = "~/Games/";
+            depth = 1;
+          }
         ];
       };
 
