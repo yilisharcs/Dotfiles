@@ -45,6 +45,9 @@
   man-wrapper =
     (pkgs.writeShellScriptBin "man" ''
       if [ -t 1 ]; then
+        for arg in "$@"; do
+            case "$arg" in -*) exec ${man-orig} "$@";; esac
+        done
         exec ${getExe neovim} -c "Man $*" -c "only"
       else
         exec ${man-orig} "$@"
