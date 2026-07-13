@@ -162,6 +162,20 @@ require("oil").setup({
                         end,
                         desc = "Open MXCompile with the current directory as an argument",
                 },
+                ["<leader>:"] = {
+                        function()
+                                local dir = require("oil").get_current_dir()
+                                require("toggleterm.terminal").Terminal
+                                        :new({
+                                                direction = "horizontal",
+                                                dir = dir,
+                                        })
+                                        :open()
+                        end,
+                        mode = "n",
+                        nowait = true,
+                        desc = "Open terminal in current directory",
+                },
                 ["_"] = {
                         "actions.open_cwd",
                         mode = "n",
