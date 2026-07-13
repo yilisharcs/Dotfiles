@@ -35,8 +35,8 @@ in {
         keymap.composer = {
           OpenEditor = "<C-o>";
           DeletePreviousChar = {keys = ["<C-h>" "backspace"];};
-          MoveCursorLeft = "<C-b>";
-          MoveCursorRight = "<C-f>";
+          MoveCursorLeft = {keys = ["<C-b>" "left"];};
+          MoveCursorRight = {keys = ["<C-f>" "right"];};
           MoveCursorHome = "<C-a>";
           MoveCursorEnd = "<C-e>";
           InsertNewline = "<C-j>";
