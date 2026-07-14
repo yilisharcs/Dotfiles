@@ -48,9 +48,9 @@ local function create_symlink(relative)
         end
 
         local entry = link_name .. " -> " .. target
-        local lines = vim.api.nvim_buf_get_lines(0, -2, -1, false)
-        table.insert(lines, entry)
-        vim.api.nvim_buf_set_lines(0, -2, -1, false, lines)
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        vim.api.nvim_buf_set_lines(0, row, row, false, { entry })
+        vim.api.nvim_win_set_cursor(0, { row + 1, col })
 end
 
 local function untrash()
