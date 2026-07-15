@@ -250,7 +250,7 @@ in {
           }
           {
             on = ["g" "y"];
-            run = "cd ~/Games/.plugin";
+            run = "cd ~/Games/.games";
           }
           {
             on = ["g" "z"];

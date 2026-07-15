@@ -335,7 +335,7 @@ require("oil").setup({
                 ["gu"] = goto_dir("~/Library/"),
                 ["gv"] = goto_dir("~/Videos/"),
                 ["gw"] = goto_dir("~/.wine/drive_c/", "Go to Wine C: drive"),
-                ["gy"] = goto_dir("~/Games/.plugin/"),
+                ["gy"] = goto_dir("~/Games/.games/"),
                 ["gz"] = goto_dir("~/.local/share/nvim/site/pack/core/opt/"),
                 ["gZ"] = goto_dir("~/.local/state/nvim/"),
         },
