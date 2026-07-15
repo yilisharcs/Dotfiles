@@ -24,6 +24,7 @@
         ];
 
         MISC = [
+          pkgs.audacity # Sound editor with graphical UI
           pkgs.bsdiff # Efficient binary diff/patch tool
           pkgs.ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
           pkgs.hyperfine # Benchmarking cli tool
