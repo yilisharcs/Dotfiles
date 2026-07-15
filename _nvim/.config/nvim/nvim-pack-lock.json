@@ -2,11 +2,11 @@
   "plugins": {
     "Navigator.nvim": {
       "rev": "91d86506ac2a039504d5205d32a1d4bc7aa57072",
-      "src": "git@github.com:numToStr/Navigator.nvim"
+      "src": "https://github.com/numToStr/Navigator.nvim"
     },
     "canola.nvim": {
-      "rev": "f97dff59bcc285e996a454858c3c185d86521ec3",
-      "src": "git@github.com:barrettruth/canola.nvim"
+      "rev": "53b0b2d4859079eaed0ff8594703e53d28853cc6",
+      "src": "https://github.com/barrettruth/canola.nvim"
     },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
@@ -17,7 +17,7 @@
       "src": "https://github.com/sindrets/diffview.nvim"
     },
     "fzf-lua": {
-      "rev": "ed4059deb9237f7f4cc8832ffef69779ffe2e265",
+      "rev": "532d463f5c83595192fe740572d8fd6902b2217a",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "guh.nvim": {
@@ -25,7 +25,7 @@
       "src": "https://github.com/justinmk/guh.nvim"
     },
     "mini.nvim": {
-      "rev": "dc8a9918c3b1bc18a5fcd04d39b6d658074c0886",
+      "rev": "9459d7f41ae77d909579dab0aea2bdd3210fac9f",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-treesitter": {
@@ -59,7 +59,7 @@
       "src": "https://github.com/justinmk/vim-sneak"
     },
     "vim-symlink": {
-      "rev": "afabc0f77e0aac5010fea45b09df62d5681c9682",
+      "rev": "bb468cdb4a6de3df81477e441ec8736446f83674",
       "src": "https://github.com/aymericbeaumet/vim-symlink"
     }
   }
