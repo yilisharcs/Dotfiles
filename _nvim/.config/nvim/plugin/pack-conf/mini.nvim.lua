@@ -234,8 +234,7 @@ if vcs_bin == "git" then
 
         vim.keymap.set("n", "<leader>gd", function()
                 vim.cmd.difft()
-                                -- stylua: ignore
-                                vim.cmd(("vert Git show HEAD~%d:%%"):format(vim.v.count))
+                vim.cmd(("vert Git show HEAD~%d:%%"):format(vim.v.count))
                 vim.cmd.wincmd("w")
         end, { desc = "Diff current file" })
         vim.api.nvim_create_autocmd({ "FileType" }, {
