@@ -233,7 +233,7 @@ if vcs_bin == "git" then
         })
 
         vim.keymap.set("n", "<leader>gd", function()
-                vim.cmd.difft()
+                vim.cmd.diffthis()
                 vim.cmd(("vert Git show HEAD~%d:%%"):format(vim.v.count))
                 vim.cmd.wincmd("w")
         end, { desc = "Diff current file" })
@@ -243,7 +243,7 @@ if vcs_bin == "git" then
                 -- stylua: ignore
                 callback = function()
                         local name = vim.api.nvim_buf_get_name(0)
-                        if not name:match("^minigit://.*/git show HEAD~") then return end
+                        if not name:match("^minigit://%d*/git show HEAD~") then return end
                         local basename = vim.fs.basename(name)
                         vim.api.nvim_buf_set_name(0, "minigit://" .. basename)
                         vim.api.nvim_set_option_value("modifiable", false, { scope = "local" })
