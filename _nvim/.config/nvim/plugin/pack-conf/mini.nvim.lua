@@ -221,8 +221,8 @@ vim.keymap.set("n", "<leader>gh", "<CMD>lua MiniDiff.toggle_overlay()<CR>", { de
 require("mini.git").setup({
         job = { git_executable = "git" },
 })
+_G.MiniGit = MiniGit
 
----@diagnostic disable-next-line: undefined-global
 local vcs_bin = MiniGit.config.job.git_executable
 
 local group = vim.api.nvim_create_augroup("MyMiniGit", { clear = true })
@@ -250,6 +250,25 @@ if vcs_bin == "git" then
                         vim.cmd.diffthis()
                 end,
         })
+
+        vim.keymap.set({ "n", "x" }, "<leader>gs", function()
+                MiniGit.show_at_cursor()
+        end, { desc = "Git show at cursor" })
+
+        vim.keymap.set({ "n", "x" }, "<leader>gS", function()
+                MiniGit.show_range_history()
+        end, { desc = "Git range history" })
+
+        vim.keymap.set("n", "<leader>gD", function()
+                MiniGit.show_diff_source({
+                        split = "tab",
+                        target = "both",
+                })
+                vim.cmd.diffthis()
+                vim.cmd.wincmd("w")
+                vim.cmd.diffthis()
+                vim.cmd.wincmd("w")
+        end, { desc = "Git diff source (before+after)" })
 
         vim.keymap.set(
                 "n",
@@ -301,7 +320,7 @@ elseif vcs_bin == "jj" then
         require("utils.cabbrev")({
                 ["Git"] = { "jj" },
         })
-        -- pending
+        -- TODO
 end
 -- }}}
 
