@@ -20,11 +20,9 @@
   # X11 extensions SDL dlopens at runtime
   libXcursor,
   libXfixes,
-  libXinerama,
   libXi,
   libXrandr,
   libXScrnSaver,
-  libXxf86vm,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "sonic3air";
@@ -55,11 +53,9 @@ stdenv.mkDerivation (finalAttrs: {
     udev
     libXcursor
     libXfixes
-    libXinerama
     libXi
     libXrandr
     libXScrnSaver
-    libXxf86vm
   ];
 
   desktopItems = [
