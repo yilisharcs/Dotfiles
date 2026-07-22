@@ -155,6 +155,7 @@ in {
               "rm *" = "ask";
               "tee *" = "ask";
 
+              "diff *" = "allow";
               "df*" = "allow"; # report file system space usage
               "du*" = "allow"; # estimate file space usage
               "file *" = "allow";
