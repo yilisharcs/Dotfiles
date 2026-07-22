@@ -5,7 +5,6 @@ local root_markers = {
                 "luarc.json",
                 "luarc.jsonc",
         },
-        "lua",
         ".nvim.lua",
 }
 

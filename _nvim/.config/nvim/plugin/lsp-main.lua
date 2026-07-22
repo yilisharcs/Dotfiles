@@ -19,6 +19,13 @@ else
         })
 end
 
+vim.lsp.config("*", {
+        root_markers = {
+                ".git",
+                ".jj",
+        },
+})
+
 vim.diagnostic.config({
         virtual_text = true,
         float = { border = "rounded" },
