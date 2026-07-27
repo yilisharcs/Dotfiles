@@ -48,6 +48,10 @@ in {
         extraPackages = [
           pkgs.jq # Lightweight JSON processor
         ];
+        skills = {
+          # https://github.com/Fidelxyz/.dotfiles/blob/main/.config/opencode/skills/jujutsu/
+          jujutsu = ./skills/jujutsu;
+        };
         context = ''
           # Tone and Conduct
 
