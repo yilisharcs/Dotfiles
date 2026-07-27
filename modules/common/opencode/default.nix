@@ -51,6 +51,9 @@ in {
         skills = {
           # https://github.com/Fidelxyz/.dotfiles/blob/main/.config/opencode/skills/jujutsu/
           jujutsu = ./skills/jujutsu;
+          # https://github.com/nzrsky/zig-skills/blob/main/skills/zig/
+          # https://github.com/zigcc/skills/blob/main/zig-{0.15,0.16,tiger-style}/
+          zig = ./skills/zig;
         };
         context = ''
           # Tone and Conduct
