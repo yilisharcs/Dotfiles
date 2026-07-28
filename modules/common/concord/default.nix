@@ -15,13 +15,24 @@
       ];
   });
 
-  concord-wrapped = pkgs.writeShellScriptBin "concord" ''
-    export CONCORD_TOKEN=$(< ${config.age.secrets.discord.path})
+  concord-wrapped-main = pkgs.writeShellScriptBin "concord" ''
+    export CONCORD_TOKEN=$(< ${config.age.secrets.discord-main.path})
+    exec ${getExe concord}
+  '';
+
+  concord-wrapped-work = pkgs.writeShellScriptBin "woncord" ''
+    export CONCORD_TOKEN=$(< ${config.age.secrets.discord-work.path})
     exec ${getExe concord}
   '';
 in {
-  age.secrets.discord = {
-    file = ./auth-token.age;
+  age.secrets.discord-main = {
+    file = ./auth-token-main.age;
+    owner = "yilisharcs";
+    mode = "0400";
+  };
+
+  age.secrets.discord-work = {
+    file = ./auth-token-work.age;
     owner = "yilisharcs";
     mode = "0400";
   };
@@ -29,7 +40,10 @@ in {
   home-manager.sharedModules = [
     {
       # Feature-rich TUI client for Discord
-      home.packages = [concord-wrapped];
+      home.packages = [
+        concord-wrapped-main
+        concord-wrapped-work
+      ];
 
       xdg.configFile."concord/keymap.toml".source = (pkgs.formats.toml {}).generate "keymap.toml" {
         keymap.composer = {
