@@ -253,6 +253,10 @@ in {
             run = "cd ~/Games/.games";
           }
           {
+            on = ["g" "Y"];
+            run = "cd ~/Games/.games/Sonic-3-AIR/mods/.local/share/Sonic3AIR/mods";
+          }
+          {
             on = ["g" "z"];
             run = "cd ~/.local/share/nvim/site/pack/core/opt";
             desc = "Go to nvim packdir";
