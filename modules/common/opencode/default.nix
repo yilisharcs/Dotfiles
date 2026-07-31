@@ -319,19 +319,24 @@ in {
               "*" = "ask";
               "/nix/store/*" = "allow";
               "/tmp/opencode/*" = "allow";
+              "~/.config/opencode/*" = "allow";
               "~/.local/share/nvim/site/pack/core/opt/*" = "allow";
-            };
-            read = {
-              "*" = "allow";
-              "~/.ssh/*" = "deny";
-              "~/Shared/*" = "deny";
-            };
-            edit = {
-              "*" = "ask";
               "~/.ssh/*" = "deny";
               "~/Documents/*" = "deny";
               "~/Downloads/*" = "deny";
               "~/Shared/*" = "deny";
+            };
+            read = {
+              "*" = "allow";
+              # "~/.ssh/*" = "deny";
+              # "~/Shared/*" = "deny";
+            };
+            edit = {
+              "*" = "ask";
+              # "~/.ssh/*" = "deny";
+              # "~/Documents/*" = "deny";
+              # "~/Downloads/*" = "deny";
+              # "~/Shared/*" = "deny";
             };
           };
         };
