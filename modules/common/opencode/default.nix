@@ -138,12 +138,6 @@ in {
             };
           };
           permission = {
-            external_directory = {
-              "*" = "ask";
-              "/nix/store/*" = "allow";
-              "/tmp/opencode/*" = "allow";
-              "~/.local/share/nvim/site/pack/core/opt/*" = "allow";
-            };
             bash = {
               "*" = "ask";
 
@@ -320,6 +314,12 @@ in {
               "sed *-i*" = "deny";
 
               "sudo *" = "deny";
+            };
+            external_directory = {
+              "*" = "ask";
+              "/nix/store/*" = "allow";
+              "/tmp/opencode/*" = "allow";
+              "~/.local/share/nvim/site/pack/core/opt/*" = "allow";
             };
             read = {
               "*" = "allow";
