@@ -467,6 +467,11 @@ in {
                 text = "";
                 fg = "#019833";
               }
+              {
+                name = "zon";
+                text = "";
+                fg = "#f69a1b";
+              }
             ];
             prepend_conds = [
               {
