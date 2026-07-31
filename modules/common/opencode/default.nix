@@ -324,6 +324,7 @@ in {
               "~/.ssh/*" = "deny";
               "~/Documents/*" = "deny";
               "~/Downloads/*" = "deny";
+              "~/Projects/codeberg.org/ziglang" = "allow";
               "~/Shared/*" = "deny";
             };
             read = {
