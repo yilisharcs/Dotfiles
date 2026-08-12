@@ -84,7 +84,7 @@ vim.o.foldcolumn = "1"
 vim.o.foldmethod = "marker"
 vim.o.foldlevel = 0
 
-vim.o.numberwidth = 3
+vim.o.numberwidth = 4
 vim.o.signcolumn = "yes:1"
 vim.o.statuscolumn = "%C%l%s"
 vim.o.cmdheight = 1
