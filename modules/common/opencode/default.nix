@@ -320,12 +320,16 @@ in {
               "/nix/store/*" = "allow";
               "/tmp/opencode/*" = "allow";
               "~/.config/opencode/*" = "allow";
-              "~/.local/share/nvim/site/pack/core/opt/*" = "allow";
+              "~/.local/share/nvim/site/pack/*" = "allow";
               "~/.ssh/*" = "deny";
               "~/Documents/*" = "deny";
               "~/Downloads/*" = "deny";
-              "~/Projects/codeberg.org/ziglang" = "allow";
+              "~/Projects/codeberg.org/ziglang/*" = "allow";
               "~/Shared/*" = "deny";
+              # yes, clanker, you can read the upstream code. stop pestering me about it!
+              "~/Games/.games/Sonic-3-AIR/_core/*" = "allow";
+              "~/Games/.games/Sonic-3-AIR/docs/*" = "allow";
+              "~/Projects/github.com/yilisharcs/S3AIR-Resources/*" = "allow";
             };
             read = {
               "*" = "allow";
