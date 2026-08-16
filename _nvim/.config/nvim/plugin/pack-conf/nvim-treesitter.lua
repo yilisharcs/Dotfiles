@@ -68,10 +68,19 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
                 if
                         vim.tbl_contains({
                                 "markdown",
+                                "jjdescription",
                                 "rust",
                         }, vim.bo.filetype)
                 then
-                        vim.bo.syntax = "ON"
+                        -- jujutsu specifically needs it scheduled
+                        vim.schedule(function()
+                                vim.bo.syntax = "ON"
+                        end)
+                else
+                        -- HACK: syn=ON fires for files it shouldn't if scheduled
+                        vim.schedule(function()
+                                vim.bo.syntax = "OFF"
+                        end)
                 end
         end,
 })
