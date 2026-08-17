@@ -113,6 +113,9 @@ vim.o.virtualedit = "block"
 vim.o.winborder = "rounded"
 vim.o.winwidth = 15
 
+-- nushell doesn't grok vi
+vim.o.shell = "/run/current-system/sw/bin/bash"
+
 vim.o.list = true
 vim.o.listchars = "nbsp:␣,tab:│ ,trail:•"
 

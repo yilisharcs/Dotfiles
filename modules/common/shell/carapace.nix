@@ -17,7 +17,7 @@ in {
       # Multishell completion engine
       programs.carapace = enabled;
 
-      home.sessionVariables = {
+      programs.nushell.environmentVariables = {
         CARAPACE_BRIDGES = "zsh,fish,bash,inshellisense";
       };
     }

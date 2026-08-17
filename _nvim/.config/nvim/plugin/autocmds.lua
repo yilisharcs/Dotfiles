@@ -101,6 +101,14 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
         end,
 })
 
+-- -- using TMUX instead
+-- vim.api.nvim_create_autocmd({ "TermClose" }, {
+--         desc = "Close nushell terminal buffers as if {cmd} wasn't supplied to :term",
+--         group = group,
+--         pattern = "*:/usr/bin/nu",
+--         command = "silent! execute 'bdelete! '.expand('<abuf>')",
+-- })
+
 vim.api.nvim_create_autocmd({ "ModeChanged" }, {
         desc = "Suppress ModeMsg in any visual mode so *v_g_CTRL-G* is visible",
         group = group,

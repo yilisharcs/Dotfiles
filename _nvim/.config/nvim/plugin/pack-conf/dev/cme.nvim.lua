@@ -39,7 +39,7 @@ local shell_flags = {
         nu = { "-m", "psql" },
 }
 
-local shell = "bash"
+local shell = "nu"
 
 vim.g.cme = {
         shell = shell,

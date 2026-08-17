@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) enabled mapAttrsToList;
+  inherit (lib) enabled getExe mapAttrsToList;
 
   ghostty = pkgs.ghostty.overrideAttrs (old: {
     patches =
@@ -59,6 +59,8 @@ in {
           palette-generate = true;
           palette-harmonious = false;
 
+          command = "${getExe pkgs.nushell}"; # command goes with shell-integration
+          shell-integration = "nushell";
           shell-integration-features = "no-cursor";
           font-family = "IosevkaTermSlab Nerd Font";
           font-size =

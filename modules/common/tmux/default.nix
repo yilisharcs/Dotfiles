@@ -23,6 +23,7 @@ in {
         focusEvents = true; # Focus events enabled for terminals that support them
         historyLimit = 5000;
         mouse = true;
+        shell = "${getExe pkgs.nushell}";
         terminal = "tmux-256color"; # Set $TERM colors
         extraConfig = let
           sw = lib.colors.moyin;
