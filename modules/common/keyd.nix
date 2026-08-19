@@ -31,6 +31,7 @@ in {
       };
       "altgr" = {
         # ASCII doesn't need $XCOMPOSEFILE
+        "0" = "°";
         d = "|";
         f = "%";
         s = "\\";
