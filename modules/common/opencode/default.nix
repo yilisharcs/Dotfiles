@@ -163,6 +163,7 @@ in {
               "head *" = "allow";
               "jq *" = "allow"; # CLI JSON processor
               "ls*" = "allow";
+              "nl*" = "allow"; # enumerate lines from files or stdin
               "nm *" = "allow"; # list symbols from object files
               "objdump *" = "allow"; # display information from object files
               "pwd*" = "allow";
