@@ -50,6 +50,18 @@ in {
             fg = "#8cf8f7";
             bold = true;
           };
+          bindings = [
+            {
+              action = "revisions.inline_describe.accept";
+              key = "enter";
+              scope = "revisions.inline_describe";
+            }
+            {
+              action = "revisions.inline_describe.new_line";
+              key = "ctrl+j";
+              scope = "revisions.inline_describe";
+            }
+          ];
         };
       };
 
