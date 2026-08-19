@@ -288,6 +288,12 @@ if vcs_bin == "git" then
                                 return
                         end
 
+                        local source_win = vim.fn.win_getid(vim.fn.winnr("#"))
+                        vim.w.minigit_leave = function()
+                                vim.wo[source_win].cursorbind = false
+                                vim.wo[source_win].scrollbind = false
+                        end
+
                         local line = vim.api.nvim_buf_get_lines(0, 0, 1, false)
                         local match = line[1]:find("[+-]%d%d%d%d")
                         vim.cmd.resize({ match + 5, mods = { vertical = true } })
@@ -314,6 +320,18 @@ if vcs_bin == "git" then
                         vim.api.nvim_set_option_value("foldcolumn", "0", opts)
                         vim.api.nvim_set_option_value("foldenable", false, opts)
                         vim.api.nvim_set_option_value("statuscolumn", "", opts)
+                end,
+        })
+
+        vim.api.nvim_create_autocmd("BufWinLeave", {
+                desc = "Execute MiniGit blame cleanup",
+                group = group,
+                callback = function()
+                        local leave = vim.w.minigit_leave
+                        if leave then
+                                leave()
+                                vim.w.minigit_leave = nil
+                        end
                 end,
         })
 elseif vcs_bin == "jj" then
