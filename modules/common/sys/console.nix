@@ -50,13 +50,14 @@ in {
       // lib.colors.toKmsconPalette lib.colors.moyin;
   };
 
-  environment.shellAliases = mkIf config.services.desktopManager.plasma6.enable {
-    kmscon-startdwl = "kmscon-launch-gui ${getExe config.programs.dwl.package}";
-    kmscon-startplasma = "kmscon-launch-gui ${pkgs.kdePackages.plasma-workspace}/libexec/plasma-dbus-run-session-if-needed startplasma-wayland";
-  };
-
   home-manager.sharedModules = [
     {
+      # can't be in `environment.shellAliases` because nushell doesn't pick it up
+      home.shellAliases = mkIf config.services.desktopManager.plasma6.enable {
+        kmscon-startdwl = "kmscon-launch-gui ${getExe config.programs.dwl.package}";
+        kmscon-startplasma = "kmscon-launch-gui ${pkgs.kdePackages.plasma-workspace}/libexec/plasma-dbus-run-session-if-needed startplasma-wayland";
+      };
+
       programs.tmux = enabled {
         extraConfig =
           /*
