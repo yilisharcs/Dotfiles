@@ -4,6 +4,7 @@ end
 
 local filetypes = {
         "asm",
+        "m68k",
         "bash",
         "c",
         "comment",
