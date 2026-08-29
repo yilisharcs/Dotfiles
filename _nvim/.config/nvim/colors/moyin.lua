@@ -136,6 +136,7 @@ hi("Label", { fg = colors.Magenta1, ctermfg = "magenta" })
 
 -- treesitter
 hi("@markup.link.vimdoc", { fg = colors.Yellow2, bold = true, ctermfg = "yellow" })
+hi("@markup.list.markdown", { link = "Statement" })
 hi("@markup.raw.markdown_inline", { fg = colors.Green1, bg = colors.Gray3 })
 hi("markdownCodeBlock", { bg = colors.Gray3 })
 --
