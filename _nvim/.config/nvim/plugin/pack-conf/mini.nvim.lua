@@ -405,6 +405,8 @@ end, { desc = "Notification history" })
 -- }}}
 
 -- mini.sessions {{{
+vim.o.sessionoptions = vim.o.sessionoptions .. ",globals"
+
 require("mini.sessions").setup({
         autoread = false,
         file = "",
@@ -412,6 +414,19 @@ require("mini.sessions").setup({
                 read = false,
                 write = true,
                 delete = true,
+        },
+        hooks = {
+                -- "global variables that start with an uppercase letter and contain at least one lowercase letter"
+                pre = {
+                        write = function()
+                                vim.g.CmeLastCmd = require("cme").__INTERNAL_H.state.last_cmd
+                        end,
+                },
+                post = {
+                        read = function()
+                                require("cme").__INTERNAL_H.state.last_cmd = vim.g.CmeLastCmd
+                        end,
+                },
         },
 })
 
