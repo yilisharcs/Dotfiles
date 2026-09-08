@@ -129,10 +129,5 @@ end)
 
 vim.keymap.set("n", "<F9>", "<CMD>Inspect<CR>", { desc = "Inspect element under cursor" })
 vim.keymap.set("n", "<leader><F9>", "<CMD>InspectTree<CR>", { desc = "Inspect treesitter AST" })
-vim.keymap.set("n", "<F10>", "<CMD>!chmod +x %<CR>", { desc = "Give executable permissions to the current file" })
-vim.keymap.set(
-        "n",
-        "<leader><F10>",
-        "<CMD>!chmod -x %<CR>",
-        { desc = "Remove executable permissions of the current file" }
-)
+vim.keymap.set("n", "<F10>", '<CMD>!chmod +x "%"<CR>', { desc = "Mark current file as executable" })
+vim.keymap.set("n", "<leader><F10>", '<CMD>!chmod -x "%"<CR>', { desc = "Un-mark current file as executable" })
