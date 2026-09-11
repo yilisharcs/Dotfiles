@@ -3,51 +3,61 @@ if vim.g.shell_editor then
 end
 
 local filetypes = {
+        -- low-level
         "asm",
         "m68k",
+        "objdump",
+        "strace",
+        -- shell
         "bash",
-        "c",
-        "comment",
-        "cpp",
-        "css",
-        "desktop",
+        "nu",
+        -- vcs
         "diff",
-        "editorconfig",
-        "fennel",
         "git_config",
         "git_rebase",
         "gitattributes",
         "gitcommit",
         "gitignore",
-        "glsl",
-        "html",
-        "ini",
-        "javascript",
         "jjdescription",
-        "json",
-        "just",
+        -- nvim package
+        "c",
         "lua",
         "markdown",
         "markdown_inline",
-        "meson",
-        -- "muttrc",
-        "ninja",
-        "nix",
-        "nu",
-        "objdump",
-        -- "php",
-        "python",
         "query",
-        "rust",
-        "strace",
-        "toml",
-        "tmux",
-        "udev",
         "vim",
         "vimdoc",
+        -- dev
+        "cpp",
+        "fennel",
+        "glsl",
+        "python",
+        "rust",
+        "zig",
+        -- build
+        "just",
+        "meson",
+        "ninja",
+        -- config
+        "css",
+        "ini",
+        "json",
+        "nix",
+        "toml",
         "xml",
         "yaml",
-        "zig",
+        -- rcfiles
+        "desktop",
+        "editorconfig",
+        -- "muttrc",
+        "tmux",
+        "udev",
+        -- web
+        "html",
+        "javascript",
+        -- "php",
+        --
+        "comment",
 }
 
 require("nvim-treesitter").install(filetypes)
@@ -68,8 +78,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
                 end
                 if
                         vim.tbl_contains({
-                                "markdown",
                                 "jjdescription",
+                                "markdown",
                                 "rust",
                         }, vim.bo.filetype)
                 then
