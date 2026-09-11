@@ -433,6 +433,17 @@ in {
             ];
             prepend_exts = [
               {
+                name = "asm";
+                text = "";
+                fg = "#0091bd";
+              }
+              {
+                name = "fasm";
+                text = "";
+                fg = "#0091bd";
+              }
+              #
+              {
                 name = "fnlm";
                 text = "";
                 fg = "#fff3d7";

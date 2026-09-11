@@ -6,6 +6,7 @@
           pkgs.bc # GNU arbitrary-precision calculator
           pkgs.binutils # Tools for manipulating binaries. Provides `strings`, etc.
           pkgs.curl # Command line tool for transferring files with URL syntax
+          pkgs.fasm # x86(-64) macro assembler to binary, MZ, PE, COFF, and ELF
           pkgs.file # Determine file type
           pkgs.gnumake # A program for directing recompilation
           pkgs.radare2 # UNIX-like reverse engineering framework and command-line toolset
