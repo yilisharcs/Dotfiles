@@ -29,8 +29,6 @@ in {
   };
 
   # userspace KMS/DRM VT
-  # NOTE: overrides.conf Environment= is not set for XCOMPOSEFILE
-  systemd.services."kmsconvt@".environment.XCOMPOSEFILE = config.environment.variables.XCOMPOSEFILE;
   services.kmscon = enabled {
     package = kmscon'.override {libtsm = libtsm';};
     useXkbConfig = true;
@@ -38,8 +36,8 @@ in {
       {
         hwaccel = config.hardware.graphics.enable;
         libseat = false; # NOTE: upstream defaults to false since 2026-06-30
-        font-engine = "pango"; # NOTE: freetype doesn't currently support italics
-        font-name = "IosevkaTermSlab Nerd Font Mono"; # NOTE: non-mono nerd glyphs can be cut in half
+        font-engine = "pango"; # freetype doesn't support italics
+        font-name = "IosevkaTermSlab Nerd Font Mono"; # some non-mono nerd glyphs are cut in half
         font-size = 22;
         session-control = true;
         sb-size = 10000;
@@ -49,6 +47,8 @@ in {
       }
       // lib.colors.toKmsconPalette lib.colors.moyin;
   };
+  # overrides.conf Environment= is not set for XCOMPOSEFILE
+  systemd.services."kmsconvt@".environment.XCOMPOSEFILE = config.environment.variables.XCOMPOSEFILE;
 
   home-manager.sharedModules = [
     {
