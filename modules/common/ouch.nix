@@ -25,27 +25,27 @@
         keymap.mgr.prepend_keymap = [
           {
             on = ["e" "e"];
-            run = "shell          'ouch d \"$@\"'";
+            run = "shell 'ouch d %s'";
             desc = "Extract archive";
           }
           {
             on = ["e" "g"];
-            run = "shell --orphan 'ouch c --slow \"$@\" \"$0\".tar.gz'";
+            run = "shell --orphan 'ouch c --slow %s %h.tar.gz'";
             desc = "Compress as .tar.gz";
           }
           {
             on = ["e" "t"];
-            run = "shell --orphan 'ouch c --slow \"$@\" \"$0\".tar.zst'";
+            run = "shell --orphan 'ouch c --slow %s %h.tar.zst'";
             desc = "Compress as .tar.zst";
           }
           {
             on = ["e" "x"];
-            run = "shell --orphan 'ouch c --slow \"$@\" \"$0\".tar.xz'";
+            run = "shell --orphan 'ouch c --slow %s %h.tar.xz'";
             desc = "Compress as .tar.xz";
           }
           {
             on = ["e" "z"];
-            run = "shell --orphan 'ouch c --slow \"$@\" \"$0\".zip'";
+            run = "shell --orphan 'ouch c --slow %s %h.zip'";
             desc = "Compress as .zip";
           }
         ];

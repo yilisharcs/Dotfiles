@@ -48,7 +48,6 @@ in {
         plugins = [
           pkgs.nushellPlugins.gstat
           pkgs.nushellPlugins.query
-          pkgs.nushellPlugins.semver
         ];
         shellAliases = {
           fg = "job unfreeze";

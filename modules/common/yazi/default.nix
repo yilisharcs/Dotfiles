@@ -122,14 +122,14 @@ in {
           # Backup
           {
             on = "b";
-            run = "shell 'for f in \"$@\"; do cp -r \"$f\" \"$f.$(date +%%s).bak\"; done'";
+            run = "shell 'for f in %s; do cp -r \"$f\" \"$f.$(date +%%s).bak\"; done'";
             desc = "Backup current file";
           }
 
           # Pager
           {
             on = "i";
-            run = "shell '${getExe pkgs.bat} \"$0\" --pager=\"${getExe pkgs.less} -+F\"' --block";
+            run = "shell '${getExe pkgs.bat} %h --pager=\"${getExe pkgs.less} -+F\"' --block";
           }
 
           # Restore trashed files

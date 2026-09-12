@@ -1,28 +1,19 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
 }: let
-  inherit (lib) getExe;
-
-  concord = inputs.concord.packages.${pkgs.system}.default.overrideAttrs (old: {
-    patches =
-      (old.patches or [])
-      ++ [
-        ./patch/0001-chore-remove-version-check.patch
-      ];
-  });
+  inherit (lib) enabled getExe;
 
   concord-wrapped-main = pkgs.writeShellScriptBin "concord" ''
     export CONCORD_TOKEN=$(< ${config.age.secrets.discord-main.path})
-    exec ${getExe concord}
+    exec ${getExe pkgs.concord-tui}
   '';
 
   concord-wrapped-work = pkgs.writeShellScriptBin "woncord" ''
     export CONCORD_TOKEN=$(< ${config.age.secrets.discord-work.path})
-    exec ${getExe concord}
+    exec ${getExe pkgs.concord-tui}
   '';
 in {
   age.secrets.discord-main = {
@@ -40,13 +31,10 @@ in {
   home-manager.sharedModules = [
     {
       # Feature-rich TUI client for Discord
-      home.packages = [
-        concord-wrapped-main
-        concord-wrapped-work
-      ];
-
-      xdg.configFile."concord/keymap.toml".source = (pkgs.formats.toml {}).generate "keymap.toml" {
-        keymap.composer = {
+      home.packages = [concord-wrapped-work];
+      programs.concord = enabled {
+        package = concord-wrapped-main;
+        keymapSettings.composer = {
           OpenEditor = "<C-o>";
           DeletePreviousChar = {keys = ["<C-h>" "backspace"];};
           MoveCursorLeft = {keys = ["<C-b>" "left"];};
@@ -54,6 +42,14 @@ in {
           MoveCursorHome = "<C-a>";
           MoveCursorEnd = "<C-e>";
           InsertNewline = "<C-j>";
+        };
+        themeSettings = {
+          highlight.CategoryHeading = {
+            foreground = lib.colors.moyin.lightBlue;
+          };
+          highlight.FolderFallback = {
+            foreground = lib.colors.moyin.cyan;
+          };
         };
       };
     }

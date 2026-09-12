@@ -17,7 +17,7 @@
     patches =
       (old.patches or [])
       ++ [
-        ./patch/kmscon/0002-input-add-keyd-compose-protocol-support.patch
+        ./patch/kmscon/0001-input-add-keyd-compose-protocol-support.patch
       ];
   });
 in {
@@ -42,6 +42,7 @@ in {
         session-control = true;
         sb-size = 10000;
         bell = true;
+        blink = false;
         mouse = false;
         xkb-repeat-delay = 300;
       }

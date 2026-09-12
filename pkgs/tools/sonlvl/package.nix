@@ -30,7 +30,7 @@ in
       # MainMemory doesn't tag releases...
       url = "https://mm.reimuhakurei.net/SonLVL/SonLVL.zip";
       stripRoot = false;
-      hash = "sha256-tztebnnJ2u1qDH6/oAkDo//v9WtswrsS5Bf0eHdb0kw=";
+      hash = "sha256-J+NhJpLkHzXsNkEU8UeuTgXlOfRmJir3TO+AH5VGAOQ=";
     };
 
     desktopItems = [

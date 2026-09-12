@@ -1,22 +1,22 @@
-From 0888e32ad6bde1a92ebb970384d1457334206039 Mon Sep 17 00:00:00 2001
+From 4d65d9a7ab551b012b732dc9f2564b82afb86924 Mon Sep 17 00:00:00 2001
 From: yilisharcs <yilisharcs@gmail.com>
-Date: Sat, 4 Jul 2026 23:41:09 -0300
-Subject: [PATCH 2/2] input: add keyd compose protocol support
+Date: Sat, 4 Jul 2026 17:43:32 -0300
+Subject: [PATCH] input: add keyd compose protocol support
 
 ---
- src/input/input.c          |  42 ++++++++
- src/input/input.h          |   3 +
+ src/input/input.c          |  11 ++
+ src/input/input.h          |   1 +
  src/input/input_internal.h |  11 ++
  src/input/input_uxkb.c     | 211 +++++++++++++++++++++++++++++++++++++
- src/kmscon_seat.c          |   2 +
- 5 files changed, 269 insertions(+)
+ src/seat.c                 |   1 +
+ 5 files changed, 235 insertions(+)
 
 diff --git a/src/input/input.c b/src/input/input.c
-index 65c1d6f..c552e4b 100644
+index 716e400..bb5b886 100644
 --- a/src/input/input.c
 +++ b/src/input/input.c
-@@ -523,6 +523,47 @@ int input_set_keymap(struct input *input, const char *model, const char *layout,
- 			      compose_file_len);
+@@ -515,6 +515,15 @@ void input_set_compose(struct input *input, const char *locale, const char *comp
+ 	uxkb_compose_table_init(input, compose_file, locale);
  }
  
 +SHL_EXPORT
@@ -28,65 +28,39 @@ index 65c1d6f..c552e4b 100644
 +	uxkb_keyd_table_init(input);
 +}
 +
-+SHL_EXPORT
-+int input_update_keymap(struct input *input, const char *model, const char *layout,
-+			const char *variant, const char *options)
-+{
-+	struct shl_dlist *iter;
-+	struct input_dev *dev;
-+
-+	if (input->ctx) {
-+		shl_dlist_for_each(iter, &input->devices)
-+		{
-+			dev = shl_dlist_entry(iter, struct input_dev, list);
-+			if (dev->capabilities & DEVICE_HAS_KEYS) {
-+				input_sleep_dev(dev);
-+				input_exit_keyboard(dev);
-+			}
-+		}
-+	}
-+	uxkb_keyd_table_destroy(input);
-+	uxkb_desc_destroy(input);
-+	uxkb_desc_init(input, model, layout, variant, options, NULL, NULL, NULL, 0);
-+	shl_dlist_for_each(iter, &input->devices)
-+	{
-+		dev = shl_dlist_entry(iter, struct input_dev, list);
-+		if (dev->capabilities & DEVICE_HAS_KEYS) {
-+			input_init_keyboard(dev);
-+			if (input->awake)
-+				input_wake_up_dev(dev);
-+		}
-+	}
-+	return 0;
-+}
-+
  SHL_EXPORT
- void input_set_conf(struct input *input, unsigned int repeat_delay, unsigned int repeat_rate,
- 		    bool mouse_enabled)
-@@ -565,6 +606,7 @@ void input_unref(struct input *input)
+ int input_update_keymap(struct input *input, const char *model, const char *layout,
+ 			const char *variant, const char *options)
+@@ -532,6 +541,7 @@ int input_update_keymap(struct input *input, const char *model, const char *layo
+ 			}
+ 		}
+ 	}
++	uxkb_keyd_table_destroy(input);
+ 	uxkb_compose_table_destroy(input);
+ 	uxkb_layout_destroy(input);
+ 	uxkb_layout_init(input, model, layout, variant, options, NULL);
+@@ -589,6 +599,7 @@ void input_unref(struct input *input)
  		input_free_dev(dev);
  	}
  
 +	uxkb_keyd_table_destroy(input);
- 	uxkb_desc_destroy(input);
+ 	uxkb_compose_table_destroy(input);
+ 	uxkb_layout_destroy(input);
  	shl_hook_free(input->key_hook);
- 	shl_hook_free(input->pointer_hook);
 diff --git a/src/input/input.h b/src/input/input.h
-index 8b81e00..349fe6c 100644
+index 8ec720c..0f00f3e 100644
 --- a/src/input/input.h
 +++ b/src/input/input.h
-@@ -94,6 +94,9 @@ int input_new(struct input **out, struct ev_eloop *eloop);
+@@ -94,6 +94,7 @@ int input_new(struct input **out, struct ev_eloop *eloop);
  int input_set_keymap(struct input *input, const char *model, const char *layout,
- 		     const char *variant, const char *options, const char *locale,
- 		     const char *keymap, const char *compose_file, size_t compose_file_len);
+ 		     const char *variant, const char *options, const char *keymap);
+ void input_set_compose(struct input *input, const char *locale, const char *compose_file);
 +void input_load_keyd_table(struct input *input);
-+int input_update_keymap(struct input *input, const char *model, const char *layout,
-+			const char *variant, const char *options);
+ int input_update_keymap(struct input *input, const char *model, const char *layout,
+ 			const char *variant, const char *options);
  void input_set_conf(struct input *input, unsigned int repeat_delay, unsigned int repeat_rate,
- 		    bool mouse_enabled);
- void input_ref(struct input *input);
 diff --git a/src/input/input_internal.h b/src/input/input_internal.h
-index 559e8ec..6b89d44 100644
+index 08dc943..0d43dc7 100644
 --- a/src/input/input_internal.h
 +++ b/src/input/input_internal.h
 @@ -106,6 +106,11 @@ struct input_dev {
@@ -112,17 +86,17 @@ index 559e8ec..6b89d44 100644
  	bool mouse_enabled;
  	struct shl_hook *pointer_hook;
  	int32_t pointer_max_x;
-@@ -144,6 +153,8 @@ int uxkb_desc_init(struct input *input, const char *model, const char *layout, c
- 		   const char *options, const char *locale, const char *keymap,
- 		   const char *compose_file, size_t compose_file_len);
- void uxkb_desc_destroy(struct input *input);
+@@ -145,6 +154,8 @@ int uxkb_layout_init(struct input *input, const char *model, const char *layout,
+ void uxkb_compose_table_init(struct input *input, const char *compose_file, const char *locale);
+ void uxkb_layout_destroy(struct input *input);
+ void uxkb_compose_table_destroy(struct input *input);
 +void uxkb_keyd_table_init(struct input *input);
 +void uxkb_keyd_table_destroy(struct input *input);
  
  int uxkb_dev_init(struct input_dev *dev);
  void uxkb_dev_destroy(struct input_dev *dev);
 diff --git a/src/input/input_uxkb.c b/src/input/input_uxkb.c
-index 377e935..ac949cc 100644
+index 4ced617..8bb85ca 100644
 --- a/src/input/input_uxkb.c
 +++ b/src/input/input_uxkb.c
 @@ -28,6 +28,7 @@
@@ -133,8 +107,8 @@ index 377e935..ac949cc 100644
  #include <stdlib.h>
  #include <string.h>
  #include <unistd.h>
-@@ -176,6 +177,164 @@ void uxkb_desc_destroy(struct input *input)
- 	xkb_context_unref(input->ctx);
+@@ -206,6 +207,164 @@ void uxkb_layout_destroy(struct input *input)
+ 	input->ctx = NULL;
  }
  
 +/*
@@ -298,7 +272,7 @@ index 377e935..ac949cc 100644
  static void timer_event(struct ev_timer *timer, uint64_t num, void *data)
  {
  	struct input_dev *dev = data;
-@@ -398,8 +557,21 @@ static void uxkb_dev_repeat(struct input_dev *dev, unsigned int state)
+@@ -431,8 +590,21 @@ static void uxkb_dev_repeat(struct input_dev *dev, unsigned int state)
  	ev_timer_update(dev->repeat_timer, &spec);
  }
  
@@ -320,7 +294,7 @@ index 377e935..ac949cc 100644
  	struct xkb_state *state;
  	struct xkb_compose_state *compose_state;
  	xkb_keycode_t keycode;
-@@ -412,6 +584,45 @@ int uxkb_dev_process(struct input_dev *dev, uint16_t key_state, uint16_t code)
+@@ -445,6 +617,45 @@ int uxkb_dev_process(struct input_dev *dev, uint16_t key_state, uint16_t code)
  	if (key_state == KEY_REPEATED)
  		return -ENOKEY;
  
@@ -366,19 +340,18 @@ index 377e935..ac949cc 100644
  	state = dev->state;
  	compose_state = dev->compose_state;
  	keycode = code + EVDEV_KEYCODE_OFFSET;
-diff --git a/src/kmscon_seat.c b/src/kmscon_seat.c
-index 7b6759a..c95c2fa 100644
---- a/src/kmscon_seat.c
-+++ b/src/kmscon_seat.c
-@@ -993,6 +993,8 @@ int kmscon_seat_new(struct kmscon_seat **out, struct conf_ctx *main_conf,
- 	if (ret)
+diff --git a/src/seat.c b/src/seat.c
+index 2e6b1fc..177260a 100644
+--- a/src/seat.c
++++ b/src/seat.c
+@@ -768,6 +768,7 @@ int kmscon_seat_new(struct kmscon_seat **out, struct conf_ctx *main_conf,
  		goto err_conf;
  
+ 	input_set_compose(seat->input, find_locale(), seat->conf->xkb_compose_file);
 +	input_load_keyd_table(seat->input);
-+
+ 
  	ret = uterm_monitor_new(&seat->mon, seat->eloop, &seat_monitor_cb, seat);
  	if (ret) {
- 		log_error("cannot create device monitor: %d", ret);
 -- 
 2.54.0
 
