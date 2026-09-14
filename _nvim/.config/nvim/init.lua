@@ -155,10 +155,6 @@ vim.pack.add({
         {
                 src = "https://github.com/sindrets/diffview.nvim",
         },
-        -- fzf-lua
-        {
-                src = "https://github.com/ibhagwan/fzf-lua",
-        },
         -- [dev] hex.nvim (lazy: false)
         -- {
         --         src = "https://github.com/yilisharcs/hex.nvim",
@@ -209,7 +205,6 @@ vim.pack.add({
                 src = "https://github.com/aymericbeaumet/vim-symlink",
         },
         -- [dev] yazi.nvim
-        --      ibhagwan/fzf-lua
         -- {
         --         src = "https://github.com/mikavilpas/yazi.nvim",
         -- },

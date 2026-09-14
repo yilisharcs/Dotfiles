@@ -14,13 +14,9 @@ require("yazi").setup({
         keymaps = {
                 open_file_in_vertical_split = "<C-v>",
                 open_file_in_horizontal_split = "<C-s>",
-                grep_in_directory = "<C-x>",
+                grep_in_directory = false,
                 replace_in_directory = false,
                 cycle_open_buffers = false,
-        },
-        integrations = {
-                grep_in_directory = "fzf-lua",
-                grep_in_selected_files = "fzf-lua",
         },
 })
 

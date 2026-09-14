@@ -184,12 +184,6 @@ hi("jjWhite", { fg = colors.Silver1, ctermfg = "white", bold = true })
 hi("DiffviewFilePanelSelected", { fg = colors.Yellow1, bold = true, ctermfg = "yellow" })
 -- }}}
 
--- fzf-lua {{{
-hi("FzfLuaCustomMarks", { fg = colors.Yellow2, ctermfg = "yellow" })
-hi("FzfLuaFzfCursorLine", { ctermfg = "yellow", ctermbg = "blue" })
-hi("FzfLuaFzfPointer", { fg = colors.Red2, ctermfg = "yellow" })
--- }}}
-
 -- mini.hipatterns {{{
 hi("MiniHipatternsNote", { fg = colors.Green2, bold = true, reverse = true, ctermbg = "green" })
 hi("MiniHipatternsFixme", { fg = colors.Red2, bold = true, reverse = true, ctermbg = "red" })

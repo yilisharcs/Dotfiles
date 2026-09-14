@@ -129,30 +129,53 @@ local on_exit = function(result)
                         repo_pad = math.max(repo_pad, #e.repo)
                 end
 
-                local fzf = require("fzf-lua")
-                vim.ui.select(entries, {
-                        prompt = "Notifications> ",
-                        format_item = function(e)
-                                local hl = e.unread and "MiniIconsYellow" or "MiniIconsAzure"
-                                local icon = fzf.utils.ansi_from_hl(hl, e.icon)
-                                return ("%s  #%-" .. num_pad .. "s  %-" .. repo_pad .. "s  %s"):format(
-                                        icon,
-                                        e.num,
-                                        e.repo,
-                                        e.title
-                                )
-                        end,
-                }, function(e)
-                        if not e then
-                                return
-                        end
+                for _, e in ipairs(entries) do
+                        e.text = ("%s  #%-" .. num_pad .. "s  %-" .. repo_pad .. "s  %s"):format(
+                                e.icon,
+                                e.num,
+                                e.repo,
+                                e.title
+                        )
+                end
 
-                        if e.kind == "Discussion" or e.kind == "Release" or e.kind == "CheckSuite" then
-                                vim.ui.open(e.url:gsub("api%.github%.com/repos/", "github.com/"))
-                        else
-                                vim.cmd("Guh " .. e.slug)
-                        end
-                end)
+                MiniPick.start({
+                        source = {
+                                items = entries,
+                                name = "Notifications",
+                                show = function(buf_id, items, query)
+                                        MiniPick.default_show(buf_id, items, query)
+
+                                        local ns = vim.api.nvim_create_namespace("MiniPickNotifications")
+                                        vim.api.nvim_buf_clear_namespace(buf_id, ns, 0, -1)
+                                        for i, e in ipairs(items) do
+                                                if not e.unread then
+                                                        goto continue
+                                                end
+
+                                                vim.api.nvim_buf_set_extmark(buf_id, ns, i - 1, 0, {
+                                                        end_row = i,
+                                                        end_col = 0,
+                                                        hl_group = "MiniIconsOrange",
+                                                        hl_mode = "combine",
+                                                        priority = 199,
+                                                })
+
+                                                ::continue::
+                                        end
+                                end,
+                                choose = function(e)
+                                        if not e then
+                                                return
+                                        end
+
+                                        if e.kind == "Discussion" or e.kind == "Release" or e.kind == "CheckSuite" then
+                                                vim.ui.open(e.url:gsub("api%.github%.com/repos/", "github.com/"))
+                                        else
+                                                vim.cmd("Guh " .. e.slug)
+                                        end
+                                end,
+                        },
+                })
         end)
 end
 vim.keymap.set("n", "<leader>on", function()
