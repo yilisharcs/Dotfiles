@@ -239,6 +239,7 @@ hi("RainbowDelimiterCyan", { link = "RainbowDelimiterBlue" })
 -- }}}
 
 -- vim-sneak {{{
+hi("SneakCurrent", { fg = colors.Silver1, bg = colors.Cyan3, bold = true })
 hi("SneakShow", { fg = colors.Ink4, bg = colors.Green1, bold = true })
 hi("Sneak", { link = "SneakShow" })
 -- }}}
