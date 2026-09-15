@@ -273,7 +273,7 @@ if vcs_bin == "git" then
         vim.keymap.set(
                 "n",
                 "<leader>gb",
-                "mzgg<CMD>vert Git blame -- %<CR><C-w>W<CMD>set cursorbind scrollbind<CR>`z",
+                "mzgg<CMD>vert Git blame -- %<CR><C-w>W<CMD>set cursorbind scrollbind nowrap nofoldenable<CR>`z",
                 { desc = "View git blame" }
         )
 
