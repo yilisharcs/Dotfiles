@@ -18,6 +18,10 @@ in {
     {
       # Linux manpages
       home.packages = [pkgs.man-pages];
+
+      programs.man = enabled {
+        generateCaches = true;
+      };
     }
   ];
 }
