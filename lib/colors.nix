@@ -9,8 +9,8 @@
     blue = "#8787ff";
     magenta = "#b348ff";
     cyan = "#00afff";
-    lightGrey = "#afafff";
     darkGrey = "#708090";
+    lightGrey = "#afafff";
     lightRed = "#ef7184";
     lightGreen = "#00af5f";
     lightYellow = "#ffff5f";
