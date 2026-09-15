@@ -1,50 +1,50 @@
 {
-        "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
-        "runtime": {
-                "version": "LuaJIT",
-                "path": [
-                        "?.lua",
-                        "?/init.lua",
-                        "lua/?.lua",
-                        "lua/?/init.lua"
-                ]
-        },
-        "workspace": {
-                "checkThirdParty": false,
-                "library": [
-                        "$VIMRUNTIME/lua",
-                ],
-                "ignoreDir": [
-                        ".direnv",
-                        ".jj",
-                        ".git",
-                        ".symlink"
-                ]
-        },
-        "diagnostics": {
-                "globals": [
-                        "P"
-                ],
-                "unusedLocalExclude": [
-                        "_*"
-                ],
-                "groupFileStatus": {
-                        "ambiguity": "Any",
-                        "duplicate": "Any",
-                        "global": "Any",
-                        "luadoc": "None",
-                        "redefined": "Any",
-                        "strict": "Any",
-                        "strong": "None",
-                        "type-check": "Any",
-                        "unbalanced": "Any",
-                        "unused": "Any"
-                }
-        },
-        "hint": {
-                "enable": true,
-                "setType": true,
-                "paramType": true,
-                "paramName": "All"
+    "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+    "runtime": {
+        "version": "LuaJIT",
+        "path": [
+            "?.lua",
+            "?/init.lua",
+            "lua/?.lua",
+            "lua/?/init.lua"
+        ]
+    },
+    "workspace": {
+        "checkThirdParty": false,
+        "library": [
+            "$VIMRUNTIME/lua",
+        ],
+        "ignoreDir": [
+            ".direnv",
+            ".jj",
+            ".git",
+            ".symlink"
+        ]
+    },
+    "diagnostics": {
+        "globals": [
+            "P"
+        ],
+        "unusedLocalExclude": [
+            "_*"
+        ],
+        "groupFileStatus": {
+            "ambiguity": "Any",
+            "duplicate": "Any",
+            "global": "Any",
+            "luadoc": "None",
+            "redefined": "Any",
+            "strict": "Any",
+            "strong": "None",
+            "type-check": "Any",
+            "unbalanced": "Any",
+            "unused": "Any"
         }
+    },
+    "hint": {
+        "enable": true,
+        "setType": true,
+        "paramType": true,
+        "paramName": "All"
+    }
 }

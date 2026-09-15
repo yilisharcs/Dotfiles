@@ -1,8 +1,8 @@
 return {
-        cmd = {
-                "nu",
-                "--lsp",
-                "--no-config-file",
-        },
-        filetypes = { "nu" },
+    cmd = {
+        "nu",
+        "--lsp",
+        "--no-config-file",
+    },
+    filetypes = { "nu" },
 }

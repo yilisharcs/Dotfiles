@@ -9,23 +9,23 @@ vim.keymap.set({ "i", "c" }, "<C-b>", "<LEFT>")
 vim.keymap.set({ "i", "c" }, "<C-f>", "<RIGHT>")
 vim.keymap.set("c", "<C-y>", "<C-f>", { desc = "Open command-line window" })
 vim.keymap.set(
-        "c",
-        "<C-k>",
-        [[<c-\>e getcmdpos() == 1 ? "" : getcmdline()[:getcmdpos()-2]<CR>]],
-        { desc = "Delete words after cursor" }
+    "c",
+    "<C-k>",
+    [[<c-\>e getcmdpos() == 1 ? "" : getcmdline()[:getcmdpos()-2]<CR>]],
+    { desc = "Delete words after cursor" }
 )
 vim.keymap.set("c", "<C-a>", "<HOME>")
 vim.keymap.set("c", "<C-x><C-a>", "<C-a>", { desc = "Insert matches on cursor pattern" })
 vim.keymap.set("c", "<C-x><C-d>", "<C-d>", { desc = "List matches on cursor pattern" })
 vim.keymap.set("c", "<C-d>", "<DEL>")
 vim.keymap.set("i", "<C-d>", function()
-        local _, col = unpack(vim.api.nvim_win_get_cursor(0))
-        local line_len = #vim.api.nvim_get_current_line()
-        if col == line_len then
-                return "<C-d>"
-        else
-                return "<DEL>"
-        end
+    local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local line_len = #vim.api.nvim_get_current_line()
+    if col == line_len then
+        return "<C-d>"
+    else
+        return "<DEL>"
+    end
 end, { expr = true })
 
 vim.keymap.set("x", "<", "<gv", { desc = "Indent selection backwards" })
@@ -60,18 +60,18 @@ vim.keymap.set("x", "<C-o>", ":'<,'>diffget<CR>", { silent = true, desc = "Get d
 vim.keymap.set("x", "<C-p>", ":'<,'>diffput<CR>", { silent = true, desc = "Change diff of alt buffer" })
 
 vim.keymap.set("n", "cu", function()
-        if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.quickfix")) == 1 then
-                return "<CMD>botright copen | wincmd p<CR>"
-        else
-                return "<CMD>cclose<CR>"
-        end
+    if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.quickfix")) == 1 then
+        return "<CMD>botright copen | wincmd p<CR>"
+    else
+        return "<CMD>cclose<CR>"
+    end
 end, { expr = true, desc = "Toggle quickfix list" })
 vim.keymap.set("n", "co", function()
-        if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")) == 1 then
-                return "<CMD>botright lopen | wincmd p<CR>"
-        else
-                return "<CMD>lclose<CR>"
-        end
+    if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.loclist")) == 1 then
+        return "<CMD>botright lopen | wincmd p<CR>"
+    else
+        return "<CMD>lclose<CR>"
+    end
 end, { expr = true, desc = "Toggle location list" })
 
 vim.keymap.set("n", "<C-k>", "<CMD>cpfile<CR>zz", { desc = "Quickfix previous file" })
@@ -93,17 +93,17 @@ vim.keymap.set("n", "gco", "oz<ESC>gccfza<BS>", { remap = true, desc = "Add comm
 vim.keymap.set({ "n", "x", "o" }, "j", "(&wrap ? 'gj' : 'j')", { expr = true })
 vim.keymap.set({ "n", "x", "o" }, "k", "(&wrap ? 'gk' : 'k')", { expr = true })
 vim.keymap.set(
-        { "n", "x" },
-        "<C-d>",
-        "(&wrap ? '<C-d>' : '<C-d>zz')",
-        { expr = true, desc = "Center half-scroll down" }
+    { "n", "x" },
+    "<C-d>",
+    "(&wrap ? '<C-d>' : '<C-d>zz')",
+    { expr = true, desc = "Center half-scroll down" }
 )
 vim.keymap.set({ "n", "x" }, "<C-u>", "(&wrap ? '<C-u>' : '<C-u>zz')", { expr = true, desc = "Center half-scroll up" })
 vim.keymap.set(
-        { "n", "x" },
-        "<C-f>",
-        "(&wrap ? '<C-f>' : '<C-f>zz')",
-        { expr = true, desc = "Center full-scroll down" }
+    { "n", "x" },
+    "<C-f>",
+    "(&wrap ? '<C-f>' : '<C-f>zz')",
+    { expr = true, desc = "Center full-scroll down" }
 )
 vim.keymap.set({ "n", "x" }, "<C-b>", "(&wrap ? '<C-b>' : '<C-b>zz')", { expr = true, desc = "Center full-scroll up" })
 vim.keymap.set({ "n", "x" }, "<F8>", "<CMD>setlocal wrap! wrap?<CR>", { desc = "Toggle wrap" })
@@ -111,20 +111,20 @@ vim.keymap.set({ "n", "x" }, "<F8>", "<CMD>setlocal wrap! wrap?<CR>", { desc = "
 -- terminal emulators don't register C-4 as C-\
 vim.keymap.set("t", "<C-4><C-n>", [[<C-\><C-n>]])
 vim.keymap.set(
-        "t",
-        [[<C-\><C-r>]],
-        [['<C-\><C-n>"'.nr2char(getchar()).'pi']],
-        { expr = true, desc = "Paste from register $@" }
+    "t",
+    [[<C-\><C-r>]],
+    [['<C-\><C-n>"'.nr2char(getchar()).'pi']],
+    { expr = true, desc = "Paste from register $@" }
 )
 
 vim.keymap.set("n", "<F6>", function()
-        if vim.b.toggle_comment_hl ~= nil then
-                vim.b.toggle_comment_hl = nil
-                vim.wo[0][0].winhighlight = ""
-        else
-                vim.b.toggle_comment_hl = true
-                vim.wo[0][0].winhighlight = "Comment:CommentHide"
-        end
+    if vim.b.toggle_comment_hl ~= nil then
+        vim.b.toggle_comment_hl = nil
+        vim.wo[0][0].winhighlight = ""
+    else
+        vim.b.toggle_comment_hl = true
+        vim.wo[0][0].winhighlight = "Comment:CommentHide"
+    end
 end)
 
 vim.keymap.set("n", "<F9>", "<CMD>Inspect<CR>", { desc = "Inspect element under cursor" })

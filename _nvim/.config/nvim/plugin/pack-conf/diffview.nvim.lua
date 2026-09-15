@@ -1,94 +1,94 @@
 local actions = require("diffview.actions")
 require("diffview").setup({
-        -- diff_binaries = true,
+    -- diff_binaries = true,
+    view = {
+        default = {
+            layout = "diff2_vertical",
+            winbar_info = true,
+        },
+        file_history = {
+            winbar_info = true,
+        },
+    },
+    file_panel = {
+        win_config = {
+            position = "right",
+            width = math.floor(vim.o.columns * 0.33 + 0.5),
+        },
+    },
+    file_history_panel = {
+        win_config = {
+            height = math.floor(vim.o.lines * 0.4),
+        },
+    },
+    keymaps = {
         view = {
-                default = {
-                        layout = "diff2_vertical",
-                        winbar_info = true,
-                },
-                file_history = {
-                        winbar_info = true,
-                },
+            {
+                "n",
+                "<C-n>",
+                actions.select_next_entry,
+                { desc = "Open next file diff" },
+            },
+            {
+                "n",
+                "<C-p>",
+                actions.select_prev_entry,
+                { desc = "Open prev file diff" },
+            },
         },
         file_panel = {
-                win_config = {
-                        position = "right",
-                        width = math.floor(vim.o.columns * 0.33 + 0.5),
-                },
+            {
+                "n",
+                "<C-n>",
+                actions.select_next_entry,
+                { desc = "Open next file diff" },
+            },
+            {
+                "n",
+                "<C-p>",
+                actions.select_prev_entry,
+                { desc = "Open prev file diff" },
+            },
+            {
+                "n",
+                "<C-k>",
+                actions.scroll_view(-0.25),
+                { desc = "Scroll the view up" },
+            },
+            {
+                "n",
+                "<C-j>",
+                actions.scroll_view(0.25),
+                { desc = "Scroll the view down" },
+            },
         },
         file_history_panel = {
-                win_config = {
-                        height = math.floor(vim.o.lines * 0.4),
-                },
+            {
+                "n",
+                "<C-n>",
+                actions.select_next_entry,
+                { desc = "Open next file diff" },
+            },
+            {
+                "n",
+                "<C-p>",
+                actions.select_prev_entry,
+                { desc = "Open prev file diff" },
+            },
+            {
+                "n",
+                "<C-k>",
+                actions.scroll_view(-0.25),
+                { desc = "Scroll the view up" },
+            },
+            {
+                "n",
+                "<C-j>",
+                actions.scroll_view(0.25),
+                { desc = "Scroll the view down" },
+            },
         },
-        keymaps = {
-                view = {
-                        {
-                                "n",
-                                "<C-n>",
-                                actions.select_next_entry,
-                                { desc = "Open next file diff" },
-                        },
-                        {
-                                "n",
-                                "<C-p>",
-                                actions.select_prev_entry,
-                                { desc = "Open prev file diff" },
-                        },
-                },
-                file_panel = {
-                        {
-                                "n",
-                                "<C-n>",
-                                actions.select_next_entry,
-                                { desc = "Open next file diff" },
-                        },
-                        {
-                                "n",
-                                "<C-p>",
-                                actions.select_prev_entry,
-                                { desc = "Open prev file diff" },
-                        },
-                        {
-                                "n",
-                                "<C-k>",
-                                actions.scroll_view(-0.25),
-                                { desc = "Scroll the view up" },
-                        },
-                        {
-                                "n",
-                                "<C-j>",
-                                actions.scroll_view(0.25),
-                                { desc = "Scroll the view down" },
-                        },
-                },
-                file_history_panel = {
-                        {
-                                "n",
-                                "<C-n>",
-                                actions.select_next_entry,
-                                { desc = "Open next file diff" },
-                        },
-                        {
-                                "n",
-                                "<C-p>",
-                                actions.select_prev_entry,
-                                { desc = "Open prev file diff" },
-                        },
-                        {
-                                "n",
-                                "<C-k>",
-                                actions.scroll_view(-0.25),
-                                { desc = "Scroll the view up" },
-                        },
-                        {
-                                "n",
-                                "<C-j>",
-                                actions.scroll_view(0.25),
-                                { desc = "Scroll the view down" },
-                        },
-                },
-        },
+    },
 })
 
 -- stylua: ignore start

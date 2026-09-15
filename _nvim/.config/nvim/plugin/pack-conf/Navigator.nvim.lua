@@ -1,5 +1,5 @@
 require("Navigator").setup({
-        disable_on_zoom = true,
+    disable_on_zoom = true,
 })
 
 vim.keymap.set({ "n", "x", "i", "c", "t" }, "<M-h>", "<CMD>NavigatorLeft<CR>")

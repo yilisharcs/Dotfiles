@@ -1,5 +1,5 @@
 if exists("b:current_syntax")
-        finish
+    finish
 endif
 
 " TODO: currently missing highlights for divergence

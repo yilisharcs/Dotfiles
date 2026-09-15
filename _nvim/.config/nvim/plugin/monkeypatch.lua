@@ -3,11 +3,11 @@
 local _ui_open = vim.ui.open
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.ui.open = function(path, opt)
-        local cmd, err = _ui_open(path, opt)
-        if cmd then
-                cmd.wait = function()
-                        return { code = 0 }
-                end
+    local cmd, err = _ui_open(path, opt)
+    if cmd then
+        cmd.wait = function()
+            return { code = 0 }
         end
-        return cmd, err
+    end
+    return cmd, err
 end

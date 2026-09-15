@@ -1,80 +1,80 @@
 if vim.g.colors_name then
-        vim.cmd.highlight("clear")
+    vim.cmd.highlight("clear")
 end
 vim.cmd.syntax("reset")
 
 vim.g.colors_name = "moyin"
 
 local colors = {
-        Silver1 = "#cdd6f4",
-        Silver2 = "#bcc8f0",
-        Silver3 = "#afafff",
+    Silver1 = "#cdd6f4",
+    Silver2 = "#bcc8f0",
+    Silver3 = "#afafff",
 
-        Ink1 = "#0c1018",
-        Ink2 = "#070b14",
-        Ink3 = "#04070c",
-        Ink4 = "#020407",
+    Ink1 = "#0c1018",
+    Ink2 = "#070b14",
+    Ink3 = "#04070c",
+    Ink4 = "#020407",
 
-        Gray1 = "#708090",
-        Gray2 = "#362b49",
-        Gray3 = "#1e1829",
+    Gray1 = "#708090",
+    Gray2 = "#362b49",
+    Gray3 = "#1e1829",
 
-        Red1 = "#ef7184",
-        Red2 = "#d31834",
+    Red1 = "#ef7184",
+    Red2 = "#d31834",
 
-        Green1 = "#8af19e",
-        Green2 = "#00af5f",
-        Green3 = "#004928",
-        Green4 = "#00220e",
+    Green1 = "#8af19e",
+    Green2 = "#00af5f",
+    Green3 = "#004928",
+    Green4 = "#00220e",
 
-        Yellow1 = "#ffff5f",
-        Yellow2 = "#ffaf00",
-        Yellow3 = "#daa520",
+    Yellow1 = "#ffff5f",
+    Yellow2 = "#ffaf00",
+    Yellow3 = "#daa520",
 
-        Blue1 = "#8787ff",
-        Blue2 = "#5f5fff",
+    Blue1 = "#8787ff",
+    Blue2 = "#5f5fff",
 
-        Magenta1 = "#c87bff",
-        Magenta2 = "#b348ff",
+    Magenta1 = "#c87bff",
+    Magenta2 = "#b348ff",
 
-        Cyan1 = "#8cf8f7",
-        Cyan2 = "#00afff",
-        Cyan3 = "#004666",
+    Cyan1 = "#8cf8f7",
+    Cyan2 = "#00afff",
+    Cyan3 = "#004666",
 
-        White1 = "#faebd7",
+    White1 = "#faebd7",
 }
 
 local function hi(name, val)
-        -- force links
-        val.force = true
-        -- make sure that `cterm` attribute is not populated from `gui`
-        val.cterm = val.cterm or {} ---@type vim.api.keyset.highlight
-        -- define global highlight
-        vim.api.nvim_set_hl(0, name, val)
+    -- force links
+    val.force = true
+    -- make sure that `cterm` attribute is not populated from `gui`
+    val.cterm = val.cterm or {} ---@type vim.api.keyset.highlight
+    -- define global highlight
+    vim.api.nvim_set_hl(0, name, val)
 end
 
 local terminal_ansi_colors = {
-        colors.Ink4,
-        colors.Red2,
-        colors.Green2,
-        colors.Yellow2,
-        colors.Blue1,
-        colors.Magenta2,
-        colors.Cyan2,
-        colors.Silver3,
-        --
-        colors.Gray1,
-        colors.Red1,
-        colors.Green2,
-        colors.Yellow1,
-        colors.Silver2,
-        colors.Magenta1,
-        colors.Cyan1,
-        colors.Silver1,
+    colors.Ink4,
+    colors.Red2,
+    colors.Green2,
+    colors.Yellow2,
+    colors.Blue1,
+    colors.Magenta2,
+    colors.Cyan2,
+    colors.Silver3,
+    --
+    colors.Gray1,
+    colors.Red1,
+    colors.Green2,
+    colors.Yellow1,
+    colors.Silver2,
+    colors.Magenta1,
+    colors.Cyan1,
+    colors.Silver1,
 }
 for k, v in ipairs(terminal_ansi_colors) do
-        local num = "terminal_color_" .. k - 1
-        vim.g[num] = v
+    local num = "terminal_color_" .. k - 1
+    vim.g[num] = v
 end
 
 -- general
@@ -206,18 +206,18 @@ hi("NeogitUnmergedchanges", { fg = colors.Magenta1, bold = true, ctermfg = "mage
 hi("NeogitGraphPurple", { fg = colors.Yellow2, ctermfg = "yellow" })
 hi("NeogitChangeModified", { fg = colors.Cyan2, bold = true, italic = true, ctermfg = "cyan" })
 hi("NeogitHunkHeaderHighlight", {
-        fg = colors.Ink2,
-        bg = colors.Gray1,
-        bold = true,
-        ctermfg = "black",
-        ctermbg = "grey",
+    fg = colors.Ink2,
+    bg = colors.Gray1,
+    bold = true,
+    ctermfg = "black",
+    ctermbg = "grey",
 })
 hi("NeogitHunkHeaderCursor", {
-        fg = colors.Ink2,
-        bg = colors.Silver3,
-        bold = true,
-        ctermfg = "black",
-        ctermbg = "white",
+    fg = colors.Ink2,
+    bg = colors.Silver3,
+    bold = true,
+    ctermfg = "black",
+    ctermbg = "white",
 })
 -- }}}
 
@@ -241,16 +241,16 @@ hi("Sneak", { link = "SneakShow" })
 -- matchparen
 local matchparen = vim.api.nvim_create_augroup("MatchParenInsertMode", { clear = true })
 vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
-        group = matchparen,
-        callback = function()
-                hi("MatchParen", {})
-        end,
+    group = matchparen,
+    callback = function()
+        hi("MatchParen", {})
+    end,
 })
 vim.api.nvim_create_autocmd({ "ColorScheme", "InsertLeave", "CmdlineLeave" }, {
-        group = matchparen,
-        callback = function()
-                hi("MatchParen", { fg = colors.Red2, bold = true })
-        end,
+    group = matchparen,
+    callback = function()
+        hi("MatchParen", { fg = colors.Red2, bold = true })
+    end,
 })
 
 -- vim: nowrap

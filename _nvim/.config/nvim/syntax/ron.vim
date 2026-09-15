@@ -5,12 +5,11 @@
 
 " quit when a syntax file was already loaded
 if exists("b:current_syntax")
-  finish
+    finish
 endif
 
 " RON is not valid Rust, but has compatible syntax
 runtime! syntax/rust.vim
 
 let b:current_syntax = "ron"
-
-" vim: ft=vim expandtab nowrap shiftwidth=2 softtabstop=2
+" vim: ft=vim expandtab nowrap shiftwidth=4 tabstop=4 softtabstop=4

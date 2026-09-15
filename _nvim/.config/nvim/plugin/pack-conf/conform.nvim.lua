@@ -1,16 +1,16 @@
 require("conform").setup({
-        formatters_by_ft = {
-                fennel = { "fnlfmt" },
-                lua = { "stylua" },
-                nix = { "alejandra" },
-                rust = { "rustfmt" },
-                zig = { "zigfmt" },
-        },
-        format_after_save = function(bufnr)
-                local name = vim.api.nvim_buf_get_name(bufnr)
-                if name:find("diffview://", 1, true) then
-                        return
-                end
-                return { timeout_ms = 2000 }
-        end,
+    formatters_by_ft = {
+        fennel = { "fnlfmt" },
+        lua = { "stylua" },
+        nix = { "alejandra" },
+        rust = { "rustfmt" },
+        zig = { "zigfmt" },
+    },
+    format_after_save = function(bufnr)
+        local name = vim.api.nvim_buf_get_name(bufnr)
+        if name:find("diffview://", 1, true) then
+            return
+        end
+        return { timeout_ms = 2000 }
+    end,
 })

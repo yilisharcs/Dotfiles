@@ -6,10 +6,10 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 if
-        #vim.v.argf ~= 0
-        and (string.match(vim.v.argf[1], "^/tmp/bash%-fc%.%w+$") or string.match(vim.v.argf[1], "^/tmp/%S+%.nu$"))
+    #vim.v.argf ~= 0
+    and (string.match(vim.v.argf[1], "^/tmp/bash%-fc%.%w+$") or string.match(vim.v.argf[1], "^/tmp/%S+%.nu$"))
 then
-        vim.g.shell_editor = true
+    vim.g.shell_editor = true
 end
 
 vim.g.netrw_banner = 0
@@ -22,12 +22,12 @@ vim.keymap.set("n", "<leader>l", "`L", { desc = "File mark `L" })
 
 vim.keymap.set("n", "<leader>p", ":= P()<LEFT>", { desc = "Eval and print" })
 function P(...)
-        local args = {}
-        for _, arg in ipairs({ ... }) do
-                table.insert(args, vim.inspect(arg))
-        end
-        print(unpack(args))
-        return ...
+    local args = {}
+    for _, arg in ipairs({ ... }) do
+        table.insert(args, vim.inspect(arg))
+    end
+    print(unpack(args))
+    return ...
 end
 
 -- EDITOR OPTIONS
@@ -36,9 +36,9 @@ vim.o.exrc = true
 
 -- sync clipboard between OS and Nvim
 vim.api.nvim_create_autocmd("UIEnter", {
-        callback = function()
-                vim.o.clipboard = "unnamedplus"
-        end,
+    callback = function()
+        vim.o.clipboard = "unnamedplus"
+    end,
 })
 
 vim.cmd("silent! aunmenu PopUp.How-to\\ disable\\ mouse")
@@ -60,9 +60,9 @@ vim.o.scrolloff = 4
 vim.o.sidescrolloff = 4
 
 -- indenting
-vim.o.tabstop = 8
-vim.o.softtabstop = 8
-vim.o.shiftwidth = 8
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.smartindent = true
 
@@ -121,8 +121,8 @@ vim.o.listchars = "nbsp:␣,tab:│ ,trail:•"
 
 -- display vs TTY
 if os.getenv("DISPLAY") ~= nil then
-        vim.o.title = true
-        vim.o.titlestring = "%t%( [%M]%) (%{expand('%:p:~:h')}) - Nvim"
+    vim.o.title = true
+    vim.o.titlestring = "%t%( [%M]%) (%{expand('%:p:~:h')}) - Nvim"
 end
 
 vim.o.termguicolors = true
@@ -130,95 +130,95 @@ vim.o.background = "dark"
 vim.cmd.colorscheme("moyin")
 
 vim.filetype.add({
-        extension = {
-                fasm = "fasm",
-                log = "log",
-                xxd = "xxd",
-        },
-        pattern = {
-                ["/nix/store/.*%-bash_profile"] = "bash",
-                ["/nix/store/.*%-bashrc"] = "bash",
-                ["/nix/store/.*%-profile"] = "bash",
-                ["/nix/store/.*.Xresources"] = "xdefaults",
-        },
+    extension = {
+        fasm = "fasm",
+        log = "log",
+        xxd = "xxd",
+    },
+    pattern = {
+        ["/nix/store/.*%-bash_profile"] = "bash",
+        ["/nix/store/.*%-bashrc"] = "bash",
+        ["/nix/store/.*%-profile"] = "bash",
+        ["/nix/store/.*.Xresources"] = "xdefaults",
+    },
 })
 
 -- PACKAGE MANAGER
 vim.g.loaded_tutor_mode_plugin = 1
 
 vim.pack.add({
-        -- conform.nvim
-        {
-                src = "https://github.com/stevearc/conform.nvim",
-        },
-        -- diffview.nvim
-        {
-                src = "https://github.com/sindrets/diffview.nvim",
-        },
-        -- [dev] hex.nvim (lazy: false)
-        -- {
-        --         src = "https://github.com/yilisharcs/hex.nvim",
-        --         version = "undolevel"
-        -- },
-        -- guh.nvim
-        {
-                src = "https://github.com/justinmk/guh.nvim",
-        },
-        -- mini.nvim
-        --      nvim-treesitter/nvim-treesitter
-        {
-                src = "https://github.com/nvim-mini/mini.nvim",
-        },
-        {
-                src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
-                version = "main",
-        },
-        -- Navigator.nvim
-        {
-                src = "https://github.com/numToStr/Navigator.nvim",
-        },
-        -- nvim-treesitter
-        {
-                src = "https://github.com/nvim-treesitter/nvim-treesitter",
-                version = "main",
-                data = { build = "TSUpdate" },
-        },
-        {
-                src = "https://github.com/HiPhish/rainbow-delimiters.nvim",
-        },
-        {
-                src = "https://github.com/RRethy/nvim-treesitter-endwise",
-        },
-        -- toggleterm.nvim
-        {
-                src = "https://github.com/akinsho/toggleterm.nvim",
-        },
-        -- vim-sneak
-        {
-                src = "https://github.com/justinmk/vim-sneak",
-        },
-        {
-                src = "https://github.com/tpope/vim-repeat",
-        },
-        -- vim-symlink
-        {
-                src = "https://github.com/aymericbeaumet/vim-symlink",
-        },
-        -- [dev] yazi.nvim
-        -- {
-        --         src = "https://github.com/mikavilpas/yazi.nvim",
-        -- },
-        {
-                src = "https://github.com/nvim-lua/plenary.nvim",
-        },
+    -- conform.nvim
+    {
+        src = "https://github.com/stevearc/conform.nvim",
+    },
+    -- diffview.nvim
+    {
+        src = "https://github.com/sindrets/diffview.nvim",
+    },
+    -- [dev] hex.nvim (lazy: false)
+    -- {
+    --         src = "https://github.com/yilisharcs/hex.nvim",
+    --         version = "undolevel"
+    -- },
+    -- guh.nvim
+    {
+        src = "https://github.com/justinmk/guh.nvim",
+    },
+    -- mini.nvim
+    --      nvim-treesitter/nvim-treesitter
+    {
+        src = "https://github.com/nvim-mini/mini.nvim",
+    },
+    {
+        src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+        version = "main",
+    },
+    -- Navigator.nvim
+    {
+        src = "https://github.com/numToStr/Navigator.nvim",
+    },
+    -- nvim-treesitter
+    {
+        src = "https://github.com/nvim-treesitter/nvim-treesitter",
+        version = "main",
+        data = { build = "TSUpdate" },
+    },
+    {
+        src = "https://github.com/HiPhish/rainbow-delimiters.nvim",
+    },
+    {
+        src = "https://github.com/RRethy/nvim-treesitter-endwise",
+    },
+    -- toggleterm.nvim
+    {
+        src = "https://github.com/akinsho/toggleterm.nvim",
+    },
+    -- vim-sneak
+    {
+        src = "https://github.com/justinmk/vim-sneak",
+    },
+    {
+        src = "https://github.com/tpope/vim-repeat",
+    },
+    -- vim-symlink
+    {
+        src = "https://github.com/aymericbeaumet/vim-symlink",
+    },
+    -- [dev] yazi.nvim
+    -- {
+    --         src = "https://github.com/mikavilpas/yazi.nvim",
+    -- },
+    {
+        src = "https://github.com/nvim-lua/plenary.nvim",
+    },
 }, { load = true })
 
 -- TODO: test this
 vim.api.nvim_create_autocmd("PackChanged", {
-        callback = function(ev)
-                local hook = ev.data.spec.data and ev.data.spec.data.build
-                if hook then
-                        vim.cmd(hook)
-                end
-        end,
+    callback = function(ev)
+        local hook = ev.data.spec.data and ev.data.spec.data.build
+        if hook then
+            vim.cmd(hook)
+        end
+    end,
 })

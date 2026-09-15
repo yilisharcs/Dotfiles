@@ -42,4 +42,4 @@ CompilerSet errorformat+=
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
-" vim: tabstop=8 shiftwidth=4 softtabstop=4 expandtab
+" vim: expandtab nowrap shiftwidth=4 tabstop=4 softtabstop=4
