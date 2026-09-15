@@ -43,13 +43,13 @@ in {
           MoveCursorEnd = "<C-e>";
           InsertNewline = "<C-j>";
         };
-        themeSettings = {
-          highlight.CategoryHeading = {
-            foreground = lib.colors.moyin.lightBlue;
-          };
-          highlight.FolderFallback = {
-            foreground = lib.colors.moyin.cyan;
-          };
+        themeSettings.highlight = let
+          c = lib.colors.moyin;
+        in {
+          CategoryHeading.foreground = c.lightBlue;
+          FolderFallback.foreground = c.cyan;
+          Muted.foreground = c.foreground;
+          NavigationUnread.foreground = c.lightYellow;
         };
       };
     }
