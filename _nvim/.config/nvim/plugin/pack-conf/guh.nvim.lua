@@ -82,6 +82,7 @@ local on_exit = function(result)
                         CheckSuite = "",
                 }
                 local entries = {}
+                local num_pad, repo_pad = 0, 0
 
                 local notifications = vim.json.decode(result.stdout)
                 for _, n in ipairs(notifications) do
@@ -106,6 +107,9 @@ local on_exit = function(result)
                                 slug = ("%s#%s"):format(repo, num)
                         end
 
+                        num_pad = math.max(num_pad, #num)
+                        repo_pad = math.max(repo_pad, #repo)
+
                         entries[#entries + 1] = {
                                 icon = notif_icons[t],
                                 num = num,
@@ -121,12 +125,6 @@ local on_exit = function(result)
                 end
                 if #entries == 0 then
                         return
-                end
-
-                local num_pad, repo_pad = 0, 0
-                for _, e in ipairs(entries) do
-                        num_pad = math.max(num_pad, #e.num)
-                        repo_pad = math.max(repo_pad, #e.repo)
                 end
 
                 for _, e in ipairs(entries) do
