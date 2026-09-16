@@ -78,8 +78,6 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 
         -- toggle case and advance word
         vim.fn.setreg("c", "wvg~")
-        -- TODO: figure out what this does
-        vim.fn.setreg("m", "JjJ^r>}j")
     end,
 })
 
