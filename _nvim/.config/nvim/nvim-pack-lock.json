@@ -46,10 +46,6 @@
       "rev": "9a88eae817ef395952e08650b3283726786fb5fb",
       "src": "https://github.com/akinsho/toggleterm.nvim"
     },
-    "vim-repeat": {
-      "rev": "65846025c15494983dafe5e3b46c8f88ab2e9635",
-      "src": "https://github.com/tpope/vim-repeat"
-    },
     "vim-sneak": {
       "rev": "feea86adcfbf8e6b5e71fdd5f4f5736fd8819fdb",
       "src": "https://github.com/justinmk/vim-sneak"

@@ -197,9 +197,6 @@ vim.pack.add({
     {
         src = "https://github.com/justinmk/vim-sneak",
     },
-    {
-        src = "https://github.com/tpope/vim-repeat",
-    },
     -- vim-symlink
     {
         src = "https://github.com/aymericbeaumet/vim-symlink",
