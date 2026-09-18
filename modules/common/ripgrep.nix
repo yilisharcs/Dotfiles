@@ -16,6 +16,7 @@ in {
             "--glob=!.bak"
             "--glob=!.cache"
             "--glob=!.git"
+            "--glob=!.jj"
             "--glob=!.npm"
             "--glob=!Trash"
             "--glob=!.config/BraveSoftware"
