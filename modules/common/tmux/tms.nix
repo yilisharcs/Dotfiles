@@ -68,7 +68,7 @@
           bind 'C-o' display-popup -E "tms"
 
           # switch to another session interactively, then kill original
-          bind 'C-x' run-shell 'tmux display-popup -E "tms switch && tmux kill-session -t #S"'
+          bind 'C-x' run-shell 'tmux display-popup -E "tms switch; tmux kill-session -t #S"'
         '';
     }
   ];
