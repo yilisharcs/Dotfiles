@@ -1,6 +1,7 @@
 log-file: /dev/null
 input-file: ""
 output-file: ""
+output-attrs: ""
 ignore-dirs:
     - /proc
     - /dev
@@ -8,39 +9,64 @@ ignore-dirs:
     - /run
 ignore-dir-patterns: []
 ignore-from-file: ""
-max-cores: 4
+type: []
+exclude-type: []
+max-cores: 2
+depth: 0
 sequential-scanning: false
 show-apparent-size: true
 show-relative-size: false
+show-annexed-size: false
 show-item-count: true
 show-mtime: false
 no-color: false
-no-mouse: false
+mouse: true
 non-interactive: false
+interactive: false
 no-progress: false
 no-unicode: false
 no-cross: false
 no-hidden: false
 no-delete: true
+no-view-file: false
+no-spawn-shell: false
+no-confirm-quit: true
 follow-symlinks: false
 profiling: false
-const-gc: false
-use-storage: false
-storage-path: /tmp/badger
 read-from-storage: false
+db: ""
 summarize: false
 top: 0
 use-si-prefix: false
 no-prefix: false
+show-in-kib: false
+reverse-sort: false
 change-cwd: false
 delete-in-background: false
 delete-in-parallel: false
+since: ""
+until: ""
+max-age: ""
+min-age: ""
+archive-browsing: false
+collapse-path: false
+show-symlink-target: false
+browse-parent-dirs: false
+web:
+    listen: ""
+    open-browser: true
+    browser: ""
 style:
+    marked:
+        text-color: ""
+        background-color: ""
     selected-row:
         text-color: '#b71132'
         background-color: '#cdd6f4'
     progress-modal:
         current-item-path-max-len: 0
+        show-disk-progress-bar: true
+    show-bar-percentage: false
     use-old-size-bar: false
     footer:
         text-color: '#cdd6f4'
