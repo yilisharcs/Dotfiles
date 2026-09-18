@@ -75,6 +75,12 @@ in {
             bind -T copy-mode-vi 'M-k' if -F '#{pane_at_top}'    ''' 'select-pane -U'
             bind -T copy-mode-vi 'M-l' if -F '#{pane_at_right}'  ''' 'select-pane -R'
 
+            # nvim terminal->normal mode
+            bind -n 'C-\' switch-client -T nvim-esc
+            bind -T nvim-esc 'C-n' if-shell "$is_vim" 'send-keys "C-\\" C-n' 'copy-mode'
+            # nvim normal->terminal mode
+            bind -T copy-mode-vi 'i' send-keys -X cancel
+
             bind 'X' kill-session
             bind 'C-^' last-window # Vim-like pane switching
             bind 'a' choose-tree -Zs
