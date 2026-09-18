@@ -17,6 +17,7 @@ require("yazi").setup({
         grep_in_directory = false,
         replace_in_directory = false,
         cycle_open_buffers = false,
+        change_working_directory = false,
     },
 })
 
