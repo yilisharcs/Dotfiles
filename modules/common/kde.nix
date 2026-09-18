@@ -71,7 +71,7 @@ in {
               krunnerrc.Plugins.browserhistoryEnabled = false;
               plasmaparc.General.RaiseMaximumVolume = true;
               baloofilerc."General" = {
-                "only basic indexing" = true;
+                "onlyBasicIndexing" = true;
                 "folders" = concatStringsSep "," [
                   "${config.home.homeDirectory}/"
                   "${config.home.homeDirectory}/Games/.plugin/"
