@@ -124,7 +124,15 @@ in {
           };
         };
         settings = {
+          shell = "${getExe pkgs.nushell}";
           autoupdate = false;
+          snapshot = false;
+          compaction = {
+            # i only reach the compaction limit with 200k models,
+            # precisely when i'd prefer to NOT compact the convo.
+            auto = false;
+            prune = true;
+          };
           lsp = false;
           model = "opencode-go/mimo-v2.5";
           small_model = "opencode-go/deepseek-v4-flash";
