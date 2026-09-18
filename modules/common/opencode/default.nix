@@ -125,17 +125,13 @@ in {
         };
         settings = {
           autoupdate = false;
-          model = "opencode-go/mimo-v2.5";
           lsp = false;
+          model = "opencode-go/mimo-v2.5";
           small_model = "opencode-go/deepseek-v4-flash";
           agent = {
             # built-in subagents
-            general = {
-              model = "opencode-go/deepseek-v4-flash";
-            };
-            explore = {
-              model = "opencode-go/deepseek-v4-flash";
-            };
+            general.model = "opencode-go/deepseek-v4-flash";
+            explore.model = "opencode-go/deepseek-v4-flash";
           };
           permission = {
             bash = {
