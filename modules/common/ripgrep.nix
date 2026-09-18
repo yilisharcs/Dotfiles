@@ -8,8 +8,8 @@ in {
         # bin = `rg`
         ripgrep = enabled {
           arguments = [
-            # search hidden files / directories (e.g. dotfiles) by default
-            "--hidden"
+            # NEVER. EVER. CHANGE BEHAVIOR IMPLICITLY.
+            "--no-hidden"
             # enable smart case
             "--smart-case"
             # exclude files/folders
