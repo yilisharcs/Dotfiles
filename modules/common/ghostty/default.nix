@@ -65,8 +65,8 @@ in {
           font-family = "IosevkaTermSlab Nerd Font";
           font-size =
             if config.networking.hostName == "gato"
-            then 15
-            else 14;
+            then 17
+            else 14; # TODO: probably should increase this too
           font-feature = "-calt,-liga,-dlig"; # disable ligatures
 
           window-padding-balance = true;
