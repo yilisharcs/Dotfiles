@@ -96,6 +96,17 @@ in {
             key = keys.ssh.id;
             sign-on-push = true;
           };
+          fix.tools.stylua = {
+            patterns = [
+              "glob:'**/*.lua'"
+            ];
+            command = [
+              "${getExe pkgs.stylua}"
+              "--respect-ignores"
+              "--stdin-filepath=$path"
+              "-"
+            ];
+          };
           # shamelessly taken from HSVSphere
           remotes."*".auto-track-bookmarks = "glob:*";
           templates.draft_commit_description =
