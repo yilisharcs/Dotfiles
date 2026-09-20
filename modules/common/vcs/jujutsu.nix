@@ -107,8 +107,11 @@ in {
               "-"
             ];
           };
-          # shamelessly taken from HSVSphere
-          remotes."*".auto-track-bookmarks = "glob:*";
+          remotes = {
+            "*".auto-track-bookmarks = "glob:*";
+            origin."fetch-bookmarks" = "(dev | master | main)";
+            upstream."fetch-bookmarks" = "(master | main)";
+          };
           templates.draft_commit_description =
             /*
             python
