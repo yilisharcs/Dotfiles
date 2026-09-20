@@ -10,3 +10,8 @@ hi def link gitLogRefs PreProc
 hi def link gitLogDate FoldColumn
 hi def link gitLogGraph Delimiter
 hi link gitHashAbbrev Statement
+
+" git blame returns leading carets for commits with no ancestors
+syn match gitBlameLine /^\%(\^\=\x\{4,\} (\@=\)\@=.*$/ contains=@NoSpell,gitBlameHash
+syn match gitBlameHash /\^\=\x\{4,\}\ze (/ contained containedin=gitBlameLine contains=@NoSpell
+hi def link gitBlameHash gitHashAbbrev
