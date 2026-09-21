@@ -64,10 +64,10 @@
         tmux
         */
         ''
-          # open picker
+          # new session picker
           bind 'C-o' display-popup -E "tms"
-
-          # switch to another session interactively, then kill original
+          bind 'C-s' display-popup -E "tms switch"
+          # switch and kill
           bind 'C-x' run-shell 'tmux display-popup -E "tms switch; tmux kill-session -t #S"'
         '';
     }
