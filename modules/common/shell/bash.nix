@@ -15,6 +15,9 @@ in {
           ''
             export SUDO_PROMPT=$'\e[1;31m[sudo]\e[0m password for %u: '
 
+            # kmscon sets TERM, but tmux unsets it; this marker survives tmux.
+            [ "$TERM" = kmscon ] && export KMS_SESSION=1
+
             # Use nushell in place of bash, unless calling bash from nushell.
             # `nvim -c term` needs an exception to ensure nushell is called.
             # https://wiki.gentoo.org/wiki/Nushell#Caveats

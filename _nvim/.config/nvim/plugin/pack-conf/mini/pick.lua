@@ -22,7 +22,9 @@ require("mini.pick").setup({
     },
     source = {
         show = function(buf_id, items, query)
-            return MiniPick.default_show(buf_id, items, query, { show_icons = os.getenv("DISPLAY") })
+            return MiniPick.default_show(buf_id, items, query, {
+                show_icons = os.getenv("KMS_SESSION") or os.getenv("DISPLAY"),
+            })
         end,
     },
     window = {
