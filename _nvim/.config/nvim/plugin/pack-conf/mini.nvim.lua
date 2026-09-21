@@ -240,15 +240,17 @@ if vcs_bin == "git" then
     vim.api.nvim_create_autocmd({ "FileType" }, {
         desc = "MiniGit diff buffers",
         group = group,
-                -- stylua: ignore
-                callback = function()
-                        local name = vim.api.nvim_buf_get_name(0)
-                        if not name:match("^minigit://%d*/git show HEAD~") then return end
-                        local basename = vim.fs.basename(name)
-                        vim.api.nvim_buf_set_name(0, "minigit://" .. basename)
-                        vim.api.nvim_set_option_value("modifiable", false, { scope = "local" })
-                        vim.cmd.diffthis()
-                end,
+        callback = function()
+            local name = vim.api.nvim_buf_get_name(0)
+            if not name:match("^minigit://%d*/git show HEAD~") then
+                return
+            end
+
+            local basename = vim.fs.basename(name)
+            vim.api.nvim_buf_set_name(0, "minigit://" .. basename)
+            vim.api.nvim_set_option_value("modifiable", false, { scope = "local" })
+            vim.cmd.diffthis()
+        end,
     })
 
     vim.keymap.set({ "n", "x" }, "<leader>gs", function()

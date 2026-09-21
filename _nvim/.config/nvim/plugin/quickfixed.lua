@@ -41,8 +41,7 @@ local function qf_nav(direction)
         text = label .. ": " .. text
     end
 
-        -- stylua: ignore
-        local prefix = qf_cache.total > 0 and string.format("(%d of %d) ", logical_current, qf_cache.total) or ""
+    local prefix = qf_cache.total > 0 and string.format("(%d of %d) ", logical_current, qf_cache.total) or ""
     local padding = 13
     if #prefix + #text > vim.o.columns - padding then
         text = text:sub(1, vim.o.columns - #prefix - padding) .. "…"

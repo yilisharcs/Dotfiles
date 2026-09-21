@@ -91,16 +91,5 @@ require("diffview").setup({
     },
 })
 
--- stylua: ignore start
-vim.keymap.set(
-        "n",
-        "<leader>gl",
-        "<CMD>DiffviewFileHistory %<CR>",
-        { desc = "View git file history" }
-)
-vim.keymap.set(
-        "n",
-        "<leader>gL",
-        "<CMD>DiffviewFileHistory<CR>",
-        { desc = "View git repo history" }
-)
+vim.keymap.set("n", "<leader>gl", "<CMD>DiffviewFileHistory %<CR>", { desc = "View git file history" })
+vim.keymap.set("n", "<leader>gL", "<CMD>DiffviewFileHistory<CR>", { desc = "View git repo history" })

@@ -47,9 +47,9 @@ end, { desc = "List repos" })
 
 -- stylua: ignore
 local cmd_discussion = {
-        "gh", "repo", "view",
-        "--json", "hasDiscussionsEnabled,nameWithOwner,parent",
-        "--jq", 'if .hasDiscussionsEnabled then .nameWithOwner else (.parent.nameWithOwner // "") end',
+    "gh", "repo", "view",
+    "--json", "hasDiscussionsEnabled,nameWithOwner,parent",
+    "--jq", 'if .hasDiscussionsEnabled then .nameWithOwner else (.parent.nameWithOwner // "") end',
 }
 vim.keymap.set("n", "<leader>od", function()
     vim.system(cmd_discussion, { text = true }, function(result)
