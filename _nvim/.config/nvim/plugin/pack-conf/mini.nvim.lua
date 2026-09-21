@@ -257,10 +257,6 @@ if vcs_bin == "git" then
         MiniGit.show_at_cursor()
     end, { desc = "Git show at cursor" })
 
-    vim.keymap.set({ "n", "x" }, "<leader>gS", function()
-        MiniGit.show_range_history()
-    end, { desc = "Git range history" })
-
     vim.keymap.set("n", "<leader>gD", function()
         MiniGit.show_diff_source({
             split = "tab",
