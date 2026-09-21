@@ -120,7 +120,7 @@ vim.o.list = true
 vim.o.listchars = "nbsp:␣,tab:│ ,trail:•"
 
 -- display vs TTY
-if os.getenv("DISPLAY") ~= nil then
+if os.getenv("DISPLAY") then
     vim.o.title = true
     vim.o.titlestring = "%t%( [%M]%) (%{expand('%:p:~:h')}) - Nvim"
 end
