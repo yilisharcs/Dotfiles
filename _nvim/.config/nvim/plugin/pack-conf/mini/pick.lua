@@ -38,7 +38,9 @@ _G.MiniPick = MiniPick
 vim.keymap.set("n", "<leader>fi", MiniPick.builtin.files, { desc = "List all files" })
 vim.keymap.set("n", "<leader>fb", MiniPick.builtin.buffers, { desc = "Pick open buffers" })
 vim.keymap.set("n", "<leader>fk", MiniPick.builtin.help, { desc = "Pick help tags" })
-vim.keymap.set("n", "<leader>fg", MiniPick.builtin.grep_live, { desc = "Live grep" })
+vim.keymap.set("n", "<leader>fg", function()
+    MiniPick.builtin.grep_live({ tool = "git" })
+end, { desc = "Live grep" })
 
 -- mini.extra pickers
 vim.keymap.set("n", "<leader>fl", MiniExtra.pickers.git_files, { desc = "Pick git files" })
