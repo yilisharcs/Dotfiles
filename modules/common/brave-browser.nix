@@ -28,7 +28,7 @@ in {
     {
       # Set Brave as the default browser for KDE
       programs.plasma.configFile = {
-        kdeglobals.General.BrowserApplication = "brave-browser.desktop";
+        kdeglobals.General.BrowserApplication = "com.brave.Browser.desktop";
       };
     }
   ];

@@ -203,9 +203,9 @@ in {
                     config.launchers =
                       [
                         "applications:com.mitchellh.ghostty.desktop"
-                        "applications:brave-browser.desktop"
-                        "applications:org.kde.kmail2.desktop"
+                        "applications:com.brave.Browser.desktop"
                         "preferred://filemanager"
+                        "applications:org.kde.kmail2.desktop"
                         "applications:systemsettings.desktop"
                       ]
                       ++ optionals (config.programs.fightcade.enable or false) [
