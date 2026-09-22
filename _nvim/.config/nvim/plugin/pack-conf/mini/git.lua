@@ -55,7 +55,10 @@ if vcs_bin == "git" then
     vim.keymap.set(
         "n",
         "<leader>gb",
-        "mzgg<CMD>vert Git blame -- %<CR><C-w>W<CMD>set cursorbind scrollbind nowrap nofoldenable<CR>`z",
+        "mzgg<CMD>vert Git blame -- %<CR><C-w>W<CMD>set "
+            .. "cursorbind scrollbind nowrap nofoldenable "
+            .. "cursorlineopt=both "
+            .. "<CR>`z",
         { desc = "View git blame" }
     )
 
@@ -72,6 +75,7 @@ if vcs_bin == "git" then
 
             local source_win = vim.fn.win_getid(vim.fn.winnr("#"))
             vim.w.minigit_leave = function()
+                vim.wo[source_win].cursorlineopt = "number"
                 vim.wo[source_win].cursorbind = false
                 vim.wo[source_win].scrollbind = false
             end
