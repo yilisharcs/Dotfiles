@@ -28,6 +28,7 @@ local filetypes = {
     "vim",
     "vimdoc",
     -- dev
+    "comment",
     "cpp",
     "fennel",
     "glsl",
@@ -50,14 +51,12 @@ local filetypes = {
     "desktop",
     "editorconfig",
     -- "muttrc",
-    "tmux",
     "udev",
     -- web
     "html",
     "javascript",
     -- "php",
     --
-    "comment",
 }
 
 require("nvim-treesitter").install(filetypes)
