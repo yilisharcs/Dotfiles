@@ -4,7 +4,9 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
     desc = "Highlight text on copy",
     group = group,
     callback = function()
-        vim.hl.hl_op({ higroup = "Visual", timeout = 500 })
+        -- TODO: remove once v0.13 is out
+        local hl = vim.version().minor >= 13 and vim.hl.hl_op or vim.hl.on_yank
+        hl({ higroup = "Visual", timeout = 500 })
     end,
 })
 
