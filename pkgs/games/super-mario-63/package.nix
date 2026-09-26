@@ -9,8 +9,8 @@
   wineWow64Packages,
 }: let
   icon = fetchurl {
-    url = "https://static.wikia.nocookie.net/runouw/images/e/e1/SM63Infobox.png/revision/latest?cb=20141211151353";
-    hash = "sha256-81ZUuMEdQbE2UzmpWLiigstU1g8AANrucvSV8cRtxXc=";
+    url = "https://web.archive.org/web/20221031154031id_/https://static.wikia.nocookie.net/runouw/images/e/e1/SM63Infobox.png/revision/latest?cb=20141211151353";
+    hash = "sha256-JfpVMyNGng6nKbbQez2SUq76OYgouoqjzO5h3suvmLQ=";
   };
 in
   stdenv.mkDerivation (finalAttrs: {
