@@ -5,6 +5,7 @@
     pub = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKkJBGgQRH5DEqOxHRZe0Oad5Vz5EawBU4TNPPd/rYvC yilisharcs@gmail.com";
   };
   hosts = {
+    doll = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC8V/4/tXUfdgvvQZxAOmXktwnMC4IlDOyVCxM02WsL5 root@doll";
     gato = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIJJXiEB3FQQOdII0Z3GbvnYU+1I/0d6d9y17q7nfajb root@gato";
   };
 }

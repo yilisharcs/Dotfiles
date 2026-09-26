@@ -300,7 +300,7 @@ in {
       systemd.services."sddm-avatar" = {
         description = "Service to copy or update users Avatars at startup.";
         wantedBy = ["multi-user.target"];
-        before = ["sddm.service"];
+        before = ["display-manager.service"];
         path = [pkgs.diffutils];
         script = ''
           for user in /home/*; do
@@ -323,7 +323,7 @@ in {
           StandardError = "journal+console";
         };
       };
-      systemd.services.sddm = {
+      systemd.services.display-manager = {
         after = ["sddm-avatar.service"];
       };
     })
