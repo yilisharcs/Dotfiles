@@ -1,3 +1,4 @@
+# vim: textwidth=0
 {
   ssh = {
     id = "~/.ssh/id_ed25519.pub";

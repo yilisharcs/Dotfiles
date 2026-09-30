@@ -1,13 +1,10 @@
 {
-  hostRole,
-  #
   config,
   lib,
   pkgs,
   ...
 }: let
   inherit (lib) concatStringsSep disabled enabled mkIf mkMerge optionals;
-  nixosConfig = config;
 in {
   imports = [./fonts.nix];
 
@@ -36,7 +33,11 @@ in {
 
       # <https://nix-community.github.io/plasma-manager/options.xhtml>
       home-manager.sharedModules = [
-        ({config, ...}: {
+        ({
+          config,
+          osConfig,
+          ...
+        }: {
           programs.elisa = enabled {
             appearance = {
               defaultView = "allAlbums";
@@ -112,7 +113,7 @@ in {
             };
             input = {
               keyboard.repeatDelay = 300;
-              touchpads = mkIf (nixosConfig.networking.hostName == "gato") [
+              touchpads = mkIf osConfig.host.touchpad.enable [
                 (enabled {
                   name = "SynPS/2 Synaptics TouchPad";
                   vendorId = "0002";
@@ -284,7 +285,7 @@ in {
       ];
     }
 
-    (mkIf (hostRole == "horse") {
+    (mkIf config.host.sddm.enable {
       services.displayManager.sddm = enabled {
         wayland = enabled;
         settings.Theme = {

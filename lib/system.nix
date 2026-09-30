@@ -3,6 +3,7 @@ inputs: self: super: let
 
   commonModules = collectNix ../modules/common;
   horseModules = collectNix ../modules/horse;
+  ponyModules = collectNix ../modules/pony;
 
   ourPkgs = import ../pkgs {
     pkgs = super;
@@ -30,14 +31,14 @@ inputs: self: super: let
       lib = self;
     };
 in {
-  inherit horseModules;
+  inherit horseModules ponyModules;
 
   nixosSystem' = {
-    hostRole,
+    buildTier,
     module,
   }:
     super.nixosSystem {
-      specialArgs = specialArgs // {inherit hostRole;};
+      specialArgs = specialArgs;
 
       modules =
         [
@@ -56,7 +57,8 @@ in {
           }
         ]
         ++ commonModules
-        ++ (self.optionals (hostRole == "horse") horseModules)
+        ++ (self.optionals (buildTier == "horse") horseModules)
+        ++ (self.optionals (buildTier == "pony") ponyModules)
         ++ inputModulesLinux;
     };
 }

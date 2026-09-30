@@ -63,10 +63,7 @@ in {
           shell-integration = "nushell";
           shell-integration-features = "no-cursor";
           font-family = "IosevkaTermSlab Nerd Font";
-          font-size =
-            if config.networking.hostName == "gato"
-            then 17
-            else 14; # TODO: probably should increase this too
+          font-size = config.host.ghostty.fontSize;
           font-feature = "-calt,-liga,-dlig"; # disable ligatures
 
           window-padding-balance = true;
