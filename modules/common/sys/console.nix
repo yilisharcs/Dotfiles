@@ -1,25 +1,9 @@
 {
-  config,
   lib,
   pkgs,
   ...
 }: let
-  inherit (lib) enabled mkIf;
-
-  libtsm' = pkgs.libtsm.overrideAttrs (old: {
-    patches =
-      (old.patches or [])
-      ++ [
-        ./patch/libtsm/0001-Do-not-render-bold-as-bright.patch
-      ];
-  });
-  kmscon' = pkgs.kmscon.overrideAttrs (old: {
-    patches =
-      (old.patches or [])
-      ++ [
-        ./patch/kmscon/0001-input-add-keyd-compose-protocol-support.patch
-      ];
-  });
+  inherit (lib) enabled;
 in {
   # kernel VT
   console = enabled {
@@ -27,49 +11,4 @@ in {
     font = "ter-228b";
     packages = [pkgs.terminus_font];
   };
-
-  # userspace KMS/DRM VT
-  services.kmscon = enabled {
-    package = kmscon'.override {libtsm = libtsm';};
-    useXkbConfig = true;
-    config =
-      {
-        hwaccel = config.hardware.graphics.enable;
-        libseat = false; # NOTE: upstream defaults to false since 2026-06-30
-        font-engine = "pango"; # freetype doesn't support italics
-        font-name = "IosevkaTermSlab Nerd Font Mono"; # some non-mono nerd glyphs are cut in half
-        font-size = 22;
-        session-control = true;
-        sb-size = 10000;
-        bell = true;
-        blink = false;
-        mouse = false;
-        xkb-repeat-delay = 300;
-      }
-      // lib.colors.toKmsconPalette lib.colors.moyin;
-  };
-  # overrides.conf Environment= is not set for XCOMPOSEFILE
-  systemd.services."kmsconvt@".environment.XCOMPOSEFILE = config.environment.variables.XCOMPOSEFILE;
-
-  home-manager.sharedModules = [
-    {
-      # can't be in `environment.shellAliases` because nushell doesn't pick it up
-      home.shellAliases = mkIf config.services.desktopManager.plasma6.enable {
-        kmscon-startdwl = "kmscon-launch-gui /etc/xdg/dwl-session";
-        kmscon-startplasma = "kmscon-launch-gui ${pkgs.kdePackages.plasma-workspace}/libexec/plasma-dbus-run-session-if-needed startplasma-wayland";
-      };
-
-      programs.tmux = enabled {
-        extraConfig =
-          /*
-          tmux
-          */
-          ''
-            # kmscon's terminfo doesn't declare italics support since not all font-engines can
-            # render them; we're using pango, which supports italics, so we render them anyway
-            set -ga terminal-overrides ',kmscon*:sitm=\E[3m,ritm=\E[23m'
-          '';
-      };
-    }
-  ];
 }
