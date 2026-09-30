@@ -233,7 +233,6 @@ in {
                         totalSensors = ''["disk/all/free"]'';
                       };
                       SensorColors = {
-                        "disk/991c140a-3cc9-4ec9-89c5-61dbf94fd745/free" = "155,33,147"; # ouro sda2
                         "disk/13678003-881a-434b-9072-1dd10045b7ad/free" = "155,33,147"; # gato sda3
                       };
                     };
