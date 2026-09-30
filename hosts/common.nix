@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) disabled enabled;
+  inherit (lib) disabled enabled keys;
 in {
   nix.settings.experimental-features = [
     "cgroups"
@@ -24,6 +24,9 @@ in {
     extraGroups = [
       "wheel"
       "networkmanager"
+    ];
+    openssh.authorizedKeys.keys = [
+      keys.ssh.pub
     ];
   };
 
