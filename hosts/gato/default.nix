@@ -16,7 +16,11 @@ lib.nixosSystem' {
 
     networking.hostName = "gato";
 
-    host.touchpad = enabled;
+    host.touchpad = enabled {
+      name = "SynPS/2 Synaptics TouchPad";
+      vendorId = "0002";
+      productId = "0007";
+    };
     host.sddm = disabled;
     host.ghostty.fontSize = 17;
 

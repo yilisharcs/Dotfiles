@@ -16,7 +16,11 @@ lib.nixosSystem' {
 
     networking.hostName = "doll";
 
-    host.touchpad = enabled;
+    host.touchpad = enabled {
+      name = "SYNA7DB5:00 06CB:7DB7 Touchpad";
+      vendorId = "06cb";
+      productId = "7db7";
+    };
     host.sddm = enabled;
     host.battery = enabled;
     host.ghostty.fontSize = 19;

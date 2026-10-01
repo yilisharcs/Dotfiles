@@ -115,9 +115,9 @@ in {
               keyboard.repeatDelay = 300;
               touchpads = mkIf osConfig.host.touchpad.enable [
                 (enabled {
-                  name = "SynPS/2 Synaptics TouchPad";
-                  vendorId = "0002";
-                  productId = "0007";
+                  name = osConfig.host.touchpad.name;
+                  vendorId = osConfig.host.touchpad.vendorId;
+                  productId = osConfig.host.touchpad.productId;
                   disableWhileTyping = true;
                   rightClickMethod = "twoFingers";
                 })
