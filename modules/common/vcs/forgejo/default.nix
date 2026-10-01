@@ -1,19 +1,19 @@
 {
   config,
+  lib,
   pkgs,
   ...
-}: {
-  age.secrets.forgejo = let
-    owner = "yilisharcs";
-  in {
+}: let
+  forgejoKeysPath = config.age.secrets.forgejo.path;
+in {
+  age.secrets.forgejo = {
     file = ./auth-json.age;
-    inherit owner;
+    owner = "yilisharcs";
     mode = "0400";
-    path = "${config.users.users.${owner}.home}/.local/share/forgejo-cli/keys.json";
   };
 
   home-manager.sharedModules = [
-    {
+    ({config, ...}: {
       # CLI application for interacting with Forgejo
       home.packages = [pkgs.forgejo-cli];
 
@@ -21,6 +21,9 @@
       home.sessionVariables = {
         FJ_FALLBACK_HOST = "https://codeberg.org";
       };
-    }
+
+      home.file.".local/share/forgejo-cli/keys.json".source =
+        config.lib.file.mkOutOfStoreSymlink forgejoKeysPath;
+    })
   ];
 }

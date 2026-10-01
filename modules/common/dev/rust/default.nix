@@ -4,7 +4,8 @@
   pkgs,
   ...
 }: let
-  inherit (lib) disabled enabled getExe;
+  inherit (lib) enabled getExe;
+  cratesIoPath = config.age.secrets.crates-io.path;
   fenixToolchain = pkgs.fenix.combine [
     pkgs.fenix.complete.cargo
     pkgs.fenix.complete.clippy
@@ -19,17 +20,14 @@
     pkgs.cargo-nextest
   ];
 in {
-  age.secrets.crates-io = let
-    owner = "yilisharcs";
-  in {
+  age.secrets.crates-io = {
     file = ./crates-io-auth-toml.age;
-    inherit owner;
+    owner = "yilisharcs";
     mode = "0400";
-    path = "${config.users.users.${owner}.home}/.cargo/credentials.toml";
   };
 
   home-manager.sharedModules = [
-    {
+    ({config, ...}: {
       programs.cargo = enabled {
         package = fenixToolchain;
         settings = {
@@ -43,6 +41,9 @@ in {
           };
         };
       };
-    }
+
+      home.file.".cargo/credentials.toml".source =
+        config.lib.file.mkOutOfStoreSymlink cratesIoPath;
+    })
   ];
 }

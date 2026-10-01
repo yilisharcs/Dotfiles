@@ -14,7 +14,6 @@ nixos-install --flake ".#${HOST}"
 # after reboot:
 #   - on HOST:
 #     + `nmtui` (wifi secret is encrypted)
-#     + `sudo rm -rf` any directory created as root by agenix.
 #   - on PREV:
 #     + `ssh-keygen -R {{HOST}}.local` (if needed)
 #     + `just mirror {{HOST}} .ssh`
