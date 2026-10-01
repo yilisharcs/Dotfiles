@@ -18,6 +18,7 @@ lib.nixosSystem' {
 
     host.touchpad = enabled;
     host.sddm = enabled;
+    host.battery = enabled;
     host.ghostty.fontSize = 19;
 
     # VM groups

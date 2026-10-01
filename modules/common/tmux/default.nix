@@ -1,13 +1,18 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }: let
-  inherit (lib) enabled getExe;
+  inherit (lib) enabled getExe optionalString;
 
   tmug = pkgs.writeShellScriptBin "tmug" ''
     tmux new -A -s "$1"
   '';
+
+  batteryRight =
+    optionalString config.host.battery.enable
+    "BAT#(printf %%3d $(cat /sys/class/power_supply/BAT*/capacity))%%";
 in {
   home-manager.sharedModules = [
     {
@@ -48,7 +53,7 @@ in {
             set -g status-left-length 0 # no limit to status length
             set -g status-right-length 0
             set -g status-left '[#S] #{user}@#h'
-            set -g status-right '[%F %R]'
+            set -g status-right '${batteryRight} [%F %R]'
             set -g status-justify centre
             set -g status-interval 1 # should update the bell faster...
             setw -g automatic-rename on
