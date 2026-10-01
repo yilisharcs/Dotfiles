@@ -47,3 +47,18 @@ build name:
 
 run name:
     ./result/bin/{{name}}
+
+# Mirror files to a host via ssh.
+[script]
+mirror target paths="Dotfiles":
+    tar -I zstd -cf - -C /home/yilisharcs {{paths}}
+    | ssh {{target}}.local "cd /home/yilisharcs && rm -rf {{paths}} && tar -I zstd -xf -"
+
+# Get a host's SSH public key (avahi allows {{target}}.local). Paste into "lib/keys.nix" after.
+get-host-key target:
+    ssh -o StrictHostKeyChecking=accept-new {{target}}.local "cat /etc/ssh/ssh_host_ed25519_key.pub"
+
+# Re-encrypt agenix secrets with current host keys from "lib/keys.nix".
+# Commit and push after. The machine whose host key was added must pull and rebuild.
+rekey:
+    agenix -r

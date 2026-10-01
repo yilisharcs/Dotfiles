@@ -17,6 +17,8 @@ nixos-install --flake ".#${HOST}"
 #     + `sudo rm -rf` any directory created as root by agenix.
 #   - on PREV:
 #     + `ssh-keygen -R {{HOST}}.local` (if needed)
+#     + `just mirror {{HOST}} .ssh`
+#     + `just mirror {{HOST}} Dotfiles`
 #     + `just get-host-key {{HOST}}`
 #     + paste key into lib/keys.nix, commit, rebuild
 #     + `just rekey`
