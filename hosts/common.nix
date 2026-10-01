@@ -14,6 +14,14 @@ in {
 
   networking.networkmanager = enabled;
 
+  # resolve machines on the same network by hostname (ssh user@host.local)
+  services.avahi = enabled {
+    nssmdns4 = true;
+    publish = enabled {
+      addresses = true;
+    };
+  };
+
   time.timeZone = "America/Bahia";
 
   services.xserver = disabled;
