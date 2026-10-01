@@ -52,6 +52,7 @@ in {
             immutableByDefault = false; # breaks desktop icons for some reason
             overrideConfig = false; # occasionally breaks
             configFile = {
+              # TODO: get rid of Saturn (drive is failing; backups moving elsewhere)
               kded_device_automounterrc."Devices/\\/org\\/freedesktop\\/UDisks2\\/block_devices\\/sdb1" = {
                 EverMounted = true;
                 ForceLoginAutomount = true;

@@ -1,3 +1,4 @@
+# TODO: get rid of this file (drive is failing; backups moving elsewhere)
 {pkgs, ...}: let
   backup = "backup";
 in {

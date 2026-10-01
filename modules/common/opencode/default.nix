@@ -6,7 +6,8 @@
 }: let
   inherit (lib) enabled filter getExe;
 
-  # SIGILL on Ivy Bridge due to standard Bun targeting x86-64-v3; force bun-baseline binary instead
+  # SIGILL on gato's Ivy Bridge due to standard Bun targeting x86-64-v3; force bun-baseline binary.
+  # this is harmless on newer machines like doll but will stay around until gato is decommissioned.
   bun-baseline = pkgs.bun.overrideAttrs (old: {
     src = pkgs.fetchurl {
       url = "https://github.com/oven-sh/bun/releases/download/bun-v${old.version}/bun-linux-x64-baseline.zip";
