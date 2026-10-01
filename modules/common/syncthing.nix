@@ -13,12 +13,14 @@ in {
             urAccepted = 3;
           };
           devices = {
+            "doll".id = "CWFQKDZ-ZOD5NOW-ZQXROW4-VUEDWVJ-IHHNXOP-IHZ7PNT-VLAIQQT-TGDQKAK";
             "gato".id = "PSZRSLV-R2BLQN3-WBAE4KB-EE5B2KI-2262MTR-JUSJSG3-VR2FPWE-PPROMAO";
             "zany".id = "MF6IH63-BX3WP45-ZH42ZJM-ZKA45EZ-JNDUF5L-ZDLO5KH-H5B6XRJ-O4CTEQW";
           };
           folders = {
             "Shared" = enabled {
               devices = [
+                "doll"
                 "gato"
                 "zany"
               ];
