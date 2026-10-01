@@ -161,8 +161,10 @@ in {
                 turnOffDisplay.idleTimeout = "never";
                 whenLaptopLidClosed = "lockScreen";
               };
-              # Two laptops, both batteries gone
-              battery = {};
+              battery = mkIf osConfig.host.battery.enable {
+                autoSuspend.action = "nothing";
+                turnOffDisplay.idleTimeout = "never";
+              };
             };
             shortcuts = {
               kwin = {
