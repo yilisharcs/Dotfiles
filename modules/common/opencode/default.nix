@@ -135,15 +135,15 @@ in {
             prune = true;
           };
           lsp = false;
-          model = "opencode-go/mimo-v2.5";
-          small_model = "opencode-go/deepseek-v4-flash";
+          model = "opencode-go/mimo-v2.6-flash";
+          small_model = "opencode-go/deepseek-v4.1-flash";
           default_agent = "plan";
           agent = {
             plan.color = "warning";
             build.color = "info";
             # built-in subagents
-            general.model = "opencode-go/deepseek-v4-flash";
-            explore.model = "opencode-go/deepseek-v4-flash";
+            general.model = "opencode-go/deepseek-v4.1-flash";
+            explore.model = "opencode-go/deepseek-v4.1-flash";
           };
           permission = {
             bash = {
