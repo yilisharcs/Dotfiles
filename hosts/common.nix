@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) disabled enabled keys;
+  inherit (lib) disabled enabled getExe' keys;
 in {
   nix.settings.experimental-features = [
     "cgroups"
@@ -20,6 +20,11 @@ in {
     publish = enabled {
       addresses = true;
     };
+  };
+  # clanker claims that /run/avahi-daemon/pid can go stale if the daemon crashes or something, and
+  # avahi itself can't unlink it under ProtectSystem=strict.
+  systemd.services.avahi-daemon.serviceConfig = {
+    ExecStartPre = "+${getExe' pkgs.coreutils "rm"} --force /run/avahi-daemon/pid";
   };
 
   time.timeZone = "America/Bahia";
