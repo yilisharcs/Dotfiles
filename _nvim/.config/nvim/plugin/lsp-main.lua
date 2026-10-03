@@ -1,23 +1,31 @@
 local hostname = vim.fn.system("uname -n"):gsub("\n", "")
+
+local servers = {
+    "fennel-ls",
+    "luals",
+    "nil-nix",
+    "nuls",
+    -- "rust-analyzer", -- consistently a PITA
+    "zls",
+}
+
+local disabled
 if hostname == "gato" then
-    vim.lsp.enable({
-        "fennel-ls",
+    disabled = {
         "luals",
-        "nil-nix",
-        "nuls",
-        -- "rust-analyzer",
-        -- "zls",
-    })
-else
-    vim.lsp.enable({
-        "fennel-ls",
-        "luals",
-        "nil-nix",
-        "nuls",
-        -- "rust-analyzer",
         "zls",
-    })
+    }
+else
+    disabled = {
+        --
+    }
 end
+
+servers = vim.tbl_filter(function(name)
+    return not vim.tbl_contains(disabled, name)
+end, servers)
+
+vim.lsp.enable(servers)
 
 vim.lsp.config("*", {
     root_markers = {
