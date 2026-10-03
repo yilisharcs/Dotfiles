@@ -77,7 +77,7 @@ in {
             }
 
             def at [pkg: string] {
-              nix build $"($env.HOME)/Dotfiles#inputs.nixpkgs.legacyPackages.x86_64-linux.($pkg)" --no-link --print-out-paths
+              nix build $"($env.HOME)/Dotfiles#($pkg)" --no-link --print-out-paths
             }
           '';
         settings = {
