@@ -2,6 +2,7 @@ local hostname = vim.fn.system("uname -n"):gsub("\n", "")
 
 local servers = {
     "fennel-ls",
+    "jdtls",
     "luals",
     "nil-nix",
     "nuls",

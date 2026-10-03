@@ -32,6 +32,7 @@ local filetypes = {
     "cpp",
     "fennel",
     "glsl",
+    "java",
     "python",
     "rust",
     "zig",
