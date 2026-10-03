@@ -23,7 +23,7 @@ lib.nixosSystem' {
     };
     host.sddm = enabled;
     host.battery = enabled;
-    host.ghostty.fontSize = 19;
+    host.ghostty.fontSize = 20;
 
     # VM groups
     users.users.yilisharcs.extraGroups = [
