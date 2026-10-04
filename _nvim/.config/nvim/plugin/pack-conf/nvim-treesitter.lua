@@ -53,6 +53,8 @@ local filetypes = {
     "editorconfig",
     -- "muttrc",
     "udev",
+    -- documents
+    "typst",
     -- web
     "html",
     "javascript",

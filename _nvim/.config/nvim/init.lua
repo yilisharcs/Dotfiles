@@ -193,6 +193,10 @@ vim.pack.add({
     {
         src = "https://github.com/akinsho/toggleterm.nvim",
     },
+    -- typst-preview.nvim
+    {
+        src = "https://github.com/chomosuke/typst-preview.nvim",
+    },
     -- vim-sneak
     {
         src = "https://github.com/justinmk/vim-sneak",
