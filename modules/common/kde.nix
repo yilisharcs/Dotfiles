@@ -204,12 +204,12 @@ in {
                   "org.kde.plasma.kickoff"
                   {
                     name = "org.kde.plasma.icontasks";
-                    config.launchers =
+                    config.General.launchers =
                       [
                         "applications:com.mitchellh.ghostty.desktop"
                         "applications:brave-browser.desktop"
-                        "applications:org.kde.kmail2.desktop"
                         "preferred://filemanager"
+                        "applications:org.kde.kmail2.desktop"
                         "applications:systemsettings.desktop"
                       ]
                       ++ optionals (config.programs.fightcade.enable or false) [
@@ -252,7 +252,7 @@ in {
                   "org.kde.plasma.systemtray"
                   {
                     name = "org.kde.plasma.lock_logout";
-                    config = {
+                    config.General = {
                       show_lockScreen = false;
                       show_requestReboot = true;
                       show_requestShutDown = true;
