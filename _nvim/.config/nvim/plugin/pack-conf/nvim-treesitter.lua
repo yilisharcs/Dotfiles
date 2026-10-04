@@ -57,7 +57,6 @@ local filetypes = {
     "html",
     "javascript",
     -- "php",
-    --
 }
 
 require("nvim-treesitter").install(filetypes)
