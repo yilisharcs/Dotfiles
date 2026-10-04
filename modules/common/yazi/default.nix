@@ -78,7 +78,7 @@ in {
             xbin = [
               {
                 desc = "Execute binary";
-                run = ''"$@"'';
+                run = "%s";
                 orphan = true;
               }
             ];

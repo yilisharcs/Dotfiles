@@ -19,7 +19,7 @@ in {
         wine = [
           {
             desc = "Execute with Wine";
-            run = ''firejail wine "$@"'';
+            run = "firejail wine %s";
             orphan = true;
           }
         ];

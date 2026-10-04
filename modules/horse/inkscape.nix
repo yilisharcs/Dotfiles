@@ -8,7 +8,7 @@
     #     inkscape = [
     #       {
     #         desc = "Open with Inkscape";
-    #         run = ''inkscape "$@"'';
+    #         run = "inkscape %s";
     #         orphan = true;
     #       }
     #     ];

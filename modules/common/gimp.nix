@@ -8,7 +8,7 @@
         gimp = [
           {
             desc = "Open with GIMP";
-            run = ''gimp "$@"'';
+            run = "gimp %s";
             orphan = true;
           }
         ];

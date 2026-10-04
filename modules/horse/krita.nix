@@ -8,7 +8,7 @@
     #     krita = [
     #       {
     #         desc = "Open with Krita";
-    #         run = ''krita "$@"'';
+    #         run = "krita %s";
     #         orphan = true;
     #       }
     #     ];

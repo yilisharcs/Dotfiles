@@ -10,13 +10,13 @@
         play = [
           {
             desc = "Open with MPV";
-            run = ''mpv "$@"'';
+            run = "mpv %s";
             orphan = true;
             for = "unix";
           }
           {
             desc = "Show media info";
-            run = ''mediainfo "$1" | bat'';
+            run = "mediainfo %s1 | bat";
             block = true;
             for = "unix";
           }
