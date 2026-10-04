@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption types;
+  inherit (lib) mkEnableOption mkIf mkOption types;
 in {
   options.host = {
     touchpad = {
@@ -33,7 +33,17 @@ in {
     };
   };
 
-  config = {
-    services.libinput.enable = config.host.touchpad.enable;
+  config = mkIf (!config.host.touchpad.enable) {
+    # plasma-manager's "Enabled" touchpad key does nothing for SDDM. so just kill the device ig.
+    services.udev.extraRules =
+      /*
+      udev
+      */
+      ''
+        ACTION=="add|change", KERNEL=="event[0-9]*", \
+        ATTRS{id/vendor}=="${config.host.touchpad.vendorId}", \
+        ATTRS{id/product}=="${config.host.touchpad.productId}", \
+        ENV{LIBINPUT_IGNORE_DEVICE}="1"
+      '';
   };
 }

@@ -7,7 +7,7 @@ lib.nixosSystem' {
     pkgs,
     ...
   }: let
-    inherit (lib) collectNix enabled remove;
+    inherit (lib) collectNix disabled enabled remove;
   in {
     imports =
       [../common.nix]
@@ -16,7 +16,7 @@ lib.nixosSystem' {
 
     networking.hostName = "doll";
 
-    host.touchpad = enabled {
+    host.touchpad = disabled {
       name = "SYNA7DB5:00 06CB:7DB7 Touchpad";
       vendorId = "06cb";
       productId = "7db7";
