@@ -39,7 +39,8 @@ vim.keymap.set("n", "<leader>fi", MiniPick.builtin.files, { desc = "List all fil
 vim.keymap.set("n", "<leader>fb", MiniPick.builtin.buffers, { desc = "Pick open buffers" })
 vim.keymap.set("n", "<leader>fk", MiniPick.builtin.help, { desc = "Pick help tags" })
 vim.keymap.set("n", "<leader>fg", function()
-    MiniPick.builtin.grep_live({ tool = "git" })
+    local worktree = vim.fs.find(".git", { path = vim.uv.cwd(), upward = true })[1] ~= nil
+    MiniPick.builtin.grep_live({ tool = worktree and "git" or "rg" })
 end, { desc = "Live grep" })
 
 -- mini.extra pickers
