@@ -256,20 +256,6 @@ in {
               "jj help*" = "allow";
               "jj * --help*" = "allow";
               "jj * -h*" = "allow";
-              "jj abandon*" = "deny";
-              "jj absorb*" = "deny";
-              "jj arrange*" = "deny";
-              "jj commit*" = "deny";
-              "jj describe*" = "deny";
-              "jj diffedit*" = "deny";
-              "jj duplicate*" = "deny";
-              "jj fix*" = "deny";
-              "jj metaedit*" = "deny";
-              "jj new*" = "deny";
-              "jj parallelize*" = "deny";
-              "jj rebase*" = "deny";
-              "jj simplify-parents*" = "deny";
-              "jj squash*" = "deny";
               #
               "jj diff*" = "allow";
               "jj evolog*" = "allow";

@@ -2,11 +2,12 @@
 
 Common development workflows and patterns for jj.
 
-## Advisory Mode
+## Execution
 
-The agent composes commands for the user to run. Show each command in a code
-block and let the user execute it. Read-only commands (`jj status`, `jj log`,
-`jj diff --git`, `jj show`, `jj evolog`, `jj op log`) may be run directly.
+Write commands prompt for approval before executing: run them via the bash
+tool and wait for the user to approve. Read-only commands (`jj status`,
+`jj log`, `jj diff --git`, `jj show`, `jj evolog`, `jj op log`) may be run
+directly.
 
 ## Understanding the Working Copy Model
 
@@ -352,9 +353,9 @@ jj git export
 
 | Goal | Commands |
 |------|----------|
-| Start feature | `jj new main -m "Feature"` _(advisory)_ |
-| Save progress | `jj commit -m "WIP"` or `jj squash` _(advisory)_ |
-| Fix old commit | `jj edit <id>`, fix, `jj new` _(advisory)_ |
-| Update from main | `jj git fetch && jj rebase -d main@origin` _(advisory)_ |
-| Push feature | `jj bookmark set X && jj git push --bookmark X` _(advisory)_ |
+| Start feature | `jj new main -m "Feature"` |
+| Save progress | `jj commit -m "WIP"` or `jj squash` |
+| Fix old commit | `jj edit <id>`, fix, `jj new` |
+| Update from main | `jj git fetch && jj rebase -d main@origin` |
+| Push feature | `jj bookmark set X && jj git push --bookmark X` |
 | Undo mistake | `jj undo` |

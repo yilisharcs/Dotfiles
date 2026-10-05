@@ -1,22 +1,26 @@
 ---
 name: jujutsu
-description: Guide to Jujutsu (jj) version control system. Use when working with commits, branches, pull requests, PRs, version control, rebasing, pushing, or when the user mentions jj, git, or version control operations. Always compose commands for the user to review and run; do not execute write operations yourself.
+description: Guide to Jujutsu (jj) version control system. Use when working with commits, branches, pull requests, PRs, version control, rebasing, pushing, or when the user mentions jj, git, or version control operations. Write commands prompt for approval before executing; read-only commands run directly.
 ---
 
 # Jujutsu (jj) Version Control Guide
 
 Jujutsu is a modern, Git-compatible version control system. This project uses jj colocated with git.
 
-## Advisory Mode
+## Execution
 
-This skill is advisory. The agent composes jj commands and shows them to the
-user in a code block. The user copies, pastes, and runs them. Do not attempt
-to execute write commands (`jj commit`, `jj describe`, `jj new`, `jj squash`,
-`jj rebase`, `jj edit`, `jj abandon`, etc.) via the bash tool — they are
-denied by policy.
+Write commands (`jj commit`, `jj describe`, `jj new`, `jj squash`, `jj rebase`,
+`jj edit`, `jj abandon`, etc.) prompt for approval before executing. Run them
+via the bash tool and wait for the user to approve the prompt rather than
+handing commands over to copy-paste. Commands touching the network, config, or
+workspaces (`jj git push`, `jj config set`, `jj workspace add`, ...) prompt as
+well.
 
 Read-only commands (`jj status`, `jj log`, `jj diff --git`, `jj show`,
 `jj evolog`, `jj op log`, etc.) may be executed freely.
+
+jj logs every operation: undo mistakes with `jj undo`, or restore an older
+state with `jj op undo` / `jj op restore`.
 
 ## Key Differences from Git
 
@@ -37,10 +41,10 @@ All `jj diff` invocations should include `--git` for standard diff output.
 | Status | `jj status` or `jj st` |
 | Diff | `jj diff --git` |
 | Log | `jj log` |
-| Commit & continue | `jj commit -m "message"` _(advisory)_ |
-| Update message | `jj describe -m "message"` _(advisory)_ |
-| New empty commit | `jj new` _(advisory)_ |
-| Squash into parent | `jj squash` _(advisory)_ |
+| Commit & continue | `jj commit -m "message"` |
+| Update message | `jj describe -m "message"` |
+| New empty commit | `jj new` |
+| Squash into parent | `jj squash` |
 | Undo last operation | `jj undo` |
 | Fetch from remote | `jj git fetch` |
 | Push to remote | `jj git push` |
