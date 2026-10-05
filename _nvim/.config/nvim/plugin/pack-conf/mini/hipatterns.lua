@@ -2,25 +2,15 @@ if vim.g.shell_editor then
     return
 end
 
+local hi = require("mini.extra").gen_highlighter.words
+
 require("mini.hipatterns").setup({
     highlighters = {
         hex_color = require("mini.hipatterns").gen_highlighter.hex_color(),
-        fixme = {
-            pattern = "%f[%w]()FIXME()%f[%W]",
-            group = "MiniHipatternsFixme",
-        },
-        hack = {
-            pattern = "%f[%w]()HACK()%f[%W]",
-            group = "MiniHipatternsHack",
-        },
-        todo = {
-            pattern = "%f[%w]()TODO()%f[%W]",
-            group = "MiniHipatternsTodo",
-        },
-        note = {
-            pattern = "%f[%w]()NOTE()%f[%W]",
-            group = "MiniHipatternsNote",
-        },
+        fixme = hi({ "FIXME" }, "MiniHipatternsFixme"),
+        hack = hi({ "HACK" }, "MiniHipatternsHack"),
+        todo = hi({ "TODO" }, "MiniHipatternsTodo"),
+        note = hi({ "NOTE" }, "MiniHipatternsNote"),
         task = {
             pattern = "TASK%(%d+%-%d+%.%w+%)",
             group = "MiniHipatternsTodo",
