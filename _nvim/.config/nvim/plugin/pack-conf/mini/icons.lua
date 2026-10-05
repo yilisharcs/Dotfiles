@@ -18,7 +18,4 @@ require("mini.icons").setup({
             hl = "MiniIconsYellow",
         },
     },
-    file = {
-        ["init.lua"] = { glyph = "󰢱" },
-    },
 })
