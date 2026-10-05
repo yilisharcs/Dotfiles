@@ -48,20 +48,6 @@ vim.keymap.set("n", "<leader>fl", MiniExtra.pickers.git_files, { desc = "Pick gi
 vim.keymap.set("n", "<leader>fc", MiniExtra.pickers.git_commits, { desc = "Pick commits" })
 vim.keymap.set("n", "<leader>fh", MiniExtra.pickers.oldfiles, { desc = "Pick file history" })
 vim.keymap.set("n", "<leader>fK", MiniExtra.pickers.keymaps, { desc = "List mappings" })
-vim.keymap.set("n", "<leader>fm", function()
-    MiniExtra.pickers.manpages({}, {
-        source = {
-            choose = function(item)
-                local name, section = item:match("^(%S+)%s+%(([^)]+)%)")
-
-                if name then
-                    local uri = string.format("man://%s(%s)", name, section)
-                    MiniPick.default_choose(uri)
-                end
-            end,
-        },
-    })
-end, { desc = "Pick man pages" })
 -- stylua: ignore start
 vim.keymap.set("n", "<leader>fa", function() MiniExtra.pickers.marks({ scope = "global" }) end, { desc = "Global marks" })
 vim.keymap.set("n", "<leader>fs", function() MiniExtra.pickers.marks({ scope = "buf" }) end, { desc = "Buffer marks" })
@@ -94,3 +80,12 @@ MiniPick.registry.git_files_changed = function()
     )
 end
 vim.keymap.set("n", "<leader>fL", MiniPick.registry.git_files_changed, { desc = "Pick modified+untracked files" })
+
+vim.keymap.set("n", "<leader>fm", function()
+    MiniExtra.pickers.manpages({}, {
+        mappings = {
+            choose = "", -- (mini.pick) Duplicating mapping keys: man_choose and choose
+            choose_in_split = "<CR>",
+        },
+    })
+end, { desc = "Pick man pages" })
