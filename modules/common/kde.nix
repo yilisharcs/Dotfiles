@@ -215,7 +215,7 @@ in {
                       ++ optionals (config.programs.fightcade.enable or false) [
                         "applications:fightcade.desktop"
                       ]
-                      ++ optionals (config.programs.steam.enable or false) [
+                      ++ optionals (osConfig.programs.steam.enable or false) [
                         "applications:steam.desktop"
                       ];
                   }
