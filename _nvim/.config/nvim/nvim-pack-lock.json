@@ -17,7 +17,7 @@
       "src": "https://github.com/justinmk/guh.nvim"
     },
     "mini.nvim": {
-      "rev": "561751e839b99a4baca36b9d963166b66d2536a6",
+      "rev": "fa9037326e9996381e34a14b6350e18168618532",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-treesitter": {
