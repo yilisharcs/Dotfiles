@@ -62,7 +62,7 @@ in {
           command = "${getExe pkgs.nushell}"; # command goes with shell-integration
           shell-integration = "nushell";
           shell-integration-features = "no-cursor";
-          font-family = "IosevkaTermSlab Nerd Font";
+          font-family = "IosevkaTermSlab Nerd Font Mono"; # some glyphs look too wide for me
           font-size = config.host.ghostty.fontSize;
           font-feature = "-calt,-liga,-dlig"; # disable ligatures
 
