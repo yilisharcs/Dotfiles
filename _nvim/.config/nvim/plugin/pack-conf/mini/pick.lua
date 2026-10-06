@@ -64,7 +64,7 @@ vim.keymap.set("n", "<leader>fm", function()
 end, { desc = "Pick man pages" })
 -- stylua: ignore start
 vim.keymap.set("n", "<leader>fa", function() MiniExtra.pickers.marks({ scope = "global" }) end, { desc = "Global marks" })
-vim.keymap.set("n", "<leader>fA", function() MiniExtra.pickers.marks({ scope = "buf" }) end, { desc = "Buffer marks" })
+vim.keymap.set("n", "<leader>fs", function() MiniExtra.pickers.marks({ scope = "buf" }) end, { desc = "Buffer marks" })
 vim.keymap.set("n", "<C-r>", function() MiniExtra.pickers.history({ scope = ":" }) end, { desc = "Command history" })
 -- stylua: ignore end
 
