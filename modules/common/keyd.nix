@@ -23,7 +23,7 @@ in {
         leftshift = "capslock";
         rightshift = "capslock";
       };
-      # Common terminal experience for GUI apps
+      # common terminal experience for GUI apps
       "control:C" = {
         "[" = "esc";
         i = "tab";
@@ -32,9 +32,7 @@ in {
       "altgr" = {
         # ASCII doesn't need $XCOMPOSEFILE
         "0" = "°";
-        d = "|";
-        f = "%";
-        s = "\\";
+        d = "%";
         w = "?";
 
         "]" = "ª";
