@@ -45,7 +45,7 @@ in {
 
             # status bar and border colors
             set -g status-style 'bg=default fg=${sw.blue},bold'
-            set -g message-style 'bg=${sw.black} fg=${sw.cyan},bold'
+            set -g message-style 'bg=${sw.black} fg=${sw.cyan},bold,fill=${sw.black}'
             set -g pane-active-border-style fg=${sw.green}
             set-option -g window-status-current-format '[ *#I:#W#F ]'
             set -g window-status-current-style fg=${sw.yellow},bold
