@@ -13,15 +13,41 @@ in {
     keyboards.default.ids = ["*"];
     keyboards.default.settings = {
       "main" = {
-        "`" = "~";
+        "`" = "S-`";
         "102nd" = "layer(shift)";
         "ro" = "layer(shift)";
         capslock = "layer(control)";
+        compose = "toggle(numswap)";
       };
       "shift:S" = {
         "`" = "`";
         leftshift = "capslock";
         rightshift = "capslock";
+      };
+      # inverted number row
+      "numswap" = {
+        "1" = "S-1";
+        "2" = "S-2";
+        "3" = "S-3";
+        "4" = "S-4";
+        "5" = "S-5";
+        "6" = "S-6";
+        "7" = "S-7";
+        "8" = "S-8";
+        "9" = "S-9";
+        "0" = "S-0";
+      };
+      "numswap+shift" = {
+        "1" = "1";
+        "2" = "2";
+        "3" = "3";
+        "4" = "4";
+        "5" = "5";
+        "6" = "6";
+        "7" = "7";
+        "8" = "8";
+        "9" = "9";
+        "0" = "0";
       };
       # common terminal experience for GUI apps
       "control:C" = {
