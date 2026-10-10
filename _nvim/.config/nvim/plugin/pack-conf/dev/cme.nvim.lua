@@ -34,6 +34,18 @@ efm.rust = table.concat({
 }, ",")
 -- }}}
 
+-- typst {{{
+efm.typst = table.concat({
+    --diagnostic-format=short
+    "%f:%l:%c: %t%*[^:]: %m",
+    --diagnostic-format=human
+    "%Eerror: %m",
+    "%Wwarning: %m",
+    "%C %#┌─ %f:%l:%c",
+    -- "%-G%.%#", -- force everything into short format
+}, ",")
+-- }}}
+
 local shell_flags = {
     bash = {},
     nu = { "-m", "psql" },
@@ -47,6 +59,7 @@ vim.g.cme = {
     efm_rules = {
         ["buffer"] = { "just" },
         [efm.rust] = { "cargo", "just" },
+        [efm.typst] = { "typst" },
         [vim.o.grepformat] = { "task", "./lua/tafsk/init.lua" },
     },
     modifiers = {
