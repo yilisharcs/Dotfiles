@@ -2,6 +2,21 @@
 
 Testing, debugging, and logging utilities in Zig 0.16. Verified against 0.16.0 source.
 
+## Zig 0.17.0 delta
+
+This file documents 0.16.0 APIs; entries below are what changed in 0.17.0 — apply them for 0.17 targets, keep the 0.16 form for 0.16 targets.
+
+| 0.16.0 (still valid for 0.16) | 0.17.0 | notes |
+|-------------------------------|--------|-------|
+| `std.debug.SafetyLock.lock()` / `unlock()` | unchanged | still exclusive; use when data may be mutated |
+| — | `std.debug.SafetyLock.lockShared()` / `unlockShared()` | new shared locking for concurrent readers |
+| `std.debug.runtime_safety` | `std.lang.Optimize.runtimeSafety` | deprecated; removed after 0.18 |
+| `std.testing.allocator` is `DebugAllocator` | `SafeAllocator` | testing API otherwise unchanged |
+| `std.builtin.StackTrace` | `std.lang.StackTrace` | `std.builtin` deprecated -> `std.lang` |
+| `@Type(.enum_literal)` | `@EnumLiteral()` | `@Type` deprecated in 0.16, removed in 0.17 |
+| — | `std.debug.simple_panic` regression | fails to compile in 0.17.0 (#36986) |
+| fuzzer (`std.testing.Smith`) | unchanged | 0.17.0 made no changes to the fuzzer |
+
 # std.testing
 
 Unit testing utilities and assertions for Zig tests.
@@ -93,7 +108,7 @@ try testing.expectFmt("hello world", "{s} {s}", .{"hello", "world"});
 
 ## Testing Allocator
 
-`std.testing.allocator` is a `DebugAllocator` (formerly `GeneralPurposeAllocator`) that detects memory leaks and use-after-free. **Only available in test builds.**
+`std.testing.allocator` is a `DebugAllocator` (formerly `GeneralPurposeAllocator`) that detects memory leaks and use-after-free. **Only available in test builds.** _(0.17: it is now a `std.heap.SafeAllocator`; `DebugAllocator` is deprecated — behavior is equivalent.)_
 
 ```zig
 test "with allocator" {
@@ -272,7 +287,7 @@ test "deterministic random" {
 
 **0.17.0-dev signature change:** `testOne` receives a `*std.testing.Smith`
 value generator, **not** a `[]const u8`. Older examples (including most
-training data) will not compile.
+training data) will not compile. _(0.17.0 release made no changes to the fuzzer; this `Smith` signature is already the 0.16/0.17 form.)_
 
 ```zig
 // A doc comment cannot be attached to a test -- `///` here is a compile error.
@@ -546,7 +561,7 @@ try std.debug.dumpCurrentStackTraceToWriter(null, &stderr.interface);
 
 ```zig
 var addrs: [32]usize = undefined;
-var trace: std.builtin.StackTrace = .{
+var trace: std.builtin.StackTrace = .{  // _(0.17: `std.builtin` deprecated -> `std.lang.StackTrace`)_
     .instruction_addresses = &addrs,
     .index = 0,
 };
@@ -640,7 +655,7 @@ const SafetyLock = std.debug.SafetyLock;
 var lock: SafetyLock = .{};
 
 fn criticalSection() void {
-    lock.lock();
+    lock.lock();  // _(0.17: exclusive; also `lockShared()`/`unlockShared()` for concurrent readers)_
     defer lock.unlock();
     // ... protected code
 }
@@ -651,6 +666,7 @@ fn checkNotLocked() void {
 
 - In Debug/ReleaseSafe: actively tracks lock state
 - In ReleaseFast/ReleaseSmall: all methods are no-ops
+- _(0.17: `lockShared`/`unlockShared` allow multiple independent readers; `lock`/`unlock` remain exclusive)_
 
 ## Source Location
 
@@ -743,7 +759,7 @@ std.debug.print("{s}:{d}: {s}\n", .{
 
 ```zig
 // Whether runtime safety checks are enabled
-std.debug.runtime_safety  // true in Debug/ReleaseSafe
+std.debug.runtime_safety  // true in Debug/ReleaseSafe  _(0.17: deprecated -> `std.lang.Optimize.runtimeSafety(optimize)`, removed after 0.18)_
 
 // Whether platform can produce stack traces
 std.debug.sys_can_stack_trace  // false on WASM, MIPS, etc.
@@ -908,7 +924,7 @@ pub const std_options: std.Options = .{
 
 fn myLogFn(
     comptime level: std.log.Level,
-    comptime scope: @Type(.enum_literal),
+    comptime scope: @Type(.enum_literal),  // _(0.17: `@Type` removed; use `@EnumLiteral()`)_
     comptime format: []const u8,
     args: anytype,
 ) void {
@@ -971,7 +987,7 @@ Forward to the standard implementation:
 ```zig
 fn myLogFn(
     comptime level: std.log.Level,
-    comptime scope: @Type(.enum_literal),
+    comptime scope: @Type(.enum_literal),  // _(0.17: `@Type` removed; use `@EnumLiteral()`)_
     comptime format: []const u8,
     args: anytype,
 ) void {
@@ -1028,7 +1044,7 @@ pub const log = std.log.scoped(.my_lib);
 ```zig
 fn fileLogFn(
     comptime level: std.log.Level,
-    comptime scope: @Type(.enum_literal),
+    comptime scope: @Type(.enum_literal),  // _(0.17: `@Type` removed; use `@EnumLiteral()`)_
     comptime format: []const u8,
     args: anytype,
 ) void {

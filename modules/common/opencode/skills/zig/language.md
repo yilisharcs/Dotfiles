@@ -2,6 +2,29 @@
 
 All language-level changes across versions 0.14 through 0.16. Each section starts with a concise upgrade checklist, followed by the full verbatim release notes.
 
+## Zig 0.17.0 delta
+
+This file documents 0.16.0 APIs; entries below are what changed in 0.17.0 — apply them for 0.17 targets, keep the 0.16 form for 0.16 targets.
+
+| 0.16.0 (still valid for 0.16) | 0.17.0 | notes |
+|-------------------------------|--------|-------|
+| `@cImport` (deprecated in 0.16) | removed | use external `codeberg.org/ziglang/translate-c` package; `std.Build.Step.TranslateC` also deprecated |
+| `@typeInfo(T).@"struct".fields` / `@"union".fields` | `field_names`, `field_types`, `field_attrs`, `decl_names` | struct-of-arrays (PR #35234); the `.fields`/`.decls` arrays are gone; `field_names`/`field_types`/`field_attrs` share length. Type-creating builtins keep their arity (`@Struct`/`@Union`/`@Enum` at 5/5/4 params) but use `std.lang.Type` types and `FieldAttributes` (not `std.builtin.Type.*Field.Attributes`) |
+| `@bitCast` (reinterpret in-memory bits) | reinterprets the *logical bit representation* | endian-agnostic; array/vector element bits concatenated in order; `extern struct`/`extern union` casts disallowed (use `@ptrCast`); enum destination safety-checks invalid tag values |
+| `@intFromEnum` / `@enumFromInt` | `@backingInt` / `@fromBackingInt` | old builtins deprecated; `@fromBackingInt` infers its result type; works on enums, explicit-backing bitpacks, and tagged unions (active tag); empty enums now require `noreturn` backing; `zig fmt` auto-migrates |
+| `a ** b` (array multiplication) | `@splat(v)` | syntax removed; the result type carries the length |
+| (none) | `@divCeil(a, b)` | integer division rounding toward +inf; replaces `std.math.divCeil(...) catch unreachable` |
+| (none) | `@SpirvType(options: std.lang.Type.Spirv) type` | SPIR-V sampler/image/sampled_image/runtime_array types; compile error unless targeting SPIR-V |
+| `@hasDecl(T, name)` | returns `true` only for `pub` declarations | now independent of the file the call appears in |
+| `[]T` (comptime-length slice) deref/coerce | `slice.*` and `const p: *const [N]T = slice;` allowed | |
+| `void{}` | `{}` | syntax removed |
+| `errdefer \|err\| ...` | split into an inner fallible function + `catch \|err\|` | capture removed |
+| `i0` | `u0` | removed as a primitive integer type |
+| `std.lang.GlobalLinkage.internal` / `.link_once` | `.strong` / `.weak` only | `internal` -> don't `@export`; `link_once` -> `weak` |
+| `std.builtin` | `std.lang` | alias retained, deprecated, removed after 0.18 |
+| `@import("builtin").cpu/.os/.abi/.object_format` | `@import("builtin").target.cpu/.os/.abi/.ofmt` | deprecated, removal in 0.18; `builtin.mode` -> `builtin.optimize` |
+| `std.lang.OptimizeMode.Debug/ReleaseSafe/ReleaseFast/ReleaseSmall` | `std.lang.Optimize.debug/safe/fast/small` | `OptimizeMode` alias retained, deprecated; breaking for `==`/`!=` with old names; `Optimize.runtimeSafety(o)` replaces `std.debug.runtime_safety` |
+
 ---
 
 ## 0.14.0
@@ -14,7 +37,7 @@ All language-level changes across versions 0.14 through 0.16. Each section start
 | `@fence` | `@fence(.seq_cst)` | Use stronger atomics or new atomic variable |
 | `@export` | `@export(foo, .{})` | `@export(&foo, .{})` (takes pointer) |
 | `@setAlignStack` | `@setAlignStack(16)` | `callconv(.withStackAlign(.c, 16))` |
-| `@typeInfo` fields | `.Int`, `.Struct`, `.Pointer` | `.int`, `.@"struct"`, `.pointer` (lowercase) |
+| `@typeInfo` fields | `.Int`, `.Struct`, `.Pointer` | `.int`, `.@"struct"`, `.pointer` (lowercase) _(0.17: struct/union payload is now struct-of-arrays; `.fields` gone — see delta)_ |
 | Pointer.Size | `.One` | `.one` |
 | `sentinel` | `ptr.sentinel.?` | `ptr.sentinel().?` (use helper) |
 | `default_value` | `field.default_value` | `field.default_value_ptr` |
@@ -587,7 +610,7 @@ export fn foo() callconv(.withStackAlign(.c, 4)) void {
 
 ### std.builtin.Type Fields Renamed
 
-In most cases, Zig's standard library follows [naming conventions](https://ziglang.org/documentation/0.14.0/#Names). Zig 0.14.0 updates the fields of the `std.builtin.Type` tagged union to follow these conventions by lowercasing them:
+In most cases, Zig's standard library follows [naming conventions](https://ziglang.org/documentation/0.14.0/#Names). Zig 0.14.0 updates the fields of the `std.builtin.Type` tagged union to follow these conventions by lowercasing them: _(0.17: namespace renamed to `std.lang`; the `Struct`/`Union` payloads are now struct-of-arrays with `field_names`/`field_types`/`field_attrs`/`decl_names` instead of a `.fields` array — see delta)_
 
 ```zig
 pub const Type = union(enum) {
@@ -887,7 +910,7 @@ else
     @compileError("foo not supported on this target");
 ```
 
-This does break feature detection with `@hasDecl`. If feature detection is needed, a better approach—less prone to typos and bitrotting—is to conditionally initialize the declaration to some "sentinel" value which can be detected. A good choice is often the `void` value `{}`:
+This does break feature detection with `@hasDecl`. _(0.17: `@hasDecl` returns `true` only for `pub` declarations, independent of the calling file)_ If feature detection is needed, a better approach—less prone to typos and bitrotting—is to conditionally initialize the declaration to some "sentinel" value which can be detected. A good choice is often the `void` value `{}`:
 
 ```zig
 const something = struct {
@@ -1148,7 +1171,7 @@ test "big float literal" {
 | Change | Before | After |
 |--------|--------|-------|
 | `@Type` | `@Type(.{ .int = ... })` | `@Int(.unsigned, 8)`, `@Struct(...)`, etc. |
-| `@cImport` | `@cImport({ @cInclude(...) })` | `b.addTranslateC(...)` in build.zig (deprecated) |
+| `@cImport` | `@cImport({ @cInclude(...) })` | `b.addTranslateC(...)` in build.zig (deprecated) _(0.17: `@cImport` removed and `addTranslateC` deprecated — use the translate-c package)_ |
 | `std.fs` | `std.fs.cwd().openFile(...)` | `std.Io.Dir.cwd().openFile(io, ...)` (entire ns deprecated) |
 | `File.writer()` | `file.writer(&buf)` | `file.writer(io, &buf)` (requires io param) |
 | `File.reader()` | `file.reader(&buf)` | `file.reader(io, &buf)` (requires io param) |
@@ -1193,7 +1216,7 @@ switch (u) {
 
 Other newly implemented features:
 
--   decl literals and everything else requiring a result type (e.g. `@enumFromInt`) may now be used as switch prong items
+-   decl literals and everything else requiring a result type (e.g. `@enumFromInt`) may now be used as switch prong items _(0.17: `@enumFromInt` deprecated; use `@fromBackingInt`)_
 -   union tag captures are now allowed for all prongs, not just `inline` ones
 -   switch prongs may contain errors which are not in the error set being switched on, if these prongs contain `=> comptime unreachable`
 -   switch prong captures may no longer all be discarded
@@ -1212,7 +1235,7 @@ This used to already be possible by wrapping the `packed union` into a `packed s
 
 ### @cImport Moving to Build System
 
-In the future, C Translation will be handled via the Build System rather than the `@cImport` language builtin, which is now deprecated.
+In the future, C Translation will be handled via the Build System rather than the `@cImport` language builtin, which is now deprecated. _(0.17: `@cImport` is removed and `std.Build.Step.TranslateC` is deprecated; depend on the `codeberg.org/ziglang/translate-c` package instead)_
 
 Upgrade guide:
 
@@ -1878,7 +1901,7 @@ test "zero-bit tuple field is comptime-known" {
 const assert = @import("std").debug.assert;
 ```
 
-In other words, this change is almost entirely non-breaking. The only case where it could affect old code is if you were directly relying on `std.builtin.StructField.is_comptime` from `@typeInfo`, or on the equivalence of tuples with and without explicitly declared `comptime` fields:
+In other words, this change is almost entirely non-breaking. The only case where it could affect old code is if you were directly relying on `std.builtin.StructField.is_comptime` from `@typeInfo`, or on the equivalence of tuples with and without explicitly declared `comptime` fields: _(0.17: `.fields[0]` no longer exists — the `Struct` payload is struct-of-arrays, use `field_attrs[0].@"comptime"`)_
 
 ```zig
 //! These tests both passed in Zig 0.15.x, but fail in Zig 0.16.x.

@@ -2,6 +2,27 @@
 
 System-level APIs in Zig 0.16. Verified against 0.16.0 source.
 
+## Zig 0.17.0 delta
+
+This file documents 0.16.0 APIs; entries below are what changed in 0.17.0 — apply them for 0.17 targets, keep the 0.16 form for 0.16 targets.
+
+| 0.16.0 (still valid for 0.16) | 0.17.0 | notes |
+|-------------------------------|--------|-------|
+| `std.heap.DebugAllocator(.{})`, `std.heap.Check` | `std.heap.SafeAllocator` | Both deprecated, removed after 0.18. Thread-safe; `deinit()` reports leaks; allocation mismatches panic/segfault; checksummed `AllocFooter`; no memory reuse. |
+| `std.heap.StackFallbackAllocator(N)` / `std.heap.stackFallback(size, backing)` | `std.heap.BufferFirstAllocator`; `stackFallback` REMOVED | Buffer is now an argument, not a comptime size; alignment specifiable. |
+| `std.heap.MemoryPoolAligned`, `std.heap.MemoryPoolExtra`, `std.heap.MemoryPoolOptions` | removed | Use `std.heap.memory_pool.Aligned` / `.Extra` / `.Options`. `memory_pool.Managed`/`AlignedManaged`/`ExtraManaged` also removed (use `Aligned`/`Extra`). `std.heap.MemoryPool(T)` remains. |
+| `std.process.getUserInfo(name)` | `std.process.getUserInfo(io, name)` | Source `lib/std/process.zig:104`. |
+| `std.process.replacePath` / `std.process.spawnPath` | removed; use the `exe` field on `ReplaceOptions` / `SpawnOptions` | `exe: ReplaceOptions.Exe = .detect`, a union: `.detect`, `.search`, `.path: Dir`, `.file: File`, `.explicit = .{ .dir, .path }` (`lib/std/process.zig:302`). |
+| `std.process.openExecutable(io, flags: File.OpenFlags)` | `std.process.openExecutable(io, flags: Dir.OpenFileOptions)` | Source `lib/std/process.zig:798`. |
+
+```zig
+var stack_buf: [1]Item = undefined;
+var stack: std.heap.BufferFirstAllocator = .init(@ptrCast(&stack_buf), gpa);
+const allocator = stack.allocator();
+```
+
+`std.Thread` exports (`spawn`, `Pool`, `WaitGroup`, `ResetEvent`, `Semaphore`, `RwLock`, `Futex`) are unchanged in 0.17.0.
+
 # std.heap - Allocators
 
 Zig has no default allocator. Functions that need heap memory accept an `Allocator` parameter.
@@ -147,11 +168,11 @@ slice = try allocator.realloc(slice, new_len);
 1. **Library code?** Accept `Allocator` parameter - let caller decide
 2. **Unit test?** Use `std.testing.allocator` (has leak detection)
 3. **Size known at comptime?** Use `FixedBufferAllocator` with stack buffer
-4. **Stack with heap fallback?** Use `stackFallback(N, backing_allocator)`
+4. **Stack with heap fallback?** Use `stackFallback(N, backing_allocator)` _(0.17: use `std.heap.BufferFirstAllocator`; `stackFallback` removed)_
 5. **CLI app / one-shot?** Use `ArenaAllocator` wrapping `page_allocator`
 6. **Request loop (web/game)?** Use `ArenaAllocator`, reset per iteration
 7. **Many same-type objects?** Use `MemoryPool(T)` for fast create/destroy
-8. **Debug build?** Use `DebugAllocator` for leak/corruption detection
+8. **Debug build?** Use `DebugAllocator` for leak/corruption detection _(0.17: `SafeAllocator`; `DebugAllocator` deprecated, removed after 0.18)_
 9. **ReleaseFast production?** Use `std.heap.smp_allocator`
 10. **Linking libc?** Use `c_allocator` or `raw_c_allocator` (as arena backing)
 
@@ -240,6 +261,8 @@ defer arena.deinit();
 
 ### DebugAllocator
 
+_(0.17: deprecated; use `std.heap.SafeAllocator` (removed after 0.18). `deinit()` returns a leak count; mismatches panic/segfault.)_
+
 Detects leaks, double-free, use-after-free. Designed for safety over performance, but still faster than `page_allocator`. Safety checks and thread safety configurable:
 
 ```zig
@@ -282,7 +305,7 @@ const allocator = std.heap.c_allocator;
 
 ### Page Allocator
 
-Requests entire pages from OS via syscall. A 1-byte allocation reserves multiple kibibytes - inefficient for small allocations. Use as backing allocator for `ArenaAllocator` or `DebugAllocator`:
+Requests entire pages from OS via syscall. A 1-byte allocation reserves multiple kibibytes - inefficient for small allocations. Use as backing allocator for `ArenaAllocator` or `DebugAllocator` _(0.17: or `SafeAllocator`)_:
 
 ```zig
 const allocator = std.heap.page_allocator;
@@ -309,6 +332,8 @@ const obj3 = try pool.create();  // likely same address as obj1
 _ = pool.reset(.retain_capacity);
 
 **Options:**
+_(0.17: `MemoryPoolAligned`/`MemoryPoolExtra`/`MemoryPoolOptions` removed; use `std.heap.memory_pool.Aligned`/`.Extra`/`.Options`.)_
+
 ```zig
 // Pre-allocate slots
 var pool = try std.heap.MemoryPool(T).initPreheated(allocator, 100);
@@ -335,6 +360,8 @@ var ts = std.heap.ThreadSafeAllocator{
 const allocator = ts.allocator();  // Safe to use from multiple threads
 
 ### StackFallbackAllocator
+
+_(0.17: renamed to `std.heap.BufferFirstAllocator`; buffer is now an argument and `std.heap.stackFallback` is removed.)_
 
 Allocates from stack buffer first, falls back to another allocator when exhausted:
 
@@ -555,6 +582,8 @@ const allocator = validated.allocator();  // Adds safety checks
 # std.process - Process Management API Reference
 
 Process spawning, environment variables, argument parsing, and system utilities in Zig 0.15.x.
+
+_(This section documents the 0.15.x API. In 0.16, env/args became non-global: `std.process.Environ`/`std.process.Args` (process env/args are no longer in `Child` or globals), spawning uses `std.process.spawn(io, ...)`, `Child.orphan` etc. per `lib/std/process.zig`, and `std.process.EnvMap`/`ArgIterator`/`execv`-style APIs are gone. In 0.17, `getUserInfo(io, name)` gained the `io` param, `replacePath`/`spawnPath` were removed in favor of the `exe` field on `ReplaceOptions`/`SpawnOptions` (`.detect`/`.search`/`.path`/`.file`/`.explicit`), and `openExecutable` takes `Dir.OpenFileOptions`.)_
 
 ## Table of Contents
 - [Module Structure](#module-structure)
@@ -896,6 +925,8 @@ const mem = try std.process.totalSystemMemory();
 std.debug.print("Total RAM: {d} bytes\n", .{mem});
 
 ### User Information (POSIX only)
+
+_(0.17: `std.process.getUserInfo(io, name)` now takes an `io: Io` first argument.)_
 
 ```zig
 const info = try std.process.getUserInfo("nobody");

@@ -2,6 +2,28 @@
 
 Compiler errors and common mistakes when upgrading to Zig 0.16.
 
+## Zig 0.17.0 delta
+
+This file documents 0.16.0 errors; entries below are what changed in 0.17.0 — apply them for 0.17 targets, keep the 0.16 form for 0.16 targets.
+
+| Error | Fix |
+|-------|-----|
+| `**` syntax error (array multiplication) | Use `@splat`: `var a: [N]u8 = @splat(0);` |
+| `void{}` | Use `{}` |
+| `errdefer capture` / `errdefer \|err\|` | Split into an inner fallible function and `catch \|err\|` |
+| `no member 'cImport'` / `@cImport` | Use the `codeberg.org/ziglang/translate-c` package (`b.addTranslateC` also deprecated) |
+| old `OptimizeMode` tag in `==`/`!=` | Tags lowercased: `.debug`/`.safe`/`.fast`/`.small` on `std.lang.Optimize` |
+| `.fields`/`fieldInfo` on `@typeInfo` struct/union | Use `field_names`/`field_types`/`field_attrs`/`decl_names` (struct-of-arrays) |
+| `std.gpu` not found | Renamed to `std.spirv` (no alias) |
+| `getLast`/`getLastOrNull` | Use `last()` (returns `?T`); new `lastPtr()` returns `?*T` |
+| `StackFallbackAllocator`/`stackFallback` | Use `std.heap.BufferFirstAllocator` (buffer is now an argument) |
+| `addArtifactArg` | Use `addArtifactArg2` (likewise `addOutputFileArg2`, `addFileArg2`, `addDirectoryArg2`, ...) |
+| observing `b.args` at configure time | Use `run_cmd.addPassthruArgs()` |
+| `Uri.getHost` | Use `std.Io.net.HostName.fromUri(uri, &buffer)` (`getHostAlloc` removed; caller provides a `[HostName.max_len]u8` buffer) |
+| `std.builtin` | Renamed to `std.lang` (alias deprecated) |
+| `getDisplayName` | Use `format` (`"{f}"`); `LazyPath.basename` removed |
+| `readPackedIntNative`/`readPackedIntForeign` | Use `std.mem.readPackedInt(T, bytes, bit_offset, endian)` |
+
 ## Quick Fixes
 
 | Error | Fix |

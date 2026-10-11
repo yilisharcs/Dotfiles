@@ -2,6 +2,77 @@
 
 Zig build system API and build.zig.zon configuration in Zig 0.16. Verified against 0.16.0 source.
 
+## Zig 0.17.0 delta
+
+This file documents 0.16.0 APIs; entries below are what changed in 0.17.0 — apply them for 0.17 targets, keep the 0.16 form for 0.16 targets.
+
+| 0.16.0 (still valid for 0.16) | 0.17.0 | notes |
+|-------------------------------|--------|-------|
+| `zig build` runs `build.zig` in-process | **configurer** runs `build.zig` + package management; a separate optimized **maker** executable executes the build graph | maker built once ("first time setup"); `build.zig` logic skipped when CLI flags don't affect configuration |
+| — | `--print-configuration` renders configuration as `.zon` to stdout; `--print-configuration-path` prints the binary config path | configuration serialized to a compact binary, shared with tooling via Build Server Protocol |
+| `b.build_root` (`std.Build.Cache.Directory`) | `b.root` (`std.Build.Cache.Path`) | |
+| `LazyPath.getDisplayName()` | `LazyPath.format` (`"{f}"`) | source `pub fn format`; `getDisplayName` still present but `/// Deprecated, use format instead.` |
+| `LazyPath.basename()` | removed | value not known until make phase |
+| `ConfigHeader.Options.include_guard_override` | `ConfigHeader.Options.include_guard` | `ConfigHeader` now reports unused values for all styles |
+| `b.args` observed at configure time | `run_cmd.addPassthruArgs()` | build.zig can no longer observe run args; see migration below |
+| `b.findProgram` (immediate, returns `?[]const u8`) | `b.findProgram` (immediate, poisons config cache) vs `b.findProgramLazy` (anonymous `Step`, returns `LazyPath`, does not poison) | both search prefixes then `PATH`; multiple names; lazy search happens only if the `LazyPath` is used |
+| `pkg.lazyDependency(...)` returns `?*Dependency` | `pkg.dependencyLazy(...)` returns `error{LazyDependencyNeeded}!*Dependency` | `lazyDependency` deprecated; returning `error.LazyDependencyNeeded` from `build` triggers a fetch instead of failing; lazy fetches are logged |
+| `b.addTranslateC(...)`, `@cImport` | external package `codeberg.org/ziglang/translate-c` | `std.Build.Step.TranslateC` deprecated (source still declares `addTranslateC`); see migration below |
+| `Step.Fmt.Options.paths`/`exclude_paths`: `[]const []const u8` | `[]const LazyPath` | convenience `b.pathList(&.{ ... })` |
+| `Step.Options.addOption(LazyPath, ...)` | `addOptionPath` (file) / `addOptionPathDirectory` (directory) / `addOptionPathUntracked` (opt out of tracking) | |
+| configure cache re-run on every hit | configure cache can be **poisoned**; `findProgram` poisons it, `std.Build.Graph.poisonCache` explicit | prefer `dependOnFileContents`/`dependOnFileMetadata`/`dependOnDirectoryContents`/`dependOnDirectoryMetadata`; CLI `--cache-poison[=pure|poisoned|disallowed|ignored]` (`pure` default) |
+| text cache entries | binary format (~25% smaller), `zig cache-cat`, miss explanations, directory + metadata cache modes | cache hits 5–10% faster; `std.Build.Cache` has many breaking changes |
+| override build runner | concept removed (split into configurer + maker) | replaced by Build Server Protocol: `--listen=-` serves static build-graph info, step start/complete events, step requests |
+| — | ZLS does not work with 0.17.0 | maker/configurer split; ZLS being ported onto BSP |
+| package management in compiler | moved to build system: `zig build`, `zig fetch`, `zig init`, `zig libc`, `zig cache-cat` | shipped as source compiled `-Osafe`; debug with `ZIG_DEBUG_CMD=1`; `--pkg-path`/`ZIG_LOCAL_PKG_DIR` observed for fetch + build; `zig fetch` global only (`--save` also local), `zig build` always local; path deps escaping parent root rejected |
+| Windows/Wine run steps add DLL dirs to `PATH` for all args | only for `argv[0]` | |
+| incremental `zig build -fincremental --watch` unstable | usable for most `x86_64-linux` projects | enabled by default with the new ELF linker |
+
+### Run step: passthru args (0.17)
+
+```zig
+// 0.16
+if (b.args) |args| run_cmd.addArgs(args);
+
+// 0.17
+run_cmd.addPassthruArgs();
+```
+
+### Arg-helper renames (0.17)
+
+| 0.16.0 | 0.17.0 |
+|--------|--------|
+| `addArtifactArg` / `addPrefixedArtifactArg` | `addArtifactArg2` |
+| `addOutputFileArg` / `addPrefixedOutputFileArg` | `addOutputFileArg2` |
+| `addFileContentArg` / `addPrefixedFileContentArg` | `addFileContentArg2` |
+| `addOutputDirectoryArg` / `addPrefixedOutputDirectoryArg` | `addOutputDirectoryArg2` |
+| `addDirectoryArg` / `addPrefixedDirectoryArg` / `addDecoratedDirectoryArg` | `addDirectoryArg2` |
+| `addDepFileOutputArg` / `addPrefixedDepFileOutputArg` | `addDepFileOutputArg2` |
+| `addFileArg` / `addPrefixedFileArg` | `addFileArg2` |
+
+The `*2` forms take an options struct (e.g. `.{ .prefix = ..., .suffix = ... }`); the old names remain but are deprecated.
+
+### C translation migration (0.17)
+
+```bash
+zig fetch --save git+https://codeberg.org/ziglang/translate-c
+```
+
+```zig
+const Translator = @import("translate_c").Translator;
+
+pub fn build(b: *std.Build) void {
+    const translate_c = b.dependency("translate_c", .{});
+    const translator: Translator = .init(translate_c, .{
+        .c_source_file = b.path("src/c.h"),
+        .target = target,
+        .optimize = optimize,
+        .link_system_libs = &.{ .{ .name = "glfw" }, .{ .name = "epoxy" } },
+    });
+    // import as: .{ .name = "c", .module = translator.mod }
+}
+```
+
 
 # std.Build - Zig Build System Reference (0.15.x → 0.16)
 
@@ -73,7 +144,7 @@ pub fn build(b: *std.Build) void {
 
     const run_cmd = b.addRunArtifact(exe);
     run_cmd.step.dependOn(b.getInstallStep());
-    if (b.args) |args| run_cmd.addArgs(args);
+    if (b.args) |args| run_cmd.addArgs(args);  _(0.17: b.args removed; use run_cmd.addPassthruArgs())_
 
     const run_step = b.step("run", "Run the application");
     run_step.dependOn(&run_cmd.step);
@@ -396,11 +467,11 @@ const gen_tool = b.addExecutable(.{
 const run_gen = b.addRunArtifact(gen_tool);
 
 // Directory input with prefix (--shader-dir=/path/to/shaders)
-run_gen.addPrefixedDirectoryArg("--shader-dir=", b.path("data/shaders"));
+run_gen.addPrefixedDirectoryArg("--shader-dir=", b.path("data/shaders"));  _(0.17: renamed addDirectoryArg2 with .prefix option)_
 
 // Output file with prefix (--out=/path/to/output.h)
 // Returns LazyPath to the generated file
-const generated_header = run_gen.addPrefixedOutputFileArg("--out=", "shaders.h");
+const generated_header = run_gen.addPrefixedOutputFileArg("--out=", "shaders.h");  _(0.17: renamed addOutputFileArg2 with .prefix option)_
 
 // The step now has data dependencies: if shaders change, it re-runs
 
@@ -503,7 +574,7 @@ const dep = b.dependency("configurable_lib", .{
 const run_cmd = b.addRunArtifact(exe);
 
 // Pass command line arguments
-if (b.args) |args| {
+if (b.args) |args| {  _(0.17: b.args removed; use run_cmd.addPassthruArgs())_
     run_cmd.addArgs(args);
 }
 
@@ -546,7 +617,7 @@ const run_tool = b.addRunArtifact(tool);
 run_tool.addArgs(&.{ "input.json" });
 
 // Capture generated output
-const generated = run_tool.addOutputFileArg("generated.zig");
+const generated = run_tool.addOutputFileArg("generated.zig");  _(0.17: renamed addOutputFileArg2)_
 
 // Use as source file
 exe.root_module.addAnonymousImport("generated", .{
@@ -691,8 +762,8 @@ const gen_tool = b.addExecutable(.{
 });
 
 const gen_run = b.addRunArtifact(gen_tool);
-gen_run.addFileArg(b.path("schema.json"));
-const generated = gen_run.addOutputFileArg("generated.zig");
+gen_run.addFileArg(b.path("schema.json"));  _(0.17: renamed addFileArg2)_
+const generated = gen_run.addOutputFileArg("generated.zig");  _(0.17: renamed addOutputFileArg2)_
 
 exe.root_module.addAnonymousImport("schema", .{
     .root_source_file = generated,
@@ -838,7 +909,7 @@ const src = b.path("src/main.zig");
 
 // From build step output (returns generated variant)
 const bin = exe.getEmittedBin();
-const generated = run_step.addOutputFileArg("output.txt");
+const generated = run_step.addOutputFileArg("output.txt");  _(0.17: renamed addOutputFileArg2)_
 
 // From dependency (returns dependency variant)
 const dep_header = zlib.path("include/zlib.h");
@@ -851,7 +922,7 @@ When passing LazyPaths between steps, use `addStepDependencies()` to ensure prop
 
 ```zig
 const gen_step = b.addRunArtifact(generator);
-const generated_file = gen_step.addOutputFileArg("data.bin");
+const generated_file = gen_step.addOutputFileArg("data.bin");  _(0.17: renamed addOutputFileArg2)_
 
 // IMPORTANT: Establish that compile step depends on gen_step's output
 generated_file.addStepDependencies(&exe.step);
@@ -1072,7 +1143,7 @@ for (examples) |name| {
 const fmt_step = b.step("fmt", "Check formatting");
 
 const fmt = b.addFmt(.{
-    .paths = &.{ "src/", "build.zig" },
+    .paths = &.{ "src/", "build.zig" },  _(0.17: paths/exclude_paths are LazyPath lists; use b.pathList(&.{ ... }))_
     .check = true,
 });
 

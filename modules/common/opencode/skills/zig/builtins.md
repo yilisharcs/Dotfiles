@@ -2,6 +2,115 @@
 
 Built-in functions are compiler intrinsics prefixed with `@`. Parameters marked `comptime` must be compile-time known.
 
+## Zig 0.17.0 delta
+
+This file documents 0.16.0 builtins; entries below are what changed in 0.17.0 — apply them for 0.17 targets, keep the 0.16 form for 0.16 targets.
+
+| 0.16.0 (still valid for 0.16) | 0.17.0 | notes |
+|-------------------------------|--------|-------|
+| `@cImport(...)` (deprecated) | removed | C translation via external `codeberg.org/ziglang/translate-c` package; `std.Build.Step.TranslateC` deprecated |
+| `@intFromEnum(x)` | `@backingInt(x)` | old builtin deprecated; works on enums, explicit-backing bitpacks, tagged unions (active tag) |
+| `@enumFromInt(x)` | `@fromBackingInt(x)` | old builtin deprecated; result type inferred; invalid/`undefined` enum backing value is safety-checked Illegal Behavior |
+| `@bitCast` (in-memory reinterpret) | reinterprets logical bit representation | endian-agnostic; array/vector element bits concatenated in order; `extern struct`/`extern union` disallowed; enum destination safety-checks tag |
+| `a ** b` (array multiplication) | `@splat(v)` | syntax removed; `@splat` already works on arrays and vectors |
+| (none) | `@divCeil(a, b)` | integer division rounding toward +inf |
+| (none) | `@SpirvType(options: std.lang.Type.Spirv) type` | SPIR-V types; compile error unless targeting SPIR-V |
+| `@hasDecl(T, name)` | returns `true` only for `pub` declarations | independent of the calling file |
+| `std.builtin.*` (`Type`, `SourceLocation`, `BranchHint`, `ReduceOp`, `CallModifier`, `FloatMode`, `StackTrace`, `Signedness`) | `std.lang.*` | alias retained, deprecated, removed after 0.18 |
+
+### @cImport removal / translate-c migration
+
+`@cImport` was deprecated in 0.16.0 and is now removed; `std.Build.Step.TranslateC` is also deprecated. Migrate to the external package:
+
+```
+zig fetch --save git+https://codeberg.org/ziglang/translate-c
+```
+
+```zig
+const Translator = @import("translate_c").Translator;
+
+pub fn build(b: *std.Build) void {
+    const target = b.standardTargetOptions(.{});
+    const optimize = b.standardOptimizeOption(.{});
+
+    const translate_c = b.dependency("translate_c", .{});
+
+    const translator: Translator = .init(translate_c, .{
+        .c_source_file = b.path("src/c.h"),
+        .target = target,
+        .optimize = optimize,
+        .link_system_libs = &.{
+            .{ .name = "glfw" },
+            .{ .name = "epoxy" },
+        },
+    });
+
+    const exe = b.addExecutable(.{
+        .name = "tetris",
+        .root_module = b.createModule(.{
+            .root_source_file = b.path("src/main.zig"),
+            .optimize = optimize,
+            .target = target,
+            .imports = &.{
+                .{ .name = "c", .module = translator.mod },
+            },
+        }),
+    });
+}
+```
+
+`@cInclude`, `@cDefine`, and `@cUndef` only existed inside `@cImport` and are therefore removed with it.
+
+### @backingInt / @fromBackingInt
+
+```zig
+@backingInt(enum_or_bitpack: T) BackingInt(T)
+@fromBackingInt(backing_int: BackingInt(T)) T
+```
+
+Replace the deprecated `@intFromEnum` / `@enumFromInt`. `@backingInt` works on all enums, on bitpacks with *explicit* backing integers only, and on tagged unions (active tag); `undefined` yields an `undefined` backing integer. `@fromBackingInt` infers its result type; for enums an `undefined` or invalid tag value is safety-checked Illegal Behavior. `std.meta.BackingInt` returns the result type. Empty enums now require `noreturn` backing.
+
+### @SpirvType
+
+```zig
+@SpirvType(comptime options: std.lang.Type.Spirv) type
+```
+
+Creates a SPIR-V type for images/samplers/storage buffers. Variants: `.sampler` (`OpTypeSampler`), `.image` (`OpTypeImage`), `.sampled_image` (`OpTypeSampledImage`), `.runtime_array` (`OpTypeRuntimeArray`, indexable, exposes `.len`, may only be the last field of an `extern struct`). Using it when not targeting SPIR-V is a compile error; options are validated against the target OS.
+
+```zig
+const Image = @SpirvType(.{ .image = .{
+    .usage = .{ .sampled = f32 },
+    .format = .unknown,
+    .dim = .@"2d",
+    .depth = .not_depth,
+    .arrayed = false,
+    .multisampled = false,
+    .access = .unknown,
+} });
+const SampledImage = @SpirvType(.{ .sampled_image = Image });
+```
+
+### @divCeil
+
+```zig
+@divCeil(numerator: T, denominator: T) T
+```
+
+Integer division rounding toward positive infinity: `@divCeil(5, 3) == 2`, `@divCeil(-5, 3) == -1`. Caller guarantees `denominator != 0` and no overflow. Replaces `std.math.divCeil(a, b) catch unreachable`.
+
+### @splat for arrays/vectors
+
+`@splat(element) anytype` returns an array or vector with every element set to `element`; the length comes from the result type. It is the replacement for the removed `a ** b` array-multiplication syntax.
+
+```zig
+var result: [N]u8 = @splat(0);
+```
+
+### @bitCast changes
+
+Now reinterprets the *logical bit representation*. Integer<->integer and integer<->packed struct/union casts are unaffected; array/vector casts concatenate element bit reps in order and are endian-agnostic (this can silently change behavior on big-endian). Casts involving `extern struct`/`extern union` are disallowed (use `@ptrCast` or an `extern union`). A cast whose destination is an `enum` now safety-checks the tag value.
+
 ## Table of Contents
 - [Type Conversions](#type-conversions)
 - [Integer/Float Operations](#integerfloat-operations)
@@ -124,6 +233,7 @@ Remove `volatile` from pointer.
 @bitCast(value: anytype) anytype
 ```
 Reinterpret bit pattern. Return type inferred. Sizes must match.
+_(0.17: reinterprets the logical bit representation — endian-agnostic, array/vector bits concatenated, `extern struct`/`extern union` disallowed, enum destination safety-checks the tag — see delta)_
 ```zig
 const bits: u32 = @bitCast(@as(f32, 3.14));
 ```
@@ -148,12 +258,14 @@ Convert bool to 0 or 1.
 @intFromEnum(value: anytype) anytype
 ```
 Convert enum to its integer value.
+_(0.17: deprecated; use `@backingInt`)_
 
 ### @enumFromInt
 ```zig
 @enumFromInt(value: anytype) anytype
 ```
 Convert integer to enum. Return type inferred. **Safety check in safe modes.**
+_(0.17: deprecated; use `@fromBackingInt`)_
 
 ### @errorFromInt
 ```zig
@@ -470,9 +582,10 @@ const T = @TypeOf(some_value);
 
 ### @typeInfo
 ```zig
-@typeInfo(comptime T: type) std.builtin.Type
+@typeInfo(comptime T: type) std.lang.Type
 ```
 Get type information as tagged union. Fields are **lowercase** (0.14+): `.@"struct"`, `.@"enum"`, `.@"union"`, `.int`, `.pointer`, etc.
+_(0.17: namespace is `std.lang.Type` (`std.builtin` deprecated); the `Struct`/`Union` payloads are struct-of-arrays — `s.fields` is gone, use `s.field_names`, `s.field_types`, `s.field_attrs`, `s.decl_names`)_
 ```zig
 switch (@typeInfo(T)) {
     .@"struct" => |s| {
@@ -490,6 +603,7 @@ switch (@typeInfo(T)) {
 ```
 Create type from type info (inverse of `@typeInfo`).
 **Deprecated in 0.16.** Replaced by `@Int`, `@Struct`, `@Union`, `@Enum`, `@Pointer`, `@Fn`, `@Tuple`, `@EnumLiteral`. See language.md for full details.
+_(0.17: removed — the individual type-creating builtins are the only option)_
 
 ### @EnumLiteral
 ```zig
@@ -592,6 +706,7 @@ const name = @typeName(u32);  // "u32"
 @hasDecl(comptime T: type, comptime name: []const u8) bool
 ```
 Check if type has declaration (const, fn, etc.).
+_(0.17: returns `true` only for `pub` declarations, independent of the calling file)_
 ```zig
 if (@hasDecl(T, "init")) { T.init(); }
 ```
@@ -658,6 +773,7 @@ const name = @errorName(error.OutOfMemory);  // "OutOfMemory"
 @import(comptime path: []const u8) type
 ```
 Import module. Special: `"std"`, `"builtin"`.
+_(0.17: `@import("builtin").cpu/.os/.abi/.object_format` are deprecated — use `.target.cpu/.target.os/.target.abi/.target.ofmt`; `builtin.mode` -> `builtin.optimize`)_
 ```zig
 const std = @import("std");
 const builtin = @import("builtin");
@@ -693,6 +809,7 @@ Get type of enclosing struct/union/enum.
 @src() std.builtin.SourceLocation
 ```
 Get source location. In 0.14+, includes `module` field.
+_(0.17: `std.lang.SourceLocation`)_
 ```zig
 const loc = @src();
 // loc.module, loc.file, loc.fn_name, loc.line, loc.column
@@ -728,6 +845,7 @@ const v: Vec4f = .{ 1.0, 2.0, 3.0, 4.0 };
 ```
 Create vector with all elements equal to value. Return type inferred.
 In 0.14+, also works on arrays (not just vectors).
+_(0.17: `@splat` replaces the removed `a ** b` array-multiplication syntax)_
 ```zig
 const ones: @Vector(4, f32) = @splat(1.0);
 // Arrays (0.14+):
@@ -771,6 +889,7 @@ Element-wise select: `pred[i] ? a[i] : b[i]`.
 ```
 Import C header files.
 **Deprecated in 0.16.** Use `b.addTranslateC(...)` in build.zig instead.
+_(0.17: `@cImport` is removed and `std.Build.Step.TranslateC` is deprecated — use the external `codeberg.org/ziglang/translate-c` package, see delta)_
 ```zig
 // BEFORE (deprecated)
 const c = @cImport({
@@ -794,18 +913,21 @@ const c = @import("c");
 @cInclude(comptime path: []const u8) void
 ```
 Include C header (inside `@cImport`).
+_(0.17: removed with `@cImport`)_
 
 ### @cDefine
 ```zig
 @cDefine(comptime name: []const u8, value) void
 ```
 Define C macro (inside `@cImport`).
+_(0.17: removed with `@cImport`)_
 
 ### @cUndef
 ```zig
 @cUndef(comptime name: []const u8) void
 ```
 Undefine C macro.
+_(0.17: removed with `@cImport`)_
 
 ### @extern
 ```zig

@@ -2,6 +2,61 @@
 
 Memory, formatting, JSON, and ZON utilities in Zig 0.16. Verified against 0.16.0 source.
 
+## Zig 0.17.0 delta
+
+This file documents 0.16.0 APIs; entries below are what changed in 0.17.0 — apply them for 0.17 targets, keep the 0.16 form for 0.16 targets.
+
+| 0.16.0 (still valid for 0.16) | 0.17.0 | notes |
+|-------------------------------|--------|-------|
+| `std.fmt.allocPrint(alloc, fmt, args)` | `alloc.print(fmt, args)` | method on `std.mem.Allocator`; old fn deprecated |
+| `std.fmt.allocPrintSentinel(alloc, fmt, args, sentinel)` | `alloc.printSentinel(fmt, args, sentinel)` | old fn deprecated |
+| `{q}` (escapes all non-ASCII) | `{q}` (UTF-8 passes through) | relaxed; new `{qf}` double-quote-escapes `format()` output |
+| `std.zon.parse.fromSlice(T, alloc, source, &diag, .{})` | `fromSlice(T, .{ .gpa, .arena, .source, .diagnostics })` | results and diagnostics allocated from an arena |
+| `std.zon.parse.fromSliceAlloc` | `std.zon.parse.fromSlice` | |
+| old `std.zon.parse.fromSlice` | `std.zon.parse.fromSliceNoAlloc` | |
+| `std.zon.parse.free` / `Diagnostics.deinit` / `Diagnostics.iterateErrors` | removed | results/diagnostics are arena-owned; use `Diagnostics.fmt` / `.log` / `.fatal` |
+| — | `updateFromSlice` / `updateFromZoir` | new: overwrite fields of an in-memory value |
+| `std.mem.readPackedIntNative` / `readPackedIntForeign` | `std.mem.readPackedInt` | removed |
+| `std.mem.writePackedIntNative` / `writePackedIntForeign` | `std.mem.writePackedInt` | removed |
+| old `std.mem.containsAtLeastScalar(T, list, minimum, element)` | `std.mem.containsAtLeastScalar(T, list, element, minimum)` | `containsAtLeastScalar2` was renamed; call sites may still compile but be wrong |
+| `std.mem.eql` / `findDiff` same-memory short-circuit | disabled for float slices | NaN is not reflexive |
+| `std.meta.fieldInfo` / `fieldNames` / `fieldTypes` | `@typeInfo` | deprecated |
+| `std.debug.runtime_safety` | `std.lang.Optimize.runtimeSafety` | deprecated, removed after 0.18 (see stdlib-debug.md) |
+| — | f128 `@exp` / `@exp2` | compiler builtins; see builtins docs |
+
+### std.zon.parse migration
+
+`std.zon.parse` now takes a struct of options and allocates results and diagnostics from an arena.
+
+```zig
+// 0.16
+var diag: std.zon.parse.Diagnostics = .{};
+defer diag.deinit(gpa);
+const result = std.zon.parse.fromSlice(MyZonType, gpa, source, &diag, .{}) catch |err| switch (err) {
+    error.ParseZon => std.process.fatal("input.zon: {f}", .{diag}),
+    error.OutOfMemory => |e| return e,
+};
+defer std.zon.parse.free(result);
+
+// 0.17
+var diag: std.zon.parse.Diagnostics = undefined;
+const result = std.zon.parse.fromSlice(MyZonType, .{
+    .gpa = gpa,
+    .arena = arena,
+    .source = source,
+    .diagnostics = &diag,
+}) catch |err| switch (err) {
+    error.ParseZon => diag.fatal("input.zon"),
+    error.OutOfMemory => |e| return e,
+};
+```
+
+Renames: `fromSliceAlloc` -> `fromSlice`, old `fromSlice` -> `fromSliceNoAlloc`; the other `from*` methods follow the same scheme. `updateFromSlice` / `updateFromZoir` were added.
+
+### Uri / HostName
+
+Not covered in this file. In 0.17 all `HostName` handling was removed from `Uri`: `Uri.getHost` -> `std.Io.net.HostName.fromUri(uri, &buffer)` (signature: `fromUri(uri: std.Uri, buffer: *[HostName.max_len]u8) FromUriError!HostName`; validation now applied, so the error set differs; the returned `bytes` may point into `buffer` or `uri.host`), and `Uri.getHostAlloc` was removed entirely. `std.net` remains an alias of `std.Io.net`.
+
 # std.mem
 
 Memory manipulation utilities: slice operations, searching, splitting, alignment, endianness, and byte conversion.
@@ -571,7 +626,7 @@ Format with dynamic allocation.
 
 ```zig
 const allocator = std.heap.page_allocator;
-const result = try std.fmt.allocPrint(allocator, "Hello {s}!", .{"world"});
+const result = try std.fmt.allocPrint(allocator, "Hello {s}!", .{"world"});  // _(0.17: `std.fmt.allocPrint` deprecated; use `allocator.print(fmt, args)`)_
 defer allocator.free(result);
 // result = "Hello world!"
 
@@ -580,7 +635,7 @@ defer allocator.free(result);
 Format with allocation and sentinel terminator.
 
 ```zig
-const result = try std.fmt.allocPrintSentinel(allocator, "Hello {s}", .{"world"}, 0);
+const result = try std.fmt.allocPrintSentinel(allocator, "Hello {s}", .{"world"}, 0);  // _(0.17: use `allocator.printSentinel(fmt, args, sentinel)`)_
 defer allocator.free(result);
 // result is [:0]u8 = "Hello world" (null-terminated)
 
@@ -1253,8 +1308,8 @@ pub fn main() !void {
     defer _ = gpa.deinit();
     const allocator = gpa.allocator();
 
-    const config = try std.zon.parse.fromSlice(Config, allocator, zon_str, null, .{});
-    defer std.zon.parse.free(allocator, config);
+    const config = try std.zon.parse.fromSlice(Config, allocator, zon_str, null, .{});  // _(0.17: `fromSlice(T, .{ .gpa, .arena, .source, .diagnostics })`; old `fromSlice` -> `fromSliceNoAlloc`)_
+    defer std.zon.parse.free(allocator, config);  // _(0.17: `std.zon.parse.free` removed; results are freed by the arena)_
 
     // config.name == "server"
     // config.port == 3000
@@ -1264,11 +1319,11 @@ pub fn main() !void {
 ### Parse with Diagnostics
 
 ```zig
-var diag: std.zon.parse.Diagnostics = .{};
-defer diag.deinit(allocator);
+var diag: std.zon.parse.Diagnostics = .{};  // _(0.17: `= undefined`; `Diagnostics.deinit` removed)_
+defer diag.deinit(allocator);  // _(0.17: removed; diagnostics are arena-allocated)_
 
-const result = std.zon.parse.fromSlice(Config, allocator, zon_str, &diag, .{}) catch |err| {
-    // Print diagnostic errors
+const result = std.zon.parse.fromSlice(Config, allocator, zon_str, &diag, .{}) catch |err| {  // _(0.17: see migration above; diagnostics allocated from the arena)_
+    // Print diagnostic errors  _(0.17: `iterateErrors`/`getLocation`/`fmtMessage` removed; use `diag.fmt(path)`/`diag.log(path)`/`diag.fatal(path)`)_
     var errors = diag.iterateErrors();
     while (errors.next()) |parse_err| {
         const loc = parse_err.getLocation(&diag);
@@ -1280,18 +1335,18 @@ const result = std.zon.parse.fromSlice(Config, allocator, zon_str, &diag, .{}) c
     }
     return err;
 };
-defer std.zon.parse.free(allocator, result);
+defer std.zon.parse.free(allocator, result);  // _(0.17: `std.zon.parse.free` removed; arena-owned)_
 
 ### Parse Options
 
 ```zig
-const result = try std.zon.parse.fromSlice(T, allocator, zon_str, diag, .{
+const result = try std.zon.parse.fromSlice(T, allocator, zon_str, diag, .{  // _(0.17: options are now the second argument struct; see migration above)_
     // Ignore unknown fields (default: false - errors on unknown)
     .ignore_unknown_fields = true,
 
     // Free partially parsed values on error (default: true)
     // Disable if using arena allocation
-    .free_on_error = false,
+    .free_on_error = false,  // _(0.17: removed; results are allocated from `arena`)_
 });
 
 ### Compile-Time Parsing with @import
@@ -1307,8 +1362,8 @@ const version = build_zon.version;
 ### Free Parsed Values
 
 ```zig
-const result = try std.zon.parse.fromSlice(T, allocator, zon_str, null, .{});
-defer std.zon.parse.free(allocator, result);
+const result = try std.zon.parse.fromSlice(T, allocator, zon_str, null, .{});  // _(0.17: struct options; see migration above)_
+defer std.zon.parse.free(allocator, result);  // _(0.17: `std.zon.parse.free` removed; arena-owned)_
 
 ## Serializing to ZON
 
@@ -1577,9 +1632,9 @@ fn loadConfig(allocator: std.mem.Allocator, path: []const u8) !Config {
     );
     defer allocator.free(content);
 
-    return std.zon.parse.fromSlice(Config, allocator, content, null, .{
+    return std.zon.parse.fromSlice(Config, allocator, content, null, .{  // _(0.17: `fromSlice(Config, .{ .gpa, .arena, .source, .diagnostics, .ignore_unknown_fields })`)_
         .ignore_unknown_fields = true,
-        .free_on_error = true,
+        .free_on_error = true,  // _(0.17: removed)_
     });
 }
 
@@ -1647,5 +1702,5 @@ fn roundTrip(comptime T: type, allocator: std.mem.Allocator, value: T) !T {
     const terminated: [:0]const u8 = zon_str[0 .. zon_str.len - 1 :0];
 
     // Parse back
-    return std.zon.parse.fromSlice(T, allocator, terminated, null, .{});
+    return std.zon.parse.fromSlice(T, allocator, terminated, null, .{});  // _(0.17: struct options; see migration above)_
 }

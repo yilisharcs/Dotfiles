@@ -2,6 +2,22 @@
 
 The I/O API was completely rewritten in 0.15 ("Writergate") and the old `std.io` namespace was removed in 0.16. All I/O now goes through `std.Io` (capital I).
 
+## Zig 0.17.0 delta
+
+This file documents 0.16.0 APIs; entries below are what changed in 0.17.0 — apply them for 0.17 targets, keep the 0.16 form for 0.16 targets.
+
+| 0.16.0 (still valid for 0.16) | 0.17.0 | notes |
+|-------------------------------|--------|-------|
+| `std.Io.Semaphore.wait(io)`, `waitUncancelable(io)` | `std.Io.Semaphore.waitTimeout(io, timeout)` added | Source `lib/std/Io/Semaphore.zig:38`: `waitTimeout(s: *Semaphore, io: Io, timeout: Io.Timeout) WaitTimeoutError!void`, where `WaitTimeoutError = Io.Cancelable \|\| Io.Timeout.Error` (`error.Timeout` / `error.Canceled`). On timeout no permit is consumed. `wait`/`waitUncancelable` are unchanged. |
+
+```zig
+var sem: std.Io.Semaphore = .{ .permits = 0 };
+try sem.waitTimeout(io, .{ .duration = .{ .raw = .fromMilliseconds(5), .clock = .awake } });
+sem.post(io);
+```
+
+`Io.Timeout` is `union(enum) { none, duration: Clock.Duration, deadline: Clock.Timestamp }`; `.none` waits forever. No other `std.Io` surface (`Writer`, `Reader`, `Dir`, `File`, `net`, `Group`, `Mutex`, `Condition`, `Event`, `RwLock`, `Select`, `Limit`) changed in 0.17.0. `std.gpu` is not mentioned by this file and is not part of `std.Io`; note that 0.17 renamed `std.gpu` to `std.spirv`.
+
 ---
 
 ## Writergate (0.15)

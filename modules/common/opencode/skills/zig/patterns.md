@@ -2,6 +2,30 @@
 
 Common patterns, idioms, C interop, and production practices in Zig 0.16. Verified against 0.16.0 source.
 
+## Zig 0.17.0 delta
+
+This file documents 0.16.0 APIs; entries below are what changed in 0.17.0 — apply them for 0.17 targets, keep the 0.16 form for 0.16 targets.
+
+| 0.16.0 (still valid for 0.16) | 0.17.0 | notes |
+|-------------------------------|--------|-------|
+| `std.heap.DebugAllocator(.{})` (the old `GeneralPurposeAllocator` name) | `std.heap.SafeAllocator` | `DebugAllocator`/`Check` deprecated, removed after 0.18. `SafeAllocator.init(backing, .{})`; `deinit()` reports leaks; mismatches panic/segfault. |
+| `std.heap.StackFallbackAllocator(N)` / `std.heap.stackFallback(size, backing)` | `std.heap.BufferFirstAllocator` | Buffer is passed in; `stackFallback` removed. Migration snippet below. |
+| `std.fmt.allocPrint(alloc, fmt, args)` | `alloc.print(fmt, args)` | Method on `std.mem.Allocator` (`lib/std/mem/Allocator.zig:506`). |
+| `@bitCast` old array/vector semantics | `@bitCast` reinterprets the "logical bit representation" | Array/vector casts concatenate element bit reps (endian-agnostic); `extern struct`/`extern union` casts disallowed (use `@ptrCast`); enum destinations safety-check tags. No compile error when array/vector behavior changed — audit by hand. Integer<->integer and integer<->packed struct casts are unaffected. |
+| `[1]T{X} ** N` | `@splat(X)` | Array-multiplication syntax removed. |
+| `errdefer \|err\| { ... }` | split into inner fallible fn + `catch \|err\|` | `errdefer` capture removed. |
+| `std.lang.GlobalLinkage.internal` / `.link_once` | removed | Only `.strong` / `.weak` remain; `internal` -> don't `@export`; `link_once` -> `.weak`. |
+| `std.zon.parse.fromSlice` (allocating) | `std.zon.parse.fromSlice(T, .{ .gpa, .arena, .source, .diagnostics })` | `fromSliceAlloc` removed; old `fromSlice` -> `fromSliceNoAlloc`; `updateFrom*` added. |
+| `if (b.args) \|args\| run_cmd.addArgs(args);` | `run_cmd.addPassthruArgs()` | `build.zig` can no longer observe `b.args` at configure time; args are applied at make time. |
+| `std.lang.OptimizeMode.Debug/ReleaseSafe/ReleaseFast/ReleaseSmall` | `std.lang.Optimize.debug/safe/fast/small` | `OptimizeMode` alias deprecated (removed after 0.18); `std.builtin` -> `std.lang`. `builtin.mode` deprecated -> `builtin.optimize`. |
+| `std.meta.fields(T)`; `@typeInfo(T).@"struct"/@"union"/@"enum".fields`; `StructField`/`UnionField`/`EnumField` | `@typeInfo(T).@"struct".field_names` + `.field_types` (+ `.field_attrs`) | Struct/Union/Enum type info is now struct-of-arrays (PR #35234); the `.fields` arrays and the `*Field` structs are gone. `std.meta.fieldInfo`/`fieldNames`/`fieldTypes` deprecated -> `@typeInfo`. |
+
+```zig
+var stack_buf: [1]Item = undefined;
+var stack: std.heap.BufferFirstAllocator = .init(@ptrCast(&stack_buf), gpa);
+const allocator = stack.allocator();
+```
+
 # Zig Patterns Reference
 
 Comprehensive patterns for writing idiomatic Zig code. This reference contains best practices extracted from the Zig standard library (0.15.x) and established community idioms.
@@ -66,6 +90,9 @@ Comprehensive patterns for writing idiomatic Zig code. This reference contains b
 > **Naming convention:** Name allocators by their memory contract (`gpa`, `arena`, `scratch`) not generically as `allocator`. See [Allocator Naming Conventions](stdlib-system.md#allocator-naming-conventions) for details.
 
 #### Allocator Setup
+
+_(0.17: `std.heap.DebugAllocator`/`GeneralPurposeAllocator` are deprecated; use `std.heap.SafeAllocator`. `deinit()` still returns a leak count. The comment below that `GeneralPurposeAllocator` is an alias for `DebugAllocator` is stale since 0.16 — `GeneralPurposeAllocator` was removed entirely; `DebugAllocator` is the 0.16 name. In 0.17 the type for dev builds is `std.heap.SafeAllocator`.)_
+
 ```zig
 // Debug allocator (development - detects leaks, use-after-free)
 // Note: GeneralPurposeAllocator is now an alias for DebugAllocator
@@ -922,6 +949,7 @@ const section = getSection(func_index);  // func_index is FunctionIndex, not Sec
 const section = getSection(section_index);
 
 **Converting to/from the underlying integer:**
+_(0.17: `@enumFromInt`/`@intFromEnum` are deprecated; use `@fromBackingInt`/`@backingInt`. The same applies to every `@enumFromInt`/`@intFromEnum` use in this section. `zig fmt` auto-migrates.)_
 ```zig
 const index: SectionIndex = @enumFromInt(42);
 const raw: u32 = @intFromEnum(index);
@@ -1703,6 +1731,8 @@ b.installArtifact(lib);
 
 ### Cross-Compilation
 
+_(0.17: optimize tags are lowercased: `.fast`/`.safe`/`.small`/`.debug` replace `.ReleaseFast`/`.ReleaseSafe`/`.ReleaseSmall`/`.Debug`.)_
+
 Build for specific targets:
 
 ```zig
@@ -1723,6 +1753,8 @@ const lib = b.addLibrary(.{
 });
 
 ### Multi-Target Build
+
+_(0.17: `.optimize = .fast` (was `.ReleaseFast`).)_
 
 ```zig
 const targets = [_]std.Target.Query{
@@ -2526,6 +2558,8 @@ Capacity baked into type. Stack-allocatable. `unused_capacity_slice` for efficie
 
 ### Static HashMap — Compile-Time Sized (Bun)
 
+_(0.17: `a ** b` array-multiplication is removed; the initializer becomes `= @splat(.{})`.)_
+
 ```zig
 pub fn StaticHashMap(comptime K: type, comptime V: type, comptime capacity: usize) type {
     const shift = 63 - math.log2_int(u64, capacity) + 1;
@@ -2543,6 +2577,8 @@ Power-of-two sizing with bit masking. Overflow area for probe chains. Zero alloc
 ## Concurrency
 
 ### Blocking Queue for Message Passing (Ghostty)
+
+_(0.17 + 0.16: `std.Thread.Mutex`/`std.Thread.Condition` were removed in 0.16 — use `std.Io.Mutex`/`std.Io.Condition` (0.16+) or `std.Io.Semaphore`/`std.Io.Event`; this pre-0.16 pattern only compiles on 0.15.x.)_
 
 ```zig
 pub fn BlockingQueue(comptime T: type, comptime capacity: usize) type {
@@ -2586,6 +2622,8 @@ sync: std.atomic.Value(u32) = .init(@as(u32, @bitCast(Sync{}))),
 Entire sync state fits in one `u32` — CAS updates are all-or-nothing. State machine prevents thundering herd (only one "waking thread" at a time). O(1) task dequeue via work stealing.
 
 ### Platform-Specific Mutex with Debug Tracking (Bun)
+
+_(0.17: `builtin.mode` is deprecated -> `builtin.optimize`; the tag is `.debug`, not `.Debug`.)_
 
 ```zig
 const Impl = if (builtin.mode == .Debug and !builtin.single_threaded)
@@ -2842,6 +2880,7 @@ Validate generic parameters and alignment requirements at compile time. No runti
 
 ### EnumUnionType — Generate Union from Enum (TigerBeetle)
 
+_(0.17: `std.builtin.Type.UnionField` is gone — `@typeInfo(T).@"union"` now exposes `field_names`/`field_types`/`field_attrs`. Note `@Type` itself was already removed in 0.16; build the type with `@typeInfo`/`std.lang.Type` (`std.builtin` is a deprecated alias).)_
 ```zig
 pub fn EnumUnionType(
     comptime Enum: type,
@@ -2903,6 +2942,7 @@ Zero-cost branch elimination. Each specialization is a distinct type with no run
 
 ### Comptime Type Validation (Bun)
 
+_(0.17: `std.meta.fields` is removed; iterate `@typeInfo(Container).@"struct".field_names, .field_types` instead.)_
 ```zig
 pub fn banFieldType(comptime Container: type, comptime T: type) void {
     comptime {
@@ -3009,6 +3049,8 @@ Module-level test references all submodules. Platform-specific tests only compil
 ## Performance
 
 ### Inline Custom Assert (Ghostty)
+
+_(0.17: `builtin.mode` deprecated -> `builtin.optimize`; switch tags are `.debug`, `.small`, `.safe`, `.fast`.)_
 
 ```zig
 pub const inlineAssert = switch (builtin.mode) {

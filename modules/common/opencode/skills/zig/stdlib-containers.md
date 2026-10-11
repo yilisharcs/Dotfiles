@@ -2,6 +2,70 @@
 
 All standard library container types and their usage in Zig 0.16. Verified against 0.16.0 source.
 
+## Zig 0.17.0 delta
+
+This file documents 0.16.0 APIs; entries below are what changed in 0.17.0 — apply them for 0.17 targets, keep the 0.16 form for 0.16 targets.
+
+| 0.16.0 (still valid for 0.16) | 0.17.0 | notes |
+|-------------------------------|--------|-------|
+| `ArrayList.getLast()` | `ArrayList.last().?` | `getLast` deprecated; `last` returns `?T` |
+| `ArrayList.getLastOrNull()` | `ArrayList.last()` | `getLastOrNull` is now an alias of `last` |
+| — | `ArrayList.lastPtr()` | new, returns `?*T` |
+| — | `ArrayList.lockPointers()` / `unlockPointers()` | `SafetyLock`-backed pointer-stability checks (also on `Aligned`) |
+| `std.bit_set.IntegerBitSet` | `std.bit_set.Integer` | old name deprecated |
+| `std.bit_set.ArrayBitSet` | `std.bit_set.Array` | old name deprecated |
+| `std.bit_set.StaticBitSet` / `StaticBitset` | `std.bit_set.Static` | old names deprecated |
+| `std.bit_set.DynamicBitSetUnmanaged` | `std.bit_set.Dynamic` | old name deprecated |
+| `std.bit_set.DynamicBitSet` | `std.bit_set.DynamicManaged` | deprecated |
+| `Integer` / `Array` / `EnumSet.initEmpty()` | `.empty` | now a `pub const`, not a function |
+| `Integer` / `Array` / `EnumSet.initFull()` | `.full` | now a `pub const` |
+| `Dynamic.initEmpty(allocator, len)` / `initFull` | unchanged | still functions, since they need an allocator |
+| `std.DoublyLinkedList.pop` | `std.DoublyLinkedList.popLast` | old name is a deprecated alias |
+| `std.heap.DebugAllocator` / `std.heap.Check` | `std.heap.SafeAllocator` | deprecated; see below |
+| `std.heap.StackFallbackAllocator` / `std.heap.stackFallback` | `std.heap.BufferFirstAllocator` | removed; see below |
+| `std.heap.memory_pool.AlignedManaged` | `std.heap.memory_pool.Aligned` | removed |
+| `std.heap.memory_pool.ExtraManaged` | `std.heap.memory_pool.Extra` | removed |
+| `ArrayHashMap.setKey` | unchanged | no longer recomputes the whole index |
+| `HashMap` / `ArrayHashMap` stored pointers | `lockPointers()` / `unlockPointers()` | present since 0.16; now uses `SafetyLock.lockShared`/`unlockShared` |
+
+### std.heap.SafeAllocator (replaces DebugAllocator / Check)
+
+`std.heap.DebugAllocator` and `std.heap.Check` are deprecated in 0.17. `std.heap.SafeAllocator` is a thread-safe replacement with these guarantees:
+
+- `deinit` reports all leaks and frees all backing memory.
+- All allocation mismatches result in a panic or segmentation fault; allocations from another `SafeAllocator` panic when `Options.canary` differ.
+- Double frees and resize/remap/free races panic or segmentation fault.
+- Every allocation is trailed by a checksummed `AllocFooter`; the backing allocator does not reuse memory, so most writes after free segfault or are eventually detected.
+- Tested under TSAN; two fuzz tests were added.
+
+`std.testing.allocator` is now a `SafeAllocator` (see stdlib-debug.md).
+
+### std.heap.BufferFirstAllocator (replaces StackFallbackAllocator)
+
+`std.heap.StackFallbackAllocator` is renamed to `std.heap.BufferFirstAllocator`, and `std.heap.stackFallback` is removed. The buffer is now an argument, its alignment is specifiable via the buffer type, and the type is no longer generic over the buffer size.
+
+```zig
+// 0.16
+var stack align(@max(
+    @alignOf(std.heap.StackFallbackAllocator(0)),
+    @alignOf(Item)),
+) = std.heap.stackFallback(@sizeOf(Item), self.gpa);
+const allocator = stack.get();
+
+// 0.17
+var stack_buf: [1]Item = undefined;
+var stack: std.heap.BufferFirstAllocator = .init(@ptrCast(&stack_buf), gpa);
+const allocator = stack.allocator();
+```
+
+### memory_pool managed variants removed
+
+`std.heap.memory_pool.AlignedManaged` and `ExtraManaged` are removed; use `Aligned` / `Extra`, which take the allocator per call.
+
+### ArrayList pointer-stability locks
+
+0.17 adds `lockPointers()` / `unlockPointers()` to `ArrayList` (and `Aligned`), backed by `std.debug.SafetyLock`. While locked, any method that would invalidate an element pointer asserts instead. Because `ArrayList` is ordered, `orderedRemove()` and `pop()` also assert after `lockPointers()` even though they do not allocate. This is a bug-detection aid; it does not add a new pointer-stability guarantee.
+
 # std.ArrayList
 
 Dynamic array (vector) that grows as needed.
@@ -39,8 +103,9 @@ list.appendSliceAssumeCapacity(&[_]u32{1, 2, 3});
 // Access items
 const items = list.items;  // []T slice
 const first = list.items[0];
-const last = list.getLast();  // returns ?T
+const last = list.getLast();  // returns ?T  _(0.17: `getLast` deprecated; `last()` returns `?T`, use `last().?` for `T`)_
 const popped = list.pop();    // returns ?T, removes last
+// _(0.17: new `list.lastPtr()` returns `?*T`)_
 
 // Insert at index
 try list.insert(allocator, 2, value);
@@ -539,7 +604,7 @@ pub fn main() !void {
 - `orderedRemove` preserves order but is O(n)
 - Use `store_hash=true` when `eql` is expensive
 - Keys/values are stored in `MultiArrayList` (cache-friendly)
-- Pointer stability only guaranteed with pre-allocated capacity
+- Pointer stability only guaranteed with pre-allocated capacity  _(0.17: `ArrayHashMap` also has `lockPointers()`/`unlockPointers()` for `SafetyLock`-checked pointer stability)_
 # std.MultiArrayList
 
 Struct-of-Arrays container for cache-efficient struct storage. Stores each field in a separate contiguous array, reducing padding overhead and improving cache locality when accessing individual fields.
@@ -707,7 +772,7 @@ list.insertBefore(&a.node, &c.node);  // insert c before a
 
 // Remove
 list.remove(&a.node);         // O(1) remove specific node
-const last = list.pop();      // remove and return last
+const last = list.pop();      // remove and return last  _(0.17: `pop` deprecated -> `popLast`)_
 const first = list.popFirst(); // remove and return first
 
 // Get data from node
@@ -814,7 +879,7 @@ fn access(key: []const u8) ?*Entry {
 }
 
 fn evictOldest() void {
-    if (lru_list.pop()) |node| {
+    if (lru_list.pop()) |node| {  // _(0.17: `popLast`)_
         const entry: *Entry = @fieldParentPtr("node", node);
         _ = entries.remove(entry.key);
         // free entry
@@ -1162,21 +1227,21 @@ Densely stored sets of integers with efficient set operations (union, intersecti
 
 | Type | Size | Allocation |
 |------|------|------------|
-| `IntegerBitSet(N)` | Compile-time, N <= 128 | None (single integer) |
-| `ArrayBitSet(usize, N)` | Compile-time, any N | None (array) |
-| `StaticBitSet(N)` | Compile-time | Auto-selects Integer or Array |
-| `DynamicBitSet` | Runtime | Allocator (managed) |
-| `DynamicBitSetUnmanaged` | Runtime | Allocator (unmanaged) |
+| `IntegerBitSet(N)` _(0.17: `Integer`)_ | Compile-time, N <= 128 | None (single integer) |
+| `ArrayBitSet(usize, N)` _(0.17: `Array`)_ | Compile-time, any N | None (array) |
+| `StaticBitSet(N)` _(0.17: `Static`)_ | Compile-time | Auto-selects Integer or Array |
+| `DynamicBitSet` _(0.17: `DynamicManaged`, deprecated)_ | Runtime | Allocator (managed) |
+| `DynamicBitSetUnmanaged` _(0.17: `Dynamic`)_ | Runtime | Allocator (unmanaged) |
 
 ## Static Bit Set (Compile-Time Size)
 
 ```zig
 const std = @import("std");
 
-// StaticBitSet auto-selects best implementation
+// StaticBitSet auto-selects best implementation  _(0.17: renamed `Static`)_
 const Flags = std.StaticBitSet(64);
 
-var flags = Flags.initEmpty();
+var flags = Flags.initEmpty();  // _(0.17: `initEmpty()` -> `.empty`)_
 flags.set(5);
 flags.set(10);
 
@@ -1192,7 +1257,7 @@ const count = flags.count();  // number of set bits
 ## Dynamic Bit Set (Runtime Size)
 
 ```zig
-var bits = try std.DynamicBitSet.initEmpty(allocator, 1000);
+var bits = try std.DynamicBitSet.initEmpty(allocator, 1000);  // _(0.17: `DynamicBitSet` -> `DynamicManaged` (deprecated); `Dynamic.initEmpty` keeps this signature)_
 defer bits.deinit();
 
 bits.set(42);
@@ -1209,8 +1274,8 @@ defer copy.deinit();
 ## Set Operations
 
 ```zig
-var a = Flags.initEmpty();
-var b = Flags.initEmpty();
+var a = Flags.initEmpty();  // _(0.17: `.empty`)_
+var b = Flags.initEmpty();  // _(0.17: `.empty`)_
 a.set(1); a.set(2);
 b.set(2); b.set(3);
 
@@ -1244,7 +1309,7 @@ if (a.supersetOf(b)) {
 ## Iteration
 
 ```zig
-var flags = Flags.initEmpty();
+var flags = Flags.initEmpty();  // _(0.17: `.empty`)_
 flags.set(1); flags.set(5); flags.set(10);
 
 // Iterate set bits (ascending order by default)
@@ -1292,7 +1357,7 @@ flags.toggleAll();  // flip every bit
 
 ```zig
 // For when you don't want to store the allocator
-var bits: std.DynamicBitSetUnmanaged = .{};
+var bits: std.DynamicBitSetUnmanaged = .{};  // _(0.17: renamed `std.bit_set.Dynamic`)_
 try bits.resize(allocator, 100, false);
 defer bits.deinit(allocator);
 
@@ -1311,7 +1376,7 @@ const Permission = enum(u8) {
     admin = 4,
 };
 
-const Permissions = std.StaticBitSet(8);
+const Permissions = std.StaticBitSet(8);  // _(0.17: `Static`)_
 
 fn hasPermission(perms: Permissions, p: Permission) bool {
     return perms.isSet(@intFromEnum(p));
@@ -1326,11 +1391,11 @@ fn revoke(perms: *Permissions, p: Permission) void {
 }
 
 pub fn main() void {
-    var user_perms = Permissions.initEmpty();
+    var user_perms = Permissions.initEmpty();  // _(0.17: `.empty`)_
     grant(&user_perms, .read);
     grant(&user_perms, .write);
 
-    var admin_perms = Permissions.initFull();
+    var admin_perms = Permissions.initFull();  // _(0.17: `.full`)_
 
     // Check if user has all admin permissions
     if (user_perms.subsetOf(admin_perms)) {
@@ -1343,9 +1408,9 @@ pub fn main() void {
 
 ## Notes
 
-- `StaticBitSet` is zero-allocation, copyable by value
-- `DynamicBitSet` requires allocation, call `deinit()`
-- `initFull()` creates set with all bits set
+- `StaticBitSet` is zero-allocation, copyable by value  _(0.17: `Static`)_
+- `DynamicBitSet` requires allocation, call `deinit()`  _(0.17: `DynamicManaged`, deprecated; `Dynamic` is unmanaged)_
+- `initFull()` creates set with all bits set  _(0.17: `Integer`/`Array` use `.full`; `Dynamic` keeps `initFull`)_
 - Iteration order is index order, not insertion order
 - Use `std.enums.EnumSet` for enum-based bit flags
 # std.enums
@@ -1363,8 +1428,8 @@ const Color = enum { red, green, blue, yellow };
 const ColorSet = std.enums.EnumSet(Color);
 
 // Initialize
-var colors = ColorSet.initEmpty();
-var all = ColorSet.initFull();
+var colors = ColorSet.initEmpty();  // _(0.17: `.empty`)_
+var all = ColorSet.initFull();  // _(0.17: `.full`)_
 
 // Struct-style init
 var primary = ColorSet.init(.{
@@ -1583,7 +1648,7 @@ fn canAccess(user: User, required: Permissions) bool {
 pub fn main() void {
     const admin = User{
         .name = "admin",
-        .perms = Permissions.initFull(),
+        .perms = Permissions.initFull(),  // _(0.17: `.full`)_
     };
 
     const reader = User{
@@ -1633,7 +1698,7 @@ pub fn main() void {
 - `EnumMap`: Sparse, only stores present values
 - `EnumArray`: Dense, all values always present
 - All are fixed-size, zero-allocation, copyable by value
-- Use `std.StaticBitSet` for non-enum integer sets
+- Use `std.StaticBitSet` for non-enum integer sets  _(0.17: `std.bit_set.Static`)_
 - Works with non-exhaustive enums (explicit fields only)
 # std.Treap
 

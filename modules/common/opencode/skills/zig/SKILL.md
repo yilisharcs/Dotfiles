@@ -1,20 +1,25 @@
 ---
 name: zig
-description: Guide to Zig 0.16.0 stable programming language. Use when writing, reviewing, or debugging Zig code, working with build.zig and build.zig.zon files, using comptime metaprogramming, or when the user mentions zig. Critical for avoiding outdated patterns from training data — especially std.net→std.Io.net, @Type removal, std.io→std.Io (Writergate), std.time timestamps removed, std.Thread.Mutex/Condition/sleep removed, std.crypto.random removed, build system APIs (root_module, Compile→Module), ArrayList unmanaged by default, and removed language features (async/await, usingnamespace).
+description: Guide to Zig 0.16.0 and 0.17.0 (0.17 changes marked as deltas in each file). Use when writing, reviewing, or debugging Zig code, working with build.zig or build.zig.zon, using comptime metaprogramming, or when the user mentions zig. Corrects outdated pre-0.15 API patterns from LLM training data.
 metadata:
-  version: "0.16.0"
+  version: "0.16.0 / 0.17.0"
   language: "zig"
   category: "programming-language"
 ---
 
-# Zig 0.16.0 Stable Reference
+# Zig 0.16.0 Stable Reference (with 0.17.0 deltas)
 
-This skill targets **Zig 0.16.0 stable**. All API references verified against the
-[0.16.0 source](https://codeberg.org/ziglang/zig/src/tag/0.16.0) and
-[release notes](https://ziglang.org/download/0.16.0/release-notes.html).
+This skill targets **Zig 0.16.0 stable** and documents **0.17.0 as labelled
+deltas**. Every reference file starts with a `## Zig 0.17.0 delta` section:
+apply those entries for 0.17 targets, keep the 0.16 form for 0.16 targets.
+Verified against the [0.16.0 source](https://codeberg.org/ziglang/zig/src/tag/0.16.0),
+the [0.17.0 source](https://codeberg.org/ziglang/zig/src/tag/0.17.0), the
+[0.16.0 release notes](https://ziglang.org/download/0.16.0/release-notes.html),
+and the [0.17.0 release notes](https://ziglang.org/download/0.17.0/release-notes.html).
 
 LLM training data typically covers Zig 0.11–0.14. Nearly every stdlib API has
-changed since then. Always verify against this skill before generating Zig code.
+changed since then. Always verify against this skill before generating Zig code,
+and match the user's Zig version before picking a form.
 
 ## Quick Old→New Translation
 
@@ -40,6 +45,40 @@ changed since then. Always verify against this skill before generating Zig code.
 | `ArrayList.init(alloc)` | `ArrayList.empty` or `ArrayList.initCapacity(alloc, n)` |
 | `GeneralPurposeAllocator` | `DebugAllocator` |
 | `BoundedArray` | `std.ArrayList(T).initBuffer(&buf)` |
+
+## 0.16 → 0.17 Quick Translation
+
+Valid only for 0.17 targets; for 0.16 projects keep the 0.16 form:
+
+| 0.16 | 0.17 |
+|------|------|
+| `std.builtin.*` | `std.lang.*` (alias deprecated, removed after 0.18) |
+| `std.gpu` | `std.spirv` (no alias) |
+| `std.lang.OptimizeMode.Debug` / `.ReleaseSafe` / `.ReleaseFast` / `.ReleaseSmall` | `std.lang.Optimize.debug` / `.safe` / `.fast` / `.small` |
+| `@import("builtin").mode` | `@import("builtin").optimize` (tags lowercased) |
+| `@import("builtin").cpu/.os/.abi/.object_format` | `@import("builtin").target.cpu/.os/.abi/.ofmt` |
+| `@typeInfo(T).@"struct".fields` | `field_names` + `field_types` + `field_attrs` (struct-of-arrays; Struct/Union/Enum) |
+| `@intFromEnum` / `@enumFromInt` | `@backingInt` / `@fromBackingInt` |
+| `@Type` (deprecated) | removed — use `@Int`/`@Struct`/`@Union`/`@Enum`/`@Pointer`/`@Fn`/`@Tuple`/`@EnumLiteral` |
+| `[1]T{X} ** N` | `@splat(X)` (`**` syntax removed) |
+| `std.fmt.allocPrint(a, ...)` / `allocPrintSentinel` | `a.print(...)` / `a.printSentinel(...)` |
+| `GeneralPurposeAllocator` / `DebugAllocator` | `std.heap.SafeAllocator` (`DebugAllocator`/`Check` deprecated) |
+| `std.heap.StackFallbackAllocator` / `stackFallback` | `std.heap.BufferFirstAllocator` (`stackFallback` removed) |
+| `ArrayList.getLast()` / `getLastOrNull()` | `ArrayList.last()` (`?T`); new `lastPtr()` (`?*T`) |
+| `DoublyLinkedList.pop()` | `popLast()` |
+| `std.bit_set.IntegerBitSet`/`ArrayBitSet`/`StaticBitSet`/`DynamicBitSetUnmanaged`/`DynamicBitSet` | `Integer`/`Array`/`Static`/`Dynamic`/`DynamicManaged` |
+| `containsAtLeastScalar(T, list, minimum, element)` | `containsAtLeastScalar(T, list, element, minimum)` (params swapped — silent footgun) |
+| `readPackedIntNative/Foreign` / `writePackedIntNative/Foreign` | `readPackedInt` / `writePackedInt` |
+| `std.zon.parse.fromSlice(T, alloc, src, &diag, .{})` | `fromSlice(T, .{ .gpa, .arena, .source, .diagnostics })`; `free` removed (arena-owned) |
+| `Uri.getHost` | `std.Io.net.HostName.fromUri(uri, &buf)` (`getHostAlloc` removed) |
+| `errdefer |err|` | removed — split into inner fallible fn + `catch |err|` |
+| `@cImport` / `b.addTranslateC` | external `codeberg.org/ziglang/translate-c` package |
+| `if (b.args) \|args\| addArgs(args)` | `run_cmd.addPassthruArgs()` |
+| `b.build_root` | `b.root` |
+| `LazyPath.getDisplayName()` / `LazyPath.basename` | `format` / `{f}` / (basename removed) |
+| `addArtifactArg`/`addOutputFileArg`/`addFileArg`/... | `addArtifactArg2`/`addOutputFileArg2`/`addFileArg2`/... |
+| `b.findProgram` | `findProgram` (poisons config cache) vs `findProgramLazy` (LazyPath) |
+| `lazyDependency` | `dependencyLazy` (returns `error.LazyDependencyNeeded`) |
 
 ## Common Compiler Errors → Fixes
 
@@ -69,6 +108,21 @@ changed since then. Always verify against this skill before generating Zig code.
 | `no field named 'open'` on HTTP | Use `client.request()` or `client.fetch()` |
 | `expected error union, found Signature` | `Ed25519.Signature.fromBytes()` doesn't return error — remove `try` |
 | `addSharedLibrary` not found | Use `b.addLibrary(.{ .linkage = .dynamic, ... })` |
+| `signed integer division` | Use `@divTrunc(a, b)` (or `@divCeil` (0.17) / `@divFloor`) not `a / b` |
+
+0.17-specific errors (for 0.17 builds only; full table in [errors.md](errors.md)):
+
+| Error | Fix |
+|-------|-----|
+| `**` (array multiplication) | `@splat(0)`: `var a: [N]u8 = @splat(0);` |
+| `void{}` | `{}` |
+| `errdefer` capture | Split into inner fallible fn + `catch \|err\|` |
+| `no member 'cImport'` | translate-c package: `zig fetch --save git+https://codeberg.org/ziglang/translate-c` |
+| old `.Debug`/`.ReleaseSafe` tag in `==` | `std.lang.Optimize` lowercase tags `.debug`/`.safe`/`.fast`/`.small` |
+| `.fields` gone from `@typeInfo` struct/union/enum | `field_names`/`field_types`/`field_attrs` (struct-of-arrays) |
+| `StackFallbackAllocator`/`stackFallback` | `std.heap.BufferFirstAllocator` (buffer is now an argument) |
+| `b.args` not a field | `run_cmd.addPassthruArgs()` |
+| `var diag.deinit` in `std.zon.parse` | arena-owned; `Diagnostics.fmt`/`.log`/`.fatal` |
 
 ## Additional References
 
