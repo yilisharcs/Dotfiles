@@ -5,6 +5,7 @@ in {
     {
       # Shell extension for (un)loading environment variables based on the current directory.
       programs.direnv = enabled {
+        enableGitIntegration = true;
         nix-direnv = enabled;
         config.global = {
           load_dotenv = true;
