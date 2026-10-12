@@ -60,14 +60,14 @@ in {
           ''
             def --wrapped * [program: string = "", ...arguments] {
               if ($program | str contains "#") or ($program | str contains ":") {
-                nix run $program -- ...$arguments
+                nix run --accept-flake-config $program -- ...$arguments
               } else {
-                nix run ("default#" + $program) -- ...$arguments
+                nix run --accept-flake-config ("default#" + $program) -- ...$arguments
               }
             }
 
             def --wrapped > [...programs: string] {
-              nix shell ...($programs | each {
+              nix shell --accept-flake-config ...($programs | each {
                 if ($in | str contains "#") or ($in | str contains ":") {
                   $in
                 } else {
@@ -77,7 +77,7 @@ in {
             }
 
             def at [pkg: string] {
-              nix build $"($env.HOME)/Dotfiles#($pkg)" --no-link --print-out-paths
+              nix build --accept-flake-config $"($env.HOME)/Dotfiles#($pkg)" --no-link --print-out-paths
             }
           '';
         settings = {

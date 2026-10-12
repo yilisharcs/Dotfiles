@@ -80,8 +80,10 @@
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
-      legacyPackages.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.appendOverlays [
-        self.overlays.default
-      ];
+      legacyPackages.x86_64-linux = import nixpkgs {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+        overlays = [self.overlays.default];
+      };
     };
 }

@@ -12,7 +12,7 @@ in {
   nix.registry =
     inputs
     |> filterAttrs (_: isType "flake")
-    |> (r: r // {default = inputs.nixpkgs;})
+    |> (r: r // {default = self;})
     |> mapAttrs (_: flake: {inherit flake;});
 
   nix.gc = {
