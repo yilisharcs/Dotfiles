@@ -26,7 +26,7 @@ vim.keymap.set("n", "<leader>i", function()
         cmd = "jjui",
         direction = "tab",
         display_name = "JJUI",
-        count = 2,
+        count = 9,
         dir = vim.fn.getcwd(),
     }):open()
 end, { desc = "Toggle Jujutsu UI terminal" })
