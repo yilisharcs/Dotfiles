@@ -56,6 +56,7 @@ vim.o.spelllang = "en_us"
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.linebreak = true
+vim.o.wrap = false
 vim.o.scrolloff = 4
 vim.o.sidescrolloff = 4
 
