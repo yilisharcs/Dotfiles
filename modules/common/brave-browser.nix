@@ -48,7 +48,6 @@ in {
       "cofdbpoegempjloogbagkncekinflcnj"
       "ghmbeldphafepmbegfdlkpapadhbakde"
       "eninkmbmgkpkcelmohdlgldafpkfpnaf"
-      "fakeocdnmmmnokabaiflppclocckihoj"
       "hnmpcagpplmpfojmgmnngilcnanddlhb"
       "kkmlkkjojmombglmlpbpapmhcaljjkde"
     ];
@@ -61,7 +60,6 @@ in {
       "cofdbpoegempjloogbagkncekinflcnj".toolbar_pin = "default_unpinned"; # DeepL
       "ghmbeldphafepmbegfdlkpapadhbakde".toolbar_pin = "force_pinned"; # Proton Pass
       "eninkmbmgkpkcelmohdlgldafpkfpnaf".toolbar_pin = "default_unpinned"; # Reddit untranslate
-      "fakeocdnmmmnokabaiflppclocckihoj".toolbar_pin = "default_unpinned"; # Sprucemarks
       "hnmpcagpplmpfojmgmnngilcnanddlhb".toolbar_pin = "force_pinned"; # Windscribe
       "kkmlkkjojmombglmlpbpapmhcaljjkde".toolbar_pin = "default_unpinned"; # Zhongwen_Zh_En_Dictionary
     };
