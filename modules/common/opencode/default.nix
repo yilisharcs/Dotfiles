@@ -29,6 +29,13 @@
       ["--skip-install"]
       ["--skip-install --skip-embed-web-ui"]
       old.buildPhase;
+
+    # not a single clanker gets to tell me "NO"
+    postPatch =
+      (old.postPatch or "")
+      + ''
+        cp ${./plan.1-18-29.txt} packages/opencode/src/session/prompt/plan.txt
+      '';
   });
 
   opencode-wrapped = pkgs.writeShellScriptBin "opencode" ''
