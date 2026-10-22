@@ -249,6 +249,11 @@ in {
             desc = "Go to Wine C: drive";
           }
           {
+            on = ["g" "W"];
+            run = "cd ~/.local/share/Steam/steamapps/common";
+            desc = "Go to Steam library";
+          }
+          {
             on = ["g" "y"];
             run = "cd ~/Games/.games";
           }
