@@ -133,6 +133,7 @@ vim.cmd.colorscheme("moyin")
 vim.filetype.add({
     extension = {
         fasm = "fasm",
+        h = "c",
         log = "log",
         xxd = "xxd",
     },

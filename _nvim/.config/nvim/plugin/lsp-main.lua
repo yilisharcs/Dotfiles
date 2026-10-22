@@ -1,6 +1,7 @@
 local hostname = vim.fn.system("uname -n"):gsub("\n", "")
 
 local servers = {
+    "clangd",
     "fennel-ls",
     "jdtls",
     "luals",
