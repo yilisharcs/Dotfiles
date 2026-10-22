@@ -81,7 +81,7 @@ in {
             "quick notes". A response either discusses the user's topic or it does not
             exist.
           - Banned AI-signal phrases, never in any response:
-              * "say the word", "you're absolutely right"
+              * "say the word", "say go", "you're absolutely right"
               * closers: "I hope this helps", "I hope this answers your question",
                 "Let me know if you need anything else", "Feel free to reach out",
                 "Don't hesitate to ask", "Is there anything else I can help you with?",
