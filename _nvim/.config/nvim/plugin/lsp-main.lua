@@ -81,7 +81,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         if client.server_capabilities.inlayHintProvider then
-            map("n", "<C-,>", function()
+            map("n", "\\", function()
                 if vim.lsp.inlay_hint.is_enabled({
                     bufnr = args.buf,
                 }) then
