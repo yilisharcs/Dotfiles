@@ -45,6 +45,7 @@ in {
 
       programs.jjui = enabled {
         settings = {
+          preview.position = "bottom";
           ui.colors.selected = {
             bg = "#1e1829";
             fg = "#8cf8f7";
@@ -112,6 +113,7 @@ in {
             origin."fetch-bookmarks" = "(dev | master | main)";
             upstream."fetch-bookmarks" = "(master | main)";
           };
+          templates.log = "builtin_log_oneline";
           templates.draft_commit_description =
             /*
             python
