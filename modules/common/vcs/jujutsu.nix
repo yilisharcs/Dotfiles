@@ -62,6 +62,26 @@ in {
               key = "ctrl+j";
               scope = "revisions.inline_describe";
             }
+            {
+              action = "revisions.page_up";
+              key = "ctrl+u";
+              scope = "revisions";
+            }
+            {
+              action = "revisions.page_down";
+              key = "ctrl+d";
+              scope = "revisions";
+            }
+            {
+              action = "ui.preview_scroll_up";
+              key = "ctrl+k";
+              scope = "ui.preview";
+            }
+            {
+              action = "ui.preview_scroll_down";
+              key = "ctrl+j";
+              scope = "ui.preview";
+            }
           ];
         };
       };
