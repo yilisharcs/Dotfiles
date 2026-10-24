@@ -4,7 +4,7 @@ end
 
 ---@type quarrel.Opts
 vim.g.quarrel = {
-    use_vcs = true,
+    use_vcs = false,
     notify = false,
     blacklist = {
         "/home/yilisharcs/.local/state/nvim/quarrel",
