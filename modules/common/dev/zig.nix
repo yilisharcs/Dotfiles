@@ -1,9 +1,15 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: let
+  zigLatest = inputs.nixpkgs-zig.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+in {
   home-manager.sharedModules = [
     {
       home.packages = [
-        pkgs.zig # Zig toolchain
-        pkgs.zls # Zig LSP
+        zigLatest.zig_0_17 # Zig toolchain
+        zigLatest.zls_0_17 # Zig LSP
       ];
     }
   ];
