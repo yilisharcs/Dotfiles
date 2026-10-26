@@ -37,7 +37,7 @@ vim.keymap.set("n", "<F6>", function()
             "RainbowDelimiterCyan:RainbowHide",
         }, ",")
     end
-end)
+end, { desc = "Toggle parenthesis visibility" })
 
 -- mini.pairs {{{
 vim.keymap.set("i", "'", "'", { buffer = true })

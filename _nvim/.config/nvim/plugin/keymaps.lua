@@ -125,7 +125,7 @@ vim.keymap.set("n", "<F6>", function()
         vim.b.toggle_comment_hl = true
         vim.wo[0][0].winhighlight = "Comment:CommentHide"
     end
-end)
+end, { desc = "Toggle comment visibility" })
 
 vim.keymap.set("n", "<F9>", "<CMD>Inspect<CR>", { desc = "Inspect element under cursor" })
 vim.keymap.set("n", "<leader><F9>", "<CMD>InspectTree<CR>", { desc = "Inspect treesitter AST" })
