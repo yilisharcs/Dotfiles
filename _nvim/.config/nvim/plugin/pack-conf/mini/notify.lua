@@ -10,11 +10,14 @@ require("mini.notify").setup({
 })
 _G.MiniNotify = MiniNotify
 
--- suppress luals progress spam
+-- suppress lsp spam
 local ignore_progress = {
+    -- luals
     "Diagnosing",
     "Diagnosing workspace",
     "Processing full semantic tokens",
+    -- zls
+    "Loading build configuration",
 }
 local Client = require("vim.lsp.client")
 ---@diagnostic disable-next-line: invisible
