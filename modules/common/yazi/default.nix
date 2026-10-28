@@ -163,22 +163,32 @@ in {
 
           # Goto
           {
+            on = ["g" "f"];
+            run = "follow";
+            desc = "Follow hovered symlink";
+          }
+          {
+            on = ["g" "h"];
+            run = "cd ~";
+            desc = "Go HOME";
+          }
+
+          {
             on = ["g" "/"];
             run = "cd /";
             desc = "Go to root directory";
           }
           {
             on = ["g" "a"];
-            run = "cd ~/Projects/github.com/yilisharcs/";
+            run = "cd ~/Projects/github.com/yilisharcs";
+          }
+          {
+            on = ["g" "A"];
+            run = "cd ~/Projects/codeberg.org/yilisharcs";
           }
           {
             on = ["g" "b"];
-            run = "cd ~/Shared/notebook";
-          }
-          # TODO: delete this
-          {
-            on = ["g" "B"];
-            run = "cd ~/Shared/notebook/vault";
+            run = "cd ~/Shared";
           }
           {
             on = ["g" "c"];
@@ -193,29 +203,12 @@ in {
             run = "cd ~/Documents";
           }
           {
-            on = ["g" "E"];
-            run = "cd ~/Documents/Archivum";
-          }
-          {
-            on = ["g" "f"];
-            run = "follow";
-            desc = "Follow hovered symlink";
-          }
-          {
             on = ["g" "i"];
             run = "cd ~/Pictures";
           }
           {
-            on = ["g" "k"];
-            run = "cd /nix/store";
-          }
-          {
             on = ["g" "l"];
             run = "cd ~/Dotfiles";
-          }
-          {
-            on = ["g" "m"];
-            run = "cd ~/Music";
           }
           {
             on = ["g" "n"];
@@ -231,21 +224,12 @@ in {
             run = "cd ~/Projects";
           }
           {
-            on = ["g" "s"];
-            run = "cd ~/Projects/github.com/sonicretro/skdisasm/";
-            desc = "Go to S3K disassembly";
-          }
-          {
-            on = ["g" "u"];
-            run = "cd ~/Library";
-          }
-          {
             on = ["g" "v"];
             run = "cd ~/Videos";
           }
           {
             on = ["g" "w"];
-            run = "cd ~/.wine/drive_c";
+            run = "cd ~/.wine/drive_c/users";
             desc = "Go to Wine C: drive";
           }
           {
