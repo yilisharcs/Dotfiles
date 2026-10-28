@@ -5,11 +5,9 @@
         CORE = [
           pkgs.bc # GNU arbitrary-precision calculator
           pkgs.binutils # Tools for manipulating binaries. Provides `strings`, etc.
+          pkgs.bsdiff # Efficient binary diff/patch tool
           pkgs.curl # Command line tool for transferring files with URL syntax
-          pkgs.fasm # x86(-64) macro assembler to binary, MZ, PE, COFF, and ELF
           pkgs.file # Determine file type
-          pkgs.gcc.man # GNU Compiler Collection Manpages
-          pkgs.gnumake # A program for directing recompilation
           pkgs.radare2 # UNIX-like reverse engineering framework and command-line toolset
           pkgs.stow # Symlink farm manager
           pkgs.strace # System call tracer for Linux
@@ -27,22 +25,16 @@
         ];
 
         MISC = [
-          pkgs.audacity # Sound editor with graphical UI
-          pkgs.bsdiff # Efficient binary diff/patch tool
-          pkgs.ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
-          pkgs.hyperfine # Benchmarking cli tool
+          pkgs.gcc.man # GNU Compiler Collection Manpages
+          pkgs.gnumake # A program for directing recompilation
+          pkgs.hyperfine # Command-line benchmarking tool
           pkgs.imagemagick # Software suite to create, edit, compose, or convert bitmap images
           pkgs.inotify-tools # Inotify toolbox. Provides `inotifywait`.
           pkgs.libreoffice # Office productivity suite
           pkgs.pastel # Command-line tool to generate, analyze, convert and manipulate colors
-          pkgs.pciutils # Provides `lspci`
           pkgs.proton-vpn
-          pkgs.reuse # Tool for compliance with the REUSE Initiative recommendations
-          pkgs.testdisk # Data recovery utilities
-          pkgs.tinycc # Small, fast, and embeddable C compiler and interpreter
           pkgs.tokei # Count your code, quickly
           pkgs.tree # Command to produce a depth indented directory listing
-          pkgs.w3m # Text-mode web browser
           pkgs.wl-clipboard # Command-line copy/paste utilities for Wayland
         ];
 
