@@ -60,7 +60,6 @@ vim.g.cme = {
         ["buffer"] = { "just" },
         [efm.rust] = { "cargo", "just" },
         [efm.typst] = { "typst" },
-        [vim.o.grepformat] = { "task", "./lua/tafsk/init.lua" },
     },
     modifiers = {
         rg = "--vimgrep",
