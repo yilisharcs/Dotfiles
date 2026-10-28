@@ -256,10 +256,6 @@ in {
           }
         ];
         theme = {
-          # FIXME: these are only necessary because kmscon doesn't use the
-          #        ghostty approach for box and block characters. they are
-          #        not glyphs! they shouldn't be treated the same! on that
-          #        note, TODO: patch kmscon
           status = {
             sep_left = {
               open = "█";
@@ -353,38 +349,13 @@ in {
                 fg = "#f54d27";
               }
               {
-                name = "Documents";
-                text = "";
-                fg = "#8af19e";
-              }
-              {
                 name = "Dotfiles";
                 text = "";
                 fg = "#8af19e";
               }
               {
-                name = "Downloads";
-                text = "";
-                fg = "#8af19e";
-              }
-              {
                 name = "Games";
                 text = "󰺶";
-                fg = "#8af19e";
-              }
-              {
-                name = "Library";
-                text = "";
-                fg = "#8af19e";
-              }
-              {
-                name = "Music";
-                text = "";
-                fg = "#8af19e";
-              }
-              {
-                name = "Pictures";
-                text = "";
                 fg = "#8af19e";
               }
               {
@@ -397,87 +368,23 @@ in {
                 text = "󱖡";
                 fg = "#c87bff";
               }
-              {
-                name = "Videos";
-                text = "";
-                fg = "#8af19e";
-              }
-            ];
-            prepend_files = [
-              {
-                name = ".exrc";
-                text = "";
-                fg = "#019833";
-              }
-              {
-                name = ".nvimrc";
-                text = "";
-                fg = "#019833";
-              }
-              {
-                name = "maskfile.md";
-                text = "";
-                fg = "#6d8086";
-              }
             ];
             prepend_exts = [
               {
-                name = "asm";
-                text = "";
-                fg = "#0091bd";
-              }
-              {
                 name = "fasm";
-                text = "";
+                text = "";
                 fg = "#0091bd";
               }
-              #
-              {
-                name = "fnlm";
-                text = "";
-                fg = "#fff3d7";
-              }
-              {
-                name = "just";
-                text = "";
-                fg = "#6d8086";
-              }
+              # TODO: remove if merged
               {
                 name = "lemon";
                 text = "";
                 fg = "#ddd06a";
               }
               {
-                name = "love";
-                text = "󰋑";
-                fg = "#ff5faf";
-              }
-              {
-                name = "msgpack";
-                text = "";
-                fg = "#eca517";
-              }
-              {
-                name = "ron";
-                text = "󰠮";
-                fg = "#dea584";
-              }
-              {
                 name = "xxd";
                 text = "";
                 fg = "#019833";
-              }
-              {
-                name = "zon";
-                text = "";
-                fg = "#f69a1b";
-              }
-            ];
-            prepend_conds = [
-              {
-                "if" = "link";
-                text = "";
-                fg = "#6d8086";
               }
             ];
           };
