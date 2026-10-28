@@ -8,6 +8,7 @@
           pkgs.curl # Command line tool for transferring files with URL syntax
           pkgs.fasm # x86(-64) macro assembler to binary, MZ, PE, COFF, and ELF
           pkgs.file # Determine file type
+          pkgs.gcc.man # GNU Compiler Collection Manpages
           pkgs.gnumake # A program for directing recompilation
           pkgs.radare2 # UNIX-like reverse engineering framework and command-line toolset
           pkgs.stow # Symlink farm manager
