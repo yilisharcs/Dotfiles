@@ -25,12 +25,6 @@ lib.nixosSystem' {
     host.battery = enabled;
     host.ghostty.fontSize = 18;
 
-    # VM groups
-    users.users.yilisharcs.extraGroups = [
-      "kvm"
-      "libvirtd"
-    ];
-
     home-manager.users.yilisharcs = {
       home.file.".face.icon".source = ../../avatar/yilisharcs.png;
     };
