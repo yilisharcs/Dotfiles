@@ -3,11 +3,11 @@
   pkgs,
   ...
 }: let
-  inherit (lib) enabled;
+  inherit (lib) disabled;
 in {
   home-manager.sharedModules = [
     ({config, ...}: {
-      programs.fightcade = enabled {
+      programs.fightcade = disabled {
         package = pkgs.fightcade.override {
           firejailProfile = ./fightcade.profile;
         };
