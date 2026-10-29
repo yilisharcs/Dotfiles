@@ -15,9 +15,6 @@ in {
       environment.systemPackages = [
         pkgs.kdePackages.kcharselect # character map
         pkgs.kdePackages.kclock
-        pkgs.kdePackages.kdepim-addons # provides external composer plugin for kmail
-        pkgs.kdePackages.kmail # email client
-        pkgs.kdePackages.kmail-account-wizard
         pkgs.kdePackages.kolourpaint
         pkgs.kdePackages.ksshaskpass
         pkgs.kdePackages.kweather
@@ -209,7 +206,6 @@ in {
                         "applications:com.mitchellh.ghostty.desktop"
                         "applications:brave-browser.desktop"
                         "preferred://filemanager"
-                        "applications:org.kde.kmail2.desktop"
                         "applications:systemsettings.desktop"
                       ]
                       ++ optionals (config.programs.fightcade.enable or false) [
