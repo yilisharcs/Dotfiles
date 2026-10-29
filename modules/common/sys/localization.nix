@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) const genAttrs;
 in {
   i18n.defaultLocale = "C.UTF-8";
@@ -15,4 +19,13 @@ in {
       # "LC_TIME"
     ]
     <| const "pt_BR.UTF-8";
+
+  # trim locales to only-used
+  i18n.glibcLocales = pkgs.glibcLocales.override {
+    locales = ''
+      C.UTF-8/UTF-8
+      en_US.UTF-8/UTF-8
+      pt_BR.UTF-8/UTF-8
+    '';
+  };
 }
