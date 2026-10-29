@@ -48,7 +48,7 @@ in
       cp $src $out/share/${finalAttrs.pname}/sm63game.exe
 
       mkdir -p $out/bin
-      makeWrapper ${wineWow64Packages.stable}/bin/wine $out/bin/${finalAttrs.meta.mainProgram} \
+      makeWrapper ${wineWow64Packages.stableFull}/bin/wine $out/bin/${finalAttrs.meta.mainProgram} \
           --prefix PATH : ${lib.makeBinPath [coreutils]} \
           --run "@BOOTSTRAP@"
 

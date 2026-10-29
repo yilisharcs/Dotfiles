@@ -57,7 +57,7 @@ stdenv.mkDerivation (finalAttrs: {
       -o $out/share/icons/hicolor/32x32/apps/${finalAttrs.pname}.png
 
     mkdir -p $out/bin
-    makeWrapper ${wineWow64Packages.stable}/bin/wine $out/bin/${finalAttrs.pname} \
+    makeWrapper ${wineWow64Packages.stableFull}/bin/wine $out/bin/${finalAttrs.pname} \
       --add-flags "$out/share/${finalAttrs.pname}/${finalAttrs.pname}.exe"
 
     runHook postInstall # Needed to insert the desktop file

@@ -54,7 +54,7 @@
   fhsEnv = buildFHSEnv {
     name = "fightcade-fhs";
     targetPkgs = pkgs: [
-      wineWow64Packages.stable
+      wineWow64Packages.stableFull
       zenity
     ];
     runScript = "bash";

@@ -13,6 +13,8 @@
   blastem,
   replaceVars,
 }: let
+  wine = wineWow64Packages.stableFull;
+
   buildBridge = replaceVars ./templates/build-bridge.bat {
     direnv = lib.getExe direnv;
     just = lib.getExe just;
@@ -70,8 +72,8 @@ in
         -o $out/share/icons/hicolor/128x128/apps/${finalAttrs.pname}.png
 
       mkdir -p $out/bin
-      makeWrapper ${wineWow64Packages.stableFull}/bin/wine $out/bin/${finalAttrs.pname} \
-        --prefix PATH : ${lib.makeBinPath [coreutils wineWow64Packages.stableFull]} \
+      makeWrapper ${wine}/bin/wine $out/bin/${finalAttrs.pname} \
+        --prefix PATH : ${lib.makeBinPath [coreutils wine]} \
         --run "@BOOTSTRAP@"
 
       runHook postInstall # Needed to insert the desktop file
@@ -89,7 +91,7 @@ in
            && cp --remove-destination "$(readlink -f "$dir/SonLVL.ini")" "$dir/SonLVL.ini" \
            && chmod +w "$dir/SonLVL.ini"; \
          if [ ! -d "$dir/.wine" ]; then \
-           wine msiexec /i "${wineWow64Packages.stableFull}/share/wine/mono/wine-mono-10.0.0-x86.msi" /quiet; \
+           wine msiexec /i "${wine}/share/wine/mono/wine-mono-10.0.0-x86.msi" /quiet; \
            wineserver -w; \
          fi; \
          set -- "$dir/SonLVL.exe" "$@"'
