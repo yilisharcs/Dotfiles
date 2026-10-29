@@ -33,6 +33,7 @@
           pkgs.libreoffice # Office productivity suite
           pkgs.pastel # Command-line tool to generate, analyze, convert and manipulate colors
           pkgs.proton-vpn
+          pkgs.python3
           pkgs.tokei # Count your code, quickly
           pkgs.tree # Command to produce a depth indented directory listing
           pkgs.wl-clipboard # Command-line copy/paste utilities for Wayland
