@@ -58,6 +58,9 @@ in {
             set -g status-interval 1 # should update the bell faster...
             setw -g automatic-rename on
 
+            set -g set-titles on
+            set -g set-titles-string '#S: #W'
+
             # set copy-mode and clipboard settings
             set -g set-clipboard external
             set -g allow-passthrough off  # block silent clipboard hijack via OSC52
