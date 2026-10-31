@@ -46,10 +46,16 @@ in {
       programs.jjui = enabled {
         settings = {
           preview.position = "bottom";
-          ui.colors.selected = {
-            bg = "#1e1829";
-            fg = "#8cf8f7";
-            bold = true;
+          ui.colors = {
+            selected = {
+              bg = "#1e1829";
+              fg = "#8cf8f7";
+              bold = true;
+            };
+            "revisions details:selected" = {
+              bg = "#362b49";
+              bold = true;
+            };
           };
           bindings = [
             {
