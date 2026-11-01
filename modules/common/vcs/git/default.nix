@@ -35,7 +35,6 @@ in {
         ignores = [
           ".env"
           "tags"
-          "zig-pkg"
         ];
         signing.signByDefault = true;
         settings = {
