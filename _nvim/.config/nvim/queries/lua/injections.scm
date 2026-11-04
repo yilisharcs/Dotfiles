@@ -10,6 +10,9 @@
     (expression_list
       value: (string
         content: (string_content) @injection.content))
+    (field
+      value: (string
+        content: (string_content) @injection.content))
   ] @_str
   (#lua-match? @_str "^%[%[")
   (#gsub! @injection.language "^%-%-%s*([%w_]+)%s*$" "%1")
