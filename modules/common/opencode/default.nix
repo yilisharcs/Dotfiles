@@ -157,7 +157,7 @@ in {
             prune = true;
           };
           lsp = false;
-          model = "opencode-go/mimo-v2.6-flash";
+          model = "opencode-go/deepseek-v4.1-flash";
           small_model = "opencode-go/deepseek-v4.1-flash";
           default_agent = "plan";
           agent = {
