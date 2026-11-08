@@ -35,6 +35,7 @@ local filetypes = {
     "java",
     "python",
     "rust",
+    "teal",
     "zig",
     -- build
     "just",

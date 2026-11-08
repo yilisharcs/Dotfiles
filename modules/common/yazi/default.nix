@@ -375,6 +375,11 @@ in {
                 text = "";
                 fg = "#0091bd";
               }
+              {
+                name = "tl";
+                text = "";
+                fg = "#00a2ff";
+              }
               # TODO: remove if merged
               {
                 name = "lemon";

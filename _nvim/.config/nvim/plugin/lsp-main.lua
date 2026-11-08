@@ -8,6 +8,7 @@ local servers = {
     "nil-nix",
     "nuls",
     -- "rust-analyzer", -- consistently a PITA
+    "teal",
     "typls",
     "zls",
 }
