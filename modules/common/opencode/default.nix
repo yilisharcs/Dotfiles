@@ -197,6 +197,7 @@ in {
               "nl*" = "allow"; # enumerate lines from files or stdin
               "nm *" = "allow"; # list symbols from object files
               "objdump *" = "allow"; # display information from object files
+              "printf *" = "allow";
               "pwd*" = "allow";
               "readelf *" = "allow"; # display information about ELF files
               "readlink *" = "allow";
