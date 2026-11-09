@@ -63,6 +63,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local client = vim.lsp.get_clients()[1]
 
+        vim.bo[args.buf].autocomplete = true
+        vim.bo[args.buf].complete = "o"
+
         vim.lsp.completion.enable(true, client.id, args.buf, {
             autotrigger = true,
             convert = function(item)
