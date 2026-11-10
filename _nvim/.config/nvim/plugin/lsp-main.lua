@@ -123,11 +123,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
         map("n", "grq", function()
             vim.diagnostic.setqflist({
+                namespace = vim.lsp.diagnostic.get_namespace(client.id),
                 format = format,
             })
         end, "Quickfix diagnostics")
         map("n", "gre", function()
             vim.diagnostic.setqflist({
+                namespace = vim.lsp.diagnostic.get_namespace(client.id),
                 format = format,
                 severity = vim.diagnostic.severity.ERROR,
             })
