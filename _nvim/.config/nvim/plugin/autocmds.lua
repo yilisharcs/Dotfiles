@@ -69,15 +69,9 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "OptionSet" }, {
 })
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
-    desc = "Set registers b-z on launch to overwrite one-off garbages",
+    desc = "Restore custom macros",
     group = group,
     callback = function()
-        for i = 98, 122 do
-            if i ~= 114 or i ~= 116 then
-                vim.fn.setreg(vim.fn.nr2char(i), {})
-            end
-        end
-
         -- toggle case and advance word
         vim.fn.setreg("c", "wvg~")
     end,
