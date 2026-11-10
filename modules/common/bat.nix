@@ -15,6 +15,7 @@ in {
           pager = "${getExe pkgs.less} -FR --mouse";
           map-syntax = [
             "*.rockspec:Lua"
+            "*.tl:Lua"
             "*.zig.zon:Zig"
           ];
         };
