@@ -12,6 +12,11 @@ in {
     {
       services.desktopManager.plasma6 = enabled;
 
+      environment.sessionVariables = {
+        XCURSOR_THEME = "Breeze_Light";
+        XCURSOR_SIZE = "42";
+      };
+
       environment.systemPackages = [
         pkgs.kdePackages.kcharselect # character map
         pkgs.kdePackages.kclock
