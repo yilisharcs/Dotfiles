@@ -187,6 +187,7 @@ in {
               "tee *" = "ask";
 
               "command -v *" = "allow";
+              "cut *" = "allow";
               "diff *" = "allow";
               "df*" = "allow"; # report file system space usage
               "du*" = "allow"; # estimate file space usage
@@ -205,6 +206,7 @@ in {
               "strings *" = "allow";
               "tail *" = "allow";
               "tr *" = "allow";
+              "true" = "allow";
               "uniq *" = "allow";
               "wc *" = "allow";
               "which *" = "allow";
