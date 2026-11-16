@@ -136,7 +136,7 @@ in {
           attention.enabled = true;
           diff_style = "stacked";
           keybinds = {
-            app_exit = "ctrl+d";
+            app_exit = "ctrl+c";
             editor_open = "ctrl+o";
             input_clear = false;
             terminal_suspend = "none";
