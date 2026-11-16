@@ -69,6 +69,16 @@ in {
               scope = "revisions.inline_describe";
             }
             {
+              action = "revisions.details.page_up";
+              key = "ctrl+u";
+              scope = "revisions.details";
+            }
+            {
+              action = "revisions.details.page_down";
+              key = "ctrl+d";
+              scope = "revisions.details";
+            }
+            {
               action = "revisions.page_up";
               key = "ctrl+u";
               scope = "revisions";
