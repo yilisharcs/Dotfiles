@@ -1,23 +1,24 @@
 {
-  moyin = {
-    background = "#07080d";
-    foreground = "#cdd6f4";
-    black = "#020305";
+  moyin = rec {
+    background = "#0a0a0a";
+    foreground = "#e0e0e0";
+    # term-ansi
+    black = "#020202";
     red = "#d31834";
     green = "#00af5f";
     yellow = "#ffaf00";
     blue = "#8787ff";
     magenta = "#b348ff";
     cyan = "#00afff";
-    darkGrey = "#708090";
-    lightGrey = "#afafff";
+    darkGrey = "#808080";
+    lightGrey = "#d7d7d7";
     lightRed = "#ef7184";
     lightGreen = "#00af5f";
     lightYellow = "#ffff5f";
     lightBlue = "#bcc8f0";
     lightMagenta = "#c87bff";
     lightCyan = "#8cf8f7";
-    white = "#cdd6f4";
+    white = foreground;
   };
 
   toKmsconPalette = let

@@ -6,16 +6,14 @@ vim.cmd.syntax("reset")
 vim.g.colors_name = "moyin"
 
 local colors = {
-    Silver1 = "#cdd6f4",
-    Silver2 = "#bcc8f0",
-    Silver3 = "#afafff",
-
-    Grey1 = "#708090",
-    Grey2 = "#2c2e33", -- NvimDarkGrey3
-    Grey3 = "#14161b", -- NvimDarkGrey2
-    Ink2 = "#07080d", -- NvimDarkGrey1
-    Ink3 = "#030407",
-    Ink4 = "#020305",
+    White1 = "#e0e0e0",
+    White2 = "#d7d7d7",
+    Grey1 = "#808080",
+    Grey2 = "#323232",
+    Grey3 = "#141414",
+    Ink1 = "#0a0a0a",
+    Ink2 = "#050505",
+    Ink3 = "#020202",
 
     Red1 = "#ef7184",
     Red2 = "#d31834",
@@ -29,8 +27,9 @@ local colors = {
     Yellow2 = "#ffaf00",
     Yellow3 = "#daa520",
 
-    Blue1 = "#8787ff",
-    Blue2 = "#5f5fff",
+    Blue1 = "#bcc8f0",
+    Blue2 = "#8787ff",
+    Blue3 = "#5f5fff",
 
     Magenta1 = "#c87bff",
     Magenta2 = "#b348ff",
@@ -38,8 +37,6 @@ local colors = {
     Cyan1 = "#8cf8f7",
     Cyan2 = "#00afff",
     Cyan3 = "#004666",
-
-    White1 = "#faebd7",
 }
 
 local function hi(name, val)
@@ -52,23 +49,23 @@ local function hi(name, val)
 end
 
 local terminal_ansi_colors = {
-    colors.Ink4,
+    colors.Ink3,
     colors.Red2,
     colors.Green2,
     colors.Yellow2,
-    colors.Blue1,
+    colors.Blue2,
     colors.Magenta2,
     colors.Cyan2,
-    colors.Silver3,
+    colors.White2,
     --
     colors.Grey1,
     colors.Red1,
     colors.Green2,
     colors.Yellow1,
-    colors.Silver2,
+    colors.Blue1,
     colors.Magenta1,
     colors.Cyan1,
-    colors.Silver1,
+    colors.White1,
 }
 for k, v in ipairs(terminal_ansi_colors) do
     local num = "terminal_color_" .. k - 1
@@ -76,8 +73,8 @@ for k, v in ipairs(terminal_ansi_colors) do
 end
 
 -- general
-hi("Normal", { fg = colors.Silver1, bg = colors.Ink2, ctermfg = "white" })
-hi("NormalNC", { bg = colors.Ink3 })
+hi("Normal", { fg = colors.White1, bg = colors.Ink1, ctermfg = "white" })
+hi("NormalNC", { bg = colors.Ink2 })
 hi("StatusLine", { fg = "fg", bg = colors.Grey2, bold = true, ctermfg = "white", ctermbg = "NONE" })
 hi("StatusLineNC", { fg = "fg", bg = colors.Grey3, bold = true, ctermfg = "grey" })
 hi("TabLineSel", { fg = colors.Yellow1, bg = "bg", bold = true, ctermfg = "yellow", ctermbg = "yellow" })
@@ -89,18 +86,18 @@ hi("CursorColumn", { bg = colors.Grey2 })
 hi("CursorLine", { bg = colors.Grey2 })
 hi("CursorLineFold", { fg = "fg" })
 hi("FoldColumn", { fg = colors.Cyan2, ctermfg = "cyan" })
-hi("Folded", { fg = colors.Cyan2, bg = colors.Ink3, ctermfg = "cyan" })
+hi("Folded", { fg = colors.Cyan2, bg = colors.Ink2, ctermfg = "cyan" })
 hi("LineNr", { fg = colors.Grey1, ctermfg = "blue" })
 hi("QuickFixLine", { fg = colors.Cyan1, bg = "bg", bold = true, reverse = true, ctermfg = "black", ctermbg = "cyan" })
 
 -- comment toggle
 hi("CommentHide", { fg = "bg" })
-hi("Comment", { fg = colors.Silver3, ctermfg = "grey" })
+hi("Comment", { fg = colors.Blue1, ctermfg = "grey" })
 
 -- completion menu
 hi("Pmenu", { bg = colors.Grey3, ctermfg = "black", ctermbg = "grey" })
 hi("PmenuSel", { fg = "fg", bg = colors.Grey2, ctermfg = "yellow", ctermbg = "black" })
-hi("PmenuThumb", { bg = "NvimDarkGrey4", ctermbg = "black" })
+hi("PmenuThumb", { bg = colors.Grey1, ctermbg = "black" })
 hi("PmenuExtra", { fg = colors.Grey1, bg = colors.Grey3 })
 hi("PmenuKind", { fg = colors.Yellow2, bg = colors.Grey3 })
 hi("PmenuMatch", { fg = colors.Red1, bg = colors.Grey3, ctermfg = "red" })
@@ -110,10 +107,10 @@ hi("PmenuKindSel", { link = "PmenuSel" })
 
 -- diff mode
 hi("Added", { fg = colors.Green2, ctermfg = "green" })
-hi("Changed", { fg = colors.Silver3, ctermfg = "grey" })
+hi("Changed", { fg = colors.White2, ctermfg = "grey" })
 hi("Removed", { fg = colors.Red2, ctermfg = "red" })
 hi("DiffAdd", { fg = colors.Green2, bg = colors.Grey2, bold = true, ctermfg = "green" })
-hi("DiffChange", { fg = colors.Silver3, bg = colors.Grey2, bold = true, ctermfg = "grey" })
+hi("DiffChange", { fg = colors.White2, bg = colors.Grey2, bold = true, ctermfg = "grey" })
 hi("DiffText", { fg = colors.Yellow2, bg = colors.Grey2, bold = true, ctermfg = "yellow" })
 hi("DiffDelete", { fg = colors.Red1, bg = colors.Grey2, bold = true, ctermfg = "red" })
 
@@ -128,7 +125,7 @@ hi("Constant", { update = true, bold = true })
 hi("Statement", { fg = colors.Yellow1, bold = true, ctermfg = "yellow" })
 hi("String", { fg = colors.Green1, ctermfg = "green" })
 hi("PreProc", { fg = colors.Red1, bold = true, ctermfg = "red" })
-hi("Delimiter", { fg = colors.Silver3, ctermfg = "grey" })
+hi("Delimiter", { fg = colors.Blue1, ctermfg = "grey" })
 hi("Type", { bold = true })
 hi("Label", { fg = colors.Magenta1, ctermfg = "magenta" })
 
@@ -152,31 +149,31 @@ hi("rustAttribute", { link = "Label" })
 --
 hi("@number.hex", { link = "Statement" })
 --
-hi("@keyword.conditional.fennel", { fg = colors.Silver2, bold = true, ctermfg = "blue" })
+hi("@keyword.conditional.fennel", { fg = colors.Blue1, bold = true, ctermfg = "blue" })
 
 -- LSP
 hi("DiagnosticError", { fg = colors.Red2, ctermfg = "red" })
 hi("DiagnosticWarn", { fg = colors.Yellow3, ctermfg = "yellow" })
 hi("DiagnosticInfo", { fg = colors.Cyan2, ctermfg = "cyan" })
-hi("DiagnosticHint", { fg = colors.Blue2, ctermfg = "blue" })
+hi("DiagnosticHint", { fg = colors.Blue3, ctermfg = "blue" })
 hi("DiagnosticOk", { fg = colors.Green2, ctermfg = "green" })
 
 -- misc
 hi("Visual", { fg = "fg", bg = colors.Cyan3, ctermbg = "cyan" })
-hi("LspInlayHint", { fg = colors.Cyan2, bg = colors.Ink3, ctermfg = "cyan" })
+hi("LspInlayHint", { fg = colors.Cyan2, bg = colors.Ink2, ctermfg = "cyan" })
 hi("Search", { fg = colors.Cyan1, bg = "bg", reverse = true, ctermfg = "cyan" })
 hi("IncSearch", { fg = colors.Yellow2, bg = "bg", reverse = true, ctermfg = "black", ctermbg = "yellow" })
 hi("CurSearch", { link = "IncSearch" })
 -- syn jj
-hi("jjGrey", { fg = colors.Silver3, ctermfg = "grey", bold = true })
+hi("jjGrey", { fg = colors.White2, ctermfg = "grey", bold = true })
 hi("jjRed", { fg = colors.Red2, ctermfg = "red", bold = true })
 hi("jjGreen", { fg = colors.Green2, ctermfg = "green", bold = true })
 hi("jjYellow", { fg = colors.Yellow2, ctermfg = "yellow" })
-hi("jjBlue", { fg = colors.Blue1, ctermfg = "blue", bold = true })
+hi("jjBlue", { fg = colors.Blue2, ctermfg = "blue", bold = true })
 hi("jjMagenta", { fg = colors.Magenta1, ctermfg = "magenta", bold = true })
 hi("jjCyan", { fg = colors.Cyan1, ctermfg = "cyan" })
 hi("jjCyan2", { fg = colors.Cyan2, ctermfg = "cyan" })
-hi("jjWhite", { fg = colors.Silver1, ctermfg = "white", bold = true })
+hi("jjWhite", { fg = colors.White1, ctermfg = "white", bold = true })
 
 -- diffview.nvim {{{
 hi("DiffviewFilePanelSelected", { fg = colors.Yellow1, bold = true, ctermfg = "yellow" })
@@ -194,7 +191,7 @@ hi("MiniIconsYellow", { fg = colors.Yellow1 })
 -- neogit {{{
 hi("NeogitDiffAddHighlight", { fg = "NONE", bg = colors.Green3, ctermbg = "green" })
 hi("NeogitDiffAdd", { fg = "NONE", bg = colors.Green4, ctermbg = "green" })
-hi("NeogitDiffDelete", { fg = colors.Red2, bg = colors.Ink3, ctermfg = "red" })
+hi("NeogitDiffDelete", { fg = colors.Red2, bg = colors.Ink2, ctermfg = "red" })
 hi("NeogitDiffDeleteHighlight", { fg = colors.Red1, bg = colors.Grey3, ctermfg = "red", ctermbg = "grey" })
 hi("NeogitDiffContextHighlight", { bg = colors.Grey3 })
 hi("NeogitStagedchanges", { fg = colors.Green2, bold = true, ctermfg = "green" })
@@ -212,7 +209,7 @@ hi("NeogitHunkHeaderHighlight", {
 })
 hi("NeogitHunkHeaderCursor", {
     fg = colors.Grey3,
-    bg = colors.Silver3,
+    bg = colors.White2,
     bold = true,
     ctermfg = "black",
     ctermbg = "white",
@@ -231,8 +228,8 @@ hi("RainbowDelimiterCyan", { link = "RainbowDelimiterBlue" })
 -- }}}
 
 -- vim-sneak {{{
-hi("SneakCurrent", { fg = colors.Silver1, bg = colors.Cyan3, bold = true })
-hi("SneakShow", { fg = colors.Ink3, bg = colors.Green1, bold = true })
+hi("SneakCurrent", { fg = colors.White1, bg = colors.Cyan3, bold = true })
+hi("SneakShow", { fg = colors.Ink2, bg = colors.Green1, bold = true })
 hi("Sneak", { link = "SneakShow" })
 -- }}}
 
