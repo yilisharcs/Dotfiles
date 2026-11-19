@@ -10,9 +10,9 @@ local colors = {
     Silver2 = "#bcc8f0",
     Silver3 = "#afafff",
 
-    Gray1 = "#708090",
-    Gray2 = "#2c2e33", -- NvimDarkGrey3
-    Gray3 = "#14161b", -- NvimDarkGrey2
+    Grey1 = "#708090",
+    Grey2 = "#2c2e33", -- NvimDarkGrey3
+    Grey3 = "#14161b", -- NvimDarkGrey2
     Ink2 = "#07080d", -- NvimDarkGrey1
     Ink3 = "#030407",
     Ink4 = "#020305",
@@ -61,7 +61,7 @@ local terminal_ansi_colors = {
     colors.Cyan2,
     colors.Silver3,
     --
-    colors.Gray1,
+    colors.Grey1,
     colors.Red1,
     colors.Green2,
     colors.Yellow1,
@@ -78,19 +78,19 @@ end
 -- general
 hi("Normal", { fg = colors.Silver1, bg = colors.Ink2, ctermfg = "white" })
 hi("NormalNC", { bg = colors.Ink3 })
-hi("StatusLine", { fg = "fg", bg = colors.Gray2, bold = true, ctermfg = "white", ctermbg = "NONE" })
-hi("StatusLineNC", { fg = "fg", bg = colors.Gray3, bold = true, ctermfg = "grey" })
+hi("StatusLine", { fg = "fg", bg = colors.Grey2, bold = true, ctermfg = "white", ctermbg = "NONE" })
+hi("StatusLineNC", { fg = "fg", bg = colors.Grey3, bold = true, ctermfg = "grey" })
 hi("TabLineSel", { fg = colors.Yellow1, bg = "bg", bold = true, ctermfg = "yellow", ctermbg = "yellow" })
 hi("Title", { fg = "NONE", bold = true })
 
 -- color lines
-hi("ColorColumn", { bg = colors.Gray3, ctermbg = "blue" })
-hi("CursorColumn", { bg = colors.Gray2 })
-hi("CursorLine", { bg = colors.Gray2 })
+hi("ColorColumn", { bg = colors.Grey3, ctermbg = "blue" })
+hi("CursorColumn", { bg = colors.Grey2 })
+hi("CursorLine", { bg = colors.Grey2 })
 hi("CursorLineFold", { fg = "fg" })
 hi("FoldColumn", { fg = colors.Cyan2, ctermfg = "cyan" })
 hi("Folded", { fg = colors.Cyan2, bg = colors.Ink3, ctermfg = "cyan" })
-hi("LineNr", { fg = colors.Gray1, ctermfg = "blue" })
+hi("LineNr", { fg = colors.Grey1, ctermfg = "blue" })
 hi("QuickFixLine", { fg = colors.Cyan1, bg = "bg", bold = true, reverse = true, ctermfg = "black", ctermbg = "cyan" })
 
 -- comment toggle
@@ -98,13 +98,13 @@ hi("CommentHide", { fg = "bg" })
 hi("Comment", { fg = colors.Silver3, ctermfg = "grey" })
 
 -- completion menu
-hi("Pmenu", { bg = colors.Gray3, ctermfg = "black", ctermbg = "grey" })
-hi("PmenuSel", { fg = "fg", bg = colors.Gray2, ctermfg = "yellow", ctermbg = "black" })
+hi("Pmenu", { bg = colors.Grey3, ctermfg = "black", ctermbg = "grey" })
+hi("PmenuSel", { fg = "fg", bg = colors.Grey2, ctermfg = "yellow", ctermbg = "black" })
 hi("PmenuThumb", { bg = "NvimDarkGrey4", ctermbg = "black" })
-hi("PmenuExtra", { fg = colors.Gray1, bg = colors.Gray3 })
-hi("PmenuKind", { fg = colors.Yellow2, bg = colors.Gray3 })
-hi("PmenuMatch", { fg = colors.Red1, bg = colors.Gray3, ctermfg = "red" })
-hi("PmenuMatchSel", { fg = colors.Red2, bg = colors.Gray2 })
+hi("PmenuExtra", { fg = colors.Grey1, bg = colors.Grey3 })
+hi("PmenuKind", { fg = colors.Yellow2, bg = colors.Grey3 })
+hi("PmenuMatch", { fg = colors.Red1, bg = colors.Grey3, ctermfg = "red" })
+hi("PmenuMatchSel", { fg = colors.Red2, bg = colors.Grey2 })
 hi("PmenuSbar", { link = "Pmenu" })
 hi("PmenuKindSel", { link = "PmenuSel" })
 
@@ -112,10 +112,10 @@ hi("PmenuKindSel", { link = "PmenuSel" })
 hi("Added", { fg = colors.Green2, ctermfg = "green" })
 hi("Changed", { fg = colors.Silver3, ctermfg = "grey" })
 hi("Removed", { fg = colors.Red2, ctermfg = "red" })
-hi("DiffAdd", { fg = colors.Green2, bg = colors.Gray2, bold = true, ctermfg = "green" })
-hi("DiffChange", { fg = colors.Silver3, bg = colors.Gray2, bold = true, ctermfg = "grey" })
-hi("DiffText", { fg = colors.Yellow2, bg = colors.Gray2, bold = true, ctermfg = "yellow" })
-hi("DiffDelete", { fg = colors.Red1, bg = colors.Gray2, bold = true, ctermfg = "red" })
+hi("DiffAdd", { fg = colors.Green2, bg = colors.Grey2, bold = true, ctermfg = "green" })
+hi("DiffChange", { fg = colors.Silver3, bg = colors.Grey2, bold = true, ctermfg = "grey" })
+hi("DiffText", { fg = colors.Yellow2, bg = colors.Grey2, bold = true, ctermfg = "yellow" })
+hi("DiffDelete", { fg = colors.Red1, bg = colors.Grey2, bold = true, ctermfg = "red" })
 
 -- command-line
 hi("ErrorMsg", { fg = colors.Red1, ctermfg = "red" })
@@ -135,8 +135,8 @@ hi("Label", { fg = colors.Magenta1, ctermfg = "magenta" })
 -- treesitter
 hi("@markup.link.vimdoc", { fg = colors.Yellow2, bold = true, ctermfg = "yellow" })
 hi("@markup.list.markdown", { link = "Statement" })
-hi("@markup.raw.markdown_inline", { fg = colors.Green1, bg = colors.Gray3 })
-hi("markdownCodeBlock", { bg = colors.Gray3 })
+hi("@markup.raw.markdown_inline", { fg = colors.Green1, bg = colors.Grey3 })
+hi("markdownCodeBlock", { bg = colors.Grey3 })
 --
 hi("@label.vimdoc", { fg = colors.Green2, bold = true, ctermfg = "green" })
 --
@@ -195,8 +195,8 @@ hi("MiniIconsYellow", { fg = colors.Yellow1 })
 hi("NeogitDiffAddHighlight", { fg = "NONE", bg = colors.Green3, ctermbg = "green" })
 hi("NeogitDiffAdd", { fg = "NONE", bg = colors.Green4, ctermbg = "green" })
 hi("NeogitDiffDelete", { fg = colors.Red2, bg = colors.Ink3, ctermfg = "red" })
-hi("NeogitDiffDeleteHighlight", { fg = colors.Red1, bg = colors.Gray3, ctermfg = "red", ctermbg = "grey" })
-hi("NeogitDiffContextHighlight", { bg = colors.Gray3 })
+hi("NeogitDiffDeleteHighlight", { fg = colors.Red1, bg = colors.Grey3, ctermfg = "red", ctermbg = "grey" })
+hi("NeogitDiffContextHighlight", { bg = colors.Grey3 })
 hi("NeogitStagedchanges", { fg = colors.Green2, bold = true, ctermfg = "green" })
 hi("NeogitUnstagedchanges", { fg = colors.Yellow2, bold = true, ctermfg = "yellow" })
 hi("NeogitUntrackedfiles", { fg = colors.Red2, bold = true, ctermfg = "red" })
@@ -204,14 +204,14 @@ hi("NeogitUnmergedchanges", { fg = colors.Magenta1, bold = true, ctermfg = "mage
 hi("NeogitGraphPurple", { fg = colors.Yellow2, ctermfg = "yellow" })
 hi("NeogitChangeModified", { fg = colors.Cyan2, bold = true, italic = true, ctermfg = "cyan" })
 hi("NeogitHunkHeaderHighlight", {
-    fg = colors.Gray3,
-    bg = colors.Gray1,
+    fg = colors.Grey3,
+    bg = colors.Grey1,
     bold = true,
     ctermfg = "black",
     ctermbg = "grey",
 })
 hi("NeogitHunkHeaderCursor", {
-    fg = colors.Gray3,
+    fg = colors.Grey3,
     bg = colors.Silver3,
     bold = true,
     ctermfg = "black",
