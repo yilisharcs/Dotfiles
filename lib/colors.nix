@@ -1,8 +1,8 @@
 {
   moyin = {
-    background = "#070b14";
+    background = "#07080d";
     foreground = "#cdd6f4";
-    black = "#020407";
+    black = "#020305";
     red = "#d31834";
     green = "#00af5f";
     yellow = "#ffaf00";

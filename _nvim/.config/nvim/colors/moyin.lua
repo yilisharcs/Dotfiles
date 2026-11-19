@@ -10,14 +10,12 @@ local colors = {
     Silver2 = "#bcc8f0",
     Silver3 = "#afafff",
 
-    Ink1 = "#0c1018",
-    Ink2 = "#070b14",
-    Ink3 = "#04070c",
-    Ink4 = "#020407",
-
     Gray1 = "#708090",
-    Gray2 = "#362b49",
-    Gray3 = "#1e1829",
+    Gray2 = "#2c2e33", -- NvimDarkGrey3
+    Gray3 = "#14161b", -- NvimDarkGrey2
+    Ink2 = "#07080d", -- NvimDarkGrey1
+    Ink3 = "#030407",
+    Ink4 = "#020305",
 
     Red1 = "#ef7184",
     Red2 = "#d31834",
@@ -82,7 +80,7 @@ hi("Normal", { fg = colors.Silver1, bg = colors.Ink2, ctermfg = "white" })
 hi("NormalNC", { bg = colors.Ink3 })
 hi("StatusLine", { fg = "fg", bg = colors.Gray2, bold = true, ctermfg = "white", ctermbg = "NONE" })
 hi("StatusLineNC", { fg = "fg", bg = colors.Gray3, bold = true, ctermfg = "grey" })
-hi("TabLineSel", { fg = colors.Yellow1, bg = colors.Ink1, bold = true, ctermfg = "yellow", ctermbg = "yellow" })
+hi("TabLineSel", { fg = colors.Yellow1, bg = "bg", bold = true, ctermfg = "yellow", ctermbg = "yellow" })
 hi("Title", { fg = "NONE", bold = true })
 
 -- color lines
@@ -91,7 +89,7 @@ hi("CursorColumn", { bg = colors.Gray2 })
 hi("CursorLine", { bg = colors.Gray2 })
 hi("CursorLineFold", { fg = "fg" })
 hi("FoldColumn", { fg = colors.Cyan2, ctermfg = "cyan" })
-hi("Folded", { fg = colors.Cyan2, bg = colors.Ink4, ctermfg = "cyan" })
+hi("Folded", { fg = colors.Cyan2, bg = colors.Ink3, ctermfg = "cyan" })
 hi("LineNr", { fg = colors.Gray1, ctermfg = "blue" })
 hi("QuickFixLine", { fg = colors.Cyan1, bg = "bg", bold = true, reverse = true, ctermfg = "black", ctermbg = "cyan" })
 
@@ -100,13 +98,13 @@ hi("CommentHide", { fg = "bg" })
 hi("Comment", { fg = colors.Silver3, ctermfg = "grey" })
 
 -- completion menu
-hi("Pmenu", { bg = colors.Ink4, ctermfg = "black", ctermbg = "grey" })
-hi("PmenuSel", { fg = "bg", bg = colors.Silver3, ctermfg = "yellow", ctermbg = "black" })
-hi("PmenuThumb", { bg = colors.Silver2, ctermbg = "black" })
-hi("PmenuExtra", { fg = colors.Gray1, bg = colors.Ink4 })
-hi("PmenuKind", { fg = colors.Yellow2, bg = colors.Ink4 })
-hi("PmenuMatch", { fg = colors.Red1, bg = "bg", ctermfg = "red" })
-hi("PmenuMatchSel", { fg = colors.Red2, bg = colors.Silver3 })
+hi("Pmenu", { bg = colors.Gray3, ctermfg = "black", ctermbg = "grey" })
+hi("PmenuSel", { fg = "fg", bg = colors.Gray2, ctermfg = "yellow", ctermbg = "black" })
+hi("PmenuThumb", { bg = "NvimDarkGrey4", ctermbg = "black" })
+hi("PmenuExtra", { fg = colors.Gray1, bg = colors.Gray3 })
+hi("PmenuKind", { fg = colors.Yellow2, bg = colors.Gray3 })
+hi("PmenuMatch", { fg = colors.Red1, bg = colors.Gray3, ctermfg = "red" })
+hi("PmenuMatchSel", { fg = colors.Red2, bg = colors.Gray2 })
 hi("PmenuSbar", { link = "Pmenu" })
 hi("PmenuKindSel", { link = "PmenuSel" })
 
@@ -196,7 +194,7 @@ hi("MiniIconsYellow", { fg = colors.Yellow1 })
 -- neogit {{{
 hi("NeogitDiffAddHighlight", { fg = "NONE", bg = colors.Green3, ctermbg = "green" })
 hi("NeogitDiffAdd", { fg = "NONE", bg = colors.Green4, ctermbg = "green" })
-hi("NeogitDiffDelete", { fg = colors.Red2, bg = colors.Ink1, ctermfg = "red" })
+hi("NeogitDiffDelete", { fg = colors.Red2, bg = colors.Ink3, ctermfg = "red" })
 hi("NeogitDiffDeleteHighlight", { fg = colors.Red1, bg = colors.Gray3, ctermfg = "red", ctermbg = "grey" })
 hi("NeogitDiffContextHighlight", { bg = colors.Gray3 })
 hi("NeogitStagedchanges", { fg = colors.Green2, bold = true, ctermfg = "green" })
@@ -206,14 +204,14 @@ hi("NeogitUnmergedchanges", { fg = colors.Magenta1, bold = true, ctermfg = "mage
 hi("NeogitGraphPurple", { fg = colors.Yellow2, ctermfg = "yellow" })
 hi("NeogitChangeModified", { fg = colors.Cyan2, bold = true, italic = true, ctermfg = "cyan" })
 hi("NeogitHunkHeaderHighlight", {
-    fg = colors.Ink2,
+    fg = colors.Gray3,
     bg = colors.Gray1,
     bold = true,
     ctermfg = "black",
     ctermbg = "grey",
 })
 hi("NeogitHunkHeaderCursor", {
-    fg = colors.Ink2,
+    fg = colors.Gray3,
     bg = colors.Silver3,
     bold = true,
     ctermfg = "black",
@@ -234,7 +232,7 @@ hi("RainbowDelimiterCyan", { link = "RainbowDelimiterBlue" })
 
 -- vim-sneak {{{
 hi("SneakCurrent", { fg = colors.Silver1, bg = colors.Cyan3, bold = true })
-hi("SneakShow", { fg = colors.Ink4, bg = colors.Green1, bold = true })
+hi("SneakShow", { fg = colors.Ink3, bg = colors.Green1, bold = true })
 hi("Sneak", { link = "SneakShow" })
 -- }}}
 
