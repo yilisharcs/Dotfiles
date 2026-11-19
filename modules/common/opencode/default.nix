@@ -212,6 +212,9 @@ in {
               "which *" = "allow";
               "xxd *" = "allow"; # hex and binary dump utility
 
+              # extra
+              "pastel *" = "allow"; # Command-line tool to generate, analyze, convert and manipulate colors
+
               "cat *" = "allow";
               # block shell redirection
               "cat > * <<*EOF" = "deny";
