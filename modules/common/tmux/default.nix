@@ -31,7 +31,7 @@ in {
         shell = "${getExe pkgs.nushell}";
         terminal = "tmux-256color"; # Set $TERM colors
         extraConfig = let
-          sw = lib.colors.moyin;
+          c = lib.colors.moyin;
         in
           /*
           tmux
@@ -44,11 +44,11 @@ in {
             setw -g mode-keys vi
 
             # status bar and border colors
-            set -g status-style 'bg=default fg=${sw.blue},bold'
-            set -g message-style 'bg=${sw.black} fg=${sw.cyan},bold,fill=${sw.black}'
-            set -g pane-active-border-style fg=${sw.green}
+            set -g status-style 'bg=default fg=${c.blue},bold'
+            set -g message-style 'bg=${c.black} fg=${c.cyan},bold,fill=${c.black}'
+            set -g pane-active-border-style fg=${c.green}
             set-option -g window-status-current-format '[ *#I:#W#F ]'
-            set -g window-status-current-style fg=${sw.yellow},bold
+            set -g window-status-current-style fg=${c.yellow},bold
 
             set -g status-left-length 0 # no limit to status length
             set -g status-right-length 0
@@ -64,7 +64,7 @@ in {
             # set copy-mode and clipboard settings
             set -g set-clipboard external
             set -g allow-passthrough off  # block silent clipboard hijack via OSC52
-            setw -g mode-style 'bg=${sw.darkGrey} fg=${sw.black}'
+            setw -g mode-style 'bg=${c.darkGrey} fg=${c.black}'
             bind -T copy-mode-vi 'v' send -X begin-selection
             bind -T copy-mode-vi 'y' send -X copy-pipe-and-cancel '${getExe pkgs.xclip} -sel clip'
 
