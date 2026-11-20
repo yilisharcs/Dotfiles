@@ -37,6 +37,9 @@ local colors = {
     Cyan1 = "#8cf8f7",
     Cyan2 = "#00afff",
     Cyan3 = "#004666",
+
+    --
+    GruberBrown = "#cc8c3c",
 }
 
 local function hi(name, val)
@@ -92,7 +95,7 @@ hi("QuickFixLine", { fg = colors.Cyan1, bg = "bg", bold = true, reverse = true, 
 
 -- comment toggle
 hi("CommentHide", { fg = "bg" })
-hi("Comment", { fg = colors.Blue1, ctermfg = "grey" })
+hi("Comment", { fg = colors.GruberBrown, ctermfg = "grey" })
 
 -- completion menu
 hi("Pmenu", { bg = colors.Grey3, ctermfg = "black", ctermbg = "grey" })
