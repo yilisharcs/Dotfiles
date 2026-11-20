@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (lib) enabled getExe mapAttrsToList;
+  c = lib.colors.moyin;
 
   ghostty = pkgs.ghostty.overrideAttrs (old: {
     patches =
@@ -44,8 +45,8 @@ in {
         installVimSyntax = true;
 
         themes.moyin = {
-          background = lib.colors.moyin.background;
-          foreground = "#ffdead";
+          background = c.background;
+          foreground = c.foreground;
           palette = lib.colors.toGhosttyPalette lib.colors.moyin;
         };
 
