@@ -17,9 +17,20 @@ in {
             "--glob=!.cache"
             "--glob=!.git"
             "--glob=!.jj"
-            "--glob=!.npm"
-            "--glob=!Trash"
+            "--glob=!Trash" # .local/share/Trash symlink
             "--glob=!.config/BraveSoftware"
+            # neovim
+            "--glob=!state/backup"
+            "--glob=!state/undo"
+            # js
+            "--glob=!.npm"
+            # nix
+            "--glob=!.direnv"
+            "--glob=!result"
+            # rust
+            "--glob=!target/"
+            # zig
+            "--glob=!.zig-cache/"
           ];
         };
 

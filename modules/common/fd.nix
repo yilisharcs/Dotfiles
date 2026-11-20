@@ -8,14 +8,24 @@ in {
         # NEVER. EVER. CHANGE BEHAVIOR IMPLICITLY.
         hidden = false;
         ignores = [
+          ".bak/"
+          ".cache/"
           ".git/"
           ".jj/"
-          ".cache/"
           "Trash/" # .local/share/Trash symlink
-          "state/undo/" # Neovim undodir
-          "state/backup/" # Neovim backupdir
-          "target/" # Rust target dir
-          ".zig-cache/" # Zig
+          ".config/BraveSoftware/"
+          # neovim
+          "state/backup/"
+          "state/undo/"
+          # js
+          ".npm/"
+          # nix
+          ".direnv/"
+          "result/"
+          # rust
+          "target/"
+          # zig
+          ".zig-cache/"
         ];
       };
     }
