@@ -171,10 +171,10 @@ hi("DiagnosticFloatingWarn", { bg = colors.Grey3, update = true })
 hi("DiagnosticFloatingInfo", { bg = colors.Grey3, update = true })
 hi("DiagnosticFloatingHint", { bg = colors.Grey3, update = true })
 hi("DiagnosticFloatingOk", { bg = colors.Grey3, update = true })
+hi("DiagnosticUnnecessary", { fg = colors.Grey1, ctermfg = "grey" })
 
 -- misc
 hi("Visual", { fg = "fg", bg = colors.Cyan3, ctermbg = "cyan" })
-hi("LspInlayHint", { fg = colors.Cyan2, bg = colors.Ink2, ctermfg = "cyan" })
 hi("Search", { fg = colors.Cyan1, bg = "bg", reverse = true, ctermfg = "cyan" })
 hi("IncSearch", { fg = colors.Yellow2, bg = "bg", reverse = true, ctermfg = "black", ctermbg = "yellow" })
 hi("CurSearch", { link = "IncSearch" })
