@@ -78,6 +78,7 @@ end
 -- general
 hi("Normal", { fg = colors.White1, bg = colors.Ink1, ctermfg = "white" })
 hi("NormalNC", { bg = colors.Ink2 })
+hi("NormalFloat", { bg = colors.Grey3 })
 hi("StatusLine", { fg = "fg", bg = colors.Grey2, bold = true, ctermfg = "white", ctermbg = "NONE" })
 hi("StatusLineNC", { fg = "fg", bg = colors.Grey3, bold = true, ctermfg = "grey" })
 hi("TabLineSel", { fg = colors.Yellow1, bg = "bg", bold = true, ctermfg = "yellow", ctermbg = "yellow" })
@@ -160,6 +161,11 @@ hi("DiagnosticWarn", { fg = colors.Yellow3, ctermfg = "yellow" })
 hi("DiagnosticInfo", { fg = colors.Cyan2, ctermfg = "cyan" })
 hi("DiagnosticHint", { fg = colors.Blue3, ctermfg = "blue" })
 hi("DiagnosticOk", { fg = colors.Green2, ctermfg = "green" })
+hi("DiagnosticFloatingError", { bg = colors.Grey3, update = true })
+hi("DiagnosticFloatingWarn", { bg = colors.Grey3, update = true })
+hi("DiagnosticFloatingInfo", { bg = colors.Grey3, update = true })
+hi("DiagnosticFloatingHint", { bg = colors.Grey3, update = true })
+hi("DiagnosticFloatingOk", { bg = colors.Grey3, update = true })
 
 -- misc
 hi("Visual", { fg = "fg", bg = colors.Cyan3, ctermbg = "cyan" })
@@ -189,6 +195,10 @@ hi("MiniHipatternsFixme", { fg = colors.Red2, bold = true, reverse = true, cterm
 
 -- mini.icons {{{
 hi("MiniIconsYellow", { fg = colors.Yellow1 })
+-- }}}
+
+-- mini.pick {{{
+hi("MiniPickBorderText", { bg = colors.Grey3, update = true })
 -- }}}
 
 -- rainbow-delimiters {{{
