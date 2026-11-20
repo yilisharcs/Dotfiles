@@ -36,10 +36,13 @@ local colors = {
 
     Cyan1 = "#8cf8f7",
     Cyan2 = "#00afff",
-    Cyan3 = "#004666",
+    Cyan3 = "#004f5f",
 
     --
     GruberBrown = "#cc8c3c",
+    --
+    modusBlueCooler = "#00bcff",
+    modusMagentaWarmer = "#f78fe7",
 }
 
 local function hi(name, val)
@@ -132,6 +135,8 @@ hi("PreProc", { fg = colors.Red1, bold = true, ctermfg = "red" })
 hi("Delimiter", { fg = colors.Blue1, ctermfg = "grey" })
 hi("Type", { bold = true })
 hi("Label", { fg = colors.Magenta1, ctermfg = "magenta" })
+hi("Identifier", { fg = colors.modusBlueCooler, update = true })
+hi("Function", { fg = colors.modusMagentaWarmer, update = true })
 
 -- treesitter
 hi("@markup.link.vimdoc", { fg = colors.Yellow2, bold = true, ctermfg = "yellow" })
