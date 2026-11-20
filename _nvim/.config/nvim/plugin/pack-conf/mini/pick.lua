@@ -35,7 +35,6 @@ require("mini.pick").setup({
 _G.MiniPick = MiniPick
 
 -- mini.pick pickers
-vim.keymap.set("n", "<leader>fi", MiniPick.builtin.files, { desc = "List all files" })
 vim.keymap.set("n", "<leader>fb", MiniPick.builtin.buffers, { desc = "Pick open buffers" })
 vim.keymap.set("n", "<leader>fk", MiniPick.builtin.help, { desc = "Pick help tags" })
 vim.keymap.set("n", "<leader>fg", function()
@@ -72,6 +71,14 @@ MiniPick.registry.args = function()
     })
 end
 vim.keymap.set("n", "<C-h>", MiniPick.registry.args, { desc = "Open arglist" })
+
+MiniPick.registry.files_no_ignore_vcs = function()
+    return MiniPick.builtin.cli(
+        { command = { "rg", "--files", "--no-ignore-vcs" } },
+        { source = { name = "Files incl. gitignored (rg)" } }
+    )
+end
+vim.keymap.set("n", "<leader>fi", MiniPick.registry.files_no_ignore_vcs, { desc = "List all files" })
 
 MiniPick.registry.git_files_changed = function()
     return MiniPick.builtin.cli(
