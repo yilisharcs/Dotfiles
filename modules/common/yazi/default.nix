@@ -144,6 +144,16 @@ in {
 
           # Plugins
           {
+            on = "s";
+            run = "search --via=fd --args=\"--no-ignore-vcs\"";
+            desc = "Search files by name via fd";
+          }
+          {
+            on = "S";
+            run = "search --via=rg --args=\"--no-ignore-vcs\"";
+            desc = "Search files by content via ripgrep";
+          }
+          {
             on = "z";
             run = "plugin zoxide";
             desc = "Jump to a directory via zoxide";
