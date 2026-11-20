@@ -191,34 +191,6 @@ hi("MiniHipatternsFixme", { fg = colors.Red2, bold = true, reverse = true, cterm
 hi("MiniIconsYellow", { fg = colors.Yellow1 })
 -- }}}
 
--- neogit {{{
-hi("NeogitDiffAddHighlight", { fg = "NONE", bg = colors.Green3, ctermbg = "green" })
-hi("NeogitDiffAdd", { fg = "NONE", bg = colors.Green4, ctermbg = "green" })
-hi("NeogitDiffDelete", { fg = colors.Red2, bg = colors.Ink2, ctermfg = "red" })
-hi("NeogitDiffDeleteHighlight", { fg = colors.Red1, bg = colors.Grey3, ctermfg = "red", ctermbg = "grey" })
-hi("NeogitDiffContextHighlight", { bg = colors.Grey3 })
-hi("NeogitStagedchanges", { fg = colors.Green2, bold = true, ctermfg = "green" })
-hi("NeogitUnstagedchanges", { fg = colors.Yellow2, bold = true, ctermfg = "yellow" })
-hi("NeogitUntrackedfiles", { fg = colors.Red2, bold = true, ctermfg = "red" })
-hi("NeogitUnmergedchanges", { fg = colors.Magenta1, bold = true, ctermfg = "magenta" })
-hi("NeogitGraphPurple", { fg = colors.Yellow2, ctermfg = "yellow" })
-hi("NeogitChangeModified", { fg = colors.Cyan2, bold = true, italic = true, ctermfg = "cyan" })
-hi("NeogitHunkHeaderHighlight", {
-    fg = colors.Grey3,
-    bg = colors.Grey1,
-    bold = true,
-    ctermfg = "black",
-    ctermbg = "grey",
-})
-hi("NeogitHunkHeaderCursor", {
-    fg = colors.Grey3,
-    bg = colors.White2,
-    bold = true,
-    ctermfg = "black",
-    ctermbg = "white",
-})
--- }}}
-
 -- rainbow-delimiters {{{
 hi("RainbowHide", { fg = "bg" })
 hi("RainbowDelimiterRed", { link = "Delimiter" })
