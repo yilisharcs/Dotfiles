@@ -41,6 +41,10 @@ vim.keymap.set("n", "<leader>fg", function()
     local worktree = vim.fs.find(".git", { path = vim.uv.cwd(), upward = true })[1] ~= nil
     MiniPick.builtin.grep_live({ tool = worktree and "git" or "rg" })
 end, { desc = "Live grep" })
+vim.keymap.set("n", "<leader>fG", function()
+    -- patched to accept rg_args
+    MiniPick.builtin.grep_live({ rg_args = { "--no-ignore-vcs" } })
+end, { desc = "Live grep incl. gitignored" })
 
 -- mini.extra pickers
 vim.keymap.set("n", "<leader>fl", MiniExtra.pickers.git_files, { desc = "Pick git files" })
