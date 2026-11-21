@@ -1,0 +1,11 @@
+#!/usr/bin/env nu
+
+# Get `gh repo list` output, formatted as a table
+gh repo list --json=url,description,isPrivate,isFork,isArchived,updatedAt
+| from json
+| update url { str replace "https://github.com/" "" }
+| move url --first
+| move description --last
+| update cells -c [isPrivate isFork isArchived] { if $in == false { null } else { $in } }
+| update updatedAt { date humanize }
+| to json

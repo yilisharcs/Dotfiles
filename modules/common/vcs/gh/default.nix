@@ -16,6 +16,15 @@
     esac
     exec ${getExe pkgs.gh} "$@"
   '';
+
+  gh-scripts =
+    pkgs.runCommand "gh-scripts" {
+      src = ./scripts;
+    } ''
+      mkdir -p  $out/bin
+      cp $src/* $out/bin/
+      chmod +x  $out/bin/*
+    '';
 in {
   age.secrets.github-cli = {
     file = ./auth-token.age;
@@ -25,6 +34,10 @@ in {
 
   home-manager.sharedModules = [
     {
+      home.packages = [
+        gh-scripts
+      ];
+
       # GitHub CLI tool
       programs.gh = enabled {
         package = gh-wrapped;
