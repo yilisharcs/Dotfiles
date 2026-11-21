@@ -85,6 +85,7 @@ require("utils.cabbrev")({
     ["MXRecompile"] = { "R", "recompile" },
     ["MXCompile fd --strip-cwd-prefix=never"] = { "find" },
     ["MXCompile rg"] = { "grep" },
+    ["MXCompile rg --no-ignore-vcs"] = { "grepv" },
 })
 
 vim.keymap.set("n", "<leader>c", ":MXCompile ", { desc = "Run compilation" })
