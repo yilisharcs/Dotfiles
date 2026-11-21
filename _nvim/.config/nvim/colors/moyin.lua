@@ -138,27 +138,26 @@ hi("Label", { fg = colors.Magenta1, ctermfg = "magenta" })
 hi("Identifier", { fg = colors.modusBlueCooler, update = true })
 hi("Function", { fg = colors.modusMagentaWarmer, update = true })
 
--- treesitter
+-- # filetype/treesitter
+-- vim
+hi("@label.vimdoc", { fg = colors.Green2, bold = true, ctermfg = "green" })
 hi("@markup.link.vimdoc", { fg = colors.Yellow2, bold = true, ctermfg = "yellow" })
 hi("@markup.list.markdown", { link = "Statement" })
 hi("@markup.raw.markdown_inline", { fg = colors.Green1, bg = colors.Grey3 })
 hi("markdownCodeBlock", { bg = colors.Grey3 })
---
-hi("@label.vimdoc", { fg = colors.Green2, bold = true, ctermfg = "green" })
---
-hi("gitcommitSummary", { link = "Identifier" })
---
+-- git
 hi("@markup.heading.gitcommit", { link = "gitcommitSummary" })
 hi("@markup.link.label.markdown_inline", { link = "Identifier" })
---
+hi("gitcommitSummary", { link = "Identifier" })
+-- rust
 hi("@character.rust", { link = "String" })
 hi("@function.macro.rust", { link = "PreProc" })
 hi("@lsp.typemod.keyword.unsafe.rust", { fg = colors.Red2, bold = false, ctermfg = "red" })
 hi("rustAttribute", { link = "Label" })
+-- fennel
+hi("@keyword.conditional.fennel", { fg = colors.Blue1, bold = true, ctermfg = "blue" })
 --
 hi("@number.hex", { link = "Statement" })
---
-hi("@keyword.conditional.fennel", { fg = colors.Blue1, bold = true, ctermfg = "blue" })
 
 -- LSP
 hi("DiagnosticError", { fg = colors.Red2, ctermfg = "red" })
