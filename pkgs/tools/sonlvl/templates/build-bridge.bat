@@ -1,2 +1,2 @@
 @ECHO OFF
-start /wait /unix @direnv@ exec . @just@ build || pause
+start /wait /unix @direnv@ exec . @make@ build || pause

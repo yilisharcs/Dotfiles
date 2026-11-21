@@ -9,7 +9,7 @@
   icoutils,
   wineWow64Packages,
   direnv,
-  just,
+  gnumake,
   blastem,
   replaceVars,
 }: let
@@ -17,7 +17,7 @@
 
   buildBridge = replaceVars ./templates/build-bridge.bat {
     direnv = lib.getExe direnv;
-    just = lib.getExe just;
+    make = lib.getExe gnumake;
   };
   emulatorBridge = replaceVars ./templates/emulator-bridge.bat {
     direnv = lib.getExe direnv;
